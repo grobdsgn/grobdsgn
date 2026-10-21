@@ -1,0 +1,182 @@
+{
+  "hero": {
+    "eyebrow": "Disponible · 2025",
+    "title": "Diseño experiencias\nque se recuerdan.",
+    "lead": "Soy Grobdesigns, diseñador gráfico y director de arte especializado en portadas musicales, identidades visuales y marcas de alto impacto."
+  },
+  "categories": [
+    {
+      "id": "musical",
+      "name": "Musical",
+      "slug": "musical",
+      "cover": "media/odisea.jpg",
+      "description": "Portadas de discos icónicos, identidades sonoras y dirección de arte para artistas multiplatino y sellos discográficos.",
+      "projects": [
+        {
+          "id": "ozuna-odisea",
+          "title": "Ozuna — Era \"Odisea\" & Sencillos",
+          "description": "Dirección de arte y portadas para el álbum debut \"Odisea\" (28x Platino RIAA) y sencillos globales como \"Dile Que Tú Me Quieres\", \"Si Tu Cama Hablara\", \"Bebé\" y \"La Diabla\".",
+          "year": "2017",
+          "images": [
+            "media/odisea.jpg",
+            "media/dile-que-tu-me-quieres.jpg",
+            "media/dile-que-tu-me-quieres-remix.jpg",
+            "media/si-tu-cama.jpg",
+            "media/bebe.jpg",
+            "media/la-diabla.jpg"
+          ]
+        },
+        {
+          "id": "katie-malu",
+          "title": "Katie Angel & Malu Trevejo — Portadas Oficiales",
+          "description": "Diseño de portadas y estética visual para lanzamientos de pop urbano de alto impacto digital como \"Un Ratito\" y \"Otra Noche\".",
+          "year": "2021",
+          "images": [
+            "media/un-ratito.jpg",
+            "media/otra-noche.jpg"
+          ]
+        },
+        {
+          "id": "neutro-shorty",
+          "title": "Neutro Shorty — Traicioneros & Gang Shit",
+          "description": "Arte y estética visual callejera para sencillos de trap latino.",
+          "year": "2020",
+          "images": [
+            "media/traicioneros.jpg",
+            "media/gang-shit.jpg"
+          ]
+        },
+        {
+          "id": "jambene-danny-ocean",
+          "title": "Jambene ft. Danny Ocean — Por Ti",
+          "description": "Portada y dirección gráfica para la colaboración acústico-urbana entre Jambene y Danny Ocean.",
+          "year": "2021",
+          "images": [
+            "media/por-ti.jpg"
+          ]
+        },
+        {
+          "id": "omega-pinocho",
+          "title": "Omega El Fuerte — Pinocho",
+          "description": "Ilustración surrealista y arte conceptual de portada para Omega El Fuerte.",
+          "year": "2020",
+          "images": [
+            "media/omega-el-fuerte-pinocho.png",
+            "media/son-pinocho.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marcas",
+      "name": "Marcas",
+      "slug": "marcas",
+      "cover": "media/logo-rimas.png",
+      "description": "Identidad visual, sistemas gráficos y branding para sellos discográficos, artistas y empresas.",
+      "projects": [
+        {
+          "id": "sellos-discograficos",
+          "title": "Sellos & Distribuidoras — Rimas, Codiscos & LS Records",
+          "description": "Identidad y aplicaciones visuales para firmas discográficas líderes de la industria musical latina.",
+          "year": "2024",
+          "images": [
+            "media/logo-rimas.png",
+            "media/logo-codiscos.png",
+            "media/logo-ls-records.png",
+            "media/logo-park-east.png"
+          ]
+        },
+        {
+          "id": "artistas-creadores",
+          "title": "Marcas Personales — Ozuna, Malu Trevejo & Katie Angel",
+          "description": "Logotipos oficiales, firmas gráficas y manuales de identidad para artistas internacionales.",
+          "year": "2023",
+          "images": [
+            "media/logo-ozuna.png",
+            "media/logo-katie-angel.png",
+            "media/logo-malu-trevejo.png",
+            "media/logo-moly.png",
+            "media/logo-jambene.png"
+          ]
+        },
+        {
+          "id": "corporativo",
+          "title": "Corporativo & Startups — Bepal, Alma, Ikon & El Triunfo",
+          "description": "Branding corporativo, diseño de logotipos y material institucional.",
+          "year": "2024",
+          "images": [
+            "media/logo-bepal.png",
+            "media/logo-alma.png",
+            "media/logo-ikon.png",
+            "media/logo-agro-inversiones.png",
+            "media/logo-centro-de-la-zona.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eventos",
+      "name": "Eventos",
+      "slug": "eventos",
+      "cover": "media/Captura de pantalla 2026-10-13 234015.png",
+      "description": "Diseño integral para conciertos, giras musicales, festivales y escenografía.",
+      "projects": [
+        {
+          "id": "giras-festivales",
+          "title": "Cartelería de Giras & Festivales",
+          "description": "Sistemas gráficos y afiches para conciertos masivos y presentaciones en vivo.",
+          "year": "2024",
+          "images": [
+            "media/Captura de pantalla 2026-10-13 234015.png",
+            "media/el-rumbon.jpg",
+            "media/thank-you-los-wizzards.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ia",
+      "name": "IA & Concept Art",
+      "slug": "ia",
+      "cover": "media/the-world.jpg",
+      "description": "Exploración de técnicas generativas avanzadas combinadas con dirección de arte tradicional.",
+      "projects": [
+        {
+          "id": "universos-3d",
+          "title": "Universos Visuales & Síntesis 3D",
+          "description": "Composiciones abstractas y exploración de texturas futuristas.",
+          "year": "2025",
+          "images": [
+            "media/the-world.jpg",
+            "media/cuantos-son.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otros",
+      "name": "Otros",
+      "slug": "otros",
+      "cover": "media/spanglish.jpg",
+      "description": "Ediciones especiales en vinilo, merchandising y proyectos experimentales.",
+      "projects": [
+        {
+          "id": "ediciones-especiales",
+          "title": "Ediciones Físicas & Empaques de Colección",
+          "description": "Diseño para vinilos, empaques físicos especiales y modelado 3D.",
+          "year": "2024",
+          "images": [
+            "media/spanglish.jpg",
+            "media/mientes.png",
+            "media/otra-botella.jpg"
+          ]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "hola@grobdesigns.com",
+    "phone": "+34 600 000 000",
+    "location": "Madrid, España"
+  }
+}
