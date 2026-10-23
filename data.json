@@ -11,7 +11,15 @@
   ],
   "categories": [],
   "clientes": [],
-  "software": [],
+  "software": [
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724209984-41oqjs.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724211217-slqoet.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724212542-sqdzm0.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724213561-1njvhj.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724214637-76bnj7.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724215683-3fw26e.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792724216671-h177yj.png"
+  ],
   "covers": [],
   "contact": {
     "email": "hola@grobdesigns.com",
