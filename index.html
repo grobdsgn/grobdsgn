@@ -7,7 +7,7 @@
 <meta name="description" content="Portafolio de Grobdesigns: diseño de portadas musicales, identidad visual y dirección de arte.">
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index, follow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.github.com https://raw.githubusercontent.com https://objects.githubusercontent.com https://open.spotify.com https://itunes.apple.com https://corsproxy.io https://musicbrainz.org https://api.deezer.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.github.com https://raw.githubusercontent.com https://cdn.jsdelivr.net https://objects.githubusercontent.com https://open.spotify.com https://itunes.apple.com https://corsproxy.io https://musicbrainz.org https://api.deezer.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -857,16 +857,40 @@ function imgPlaceholder(label) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0e0e11"/><text x="200" y="200" font-family="Inter,sans-serif" font-size="20" fill="#666" text-anchor="middle">${txt}</text></svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
-function attachImgFallback(el, label) {
+function getPathFromUrl(url) {
+  if (!url) return null;
+  const m = url.match(/media\/[^/]+$/);
+  return m ? m[0] : null;
+}
+function attachImgFallback(el, label, path) {
   if (!el) return;
-  el.addEventListener('error', function h() {
+  el.addEventListener('error', async function h() {
     if (el.dataset.fb) return;
     el.dataset.fb = '1';
+    
+    // Si estamos en el admin y falla, intentamos cargar la imagen usando la API (útil para repos privados)
+    if (window.isAdminUnlocked && path && GH.isConfigured()) {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${GH.repo}/contents/${path}?ref=${GH.branch}`, {
+          headers: { 'Authorization': `Bearer ${GH.token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const base64 = data.content.replace(/\n/g, '');
+          const byteCharacters = atob(base64);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
+          const blob = new Blob([new Uint8Array(byteNumbers)], {type: 'image/jpeg'});
+          el.src = URL.createObjectURL(blob);
+          return;
+        }
+      } catch (e) { console.error("Fallback API failed", e); }
+    }
+    
     el.src = imgPlaceholder(label);
   });
   if (el.complete && el.naturalWidth === 0 && el.src && !el.dataset.fb) {
-    el.dataset.fb = '1';
-    el.src = imgPlaceholder(label);
+    el.dispatchEvent(new Event('error'));
   }
 }
 function getYouTubeId(url) {
@@ -899,7 +923,7 @@ function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toS
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 /* ============================================================
-   GITHUB STORAGE (CORREGIDO PARA REPOS PRIVADOS)
+   GITHUB STORAGE (jsDelivr para URLs públicas)
    ============================================================ */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -910,7 +934,7 @@ const GH = {
   save(token, repo, branch) { localStorage.setItem('gh_token', token); localStorage.setItem('gh_repo', repo); localStorage.setItem('gh_branch', branch); },
   clear() { localStorage.removeItem('gh_token'); localStorage.removeItem('gh_repo'); localStorage.removeItem('gh_branch'); },
   isConfigured() { return !!(this.token && this.repo); },
-  rawUrl(path) { return `https://raw.githubusercontent.com/${this.repo}/${this.branch}/${path}`; },
+  rawUrl(path) { return `https://cdn.jsdelivr.net/gh/${this.repo}@${this.branch}/${path}`; },
   async api(path, options = {}) {
     const res = await fetch(`https://api.github.com${path}`, {
       ...options,
@@ -936,11 +960,10 @@ const GH = {
   async getFile(path) {
     try {
       const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`);
-      if (res.status === 404) return null; // El archivo no existe aún
+      if (res.status === 404) return null;
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       
       const d = await res.json();
-      // Decodificar base64 a texto UTF-8
       const bin = atob(d.content.replace(/\n/g, ''));
       const bytes = new Uint8Array(bin.length);
       for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
@@ -949,7 +972,7 @@ const GH = {
       return { sha: d.sha, content: text };
     } catch (e) {
       console.error(`Error leyendo ${path}:`, e);
-      throw e; // Relanzamos para que putFile sepa que falló
+      throw e;
     }
   },
   async putFile(path, base64Content, message) {
@@ -997,22 +1020,23 @@ const GH = {
     return this.rawUrl(path);
   },
   async loadData() {
-    // Si tenemos token, usar la API (sirve para repos privados)
     if (this.isConfigured()) {
       try {
         const file = await this.getFile(this.dataPath);
         if (file && file.content) {
           return JSON.parse(file.content);
         }
-        return null; // No existe el archivo aún
+        return null;
       } catch (e) {
         console.warn('Error cargando data.json desde API:', e);
-        // Si falla la API, intentamos el fallback público por si acaso
       }
     }
-    // Fallback público (solo funciona en repos públicos)
     try {
-      const res = await fetch(this.rawUrl(this.dataPath) + '?t=' + Date.now());
+      // Intentar jsDelivr, luego raw.githubusercontent como fallback
+      let res = await fetch(`https://cdn.jsdelivr.net/gh/${this.repo}@${this.branch}/${this.dataPath}?t=` + Date.now());
+      if (!res.ok) {
+        res = await fetch(`https://raw.githubusercontent.com/${this.repo}/${this.branch}/${this.dataPath}?t=` + Date.now());
+      }
       if (!res.ok) return null;
       return await res.json();
     } catch (e) { return null; }
@@ -1032,7 +1056,8 @@ const CATEGORY_BADGE = { sencillo: 'SENCILLO', albums: 'ÁLBUM', ediciones: 'EDI
 const TEXTS_DEFAULT = { navHome: 'Inicio', navPortafolio: 'Portafolio', navCovers: 'Covers', navClientes: 'Clientes', navContacto: 'Contacto', heroBtn1: 'Ver portafolio →', heroBtn2: 'Contáctame', philLabel: '— Filosofía', philTitle: 'Diseño con *intención*.', philText: 'Más de ocho años traduciendo ideas complejas en sistemas visuales claros.', softwareLabel: '— Herramientas', softwareTitle: 'Con las que *trabajo*.', softwareText: 'Los programas y herramientas que uso cada día.', coversLabel: '— Covers', coversTitle: 'Una pared de *covers*.', coversText: 'Portadas, artwork y ediciones.', cfTodos: 'Todos', cfSencillos: 'Sencillos', cfAlbumes: 'Álbumes', cfEdiciones: 'Ediciones', coverLblResena: 'Reseña del proyecto', coverLblImgs: 'Imágenes del proyecto', clientesLabel: '— Clientes', clientesTitle: 'Confían en *Grobdesigns*.', clientesText: 'Marcas, artistas y proyectos.', contactoTitle: '¿Trabajamos *juntos*?', contactoText: 'Cuéntame sobre tu proyecto.', cLabelEmail: 'Email', cLabelPhone: 'Teléfono', cLabelLocation: 'Ubicación', formLbl1: '01 — Nombre', formLbl2: '02 — Email', formLbl3: '03 — Mensaje', formBtn: 'Enviar mensaje', volverPorTxt: 'Volver a Portafolio', proyectoBackTxt: 'Volver', proyectoVerTxt: 'Ver proyecto', coverVerTxt: 'Ver proyecto', footerLeft: '© 2025 Grobdesigns', footerRight: 'Diseñado con intención', pageTitle: 'Grobdesigns', metaDescription: 'Portafolio de Grobdesigns.' };
 const THEME_DEFAULT = { accent: '#C9A961', bg: '#000000', surface: '#0f0f10', text: '#F5F3EF', muted: '#8A8A8A', philBg: '#F5F3EF', philText: '#0A0A0A', philEm: '#A88B45', philMuted: '#4A4A4A' };
 
-let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coverEditExtraImages = [], coversSearchQuery = '', isAdminUnlocked = false, _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152, _initDone = false;
+window.isAdminUnlocked = false;
+let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coverEditExtraImages = [], coversSearchQuery = '', _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152, _initDone = false;
 
 function getEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null;
@@ -1192,7 +1217,7 @@ function renderSoftware() {
   list.forEach(ref => {
     const card = document.createElement('div'); card.className = 'software-logo';
     const im = document.createElement('img'); im.src = ref; im.alt = ''; im.loading = 'lazy';
-    attachImgFallback(im, 'Tool');
+    attachImgFallback(im, 'Tool', getPathFromUrl(ref));
     card.appendChild(im); grid.appendChild(card);
   });
 }
@@ -1205,7 +1230,7 @@ function renderClientes() {
     const c = document.createElement('div'); c.className = 'cliente-logo';
     c.addEventListener('click', () => c.classList.toggle('lit'));
     const im = document.createElement('img'); im.src = ref; im.loading = 'lazy';
-    attachImgFallback(im, 'Cliente');
+    attachImgFallback(im, 'Cliente', getPathFromUrl(ref));
     c.appendChild(im); grid.appendChild(c);
   });
 }
@@ -1215,7 +1240,6 @@ function renderCovers() {
   const q = coversSearchQuery.trim().toLowerCase();
   const covers = COVERS.filter(c => (currentPublicFilter === 'todos' || c.category === currentPublicFilter) && (!q || (c.name + ' ' + c.artist + ' ' + c.year).toLowerCase().includes(q)));
   const shuffled = q ? covers : shuffle(covers);
-  ['Todos', 'Sencillo', 'Álbum', 'Edición'].forEach(() => {});
   $('#countTodos').textContent = COVERS.length;
   $('#countSencillo').textContent = COVERS.filter(c => c.category === 'sencillo').length;
   $('#countAlbums').textContent = COVERS.filter(c => c.category === 'albums').length;
@@ -1230,7 +1254,7 @@ function renderCovers() {
     const item = document.createElement('div'); item.className = 'cover-item';
     item.style.setProperty('--entry-delay', Math.min(i * 0.045, 1.6).toFixed(2) + 's');
     const im = document.createElement('img'); im.src = c.url; im.alt = c.name; im.loading = 'lazy';
-    attachImgFallback(im, c.name || 'Cover');
+    attachImgFallback(im, c.name || 'Cover', getPathFromUrl(c.url));
     item.appendChild(im);
     const shine = document.createElement('div'); shine.className = 'cover-shine'; item.appendChild(shine);
     if (c.url) extractDominantColor(c.url).then(col => { if (col) { item.style.setProperty('--cover-glow', hexToRgba(col, .55)); item.style.setProperty('--cover-glow-line', hexToRgba(col, .5)); } });
@@ -1345,7 +1369,7 @@ function renderCoverDetalle(coverId) {
   const c = COVERS.find(x => x.id === coverId); if (!c) return;
   const list = window._currentCoversList || COVERS;
   const idx = list.findIndex(x => x.id === coverId);
-  $('#coverHeroImg').src = c.url; attachImgFallback($('#coverHeroImg'), c.name || 'Cover');
+  $('#coverHeroImg').src = c.url; attachImgFallback($('#coverHeroImg'), c.name || 'Cover', getPathFromUrl(c.url));
   $('#coverHeroCounter').textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
   $('#coverHeroBadge').textContent = (CATEGORY_BADGE[c.category] || 'SENCILLO') + ' · ' + String(idx + 1).padStart(2, '0');
   $('#coverHeroTitle').textContent = c.name || '(Sin título)';
@@ -1378,7 +1402,7 @@ function renderMasonry(container, refs) {
     const item = document.createElement('div'); item.className = 'masonry-item';
     item.style.setProperty('--entry-delay', (i * 0.06).toFixed(2) + 's');
     const im = document.createElement('img'); im.src = ref; im.loading = 'lazy';
-    attachImgFallback(im, 'Imagen');
+    attachImgFallback(im, 'Imagen', getPathFromUrl(ref));
     item.appendChild(im);
     item.addEventListener('click', () => Lightbox.open(valid, i, ''));
     g.appendChild(item);
@@ -1413,7 +1437,7 @@ const Lightbox = {
   close() { if (!this.el) return; this.el.classList.remove('active'); document.body.classList.remove('locked'); },
   go(d) { if (this.images.length < 2) return; this.index = (this.index + d + this.images.length) % this.images.length; this.update(); },
   update() {
-    const url = this.images[this.index]; this.imgEl.src = url; attachImgFallback(this.imgEl, 'Imagen');
+    const url = this.images[this.index]; this.imgEl.src = url; attachImgFallback(this.imgEl, 'Imagen', getPathFromUrl(url));
     const counter = this.el.querySelector('.lightbox-counter');
     const prev = this.el.querySelector('.lightbox-nav.prev'), next = this.el.querySelector('.lightbox-nav.next');
     if (this.images.length > 1) { counter.style.display = 'block'; prev.style.display = 'grid'; next.style.display = 'grid'; counter.textContent = String(this.index + 1).padStart(2, '0') + ' / ' + String(this.images.length).padStart(2, '0'); }
@@ -1470,13 +1494,12 @@ function extractDominantColor(url) {
     im.onerror = () => res(null); im.src = url;
   });
 }
-function applyColors() {}
 
 /* ============================================================
-   ADMIN — ACCESO VÍA #admin
+   ADMIN
    ============================================================ */
 function tryOpenAdmin() {
-  if (isAdminUnlocked) {
+  if (window.isAdminUnlocked) {
     $('#adminOverlay').classList.add('active');
     document.body.classList.add('locked');
     renderAdmin();
@@ -1494,7 +1517,6 @@ function closeLoginScreen() {
   }
 }
 
-/* Único método de acceso: #admin en la URL */
 function checkAdminHash(attempt = 0) {
   const h = (location.hash || '').toLowerCase();
   if (h !== '#admin') return;
@@ -1508,7 +1530,6 @@ function checkAdminHash(attempt = 0) {
 window.addEventListener('hashchange', () => checkAdminHash());
 setTimeout(() => checkAdminHash(), 400);
 
-/* Cerrar login: botón ✕ o tecla Escape */
 $('#loginClose').onclick = closeLoginScreen;
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && $('#loginScreen').classList.contains('active')) {
@@ -1542,7 +1563,7 @@ $('#loginForm').addEventListener('submit', async e => {
   
   if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura. Se puede leer pero no guardar.'; }
   msg.textContent = '';
-  isAdminUnlocked = true;
+  window.isAdminUnlocked = true;
   $('#loginScreen').classList.remove('active');
   await reloadFromGitHub();
   tryOpenAdmin();
@@ -1550,7 +1571,7 @@ $('#loginForm').addEventListener('submit', async e => {
 
 $('#logoutBtn').onclick = () => {
   GH.clear();
-  isAdminUnlocked = false;
+  window.isAdminUnlocked = false;
   $('#adminOverlay').classList.remove('active');
   document.body.classList.remove('locked');
   if ((location.hash || '').toLowerCase() === '#admin') {
@@ -1596,7 +1617,7 @@ function renderHeroBgGrid() {
   list.forEach((ref, i) => {
     const card = document.createElement('div'); card.className = 'img-card';
     const prev = document.createElement('div'); prev.className = 'img-card-preview';
-    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Fondo ' + (i + 1));
+    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Fondo ' + (i + 1), getPathFromUrl(ref));
     prev.appendChild(im);
     const pos = document.createElement('span'); pos.className = 'img-card-position'; pos.textContent = '#' + (i + 1); prev.appendChild(pos); card.appendChild(prev);
     const actions = document.createElement('div'); actions.className = 'img-card-actions';
@@ -1627,7 +1648,7 @@ function renderCoversAdmin() {
   list.forEach(c => {
     const realIdx = COVERS.indexOf(c);
     const item = document.createElement('div'); item.className = 'cover-admin-item';
-    const im = document.createElement('img'); im.src = c.url; im.loading = 'lazy'; attachImgFallback(im, c.name); item.appendChild(im);
+    const im = document.createElement('img'); im.src = c.url; im.loading = 'lazy'; attachImgFallback(im, c.name, getPathFromUrl(c.url)); item.appendChild(im);
     const ov = document.createElement('div'); ov.className = 'overlay'; item.appendChild(ov);
     const tag = document.createElement('span'); tag.className = 'cat-tag'; tag.textContent = CATEGORY_LABELS[c.category]; tag.onclick = e => { e.stopPropagation(); cycleCat(realIdx); }; item.appendChild(tag);
     const meta = document.createElement('div'); meta.className = 'meta';
@@ -1659,7 +1680,13 @@ async function uploadCovers(files) {
       prog.textContent = '⏳ ' + (i + 1) + ' / ' + imgs.length;
       try {
         const url = await GH.uploadImage(imgs[i], 'cover');
-        COVERS.push({ id: uid(), url, category: selectedUploadCategory, name: isOne ? name : imgs[i].name.replace(/\.[^.]+$/, ''), artist: isOne ? artist : '', year: isOne ? year : year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
+        
+        let defaultName = imgs[i].name.replace(/\.[^.]+$/, '');
+        if (defaultName.length > 40 || /^[0-9a-f]+$/i.test(defaultName) || /^\d+x\d+/.test(defaultName)) {
+            defaultName = ''; // Limpiar nombres de archivo raros
+        }
+
+        COVERS.push({ id: uid(), url, category: selectedUploadCategory, name: isOne ? name : defaultName, artist: isOne ? artist : '', year: isOne ? year : year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
       } catch (e) { 
         console.error(e); 
         toast(`Error subiendo ${imgs[i].name}: ${e.message}`, 'error');
@@ -1677,7 +1704,7 @@ function openCoverEdit(i) {
   f.elements.index.value = i; f.elements.name.value = c.name; f.elements.artist.value = c.artist; f.elements.year.value = c.year;
   f.elements.category.value = c.category; f.elements.review.value = c.review; f.elements.spotifyUrl.value = c.spotifyUrl;
   f.elements.appleMusicUrl.value = c.appleMusicUrl; f.elements.youtubeUrl.value = c.youtubeUrl; f.elements.featured.checked = c.featured;
-  $('#coverEditPreview').src = c.url; attachImgFallback($('#coverEditPreview'), c.name || 'Cover');
+  $('#coverEditPreview').src = c.url; attachImgFallback($('#coverEditPreview'), c.name || 'Cover', getPathFromUrl(c.url));
   coverEditExtraImages = [...c.extraImages];
   renderCoverExtraGrid();
   $('#coverEditModal').classList.add('active');
@@ -1686,7 +1713,7 @@ function renderCoverExtraGrid() {
   const grid = $('#coverExtraGrid'); grid.textContent = '';
   coverEditExtraImages.forEach((ref, i) => {
     const s = document.createElement('div'); s.className = 'extra-img-slot';
-    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Extra'); s.appendChild(im);
+    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Extra', getPathFromUrl(ref)); s.appendChild(im);
     const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕'; rm.onclick = () => { coverEditExtraImages.splice(i, 1); renderCoverExtraGrid(); }; s.appendChild(rm);
     grid.appendChild(s);
   });
@@ -1733,7 +1760,7 @@ function renderClientesGrid() {
     const c = document.createElement('div'); c.className = 'cliente-admin-card';
     const idx = document.createElement('span'); idx.className = 'cliente-admin-index'; idx.textContent = '#' + (i + 1); c.appendChild(idx);
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
-    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Logo'); prev.appendChild(im); c.appendChild(prev);
+    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Logo', getPathFromUrl(ref)); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
     const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = '🗑'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderClientesGrid(); renderClientes(); }; act.appendChild(rm);
     c.appendChild(act);
@@ -1758,7 +1785,7 @@ function renderSoftwareGrid() {
     const c = document.createElement('div'); c.className = 'cliente-admin-card';
     const idx = document.createElement('span'); idx.className = 'cliente-admin-index'; idx.textContent = '#' + (i + 1); c.appendChild(idx);
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
-    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Tool'); prev.appendChild(im); c.appendChild(prev);
+    const im = document.createElement('img'); im.src = ref; attachImgFallback(im, 'Tool', getPathFromUrl(ref)); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
     const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = '🗑'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderSoftwareGrid(); renderSoftware(); }; act.appendChild(rm);
     c.appendChild(act); grid.appendChild(c);
@@ -1780,7 +1807,7 @@ function renderAdminCats() {
     const block = document.createElement('div'); block.className = 'category-card';
     const head = document.createElement('div'); head.className = 'category-header';
     const cover = document.createElement('div'); cover.className = 'category-cover';
-    if (cat.cover) { const im = document.createElement('img'); im.src = cat.cover; attachImgFallback(im, cat.name); cover.appendChild(im); }
+    if (cat.cover) { const im = document.createElement('img'); im.src = cat.cover; attachImgFallback(im, cat.name, getPathFromUrl(cat.cover)); cover.appendChild(im); }
     else { const e = document.createElement('div'); e.className = 'category-cover-empty'; e.textContent = cat.name.charAt(0); cover.appendChild(e); }
     head.appendChild(cover);
     const info = document.createElement('div'); info.className = 'category-info';
@@ -1801,7 +1828,7 @@ function renderAdminCats() {
       const item = document.createElement('div'); item.className = 'project-item';
       const row = document.createElement('div'); row.className = 'project-item-head';
       const thumb = document.createElement('div'); thumb.className = 'project-thumb';
-      if (p.images?.[0]) { const im = document.createElement('img'); im.src = p.images[0]; attachImgFallback(im, p.title); thumb.appendChild(im); }
+      if (p.images?.[0]) { const im = document.createElement('img'); im.src = p.images[0]; attachImgFallback(im, p.title, getPathFromUrl(p.images[0])); thumb.appendChild(im); }
       row.appendChild(thumb);
       const info = document.createElement('div'); info.className = 'project-info';
       const h4 = document.createElement('h4'); h4.textContent = p.title; info.appendChild(h4);
@@ -1859,7 +1886,7 @@ function renderProjImages() {
   const grid = $('#projImgGrid'); grid.textContent = '';
   projImages.forEach((ref, i) => {
     const s = document.createElement('div'); s.style.cssText = 'position:relative;aspect-ratio:1;overflow:hidden;background:#0a0a0a;border:1px solid var(--line);border-radius:2px';
-    const im = document.createElement('img'); im.src = ref; im.style.cssText = 'width:100%;height:100%;object-fit:cover'; attachImgFallback(im, 'Img'); s.appendChild(im);
+    const im = document.createElement('img'); im.src = ref; im.style.cssText = 'width:100%;height:100%;object-fit:cover'; attachImgFallback(im, 'Img', getPathFromUrl(ref)); s.appendChild(im);
     const rm = document.createElement('button'); rm.textContent = '✕'; rm.style.cssText = 'position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.85);color:#fff;font-size:.75rem;display:grid;place-items:center;border:none;cursor:pointer'; rm.onclick = () => { projImages.splice(i, 1); renderProjImages(); }; s.appendChild(rm);
     grid.appendChild(s);
   });
@@ -1933,7 +1960,7 @@ async function init() {
   try {
     if (GH.isConfigured()) {
       const user = await GH.getUser();
-      if (user) { isAdminUnlocked = true; await reloadFromGitHub(); return; }
+      if (user) { window.isAdminUnlocked = true; await reloadFromGitHub(); return; }
     }
     DATA = defaultData(); COVERS = [];
     applyCustomLogo(); renderAll();
@@ -1951,7 +1978,7 @@ async function init() {
   }
 }
 init();
-console.log('%c🔐 Grobdesigns v43 — Admin #admin + Soporte Repos Privados', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v44 — Imágenes con jsDelivr + Fallback API', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
