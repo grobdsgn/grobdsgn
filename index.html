@@ -922,26 +922,58 @@ const GH = {
     try { const res = await this.api('/user'); return res.ok ? await res.json() : null; } catch (e) { return null; }
   },
   async getRepoInfo() {
-    try { const res = await this.api(`/repos/${this.repo}`); return res.ok ? await res.json() : null; } catch (e) { return null; }
+    try {
+      const res = await this.api(`/repos/${this.repo}`);
+      if (!res.ok) {
+        const err = await res.json();
+        return { error: true, status: res.status, message: err.message };
+      }
+      return await res.json();
+    } catch (e) {
+      return { error: true, status: 0, message: e.message };
+    }
   },
   async getFile(path) {
     try {
       const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`);
-      if (!res.ok) return null;
+      if (res.status === 404) return null; // El archivo no existe aún
+      if (!res.ok) throw new Error(`Error ${res.status}`);
       const d = await res.json();
       return { sha: d.sha, content: d.content };
-    } catch (e) { return null; }
+    } catch (e) {
+      console.warn(`No se pudo leer ${path}:`, e);
+      return null; 
+    }
   },
   async putFile(path, base64Content, message) {
-    const existing = await this.getFile(path);
-    const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
-    if (existing) body.sha = existing.sha;
-    const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    return res.ok;
+    let retries = 3;
+    while (retries > 0) {
+      const existing = await this.getFile(path);
+      const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
+      if (existing && existing.sha) body.sha = existing.sha;
+      
+      const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      
+      if (res.ok) return true;
+      
+      // Si hay conflicto (409), esperamos y reintentamos con el SHA actualizado
+      if (res.status === 409) {
+        console.warn(`Conflicto 409 en ${path}. Reintentando en 1s...`);
+        retries--;
+        await new Promise(r => setTimeout(r, 1000));
+        continue;
+      }
+      
+      // Si es otro error (como falta de permisos), lo mostramos
+      const errData = await res.json().catch(() => ({}));
+      console.error(`Error API ${res.status} al guardar ${path}:`, errData);
+      return false;
+    }
+    return false;
   },
   async uploadImage(file, prefix = 'img') {
     const base64 = await compressImage(file, 1200, 0.85);
@@ -970,10 +1002,6 @@ const GH = {
 /* ============================================================
    STATE
    ============================================================ */
-const HERO_BG_DEFAULT = [];
-const CLIENTES_DEFAULT = [];
-const SOFTWARE_DEFAULT = [];
-const COVERS_DEFAULT = [];
 const CATEGORY_LABELS = { sencillo: 'Sencillo', albums: 'Álbum', ediciones: 'Edición' };
 const CATEGORY_BADGE = { sencillo: 'SENCILLO', albums: 'ÁLBUM', ediciones: 'EDICIÓN ESPECIAL' };
 const TEXTS_DEFAULT = { navHome: 'Inicio', navPortafolio: 'Portafolio', navCovers: 'Covers', navClientes: 'Clientes', navContacto: 'Contacto', heroBtn1: 'Ver portafolio →', heroBtn2: 'Contáctame', philLabel: '— Filosofía', philTitle: 'Diseño con *intención*.', philText: 'Más de ocho años traduciendo ideas complejas en sistemas visuales claros.', softwareLabel: '— Herramientas', softwareTitle: 'Con las que *trabajo*.', softwareText: 'Los programas y herramientas que uso cada día.', coversLabel: '— Covers', coversTitle: 'Una pared de *covers*.', coversText: 'Portadas, artwork y ediciones.', cfTodos: 'Todos', cfSencillos: 'Sencillos', cfAlbumes: 'Álbumes', cfEdiciones: 'Ediciones', coverLblResena: 'Reseña del proyecto', coverLblImgs: 'Imágenes del proyecto', clientesLabel: '— Clientes', clientesTitle: 'Confían en *Grobdesigns*.', clientesText: 'Marcas, artistas y proyectos.', contactoTitle: '¿Trabajamos *juntos*?', contactoText: 'Cuéntame sobre tu proyecto.', cLabelEmail: 'Email', cLabelPhone: 'Teléfono', cLabelLocation: 'Ubicación', formLbl1: '01 — Nombre', formLbl2: '02 — Email', formLbl3: '03 — Mensaje', formBtn: 'Enviar mensaje', volverPorTxt: 'Volver a Portafolio', proyectoBackTxt: 'Volver', proyectoVerTxt: 'Ver proyecto', coverVerTxt: 'Ver proyecto', footerLeft: '© 2025 Grobdesigns', footerRight: 'Diseñado con intención', pageTitle: 'Grobdesigns', metaDescription: 'Portafolio de Grobdesigns.' };
@@ -1034,8 +1062,13 @@ async function saveData(silent = false) {
   DATA.covers = COVERS;
   setSyncStatus('saving');
   const ok = await GH.saveData(DATA);
-  if (ok) { setSyncStatus('ok'); if (!silent) toast('✅ Guardado en GitHub', 'ok'); }
-  else { setSyncStatus('error'); toast('❌ Error al guardar en GitHub', 'error'); }
+  if (ok) { 
+    setSyncStatus('ok'); 
+    if (!silent) toast('✅ Guardado en GitHub', 'ok'); 
+  } else { 
+    setSyncStatus('error'); 
+    toast('❌ Error al guardar. Prueba a recargar de GitHub.', 'error'); 
+  }
   return ok;
 }
 
@@ -1458,13 +1491,25 @@ $('#loginForm').addEventListener('submit', async e => {
   const repo = $('#loginRepo').value.trim();
   const branch = $('#loginBranch').value.trim() || 'main';
   const msg = $('#loginMsg');
+  
   if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { msg.textContent = 'Formato: usuario/repositorio'; return; }
+  
   msg.textContent = 'Conectando…';
   GH.save(token, repo, branch);
+  
   const user = await GH.getUser();
-  if (!user) { GH.clear(); msg.textContent = 'Token inválido o sin permisos'; return; }
+  if (!user) { GH.clear(); msg.textContent = 'Error 401: Token inválido o mal copiado.'; return; }
+  
   const info = await GH.getRepoInfo();
+  
+  // Si hay un error de red o de GitHub, lo mostramos
+  if (info && info.error) { 
+    GH.clear(); 
+    msg.textContent = `Error ${info.status}: ${info.message}`; 
+    return; 
+  }
   if (!info) { GH.clear(); msg.textContent = 'No tienes acceso a ese repositorio'; return; }
+  
   if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura. Se puede leer pero no guardar.'; }
   msg.textContent = '';
   isAdminUnlocked = true;
@@ -1873,7 +1918,7 @@ async function init() {
   }
 }
 init();
-console.log('%c🔐 Grobdesigns v41 — acceso admin solo vía #admin', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v42 — Admin #admin + retry 409 fix', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
