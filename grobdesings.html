@@ -7,7 +7,7 @@
 <meta name="description" content="Portafolio de Grobdesigns: diseño de portadas musicales, identidad visual y dirección de arte.">
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index, follow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.song.link https://open.spotify.com https://itunes.apple.com https://corsproxy.io https://musicbrainz.org; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://open.spotify.com https://itunes.apple.com https://corsproxy.io https://musicbrainz.org https://api.deezer.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,12 +109,20 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .detalle-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border:1px solid var(--accent);border-radius:100px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:28px;background:rgba(201,169,97,.06)}
 .detalle-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 .detalle-titulo{font-weight:900;font-size:clamp(2.6rem,7vw,5.5rem);line-height:.95;letter-spacing:-.045em;text-transform:uppercase;margin-bottom:24px;color:#fff}
-.detalle-cta{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--accent);margin-bottom:40px}
+.detalle-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:40px}
+.detalle-cta{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--text);padding-bottom:8px;border-bottom:1px solid var(--accent)}
 .detalle-cta svg{width:14px;height:14px}
 .detalle-resena{color:var(--muted);font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.9;font-weight:300;max-width:65ch;white-space:pre-line;margin-bottom:20px}
 .detalle-meta-line{display:flex;gap:20px;flex-wrap:wrap;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:20px}
 .detalle-meta-line span{display:inline-flex;align-items:center;gap:8px}
 .detalle-meta-line span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.yt-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.4);border-radius:100px;color:#FF0000;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:.3s;cursor:pointer}
+.yt-btn:hover{background:#FF0000;color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,0,0,.3)}
+.yt-btn svg{width:14px;height:14px;fill:currentColor}
+.project-yt-wrap{max-width:1000px;margin:40px auto 0;padding:0 clamp(24px,5vw,56px);display:none}
+.project-yt-wrap.visible{display:block}
+.project-yt-inner{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px var(--line)}
+.project-yt-inner iframe{width:100%;height:100%;border:0;display:block}
 .masonry-gallery{max-width:1400px;margin:40px auto 0;padding:0 clamp(16px,4vw,48px) 80px;column-gap:12px;columns:3}
 @media(max-width:900px){.masonry-gallery{columns:2}}
 @media(max-width:540px){.masonry-gallery{columns:1}}
@@ -141,15 +149,17 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .cover-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:140px clamp(24px,5vw,80px) 100px;min-height:100vh;box-sizing:border-box}
 @media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:48px;padding:110px clamp(20px,5vw,40px) 60px;min-height:auto}}
 .cover-hero-image{display:flex;justify-content:center;align-items:center;width:100%}
-.cover-hero-image img{display:block;width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;box-shadow:0 40px 100px rgba(0,0,0,.65);background:#0a0a0a}
+.cover-hero-image img{display:block;width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;box-shadow:0 40px 100px rgba(0,0,0,.65);background:#0a0a0a;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.cover-hero-image img:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg);box-shadow:0 50px 120px rgba(0,0,0,.75),0 12px 40px var(--cover-hero-glow,rgba(201,169,97,.18))}
 .cover-hero-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;width:100%;max-width:600px}
 .cover-hero-counter{font-size:.8rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;font-variant-numeric:tabular-nums}
 .cover-hero-badge{display:inline-flex;align-items:center;padding:10px 22px;border:1.5px solid var(--accent);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);background:transparent;margin-bottom:36px;line-height:1}
 .cover-hero-title{font-weight:900;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 28px 0;word-break:break-word}
-.cover-hero-artist{font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 40px 0;line-height:1.4}
-.cover-hero-cta{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--text);padding-bottom:10px;border-bottom:1.5px solid var(--accent);align-self:flex-start}
+.cover-hero-artist{font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 32px 0;line-height:1.4}
+.cover-hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:32px}
+.cover-hero-cta{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--text);padding-bottom:10px;border-bottom:1.5px solid var(--accent)}
 .cover-hero-cta svg{width:12px;height:12px}
-.cover-hero-music{margin-top:32px;width:100%;max-width:520px;min-height:80px}
+.cover-hero-music{margin-top:0;width:100%;max-width:520px;min-height:80px}
 .cover-extra-section{background:#000;width:100%;padding:80px 0 40px}
 .cover-extra-section.hidden{display:none}
 .cover-extra-block{max-width:1000px;margin:0 auto 60px;padding:0 clamp(24px,5vw,56px)}
@@ -180,18 +190,21 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .covers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(24px,5vw,56px) 80px}
 @media(max-width:900px){.covers-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}}
 @media(max-width:640px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
-.cover-item{position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);animation:coverCardIn .85s cubic-bezier(.16,1,.3,1) backwards;animation-delay:var(--entry-delay,0s);transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s var(--ease)}
+.cover-item{--cover-glow:rgba(201,169,97,.5);--cover-glow-line:rgba(201,169,97,.45);position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);animation:coverCardIn .85s cubic-bezier(.16,1,.3,1) backwards;animation-delay:var(--entry-delay,0s);transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s var(--ease)}
 @keyframes coverCardIn{0%{opacity:0;transform:translateY(40px) scale(.94)}60%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}
 .cover-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.95);transform:scale(1.06);transition:filter .7s,transform 1s;min-height:100px}
+.cover-shine{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.18) 45%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1.1s cubic-bezier(.16,1,.3,1);border-radius:6px}
 .cover-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 45%,transparent 75%);opacity:.65;transition:opacity .55s;pointer-events:none;z-index:2}
-.cover-item:hover{transform:translateY(-14px) scale(1.08);box-shadow:0 40px 80px -20px rgba(201,169,97,.5),0 25px 60px -10px rgba(0,0,0,.85),0 0 0 1.5px rgba(201,169,97,.45);z-index:20}
+.cover-item:hover{transform:translateY(-14px) scale(1.08);box-shadow:0 40px 80px -20px var(--cover-glow),0 25px 60px -10px rgba(0,0,0,.85),0 0 0 1.5px var(--cover-glow-line);z-index:20}
 .cover-item:hover img{filter:brightness(1.15) saturate(1.25);transform:scale(1.22)}
 .cover-item:hover::after{opacity:1}
+.cover-item:hover .cover-shine{transform:translateX(120%)}
 .cover-info{position:absolute;bottom:0;left:0;right:0;padding:24px 26px;z-index:5;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none}
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
 .cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .cover-info-meta{font-size:.72rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
 .cover-music-icon{position:absolute;top:10px;right:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.9rem;pointer-events:none}
+.cover-item .cover-yt-icon{position:absolute;top:10px;left:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.7rem;pointer-events:none}
 .covers-empty{padding:120px 24px;text-align:center;color:var(--muted);max-width:600px;margin:0 auto;grid-column:1/-1}
 .covers-empty strong{display:block;color:var(--text);font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:12px}
 .music-section{padding:clamp(80px,12vh,140px) 0;background:#000;border-top:1px solid var(--line);position:relative;overflow:hidden}
@@ -200,7 +213,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .music-label::before,.music-label::after{content:'';width:32px;height:1px;background:var(--accent);opacity:.5}
 .music-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,4.4vw,3.2rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:10px}
 .music-subtitle{color:var(--muted);font-size:.95rem;max-width:50ch;margin:0 auto}
-.music-card{max-width:1000px;margin:0 auto;background:linear-gradient(135deg,#111,#08080a);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;grid-template-columns:96px 1fr 380px;gap:18px;align-items:center;box-shadow:0 20px 60px -20px rgba(0,0,0,.85)}
+.music-card{max-width:1000px;margin:0 auto;background:linear-gradient(135deg,#111,#08080a);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;grid-template-columns:96px 1fr minmax(380px,1fr);gap:18px;align-items:center;box-shadow:0 20px 60px -20px rgba(0,0,0,.85)}
 .music-card-cover{width:96px;height:96px}
 .music-card-cover img{width:100%;height:100%;object-fit:cover;border-radius:6px;background:#0a0a0a}
 .music-card-body{min-width:0}
@@ -209,7 +222,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .music-card-artist{color:rgba(245,243,239,.65);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .music-card-link{display:inline-flex;align-items:center;gap:8px;font-size:.64rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text);padding-bottom:4px;border-bottom:1px solid var(--accent);margin-top:10px}
 .music-card-link svg{width:10px;height:10px}
-.music-card-embed{width:380px;max-width:100%;min-height:152px;border-radius:8px;background:rgba(255,255,255,.02);display:grid;place-items:center;color:var(--muted);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.music-card-embed{width:100%;min-height:152px;border-radius:8px;background:rgba(255,255,255,.02);display:grid;place-items:center;color:var(--muted);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:900px){.music-card{grid-template-columns:80px 1fr;gap:14px;padding:16px}.music-card-cover,.music-card-cover img{width:80px;height:80px}.music-card-embed{grid-column:1/-1;width:100%}}
 @media(max-width:640px){.music-card{grid-template-columns:72px 1fr;gap:12px;padding:14px}.music-card-cover,.music-card-cover img{width:72px;height:72px}}
 .software-section{padding:clamp(70px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
@@ -219,7 +232,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:30px 40px;margin-top:50px;align-items:center}
 @media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:24px 20px}}
 .software-logo{display:grid;place-items:center;padding:14px;min-height:70px}
-/* ✅ FIX 4: opacidad más alta para que se vean bien */
 .software-logo img{max-width:100%;max-height:50px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;transition:.4s;pointer-events:none}
 .software-logo:hover img{opacity:1;transform:scale(1.1)}
 .clientes-view{padding:180px 0 100px;min-height:100vh;background:#000}
@@ -229,7 +241,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(40px,5vw,80px) clamp(30px,4vw,60px);margin-top:60px;align-items:center}
 @media(max-width:640px){.clientes-grid{grid-template-columns:repeat(2,1fr);gap:44px 24px}}
 .cliente-logo{display:grid;place-items:center;padding:20px;cursor:pointer;min-height:80px}
-/* ✅ FIX 4: opacidad más alta para que se vean bien */
 .cliente-logo img{max-width:100%;max-height:70px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.55;transition:.5s;pointer-events:none}
 .cliente-logo:hover img{opacity:.85;transform:scale(1.06)}
 .cliente-logo.lit img{opacity:1;transform:scale(1.1);filter:brightness(0) invert(1) drop-shadow(0 0 24px rgba(201,169,97,.45))}
@@ -365,6 +376,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .cover-admin-item .ed:hover{background:var(--accent);color:#000}
 .cover-admin-item .extra-badge{position:absolute;bottom:4px;right:4px;background:rgba(201,169,97,.9);color:#000;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:100px;z-index:4}
 .cover-admin-item .music-badge{position:absolute;bottom:4px;left:4px;background:rgba(30,215,96,.9);color:#000;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:100px;z-index:4}
+.cover-admin-item .yt-badge{position:absolute;top:34px;right:6px;background:rgba(255,0,0,.9);color:#fff;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:100px;z-index:4}
 .cover-admin-item .feat-badge{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.55rem;font-weight:700;padding:2px 8px;border-radius:100px;z-index:4}
 .category-card{background:#0e0e11;border:1px solid var(--line);border-radius:3px;margin-bottom:16px;overflow:hidden}
 .category-header{padding:18px;display:grid;grid-template-columns:110px 1fr auto;gap:20px;align-items:center}
@@ -409,7 +421,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .login-card input:focus{border-color:var(--accent)}
 .login-card button{width:100%;padding:14px;background:var(--text);color:var(--bg);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem;border-radius:2px;cursor:pointer}
 .login-msg{font-size:.85rem;min-height:18px;margin-top:12px;color:var(--danger)}
-.login-hint{font-size:.75rem;color:var(--muted);margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .toast{position:fixed;bottom:24px;right:24px;background:#131316;border:1px solid var(--line);padding:14px 20px;font-size:.9rem;transform:translateY(140%);transition:.4s;z-index:25000;max-width:340px;border-radius:3px}
 .toast.show{transform:translateY(0)}
 .toast.ok{border-color:var(--ok)}
@@ -480,12 +491,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .music-bar:nth-child(2){height:100%;animation-delay:.3s}
 .music-bar:nth-child(3){height:40%;animation-delay:.2s}
 @keyframes barBounce{0%{height:25%}100%{height:100%}}
-/* ✅ FIX 2: mini-player con fondo sólido y borde dorado */
-#globalMusicPlayer { display: none; position: fixed; z-index: 9997; background: #0a0a0a; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; transition: top .3s ease, left .3s ease, width .3s ease, height .3s ease, bottom .3s ease, right .3s ease; }
-#globalMusicPlayer.visible { display: block; }
-#globalMusicPlayer iframe { display: block; width: 100%; height: 100%; border: 0; }
-#globalMusicPlayer.mini { bottom: 20px; right: 20px; width: 340px; height: 152px; border-color: var(--accent); box-shadow: 0 20px 60px rgba(0,0,0,.85), 0 0 0 1px rgba(201,169,97,.25); }
-@media(max-width:640px){ #globalMusicPlayer.mini { bottom: 12px; right: 12px; left: 12px; width: auto; height: 132px; } }
+#globalMusicPlayer{display:none;position:fixed;z-index:9997;background:#0a0a0a;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:top .3s ease,left .3s ease,width .3s ease,height .3s ease,bottom .3s ease,right .3s ease}
+#globalMusicPlayer.visible{display:block}
+#globalMusicPlayer iframe{display:block;width:100%;height:100%;border:0}
+#globalMusicPlayer.mini{bottom:20px;right:20px;width:340px;height:152px;border-color:var(--accent);box-shadow:0 20px 60px rgba(0,0,0,.85),0 0 0 1px rgba(201,169,97,.25)}
+@media(max-width:640px){#globalMusicPlayer.mini{bottom:12px;right:12px;left:12px;width:auto;height:132px}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -621,10 +631,17 @@ que se recuerdan.</h1>
       <div class="detalle-counter" id="proyectoCounter"></div>
       <div class="detalle-badge" id="proyectoBadge"></div>
       <h1 class="detalle-titulo" id="proyectoTitulo"></h1>
-      <a class="detalle-cta" href="#proyectoImagenes"><span id="proyectoVerTxt">Ver proyecto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      <div class="detalle-actions">
+        <a class="detalle-cta" href="#proyectoImagenes"><span id="proyectoVerTxt">Ver proyecto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        <a class="yt-btn" id="proyectoYouTube" target="_blank" rel="noopener" style="display:none">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2-1.8-.5-9.5-.5-9.5-.5s-7.7 0-9.5.5c-1 .3-1.8 1-2 2C0 8 0 12 0 12s0 4 .3 5.8c.3 1 1 1.8 2 2 1.8.5 9.5.5 9.5.5s7.7 0 9.5-.5c1-.3 1.8-1 2-2 .3-1.8.3-5.8.3-5.8s0-4-.3-5.8zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg>
+          Ver en YouTube
+        </a>
+      </div>
       <p class="detalle-resena" id="proyectoResena"></p>
       <div class="detalle-meta-line" id="proyectoMeta"></div>
     </div>
+    <div class="project-yt-wrap" id="proyectoYouTubeEmbed"></div>
     <div class="detalle-imagenes" id="proyectoImagenes"></div>
   </section>
 </div>
@@ -662,7 +679,13 @@ que se recuerdan.</h1>
         <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO · 00</div>
         <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
         <div class="cover-hero-artist" id="coverHeroArtist"></div>
-        <a class="cover-hero-cta" href="#cover-imgs"><span id="coverVerTxt">Ver proyecto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        <div class="cover-hero-actions">
+          <a class="cover-hero-cta" href="#cover-imgs"><span id="coverVerTxt">Ver proyecto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          <a class="yt-btn" id="coverHeroYouTube" target="_blank" rel="noopener" style="display:none">
+            <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2-1.8-.5-9.5-.5-9.5-.5s-7.7 0-9.5.5c-1 .3-1.8 1-2 2C0 8 0 12 0 12s0 4 .3 5.8c.3 1 1 1.8 2 2 1.8.5 9.5.5 9.5.5s7.7 0 9.5-.5c1-.3 1.8-1 2-2 .3-1.8.3-5.8.3-5.8s0-4-.3-5.8zM9.5 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg>
+            Ver en YouTube
+          </a>
+        </div>
         <div class="cover-hero-music" id="coverHeroMusic"></div>
       </div>
     </div>
@@ -977,7 +1000,7 @@ que se recuerdan.</h1>
               <div class="admin-field"><label>Botón ver proyecto (cover)</label><input type="text" name="coverVerTxt" maxlength="40"></div>
             </div>
             <div class="admin-field"><label>Pie izquierda</label><input type="text" name="footerLeft" maxlength="80"></div>
-            <div class="admin-field"><label>Pie derecha</label><input type="text" name="footerRight" maxlength="80"></div>
+            <div class="admin-field"><label>Pie derecho</label><input type="text" name="footerRight" maxlength="80"></div>
             <div class="admin-texts-group">SEO</div>
             <div class="admin-field"><label>Título página</label><input type="text" name="pageTitle" maxlength="120"></div>
             <div class="admin-field"><label>Meta descripción</label><textarea name="metaDescription" rows="2" maxlength="300"></textarea></div>
@@ -1055,6 +1078,7 @@ que se recuerdan.</h1>
     <div class="admin-field"><label>Título</label><input type="text" name="title" required maxlength="200"></div>
     <div class="admin-field"><label>Descripción</label><textarea name="description" maxlength="800" rows="3"></textarea></div>
     <div class="admin-field"><label>Año</label><input type="text" name="year" maxlength="20"></div>
+    <div class="admin-field"><label>Enlace de YouTube (opcional)</label><input type="url" name="youtubeUrl" maxlength="500" placeholder="https://www.youtube.com/watch?v=..."></div>
     <div class="admin-field"><label>Imágenes</label>
       <div class="upload-zone" id="projUpZone" style="padding:22px"><div class="upload-icon">📷</div><p>Haz clic o arrastra</p></div>
       <input type="file" id="projFileInput" accept="image/*" multiple hidden>
@@ -1069,7 +1093,7 @@ que se recuerdan.</h1>
 
 <div class="modal-bg" id="coverEditModal"><div class="amodal">
   <h2>Editar cover</h2>
-  <p class="modal-sub">Pega un enlace de Spotify o Apple Music y pulsa "🔍 Extraer".</p>
+  <p class="modal-sub">Pega un enlace de Spotify, Apple Music (track o álbum) y pulsa "🔍 Extraer".</p>
   <form id="coverEditForm">
     <input type="hidden" name="index">
     <div style="display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:start;margin-bottom:20px">
@@ -1085,8 +1109,9 @@ que se recuerdan.</h1>
     </div>
     <div class="admin-field"><label>Reseña</label><textarea name="review" maxlength="1500" rows="4"></textarea></div>
     <div class="admin-texts-group">Reproductor de música</div>
-    <div class="admin-field"><label>Enlace de Spotify</label><input type="url" name="spotifyUrl" maxlength="500" placeholder="https://open.spotify.com/track/..."></div>
-    <div class="admin-field"><label>Enlace de Apple Music</label><input type="url" name="appleMusicUrl" maxlength="500" placeholder="https://music.apple.com/..."></div>
+    <div class="admin-field"><label>Enlace de Spotify (track o álbum)</label><input type="url" name="spotifyUrl" maxlength="500" placeholder="https://open.spotify.com/track/... o /album/..."></div>
+    <div class="admin-field"><label>Enlace de Apple Music (track o álbum)</label><input type="url" name="appleMusicUrl" maxlength="500" placeholder="https://music.apple.com/..."></div>
+    <div class="admin-field"><label>Enlace de YouTube (opcional)</label><input type="url" name="youtubeUrl" maxlength="500" placeholder="https://www.youtube.com/watch?v=..."></div>
     <div class="admin-field">
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--text);font-weight:500">
         <input type="checkbox" name="featured" style="width:18px;height:18px;margin:0;accent-color:var(--accent);cursor:pointer">
@@ -1111,8 +1136,17 @@ que se recuerdan.</h1>
 
 <script>
 /* ============================================================
-   ✅ FIX 1: Helper de imagen con fallback robusto
+   HELPERS
    ============================================================ */
+function hexToRgba(hex, alpha) {
+  if (!hex || typeof hex !== 'string' || !hex.startsWith('#')) return `rgba(201,169,97,${alpha})`;
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  if ([r, g, b].some(v => isNaN(v))) return `rgba(201,169,97,${alpha})`;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
 function imgPlaceholder(label) {
   const txt = (label || 'Imagen').toString().slice(0, 20).replace(/[<>&"']/g, '');
   const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0e0e11"/><rect x="20" y="20" width="360" height="360" fill="none" stroke="#C9A961" stroke-opacity="0.2" stroke-width="2" rx="8"/><text x="200" y="180" font-family="Inter,sans-serif" font-size="60" fill="#C9A961" fill-opacity="0.4" text-anchor="middle">♪</text><text x="200" y="230" font-family="Inter,sans-serif" font-size="14" fill="#666" text-anchor="middle">' + txt + '</text></svg>';
@@ -1124,12 +1158,20 @@ function attachImgFallback(imgEl, label) {
     if (imgEl.dataset.fallback) return;
     imgEl.dataset.fallback = '1';
     imgEl.src = imgPlaceholder(label);
-  }, { once: false });
-  // Si ya falló (naturalWidth===0 y complete), aplicarlo ahora
+  });
   if (imgEl.complete && imgEl.naturalWidth === 0 && imgEl.src && !imgEl.dataset.fallback) {
     imgEl.dataset.fallback = '1';
     imgEl.src = imgPlaceholder(label);
   }
+}
+function getYouTubeId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const m = url.match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function getYouTubeEmbedUrl(url) {
+  const id = getYouTubeId(url);
+  return id ? `https://www.youtube.com/embed/${id}` : null;
 }
 
 /* ============================================================ MEDIA STORE ============================================================ */
@@ -1267,10 +1309,8 @@ const Lightbox = {
   images: [], index: 0, altBase: '',
   ensure() {
     if (this.el) return;
-    const overlay = document.createElement('div');
-    overlay.className = 'lightbox-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
+    const overlay = document.createElement('div'); overlay.className = 'lightbox-overlay';
+    overlay.setAttribute('role', 'dialog'); overlay.setAttribute('aria-modal', 'true');
     const wrap = document.createElement('div'); wrap.className = 'lightbox-img-wrap';
     const im = document.createElement('img'); im.className = 'lightbox-img'; im.alt = ''; im.draggable = false;
     wrap.appendChild(im);
@@ -1309,7 +1349,7 @@ const Lightbox = {
   update(instant) {
     const self = this;
     const url = img(this.images[this.index]);
-    const apply = () => { self.imgEl.src = url; self.imgEl.alt = self.altBase + ' ' + (self.index + 1); self.imgEl.style.opacity = '1'; };
+    const apply = () => { self.imgEl.src = url; self.imgEl.alt = self.altBase + ' ' + (self.index + 1); self.imgEl.style.opacity = '1'; self.imgEl.dataset.fallback = ''; };
     if (instant) apply(); else { this.imgEl.style.opacity = '0'; setTimeout(apply, 140); }
     if (this.images.length > 1) { this.counterEl.style.display = 'block'; this.counterEl.textContent = String(this.index + 1).padStart(2, '0') + ' / ' + String(this.images.length).padStart(2, '0'); this.prevBtn.style.display = 'grid'; this.nextBtn.style.display = 'grid'; }
     else { this.counterEl.style.display = 'none'; this.prevBtn.style.display = 'none'; this.nextBtn.style.display = 'none'; }
@@ -1329,9 +1369,7 @@ function renderMasonryGallery(container, imageRefs, altPrefix = 'Imagen') {
     const item = document.createElement('div'); item.className = 'masonry-item';
     item.style.setProperty('--entry-delay', Math.min(i * 0.06, 0.8).toFixed(2) + 's');
     const imageEl = document.createElement('img');
-    imageEl.src = img(ref);
-    imageEl.alt = altPrefix + ' ' + (i + 1);
-    imageEl.loading = 'lazy';
+    imageEl.src = img(ref); imageEl.alt = altPrefix + ' ' + (i + 1); imageEl.loading = 'lazy';
     attachImgFallback(imageEl, altPrefix + ' ' + (i + 1));
     item.appendChild(imageEl);
     item.addEventListener('click', () => Lightbox.open(refs, i, altPrefix));
@@ -1374,29 +1412,37 @@ const COVERS_DEFAULT = [
   { url: 'media/aprendi.jpg', category: 'albums', name: 'Aprendí', artist: 'Álbum de Estudio', year: '2023', review: 'Arte intimista.', extraImages: [] },
   { url: 'media/the-world.jpg', category: 'ediciones', name: 'The World Is Mine', artist: 'Colección 3D', year: '2022', review: 'Modelado 3D metálico.', extraImages: [] }
 ];
-const STORAGE_KEY = 'grobdesigns_v35';
+const STORAGE_KEY = 'grobdesigns_v38';
 const DEFAULT_PASSWORD = 'grobdesigns2025';
 const TEXTS_DEFAULT = { navHome: 'Inicio', navPortafolio: 'Portafolio', navCovers: 'Covers', navClientes: 'Clientes', navContacto: 'Contacto', heroBtn1: 'Ver portafolio →', heroBtn2: 'Contáctame', philLabel: '— Filosofía', philTitle: 'Diseño con *intención*.', philText: 'Más de ocho años traduciendo ideas complejas en sistemas visuales claros.', softwareLabel: '— Herramientas', softwareTitle: 'Con las que *trabajo*.', softwareText: 'Los programas y herramientas que uso cada día.', coversLabel: '— Covers', coversTitle: 'Una pared de *covers*.', coversText: 'Portadas, artwork y ediciones.', cfTodos: 'Todos', cfSencillos: 'Sencillos', cfAlbumes: 'Álbumes', cfEdiciones: 'Ediciones', coverLblResena: 'Reseña del proyecto', coverLblImgs: 'Imágenes del proyecto', clientesLabel: '— Clientes', clientesTitle: 'Confían en *Grobdesigns*.', clientesText: 'Marcas, artistas y proyectos.', contactoTitle: '¿Trabajamos *juntos*?', contactoText: 'Cuéntame sobre tu proyecto.', cLabelEmail: 'Email', cLabelPhone: 'Teléfono', cLabelLocation: 'Ubicación', formLbl1: '01 — Nombre', formLbl2: '02 — Email', formLbl3: '03 — Mensaje', formBtn: 'Enviar mensaje', volverPorTxt: 'Volver a Portafolio', proyectoBackTxt: 'Volver', proyectoVerTxt: 'Ver proyecto', coverVerTxt: 'Ver proyecto', footerLeft: '© 2025 Grobdesigns', footerRight: 'Diseñado con intención', pageTitle: 'Grobdesigns — Diseño gráfico, portadas e identidad visual', metaDescription: 'Portafolio de Grobdesigns.' };
 const THEME_DEFAULT = { accent: '#C9A961', bg: '#000000', surface: '#0f0f10', text: '#F5F3EF', muted: '#8A8A8A', philBg: '#F5F3EF', philText: '#0A0A0A', philEm: '#A88B45', philMuted: '#4A4A4A' };
 
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
+
 function getEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null;
   url = url.trim(); if (!url) return null;
   if (url.includes('spotify.com')) {
     const m = url.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/([a-zA-Z0-9]+)/);
-    if (m) return { platform: 'spotify', url: 'https://open.spotify.com/embed/' + m[1] + '/' + m[2] + '?utm_source=generator' };
-    if (url.includes('/embed/')) return { platform: 'spotify', url };
+    if (m) {
+      const type = m[1];
+      const height = type === 'track' ? 152 : 380;
+      return { platform: 'spotify', type, height, url: 'https://open.spotify.com/embed/' + type + '/' + m[2] + '?utm_source=generator' };
+    }
+    if (url.includes('/embed/')) return { platform: 'spotify', type: 'track', height: 152, url };
   }
-  if (url.includes('music.apple.com')) return { platform: 'apple', url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
+  if (url.includes('music.apple.com')) {
+    const isAlbum = url.includes('/album/') && !url.includes('?i=');
+    return { platform: 'apple', type: isAlbum ? 'album' : 'track', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
+  }
   return null;
 }
 function normalizeCover(c) {
-  if (typeof c === 'string') return { id: uid(), url: c, category: 'sencillo', name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', featured: false };
+  if (typeof c === 'string') return { id: uid(), url: c, category: 'sencillo', name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false };
   if (c && typeof c === 'object') {
     const cat = ['sencillo', 'albums', 'ediciones'].includes(c.category) ? c.category : 'sencillo';
-    return { id: c.id || uid(), url: c.url, category: cat, name: typeof c.name === 'string' ? c.name : '', artist: typeof c.artist === 'string' ? c.artist : '', year: typeof c.year === 'string' ? c.year : '', review: typeof c.review === 'string' ? c.review : '', extraImages: Array.isArray(c.extraImages) ? c.extraImages : [], spotifyUrl: typeof c.spotifyUrl === 'string' ? c.spotifyUrl : '', appleMusicUrl: typeof c.appleMusicUrl === 'string' ? c.appleMusicUrl : '', featured: !!c.featured };
+    return { id: c.id || uid(), url: c.url, category: cat, name: typeof c.name === 'string' ? c.name : '', artist: typeof c.artist === 'string' ? c.artist : '', year: typeof c.year === 'string' ? c.year : '', review: typeof c.review === 'string' ? c.review : '', extraImages: Array.isArray(c.extraImages) ? c.extraImages : [], spotifyUrl: typeof c.spotifyUrl === 'string' ? c.spotifyUrl : '', appleMusicUrl: typeof c.appleMusicUrl === 'string' ? c.appleMusicUrl : '', youtubeUrl: typeof c.youtubeUrl === 'string' ? c.youtubeUrl : '', featured: !!c.featured };
   }
   return null;
 }
@@ -1406,8 +1452,8 @@ function defaultData() {
     hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y director de arte especializado en portadas musicales.' },
     heroImages: [...HERO_BG_DEFAULT],
     categories: [
-      { id: uid(), name: 'Musical', description: 'Portadas de discos icónicos.', cover: 'media/odisea.jpg', projects: [{ id: uid(), title: 'Ozuna — Era "Odisea"', description: 'Dirección de arte y portadas para el álbum debut "Odisea".', year: '2017', images: ['media/odisea.jpg', 'media/dile-que-tu-me-quieres.jpg', 'media/si-tu-cama.jpg', 'media/bebe.jpg'] }] },
-      { id: uid(), name: 'Marcas', description: 'Identidad visual y branding.', cover: 'media/logo-rimas.png', projects: [{ id: uid(), title: 'Sellos Discográficos', description: 'Identidad para firmas discográficas.', year: '2024', images: ['media/logo-rimas.png', 'media/logo-codiscos.png', 'media/logo-ls-records.png'] }] }
+      { id: uid(), name: 'Musical', description: 'Portadas de discos icónicos.', cover: 'media/odisea.jpg', projects: [{ id: uid(), title: 'Ozuna — Era "Odisea"', description: 'Dirección de arte y portadas para el álbum debut "Odisea".', year: '2017', youtubeUrl: '', images: ['media/odisea.jpg', 'media/dile-que-tu-me-quieres.jpg', 'media/si-tu-cama.jpg', 'media/bebe.jpg'] }] },
+      { id: uid(), name: 'Marcas', description: 'Identidad visual y branding.', cover: 'media/logo-rimas.png', projects: [{ id: uid(), title: 'Sellos Discográficos', description: 'Identidad para firmas discográficas.', year: '2024', youtubeUrl: '', images: ['media/logo-rimas.png', 'media/logo-codiscos.png', 'media/logo-ls-records.png'] }] }
     ],
     clientes: [...CLIENTES_DEFAULT],
     software: [...SOFTWARE_DEFAULT],
@@ -1485,7 +1531,7 @@ async function updateStorageMeter() {
 (function () { const nav = document.getElementById('nav'); function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 30); } window.addEventListener('scroll', onScroll, { passive: true }); onScroll(); })();
 
 /* ============================================================ PLAYER GLOBAL ============================================================ */
-let _activeTrackId = null, _activeEmbedUrl = null;
+let _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152;
 
 function setGlobalTrack(coverId) {
   const player = document.getElementById('globalMusicPlayer');
@@ -1505,11 +1551,11 @@ function setGlobalTrack(coverId) {
   player.appendChild(ifr);
   _activeTrackId = coverId;
   _activeEmbedUrl = embedData.url;
+  _activeEmbedHeight = embedData.height || 152;
   player.classList.add('visible');
   positionGlobalPlayer();
 }
 
-/* ✅ FIX 2: switch a mini en vez de ocultar cuando placeholder está fuera de pantalla */
 function positionGlobalPlayer() {
   const player = document.getElementById('globalMusicPlayer');
   if (!player || !player.classList.contains('visible')) return;
@@ -1525,19 +1571,14 @@ function positionGlobalPlayer() {
       player.style.top = rect.top + 'px';
       player.style.left = rect.left + 'px';
       player.style.width = rect.width + 'px';
-      player.style.height = Math.max(rect.height, 152) + 'px';
+      player.style.height = Math.max(rect.height, _activeEmbedHeight) + 'px';
       player.style.bottom = 'auto';
       player.style.right = 'auto';
       return;
     }
   }
-  // ✅ Fallback a mini-player
-  player.style.top = '';
-  player.style.left = '';
-  player.style.width = '';
-  player.style.height = '';
-  player.style.bottom = '';
-  player.style.right = '';
+  player.style.top = ''; player.style.left = ''; player.style.width = ''; player.style.height = '';
+  player.style.bottom = ''; player.style.right = '';
   player.classList.add('mini');
 }
 
@@ -1582,15 +1623,17 @@ function renderHomeMusicPlayer() {
   body.appendChild(link);
   const embedEl = document.getElementById('homeMusicEmbed');
   embedEl.textContent = '';
-  embedEl.style.minHeight = '152px';
+  const embedData = getEmbedUrl(cover.spotifyUrl) || getEmbedUrl(cover.appleMusicUrl);
+  embedEl.style.minHeight = ((embedData && embedData.height) || 152) + 'px';
   updateNavMusicButton();
-  if (!_activeTrackId || !COVERS.find(c => c.id === _activeTrackId)) setGlobalTrack(cover.id);
-  setTimeout(positionGlobalPlayer, 50);
+  if (!_activeTrackId || !COVERS.find(c => c.id === _activeTrackId)) {
+    setGlobalTrack(cover.id);
+    setTimeout(positionGlobalPlayer, 80);
+  }
 }
 
-/* ============================================================ ROUTER ✅ FIX 1 ============================================================ */
-let transitionBusy = false;
-let _transitionTimer = null;
+/* ============================================================ ROUTER ============================================================ */
+let transitionBusy = false, _transitionTimer = null;
 
 function navigate(route, opts = {}) {
   try {
@@ -1599,23 +1642,14 @@ function navigate(route, opts = {}) {
     if (!nextView) return;
     const isSameView = currentView === nextView;
     if (isSameView && route !== 'coverDetalle' && route !== 'covers' && !opts.force) return;
-
-    // ✅ FIX 1: Si estaba en transición, forzar el fin y continuar (evita "tabs atascadas")
-    if (transitionBusy) {
-      clearTimeout(_transitionTimer);
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('entering', 'leaving'));
-      transitionBusy = false;
-    }
+    if (transitionBusy) { clearTimeout(_transitionTimer); document.querySelectorAll('.view').forEach(v => v.classList.remove('entering', 'leaving')); transitionBusy = false; }
     transitionBusy = true;
-
     $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === route));
-
     const backBtn = $('#navBack');
     if (route === 'categoria') { backBtn.classList.add('show'); backBtn.textContent = '← Portafolio'; }
     else if (route === 'proyecto') { backBtn.classList.add('show'); backBtn.textContent = '← Volver'; }
     else if (route === 'coverDetalle') { backBtn.classList.add('show'); backBtn.textContent = '← Covers'; }
     else { backBtn.classList.remove('show'); }
-
     try {
       if (route === 'categoria' && opts.catId) { currentCategoryIdForBack = opts.catId; renderCategoriaView(opts.catId); }
       else if (route === 'proyecto' && opts.catId && opts.projId) { renderProyectoView(opts.catId, opts.projId); }
@@ -1625,29 +1659,22 @@ function navigate(route, opts = {}) {
       else if (route === 'home') { renderHomeMusicPlayer(); }
       else if (route === 'portafolio') { renderCatRows(); }
     } catch (e) { console.error('Render:', e); }
-
     window.scrollTo(0, 0);
-
     if (isSameView) {
-      nextView.classList.remove('entering', 'active');
-      void nextView.offsetWidth;
+      nextView.classList.remove('entering', 'active'); void nextView.offsetWidth;
       nextView.classList.add('active', 'entering');
       _transitionTimer = setTimeout(() => { nextView.classList.remove('entering'); transitionBusy = false; positionGlobalPlayer(); }, 500);
       return;
     }
-
     nextView.classList.add('active', 'entering');
     if (currentView && currentView !== nextView) { currentView.classList.remove('active'); currentView.classList.add('leaving'); }
-
     try { history.replaceState(null, '', '#' + route); } catch (e) { }
-
     _transitionTimer = setTimeout(() => {
       if (currentView && currentView !== nextView) currentView.classList.remove('leaving');
       nextView.classList.remove('entering');
       transitionBusy = false;
       positionGlobalPlayer();
     }, 500);
-
     setTimeout(() => {
       try {
         const rows = nextView.querySelectorAll('.parallax-row');
@@ -1656,10 +1683,7 @@ function navigate(route, opts = {}) {
       } catch (e) { }
       positionGlobalPlayer();
     }, 150);
-  } catch (err) {
-    console.error('navigate:', err);
-    transitionBusy = false;
-  }
+  } catch (err) { console.error('navigate:', err); transitionBusy = false; }
 }
 
 $('#navBack').addEventListener('click', () => { const cur = document.querySelector('.view.active')?.dataset.view; if (cur === 'proyecto' && currentCategoryIdForBack) navigate('categoria', { catId: currentCategoryIdForBack }); else if (cur === 'categoria') navigate('portafolio'); else if (cur === 'coverDetalle') navigate('covers'); });
@@ -1760,9 +1784,7 @@ function renderClientes() {
   const grid = $('#clientesGrid'); if (!grid) return;
   grid.textContent = '';
   const logos = DATA.clientes || [];
-  if (!logos.length) {
-    const em = document.createElement('div'); em.className = 'clientes-empty'; em.style.gridColumn = '1/-1'; em.textContent = 'Aún no hay clientes.'; grid.appendChild(em); return;
-  }
+  if (!logos.length) { const em = document.createElement('div'); em.className = 'clientes-empty'; em.style.gridColumn = '1/-1'; em.textContent = 'Aún no hay clientes.'; grid.appendChild(em); return; }
   logos.forEach(ref => {
     const card = document.createElement('div'); card.className = 'cliente-logo';
     card.addEventListener('click', () => card.classList.toggle('lit'));
@@ -1825,6 +1847,19 @@ function renderCovers() {
     imageEl.src = img(cover.url); imageEl.alt = cover.name || 'Cover'; imageEl.loading = 'lazy';
     attachImgFallback(imageEl, cover.name || 'Cover');
     item.appendChild(imageEl);
+
+    const shine = document.createElement('div');
+    shine.className = 'cover-shine';
+    item.appendChild(shine);
+
+    const url = img(cover.url);
+    extractDominantColor(url).then(color => {
+      if (color) {
+        item.style.setProperty('--cover-glow', hexToRgba(color, 0.55));
+        item.style.setProperty('--cover-glow-line', hexToRgba(color, 0.5));
+      }
+    });
+
     const info = document.createElement('div'); info.className = 'cover-info';
     const nameEl = document.createElement('div'); nameEl.className = 'cover-info-name';
     nameEl.textContent = cover.name || '(Sin título)'; info.appendChild(nameEl);
@@ -1833,6 +1868,7 @@ function renderCovers() {
     metaEl.textContent = parts.join(' · ') || 'Sin datos'; info.appendChild(metaEl);
     item.appendChild(info);
     if (cover.spotifyUrl || cover.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
+    if (cover.youtubeUrl && getYouTubeId(cover.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
     item.addEventListener('click', () => { window._currentCoversList = filtered; navigate('coverDetalle', { coverId: cover.id }); });
     fragment.appendChild(item);
   });
@@ -1880,7 +1916,7 @@ function renderCategoriaView(catId) {
   setTimeout(() => { updateParallax(); applyColors(); }, 50);
 }
 
-/* PROYECTO */
+/* PROYECTO — con YouTube embed */
 function renderProyectoView(catId, projId) {
   const cat = DATA.categories.find(c => c.id === catId); if (!cat) return;
   const proj = cat.projects.find(p => p.id === projId); if (!proj) return;
@@ -1896,6 +1932,17 @@ function renderProyectoView(catId, projId) {
     metaEl.innerHTML = '';
     if (proj.year) { const s = document.createElement('span'); s.textContent = proj.year; metaEl.appendChild(s); }
     if (proj.images && proj.images.length) { const s = document.createElement('span'); s.textContent = proj.images.length + (proj.images.length === 1 ? ' imagen' : ' imágenes'); metaEl.appendChild(s); }
+  }
+  const ytEmbed = $('#proyectoYouTubeEmbed');
+  const ytBtn = $('#proyectoYouTube');
+  const ytVideoId = proj.youtubeUrl ? getYouTubeId(proj.youtubeUrl) : null;
+  if (ytVideoId && ytEmbed) {
+    ytEmbed.classList.add('visible');
+    ytEmbed.innerHTML = `<div class="project-yt-inner"><iframe src="https://www.youtube.com/embed/${ytVideoId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="YouTube"></iframe></div>`;
+    if (ytBtn) { ytBtn.href = proj.youtubeUrl; ytBtn.style.display = 'inline-flex'; }
+  } else {
+    if (ytEmbed) { ytEmbed.classList.remove('visible'); ytEmbed.innerHTML = ''; }
+    if (ytBtn) ytBtn.style.display = 'none';
   }
   const imgs = $('#proyectoImagenes'); if (!imgs) return;
   renderMasonryGallery(imgs, proj.images || [], proj.title || 'Proyecto');
@@ -1918,6 +1965,10 @@ function renderCoverDetalle(coverId) {
     heroImg.src = img(cover.url);
     heroImg.alt = cover.name || 'Cover';
     attachImgFallback(heroImg, cover.name || 'Cover');
+    heroImg.style.removeProperty('--cover-hero-glow');
+    extractDominantColor(img(cover.url)).then(color => {
+      if (color) heroImg.style.setProperty('--cover-hero-glow', hexToRgba(color, 0.4));
+    });
   }
   const globalIdx = idx >= 0 ? idx + 1 : 1;
   const cc = $('#coverHeroCounter'); if (cc) cc.textContent = String(globalIdx).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
@@ -1926,28 +1977,28 @@ function renderCoverDetalle(coverId) {
   const artistParts = []; if (cover.artist) artistParts.push(cover.artist); if (cover.year) artistParts.push(cover.year);
   const ca = $('#coverHeroArtist'); if (ca) ca.textContent = artistParts.join(' · ') || 'Sin datos';
 
+  const ytBtn = $('#coverHeroYouTube');
+  if (ytBtn) {
+    if (cover.youtubeUrl && getYouTubeId(cover.youtubeUrl)) {
+      ytBtn.href = cover.youtubeUrl;
+      ytBtn.style.display = 'inline-flex';
+    } else {
+      ytBtn.style.display = 'none';
+    }
+  }
+
   const musicEl = document.getElementById('coverHeroMusic');
   if (musicEl) {
     musicEl.innerHTML = '';
-    musicEl.style.minHeight = '80px';
     const embedData = getEmbedUrl(cover.spotifyUrl) || getEmbedUrl(cover.appleMusicUrl);
     if (embedData) {
-      const sameAsActive = _activeEmbedUrl === embedData.url;
-      if (!_activeTrackId) {
-        setTimeout(() => { setGlobalTrack(cover.id); setTimeout(positionGlobalPlayer, 60); }, 100);
-      } else if (sameAsActive) {
-        musicEl.style.minHeight = '152px';
-      } else {
-        const lbl = document.createElement('div');
-        lbl.style.cssText = 'font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px';
-        lbl.textContent = 'Escucha el proyecto'; musicEl.appendChild(lbl);
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.textContent = '▶ Cambiar a esta canción';
-        btn.style.cssText = 'padding:12px 20px;background:var(--accent);color:#000;border:none;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer';
-        btn.addEventListener('click', () => { setGlobalTrack(cover.id); setTimeout(positionGlobalPlayer, 60); });
-        musicEl.appendChild(btn);
+      musicEl.style.minHeight = (embedData.height || 152) + 'px';
+      if (_activeEmbedUrl !== embedData.url) {
+        setGlobalTrack(cover.id);
+        setTimeout(positionGlobalPlayer, 150);
       }
+    } else {
+      musicEl.style.minHeight = '0px';
     }
   }
 
@@ -2010,10 +2061,7 @@ function renderMarquee() {
 function renderCatRows() {
   const c = $('#catRows'); if (!c) return;
   c.textContent = '';
-  if (!DATA.categories.length) {
-    c.innerHTML = '<div style="height:60vh;display:grid;place-items:center;color:var(--muted)">Aún no hay categorías.</div>';
-    return;
-  }
+  if (!DATA.categories.length) { c.innerHTML = '<div style="height:60vh;display:grid;place-items:center;color:var(--muted)">Aún no hay categorías.</div>'; return; }
   DATA.categories.forEach((cat, i) => {
     const row = document.createElement('div'); row.className = 'parallax-row';
     row.addEventListener('click', () => navigate('categoria', { catId: cat.id }));
@@ -2112,9 +2160,7 @@ function renderHeroBgGrid() {
   grid.textContent = '';
   const list = DATA.heroImages || [];
   const counter = $('#heroBgCounter'); if (counter) counter.textContent = list.length + ' / 10';
-  if (!list.length) {
-    const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin imágenes</strong>'; grid.appendChild(em); return;
-  }
+  if (!list.length) { const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin imágenes</strong>'; grid.appendChild(em); return; }
   list.forEach((ref, i) => {
     const card = document.createElement('div'); card.className = 'img-card';
     const preview = document.createElement('div'); preview.className = 'img-card-preview';
@@ -2164,10 +2210,7 @@ function renderCoversAdmin() {
   const cnt = $('#coversCounter'); if (cnt) cnt.textContent = list.length;
   const delBtn = $('#coversDeleteAll'); if (delBtn) delBtn.style.display = list.length ? 'inline-flex' : 'none';
   updateStorageMeter(); updateCoversCounts();
-  if (!list.length) {
-    const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1';
-    em.innerHTML = '<strong>Sin covers</strong>Sube tus portadas.'; grid.appendChild(em); return;
-  }
+  if (!list.length) { const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin covers</strong>Sube tus portadas.'; grid.appendChild(em); return; }
   const indexed = list.map((c, i) => ({ ...c, _index: i }));
   const filtered = currentAdminFilter === 'todos' ? indexed : indexed.filter(c => c.category === currentAdminFilter);
   const fragment = document.createDocumentFragment();
@@ -2188,15 +2231,12 @@ function renderCoversAdmin() {
     item.appendChild(metaWrap);
     if (cover.extraImages && cover.extraImages.length) { const eb = document.createElement('span'); eb.className = 'extra-badge'; eb.textContent = '+' + cover.extraImages.length; item.appendChild(eb); }
     if (cover.spotifyUrl || cover.appleMusicUrl) { const mb = document.createElement('span'); mb.className = 'music-badge'; mb.textContent = '♪'; item.appendChild(mb); }
+    if (cover.youtubeUrl && getYouTubeId(cover.youtubeUrl)) { const yb = document.createElement('span'); yb.className = 'yt-badge'; yb.textContent = '▶'; item.appendChild(yb); }
     if (cover.featured) { const fb = document.createElement('span'); fb.className = 'feat-badge'; fb.textContent = '★'; item.appendChild(fb); }
     const ed = document.createElement('button'); ed.className = 'ed'; ed.textContent = '✎';
     ed.addEventListener('click', e => { e.stopPropagation(); openCoverEditModal(realIndex); }); item.appendChild(ed);
     const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
-    rm.addEventListener('click', async e => {
-      e.stopPropagation(); if (!confirm('¿Eliminar?')) return;
-      const id = COVERS[realIndex].id; COVERS.splice(realIndex, 1); await idbDeleteCover(id);
-      renderCoversAdmin(); renderCovers(); toast('Eliminado', 'ok');
-    });
+    rm.addEventListener('click', async e => { e.stopPropagation(); if (!confirm('¿Eliminar?')) return; const id = COVERS[realIndex].id; COVERS.splice(realIndex, 1); await idbDeleteCover(id); renderCoversAdmin(); renderCovers(); toast('Eliminado', 'ok'); });
     item.appendChild(rm); fragment.appendChild(item);
   });
   grid.appendChild(fragment);
@@ -2209,10 +2249,7 @@ async function cycleCoverCategory(index) {
 }
 const coversFileInput = $('#coversFileInput'); const coversFolderInput = $('#coversFolderInput');
 if ($('#importFilesBtn')) $('#importFilesBtn').addEventListener('click', () => coversFileInput.click());
-if ($('#importFolderBtn')) $('#importFolderBtn').addEventListener('click', () => {
-  if (!('webkitdirectory' in document.createElement('input'))) { toast('Navegador no soporta', 'error'); return; }
-  coversFolderInput.click();
-});
+if ($('#importFolderBtn')) $('#importFolderBtn').addEventListener('click', () => { if (!('webkitdirectory' in document.createElement('input'))) { toast('Navegador no soporta', 'error'); return; } coversFolderInput.click(); });
 if (coversFileInput) coversFileInput.addEventListener('change', () => { if (coversFileInput.files.length) uploadCovers([...coversFileInput.files]); });
 if (coversFolderInput) coversFolderInput.addEventListener('change', () => { if (coversFolderInput.files.length) uploadCovers([...coversFolderInput.files]); });
 async function uploadCovers(files) {
@@ -2232,13 +2269,7 @@ async function uploadCovers(files) {
       prog.textContent = '⏳ ' + (i + 1) + ' / ' + total;
       try {
         const url = await processImage(imgs[i], { prefix: 'cover', maxWidth: 900, quality: 0.85 });
-        newCovers.push({
-          id: uid(), url, category,
-          name: isOnlyOne ? nameInput : (imgs[i].name ? imgs[i].name.replace(/\.[^.]+$/, '').slice(0, 120) : ''),
-          artist: isOnlyOne ? artistInput : '',
-          year: isOnlyOne ? yearInput : (yearInput || ''),
-          review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', featured: false
-        });
+        newCovers.push({ id: uid(), url, category, name: isOnlyOne ? nameInput : (imgs[i].name ? imgs[i].name.replace(/\.[^.]+$/, '').slice(0, 120) : ''), artist: isOnlyOne ? artistInput : '', year: isOnlyOne ? yearInput : (yearInput || ''), review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
         added++;
       } catch (e) { }
     }
@@ -2268,6 +2299,7 @@ function openCoverEditModal(index) {
   coverEditForm.elements.review.value = c.review || '';
   coverEditForm.elements.spotifyUrl.value = c.spotifyUrl || '';
   coverEditForm.elements.appleMusicUrl.value = c.appleMusicUrl || '';
+  coverEditForm.elements.youtubeUrl.value = c.youtubeUrl || '';
   coverEditForm.elements.featured.checked = !!c.featured;
   const preview = $('#coverEditPreview');
   if (preview) { preview.src = img(c.url); attachImgFallback(preview, c.name || 'Cover'); }
@@ -2298,10 +2330,8 @@ async function uploadCoverExtras(files) {
   const imgs = files.filter(f => f.type.startsWith('image/'));
   if (!imgs.length) return;
   const p = coverExtraUpZone.querySelector('p'); p.textContent = '⏳...';
-  try {
-    for (const file of imgs) { const url = await processImage(file, { prefix: 'cover-extra', maxWidth: 1600, quality: 0.85 }); coverEditExtraImages.push(url); }
-    renderCoverExtraGrid(); p.textContent = 'Haz clic o arrastra'; toast(imgs.length + ' añadidas', 'ok');
-  } catch (e) { toast('Error', 'error'); } finally { p.textContent = 'Haz clic o arrastra'; }
+  try { for (const file of imgs) { const url = await processImage(file, { prefix: 'cover-extra', maxWidth: 1600, quality: 0.85 }); coverEditExtraImages.push(url); } renderCoverExtraGrid(); p.textContent = 'Haz clic o arrastra'; toast(imgs.length + ' añadidas', 'ok'); }
+  catch (e) { toast('Error', 'error'); } finally { p.textContent = 'Haz clic o arrastra'; }
 }
 $('#coverEditCancel').addEventListener('click', () => coverEditModal.classList.remove('active'));
 $('#coverEditDelete').addEventListener('click', async () => {
@@ -2321,6 +2351,7 @@ coverEditForm.addEventListener('submit', async e => {
   COVERS[index].review = coverEditForm.elements.review.value.trim().slice(0, 1500);
   COVERS[index].spotifyUrl = coverEditForm.elements.spotifyUrl.value.trim().slice(0, 500);
   COVERS[index].appleMusicUrl = coverEditForm.elements.appleMusicUrl.value.trim().slice(0, 500);
+  COVERS[index].youtubeUrl = coverEditForm.elements.youtubeUrl.value.trim().slice(0, 500);
   COVERS[index].featured = coverEditForm.elements.featured.checked;
   COVERS[index].extraImages = coverEditExtraImages.slice(0, 30);
   if (COVERS[index].featured) {
@@ -2330,7 +2361,9 @@ coverEditForm.addEventListener('submit', async e => {
   coverEditModal.classList.remove('active');
   renderCoversAdmin(); renderCovers();
   if (_activeTrackId === COVERS[index].id || COVERS[index].featured) {
-    _activeEmbedUrl = null; setGlobalTrack(COVERS[index].id);
+    _activeEmbedUrl = null;
+    setGlobalTrack(COVERS[index].id);
+    setTimeout(positionGlobalPlayer, 150);
   }
   toast('✅ Actualizado', 'ok');
 });
@@ -2342,9 +2375,7 @@ function renderClientesGrid() {
   const list = DATA.clientes || [];
   const counter = $('#clientesCounter'); if (counter) counter.textContent = list.length + ' / 40';
   const hint = $('#reorderHint'); if (hint) hint.style.display = list.length > 1 ? 'flex' : 'none';
-  if (!list.length) {
-    const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin logos</strong>'; grid.appendChild(em); return;
-  }
+  if (!list.length) { const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin logos</strong>'; grid.appendChild(em); return; }
   list.forEach((ref, i) => {
     const card = document.createElement('div'); card.className = 'cliente-admin-card'; card.draggable = true; card.dataset.index = String(i);
     const idxBadge = document.createElement('span'); idxBadge.className = 'cliente-admin-index'; idxBadge.textContent = '#' + (i + 1); card.appendChild(idxBadge);
@@ -2364,13 +2395,7 @@ function renderClientesGrid() {
     card.addEventListener('dragend', () => card.classList.remove('dragging'));
     card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drop-target'); });
     card.addEventListener('dragleave', () => card.classList.remove('drop-target'));
-    card.addEventListener('drop', e => {
-      e.preventDefault(); card.classList.remove('drop-target');
-      const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
-      if (isNaN(from) || from === i) return;
-      const [moved] = DATA.clientes.splice(from, 1); DATA.clientes.splice(i, 0, moved);
-      saveData(); renderClientesGrid(); renderClientes();
-    });
+    card.addEventListener('drop', e => { e.preventDefault(); card.classList.remove('drop-target'); const from = parseInt(e.dataTransfer.getData('text/plain'), 10); if (isNaN(from) || from === i) return; const [moved] = DATA.clientes.splice(from, 1); DATA.clientes.splice(i, 0, moved); saveData(); renderClientesGrid(); renderClientes(); });
     grid.appendChild(card);
   });
 }
@@ -2388,13 +2413,8 @@ async function uploadClientes(files) {
   const remaining = 40 - (DATA.clientes || []).length;
   if (remaining <= 0) { toast('Máximo 40', 'error'); return; }
   const p = clientesUpZone.querySelector('p'); const orig = p.textContent; p.textContent = '⏳...';
-  try {
-    for (const file of imgs.slice(0, remaining)) {
-      const url = await processImage(file, { prefix: 'cliente', maxWidth: 500, quality: 0.92, keepAlpha: true });
-      DATA.clientes.push(url);
-    }
-    saveData(); renderClientesGrid(); renderClientes(); toast('Añadidos', 'ok');
-  } catch (e) { toast('Error', 'error'); } finally { p.textContent = orig; }
+  try { for (const file of imgs.slice(0, remaining)) { const url = await processImage(file, { prefix: 'cliente', maxWidth: 500, quality: 0.92, keepAlpha: true }); DATA.clientes.push(url); } saveData(); renderClientesGrid(); renderClientes(); toast('Añadidos', 'ok'); }
+  catch (e) { toast('Error', 'error'); } finally { p.textContent = orig; }
 }
 
 /* SOFTWARE ADMIN */
@@ -2405,10 +2425,7 @@ function renderSoftwareGrid() {
   const list = DATA.software;
   const counterEl = document.getElementById('softwareCounter'); if (counterEl) counterEl.textContent = list.length + ' / 30';
   const hint = document.getElementById('softwareReorderHint'); if (hint) hint.style.display = list.length > 1 ? 'flex' : 'none';
-  if (!list.length) {
-    const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1';
-    em.innerHTML = '<strong>Sin logos</strong>'; grid.appendChild(em); return;
-  }
+  if (!list.length) { const em = document.createElement('div'); em.className = 'empty-state'; em.style.gridColumn = '1/-1'; em.innerHTML = '<strong>Sin logos</strong>'; grid.appendChild(em); return; }
   list.forEach((ref, i) => {
     const card = document.createElement('div'); card.className = 'cliente-admin-card'; card.draggable = true;
     const idxBadge = document.createElement('span'); idxBadge.className = 'cliente-admin-index'; idxBadge.textContent = '#' + (i + 1); card.appendChild(idxBadge);
@@ -2442,13 +2459,8 @@ async function uploadSoftware(files) {
   const remaining = 30 - DATA.software.length;
   if (remaining <= 0) { toast('Máximo 30', 'error'); return; }
   const p = softwareUpZone.querySelector('p'); const orig = p.textContent; p.textContent = '⏳...';
-  try {
-    for (const file of imgs.slice(0, remaining)) {
-      const url = await processImage(file, { prefix: 'software', maxWidth: 400, quality: 0.95, keepAlpha: true });
-      DATA.software.push(url);
-    }
-    saveData(); renderSoftwareGrid(); renderSoftware(); toast('Añadidos', 'ok');
-  } catch (e) { toast('Error', 'error'); } finally { p.textContent = orig; }
+  try { for (const file of imgs.slice(0, remaining)) { const url = await processImage(file, { prefix: 'software', maxWidth: 400, quality: 0.95, keepAlpha: true }); DATA.software.push(url); } saveData(); renderSoftwareGrid(); renderSoftware(); toast('Añadidos', 'ok'); }
+  catch (e) { toast('Error', 'error'); } finally { p.textContent = orig; }
 }
 
 /* CATEGORÍAS ADMIN */
@@ -2456,9 +2468,7 @@ function renderAdminCats() {
   const list = $('#adminCatsList'); if (!list) return;
   list.textContent = '';
   const total = DATA.categories.length;
-  if (!total) {
-    const em = document.createElement('div'); em.className = 'empty-state'; em.innerHTML = '<strong>Sin categorías</strong>'; list.appendChild(em); return;
-  }
+  if (!total) { const em = document.createElement('div'); em.className = 'empty-state'; em.innerHTML = '<strong>Sin categorías</strong>'; list.appendChild(em); return; }
   DATA.categories.forEach((cat, catIndex) => {
     const block = document.createElement('div'); block.className = 'category-card';
     const head = document.createElement('div'); head.className = 'category-header';
@@ -2481,29 +2491,21 @@ function renderAdminCats() {
     const editBtn = document.createElement('button'); editBtn.className = 'abtn outline small'; editBtn.textContent = '✎';
     editBtn.addEventListener('click', () => openCatModal(cat));
     const delBtn = document.createElement('button'); delBtn.className = 'abtn danger small'; delBtn.textContent = '🗑';
-    delBtn.addEventListener('click', () => {
-      if (!confirm('¿Eliminar categoría?')) return;
-      DATA.categories = DATA.categories.filter(c => c.id !== cat.id); saveData(); renderAdminCats(); renderCatRows(); renderMarquee();
-    });
+    delBtn.addEventListener('click', () => { if (!confirm('¿Eliminar categoría?')) return; DATA.categories = DATA.categories.filter(c => c.id !== cat.id); saveData(); renderAdminCats(); renderCatRows(); renderMarquee(); });
     actions.append(upBtn, downBtn, editBtn, delBtn); head.appendChild(actions); block.appendChild(head);
     const projSection = document.createElement('div'); projSection.className = 'category-projects-section';
     const projHead = document.createElement('div'); projHead.className = 'projects-section-head';
     projHead.innerHTML = '<div class="projects-section-title">Proyectos <span class="badge">' + cat.projects.length + '</span></div>';
     const addProjBtn = document.createElement('button'); addProjBtn.className = 'abtn primary small'; addProjBtn.textContent = '＋ Añadir';
     addProjBtn.addEventListener('click', () => openProjModal(cat.id, null)); projHead.appendChild(addProjBtn); projSection.appendChild(projHead);
-    if (!cat.projects.length) {
-      const em = document.createElement('div'); em.className = 'empty-state'; em.style.padding = '24px'; em.innerHTML = '<strong>Sin proyectos</strong>'; projSection.appendChild(em);
-    } else {
+    if (!cat.projects.length) { const em = document.createElement('div'); em.className = 'empty-state'; em.style.padding = '24px'; em.innerHTML = '<strong>Sin proyectos</strong>'; projSection.appendChild(em); }
+    else {
       cat.projects.forEach((proj, projIndex) => {
         const projItem = document.createElement('div'); projItem.className = 'project-item';
         const projHeadRow = document.createElement('div'); projHeadRow.className = 'project-item-head';
         const thumb = document.createElement('div'); thumb.className = 'project-thumb';
-        if (proj.images && proj.images[0]) {
-          const im = document.createElement('img'); im.src = img(proj.images[0]); attachImgFallback(im, proj.title); thumb.appendChild(im);
-          const cnt = document.createElement('span'); cnt.className = 'img-count'; cnt.textContent = proj.images.length; thumb.appendChild(cnt);
-        } else {
-          const empty = document.createElement('div'); empty.className = 'project-thumb-empty'; empty.textContent = '📷'; thumb.appendChild(empty);
-        }
+        if (proj.images && proj.images[0]) { const im = document.createElement('img'); im.src = img(proj.images[0]); attachImgFallback(im, proj.title); thumb.appendChild(im); const cnt = document.createElement('span'); cnt.className = 'img-count'; cnt.textContent = proj.images.length; thumb.appendChild(cnt); }
+        else { const empty = document.createElement('div'); empty.className = 'project-thumb-empty'; empty.textContent = '📷'; thumb.appendChild(empty); }
         projHeadRow.appendChild(thumb);
         const info2 = document.createElement('div'); info2.className = 'project-info';
         const position = document.createElement('div'); position.className = 'project-position'; position.textContent = 'Proyecto ' + (projIndex + 1) + ' de ' + cat.projects.length; info2.appendChild(position);
@@ -2563,11 +2565,7 @@ $('#catCancel').addEventListener('click', () => catModal.classList.remove('activ
 function openCatModal(cat) {
   catForm.reset(); catForm.elements.id.value = ''; catForm.elements.cover.value = ''; $('#catPreview').hidden = true;
   $('#catModalTitle').textContent = cat ? 'Editar categoría' : 'Nueva categoría';
-  if (cat) {
-    catForm.elements.id.value = cat.id; catForm.elements.name.value = cat.name || '';
-    catForm.elements.description.value = cat.description || ''; catForm.elements.cover.value = cat.cover || '';
-    if (cat.cover) { $('#catPreview').src = img(cat.cover); $('#catPreview').hidden = false; attachImgFallback($('#catPreview'), cat.name); }
-  }
+  if (cat) { catForm.elements.id.value = cat.id; catForm.elements.name.value = cat.name || ''; catForm.elements.description.value = cat.description || ''; catForm.elements.cover.value = cat.cover || ''; if (cat.cover) { $('#catPreview').src = img(cat.cover); $('#catPreview').hidden = false; attachImgFallback($('#catPreview'), cat.name); } }
   catModal.classList.add('active');
 }
 catForm.addEventListener('submit', e => {
@@ -2590,13 +2588,11 @@ if (catUpZone) {
 async function uploadCatCover(file) {
   if (!file.type.startsWith('image/')) { toast('Solo imágenes', 'error'); return; }
   const p = catUpZone.querySelector('p'); p.textContent = '⏳...';
-  try {
-    const url = await processImage(file, { prefix: 'cat', maxWidth: 1800, quality: 0.85 });
-    catForm.elements.cover.value = url; $('#catPreview').src = img(url); $('#catPreview').hidden = false; p.textContent = '✅ Lista';
-  } catch (e) { toast('Error', 'error'); p.textContent = 'Haz clic o arrastra'; }
+  try { const url = await processImage(file, { prefix: 'cat', maxWidth: 1800, quality: 0.85 }); catForm.elements.cover.value = url; $('#catPreview').src = img(url); $('#catPreview').hidden = false; p.textContent = '✅ Lista'; }
+  catch (e) { toast('Error', 'error'); p.textContent = 'Haz clic o arrastra'; }
 }
 
-/* MODAL PROYECTO */
+/* MODAL PROYECTO (con youtubeUrl) */
 const projModal = $('#projModal'); const projForm = $('#projForm');
 let projImages = [];
 $('#projCancel').addEventListener('click', () => projModal.classList.remove('active'));
@@ -2607,6 +2603,7 @@ function openProjModal(catId, proj) {
   if (proj) {
     projForm.elements.id.value = proj.id; projForm.elements.title.value = proj.title || '';
     projForm.elements.description.value = proj.description || ''; projForm.elements.year.value = proj.year || '';
+    projForm.elements.youtubeUrl.value = proj.youtubeUrl || '';
     projImages = Array.isArray(proj.images) ? [...proj.images] : []; renderProjImages();
   }
   projModal.classList.add('active');
@@ -2640,26 +2637,22 @@ async function uploadProjFiles(files) {
   const remaining = 30 - projImages.length;
   if (remaining <= 0) { toast('Máximo 30', 'error'); return; }
   const p = projUpZone.querySelector('p'); p.textContent = '⏳...';
-  try {
-    for (const file of imgs.slice(0, remaining)) {
-      const url = await processImage(file, { prefix: 'proj', maxWidth: 1600, quality: 0.85 });
-      projImages.push(url);
-    }
-    renderProjImages(); p.textContent = 'Haz clic o arrastra'; toast(imgs.length + ' añadidas', 'ok');
-  } catch (e) { toast('Error', 'error'); } finally { p.textContent = 'Haz clic o arrastra'; }
+  try { for (const file of imgs.slice(0, remaining)) { const url = await processImage(file, { prefix: 'proj', maxWidth: 1600, quality: 0.85 }); projImages.push(url); } renderProjImages(); p.textContent = 'Haz clic o arrastra'; toast(imgs.length + ' añadidas', 'ok'); }
+  catch (e) { toast('Error', 'error'); } finally { p.textContent = 'Haz clic o arrastra'; }
 }
 projForm.addEventListener('submit', e => {
   e.preventDefault();
   const id = projForm.elements.id.value; const catId = projForm.elements.categoryId.value;
   const title = projForm.elements.title.value.trim(); const description = projForm.elements.description.value.trim();
   const year = projForm.elements.year.value.trim();
+  const youtubeUrl = projForm.elements.youtubeUrl.value.trim().slice(0, 500);
   if (!title) { toast('Título requerido', 'error'); return; }
   const cat = DATA.categories.find(c => c.id === catId); if (!cat) return;
   if (id) {
     const proj = cat.projects.find(p => p.id === id);
-    if (proj) { proj.title = title.slice(0, 200); proj.description = description.slice(0, 800); proj.year = year.slice(0, 20); proj.images = projImages.slice(0, 30); }
+    if (proj) { proj.title = title.slice(0, 200); proj.description = description.slice(0, 800); proj.year = year.slice(0, 20); proj.youtubeUrl = youtubeUrl; proj.images = projImages.slice(0, 30); }
   } else {
-    cat.projects.push({ id: uid(), title: title.slice(0, 200), description: description.slice(0, 800), year: year.slice(0, 20), images: projImages.slice(0, 30) });
+    cat.projects.push({ id: uid(), title: title.slice(0, 200), description: description.slice(0, 800), year: year.slice(0, 20), youtubeUrl, images: projImages.slice(0, 30) });
   }
   saveData(); projModal.classList.remove('active'); renderAdminCats(); toast('✅ Guardado', 'ok');
 });
@@ -2712,18 +2705,13 @@ function populateThemeAdmin() { const f = $('#adminThemeForm'); if (!f) return; 
 })();
 
 /* INIT */
-function renderAll() {
-  applyTheme(); applyTexts(); renderHome(); renderMarquee(); renderCatRows(); renderClientes(); renderCovers(); renderHomeMusicPlayer();
-}
+function renderAll() { applyTheme(); applyTexts(); renderHome(); renderMarquee(); renderCatRows(); renderClientes(); renderCovers(); renderHomeMusicPlayer(); }
 async function init() {
   loadData();
   try { await migrateBase64ToIDB(); } catch (e) {}
   await preloadImageCache(); applyCustomLogo();
   try { const raw = await idbGetAllCovers(); COVERS = raw.map(normalizeCover).filter(Boolean); } catch (e) { COVERS = []; }
-  if (COVERS.length === 0) {
-    const defaults = COVERS_DEFAULT.map(c => normalizeCover(c));
-    try { await idbPutCovers(defaults); COVERS = defaults; } catch (e) {}
-  }
+  if (COVERS.length === 0) { const defaults = COVERS_DEFAULT.map(c => normalizeCover(c)); try { await idbPutCovers(defaults); COVERS = defaults; } catch (e) {} }
   try { await MediaStore.restoreHandle(); } catch (e) {}
   renderAll();
   setTimeout(updateStorageMeter, 400);
@@ -2787,9 +2775,14 @@ init();
   });
 })();
 
-/* ============================================================ METADATOS v6 ============================================================ */
+/* ============================================================
+   METADATOS v8 — estricto (solo del link, con álbumes)
+   - Sin dependencia de api.song.link (obsoleta)
+   - Spotify oEmbed + JSON-LD | iTunes Lookup | Fallback validado
+   ============================================================ */
 (function () {
   'use strict';
+
   function getForm() { return document.getElementById('coverEditForm'); }
 
   function parseUrl(url) {
@@ -2803,69 +2796,173 @@ init();
     if (/music\.apple\.com/i.test(url)) {
       const trackId = url.match(/[?&]i=(\d+)/);
       const pathMatch = url.match(/\/(album|song|playlist)\/[^\/]+\/(\d+)/);
-      return { platform: 'apple', type: pathMatch ? pathMatch[1] : 'unknown', id: trackId ? trackId[1] : (pathMatch ? pathMatch[2] : null) };
+      if (trackId && trackId[1]) {
+        return { platform: 'apple', type: 'track', id: trackId[1] };
+      }
+      return { platform: 'apple', type: pathMatch ? pathMatch[1] : 'unknown', id: pathMatch ? pathMatch[2] : null };
     }
     return null;
   }
 
-  async function tryiTunesSearch(title, artist) {
-    if (!title) return null;
-    try {
-      let term = title; if (artist) term = artist + ' ' + title;
-      const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=song&limit=10`);
-      if (!res.ok) return null;
-      const d = await res.json();
-      if (!d.results?.length) return null;
-      const target = title.toLowerCase().replace(/[^\w\s]/g, '').trim();
-      let best = d.results.find(r => {
-        const tn = (r.trackName || '').toLowerCase().replace(/[^\w\s]/g, '').trim();
-        return tn === target || tn.includes(target) || target.includes(tn);
-      });
-      if (!best) best = d.results[0];
-      return { source: 'itunes-search', title: best.trackName || '', artist: best.artistName || '', year: best.releaseDate ? String(best.releaseDate).slice(0, 4) : '', thumbnail: best.artworkUrl100 ? best.artworkUrl100.replace('100x100', '600x600') : '' };
-    } catch (e) { return null; }
+  function normalizeText(t) {
+    if (!t) return '';
+    return String(t)
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s*[\(\[][^\)\]]*[\)\]]/g, '')
+      .replace(/\s*-\s*(remaster(ed)?|live|acoustic|radio\s*edit|extended|deluxe|version|edit|mix|remix|demo|instrumental|sped\s*up|slowed).*$/i, '')
+      .replace(/[^\w\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
-  async function trySpotifyOEmbed(id) {
+  // ✅ oEmbed (título exacto por ID; soporta track/album/playlist)
+  async function trySpotifyOEmbed(id, type = 'track') {
     if (!id) return null;
     try {
-      const res = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent('https://open.spotify.com/track/' + id)}`);
+      const res = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(`https://open.spotify.com/${type}/${id}`)}`);
       if (!res.ok) return null;
       const d = await res.json();
       return { source: 'oembed', title: d.title || '', artist: '', year: '', thumbnail: d.thumbnail_url || '' };
     } catch (e) { return null; }
   }
 
-  async function trySpotifyJsonLd(id) {
+  // ✅ JSON-LD desde página Spotify (exacto por ID) — soporta MusicAlbum
+  async function trySpotifyJsonLd(id, type = 'track') {
     if (!id) return null;
     try {
-      const spotifyUrl = `https://open.spotify.com/track/${id}`;
+      const spotifyUrl = `https://open.spotify.com/${type}/${id}`;
       const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(spotifyUrl)}`;
       const res = await fetch(proxyUrl);
-      if (!res.ok) return null;
+      if (!res.ok) { console.warn('[Meta] JSON-LD HTTP', res.status); return null; }
       const html = await res.text();
-      const ldMatch = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
-      if (!ldMatch) return null;
-      const ld = JSON.parse(ldMatch[1]);
-      let rec = null;
-      if (ld['@graph']) rec = ld['@graph'].find(g => g['@type'] === 'MusicRecording');
-      else if (ld['@type'] === 'MusicRecording') rec = ld;
-      if (!rec) return null;
-      const title = rec.name || '';
-      let artist = '';
-      if (rec.byArtist) {
-        if (Array.isArray(rec.byArtist)) artist = rec.byArtist.map(a => a.name).filter(Boolean).join(', ');
-        else if (rec.byArtist.name) artist = rec.byArtist.name;
+      const ldMatches = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g);
+      if (!ldMatches) return null;
+      const types = ['MusicRecording', 'MusicAlbum', 'MusicPlaylist'];
+      for (const block of ldMatches) {
+        try {
+          const inner = block.replace(/<script[^>]*>/, '').replace(/<\/script>/, '');
+          const ld = JSON.parse(inner);
+          let rec = null;
+          if (ld['@graph']) rec = ld['@graph'].find(g => types.includes(g['@type']));
+          else if (types.includes(ld['@type'])) rec = ld;
+          if (!rec) continue;
+          const title = rec.name || '';
+          let artist = '';
+          if (rec.byArtist) {
+            if (Array.isArray(rec.byArtist)) artist = rec.byArtist.map(a => a.name).filter(Boolean).join(', ');
+            else if (rec.byArtist.name) artist = rec.byArtist.name;
+          }
+          const year = rec.datePublished ? String(rec.datePublished).slice(0, 4) : '';
+          console.log('[Meta] JSON-LD →', { title, artist, year });
+          return { source: 'spotify-jsonld', title, artist, year, thumbnail: '' };
+        } catch (e) {}
       }
-      const year = rec.datePublished ? String(rec.datePublished).slice(0, 4) : '';
-      return { source: 'spotify-jsonld', title, artist, year, thumbnail: '' };
+      return null;
     } catch (e) { return null; }
   }
 
+  // ✅ iTunes Lookup por ID (exacto para Apple Music) — soporta album
+  async function tryiTunesLookup(id, type = 'track') {
+    if (!id) return null;
+    try {
+      const entity = type === 'album' ? 'album' : 'song';
+      const res = await fetch(`https://itunes.apple.com/lookup?id=${encodeURIComponent(id)}&entity=${entity}`);
+      if (!res.ok) return null;
+      const d = await res.json();
+      if (!d.results?.length) return null;
+      const r = d.results[0];
+      const isAlbum = type === 'album';
+      return {
+        source: 'itunes-lookup',
+        title: isAlbum ? (r.collectionName || '') : (r.trackName || ''),
+        artist: r.artistName || '',
+        year: r.releaseDate ? String(r.releaseDate).slice(0, 4) : '',
+        thumbnail: r.artworkUrl100 ? r.artworkUrl100.replace('100x100', '600x600') : ''
+      };
+    } catch (e) { return null; }
+  }
+
+  // ✅ iTunes Search (FALLBACK — solo si falta algo)
+  async function tryiTunesSearch(title, artist, type = 'track') {
+    if (!title) return null;
+    const countries = ['US', 'ES', 'MX'];
+    const entity = type === 'album' ? 'album' : 'song';
+    const targetTitle = normalizeText(title);
+    for (const country of countries) {
+      try {
+        const term = artist ? `${artist} ${title}` : title;
+        const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=music&entity=${entity}&limit=25&country=${country}`);
+        if (!res.ok) continue;
+        const d = await res.json();
+        if (!d.results?.length) continue;
+        let best = null, bestScore = -1;
+        for (const r of d.results) {
+          const rTitle = normalizeText(type === 'album' ? r.collectionName : r.trackName);
+          let score = 0;
+          if (rTitle === targetTitle) score = 100;
+          else if (rTitle.includes(targetTitle) || targetTitle.includes(rTitle)) score = 50;
+          else continue;
+          if (artist) {
+            const rA = normalizeText(r.artistName);
+            const tA = normalizeText(artist);
+            if (rA.includes(tA) || tA.includes(rA)) score += 30;
+          }
+          if (score > bestScore) { bestScore = score; best = r; }
+        }
+        if (!best && d.results.length) { best = d.results[0]; bestScore = 0; }
+        if (best) {
+          return {
+            source: 'itunes-search',
+            title: type === 'album' ? (best.collectionName || '') : (best.trackName || ''),
+            artist: best.artistName || '',
+            year: best.releaseDate ? String(best.releaseDate).slice(0, 4) : '',
+            thumbnail: best.artworkUrl100 ? best.artworkUrl100.replace('100x100', '600x600') : ''
+          };
+        }
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  // ✅ Deezer (FALLBACK — solo si falta algo)
+  async function tryDeezer(title, artist, type = 'track') {
+    if (!title) return null;
+    try {
+      const q = artist ? `${artist} ${title}` : title;
+      const endpoint = type === 'album' ? 'https://api.deezer.com/search/album' : 'https://api.deezer.com/search';
+      const res = await fetch(`${endpoint}?q=${encodeURIComponent(q)}&limit=15`);
+      if (!res.ok) return null;
+      const d = await res.json();
+      if (!d.data?.length) return null;
+      const targetTitle = normalizeText(title);
+      let best = d.data[0];
+      for (const r of d.data) { if (normalizeText(r.title) === targetTitle) { best = r; break; } }
+      let year = '';
+      try {
+        const detailUrl = type === 'album' ? `https://api.deezer.com/album/${best.id}` : `https://api.deezer.com/track/${best.id}`;
+        const detail = await fetch(detailUrl);
+        if (detail.ok) {
+          const dd = await detail.json();
+          if (dd.release_date) year = String(dd.release_date).slice(0, 4);
+        }
+      } catch (e) {}
+      return {
+        source: 'deezer',
+        title: best.title || '',
+        artist: best.artist?.name || '',
+        year,
+        thumbnail: best.cover_big || best.cover_medium || best.album?.cover_big || best.album?.cover_medium || ''
+      };
+    } catch (e) { return null; }
+  }
+
+  // ✅ MusicBrainz (último recurso)
   async function tryMusicBrainz(title, artist) {
     if (!title) return null;
     try {
-      let query = `recording:"${title}"`; if (artist) query += ` AND artist:"${artist}"`;
+      let query = `recording:"${title}"`;
+      if (artist) query += ` AND artist:"${artist}"`;
       const res = await fetch(`https://musicbrainz.org/ws/2/recording/?query=${encodeURIComponent(query)}&fmt=json&limit=1`);
       if (!res.ok) return null;
       const d = await res.json();
@@ -2877,70 +2974,117 @@ init();
     } catch (e) { return null; }
   }
 
-  async function trySonglink(url) {
-    try {
-      const c = new AbortController(); const t = setTimeout(() => c.abort(), 9000);
-      const res = await fetch(`https://api.song.link/v1-alpha.1/links?url=${encodeURIComponent(url)}`, { signal: c.signal });
-      clearTimeout(t);
-      if (!res.ok) return null;
-      const data = await res.json();
-      const entities = data.entitiesByUniqueId || {};
-      let title = '';
-      if (data.entityUniqueId && entities[data.entityUniqueId]?.title) title = entities[data.entityUniqueId].title;
-      if (!title) for (const k in entities) if (entities[k]?.title) { title = entities[k].title; break; }
-      let artist = '';
-      for (const k in entities) { const e = entities[k]; if (!e) continue; if (e.artistName) { artist = e.artistName; break; } if (Array.isArray(e.artistNames) && e.artistNames.length) { artist = e.artistNames.join(', '); break; } if (Array.isArray(e.artists) && e.artists.length) { artist = e.artists.map(a => a.name).filter(Boolean).join(', '); break; } }
-      let year = '';
-      for (const k in entities) { const e = entities[k]; if (!e) continue; if (e.releaseDate) { year = String(e.releaseDate).slice(0, 4); break; } if (e.releaseYear) { year = String(e.releaseYear); break; } }
-      let thumbnail = '';
-      for (const k in entities) { if (entities[k]?.thumbnailUrl) { thumbnail = entities[k].thumbnailUrl; break; } }
-      return { source: 'songlink', title, artist, year, thumbnail };
-    } catch (e) { return null; }
-  }
-
-  async function tryiTunesLookup(id) {
-    if (!id) return null;
-    try {
-      const res = await fetch(`https://itunes.apple.com/lookup?id=${encodeURIComponent(id)}&entity=song`);
-      if (!res.ok) return null;
-      const d = await res.json();
-      if (!d.results?.length) return null;
-      const r = d.results[0];
-      return { source: 'itunes', title: r.trackName || r.collectionName || '', artist: r.artistName || '', year: r.releaseDate ? String(r.releaseDate).slice(0, 4) : '', thumbnail: r.artworkUrl100 ? r.artworkUrl100.replace('100x100', '600x600') : '' };
-    } catch (e) { return null; }
-  }
-
   async function fetchMetadata(url) {
     const parsed = parseUrl(url);
     if (!parsed) { console.warn('[Meta] URL no reconocida:', url); return null; }
-    console.log('[Meta] Parseado:', parsed);
-    const result = { title: '', artist: '', year: '', thumbnail: '', source: '' };
-    if (parsed.platform === 'spotify' && parsed.type === 'track' && parsed.id) {
-      const oembed = await trySpotifyOEmbed(parsed.id);
-      if (oembed) { result.title = oembed.title || result.title; result.thumbnail = oembed.thumbnail || result.thumbnail; result.source = 'oembed'; }
-      if (result.title) {
-        const itunes = await tryiTunesSearch(result.title);
-        if (itunes) { result.artist = itunes.artist || result.artist; result.year = itunes.year || result.year; result.thumbnail = result.thumbnail || itunes.thumbnail; result.source += ' + itunes-search'; }
-      }
-      if (!result.artist || !result.year) {
-        const jsonld = await trySpotifyJsonLd(parsed.id);
-        if (jsonld) { result.artist = result.artist || jsonld.artist; result.year = result.year || jsonld.year; if (jsonld.title) result.title = result.title || jsonld.title; result.source += ' + jsonld'; }
-      }
-      if (!result.artist || !result.year) {
-        const mb = await tryMusicBrainz(result.title, result.artist);
-        if (mb) { result.artist = result.artist || mb.artist; result.year = result.year || mb.year; result.source += ' + mb'; }
+    console.log('%c[Meta] Parseado:', 'color:#30A46C', parsed);
+
+    const result = { title: '', artist: '', year: '', thumbnail: '', source: '', type: parsed.type };
+    const isAlbum = parsed.type === 'album' || parsed.type === 'playlist';
+
+    // ===== PASO 1: oEmbed (título exacto por ID) =====
+    if (parsed.platform === 'spotify' && parsed.id) {
+      console.log('[Meta] Paso 1: Spotify oEmbed...');
+      const oembed = await trySpotifyOEmbed(parsed.id, parsed.type);
+      if (oembed) {
+        result.title = oembed.title;
+        result.thumbnail = oembed.thumbnail;
+        result.source = 'oembed';
+        console.log('[Meta] ✅ oEmbed OK:', oembed.title);
       }
     }
+
+    // ===== PASO 2: JSON-LD (EXACTO por ID) =====
+    if (parsed.platform === 'spotify' && parsed.id) {
+      console.log('[Meta] Paso 2: Spotify JSON-LD...');
+      const jsonld = await trySpotifyJsonLd(parsed.id, parsed.type);
+      if (jsonld) {
+        if (!result.title && jsonld.title) result.title = jsonld.title;
+        if (jsonld.artist) result.artist = jsonld.artist;
+        if (jsonld.year) result.year = jsonld.year;
+        if (!result.thumbnail && jsonld.thumbnail) result.thumbnail = jsonld.thumbnail;
+        result.source += ' + jsonld';
+        console.log('[Meta] ✅ JSON-LD OK:', { title: jsonld.title, artist: jsonld.artist, year: jsonld.year });
+      }
+    }
+
+    // ===== PASO 3: iTunes Lookup (EXACTO por ID para Apple Music) =====
     if (parsed.platform === 'apple' && parsed.id) {
-      const itunes = await tryiTunesLookup(parsed.id);
-      if (itunes) { result.title = itunes.title || result.title; result.artist = itunes.artist || result.artist; result.year = itunes.year || result.year; result.thumbnail = itunes.thumbnail || result.thumbnail; result.source = 'itunes'; }
+      console.log('[Meta] Paso 3: iTunes Lookup...');
+      const itunes = await tryiTunesLookup(parsed.id, parsed.type);
+      if (itunes) {
+        result.title = itunes.title || result.title;
+        result.artist = itunes.artist || result.artist;
+        result.year = itunes.year || result.year;
+        result.thumbnail = itunes.thumbnail || result.thumbnail;
+        result.source = 'itunes';
+      }
     }
-    if (!result.title || !result.artist || !result.thumbnail) {
-      const sl = await trySonglink(url);
-      if (sl) { result.title = result.title || sl.title; result.artist = result.artist || sl.artist; result.year = result.year || sl.year; result.thumbnail = result.thumbnail || sl.thumbnail; if (!result.source) result.source = 'songlink'; }
+
+    // ===== PASO 4: FALLBACK iTunes Search / Deezer (con VALIDACIÓN ESTRICTA) =====
+    if (result.title && (!result.artist || !result.year)) {
+      console.log('[Meta] Paso 4: iTunes Search + Deezer (FALLBACK)...');
+      const [itunesRes, deezerRes] = await Promise.all([
+        tryiTunesSearch(result.title, result.artist, isAlbum ? 'album' : 'track'),
+        tryDeezer(result.title, result.artist, isAlbum ? 'album' : 'track')
+      ]);
+
+      const validate = (m, source) => {
+        if (!m) return null;
+        if (result.artist && m.artist) {
+          const rA = normalizeText(result.artist);
+          const mA = normalizeText(m.artist);
+          if (!rA.includes(mA) && !mA.includes(rA)) {
+            console.warn(`[Meta] ❌ ${source} descartado: artista "${m.artist}" ≠ "${result.artist}"`);
+            return null;
+          }
+        }
+        return m;
+      };
+
+      const iv = validate(itunesRes, 'iTunes Search');
+      const dv = validate(deezerRes, 'Deezer');
+
+      if (iv) {
+        if (!result.artist && iv.artist) result.artist = iv.artist;
+        if (!result.year && iv.year) result.year = iv.year;
+        if (!result.thumbnail && iv.thumbnail) result.thumbnail = iv.thumbnail;
+        result.source += ' + itunes';
+      }
+      if (dv) {
+        if (!result.artist && dv.artist) result.artist = dv.artist;
+        if (!result.year && dv.year) result.year = dv.year;
+        if (!result.thumbnail && dv.thumbnail) result.thumbnail = dv.thumbnail;
+        result.source += ' + deezer';
+      }
+
+      if (!result.artist) {
+        const fallback = iv || dv || itunesRes || deezerRes;
+        if (fallback && fallback.artist) {
+          result.artist = fallback.artist;
+          if (!result.year && fallback.year) result.year = fallback.year;
+          if (!result.thumbnail && fallback.thumbnail) result.thumbnail = fallback.thumbnail;
+          result.source += ' + fallback';
+          console.warn('[Meta] ⚠️ Usando fallback sin validación');
+        }
+      }
     }
-    if (!result.title && !result.artist) { console.warn('[Meta] Todas las fuentes fallaron'); return null; }
-    console.log('%c[Meta] Merged OK', 'color:#30A46C;font-weight:bold', result);
+
+    // ===== PASO 5: MusicBrainz (último recurso si falta artista/año) =====
+    if (result.title && (!result.artist || !result.year)) {
+      const mb = await tryMusicBrainz(result.title, result.artist);
+      if (mb) {
+        if (!result.artist && mb.artist) result.artist = mb.artist;
+        if (!result.year && mb.year) result.year = mb.year;
+        result.source += ' + mb';
+      }
+    }
+
+    if (!result.title && !result.artist) {
+      console.error('%c[Meta] ❌ Todas las fuentes fallaron', 'color:#E5484D;font-weight:bold');
+      return null;
+    }
+    console.log('%c[Meta] ✅ Resultado final:', 'color:#30A46C;font-weight:bold', result);
     return result;
   }
 
@@ -2997,10 +3141,27 @@ init();
   setTimeout(setup, 100);
   const modal = document.getElementById('coverEditModal');
   if (modal) { new MutationObserver(() => { if (modal.classList.contains('active')) setTimeout(setup, 60); }).observe(modal, { attributes: true, attributeFilter: ['class'] }); }
-  window.debugMetadata = async (url) => { const meta = await fetchMetadata(url); console.log('[Meta] DEBUG →', meta); if (meta) fillInputs(meta); return meta; };
+
+  window.testMetadata = async function(url) {
+    console.log('%c========= TEST METADATA =========', 'color:#C9A961;font-weight:bold;font-size:14px');
+    console.log('URL:', url);
+    const result = await fetchMetadata(url);
+    console.log('%c========= RESULTADO =========', 'color:#30A46C;font-weight:bold');
+    console.log(result);
+    return result;
+  };
+  window.debugMetadata = async function(url) {
+    const meta = await fetchMetadata(url);
+    console.log('[Meta] DEBUG →', meta);
+    if (meta) fillInputs(meta);
+    return meta;
+  };
+  if (location.protocol === 'file:') {
+    console.warn('%c⚠️ file:// bloquea CORS. Usa: python -m http.server --cors 8000', 'color:#E5484D;font-weight:bold');
+  }
 })();
 
-console.log('%c🔐 Grobdesigns v35 — Tabs robustas + Fallback imágenes + Player mini', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v38 — Sin Songlink + oEmbed/JSON-LD/iTunes/Deezer', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
