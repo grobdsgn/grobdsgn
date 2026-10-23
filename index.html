@@ -339,6 +339,8 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .amodal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line)}
 .login-screen{position:fixed;inset:0;z-index:22000;background:#08080a;display:none;place-items:center;padding:20px;overflow-y:auto}
 .login-screen.active{display:grid}
+.login-close{position:fixed;top:20px;right:20px;z-index:22001;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.15rem;display:grid;place-items:center;cursor:pointer;transition:all .25s}
+.login-close:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .login-card{width:100%;max-width:480px;background:#131316;border:1px solid var(--line);padding:44px 36px;border-radius:3px;margin:auto}
 .login-logo{height:32px;width:auto;margin:0 auto 28px;filter:brightness(0) invert(1)}
 .login-card h2{font-family:'Fraunces',serif;font-weight:800;font-size:1.35rem;margin-bottom:6px;text-align:center}
@@ -350,16 +352,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .login-msg{font-size:.85rem;min-height:18px;margin-top:12px;color:var(--danger);text-align:center}
 .login-help{font-size:.75rem;color:var(--muted);margin-top:22px;padding-top:20px;border-top:1px solid var(--line);line-height:1.7}
 .login-help a{color:var(--accent);text-decoration:underline}
-.login-help kbd{background:#222;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:.72rem;color:var(--text);border:1px solid rgba(255,255,255,.1)}
 .login-help code{background:#222;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:.78rem;color:var(--accent)}
 .toast{position:fixed;bottom:24px;right:24px;background:#131316;border:1px solid var(--line);padding:14px 20px;font-size:.9rem;transform:translateY(140%);transition:.4s;z-index:25000;max-width:340px;border-radius:3px}
 .toast.show{transform:translateY(0)}
 .toast.ok{border-color:var(--ok)}
 .toast.error{border-color:var(--danger)}
-.admin-fab{position:fixed;bottom:16px;left:16px;z-index:15000;width:46px;height:46px;border-radius:50%;background:rgba(201,169,97,.2);border:1.5px solid rgba(201,169,97,.6);color:var(--accent);display:grid;place-items:center;font-size:1.05rem;cursor:pointer;opacity:.85;transition:all .3s var(--ease);box-shadow:0 4px 20px rgba(201,169,97,.2)}
-.admin-fab:hover{opacity:1;background:var(--accent);color:#000;transform:scale(1.1) translateY(-2px);box-shadow:0 8px 30px rgba(201,169,97,.45)}
-.admin-fab.unlocked{opacity:1;background:rgba(201,169,97,.35);animation:adminPulse 2s infinite}
-@keyframes adminPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,97,.5)}50%{box-shadow:0 0 0 10px rgba(201,169,97,0)}}
 .empty-state{padding:50px 20px;text-align:center;color:var(--muted);font-size:.9rem;border:2px dashed rgba(255,255,255,.1);border-radius:3px}
 .empty-state strong{color:var(--text);display:block;margin-bottom:6px;font-size:1rem}
 .extra-imgs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:12px}
@@ -391,7 +388,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 
 <nav class="top" id="nav">
   <div class="nav-inner">
-    <div class="logo" id="logoHome" data-route="home" title="Mantén pulsado 2s para admin">
+    <div class="logo" id="logoHome" data-route="home">
       <img src="logo.svg" alt="Grobdesigns" class="logo-img" id="logoImg" onerror="this.style.display='none';document.getElementById('logoText').style.display='block'">
       <span class="logo-text" id="logoText">Grobdesigns</span>
     </div>
@@ -591,9 +588,8 @@ que se recuerdan.</h1>
 
 <footer><div class="wrap footer-inner"><span id="footerLeft">© 2025 Grobdesigns</span><span id="footerRight">Diseñado con intención</span></div></footer>
 
-<button class="admin-fab" id="adminFab" type="button" aria-label="Admin" title="Panel de administración · Ctrl+Shift+A · o añade #admin a la URL">⚙</button>
-
 <div class="login-screen" id="loginScreen">
+  <button type="button" class="login-close" id="loginClose" aria-label="Cerrar">✕</button>
   <form class="login-card" id="loginForm">
     <img src="logo.svg" alt="Grobdesigns" class="login-logo" onerror="this.style.display='none'">
     <h2>Panel de administración</h2>
@@ -609,14 +605,11 @@ que se recuerdan.</h1>
     <div class="login-help">
       <a href="https://github.com/settings/tokens/new?scopes=repo&description=grobdesigns-admin" target="_blank" rel="noopener">→ Crear un PAT aquí</a> (marca scope <code>repo</code>). El token se guarda solo en tu navegador.
       <br><br>
-      <strong style="color:var(--text);display:block;margin-bottom:8px">🔑 Formas de abrir este panel:</strong>
+      <strong style="color:var(--text);display:block;margin-bottom:8px">🔑 Acceso al panel:</strong>
       <span style="display:block;line-height:1.9">
-        • <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> (o <kbd>Cmd</kbd> en Mac)<br>
-        • Añade <code>#admin</code> al final de la URL<br>
-        • Mantén pulsado el logo 2 segundos<br>
-        • Triple clic en el logo<br>
-        • Triple clic en el <strong>©</strong> del footer<br>
-        • Botón ⚙ abajo a la izquierda
+        Añade <code>#admin</code> al final de la URL:<br>
+        <code style="display:inline-block;margin-top:6px">tudominio.com/#admin</code><br>
+        <span style="font-size:.72rem;color:var(--muted);display:inline-block;margin-top:6px">Guárdalo en marcadores para tenerlo siempre a mano.</span>
       </span>
     </div>
   </form>
@@ -986,7 +979,7 @@ const CATEGORY_BADGE = { sencillo: 'SENCILLO', albums: 'ÁLBUM', ediciones: 'EDI
 const TEXTS_DEFAULT = { navHome: 'Inicio', navPortafolio: 'Portafolio', navCovers: 'Covers', navClientes: 'Clientes', navContacto: 'Contacto', heroBtn1: 'Ver portafolio →', heroBtn2: 'Contáctame', philLabel: '— Filosofía', philTitle: 'Diseño con *intención*.', philText: 'Más de ocho años traduciendo ideas complejas en sistemas visuales claros.', softwareLabel: '— Herramientas', softwareTitle: 'Con las que *trabajo*.', softwareText: 'Los programas y herramientas que uso cada día.', coversLabel: '— Covers', coversTitle: 'Una pared de *covers*.', coversText: 'Portadas, artwork y ediciones.', cfTodos: 'Todos', cfSencillos: 'Sencillos', cfAlbumes: 'Álbumes', cfEdiciones: 'Ediciones', coverLblResena: 'Reseña del proyecto', coverLblImgs: 'Imágenes del proyecto', clientesLabel: '— Clientes', clientesTitle: 'Confían en *Grobdesigns*.', clientesText: 'Marcas, artistas y proyectos.', contactoTitle: '¿Trabajamos *juntos*?', contactoText: 'Cuéntame sobre tu proyecto.', cLabelEmail: 'Email', cLabelPhone: 'Teléfono', cLabelLocation: 'Ubicación', formLbl1: '01 — Nombre', formLbl2: '02 — Email', formLbl3: '03 — Mensaje', formBtn: 'Enviar mensaje', volverPorTxt: 'Volver a Portafolio', proyectoBackTxt: 'Volver', proyectoVerTxt: 'Ver proyecto', coverVerTxt: 'Ver proyecto', footerLeft: '© 2025 Grobdesigns', footerRight: 'Diseñado con intención', pageTitle: 'Grobdesigns', metaDescription: 'Portafolio de Grobdesigns.' };
 const THEME_DEFAULT = { accent: '#C9A961', bg: '#000000', surface: '#0f0f10', text: '#F5F3EF', muted: '#8A8A8A', philBg: '#F5F3EF', philText: '#0A0A0A', philEm: '#A88B45', philMuted: '#4A4A4A' };
 
-let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coverEditExtraImages = [], coversSearchQuery = '', isAdminUnlocked = false, _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152;
+let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coverEditExtraImages = [], coversSearchQuery = '', isAdminUnlocked = false, _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152, _initDone = false;
 
 function getEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null;
@@ -1416,75 +1409,48 @@ function extractDominantColor(url) {
 function applyColors() {}
 
 /* ============================================================
-   ADMIN — LOGIN Y SAVE
+   ADMIN — ACCESO VÍA #admin
    ============================================================ */
 function tryOpenAdmin() {
-  if (isAdminUnlocked) { $('#adminFab').classList.add('unlocked'); $('#adminOverlay').classList.add('active'); document.body.classList.add('locked'); renderAdmin(); return; }
+  if (isAdminUnlocked) {
+    $('#adminOverlay').classList.add('active');
+    document.body.classList.add('locked');
+    renderAdmin();
+    return;
+  }
   $('#loginScreen').classList.add('active');
   if (GH.isConfigured()) { $('#loginToken').value = ''; $('#loginRepo').value = GH.repo; $('#loginBranch').value = GH.branch; }
   setTimeout(() => $('#loginToken').focus(), 100);
 }
 
-$('#adminFab').onclick = tryOpenAdmin;
-
-/* ============================================================
-   MÉTODOS DE ACCESO AL ADMIN
-   ============================================================ */
-
-// (1) Atajo de teclado: Ctrl/Cmd + Shift + A
-document.addEventListener('keydown', e => {
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.code === 'KeyA')) {
-    e.preventDefault();
-    tryOpenAdmin();
+function closeLoginScreen() {
+  $('#loginScreen').classList.remove('active');
+  if ((location.hash || '').toLowerCase() === '#admin') {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
-});
+}
 
-// (2) URL hash: #admin, #panel, #login
+/* Único método de acceso: #admin en la URL */
 function checkAdminHash(attempt = 0) {
   const h = (location.hash || '').toLowerCase();
-  if (h !== '#admin' && h !== '#panel' && h !== '#login') return;
-  if (!isAdminUnlocked && GH.isConfigured() && attempt < 10) {
-    setTimeout(() => checkAdminHash(attempt + 1), 300);
+  if (h !== '#admin') return;
+  if (!_initDone && attempt < 20) {
+    setTimeout(() => checkAdminHash(attempt + 1), 200);
     return;
   }
   tryOpenAdmin();
 }
+
 window.addEventListener('hashchange', () => checkAdminHash());
-setTimeout(() => checkAdminHash(), 800);
+setTimeout(() => checkAdminHash(), 400);
 
-// (3) Triple clic en el logo
-(function () {
-  let clicks = 0, timer = null;
-  const logo = $('#logoHome'); if (!logo) return;
-  logo.addEventListener('click', () => {
-    clicks++; clearTimeout(timer);
-    timer = setTimeout(() => clicks = 0, 700);
-    if (clicks >= 3) { clicks = 0; tryOpenAdmin(); }
-  });
-})();
-
-// (4) Long-press en el logo (2 segundos)
-(function () {
-  const logo = $('#logoHome'); if (!logo) return;
-  let timer = null;
-  const start = () => { clearTimeout(timer); timer = setTimeout(() => { if (navigator.vibrate) navigator.vibrate(50); tryOpenAdmin(); }, 2000); };
-  const cancel = () => clearTimeout(timer);
-  logo.addEventListener('mousedown', start);
-  logo.addEventListener('touchstart', start, { passive: true });
-  ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(ev => logo.addEventListener(ev, cancel));
-})();
-
-// (5) Triple clic en el © del footer
-(function () {
-  const fl = $('#footerLeft'); if (!fl) return;
-  let clicks = 0, timer = null;
-  fl.style.cursor = 'pointer'; fl.title = 'Grobdesigns';
-  fl.addEventListener('click', () => {
-    clicks++; clearTimeout(timer);
-    timer = setTimeout(() => clicks = 0, 700);
-    if (clicks >= 3) { clicks = 0; tryOpenAdmin(); }
-  });
-})();
+/* Cerrar login: botón ✕ o tecla Escape */
+$('#loginClose').onclick = closeLoginScreen;
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && $('#loginScreen').classList.contains('active')) {
+    closeLoginScreen();
+  }
+});
 
 $('#loginForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -1502,20 +1468,31 @@ $('#loginForm').addEventListener('submit', async e => {
   if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura. Se puede leer pero no guardar.'; }
   msg.textContent = '';
   isAdminUnlocked = true;
-  $('#adminFab').classList.add('unlocked');
   $('#loginScreen').classList.remove('active');
   await reloadFromGitHub();
   tryOpenAdmin();
 });
-$('#logoutBtn').onclick = () => { GH.clear(); isAdminUnlocked = false; $('#adminFab').classList.remove('unlocked'); $('#adminOverlay').classList.remove('active'); document.body.classList.remove('locked'); toast('Sesión cerrada', 'ok'); };
+
+$('#logoutBtn').onclick = () => {
+  GH.clear();
+  isAdminUnlocked = false;
+  $('#adminOverlay').classList.remove('active');
+  document.body.classList.remove('locked');
+  if ((location.hash || '').toLowerCase() === '#admin') {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+  toast('Sesión cerrada', 'ok');
+};
+
 $('#closeAdminBtn').onclick = () => {
   $('#adminOverlay').classList.remove('active');
   document.body.classList.remove('locked');
   renderAll();
-  if (['#admin','#panel','#login'].includes((location.hash || '').toLowerCase())) {
-    try { history.replaceState(null, '', location.pathname + location.search); } catch(e){}
+  if ((location.hash || '').toLowerCase() === '#admin') {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
 };
+
 $('#viewSiteBtn').onclick = () => { $('#adminOverlay').classList.remove('active'); document.body.classList.remove('locked'); window.scrollTo(0, 0); };
 $('#pullBtn').onclick = async () => { await reloadFromGitHub(); toast('✅ Recargado de GitHub', 'ok'); };
 
@@ -1875,23 +1852,28 @@ $$('.covers-filter-btn[data-filter]').forEach(b => b.onclick = () => { currentPu
 /* INIT */
 function renderAll() { applyTheme(); applyTexts(); renderHome(); renderCovers(); renderClientes(); renderCatRows(); }
 async function init() {
-  if (GH.isConfigured()) {
-    const user = await GH.getUser();
-    if (user) { isAdminUnlocked = true; $('#adminFab').classList.add('unlocked'); await reloadFromGitHub(); return; }
-  }
-  DATA = defaultData(); COVERS = [];
-  applyCustomLogo(); renderAll();
   try {
-    const publicRes = await fetch('data.json?t=' + Date.now());
-    if (publicRes.ok) {
-      DATA = Object.assign(defaultData(), await publicRes.json());
-      COVERS = (DATA.covers || []).map(normalizeCover).filter(Boolean);
-      applyCustomLogo(); renderAll();
+    if (GH.isConfigured()) {
+      const user = await GH.getUser();
+      if (user) { isAdminUnlocked = true; await reloadFromGitHub(); return; }
     }
-  } catch (e) { /* sin data.json, mostrar vacío */ }
+    DATA = defaultData(); COVERS = [];
+    applyCustomLogo(); renderAll();
+    try {
+      const publicRes = await fetch('data.json?t=' + Date.now());
+      if (publicRes.ok) {
+        DATA = Object.assign(defaultData(), await publicRes.json());
+        COVERS = (DATA.covers || []).map(normalizeCover).filter(Boolean);
+        applyCustomLogo(); renderAll();
+      }
+    } catch (e) { /* sin data.json, mostrar vacío */ }
+  } finally {
+    _initDone = true;
+    checkAdminHash();
+  }
 }
 init();
-console.log('%c🔐 Grobdesigns v40 — GitHub backend (carpeta media + data.json)', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v41 — acceso admin solo vía #admin', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
