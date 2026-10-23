@@ -899,7 +899,7 @@ function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toS
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 /* ============================================================
-   GITHUB STORAGE
+   GITHUB STORAGE (CORREGIDO PARA REPOS PRIVADOS)
    ============================================================ */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -937,41 +937,52 @@ const GH = {
     try {
       const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`);
       if (res.status === 404) return null; // El archivo no existe aún
-      if (!res.ok) throw new Error(`Error ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      
       const d = await res.json();
-      return { sha: d.sha, content: d.content };
+      // Decodificar base64 a texto UTF-8
+      const bin = atob(d.content.replace(/\n/g, ''));
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const text = new TextDecoder('utf-8').decode(bytes);
+      
+      return { sha: d.sha, content: text };
     } catch (e) {
-      console.warn(`No se pudo leer ${path}:`, e);
-      return null; 
+      console.error(`Error leyendo ${path}:`, e);
+      throw e; // Relanzamos para que putFile sepa que falló
     }
   },
   async putFile(path, base64Content, message) {
     let retries = 3;
     while (retries > 0) {
-      const existing = await this.getFile(path);
-      const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
-      if (existing && existing.sha) body.sha = existing.sha;
-      
-      const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-      
-      if (res.ok) return true;
-      
-      // Si hay conflicto (409), esperamos y reintentamos con el SHA actualizado
-      if (res.status === 409) {
-        console.warn(`Conflicto 409 en ${path}. Reintentando en 1s...`);
+      try {
+        const existing = await this.getFile(path);
+        const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
+        if (existing && existing.sha) body.sha = existing.sha;
+        
+        const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        
+        if (res.ok) return true;
+        
+        if (res.status === 409) {
+          console.warn(`Conflicto 409 en ${path}. Reintentando en 1s...`);
+          retries--;
+          await new Promise(r => setTimeout(r, 1000));
+          continue;
+        }
+        
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `HTTP ${res.status}`);
+      } catch (e) {
+        console.error(`Fallo en putFile(${path}):`, e);
         retries--;
+        if (retries === 0) throw e;
         await new Promise(r => setTimeout(r, 1000));
-        continue;
       }
-      
-      // Si es otro error (como falta de permisos), lo mostramos
-      const errData = await res.json().catch(() => ({}));
-      console.error(`Error API ${res.status} al guardar ${path}:`, errData);
-      return false;
     }
     return false;
   },
@@ -982,10 +993,24 @@ const GH = {
     const filename = `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
     const path = `${this.mediaPath}/${filename}`;
     const ok = await this.putFile(path, clean, `Upload ${filename}`);
-    if (!ok) throw new Error('Upload failed');
+    if (!ok) throw new Error('No se pudo subir la imagen');
     return this.rawUrl(path);
   },
   async loadData() {
+    // Si tenemos token, usar la API (sirve para repos privados)
+    if (this.isConfigured()) {
+      try {
+        const file = await this.getFile(this.dataPath);
+        if (file && file.content) {
+          return JSON.parse(file.content);
+        }
+        return null; // No existe el archivo aún
+      } catch (e) {
+        console.warn('Error cargando data.json desde API:', e);
+        // Si falla la API, intentamos el fallback público por si acaso
+      }
+    }
+    // Fallback público (solo funciona en repos públicos)
     try {
       const res = await fetch(this.rawUrl(this.dataPath) + '?t=' + Date.now());
       if (!res.ok) return null;
@@ -1061,15 +1086,21 @@ async function saveData(silent = false) {
   if (!GH.isConfigured()) return false;
   DATA.covers = COVERS;
   setSyncStatus('saving');
-  const ok = await GH.saveData(DATA);
-  if (ok) { 
-    setSyncStatus('ok'); 
-    if (!silent) toast('✅ Guardado en GitHub', 'ok'); 
-  } else { 
-    setSyncStatus('error'); 
-    toast('❌ Error al guardar. Prueba a recargar de GitHub.', 'error'); 
+  try {
+    const ok = await GH.saveData(DATA);
+    if (ok) { 
+      setSyncStatus('ok'); 
+      if (!silent) toast('✅ Guardado en GitHub', 'ok'); 
+    } else { 
+      setSyncStatus('error'); 
+      toast('❌ Error al guardar', 'error'); 
+    }
+    return ok;
+  } catch (e) {
+    setSyncStatus('error');
+    toast('❌ Error: ' + e.message, 'error');
+    return false;
   }
-  return ok;
 }
 
 async function reloadFromGitHub() {
@@ -1502,7 +1533,6 @@ $('#loginForm').addEventListener('submit', async e => {
   
   const info = await GH.getRepoInfo();
   
-  // Si hay un error de red o de GitHub, lo mostramos
   if (info && info.error) { 
     GH.clear(); 
     msg.textContent = `Error ${info.status}: ${info.message}`; 
@@ -1630,7 +1660,10 @@ async function uploadCovers(files) {
       try {
         const url = await GH.uploadImage(imgs[i], 'cover');
         COVERS.push({ id: uid(), url, category: selectedUploadCategory, name: isOne ? name : imgs[i].name.replace(/\.[^.]+$/, ''), artist: isOne ? artist : '', year: isOne ? year : year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
-      } catch (e) { console.warn(e); }
+      } catch (e) { 
+        console.error(e); 
+        toast(`Error subiendo ${imgs[i].name}: ${e.message}`, 'error');
+      }
     }
     await saveData(true);
     renderCoversAdmin(); renderCovers();
@@ -1710,7 +1743,7 @@ function renderClientesGrid() {
 $('#clientesUpZone').onclick = () => $('#clientesFileInput').click();
 $('#clientesFileInput').onchange = async () => {
   for (const f of [...$('#clientesFileInput').files]) {
-    try { DATA.clientes.push(await GH.uploadImage(f, 'cliente')); } catch (e) {}
+    try { DATA.clientes.push(await GH.uploadImage(f, 'cliente')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
   }
   await saveData(true); renderClientesGrid(); renderClientes(); $('#clientesFileInput').value = ''; toast('Añadidos', 'ok');
 };
@@ -1734,7 +1767,7 @@ function renderSoftwareGrid() {
 $('#softwareUpZone').onclick = () => $('#softwareFileInput').click();
 $('#softwareFileInput').onchange = async () => {
   for (const f of [...$('#softwareFileInput').files]) {
-    try { DATA.software.push(await GH.uploadImage(f, 'software')); } catch (e) {}
+    try { DATA.software.push(await GH.uploadImage(f, 'software')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
   }
   await saveData(true); renderSoftwareGrid(); renderSoftware(); $('#softwareFileInput').value = ''; toast('Añadidos', 'ok');
 };
@@ -1834,7 +1867,7 @@ function renderProjImages() {
 $('#projUpZone').onclick = () => $('#projFileInput').click();
 $('#projFileInput').onchange = async () => {
   for (const f of [...$('#projFileInput').files]) {
-    try { projImages.push(await GH.uploadImage(f, 'proj')); } catch (e) {}
+    try { projImages.push(await GH.uploadImage(f, 'proj')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
   }
   renderProjImages(); $('#projFileInput').value = '';
 };
@@ -1918,7 +1951,7 @@ async function init() {
   }
 }
 init();
-console.log('%c🔐 Grobdesigns v42 — Admin #admin + retry 409 fix', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v43 — Admin #admin + Soporte Repos Privados', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
