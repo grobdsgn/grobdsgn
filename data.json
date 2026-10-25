@@ -63,13 +63,13 @@
     {
       "id": "zhj2nt9emvo0ixwy",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943933120-isxa0z.jpg",
-      "category": "sencillo",
+      "category": "albums",
       "name": "1900x1900-000000-80-0-0 (1)",
       "artist": "",
       "year": "",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/3JjHG60vzkUptBRRRLodXc?si=b4f79b7d2e2a4beb",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
@@ -96,7 +96,13 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945467507-swaugh.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945469222-luv9ce.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945470644-wdcdeg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945471900-33bvoi.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945473492-8qrds1.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
