@@ -645,7 +645,7 @@
       "extraImages": [],
       "spotifyUrl": "https://i.scdn.co/image/ab67616d0000b273e3f90eacd1066086ece11704",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=ezC3Gl-vvP0",
       "featured": false
     },
     {
@@ -1192,12 +1192,17 @@
       "id": "x95d8fshmvofcnl9",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792968833903-srvft7.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Hobby ft Mawell",
+      "artist": "Jacob forever",
+      "year": "2021",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968859175-ej9j4a.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968860279-pk4vev.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968861494-1q3sl1.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968862576-8b6g46.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/71nrF94Pis47Je6SvodtLR?si=b78d0cbb805146b2",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
