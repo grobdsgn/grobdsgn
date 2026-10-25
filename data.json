@@ -898,12 +898,17 @@
       "id": "fkce49ckmvoahkwe",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792960665539-c902q8.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "D´frutas",
+      "artist": "D jota",
+      "year": "2024",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960683780-af6gow.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960684950-mun8n1.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960685997-oqqb0q.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960687356-rwgg36.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/4AMhfpjLv8kvutKhayvfhP?si=942d89b354cd4df0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
