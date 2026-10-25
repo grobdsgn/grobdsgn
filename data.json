@@ -730,7 +730,10 @@
       "artist": "Lenny Tavarez",
       "year": "2017",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963942550-d02nui.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963944079-p02jbz.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/1umEpouHOqscAho8jhazbQ?si=MDSBiXvXSj-VPOx1f7dc8Q",
       "appleMusicUrl": "",
       "youtubeUrl": "",
