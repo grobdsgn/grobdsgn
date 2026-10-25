@@ -1174,13 +1174,16 @@
     {
       "id": "spi0vgn3mvof6fgp",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792968543522-2jkbdz.jpg",
-      "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "category": "albums",
+      "name": "Sentimiento Real",
+      "artist": "Gustavo elis ft Sixto Rein",
+      "year": "2020",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968666987-ogsyks.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968668693-20xhur.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/3MBxsHVfVYdc9lKIvMI2I7?si=i--NuC1ETBiHfkOBHbTp4w",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
