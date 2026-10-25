@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "Disponible · 2026",
+    "eyebrow": "Disponible · 2025",
     "title": "Diseño experiencias\nque se recuerdan.",
     "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
   },
@@ -8,7 +8,22 @@
   "categories": [],
   "clientes": [],
   "software": [],
-  "covers": [],
+  "covers": [
+    {
+      "id": "mkt739tqmvnz5xlf",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792941646378-swkjpl.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    }
+  ],
   "contact": {
     "email": "hola@grobdesigns.com",
     "phone": "+58 4141299366",
