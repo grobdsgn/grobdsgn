@@ -8,54 +8,11 @@
   "categories": [],
   "clientes": [],
   "software": [],
-  "covers": [
-    {
-      "id": "jj3etqowmvkfn365",
-      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792727456021-9qhgns.jpg",
-      "category": "sencillo",
-      "name": "otra-botella",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
-      "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
-    },
-    {
-      "id": "i2hfwwa2mvkfn3yu",
-      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792727457491-i9nu79.webp",
-      "category": "sencillo",
-      "name": "victor-y-gabo",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
-      "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
-    },
-    {
-      "id": "i8l9x4s2mvkfn4w1",
-      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792727458527-lqgw18.jpg",
-      "category": "sencillo",
-      "name": "la-diabla",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
-      "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
-    }
-  ],
+  "covers": [],
   "contact": {
-    "email": "hola@grobdesigns.com",
-    "phone": "+34 600 000 000",
-    "location": "Madrid, España"
+    "email": "grobdsgnartes@gmail.com",
+    "phone": "+58 4141299366",
+    "location": "Caracas, Venezuela"
   },
   "texts": {
     "navHome": "Inicio",
