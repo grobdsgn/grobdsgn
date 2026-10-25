@@ -490,7 +490,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6SIrNxmmdbv1KUbFBu1PaN?si=d180ef1a0ef54d3f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/rKeT3qA6Zao?si=MQ1Vd6nTZMqINcwk",
-      "featured": true
+      "featured": false
     },
     {
       "id": "6rbdl8nnmvo0j9lg",
@@ -805,15 +805,15 @@
       "id": "az9703hfmvo0xokz",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792944621145-n806n6.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Pa´Lante",
+      "artist": "Alex Sensation Ft anitta y Luis fonsi",
+      "year": "2019",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/03oX3KPyi8ydzOaMNTpX0N?si=HPL02JqdT6S762IlTqw9Ng",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": true
     },
     {
       "id": "0hkaqewpmvo17fyd",
