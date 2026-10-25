@@ -116,6 +116,21 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792955545076-dnd9ro.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792955546362-ctb9rp.jpg"
           ]
+        },
+        {
+          "id": "143je1simvocrwuu",
+          "title": "Zonautos",
+          "description": "",
+          "year": "2024",
+          "youtubeUrl": "",
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964498733-8xv1gx.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964500326-tzem40.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964501735-k5pww2.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964502952-a6tws4.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964504425-ykz616.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964505843-1jmkvd.jpg"
+          ]
         }
       ]
     },
@@ -1040,7 +1055,7 @@
       "id": "lcbkl5lvmvocmzlg",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792964277043-7ocynp.jpg",
       "category": "sencillo",
-      "name": "TAbla remix",
+      "name": "Tabla remix",
       "artist": "RAmster, Ft Xavi Devine, baby zoom, Briell, sano",
       "year": "",
       "review": "",
