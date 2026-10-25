@@ -979,6 +979,20 @@
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
+    },
+    {
+      "id": "gxptm0xxmvobypaw",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792963144150-qh6yvu.jpg",
+      "category": "sencillo",
+      "name": "Amantes",
+      "artist": "Sixto rein ft Gustavo elis",
+      "year": "2019",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/1quxsSsiHJEvy8BdMhG3hS?si=f5d6bda618b14f61",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
