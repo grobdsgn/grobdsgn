@@ -9,7 +9,15 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792942469424-g7rkmh.jpg",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792942470646-1bybnx.jpg"
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": "ixu0nanfmvnzw0b3",
+      "name": "Músical",
+      "description": "",
+      "cover": "",
+      "projects": []
+    }
+  ],
   "clientes": [],
   "software": [],
   "covers": [
