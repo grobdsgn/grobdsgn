@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#08080a;--surface:#111115;--surface-hover:#1a1a20;--line:rgba(255,255,255,0.08);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--accent-hover:#e0bd6e;--danger:#E5484D;--danger-hover:#ff5c61;--ok:#30A46C;--font-main:'Inter',sans-serif;--font-title:'Fraunces',serif}
+:root{--bg:#08080a;--surface:#111115;--surface-hover:#1a1a20;--line:rgba(255,255,255,0.08);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--accent-hover:#e0bd6e;--danger:#E5484D;--ok:#30A46C;--font-main:'Inter',sans-serif;--font-title:'Fraunces',serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--font-main);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -33,7 +33,7 @@ img{max-width:100%;display:block}
 .sidebar-header{padding:24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
 .sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .sidebar-nav{padding:16px 12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
-.nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);transition:all 0.2s;cursor:pointer}
+.nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:12px;transition:all 0.2s;cursor:pointer}
 .nav-item:hover{background:var(--surface-hover);color:var(--text)}
 .nav-item.active{background:rgba(201,169,97,0.1);color:var(--accent);font-weight:600}
 .sidebar-footer{padding:20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
@@ -77,11 +77,12 @@ img{max-width:100%;display:block}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-block{width:100%}
 
-/* Inputs Group */
-.input-group{display:flex;gap:10px;align-items:flex-start}
-.input-group .form-textarea{flex:1}
+/* Upload Zone */
+.upload-zone{border:2px dashed rgba(255,255,255,0.15);padding:30px;text-align:center;border-radius:6px;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
+.upload-zone:hover{border-color:var(--accent);background:rgba(201,169,97,0.05)}
+.upload-zone p{color:var(--muted);font-size:14px}
 
-/* Covers Grid */
+/* Grids */
 .grid-covers{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
 .cover-card{background:#000;border:1px solid var(--line);border-radius:6px;overflow:hidden;position:relative}
 .cover-card img{width:100%;aspect-ratio:1;object-fit:cover}
@@ -91,10 +92,6 @@ img{max-width:100%;display:block}
 .cover-card-actions{display:flex;gap:6px;margin-top:10px}
 .cover-card-actions .btn{flex:1;padding:6px;font-size:11px}
 .cover-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:var(--accent);font-size:10px;font-weight:700;padding:4px 8px;border-radius:4px;text-transform:uppercase}
-
-/* Portfolio Management */
-.portfolio-cat-card{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:16px}
-.portfolio-cat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 
 /* Modals */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
@@ -128,7 +125,7 @@ img{max-width:100%;display:block}
 .mb-4{margin-bottom:16px}
 .mt-4{margin-top:16px}
 .hidden{display:none !important}
-.preview-img{width:100px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.preview-img{width:100px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#000}
 </style>
 </head>
 <body>
@@ -162,7 +159,7 @@ img{max-width:100%;display:block}
 <!-- Admin Layout -->
 <div class="admin-layout hidden" id="adminLayout">
   
-  <!-- Sidebar (Clean, Icon-free) -->
+  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="logo.svg" alt="Grobdesigns" class="sidebar-logo" onerror="this.style.display='none'">
@@ -221,13 +218,18 @@ img{max-width:100%;display:block}
         </div>
 
         <div class="card">
-          <div class="card-header"><h2 class="card-title">Fondos del Carrusel (URLs de Imágenes)</h2></div>
+          <div class="card-header"><h2 class="card-title">Fondos del Carrusel</h2></div>
           <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Añadir URLs de imágenes (una por línea)</label>
-              <div class="input-group">
-                <textarea id="heroImagesInput" class="form-textarea" rows="3" placeholder="https://ejemplo.com/fondo1.jpg&#10;https://drive.google.com/file/d/ID/view"></textarea>
-                <button class="btn btn-primary" id="btnAddHeroImages">Añadir</button>
+            <div class="upload-zone" onclick="document.getElementById('heroFileInput').click()">
+              <p>Haz clic para subir imágenes locales (se guardan en la carpeta media)</p>
+            </div>
+            <input type="file" id="heroFileInput" accept="image/*" multiple hidden>
+            
+            <div class="form-group mt-4">
+              <label class="form-label">O pegar URLs externas (una por línea)</label>
+              <div style="display:flex;gap:10px">
+                <textarea id="heroUrlsInput" class="form-textarea" rows="2" placeholder="https://ejemplo.com/fondo.jpg"></textarea>
+                <button class="btn btn-outline" id="btnAddHeroUrls">Añadir URL</button>
               </div>
             </div>
             <div class="grid-covers" id="heroImagesGrid"></div>
@@ -248,11 +250,17 @@ img{max-width:100%;display:block}
                 <option value="ediciones">Edición</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Pegar URLs (una por línea)</label>
-              <div class="input-group">
-                <textarea id="coverUrlsInput" class="form-textarea" rows="4" placeholder="https://ejemplo.com/cover1.jpg&#10;https://drive.google.com/file/d/ID/view"></textarea>
-                <button class="btn btn-primary" id="btnAddCovers">Añadir</button>
+            
+            <div class="upload-zone" onclick="document.getElementById('coverFileInput').click()">
+              <p>Haz clic para subir covers locales (se guardan en media)</p>
+            </div>
+            <input type="file" id="coverFileInput" accept="image/*" multiple hidden>
+
+            <div class="form-group mt-4">
+              <label class="form-label">O pegar URLs externas (una por línea)</label>
+              <div style="display:flex;gap:10px">
+                <textarea id="coverUrlsInput" class="form-textarea" rows="2" placeholder="https://ejemplo.com/cover.jpg"></textarea>
+                <button class="btn btn-outline" id="btnAddCoverUrls">Añadir URL</button>
               </div>
             </div>
             <div class="grid-covers" id="coversGrid"></div>
@@ -260,16 +268,14 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- Panel: Portfolio (Updated with link/image upload integration) -->
+      <!-- Panel: Portfolio -->
       <div class="panel" id="panel-portfolio">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Categorías y Proyectos del Portafolio</h2>
+            <h2 class="card-title">Categorías del Portafolio</h2>
             <button class="btn btn-primary btn-sm" id="btnNewCategory">Nueva Categoría</button>
           </div>
-          <div class="card-body" id="portfolioCategoriesList">
-            <!-- Rendered dynamically -->
-          </div>
+          <div class="card-body" id="portfolioCategoriesList"></div>
         </div>
       </div>
 
@@ -278,11 +284,16 @@ img{max-width:100%;display:block}
         <div class="card">
           <div class="card-header"><h2 class="card-title">Logos de Clientes</h2></div>
           <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Pegar URLs de Logos (una por línea)</label>
-              <div class="input-group">
-                <textarea id="clientUrlsInput" class="form-textarea" rows="3" placeholder="https://ejemplo.com/logo.png"></textarea>
-                <button class="btn btn-primary" id="btnAddClients">Añadir</button>
+            <div class="upload-zone" onclick="document.getElementById('clientFileInput').click()">
+              <p>Haz clic para subir logos locales</p>
+            </div>
+            <input type="file" id="clientFileInput" accept="image/*" multiple hidden>
+            
+            <div class="form-group mt-4">
+              <label class="form-label">O pegar URLs externas</label>
+              <div style="display:flex;gap:10px">
+                <textarea id="clientUrlsInput" class="form-textarea" rows="2"></textarea>
+                <button class="btn btn-outline" id="btnAddClientUrls">Añadir URL</button>
               </div>
             </div>
             <div class="grid-covers" id="clientsGrid"></div>
@@ -295,11 +306,16 @@ img{max-width:100%;display:block}
         <div class="card">
           <div class="card-header"><h2 class="card-title">Software / Herramientas</h2></div>
           <div class="card-body">
-            <div class="form-group">
-              <label class="form-label">Pegar URLs de Iconos/Herramientas (una por línea)</label>
-              <div class="input-group">
-                <textarea id="toolUrlsInput" class="form-textarea" rows="3" placeholder="https://ejemplo.com/tool.png"></textarea>
-                <button class="btn btn-primary" id="btnAddTools">Añadir</button>
+            <div class="upload-zone" onclick="document.getElementById('toolFileInput').click()">
+              <p>Haz clic para subir iconos de herramientas locales</p>
+            </div>
+            <input type="file" id="toolFileInput" accept="image/*" multiple hidden>
+
+            <div class="form-group mt-4">
+              <label class="form-label">O pegar URLs externas</label>
+              <div style="display:flex;gap:10px">
+                <textarea id="toolUrlsInput" class="form-textarea" rows="2"></textarea>
+                <button class="btn btn-outline" id="btnAddToolUrls">Añadir URL</button>
               </div>
             </div>
             <div class="grid-covers" id="toolsGrid"></div>
@@ -353,7 +369,7 @@ img{max-width:100%;display:block}
   </main>
 </div>
 
-<!-- Cover Modal -->
+<!-- Modals -->
 <div class="modal-overlay" id="coverModal">
   <div class="modal-content">
     <div class="modal-header">
@@ -366,8 +382,8 @@ img{max-width:100%;display:block}
         <img id="editCoverPreview" src="" class="preview-img">
         <div style="flex:1">
           <div class="form-group">
-            <label class="form-label">URL Imagen</label>
-            <input type="url" id="editCoverUrl" class="form-input">
+            <label class="form-label">URL o Ruta (media/..)</label>
+            <input type="text" id="editCoverUrl" class="form-input">
           </div>
           <div class="form-group">
             <label class="form-label">Nombre</label>
@@ -400,7 +416,7 @@ img{max-width:100%;display:block}
         <input type="url" id="editCoverSpotify" class="form-input">
       </div>
       <div class="form-group">
-        <label class="form-label">Imágenes Extra (URL, una por línea)</label>
+        <label class="form-label">Imágenes Extra (URL o ruta, una por línea)</label>
         <textarea id="editCoverExtras" class="form-textarea" rows="3"></textarea>
       </div>
       <div class="form-group">
@@ -438,6 +454,7 @@ function toast(msg, type = 'success') {
   setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000);
 }
 
+// Convierte enlaces de Drive/Dropbox a directos
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
@@ -447,9 +464,42 @@ function getDirectImageUrl(url) {
   return url;
 }
 
+// Convierte una ruta relativa (media/foto.jpg) a URL absoluta de GitHub
+function resolveImageUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http')) return getDirectImageUrl(url);
+  if (url.startsWith('media/')) {
+    return `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${url}`;
+  }
+  return url;
+}
+
 function handleImgError(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
+}
+
+// Comprime la imagen antes de subirla
+function compressImage(file, maxWidth = 1200, quality = 0.85) {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onerror = rej;
+    reader.onload = e => {
+      const im = new Image();
+      im.onerror = rej;
+      im.onload = () => {
+        let w = im.width, h = im.height;
+        if (w > maxWidth) { h = Math.round(maxWidth / w * h); w = maxWidth; }
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        c.getContext('2d').drawImage(im, 0, 0, w, h);
+        const mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        res(c.toDataURL(mime, quality));
+      };
+      im.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 /* ============================================================
@@ -505,6 +555,20 @@ const GH = {
       }
     }
   },
+  async uploadImage(file, prefix = 'img') {
+    const base64 = await compressImage(file, 1200, 0.85);
+    const clean = base64.split(',')[1];
+    const ext = (file.name.match(/\.(jpe?g|png|webp|gif|avif)$/i) || ['.jpg'])[0].toLowerCase();
+    const filename = `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
+    const path = `media/${filename}`;
+    
+    // Guardamos la imagen en GitHub
+    const ok = await this.putFile(path, clean, `Upload ${filename}`);
+    if (!ok) throw new Error('Upload failed');
+    
+    // Retornamos la ruta relativa
+    return path; 
+  },
   async load() {
     const file = await this.getFile('data.json');
     return file ? JSON.parse(file.content) : null;
@@ -548,6 +612,30 @@ async function saveAllData() {
   }
 }
 
+async function handleUpload(files, targetArray, category = 'sencillo') {
+  if (!files.length) return;
+  toast(`Subiendo ${files.length} imágenes...`);
+  
+  for (const file of files) {
+    try {
+      const path = await GH.uploadImage(file, 'img');
+      
+      if (targetArray === DATA.covers) {
+        DATA.covers.push({ id: uid(), url: path, category, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', featured: false });
+      } else {
+        targetArray.push(path);
+      }
+    } catch(e) {
+      console.error(e);
+      toast(`Error subiendo ${file.name}`, 'error');
+    }
+  }
+  
+  renderAll();
+  saveAllData();
+  toast('Subida completada');
+}
+
 function renderHero() {
   $('#heroEyebrow').value = DATA.hero.eyebrow || '';
   $('#heroTitle').value = DATA.hero.title || '';
@@ -559,11 +647,11 @@ function renderHero() {
     const el = document.createElement('div');
     el.className = 'cover-card';
     el.innerHTML = `
-      <img src="${getDirectImageUrl(url)}" onerror="handleImgError(this)">
+      <img src="${resolveImageUrl(url)}" onerror="handleImgError(this)">
       <div class="cover-card-info">
         <div class="cover-card-meta">Fondo #${i+1}</div>
         <div class="cover-card-actions">
-          <button class="btn btn-danger btn-sm" onclick="deleteHeroImage(${i})">Eliminar</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteItem('heroImages', ${i})">Eliminar</button>
         </div>
       </div>
     `;
@@ -578,69 +666,18 @@ function renderCovers() {
     const el = document.createElement('div');
     el.className = 'cover-card';
     el.innerHTML = `
-      <img src="${getDirectImageUrl(c.url)}" onerror="handleImgError(this)">
+      <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
       <span class="cover-badge">${c.category}</span>
       <div class="cover-card-info">
         <div class="cover-card-title">${c.name || 'Sin título'}</div>
         <div class="cover-card-meta">${c.artist || 'Artista desconocido'}</div>
         <div class="cover-card-actions">
           <button class="btn btn-outline btn-sm" onclick="openCoverModal(${i})">Editar</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteCover(${i})">Eliminar</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteItem('covers', ${i})">Eliminar</button>
         </div>
       </div>
     `;
     grid.appendChild(el);
-  });
-}
-
-function renderPortfolio() {
-  const container = $('#portfolioCategoriesList');
-  container.innerHTML = '';
-  
-  if (!DATA.categories || DATA.categories.length === 0) {
-    container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">No hay categorías creadas. Haz clic en "Nueva Categoría".</p>';
-    return;
-  }
-
-  DATA.categories.forEach((cat, catIndex) => {
-    const catEl = document.createElement('div');
-    catEl.className = 'portfolio-cat-card';
-    catEl.innerHTML = `
-      <div class="portfolio-cat-header">
-        <div style="flex:1;margin-right:12px;">
-          <input type="text" class="form-input" value="${cat.name || ''}" placeholder="Nombre de categoría" oninput="updateCategoryName(${catIndex}, this.value)">
-        </div>
-        <button class="btn btn-danger btn-sm" onclick="deleteCategory(${catIndex})">Eliminar Categoría</button>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Añadir imágenes de proyectos por URLs (una por línea)</label>
-        <div class="input-group">
-          <textarea class="form-textarea" rows="2" placeholder="https://ejemplo.com/proyecto1.jpg" id="catInput_${catIndex}"></textarea>
-          <button class="btn btn-primary" onclick="addCategoryImages(${catIndex})">Añadir</button>
-        </div>
-      </div>
-      <div class="grid-covers" id="catGrid_${catIndex}"></div>
-    `;
-    container.appendChild(catEl);
-
-    // Render items/images inside category
-    const grid = catEl.querySelector(`#catGrid_${catIndex}`);
-    if (cat.items && Array.isArray(cat.items)) {
-      cat.items.forEach((itemUrl, itemIndex) => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'cover-card';
-        itemEl.innerHTML = `
-          <img src="${getDirectImageUrl(typeof itemUrl === 'string' ? itemUrl : itemUrl.url)}" onerror="handleImgError(this)">
-          <div class="cover-card-info">
-            <div class="cover-card-meta">Proyecto #${itemIndex + 1}</div>
-            <div class="cover-card-actions">
-              <button class="btn btn-danger btn-sm" onclick="deleteCategoryItem(${catIndex}, ${itemIndex})">Eliminar</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(itemEl);
-      });
-    }
   });
 }
 
@@ -651,9 +688,9 @@ function renderClients() {
     const el = document.createElement('div');
     el.className = 'cover-card';
     el.innerHTML = `
-      <img src="${getDirectImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff" onerror="handleImgError(this)">
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff" onerror="handleImgError(this)">
       <div class="cover-card-actions" style="padding:10px">
-        <button class="btn btn-danger btn-sm" onclick="deleteClient(${i})">Eliminar</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('clientes', ${i})">Eliminar</button>
       </div>
     `;
     grid.appendChild(el);
@@ -667,9 +704,9 @@ function renderTools() {
     const el = document.createElement('div');
     el.className = 'cover-card';
     el.innerHTML = `
-      <img src="${getDirectImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff" onerror="handleImgError(this)">
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff" onerror="handleImgError(this)">
       <div class="cover-card-actions" style="padding:10px">
-        <button class="btn btn-danger btn-sm" onclick="deleteTool(${i})">Eliminar</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('software', ${i})">Eliminar</button>
       </div>
     `;
     grid.appendChild(el);
@@ -688,44 +725,24 @@ function renderTheme() {
   $('#themeText').value = DATA.theme.text || '#F5F3EF';
 }
 
-// Global functions for inline onclick & portfolio management
-window.deleteHeroImage = (i) => { DATA.heroImages.splice(i, 1); renderHero(); saveAllData(); };
-window.deleteCover = (i) => { if(confirm('¿Eliminar?')) { DATA.covers.splice(i, 1); renderCovers(); saveAllData(); } };
-window.deleteClient = (i) => { DATA.clientes.splice(i, 1); renderClients(); saveAllData(); };
-window.deleteTool = (i) => { DATA.software.splice(i, 1); renderTools(); saveAllData(); };
+function renderAll() {
+  renderHero(); renderCovers(); renderClients(); renderTools(); renderContact(); renderTheme();
+}
 
-window.updateCategoryName = (catIndex, val) => {
-  if (!DATA.categories[catIndex]) DATA.categories[catIndex] = {};
-  DATA.categories[catIndex].name = val;
-};
-window.deleteCategory = (catIndex) => {
-  if (confirm('¿Eliminar esta categoría del portafolio?')) {
-    DATA.categories.splice(catIndex, 1);
-    renderPortfolio();
-    saveAllData();
-  }
-};
-window.addCategoryImages = (catIndex) => {
-  const inputEl = $(`#catInput_${catIndex}`);
-  const urls = inputEl.value.split('\n').map(s => s.trim()).filter(Boolean);
-  if (!urls.length) return;
-  if (!DATA.categories[catIndex].items) DATA.categories[catIndex].items = [];
-  DATA.categories[catIndex].items.push(...urls);
-  inputEl.value = '';
-  renderPortfolio();
-  saveAllData();
-};
-window.deleteCategoryItem = (catIndex, itemIndex) => {
-  DATA.categories[catIndex].items.splice(itemIndex, 1);
-  renderPortfolio();
-  saveAllData();
+// Global functions for inline onclick
+window.deleteItem = (key, i) => { 
+  if(confirm('¿Eliminar este elemento?')) { 
+    DATA[key].splice(i, 1); 
+    renderAll(); 
+    saveAllData(); 
+  } 
 };
 
 window.openCoverModal = (i) => {
   const c = DATA.covers[i];
   $('#editCoverIndex').value = i;
   $('#editCoverUrl').value = c.url || '';
-  $('#editCoverPreview').src = getDirectImageUrl(c.url);
+  $('#editCoverPreview').src = resolveImageUrl(c.url);
   $('#editCoverName').value = c.name || '';
   $('#editCoverArtist').value = c.artist || '';
   $('#editCoverYear').value = c.year || '';
@@ -762,16 +779,22 @@ $('#themeAccent').addEventListener('input', e => DATA.theme.accent = e.target.va
 $('#themeBg').addEventListener('input', e => DATA.theme.bg = e.target.value);
 $('#themeText').addEventListener('input', e => DATA.theme.text = e.target.value);
 
-// Adders
-$('#btnAddHeroImages').addEventListener('click', () => {
-  const urls = $('#heroImagesInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+// File Uploads
+$('#heroFileInput').addEventListener('change', async e => { await handleUpload([...e.target.files], DATA.heroImages); e.target.value = ''; });
+$('#coverFileInput').addEventListener('change', async e => { await handleUpload([...e.target.files], DATA.covers, $('#coverCategorySelect').value); e.target.value = ''; });
+$('#clientFileInput').addEventListener('change', async e => { await handleUpload([...e.target.files], DATA.clientes); e.target.value = ''; });
+$('#toolFileInput').addEventListener('change', async e => { await handleUpload([...e.target.files], DATA.software); e.target.value = ''; });
+
+// Adders URL
+$('#btnAddHeroUrls').addEventListener('click', () => {
+  const urls = $('#heroUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
   if (!urls.length) return;
   DATA.heroImages.push(...urls);
-  $('#heroImagesInput').value = '';
+  $('#heroUrlsInput').value = '';
   renderHero(); saveAllData();
 });
 
-$('#btnAddCovers').addEventListener('click', () => {
+$('#btnAddCoverUrls').addEventListener('click', () => {
   const urls = $('#coverUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
   if (!urls.length) return;
   const cat = $('#coverCategorySelect').value;
@@ -782,14 +805,7 @@ $('#btnAddCovers').addEventListener('click', () => {
   renderCovers(); saveAllData();
 });
 
-$('#btnNewCategory').addEventListener('click', () => {
-  if (!DATA.categories) DATA.categories = [];
-  DATA.categories.push({ name: 'Nueva Categoría', items: [] });
-  renderPortfolio();
-  saveAllData();
-});
-
-$('#btnAddClients').addEventListener('click', () => {
+$('#btnAddClientUrls').addEventListener('click', () => {
   const urls = $('#clientUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
   if (!urls.length) return;
   DATA.clientes.push(...urls);
@@ -797,7 +813,7 @@ $('#btnAddClients').addEventListener('click', () => {
   renderClients(); saveAllData();
 });
 
-$('#btnAddTools').addEventListener('click', () => {
+$('#btnAddToolUrls').addEventListener('click', () => {
   const urls = $('#toolUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
   if (!urls.length) return;
   DATA.software.push(...urls);
@@ -886,7 +902,7 @@ async function initData() {
     toast('Error cargando datos. ¿Existe el archivo data.json?', 'error');
   }
   
-  renderHero(); renderCovers(); renderPortfolio(); renderClients(); renderTools(); renderContact(); renderTheme();
+  renderAll();
 }
 
 // Check auth on load
