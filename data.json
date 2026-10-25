@@ -5,7 +5,15 @@
     "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
   },
   "heroImages": [],
-  "categories": [],
+  "categories": [
+    {
+      "id": "ee2s3xgkmvntpft0",
+      "name": "Músical",
+      "description": "",
+      "cover": "",
+      "projects": []
+    }
+  ],
   "clientes": [],
   "software": [],
   "covers": [],
