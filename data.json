@@ -1113,6 +1113,23 @@
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
+    },
+    {
+      "id": "oirjk7f4mvoe7tn7",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792966929202-7r7g4j.jpg",
+      "category": "albums",
+      "name": "Evolucion",
+      "artist": "Gio Fernandez",
+      "year": "2022",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792966946563-qi49sn.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792966947774-s3j03w.png"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/5S1MwS8tKYDEirfQgUXa5T?si=56f52ce935c84415",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
