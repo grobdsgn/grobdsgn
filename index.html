@@ -258,11 +258,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .abtn.small{padding:7px 12px;font-size:.66rem}
 .abtn.icon-only{padding:8px;min-width:34px;justify-content:center}
 .abtn:disabled{opacity:.25;cursor:not-allowed}
-.upload-zone{border:2px dashed rgba(255,255,255,.12);padding:36px 24px;text-align:center;cursor:pointer;margin-bottom:20px;border-radius:3px;background:rgba(255,255,255,.01)}
-.upload-zone:hover,.upload-zone.drag{border-color:var(--accent)}
-.upload-zone .upload-icon{font-size:1.8rem;margin-bottom:10px;opacity:.5}
-.upload-zone p{color:var(--text);font-size:.95rem;margin-bottom:4px}
-.upload-zone small{color:var(--muted);font-size:.78rem;display:block}
 .img-grid-labeled{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
 .img-card{background:#131316;border:1px solid var(--line);border-radius:3px;overflow:hidden}
 .img-card-preview{position:relative;aspect-ratio:16/10;background:#000;overflow:hidden}
@@ -290,11 +285,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .cat-opt.active{background:var(--accent);color:#000;border-color:var(--accent)}
 .covers-meta-fields{display:grid;grid-template-columns:1fr 1fr 100px;gap:12px;margin-bottom:18px;padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:3px}
 .covers-meta-fields .admin-field{margin-bottom:0}
-.import-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.import-btn{background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.18);border-radius:3px;padding:22px 18px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
-.import-btn:hover{border-color:var(--accent)}
-.import-btn .ib-icon{font-size:1.6rem;opacity:.8}
-.import-btn .ib-title{font-size:.85rem;font-weight:600}
 .covers-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 .cover-admin-item{position:relative;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);border-radius:2px;background:#0a0a0a}
 .cover-admin-item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
@@ -661,12 +651,13 @@ que se recuerdan.</h1>
             <div class="admin-field"><label>Artista</label><input type="text" id="coverArtistInput" maxlength="120"></div>
             <div class="admin-field"><label>Año</label><input type="text" id="coverYearInput" maxlength="20"></div>
           </div>
-          <div class="import-actions">
-            <div class="import-btn" id="importFilesBtn"><span class="ib-icon">📁</span><span class="ib-title">Subir imágenes</span></div>
-            <div class="import-btn" id="importFolderBtn"><span class="ib-icon">📂</span><span class="ib-title">Importar carpeta</span></div>
+          <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
+            <label style="color:var(--accent)">Añadir desde URL</label>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <input type="url" id="coverUrlInput" placeholder="https://ejemplo.com/imagen.jpg o enlace de Drive" style="flex:1">
+              <button type="button" class="abtn primary" id="addCoverUrlBtn">Añadir</button>
+            </div>
           </div>
-          <input type="file" id="coversFileInput" accept="image/*" multiple hidden>
-          <input type="file" id="coversFolderInput" webkitdirectory directory multiple hidden>
           <div class="covers-filters" style="padding:0;margin-bottom:18px">
             <button class="covers-filter-btn active" data-admin-filter="todos" type="button">Todos <span class="count" id="adminCountTodos">0</span></button>
             <button class="covers-filter-btn" data-admin-filter="sencillo" type="button">Sencillos <span class="count" id="adminCountSencillo">0</span></button>
@@ -686,8 +677,13 @@ que se recuerdan.</h1>
       <section class="admin-card">
         <header class="card-header"><div><h2>Logos de clientes</h2></div><span class="counter" id="clientesCounter">0 / 40</span></header>
         <div class="card-body">
-          <div class="upload-zone" id="clientesUpZone"><div class="upload-icon">📷</div><p><strong>Haz clic</strong> o arrastra</p></div>
-          <input type="file" id="clientesFileInput" accept="image/*" multiple hidden>
+          <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
+            <label style="color:var(--accent)">Añadir logo desde URL</label>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <input type="url" id="clienteUrlInput" placeholder="https://ejemplo.com/logo.png" style="flex:1">
+              <button type="button" class="abtn primary" id="addClienteUrlBtn">Añadir</button>
+            </div>
+          </div>
           <div class="clientes-admin-grid" id="clientesImgGrid"></div>
         </div>
       </section>
@@ -697,8 +693,13 @@ que se recuerdan.</h1>
       <section class="admin-card">
         <header class="card-header"><div><h2>Software y herramientas</h2></div><span class="counter" id="softwareCounter">0 / 30</span></header>
         <div class="card-body">
-          <div class="upload-zone" id="softwareUpZone"><div class="upload-icon">🛠</div><p><strong>Haz clic</strong> o arrastra</p></div>
-          <input type="file" id="softwareFileInput" accept="image/*" multiple hidden>
+          <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
+            <label style="color:var(--accent)">Añadir herramienta desde URL</label>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <input type="url" id="softwareUrlInput" placeholder="https://ejemplo.com/logo.png" style="flex:1">
+              <button type="button" class="abtn primary" id="addSoftwareUrlBtn">Añadir</button>
+            </div>
+          </div>
           <div class="clientes-admin-grid" id="softwareImgGrid"></div>
         </div>
       </section>
@@ -719,8 +720,13 @@ que se recuerdan.</h1>
       <section class="admin-card">
         <header class="card-header"><div><h2>Carrusel de fondo</h2></div><span class="counter" id="heroBgCounter">0 / 10</span></header>
         <div class="card-body">
-          <div class="upload-zone" id="heroBgUpZone"><div class="upload-icon">📷</div><p><strong>Haz clic</strong> o arrastra</p></div>
-          <input type="file" id="heroBgFileInput" accept="image/*" multiple hidden>
+          <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
+            <label style="color:var(--accent)">Añadir fondo desde URL</label>
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <input type="url" id="heroBgUrlInput" placeholder="https://ejemplo.com/fondo.jpg" style="flex:1">
+              <button type="button" class="abtn primary" id="addHeroBgUrlBtn">Añadir</button>
+            </div>
+          </div>
           <div class="img-grid-labeled" id="heroBgImgGrid"></div>
         </div>
       </section>
@@ -766,11 +772,8 @@ que se recuerdan.</h1>
     <input type="hidden" name="id">
     <div class="admin-field"><label>Nombre</label><input type="text" name="name" required maxlength="80"></div>
     <div class="admin-field"><label>Descripción</label><textarea name="description" maxlength="300" rows="2"></textarea></div>
-    <div class="admin-field"><label>Portada</label>
-      <div class="upload-zone" id="catUpZone" style="padding:22px"><div class="upload-icon">📷</div><p>Haz clic o arrastra</p></div>
-      <input type="file" id="catFileInput" accept="image/*" hidden>
-      <img id="catPreview" hidden alt="" style="margin-top:12px;max-height:200px;border-radius:3px">
-      <input type="hidden" name="cover">
+    <div class="admin-field"><label>Portada (URL)</label>
+      <input type="url" name="cover" placeholder="https://ejemplo.com/portada.jpg o enlace de Drive">
     </div>
     <div class="amodal-actions">
       <button type="button" class="abtn outline" id="catCancel">Cancelar</button>
@@ -788,10 +791,9 @@ que se recuerdan.</h1>
     <div class="admin-field"><label>Descripción</label><textarea name="description" maxlength="800" rows="3"></textarea></div>
     <div class="admin-field"><label>Año</label><input type="text" name="year" maxlength="20"></div>
     <div class="admin-field"><label>Enlace de YouTube (opcional)</label><input type="url" name="youtubeUrl" maxlength="500" placeholder="https://www.youtube.com/watch?v=..."></div>
-    <div class="admin-field"><label>Imágenes</label>
-      <div class="upload-zone" id="projUpZone" style="padding:22px"><div class="upload-icon">📷</div><p>Haz clic o arrastra</p></div>
-      <input type="file" id="projFileInput" accept="image/*" multiple hidden>
-      <div id="projImgGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:14px"></div>
+    <div class="admin-field"><label>Imágenes (una URL por línea)</label>
+      <textarea name="images" rows="5" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"></textarea>
+      <small style="display:block;margin-top:6px;color:var(--muted);font-size:.75rem">Pega una URL por línea.</small>
     </div>
     <div class="amodal-actions">
       <button type="button" class="abtn outline" id="projCancel">Cancelar</button>
@@ -805,7 +807,10 @@ que se recuerdan.</h1>
   <form id="coverEditForm">
     <input type="hidden" name="index">
     <div style="display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:start;margin-bottom:20px">
-      <img id="coverEditPreview" src="" alt="" style="width:160px;height:160px;object-fit:cover;border-radius:3px;background:#0a0a0a">
+      <div>
+        <img id="coverEditPreview" src="" alt="" style="width:160px;height:160px;object-fit:cover;border-radius:3px;background:#0a0a0a">
+        <div class="admin-field" style="margin-top:10px;margin-bottom:0"><label>URL de imagen</label><input type="url" name="url" placeholder="https://..."></div>
+      </div>
       <div>
         <div class="admin-field"><label>Nombre</label><input type="text" name="name" maxlength="120"></div>
         <div class="admin-field"><label>Artista</label><input type="text" name="artist" maxlength="120"></div>
@@ -826,10 +831,8 @@ que se recuerdan.</h1>
       </label>
     </div>
     <div class="admin-field">
-      <label>Imágenes adicionales</label>
-      <div class="upload-zone" id="coverExtraUpZone" style="padding:20px"><div class="upload-icon">📷</div><p>Haz clic o arrastra</p></div>
-      <input type="file" id="coverExtraFileInput" accept="image/*" multiple hidden>
-      <div class="extra-imgs-grid" id="coverExtraGrid"></div>
+      <label>Imágenes adicionales (una URL por línea)</label>
+      <textarea name="extraImages" rows="4" placeholder="https://ejemplo.com/extra1.jpg&#10;https://ejemplo.com/extra2.jpg"></textarea>
     </div>
     <div class="amodal-actions">
       <button type="button" class="abtn danger" id="coverEditDelete">🗑 Eliminar</button>
@@ -858,6 +861,32 @@ function imgPlaceholder(label) {
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 
+// Convierte enlaces de compartir de Google Drive / Dropbox a enlaces directos
+function getDirectImageUrl(url) {
+  if (!url) return '';
+  url = url.trim();
+  // Google Drive: https://drive.google.com/file/d/ID/view?usp=sharing -> https://lh3.googleusercontent.com/d/ID
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+  }
+  // Dropbox: https://www.dropbox.com/s/... -> https://dl.dropboxusercontent.com/s/...
+  if (url.includes('dropbox.com')) {
+    return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '').replace('&dl=0', '');
+  }
+  // Imgur direct links son directos
+  return url;
+}
+
+function handleImage(el, label, url) {
+  if (!el) return;
+  el.onerror = null;
+  const finalUrl = getDirectImageUrl(url);
+  if (!finalUrl) { el.src = imgPlaceholder(label); return; }
+  el.src = finalUrl;
+  el.onerror = () => { el.onerror = null; el.src = imgPlaceholder(label); };
+}
+
 /* ============================================================
    GITHUB STORAGE
    ============================================================ */
@@ -866,11 +895,9 @@ const GH = {
   get repo() { return localStorage.getItem('gh_repo') || ''; },
   get branch() { return localStorage.getItem('gh_branch') || 'main'; },
   get dataPath() { return 'data.json'; },
-  get mediaPath() { return 'media'; },
   save(token, repo, branch) { localStorage.setItem('gh_token', token); localStorage.setItem('gh_repo', repo); localStorage.setItem('gh_branch', branch); },
   clear() { localStorage.removeItem('gh_token'); localStorage.removeItem('gh_repo'); localStorage.removeItem('gh_branch'); },
   isConfigured() { return !!(this.token && this.repo); },
-  rawUrl(path) { return `https://raw.githubusercontent.com/${this.repo}/${this.branch}/${path}`; },
   async api(path, options = {}) {
     const res = await fetch(`https://api.github.com${path}`, {
       ...options,
@@ -896,19 +923,16 @@ const GH = {
   async getFile(path) {
     try {
       const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`);
-      if (res.status === 404) return null; // El archivo no existe aún
+      if (res.status === 404) return null;
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      
       const d = await res.json();
       const bin = atob(d.content.replace(/\n/g, ''));
       const bytes = new Uint8Array(bin.length);
       for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
       const text = new TextDecoder('utf-8').decode(bytes);
-      
       return { sha: d.sha, content: text };
     } catch (e) {
-      console.error(`Error leyendo ${path}:`, e);
-      throw e; // Relanzamos para que putFile sepa que falló
+      throw e;
     }
   },
   async putFile(path, base64Content, message) {
@@ -918,26 +942,20 @@ const GH = {
         const existing = await this.getFile(path);
         const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
         if (existing && existing.sha) body.sha = existing.sha;
-        
         const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
         });
-        
         if (res.ok) return true;
-        
         if (res.status === 409) {
-          console.warn(`Conflicto 409 en ${path}. Reintentando en 1s...`);
           retries--;
           await new Promise(r => setTimeout(r, 1000));
           continue;
         }
-        
         const errData = await res.json().catch(() => ({}));
         throw new Error(errData.message || `HTTP ${res.status}`);
       } catch (e) {
-        console.error(`Fallo en putFile(${path}):`, e);
         retries--;
         if (retries === 0) throw e;
         await new Promise(r => setTimeout(r, 1000));
@@ -945,27 +963,13 @@ const GH = {
     }
     return false;
   },
-  async uploadImage(file, prefix = 'img') {
-    const base64 = await compressImage(file, 1200, 0.85);
-    const clean = base64.split(',')[1];
-    const ext = (file.name.match(/\.(jpe?g|png|webp|gif|avif)$/i) || ['.jpg'])[0].toLowerCase();
-    const filename = `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-    const path = `${this.mediaPath}/${filename}`;
-    const ok = await this.putFile(path, clean, `Upload ${filename}`);
-    if (!ok) throw new Error('No se pudo subir la imagen');
-    return this.rawUrl(path);
-  },
   async loadData() {
     if (this.isConfigured()) {
       try {
         const file = await this.getFile(this.dataPath);
-        if (file && file.content) {
-          return JSON.parse(file.content);
-        }
+        if (file && file.content) return JSON.parse(file.content);
         return null;
-      } catch (e) {
-        console.warn('Error cargando data.json desde API:', e);
-      }
+      } catch (e) { console.warn('API load error:', e); }
     }
     try {
       const res = await fetch(`https://raw.githubusercontent.com/${this.repo}/${this.branch}/${this.dataPath}?t=` + Date.now());
@@ -989,8 +993,7 @@ const TEXTS_DEFAULT = { navHome: 'Inicio', navPortafolio: 'Portafolio', navCover
 const THEME_DEFAULT = { accent: '#C9A961', bg: '#000000', surface: '#0f0f10', text: '#F5F3EF', muted: '#8A8A8A', philBg: '#F5F3EF', philText: '#0A0A0A', philEm: '#A88B45', philMuted: '#4A4A4A' };
 
 window.isAdminUnlocked = false;
-window.imageCache = new Map();
-let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coverEditExtraImages = [], coversSearchQuery = '', _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152, _initDone = false;
+let DATA = null, COVERS = [], currentPublicFilter = 'todos', currentAdminFilter = 'todos', selectedUploadCategory = 'sencillo', currentCategoryIdForBack = null, currentCoverIdForBack = null, coversSearchQuery = '', _activeTrackId = null, _activeEmbedUrl = null, _activeEmbedHeight = 152, _initDone = false;
 
 function getEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null;
@@ -1031,6 +1034,8 @@ function defaultData() {
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function toast(msg, type = '') { const el = $('#toast'); el.textContent = msg; el.className = 'toast show ' + type; clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 3500); }
+function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 function setSyncStatus(state, text) {
   const el = $('#syncStatus'); if (!el) return;
@@ -1046,13 +1051,8 @@ async function saveData(silent = false) {
   setSyncStatus('saving');
   try {
     const ok = await GH.saveData(DATA);
-    if (ok) { 
-      setSyncStatus('ok'); 
-      if (!silent) toast('✅ Guardado en GitHub', 'ok'); 
-    } else { 
-      setSyncStatus('error'); 
-      toast('❌ Error al guardar', 'error'); 
-    }
+    if (ok) { setSyncStatus('ok'); if (!silent) toast('✅ Guardado en GitHub', 'ok'); }
+    else { setSyncStatus('error'); toast('❌ Error al guardar', 'error'); }
     return ok;
   } catch (e) {
     setSyncStatus('error');
@@ -1070,53 +1070,12 @@ async function reloadFromGitHub() {
     DATA = defaultData();
     COVERS = [];
   }
-  applyCustomLogo();
   renderAll();
 }
 
 /* ============================================================
-   RENDER Y CARGA DE IMÁGENES
+   RENDER
    ============================================================ */
-function getPathFromUrl(url) {
-  if (!url) return null;
-  try { const m = String(url).match(/media\/[^/?#]+/); return m ? m[0] : null; } catch(e) { return null; }
-}
-
-async function handleImage(el, label, url) {
-  if (!el) return;
-  el.onerror = null;
-  
-  if (!url) { el.src = imgPlaceholder(label); return; }
-  const path = getPathFromUrl(url);
-
-  // Si estamos en admin, usar API para repos privados
-  if (window.isAdminUnlocked && path && GH.isConfigured()) {
-    if (window.imageCache.has(path)) {
-      el.src = window.imageCache.get(path);
-      return;
-    }
-    el.src = imgPlaceholder('Cargando...');
-    try {
-      const res = await fetch(`https://api.github.com/repos/${GH.repo}/contents/${path}?ref=${GH.branch}`, {
-        headers: { 'Authorization': `Bearer ${GH.token}` }
-      });
-      if (!res.ok) throw new Error('Not found');
-      const data = await res.json();
-      const base64 = data.content.replace(/\n/g, '');
-      const mime = path.toLowerCase().endsWith('.png') ? 'image/png' : (path.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg');
-      const dataUrl = `data:${mime};base64,${base64}`;
-      window.imageCache.set(path, dataUrl);
-      el.src = dataUrl;
-    } catch (e) {
-      el.src = imgPlaceholder(label);
-    }
-  } else {
-    // Fallback público
-    el.src = url;
-    el.onerror = () => { el.onerror = null; el.src = imgPlaceholder(label); };
-  }
-}
-
 function richText(s) {
   const frag = document.createDocumentFragment();
   const parts = String(s == null ? '' : s).split(/(\*[^*]+\*)/g);
@@ -1145,7 +1104,6 @@ function applyTheme() {
   if (t.philEm) r.setProperty('--phil-em', t.philEm);
   if (t.philMuted) r.setProperty('--phil-muted', t.philMuted);
 }
-function applyCustomLogo() { /* logo stays as logo.svg */ }
 
 function renderHome() {
   const ee = $('#heroEyebrow'); if (ee) ee.textContent = DATA.hero.eyebrow;
@@ -1169,7 +1127,7 @@ function renderHeroCarousel() {
   c.textContent = ''; const imgs = DATA.heroImages || [];
   imgs.forEach((ref, i) => {
     const l = document.createElement('div'); l.className = 'hero-bg-layer'; if (i === 0) l.classList.add('active');
-    if (ref) l.style.backgroundImage = `url("${ref}")`;
+    if (ref) l.style.backgroundImage = `url("${getDirectImageUrl(ref)}")`;
     c.appendChild(l);
   });
   if (window._heroTimer) clearInterval(window._heroTimer);
@@ -1189,8 +1147,7 @@ function renderSoftware() {
   sec.style.display = 'block';
   list.forEach(ref => {
     const card = document.createElement('div'); card.className = 'software-logo';
-    const im = document.createElement('img');
-    im.alt = ''; im.loading = 'lazy';
+    const im = document.createElement('img'); im.alt = '';
     handleImage(im, 'Tool', ref);
     card.appendChild(im); grid.appendChild(card);
   });
@@ -1203,7 +1160,7 @@ function renderClientes() {
   logos.forEach(ref => {
     const c = document.createElement('div'); c.className = 'cliente-logo';
     c.addEventListener('click', () => c.classList.toggle('lit'));
-    const im = document.createElement('img'); im.loading = 'lazy';
+    const im = document.createElement('img');
     handleImage(im, 'Cliente', ref);
     c.appendChild(im); grid.appendChild(c);
   });
@@ -1227,11 +1184,11 @@ function renderCovers() {
   shuffled.forEach((c, i) => {
     const item = document.createElement('div'); item.className = 'cover-item';
     item.style.setProperty('--entry-delay', Math.min(i * 0.045, 1.6).toFixed(2) + 's');
-    const im = document.createElement('img'); im.alt = c.name; im.loading = 'lazy';
+    const im = document.createElement('img'); im.alt = c.name;
     handleImage(im, c.name || 'Cover', c.url);
     item.appendChild(im);
     const shine = document.createElement('div'); shine.className = 'cover-shine'; item.appendChild(shine);
-    if (c.url) extractDominantColor(c.url).then(col => { if (col) { item.style.setProperty('--cover-glow', hexToRgba(col, .55)); item.style.setProperty('--cover-glow-line', hexToRgba(col, .5)); } });
+    if (c.url) extractDominantColor(getDirectImageUrl(c.url)).then(col => { if (col) { item.style.setProperty('--cover-glow', hexToRgba(col, .55)); item.style.setProperty('--cover-glow-line', hexToRgba(col, .5)); } });
     const info = document.createElement('div'); info.className = 'cover-info';
     const n = document.createElement('div'); n.className = 'cover-info-name'; n.textContent = c.name || '(Sin título)'; info.appendChild(n);
     const m = document.createElement('div'); m.className = 'cover-info-meta'; m.textContent = [c.artist, c.year].filter(Boolean).join(' · ') || 'Sin datos'; info.appendChild(m);
@@ -1251,7 +1208,7 @@ function renderHomeMusicPlayer() {
   sec.style.display = 'block';
   const cover = usable.find(c => c.id === _activeTrackId) || usable.find(c => c.featured) || usable[0];
   const coverEl = $('#homeMusicCover'); coverEl.innerHTML = '';
-  const im = document.createElement('img'); im.loading = 'lazy';
+  const im = document.createElement('img');
   handleImage(im, cover.name, cover.url);
   coverEl.appendChild(im);
   const body = $('#homeMusicBody'); body.innerHTML = '';
@@ -1288,7 +1245,7 @@ function renderCatRows() {
     const row = document.createElement('div'); row.className = 'parallax-row';
     row.addEventListener('click', () => navigate('categoria', { catId: cat.id }));
     const bg = document.createElement('div'); bg.className = 'parallax-bg' + (cat.cover ? '' : ' empty');
-    if (cat.cover) bg.style.backgroundImage = `url("${cat.cover}")`;
+    if (cat.cover) bg.style.backgroundImage = `url("${getDirectImageUrl(cat.cover)}")`;
     row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const content = document.createElement('div'); content.className = 'parallax-content';
@@ -1308,7 +1265,7 @@ function renderCategoriaView(catId) {
   (cat.projects || []).forEach((p, i) => {
     const row = document.createElement('div'); row.className = 'parallax-row';
     const bg = document.createElement('div'); bg.className = 'parallax-bg' + (p.images?.[0] ? '' : ' empty');
-    if (p.images?.[0]) bg.style.backgroundImage = `url("${p.images[0]}")`;
+    if (p.images?.[0]) bg.style.backgroundImage = `url("${getDirectImageUrl(p.images[0])}")`;
     row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const content = document.createElement('div'); content.className = 'parallax-content';
@@ -1377,7 +1334,7 @@ function renderMasonry(container, refs) {
   valid.forEach((ref, i) => {
     const item = document.createElement('div'); item.className = 'masonry-item';
     item.style.setProperty('--entry-delay', (i * 0.06).toFixed(2) + 's');
-    const im = document.createElement('img'); im.loading = 'lazy';
+    const im = document.createElement('img');
     handleImage(im, 'Imagen', ref);
     item.appendChild(im);
     item.addEventListener('click', () => Lightbox.open(valid, i, ''));
@@ -1508,9 +1465,7 @@ setTimeout(() => checkAdminHash(), 400);
 
 $('#loginClose').onclick = closeLoginScreen;
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && $('#loginScreen').classList.contains('active')) {
-    closeLoginScreen();
-  }
+  if (e.key === 'Escape' && $('#loginScreen').classList.contains('active')) closeLoginScreen();
 });
 
 $('#loginForm').addEventListener('submit', async e => {
@@ -1526,15 +1481,11 @@ $('#loginForm').addEventListener('submit', async e => {
   GH.save(token, repo, branch);
   
   const user = await GH.getUser();
-  if (!user) { GH.clear(); msg.textContent = 'Error 401: Token inválido o mal copiado.'; return; }
+  if (!user) { GH.clear(); msg.textContent = 'Error 401: Token inválido.'; return; }
   
   const info = await GH.getRepoInfo();
   
-  if (info && info.error) { 
-    GH.clear(); 
-    msg.textContent = `Error ${info.status}: ${info.message}`; 
-    return; 
-  }
+  if (info && info.error) { GH.clear(); msg.textContent = `Error ${info.status}: ${info.message}`; return; }
   if (!info) { GH.clear(); msg.textContent = 'No tienes acceso a ese repositorio'; return; }
   
   if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura. Se puede leer pero no guardar.'; }
@@ -1584,6 +1535,54 @@ $$('.admin-tabs-inner button').forEach(b => {
   };
 });
 
+/* ============================================================
+   ADD FROM URL FUNCTIONS
+   ============================================================ */
+$('#addCoverUrlBtn').onclick = async () => {
+  const url = $('#coverUrlInput').value.trim();
+  if (!url) return toast('Pega una URL válida', 'error');
+  const name = $('#coverNameInput').value.trim();
+  const artist = $('#coverArtistInput').value.trim();
+  const year = $('#coverYearInput').value.trim();
+  
+  COVERS.push({ id: uid(), url, category: selectedUploadCategory, name, artist, year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
+  
+  await saveData(true);
+  renderCoversAdmin(); renderCovers();
+  $('#coverUrlInput').value = ''; $('#coverNameInput').value = ''; $('#coverArtistInput').value = ''; $('#coverYearInput').value = '';
+  toast('✅ Cover añadido', 'ok');
+};
+
+$('#addClienteUrlBtn').onclick = async () => {
+  const url = $('#clienteUrlInput').value.trim();
+  if (!url) return toast('Pega una URL válida', 'error');
+  DATA.clientes.push(url);
+  await saveData(true);
+  renderClientesGrid(); renderClientes();
+  $('#clienteUrlInput').value = '';
+  toast('✅ Logo añadido', 'ok');
+};
+
+$('#addSoftwareUrlBtn').onclick = async () => {
+  const url = $('#softwareUrlInput').value.trim();
+  if (!url) return toast('Pega una URL válida', 'error');
+  DATA.software.push(url);
+  await saveData(true);
+  renderSoftwareGrid(); renderSoftware();
+  $('#softwareUrlInput').value = '';
+  toast('✅ Herramienta añadida', 'ok');
+};
+
+$('#addHeroBgUrlBtn').onclick = async () => {
+  const url = $('#heroBgUrlInput').value.trim();
+  if (!url) return toast('Pega una URL válida', 'error');
+  DATA.heroImages.push(url);
+  await saveData(true);
+  renderHeroBgGrid(); renderHome();
+  $('#heroBgUrlInput').value = '';
+  toast('✅ Fondo añadido', 'ok');
+};
+
 /* HERO BG GRID */
 function renderHeroBgGrid() {
   const grid = $('#heroBgImgGrid'); if (!grid) return;
@@ -1605,15 +1604,6 @@ function renderHeroBgGrid() {
     grid.appendChild(card);
   });
 }
-$('#heroBgUpZone').onclick = () => $('#heroBgFileInput').click();
-$('#heroBgFileInput').onchange = async () => {
-  const files = [...$('#heroBgFileInput').files];
-  const remaining = 10 - (DATA.heroImages || []).length;
-  for (const f of files.slice(0, remaining)) {
-    try { const url = await GH.uploadImage(f, 'hero'); DATA.heroImages.push(url); } catch (e) { toast('Error subiendo imagen', 'error'); }
-  }
-  await saveData(true); renderHeroBgGrid(); renderHome(); $('#heroBgFileInput').value = ''; toast('✅ Imágenes añadidas', 'ok');
-};
 
 /* COVERS ADMIN */
 $$('.cat-opt').forEach(b => b.onclick = () => { selectedUploadCategory = b.dataset.cat; $$('.cat-opt').forEach(x => x.classList.toggle('active', x === b)); });
@@ -1625,7 +1615,7 @@ function renderCoversAdmin() {
   list.forEach(c => {
     const realIdx = COVERS.indexOf(c);
     const item = document.createElement('div'); item.className = 'cover-admin-item';
-    const im = document.createElement('img'); im.loading = 'lazy'; handleImage(im, c.name, c.url); item.appendChild(im);
+    const im = document.createElement('img'); handleImage(im, c.name, c.url); item.appendChild(im);
     const ov = document.createElement('div'); ov.className = 'overlay'; item.appendChild(ov);
     const tag = document.createElement('span'); tag.className = 'cat-tag'; tag.textContent = CATEGORY_LABELS[c.category]; tag.onclick = e => { e.stopPropagation(); cycleCat(realIdx); }; item.appendChild(tag);
     const meta = document.createElement('div'); meta.className = 'meta';
@@ -1638,69 +1628,18 @@ function renderCoversAdmin() {
   });
 }
 async function cycleCat(i) { const c = COVERS[i]; if (!c) return; const o = ['sencillo', 'albums', 'ediciones']; c.category = o[(o.indexOf(c.category) + 1) % o.length]; await saveData(true); renderCoversAdmin(); renderCovers(); }
-$('#importFilesBtn').onclick = () => $('#coversFileInput').click();
-$('#importFolderBtn').onclick = () => $('#coversFolderInput').click();
-$('#coversFileInput').onchange = async () => { await uploadCovers([...$('#coversFileInput').files]); $('#coversFileInput').value = ''; };
-$('#coversFolderInput').onchange = async () => { await uploadCovers([...$('#coversFolderInput').files]); $('#coversFolderInput').value = ''; };
-async function uploadCovers(files) {
-  const imgs = files.filter(f => f.type.startsWith('image/'));
-  if (!imgs.length) return toast('Solo imágenes', 'error');
-  const name = $('#coverNameInput').value.trim();
-  const artist = $('#coverArtistInput').value.trim();
-  const year = $('#coverYearInput').value.trim();
-  const isOne = imgs.length === 1;
-  const prog = document.createElement('div');
-  prog.style.cssText = 'position:fixed;bottom:20px;left:20px;background:#131316;border:1px solid var(--accent);padding:14px 20px;z-index:26000;border-radius:4px';
-  prog.textContent = '⏳ 0 / ' + imgs.length; document.body.appendChild(prog);
-  try {
-    for (let i = 0; i < imgs.length; i++) {
-      prog.textContent = '⏳ ' + (i + 1) + ' / ' + imgs.length;
-      try {
-        const url = await GH.uploadImage(imgs[i], 'cover');
-        
-        let defaultName = imgs[i].name.replace(/\.[^.]+$/, '');
-        if (defaultName.length > 40 || /^[0-9a-f]+$/i.test(defaultName) || /^\d+x\d+/.test(defaultName)) {
-            defaultName = ''; 
-        }
 
-        COVERS.push({ id: uid(), url, category: selectedUploadCategory, name: isOne ? name : defaultName, artist: isOne ? artist : '', year: isOne ? year : year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
-      } catch (e) { 
-        console.error(e); 
-        toast(`Error subiendo ${imgs[i].name}: ${e.message}`, 'error');
-      }
-    }
-    await saveData(true);
-    renderCoversAdmin(); renderCovers();
-    $('#coverNameInput').value = ''; $('#coverArtistInput').value = ''; $('#coverYearInput').value = '';
-    toast('✅ Covers añadidos', 'ok');
-  } finally { prog.remove(); }
-}
 function openCoverEdit(i) {
   const c = COVERS[i]; if (!c) return;
   const f = $('#coverEditForm');
   f.elements.index.value = i; f.elements.name.value = c.name; f.elements.artist.value = c.artist; f.elements.year.value = c.year;
   f.elements.category.value = c.category; f.elements.review.value = c.review; f.elements.spotifyUrl.value = c.spotifyUrl;
   f.elements.appleMusicUrl.value = c.appleMusicUrl; f.elements.youtubeUrl.value = c.youtubeUrl; f.elements.featured.checked = c.featured;
+  f.elements.url.value = c.url;
+  f.elements.extraImages.value = (c.extraImages || []).join('\n');
   handleImage($('#coverEditPreview'), c.name || 'Cover', c.url);
-  coverEditExtraImages = [...c.extraImages];
-  renderCoverExtraGrid();
   $('#coverEditModal').classList.add('active');
 }
-function renderCoverExtraGrid() {
-  const grid = $('#coverExtraGrid'); grid.textContent = '';
-  coverEditExtraImages.forEach((ref, i) => {
-    const s = document.createElement('div'); s.className = 'extra-img-slot';
-    const im = document.createElement('img'); handleImage(im, 'Extra', ref); s.appendChild(im);
-    const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕'; rm.onclick = () => { coverEditExtraImages.splice(i, 1); renderCoverExtraGrid(); }; s.appendChild(rm);
-    grid.appendChild(s);
-  });
-}
-$('#coverExtraUpZone').onclick = () => $('#coverExtraFileInput').click();
-$('#coverExtraFileInput').onchange = async () => {
-  const files = [...$('#coverExtraFileInput').files];
-  for (const f of files) { try { coverEditExtraImages.push(await GH.uploadImage(f, 'extra')); } catch (e) {} }
-  renderCoverExtraGrid(); $('#coverExtraFileInput').value = '';
-};
 $('#coverEditCancel').onclick = () => $('#coverEditModal').classList.remove('active');
 $('#coverEditDelete').onclick = async () => {
   const i = parseInt($('#coverEditForm').elements.index.value, 10);
@@ -1712,6 +1651,7 @@ $('#coverEditForm').addEventListener('submit', async e => {
   e.preventDefault();
   const i = parseInt(e.target.elements.index.value, 10);
   if (isNaN(i) || !COVERS[i]) return;
+  COVERS[i].url = e.target.elements.url.value.trim();
   COVERS[i].name = e.target.elements.name.value.trim();
   COVERS[i].artist = e.target.elements.artist.value.trim();
   COVERS[i].year = e.target.elements.year.value.trim();
@@ -1721,7 +1661,7 @@ $('#coverEditForm').addEventListener('submit', async e => {
   COVERS[i].appleMusicUrl = e.target.elements.appleMusicUrl.value.trim();
   COVERS[i].youtubeUrl = e.target.elements.youtubeUrl.value.trim();
   COVERS[i].featured = e.target.elements.featured.checked;
-  COVERS[i].extraImages = [...coverEditExtraImages];
+  COVERS[i].extraImages = e.target.elements.extraImages.value.split('\n').map(s => s.trim()).filter(Boolean);
   if (COVERS[i].featured) COVERS.forEach((c, j) => { if (j !== i) c.featured = false; });
   await saveData(true);
   $('#coverEditModal').classList.remove('active'); renderCoversAdmin(); renderCovers(); toast('✅ Actualizado', 'ok');
@@ -1744,13 +1684,6 @@ function renderClientesGrid() {
     grid.appendChild(c);
   });
 }
-$('#clientesUpZone').onclick = () => $('#clientesFileInput').click();
-$('#clientesFileInput').onchange = async () => {
-  for (const f of [...$('#clientesFileInput').files]) {
-    try { DATA.clientes.push(await GH.uploadImage(f, 'cliente')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
-  }
-  await saveData(true); renderClientesGrid(); renderClientes(); $('#clientesFileInput').value = ''; toast('Añadidos', 'ok');
-};
 
 /* SOFTWARE */
 function renderSoftwareGrid() {
@@ -1768,13 +1701,6 @@ function renderSoftwareGrid() {
     c.appendChild(act); grid.appendChild(c);
   });
 }
-$('#softwareUpZone').onclick = () => $('#softwareFileInput').click();
-$('#softwareFileInput').onchange = async () => {
-  for (const f of [...$('#softwareFileInput').files]) {
-    try { DATA.software.push(await GH.uploadImage(f, 'software')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
-  }
-  await saveData(true); renderSoftwareGrid(); renderSoftware(); $('#softwareFileInput').value = ''; toast('Añadidos', 'ok');
-};
 
 /* CATEGORÍAS */
 function renderAdminCats() {
@@ -1824,23 +1750,17 @@ const catModal = $('#catModal'); const catForm = $('#catForm');
 $('#newCatBtn').onclick = () => openCatModal(null);
 $('#catCancel').onclick = () => catModal.classList.remove('active');
 function openCatModal(cat) {
-  catForm.reset(); catForm.elements.id.value = ''; catForm.elements.cover.value = '';
+  catForm.reset(); catForm.elements.id.value = '';
   $('#catModalTitle').textContent = cat ? 'Editar categoría' : 'Nueva categoría';
-  $('#catPreview').hidden = true;
-  if (cat) { catForm.elements.id.value = cat.id; catForm.elements.name.value = cat.name; catForm.elements.description.value = cat.description || ''; catForm.elements.cover.value = cat.cover || ''; if (cat.cover) { handleImage($('#catPreview'), cat.name, cat.cover); $('#catPreview').hidden = false; } }
+  if (cat) { catForm.elements.id.value = cat.id; catForm.elements.name.value = cat.name; catForm.elements.description.value = cat.description || ''; catForm.elements.cover.value = cat.cover || ''; }
   catModal.classList.add('active');
 }
-$('#catUpZone').onclick = () => $('#catFileInput').click();
-$('#catFileInput').onchange = async () => {
-  const f = $('#catFileInput').files[0]; if (!f) return;
-  try { const url = await GH.uploadImage(f, 'cat'); catForm.elements.cover.value = url; handleImage($('#catPreview'), catForm.elements.name.value, url); $('#catPreview').hidden = false; } catch (e) { toast('Error', 'error'); }
-};
 catForm.addEventListener('submit', async e => {
   e.preventDefault();
   const id = catForm.elements.id.value;
   const name = catForm.elements.name.value.trim();
   const desc = catForm.elements.description.value.trim();
-  const cover = catForm.elements.cover.value;
+  const cover = catForm.elements.cover.value.trim();
   if (!name) return toast('Nombre requerido', 'error');
   if (id) { const c = DATA.categories.find(x => x.id === id); if (c) { c.name = name; c.description = desc; c.cover = cover; } }
   else { DATA.categories.push({ id: uid(), name, description: desc, cover, projects: [] }); }
@@ -1850,31 +1770,20 @@ catForm.addEventListener('submit', async e => {
 
 /* PROYECTOS */
 const projModal = $('#projModal'); const projForm = $('#projForm');
-let projImages = [];
 $('#projCancel').onclick = () => projModal.classList.remove('active');
 function openProjModal(catId, p) {
   projForm.reset(); projForm.elements.id.value = ''; projForm.elements.categoryId.value = catId;
-  projImages = []; renderProjImages();
   $('#projModalTitle').textContent = p ? 'Editar proyecto' : 'Nuevo proyecto';
-  if (p) { projForm.elements.id.value = p.id; projForm.elements.title.value = p.title; projForm.elements.description.value = p.description || ''; projForm.elements.year.value = p.year || ''; projForm.elements.youtubeUrl.value = p.youtubeUrl || ''; projImages = [...(p.images || [])]; renderProjImages(); }
+  if (p) { 
+    projForm.elements.id.value = p.id; 
+    projForm.elements.title.value = p.title; 
+    projForm.elements.description.value = p.description || ''; 
+    projForm.elements.year.value = p.year || ''; 
+    projForm.elements.youtubeUrl.value = p.youtubeUrl || ''; 
+    projForm.elements.images.value = (p.images || []).join('\n');
+  }
   projModal.classList.add('active');
 }
-function renderProjImages() {
-  const grid = $('#projImgGrid'); grid.textContent = '';
-  projImages.forEach((ref, i) => {
-    const s = document.createElement('div'); s.style.cssText = 'position:relative;aspect-ratio:1;overflow:hidden;background:#0a0a0a;border:1px solid var(--line);border-radius:2px';
-    const im = document.createElement('img'); im.style.cssText = 'width:100%;height:100%;object-fit:cover'; handleImage(im, 'Img', ref); s.appendChild(im);
-    const rm = document.createElement('button'); rm.textContent = '✕'; rm.style.cssText = 'position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.85);color:#fff;font-size:.75rem;display:grid;place-items:center;border:none;cursor:pointer'; rm.onclick = () => { projImages.splice(i, 1); renderProjImages(); }; s.appendChild(rm);
-    grid.appendChild(s);
-  });
-}
-$('#projUpZone').onclick = () => $('#projFileInput').click();
-$('#projFileInput').onchange = async () => {
-  for (const f of [...$('#projFileInput').files]) {
-    try { projImages.push(await GH.uploadImage(f, 'proj')); } catch (e) { toast(`Error subiendo ${f.name}`, 'error'); }
-  }
-  renderProjImages(); $('#projFileInput').value = '';
-};
 projForm.addEventListener('submit', async e => {
   e.preventDefault();
   const id = projForm.elements.id.value;
@@ -1883,7 +1792,13 @@ projForm.addEventListener('submit', async e => {
   if (!title) return toast('Título requerido', 'error');
   const cat = DATA.categories.find(c => c.id === catId); if (!cat) return;
   if (!cat.projects) cat.projects = [];
-  const obj = { title, description: projForm.elements.description.value.trim(), year: projForm.elements.year.value.trim(), youtubeUrl: projForm.elements.youtubeUrl.value.trim(), images: [...projImages] };
+  const obj = { 
+    title, 
+    description: projForm.elements.description.value.trim(), 
+    year: projForm.elements.year.value.trim(), 
+    youtubeUrl: projForm.elements.youtubeUrl.value.trim(), 
+    images: projForm.elements.images.value.split('\n').map(s => s.trim()).filter(Boolean)
+  };
   if (id) { const p = cat.projects.find(x => x.id === id); if (p) Object.assign(p, obj); }
   else { cat.projects.push({ id: uid(), ...obj }); }
   await saveData(true);
@@ -1940,13 +1855,13 @@ async function init() {
       if (user) { window.isAdminUnlocked = true; await reloadFromGitHub(); return; }
     }
     DATA = defaultData(); COVERS = [];
-    applyCustomLogo(); renderAll();
+    renderAll();
     try {
       const publicRes = await fetch('data.json?t=' + Date.now());
       if (publicRes.ok) {
         DATA = Object.assign(defaultData(), await publicRes.json());
         COVERS = (DATA.covers || []).map(normalizeCover).filter(Boolean);
-        applyCustomLogo(); renderAll();
+        renderAll();
       }
     } catch (e) { /* sin data.json, mostrar vacío */ }
   } finally {
@@ -1955,7 +1870,7 @@ async function init() {
   }
 }
 init();
-console.log('%c🔐 Grobdesigns v45 — Carga de imágenes blindada', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%c🔐 Grobdesigns v46 — URLs de imágenes (Drive/Dropbox ready)', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
