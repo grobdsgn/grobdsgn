@@ -940,6 +940,31 @@
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
+    },
+    {
+      "id": "ou7wrnfcmvobucgh",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792962941006-zylvjd.jpg",
+      "category": "albums",
+      "name": "Una Vez mas",
+      "artist": "Malu Trevejo",
+      "year": "2019",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962979120-u689k3.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962980795-xmc8pe.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962982050-19xqc8.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962983323-6jrq5q.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962984831-1s53r0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962986028-h0ro6c.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962987256-iahoos.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962988715-nr0t6k.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962989905-2p208j.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792962990974-jyxdm6.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/5vmJp7MZZ1bms4H2RXxZox?si=ba077f5d56c948bc",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
