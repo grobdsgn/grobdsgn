@@ -13,9 +13,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   ESTILOS WEB PÚBLICA
-   ============================================================ */
 :root{--bg:#000;--surface:#0f0f10;--line:rgba(255,255,255,.09);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--ease:cubic-bezier(.22,1,.36,1);--danger:#E5484D;--ok:#30A46C;--phil-bg:#F5F3EF;--phil-text:#0A0A0A;--phil-em:#A88B45;--phil-muted:#4A4A4A}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -300,13 +297,18 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-toast.show{transform:translateY(0);opacity:1}
 .a-toast.success{border-left:3px solid var(--a-ok)}
 .a-toast.error{border-left:3px solid var(--a-danger)}
+
+/* Estilos extra para las nuevas funciones */
+.pending-cover{display:flex;gap:16px;align-items:center;padding:16px;background:rgba(201,169,97,0.08);border:1px solid var(--a-accent);border-radius:8px;margin-bottom:20px;}
+.pending-cover img{width:80px;height:80px;object-fit:cover;border-radius:6px;background:#000;}
+.pending-cover-info{flex:1;}
+.pending-cover-info h4{font-size:14px;font-weight:700;color:var(--a-text);margin-bottom:4px;}
+.pending-cover-info p{font-size:12px;color:var(--a-muted);margin:0;}
+.pending-cover-actions{display:flex;gap:8px;}
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     WEB PÚBLICA
-     ============================================================ -->
 <div id="publicApp">
   <nav class="top" id="nav">
     <div class="nav-inner">
@@ -328,7 +330,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   </nav>
 
   <main>
-    <!-- VISTA: HOME -->
     <div class="view active" data-view="home">
       <section class="hero">
         <div class="hero-bg" id="heroBg"></div>
@@ -374,10 +375,8 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </section>
     </div>
 
-    <!-- VISTA: PORTAFOLIO -->
     <div class="view" data-view="portafolio"><div id="catRows"></div></div>
 
-    <!-- VISTA: CATEGORÍA -->
     <div class="view" data-view="categoria">
       <div class="categoria-intro">
         <button id="volverPortafolio" style="display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:30px">← Volver a Portafolio</button>
@@ -388,7 +387,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       <div id="catProjRows"></div>
     </div>
 
-    <!-- VISTA: PROYECTO -->
     <div class="view" data-view="proyecto">
       <section class="detalle-view">
         <div class="detalle-header">
@@ -409,7 +407,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </section>
     </div>
 
-    <!-- VISTA: COVERS -->
     <div class="view" data-view="covers">
       <section class="covers-view">
         <div class="covers-intro">
@@ -432,7 +429,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </section>
     </div>
 
-    <!-- VISTA: COVER DETALLE -->
     <div class="view" data-view="coverDetalle">
       <section class="cover-detail-page">
         <div class="cover-hero">
@@ -462,7 +458,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </section>
     </div>
 
-    <!-- VISTA: CLIENTES -->
     <div class="view" data-view="clientes">
       <section class="clientes-view">
         <div class="wrap">
@@ -475,7 +470,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </section>
     </div>
 
-    <!-- VISTA: CONTACTO -->
     <div class="view" data-view="contacto">
       <section class="contacto-view">
         <div class="wrap"><div class="contact-grid">
@@ -503,9 +497,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
 </div>
 
-<!-- ============================================================
-     PANEL DE ADMINISTRACIÓN
-     ============================================================ -->
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -614,7 +605,21 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
                   <input type="url" id="aCoverMusicLink" class="a-form-input" placeholder="https://youtube.com/watch?v=... o https://open.spotify.com/track/...">
                   <button class="a-btn a-btn-outline" id="aBtnFetchMetadata" style="white-space:nowrap">Auto-rellenar</button>
                 </div>
-                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Pega el link y pulsa Auto-rellenar para extraer la portada, título y artista automáticamente.</small>
+                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Pega el link y pulsa Auto-rellenar para extraer la portada, título y artista.</small>
+              </div>
+
+              <!-- PREVIEW DE METADATOS (oculto por defecto) -->
+              <div id="pendingCoverPreview" class="pending-cover" style="display:none;">
+                <img id="pendingCoverThumb" src="">
+                <div class="pending-cover-info">
+                  <h4 id="pendingCoverName">Título</h4>
+                  <p id="pendingCoverArtist">Artista</p>
+                  <p style="font-size:11px;color:var(--a-accent);margin-top:4px;" id="pendingCoverUrl">URL</p>
+                </div>
+                <div class="pending-cover-actions">
+                  <button class="a-btn a-btn-primary a-btn-sm" id="btnConfirmPendingCover">Confirmar y Añadir</button>
+                  <button class="a-btn a-btn-outline a-btn-sm" id="btnCancelPendingCover">Cancelar</button>
+                </div>
               </div>
 
               <div class="a-upload-zone" onclick="document.getElementById('aCoverFileInput').click()">
@@ -793,6 +798,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             <button class="a-btn a-btn-outline" onclick="document.getElementById('aProjLogoFileInput').click()">Subir</button>
           </div>
           <input type="file" id="aProjLogoFileInput" accept="image/*" hidden>
+          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Si subes un logo, reemplazará al texto en la web pública.</small>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">Descripción</label>
@@ -806,19 +812,29 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <label class="a-form-label">Imágenes (URL o ruta, una por línea)</label>
           <textarea id="aEditProjectImages" class="a-form-textarea" rows="4" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"></textarea>
         </div>
+        
         <div class="a-form-group">
-          <label class="a-form-label">Seleccionar Imagen de Portada</label>
-          <select id="aEditProjectCover" class="a-form-input">
-            <option value="">Usar la primera imagen</option>
-          </select>
+          <label class="a-form-label">Imagen de Portada (Para Categorías)</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <select id="aEditProjectCover" class="a-form-input" style="flex:1;">
+              <option value="">Usar primera imagen</option>
+            </select>
+            <img id="aEditProjectCoverThumb" src="" style="width:60px;height:60px;object-fit:cover;border-radius:4px;background:#222;border:1px solid var(--a-line);">
+          </div>
+          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Selecciona qué imagen se verá como fondo en la lista de proyectos.</small>
         </div>
+
         <div class="a-form-group">
           <label class="a-form-label">Imagen Destacada (Estrella)</label>
-          <select id="aEditProjectFeatured" class="a-form-input">
-            <option value="">Ninguna</option>
-          </select>
-          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Se mostrará debajo del nombre o logo en la web.</small>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <select id="aEditProjectFeatured" class="a-form-input" style="flex:1;">
+              <option value="">Ninguna</option>
+            </select>
+            <img id="aEditProjectFeaturedThumb" src="" style="width:60px;height:60px;object-fit:cover;border-radius:4px;background:#222;border:1px solid var(--a-line);">
+          </div>
+          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Se mostrará debajo del nombre/logo en la web.</small>
         </div>
+        
         <div class="a-form-group">
           <label class="a-form-label">Posición de la Portada</label>
           <select id="aEditProjectCoverPosition" class="a-form-input">
@@ -919,7 +935,7 @@ function compressImage(file, maxWidth = 1200, quality = 0.85) {
 }
 
 /* ============================================================
-   NUEVA FUNCIÓN: EXTRACCIÓN DE METADATOS (OEMBED)
+   METADATA (OEMBED)
    ============================================================ */
 async function fetchMetadata(url) {
   if (!url) return null;
@@ -932,7 +948,7 @@ async function fetchMetadata(url) {
     } else if (url.includes('music.apple.com')) {
       apiUrl = `https://music.apple.com/oembed?url=${encodeURIComponent(url)}`;
     } else {
-      return null; // Plataforma no soportada
+      return null;
     }
 
     const res = await fetch(apiUrl);
@@ -941,7 +957,7 @@ async function fetchMetadata(url) {
     
     return {
       title: data.title || '',
-      artist: data.author_name || '', // Spotify y YouTube suelen incluir esto
+      artist: data.author_name || '',
       thumbnail: data.thumbnail_url || ''
     };
   } catch (e) {
@@ -992,12 +1008,7 @@ const GH = {
         });
         
         if (res.ok) return true;
-        if (res.status === 409) { 
-          retries--; 
-          await new Promise(r => setTimeout(r, 2000)); 
-          continue; 
-        }
-        
+        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 2000)); continue; }
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
       } catch (e) {
@@ -1047,10 +1058,8 @@ let DATA = {
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }
 };
+let pendingCoverData = null;
 
-/* ============================================================
-   ENRUTADOR Y SCROLL HEADER
-   ============================================================ */
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (nav) {
@@ -1093,7 +1102,6 @@ async function loadPublicData() {
 }
 
 function renderPublicSite() {
-  // Hero
   $('#pubHeroEyebrow').textContent = DATA.hero.eyebrow || '';
   const titleEl = $('#pubHeroTitle');
   titleEl.innerHTML = '';
@@ -1105,7 +1113,6 @@ function renderPublicSite() {
   });
   $('#pubHeroLead').textContent = DATA.hero.lead || '';
 
-  // Carrusel
   const heroBg = $('#heroBg');
   heroBg.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
@@ -1115,10 +1122,8 @@ function renderPublicSite() {
     heroBg.appendChild(l);
   });
 
-  // Covers
   renderPublicCovers(DATA.covers || []);
 
-  // Clientes
   const clientsGrid = $('#publicClientesGrid');
   clientsGrid.innerHTML = '';
   (DATA.clientes || []).forEach(url => {
@@ -1129,7 +1134,6 @@ function renderPublicSite() {
     c.appendChild(im); clientsGrid.appendChild(c);
   });
 
-  // Herramientas
   const toolsGrid = $('#publicSoftwareGrid');
   toolsGrid.innerHTML = '';
   if ((DATA.software || []).length) {
@@ -1145,7 +1149,6 @@ function renderPublicSite() {
     $('#softwareSection').style.display = 'none';
   }
 
-  // Contacto
   const ce = $('#pubContactEmail');
   if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
   const cp = $('#pubContactPhone');
@@ -1153,7 +1156,6 @@ function renderPublicSite() {
   const cl = $('#pubContactLocation');
   if (cl) cl.textContent = DATA.contact.location || '';
 
-  // Portafolio (Categorías)
   const catRows = $('#catRows');
   catRows.innerHTML = '';
   (DATA.categories || []).forEach((cat, i) => {
@@ -1181,14 +1183,11 @@ function renderPublicCovers(covers) {
     const info = document.createElement('div'); info.className = 'cover-info';
     info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
     item.appendChild(info);
-    item.onclick = () => {
-      window.location.hash = `#cover-${c.id}`;
-    };
+    item.onclick = () => { window.location.hash = `#cover-${c.id}`; };
     grid.appendChild(item);
   });
 }
 
-// Cover Detalle Público (Muestra embed y galería)
 window.addEventListener('hashchange', () => {
   const hash = location.hash;
   if (hash.startsWith('#cover-')) {
@@ -1277,10 +1276,12 @@ window.addEventListener('hashchange', () => {
         const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
         const content = document.createElement('div'); content.className = 'parallax-content';
         
+        // Si hay logo, se muestra en blanco. Si no, texto.
         const titleHtml = p.logoUrl 
             ? `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height: 100px; margin: 0 auto 20px; filter: brightness(0) invert(1); display: block;">` 
             : `<h2>${p.title}</h2>`;
         
+        // Imagen destacada debajo del título
         const featuredHtml = p.featuredImage 
             ? `<img src="${resolveImageUrl(p.featuredImage)}" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">` 
             : '';
@@ -1411,7 +1412,6 @@ async function saveAdminData() {
 }
 
 function renderAdmin() {
-  // Hero
   $('#aHeroEyebrow').value = DATA.hero.eyebrow || '';
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
@@ -1423,7 +1423,6 @@ function renderAdmin() {
     hGrid.appendChild(el);
   });
 
-  // Covers
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = '';
   (DATA.covers || []).forEach((c, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1442,21 +1441,19 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // Clientes (Con botones de orden)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `
       <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
-      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''}>↑</button>
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''}>↓</button>
+      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px;">
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover arriba">↑</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover abajo">↓</button>
         <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>`;
     clGrid.appendChild(el);
   });
 
-  // Herramientas
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = '';
   (DATA.software || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1464,7 +1461,6 @@ function renderAdmin() {
     tGrid.appendChild(el);
   });
 
-  // Portfolio Categories
   const portfolioList = $('#aPortfolioCategoriesList'); portfolioList.innerHTML = '';
   (DATA.categories || []).forEach((cat, ci) => {
     const block = document.createElement('div');
@@ -1479,11 +1475,14 @@ function renderAdmin() {
         <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid var(--a-line)">
           <div style="display:flex;gap:12px;align-items:center">
             <img src="${thumb}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">
-            <span style="font-size:14px">${p.title}</span>
+            <div>
+              <span style="font-size:14px; font-weight:600;">${p.title}</span>
+              ${p.logoUrl ? '<span style="font-size:11px;color:var(--a-accent);margin-left:6px;">(con logo)</span>' : ''}
+            </div>
           </div>
           <div style="display:flex;gap:4px">
-            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, -1)" ${pi===0?'disabled':''}>↑</button>
-            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, 1)" ${pi===cat.projects.length-1?'disabled':''}>↓</button>
+            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, -1)" ${pi===0?'disabled':''} title="Mover arriba">↑</button>
+            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, 1)" ${pi===cat.projects.length-1?'disabled':''} title="Mover abajo">↓</button>
             <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', ${pi})">Editar</button>
             <button class="a-btn a-btn-danger a-btn-sm" onclick="delProject('${cat.id}', ${pi})">X</button>
           </div>
@@ -1507,18 +1506,15 @@ function renderAdmin() {
     portfolioList.appendChild(block);
   });
 
-  // Contacto
   $('#aContactEmail').value = DATA.contact.email || '';
   $('#aContactPhone').value = DATA.contact.phone || '';
   $('#aContactLocation').value = DATA.contact.location || '';
 
-  // Tema
   $('#aThemeAccent').value = DATA.theme.accent || '#C9A961';
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
 }
 
-// Funciones globales del admin
 window.delAdminItem = (key, i) => {
   if(confirm('¿Eliminar elemento?')) {
     DATA[key].splice(i, 1);
@@ -1588,7 +1584,6 @@ window.openAdminProjectModal = (catId, pi) => {
   $('#aEditProjectImages').value = p ? (p.images || []).join('\n') : '';
   $('#aEditProjectCoverPosition').value = p ? (p.coverPosition || 'center') : 'center';
   
-  // Poblar selects
   const selectCover = $('#aEditProjectCover');
   const selectFeatured = $('#aEditProjectFeatured');
   selectCover.innerHTML = '<option value="">Usar primera imagen</option>';
@@ -1610,11 +1605,54 @@ window.openAdminProjectModal = (catId, pi) => {
     });
   }
 
+  updateProjectThumbs();
+
   $('#aBtnDeleteProject').style.display = p ? 'inline-flex' : 'none';
   $('#aProjectModal').classList.add('active');
 };
 
-// Admin UI Listeners
+function updateProjectThumbs() {
+  const imgUrl = $('#aEditProjectImages').value;
+  const currentImages = imgUrl.split('\n').map(s => s.trim()).filter(Boolean);
+
+  const coverSelect = $('#aEditProjectCover');
+  const featuredSelect = $('#aEditProjectFeatured');
+  
+  const coverVal = coverSelect.value;
+  const featuredVal = featuredSelect.value;
+  
+  // Repoblar si es necesario
+  if (coverSelect.options.length - 1 !== currentImages.length) {
+    coverSelect.innerHTML = '<option value="">Usar primera imagen</option>';
+    featuredSelect.innerHTML = '<option value="">Ninguna</option>';
+    
+    currentImages.forEach((url, i) => {
+      const opt1 = document.createElement('option');
+      opt1.value = url;
+      opt1.textContent = `Imagen ${i + 1}`;
+      if (url === coverVal) opt1.selected = true;
+      coverSelect.appendChild(opt1);
+      
+      const opt2 = document.createElement('option');
+      opt2.value = url;
+      opt2.textContent = `Imagen ${i + 1}`;
+      if (url === featuredVal) opt2.selected = true;
+      featuredSelect.appendChild(opt2);
+    });
+  }
+
+  // Actualizar thumbnails
+  const coverImg = coverSelect.value || (currentImages[0] || '');
+  const featuredImg = featuredSelect.value;
+  
+  $('#aEditProjectCoverThumb').src = coverImg ? resolveImageUrl(coverImg) : '';
+  $('#aEditProjectFeaturedThumb').src = featuredImg ? resolveImageUrl(featuredImg) : '';
+}
+
+$('#aEditProjectCover').addEventListener('change', updateProjectThumbs);
+$('#aEditProjectFeatured').addEventListener('change', updateProjectThumbs);
+$('#aEditProjectImages').addEventListener('input', updateProjectThumbs);
+
 $$('.a-nav-item').forEach(item => {
   item.onclick = () => {
     $$('.a-nav-item').forEach(n => n.classList.remove('active'));
@@ -1635,76 +1673,89 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
-// Actualizar dropdowns de proyecto dinámicamente al escribir URLs
-$('#aEditProjectImages').oninput = (e) => {
-  const urls = e.target.value.split('\n').map(s=>s.trim()).filter(Boolean);
-  const selectCover = $('#aEditProjectCover');
-  const selectFeatured = $('#aEditProjectFeatured');
-  const valCover = selectCover.value;
-  const valFeatured = selectFeatured.value;
-  
-  selectCover.innerHTML = '<option value="">Usar primera imagen</option>';
-  selectFeatured.innerHTML = '<option value="">Ninguna</option>';
-  
-  urls.forEach((url, i) => {
-    const opt1 = document.createElement('option');
-    opt1.value = url;
-    opt1.textContent = `Imagen ${i + 1}`;
-    if (url === valCover) opt1.selected = true;
-    selectCover.appendChild(opt1);
-    
-    const opt2 = document.createElement('option');
-    opt2.value = url;
-    opt2.textContent = `Imagen ${i + 1}`;
-    if (url === valFeatured) opt2.selected = true;
-    selectFeatured.appendChild(opt2);
-  });
-};
-
 /* ============================================================
-   BOTONES AUTO-RELLENAR (METADATOS)
+   METADATA CON VALIDACIÓN (PREVIEW)
    ============================================================ */
 $('#aBtnFetchMetadata').onclick = async () => {
   const url = $('#aCoverMusicLink').value.trim();
   if (!url) return aToast('Pega un link primero', 'error');
+  
   aToast('Extrayendo metadatos...');
   const meta = await fetchMetadata(url);
-  if (meta) {
-    if (meta.thumbnail) {
-      $('#aCoverUrlsInput').value = meta.thumbnail;
-      // Forzar la subida usando el link de la miniatura
-      const cat = $('#aCoverCategorySelect').value;
-      DATA.covers.push({ id: uid(), url: meta.thumbnail, category: cat, name: meta.title, artist: meta.artist, year: '', review: '', extraImages: [], spotifyUrl: url, featured: false });
-      $('#aCoverMusicLink').value = '';
-      $('#aCoverUrlsInput').value = '';
-      renderAdmin(); saveAdminData(); aToast('Cover añadido con metadatos');
-    } else {
-      aToast('No se encontró miniatura', 'error');
-    }
-  } else {
-    aToast('No se pudieron extraer los datos', 'error');
+  
+  if (!meta || !meta.thumbnail) {
+    return aToast('No se pudieron extraer los datos. Verifica el link.', 'error');
   }
+  
+  pendingCoverData = {
+    url: meta.thumbnail,
+    name: meta.title,
+    artist: meta.artist,
+    category: $('#aCoverCategorySelect').value,
+    spotifyUrl: url
+  };
+  
+  $('#pendingCoverThumb').src = meta.thumbnail;
+  $('#pendingCoverName').textContent = meta.title || 'Sin título';
+  $('#pendingCoverArtist').textContent = meta.artist || 'Artista desconocido';
+  $('#pendingCoverUrl').textContent = url;
+  $('#pendingCoverPreview').style.display = 'flex';
+  
+  aToast('Metadatos extraídos. Revisa y confirma.');
+};
+
+$('#btnConfirmPendingCover').onclick = () => {
+  if (!pendingCoverData) return;
+  
+  DATA.covers.push({
+    id: uid(),
+    url: pendingCoverData.url,
+    category: pendingCoverData.category,
+    name: pendingCoverData.name,
+    artist: pendingCoverData.artist,
+    year: '',
+    review: '',
+    extraImages: [],
+    spotifyUrl: pendingCoverData.spotifyUrl,
+    featured: false
+  });
+  
+  pendingCoverData = null;
+  $('#pendingCoverPreview').style.display = 'none';
+  $('#aCoverMusicLink').value = '';
+  
+  renderAdmin(); saveAdminData(); aToast('Cover añadido correctamente', 'success');
+};
+
+$('#btnCancelPendingCover').onclick = () => {
+  pendingCoverData = null;
+  $('#pendingCoverPreview').style.display = 'none';
 };
 
 $('#aBtnFetchMetadataEdit').onclick = async () => {
   const url = $('#aEditCoverSpotify').value.trim();
   if (!url) return aToast('Pega un link primero', 'error');
+  
   aToast('Extrayendo metadatos...');
   const meta = await fetchMetadata(url);
-  if (meta) {
-    if (meta.title) $('#aEditCoverName').value = meta.title;
-    if (meta.artist) $('#aEditCoverArtist').value = meta.artist;
-    if (meta.thumbnail) {
-      $('#aEditCoverUrl').value = meta.thumbnail;
-      $('#aEditCoverPreview').src = meta.thumbnail;
-    }
-    aToast('Datos rellenados');
-  } else {
-    aToast('No se pudieron extraer los datos', 'error');
+  
+  if (!meta) {
+    return aToast('No se pudieron extraer los datos.', 'error');
   }
+  
+  if (meta.title) $('#aEditCoverName').value = meta.title;
+  if (meta.artist) $('#aEditCoverArtist').value = meta.artist;
+  if (meta.thumbnail) {
+    $('#aEditCoverUrl').value = meta.thumbnail;
+    $('#aEditCoverPreview').src = meta.thumbnail;
+  }
+  
+  aToast('Datos rellenados. Revisa antes de guardar.', 'success');
 };
 
-// Uploads Admin
+/* ============================================================
+   UPLOADS
+   ============================================================ */
 async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
   if(!files.length && !musicUrl) return;
   
@@ -1754,7 +1805,6 @@ $('#aProjLogoFileInput').onchange = async e => {
   e.target.value = '';
 };
 
-// Adders Admin (URLs)
 $('#aBtnAddHeroUrls').onclick = () => {
   const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
   DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData();
@@ -1775,7 +1825,6 @@ $('#aBtnAddToolUrls').onclick = () => {
   DATA.software.push(...urls); $('#aToolUrlsInput').value=''; renderAdmin(); saveAdminData();
 };
 
-// Modales Admin
 $('#aCloseCoverModal').onclick = () => $('#aCoverModal').classList.remove('active');
 $('#aBtnSaveCover').onclick = () => {
   const i = parseInt($('#aEditCoverIndex').value);
@@ -1798,12 +1847,19 @@ $('#aBtnDeleteCover').onclick = () => {
   }
 };
 
-// Modal Proyecto
 $('#aCloseProjectModal').onclick = () => $('#aProjectModal').classList.remove('active');
 $('#aBtnSaveProject').onclick = () => {
   const catId = $('#aEditProjectCategoryId').value;
   const pi = parseInt($('#aEditProjectIndex').value);
   const cat = DATA.categories.find(c => c.id === catId);
+  
+  const newImages = $('#aEditProjectImages').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  let coverImage = $('#aEditProjectCover').value;
+  let featuredImage = $('#aEditProjectFeatured').value;
+  
+  // Validar que cover/featured sigan existiendo en las imágenes
+  if (coverImage && !newImages.includes(coverImage)) coverImage = '';
+  if (featuredImage && !newImages.includes(featuredImage)) featuredImage = '';
   
   const projData = {
     id: pi >= 0 ? cat.projects[pi].id : uid(),
@@ -1811,9 +1867,9 @@ $('#aBtnSaveProject').onclick = () => {
     logoUrl: $('#aEditProjectLogo').value.trim(),
     description: $('#aEditProjectDesc').value.trim(),
     youtubeUrl: $('#aEditProjectYt').value.trim(),
-    images: $('#aEditProjectImages').value.split('\n').map(s=>s.trim()).filter(Boolean),
-    coverImage: $('#aEditProjectCover').value,
-    featuredImage: $('#aEditProjectFeatured').value,
+    images: newImages,
+    coverImage: coverImage,
+    featuredImage: featuredImage,
     coverPosition: $('#aEditProjectCoverPosition').value
   };
 
@@ -1836,13 +1892,11 @@ $('#aBtnDeleteProject').onclick = () => {
   }
 };
 
-// Globales Admin
 $('#aBtnSaveAll').onclick = saveAdminData;
 $('#aBtnReload').onclick = async () => { if(confirm('¿Recargar de GitHub?')) { await loadAdminData(); aToast('Recargado'); } };
 $('#aBtnViewSite').onclick = () => { window.location.hash = ''; window.location.reload(); };
 $('#aBtnLogout').onclick = () => { GH.clear(); window.location.reload(); };
 
-// Login Admin
 $('#aLoginForm').onsubmit = async e => {
   e.preventDefault();
   const token = $('#aLoginToken').value.trim();
@@ -1863,7 +1917,6 @@ $('#aLoginForm').onsubmit = async e => {
   }
 };
 
-// Lógica para crear nueva categoría rápida (Prompt)
 $('#aBtnNewCategory').onclick = () => {
   const name = prompt("Nombre de la nueva categoría:");
   if (!name) return;
@@ -1871,7 +1924,6 @@ $('#aBtnNewCategory').onclick = () => {
   renderAdmin(); saveAdminData();
 };
 
-// Init
 initRouter();
 </script>
 </body>
