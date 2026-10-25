@@ -1294,12 +1294,18 @@
       "id": "3cfnugrrmvogrbtq",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792971198361-9ki269.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Hangover",
+      "artist": "Winner Boys",
+      "year": "2018",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971223741-fp31sn.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971224906-bj0z8x.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971226206-socwb8.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971227695-fbkqpw.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971228951-1tbrjl.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/6QKVi2KR0jAzdL6wDpfOyk?si=fbca99b1dc234c91",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
