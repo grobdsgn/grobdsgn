@@ -526,7 +526,7 @@
       "category": "sencillo",
       "name": "VIP PASS",
       "artist": "john jay",
-      "year": "2017",
+      "year": "2015",
       "review": "Sencillo perteneciente al album Orion.",
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960530379-i5uai2.jpg",
@@ -889,6 +889,20 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953495829-z3oeqb.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953497003-d5fs1y.jpg"
       ],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "fkce49ckmvoahkwe",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792960665539-c902q8.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
