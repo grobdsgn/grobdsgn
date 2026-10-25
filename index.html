@@ -107,7 +107,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .masonry-item img{width:100%;height:auto;display:block;min-height:100px;background:#0a0a0a}
 .masonry-empty{padding:80px 24px;text-align:center;color:var(--muted);columns:1}
 .embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
-.embed-item iframe{width:100%;border:0;display:block}
+.embed-item iframe{width:100%;border:0;display:block;aspect-ratio:16/9}
 .lightbox-overlay{position:fixed;inset:0;z-index:24000;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:40px;opacity:0;pointer-events:none;transition:opacity .3s}
 .lightbox-overlay.active{opacity:1;pointer-events:auto}
 .lightbox-img{max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:4px}
@@ -395,6 +395,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <button id="proyectoBack" style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:40px">← Volver</button>
           <div class="detalle-counter" id="proyectoCounter"></div>
           <div class="detalle-badge" id="proyectoBadge"></div>
+          <div id="proyectoLogoWrap" style="margin-bottom: 24px;"></div>
           <h1 class="detalle-titulo" id="proyectoTitulo"></h1>
           <div class="detalle-actions">
             <a class="detalle-cta" href="#proyectoImagenes">Ver proyecto</a>
@@ -633,7 +634,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         <div class="a-panel" id="a-panel-portfolio">
           <div class="a-card">
             <div class="a-card-header">
-              <h2 class="a-card-title">Categorías del Portafolio</h2>
+              <h2 class="a-card-title">Categorías y Proyectos</h2>
               <button class="a-btn a-btn-primary a-btn-sm" id="aBtnNewCategory">Nueva Categoría</button>
             </div>
             <div class="a-card-body" id="aPortfolioCategoriesList"></div>
@@ -759,6 +760,61 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
     </div>
   </div>
 
+  <!-- Modal Editar/Crear Proyecto -->
+  <div class="a-modal-overlay" id="aProjectModal">
+    <div class="a-modal-content">
+      <div class="a-modal-header">
+        <h2 class="a-modal-title" id="aProjectModalTitle">Editar Proyecto</h2>
+        <span class="a-modal-close" id="aCloseProjectModal">X</span>
+      </div>
+      <div class="a-modal-body">
+        <input type="hidden" id="aEditProjectCategoryId">
+        <input type="hidden" id="aEditProjectIndex">
+        
+        <div class="a-form-group">
+          <label class="a-form-label">Nombre del Proyecto (Texto)</label>
+          <input type="text" id="aEditProjectName" class="a-form-input" placeholder="Ej. Diseño de Identidad">
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">URL del Logotipo (Opcional, se mostrará en blanco)</label>
+          <input type="url" id="aEditProjectLogo" class="a-form-input" placeholder="https://ejemplo.com/logo.png">
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Descripción</label>
+          <textarea id="aEditProjectDesc" class="a-form-textarea" rows="2"></textarea>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Enlace de YouTube (Opcional)</label>
+          <input type="url" id="aEditProjectYt" class="a-form-input" placeholder="https://youtube.com/watch?v=...">
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Imágenes (URL o ruta, una por línea)</label>
+          <textarea id="aEditProjectImages" class="a-form-textarea" rows="4" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"></textarea>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Seleccionar Imagen de Portada</label>
+          <select id="aEditProjectCover" class="a-form-input">
+            <option value="">Usar la primera imagen</option>
+          </select>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Posición de la Portada (Área visible)</label>
+          <select id="aEditProjectCoverPosition" class="a-form-input">
+            <option value="center">Centro</option>
+            <option value="top">Arriba</option>
+            <option value="bottom">Abajo</option>
+            <option value="left">Izquierda</option>
+            <option value="right">Derecha</option>
+          </select>
+        </div>
+      </div>
+      <div class="a-modal-footer">
+        <button class="a-btn a-btn-danger" id="aBtnDeleteProject" style="display:none">Eliminar</button>
+        <button class="a-btn a-btn-primary" id="aBtnSaveProject">Guardar Proyecto</button>
+      </div>
+    </div>
+  </div>
+
   <div class="a-toast-container" id="aToastContainer"></div>
 </div>
 
@@ -841,7 +897,7 @@ function compressImage(file, maxWidth = 1200, quality = 0.85) {
 }
 
 /* ============================================================
-   GITHUB API (Blindado contra Error 409)
+   GITHUB API
    ============================================================ */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -1146,6 +1202,115 @@ window.addEventListener('hashchange', () => {
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="coverDetalle"]').classList.add('active');
     }
+  } else if (hash.startsWith('#categoria-')) {
+    const id = hash.replace('#categoria-', '');
+    const cat = DATA.categories.find(c => c.id === id);
+    if (cat) {
+      $('#catNombre').textContent = cat.name;
+      $('#catDescripcion').textContent = cat.description || '';
+      
+      const container = $('#catProjRows');
+      container.innerHTML = '';
+      (cat.projects || []).forEach((p, i) => {
+        const row = document.createElement('div'); row.className = 'parallax-row';
+        const bg = document.createElement('div'); bg.className = 'parallax-bg' + (p.images?.length ? '' : ' empty');
+        
+        // USAR IMAGEN DE PORTADA Y POSICIÓN
+        let coverImg = p.coverImage || (p.images && p.images[0]);
+        if (coverImg) {
+          bg.style.backgroundImage = `url("${resolveImageUrl(coverImg)}")`;
+          bg.style.backgroundPosition = p.coverPosition || 'center';
+        }
+        
+        row.appendChild(bg);
+        const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
+        const content = document.createElement('div'); content.className = 'parallax-content';
+        
+        // MOSTRAR LOGO O TEXTO
+        if (p.logoUrl) {
+          content.innerHTML = `<span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
+          <img src="${resolveImageUrl(p.logoUrl)}" style="max-height:80px;margin:0 auto 20px;filter:brightness(0) invert(1);">
+          <p class="desc">${p.description || ''}</p>`;
+        } else {
+          content.innerHTML = `<span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
+          <h2>${p.title}</h2>
+          <p class="desc">${p.description || ''}</p>`;
+        }
+        
+        row.appendChild(content);
+        row.onclick = () => { window.location.hash = `#proyecto-${cat.id}-${p.id}`; };
+        container.appendChild(row);
+      });
+
+      $$('.view').forEach(v => v.classList.remove('active'));
+      $('[data-view="categoria"]').classList.add('active');
+    }
+  } else if (hash.startsWith('#proyecto-')) {
+    const parts = hash.replace('#proyecto-', '').split('-');
+    const catId = parts[0];
+    const projId = parts[1];
+    
+    const cat = DATA.categories.find(c => c.id === catId);
+    const p = cat?.projects.find(x => x.id === projId);
+    
+    if (p) {
+      $('#proyectoTitulo').textContent = p.title;
+      $('#proyectoBadge').textContent = 'Proyecto';
+      $('#proyectoResena').textContent = p.description || '';
+      
+      // Lógica Logo vs Texto
+      const logoWrap = $('#proyectoLogoWrap');
+      if (p.logoUrl) {
+        logoWrap.innerHTML = `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height:120px;filter:brightness(0) invert(1);">`;
+        $('#proyectoTitulo').style.display = 'none';
+      } else {
+        logoWrap.innerHTML = '';
+        $('#proyectoTitulo').style.display = 'block';
+      }
+
+      const ytBtn = $('#proyectoYouTube');
+      if (p.youtubeUrl && getYouTubeId(p.youtubeUrl)) {
+        ytBtn.href = p.youtubeUrl; ytBtn.style.display = 'inline-flex';
+      } else ytBtn.style.display = 'none';
+
+      const gallery = $('#proyectoImagenes');
+      gallery.innerHTML = '';
+      const masonry = document.createElement('div');
+      masonry.className = 'masonry-gallery';
+
+      // Embed YouTube en la galería
+      if (p.youtubeUrl && getYouTubeId(p.youtubeUrl)) {
+        const embedBox = document.createElement('div');
+        embedBox.className = 'embed-item';
+        const ifr = document.createElement('iframe');
+        ifr.src = `https://www.youtube.com/embed/${getYouTubeId(p.youtubeUrl)}`;
+        ifr.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
+        embedBox.appendChild(ifr);
+        masonry.appendChild(embedBox);
+      }
+
+      (p.images || []).forEach(url => {
+        const item = document.createElement('div'); item.className = 'masonry-item';
+        const im = document.createElement('img');
+        im.src = resolveImageUrl(url);
+        im.onerror = () => handleImgError(im);
+        item.appendChild(im);
+        item.onclick = () => window.open(resolveImageUrl(url), '_blank');
+        masonry.appendChild(item);
+      });
+
+      gallery.appendChild(masonry);
+
+      $$('.view').forEach(v => v.classList.remove('active'));
+      $('[data-view="proyecto"]').classList.add('active');
+    }
+  } else {
+    // Volver a home si no hay hash válido
+    const curView = $('.view.active');
+    if (curView && (curView.dataset.view === 'coverDetalle' || curView.dataset.view === 'categoria' || curView.dataset.view === 'proyecto')) {
+      $$('.view').forEach(v => v.classList.remove('active'));
+      $('[data-view="home"]').classList.add('active');
+    }
   }
 });
 
@@ -1247,6 +1412,47 @@ function renderAdmin() {
     tGrid.appendChild(el);
   });
 
+  // Portfolio Categories
+  const portfolioList = $('#aPortfolioCategoriesList'); portfolioList.innerHTML = '';
+  (DATA.categories || []).forEach((cat, ci) => {
+    const block = document.createElement('div');
+    block.style.cssText = 'margin-bottom:24px;padding:16px;border:1px solid var(--a-line);border-radius:8px;background:rgba(255,255,255,0.02)';
+    
+    let projHtml = '';
+    (cat.projects || []).forEach((p, pi) => {
+      let coverImg = p.coverImage || (p.images && p.images[0]) || '';
+      let thumb = coverImg ? resolveImageUrl(coverImg) : 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#222"/></svg>`);
+      
+      projHtml += `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid var(--a-line)">
+          <div style="display:flex;gap:12px;align-items:center">
+            <img src="${thumb}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">
+            <span style="font-size:14px">${p.title}</span>
+          </div>
+          <div style="display:flex;gap:4px">
+            <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', ${pi})">Editar</button>
+            <button class="a-btn a-btn-danger a-btn-sm" onclick="delProject('${cat.id}', ${pi})">X</button>
+          </div>
+        </div>
+      `;
+    });
+
+    block.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <h3 style="font-size:16px;font-weight:600">${cat.name}</h3>
+          <p style="font-size:12px;color:var(--a-muted)">${cat.description || ''}</p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', -1)">+ Nuevo Proyecto</button>
+          <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${ci})">Eliminar Cat.</button>
+        </div>
+      </div>
+      <div>${projHtml || '<p style="font-size:12px;color:var(--a-muted)">No hay proyectos en esta categoría.</p>'}</div>
+    `;
+    portfolioList.appendChild(block);
+  });
+
   // Contacto
   $('#aContactEmail').value = DATA.contact.email || '';
   $('#aContactPhone').value = DATA.contact.phone || '';
@@ -1262,6 +1468,21 @@ function renderAdmin() {
 window.delAdminItem = (key, i) => {
   if(confirm('¿Eliminar elemento?')) {
     DATA[key].splice(i, 1);
+    renderAdmin(); saveAdminData();
+  }
+};
+
+window.delCategory = (i) => {
+  if(confirm('¿Eliminar categoría completa?')) {
+    DATA.categories.splice(i, 1);
+    renderAdmin(); saveAdminData();
+  }
+};
+
+window.delProject = (catId, pi) => {
+  if(confirm('¿Eliminar proyecto?')) {
+    const cat = DATA.categories.find(c => c.id === catId);
+    cat.projects.splice(pi, 1);
     renderAdmin(); saveAdminData();
   }
 };
@@ -1288,6 +1509,38 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverExtras').value = (c.extraImages || []).join('\n');
   $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
+};
+
+window.openAdminProjectModal = (catId, pi) => {
+  const cat = DATA.categories.find(c => c.id === catId);
+  $('#aEditProjectCategoryId').value = catId;
+  $('#aEditProjectIndex').value = pi;
+
+  const p = pi >= 0 ? cat.projects[pi] : null;
+  
+  $('#aProjectModalTitle').textContent = p ? 'Editar Proyecto' : 'Nuevo Proyecto';
+  $('#aEditProjectName').value = p ? (p.title || '') : '';
+  $('#aEditProjectLogo').value = p ? (p.logoUrl || '') : '';
+  $('#aEditProjectDesc').value = p ? (p.description || '') : '';
+  $('#aEditProjectYt').value = p ? (p.youtubeUrl || '') : '';
+  $('#aEditProjectImages').value = p ? (p.images || []).join('\n') : '';
+  $('#aEditProjectCoverPosition').value = p ? (p.coverPosition || 'center') : 'center';
+  
+  // Poblar select de portada
+  const select = $('#aEditProjectCover');
+  select.innerHTML = '<option value="">Usar primera imagen</option>';
+  if (p && p.images) {
+    p.images.forEach((img, idx) => {
+      const opt = document.createElement('option');
+      opt.value = img;
+      opt.textContent = `Imagen ${idx + 1}`;
+      if (p.coverImage === img) opt.selected = true;
+      select.appendChild(opt);
+    });
+  }
+
+  $('#aBtnDeleteProject').style.display = p ? 'inline-flex' : 'none';
+  $('#aProjectModal').classList.add('active');
 };
 
 // Admin UI Listeners
@@ -1394,6 +1647,43 @@ $('#aBtnDeleteCover').onclick = () => {
   }
 };
 
+// Modal Proyecto
+$('#aCloseProjectModal').onclick = () => $('#aProjectModal').classList.remove('active');
+$('#aBtnSaveProject').onclick = () => {
+  const catId = $('#aEditProjectCategoryId').value;
+  const pi = parseInt($('#aEditProjectIndex').value);
+  const cat = DATA.categories.find(c => c.id === catId);
+  
+  const projData = {
+    id: pi >= 0 ? cat.projects[pi].id : uid(),
+    title: $('#aEditProjectName').value.trim(),
+    logoUrl: $('#aEditProjectLogo').value.trim(),
+    description: $('#aEditProjectDesc').value.trim(),
+    youtubeUrl: $('#aEditProjectYt').value.trim(),
+    images: $('#aEditProjectImages').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    coverImage: $('#aEditProjectCover').value,
+    coverPosition: $('#aEditProjectCoverPosition').value
+  };
+
+  if (pi >= 0) {
+    cat.projects[pi] = projData;
+  } else {
+    if (!cat.projects) cat.projects = [];
+    cat.projects.push(projData);
+  }
+  
+  $('#aProjectModal').classList.remove('active'); renderAdmin(); saveAdminData();
+};
+$('#aBtnDeleteProject').onclick = () => {
+  const catId = $('#aEditProjectCategoryId').value;
+  const pi = parseInt($('#aEditProjectIndex').value);
+  if(confirm('¿Eliminar este proyecto?')) {
+    const cat = DATA.categories.find(c => c.id === catId);
+    cat.projects.splice(pi, 1);
+    $('#aProjectModal').classList.remove('active'); renderAdmin(); saveAdminData();
+  }
+};
+
 // Globales Admin
 $('#aBtnSaveAll').onclick = saveAdminData;
 $('#aBtnReload').onclick = async () => { if(confirm('¿Recargar de GitHub?')) { await loadAdminData(); aToast('Recargado'); } };
@@ -1419,6 +1709,14 @@ $('#aLoginForm').onsubmit = async e => {
     GH.clear();
     errEl.textContent = 'Error. Verifica el token y repositorio.';
   }
+};
+
+// Lógica para crear nueva categoría rápida (Prompt)
+$('#aBtnNewCategory').onclick = () => {
+  const name = prompt("Nombre de la nueva categoría:");
+  if (!name) return;
+  DATA.categories.push({ id: uid(), name, description: '', cover: '', projects: [] });
+  renderAdmin(); saveAdminData();
 };
 
 // Init
