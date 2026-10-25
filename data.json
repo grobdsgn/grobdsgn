@@ -37,6 +37,14 @@
           "year": "",
           "youtubeUrl": "",
           "images": []
+        },
+        {
+          "id": "yij4dhxpmvo1rs3i",
+          "title": "Las locas Nigth Club",
+          "description": "",
+          "year": "",
+          "youtubeUrl": "",
+          "images": []
         }
       ]
     }
@@ -584,6 +592,20 @@
       "review": "",
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2Vt4eQL6qvEZMLtKhrJYu3?si=d25b0f379d734675",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "ndmr8aqqmvo1tlfy",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792946109390-bqq9xx.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
