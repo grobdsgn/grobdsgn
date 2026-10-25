@@ -579,7 +579,7 @@ que se recuerdan.</h1>
 <footer><div class="wrap footer-inner"><span id="footerLeft">© 2025 Grobdesigns</span><span id="footerRight">Diseñado con intención</span></div></footer>
 
 <div class="login-screen" id="loginScreen">
-  <button type="button" class="login-close" id="loginClose" aria-label="Cerrar">✕</button>
+  <button type="button" class="login-close" id="loginClose" aria-label="Cerrar">X</button>
   <form class="login-card" id="loginForm">
     <img src="logo.svg" alt="Grobdesigns" class="login-logo" onerror="this.style.display='none'">
     <h2>Panel de administración</h2>
@@ -595,7 +595,7 @@ que se recuerdan.</h1>
     <div class="login-help">
       <a href="https://github.com/settings/tokens/new?scopes=repo&description=grobdesigns-admin" target="_blank" rel="noopener">→ Crear un PAT aquí</a> (marca scope <code>repo</code>). El token se guarda solo en tu navegador.
       <br><br>
-      <strong style="color:var(--text);display:block;margin-bottom:8px">🔑 Acceso al panel:</strong>
+      <strong style="color:var(--text);display:block;margin-bottom:8px">Acceso al panel:</strong>
       <span style="display:block;line-height:1.9">
         Añade <code>#admin</code> al final de la URL:<br>
         <code style="display:inline-block;margin-top:6px">tudominio.com/#admin</code><br>
@@ -616,22 +616,22 @@ que se recuerdan.</h1>
           <span class="sync-status" id="syncStatus"><span class="dot"></span><span id="syncStatusTxt">Sincronizado</span></span>
         </div>
         <div class="admin-actions-top">
-          <button class="abtn outline" id="viewSiteBtn" type="button">👁 Ver web</button>
-          <button class="abtn outline" id="pullBtn" type="button">🔄 Recargar de GitHub</button>
-          <button class="abtn outline" id="logoutBtn" type="button">🚪 Cerrar sesión</button>
+          <button class="abtn outline" id="viewSiteBtn" type="button">Ver web</button>
+          <button class="abtn outline" id="pullBtn" type="button">Recargar de GitHub</button>
+          <button class="abtn outline" id="logoutBtn" type="button">Cerrar sesión</button>
           <button class="abtn primary" id="closeAdminBtn" type="button">Cerrar panel</button>
         </div>
       </div>
     </header>
     <div class="admin-tabs-bar"><div class="admin-tabs-inner">
-      <button class="active" data-ap="covers" type="button">🎨 Covers</button>
-      <button data-ap="portafolio" type="button">📁 Portafolio</button>
-      <button data-ap="clientes" type="button">🏢 Clientes</button>
-      <button data-ap="software" type="button">🧰 Herramientas</button>
-      <button data-ap="hero" type="button">🏠 Inicio</button>
-      <button data-ap="contacto" type="button">✉ Contacto</button>
-      <button data-ap="textos" type="button">✏️ Textos</button>
-      <button data-ap="colores" type="button">🎨 Colores</button>
+      <button class="active" data-ap="covers" type="button">Covers</button>
+      <button data-ap="portafolio" type="button">Portafolio</button>
+      <button data-ap="clientes" type="button">Clientes</button>
+      <button data-ap="software" type="button">Herramientas</button>
+      <button data-ap="hero" type="button">Inicio</button>
+      <button data-ap="contacto" type="button">Contacto</button>
+      <button data-ap="textos" type="button">Textos</button>
+      <button data-ap="colores" type="button">Colores</button>
     </div></div>
   </div>
   <main class="admin-main">
@@ -646,18 +646,16 @@ que se recuerdan.</h1>
             <button class="cat-opt" data-cat="albums" type="button">Álbumes</button>
             <button class="cat-opt" data-cat="ediciones" type="button">Ediciones</button>
           </div>
-          <div class="covers-meta-fields">
-            <div class="admin-field"><label>Nombre</label><input type="text" id="coverNameInput" maxlength="120"></div>
-            <div class="admin-field"><label>Artista</label><input type="text" id="coverArtistInput" maxlength="120"></div>
-            <div class="admin-field"><label>Año</label><input type="text" id="coverYearInput" maxlength="20"></div>
-          </div>
+          
           <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
-            <label style="color:var(--accent)">Añadir desde URL</label>
-            <div style="display:flex;gap:10px;margin-top:8px">
-              <input type="url" id="coverUrlInput" placeholder="https://ejemplo.com/imagen.jpg o enlace de Drive" style="flex:1">
-              <button type="button" class="abtn primary" id="addCoverUrlBtn">Añadir</button>
+            <label style="color:var(--accent)">Añadir desde enlaces (una URL por línea)</label>
+            <textarea id="coverUrlsInput" rows="3" placeholder="https://ejemplo.com/imagen.jpg&#10;https://lh3.googleusercontent.com/d/ID"></textarea>
+            <div style="display:flex;gap:10px;margin-top:10px;align-items:center;">
+              <button type="button" class="abtn primary" id="addCoverUrlsBtn">Añadir</button>
+              <span style="font-size:.75rem;color:var(--muted)">Categoría: <span id="currentCatLabel" style="color:var(--text)">Sencillos</span></span>
             </div>
           </div>
+
           <div class="covers-filters" style="padding:0;margin-bottom:18px">
             <button class="covers-filter-btn active" data-admin-filter="todos" type="button">Todos <span class="count" id="adminCountTodos">0</span></button>
             <button class="covers-filter-btn" data-admin-filter="sencillo" type="button">Sencillos <span class="count" id="adminCountSencillo">0</span></button>
@@ -669,7 +667,7 @@ que se recuerdan.</h1>
       </section>
     </div>
     <div class="admin-panel" data-ap-view="portafolio">
-      <div class="panel-header"><h1>Portafolio</h1><button class="abtn primary" id="newCatBtn" type="button">＋ Crear categoría</button></div>
+      <div class="panel-header"><h1>Portafolio</h1><button class="abtn primary" id="newCatBtn" type="button">+ Crear categoría</button></div>
       <div id="adminCatsList"></div>
     </div>
     <div class="admin-panel" data-ap-view="clientes">
@@ -678,27 +676,23 @@ que se recuerdan.</h1>
         <header class="card-header"><div><h2>Logos de clientes</h2></div><span class="counter" id="clientesCounter">0 / 40</span></header>
         <div class="card-body">
           <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
-            <label style="color:var(--accent)">Añadir logo desde URL</label>
-            <div style="display:flex;gap:10px;margin-top:8px">
-              <input type="url" id="clienteUrlInput" placeholder="https://ejemplo.com/logo.png" style="flex:1">
-              <button type="button" class="abtn primary" id="addClienteUrlBtn">Añadir</button>
-            </div>
+            <label style="color:var(--accent)">Añadir logos desde enlaces (una URL por línea)</label>
+            <textarea id="clienteUrlsInput" rows="3" placeholder="https://ejemplo.com/logo1.png&#10;https://ejemplo.com/logo2.png"></textarea>
+            <button type="button" class="abtn primary" id="addClienteUrlsBtn" style="margin-top:10px">Añadir</button>
           </div>
           <div class="clientes-admin-grid" id="clientesImgGrid"></div>
         </div>
       </section>
     </div>
     <div class="admin-panel" data-ap-view="software">
-      <div class="panel-header"><h1>🧰 Herramientas</h1></div>
+      <div class="panel-header"><h1>Herramientas</h1></div>
       <section class="admin-card">
         <header class="card-header"><div><h2>Software y herramientas</h2></div><span class="counter" id="softwareCounter">0 / 30</span></header>
         <div class="card-body">
           <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
-            <label style="color:var(--accent)">Añadir herramienta desde URL</label>
-            <div style="display:flex;gap:10px;margin-top:8px">
-              <input type="url" id="softwareUrlInput" placeholder="https://ejemplo.com/logo.png" style="flex:1">
-              <button type="button" class="abtn primary" id="addSoftwareUrlBtn">Añadir</button>
-            </div>
+            <label style="color:var(--accent)">Añadir herramientas desde enlaces (una URL por línea)</label>
+            <textarea id="softwareUrlsInput" rows="3" placeholder="https://ejemplo.com/tool1.png&#10;https://ejemplo.com/tool2.png"></textarea>
+            <button type="button" class="abtn primary" id="addSoftwareUrlsBtn" style="margin-top:10px">Añadir</button>
           </div>
           <div class="clientes-admin-grid" id="softwareImgGrid"></div>
         </div>
@@ -713,7 +707,7 @@ que se recuerdan.</h1>
             <div class="admin-field"><label>Etiqueta</label><input type="text" name="eyebrow" maxlength="120"></div>
             <div class="admin-field"><label>Titular</label><textarea name="title" maxlength="300" rows="3"></textarea></div>
             <div class="admin-field"><label>Descripción</label><textarea name="lead" maxlength="600" rows="3"></textarea></div>
-            <button type="submit" class="abtn primary">💾 Guardar</button>
+            <button type="submit" class="abtn primary">Guardar</button>
           </form>
         </div>
       </section>
@@ -721,11 +715,9 @@ que se recuerdan.</h1>
         <header class="card-header"><div><h2>Carrusel de fondo</h2></div><span class="counter" id="heroBgCounter">0 / 10</span></header>
         <div class="card-body">
           <div class="admin-field" style="background:rgba(201,169,97,.05);padding:16px;border:1px solid rgba(201,169,97,.2);border-radius:3px;margin-bottom:18px;">
-            <label style="color:var(--accent)">Añadir fondo desde URL</label>
-            <div style="display:flex;gap:10px;margin-top:8px">
-              <input type="url" id="heroBgUrlInput" placeholder="https://ejemplo.com/fondo.jpg" style="flex:1">
-              <button type="button" class="abtn primary" id="addHeroBgUrlBtn">Añadir</button>
-            </div>
+            <label style="color:var(--accent)">Añadir fondos desde enlaces (una URL por línea)</label>
+            <textarea id="heroUrlsInput" rows="3" placeholder="https://ejemplo.com/fondo1.jpg&#10;https://ejemplo.com/fondo2.jpg"></textarea>
+            <button type="button" class="abtn primary" id="addHeroUrlsBtn" style="margin-top:10px">Añadir</button>
           </div>
           <div class="img-grid-labeled" id="heroBgImgGrid"></div>
         </div>
@@ -738,14 +730,14 @@ que se recuerdan.</h1>
           <div class="admin-field"><label>Email</label><input type="email" name="email"></div>
           <div class="admin-field"><label>Teléfono</label><input type="tel" name="phone"></div>
           <div class="admin-field"><label>Ubicación</label><input type="text" name="location"></div>
-          <button type="submit" class="abtn primary">💾 Guardar</button>
+          <button type="submit" class="abtn primary">Guardar</button>
         </form>
       </div></section>
     </div>
     <div class="admin-panel" data-ap-view="textos">
       <div class="panel-header"><h1>Textos</h1></div>
       <section class="admin-card"><div class="card-body">
-        <form id="adminTextsForm"><button type="submit" class="abtn primary">💾 Guardar</button></form>
+        <form id="adminTextsForm"><button type="submit" class="abtn primary">Guardar</button></form>
         <p style="color:var(--muted);font-size:.85rem;margin-top:16px">Los textos de navegación, botones, etc., se pueden editar como JSON en <code>data.json</code> del repo directamente.</p>
       </div></section>
     </div>
@@ -759,7 +751,7 @@ que se recuerdan.</h1>
             <div class="admin-field"><label>Texto</label><input type="color" name="text"></div>
             <div class="admin-field"><label>Texto secundario</label><input type="color" name="muted"></div>
           </div>
-          <button type="submit" class="abtn primary">💾 Guardar</button>
+          <button type="submit" class="abtn primary">Guardar</button>
         </form>
       </div></section>
     </div>
@@ -772,12 +764,12 @@ que se recuerdan.</h1>
     <input type="hidden" name="id">
     <div class="admin-field"><label>Nombre</label><input type="text" name="name" required maxlength="80"></div>
     <div class="admin-field"><label>Descripción</label><textarea name="description" maxlength="300" rows="2"></textarea></div>
-    <div class="admin-field"><label>Portada (URL)</label>
-      <input type="url" name="cover" placeholder="https://ejemplo.com/portada.jpg o enlace de Drive">
+    <div class="admin-field"><label>Portada (URL de imagen)</label>
+      <input type="url" name="cover" placeholder="https://ejemplo.com/portada.jpg">
     </div>
     <div class="amodal-actions">
       <button type="button" class="abtn outline" id="catCancel">Cancelar</button>
-      <button type="submit" class="abtn primary">💾 Guardar</button>
+      <button type="submit" class="abtn primary">Guardar</button>
     </div>
   </form>
 </div></div>
@@ -791,13 +783,12 @@ que se recuerdan.</h1>
     <div class="admin-field"><label>Descripción</label><textarea name="description" maxlength="800" rows="3"></textarea></div>
     <div class="admin-field"><label>Año</label><input type="text" name="year" maxlength="20"></div>
     <div class="admin-field"><label>Enlace de YouTube (opcional)</label><input type="url" name="youtubeUrl" maxlength="500" placeholder="https://www.youtube.com/watch?v=..."></div>
-    <div class="admin-field"><label>Imágenes (una URL por línea)</label>
+    <div class="admin-field"><label>Imágenes (URL, una por línea)</label>
       <textarea name="images" rows="5" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"></textarea>
-      <small style="display:block;margin-top:6px;color:var(--muted);font-size:.75rem">Pega una URL por línea.</small>
     </div>
     <div class="amodal-actions">
       <button type="button" class="abtn outline" id="projCancel">Cancelar</button>
-      <button type="submit" class="abtn primary">💾 Guardar</button>
+      <button type="submit" class="abtn primary">Guardar</button>
     </div>
   </form>
 </div></div>
@@ -809,7 +800,7 @@ que se recuerdan.</h1>
     <div style="display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:start;margin-bottom:20px">
       <div>
         <img id="coverEditPreview" src="" alt="" style="width:160px;height:160px;object-fit:cover;border-radius:3px;background:#0a0a0a">
-        <div class="admin-field" style="margin-top:10px;margin-bottom:0"><label>URL de imagen</label><input type="url" name="url" placeholder="https://..."></div>
+        <div class="admin-field" style="margin-top:10px;margin-bottom:0"><label>URL Principal</label><input type="url" name="url" placeholder="https://..."></div>
       </div>
       <div>
         <div class="admin-field"><label>Nombre</label><input type="text" name="name" maxlength="120"></div>
@@ -827,17 +818,17 @@ que se recuerdan.</h1>
     <div class="admin-field">
       <label style="display:flex;align-items:center;gap:10px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--text);font-weight:500">
         <input type="checkbox" name="featured" style="width:18px;height:18px;margin:0;accent-color:var(--accent);cursor:pointer">
-        <span>⭐ Destacar en inicio</span>
+        <span>Destacar en inicio</span>
       </label>
     </div>
     <div class="admin-field">
-      <label>Imágenes adicionales (una URL por línea)</label>
+      <label>Imágenes adicionales (URL, una por línea)</label>
       <textarea name="extraImages" rows="4" placeholder="https://ejemplo.com/extra1.jpg&#10;https://ejemplo.com/extra2.jpg"></textarea>
     </div>
     <div class="amodal-actions">
-      <button type="button" class="abtn danger" id="coverEditDelete">🗑 Eliminar</button>
+      <button type="button" class="abtn danger" id="coverEditDelete">Eliminar</button>
       <button type="button" class="abtn outline" id="coverEditCancel">Cancelar</button>
-      <button type="submit" class="abtn primary">💾 Guardar</button>
+      <button type="submit" class="abtn primary">Guardar</button>
     </div>
   </form>
 </div></div>
@@ -861,20 +852,18 @@ function imgPlaceholder(label) {
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 
-// Convierte enlaces de compartir de Google Drive / Dropbox a enlaces directos
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
-  // Google Drive: https://drive.google.com/file/d/ID/view?usp=sharing -> https://lh3.googleusercontent.com/d/ID
+  // Google Drive
   const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (driveMatch && driveMatch[1]) {
     return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
   }
-  // Dropbox: https://www.dropbox.com/s/... -> https://dl.dropboxusercontent.com/s/...
+  // Dropbox
   if (url.includes('dropbox.com')) {
     return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '').replace('&dl=0', '');
   }
-  // Imgur direct links son directos
   return url;
 }
 
@@ -885,6 +874,12 @@ function handleImage(el, label, url) {
   if (!finalUrl) { el.src = imgPlaceholder(label); return; }
   el.src = finalUrl;
   el.onerror = () => { el.onerror = null; el.src = imgPlaceholder(label); };
+}
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
 }
 
 /* ============================================================
@@ -942,20 +937,26 @@ const GH = {
         const existing = await this.getFile(path);
         const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
         if (existing && existing.sha) body.sha = existing.sha;
+        
         const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
         });
+        
         if (res.ok) return true;
+        
         if (res.status === 409) {
+          console.warn(`Conflicto 409 en ${path}. Reintentando...`);
           retries--;
           await new Promise(r => setTimeout(r, 1000));
           continue;
         }
+        
         const errData = await res.json().catch(() => ({}));
         throw new Error(errData.message || `HTTP ${res.status}`);
       } catch (e) {
+        console.error(`Fallo en putFile(${path}):`, e);
         retries--;
         if (retries === 0) throw e;
         await new Promise(r => setTimeout(r, 1000));
@@ -1046,17 +1047,25 @@ function setSyncStatus(state, text) {
 }
 
 async function saveData(silent = false) {
-  if (!GH.isConfigured()) return false;
+  if (!GH.isConfigured()) {
+    toast('No estás conectado a GitHub', 'error');
+    return false;
+  }
   DATA.covers = COVERS;
   setSyncStatus('saving');
   try {
     const ok = await GH.saveData(DATA);
-    if (ok) { setSyncStatus('ok'); if (!silent) toast('✅ Guardado en GitHub', 'ok'); }
-    else { setSyncStatus('error'); toast('❌ Error al guardar', 'error'); }
+    if (ok) {
+      setSyncStatus('ok');
+      if (!silent) toast('Guardado en GitHub', 'ok');
+    } else {
+      setSyncStatus('error');
+      toast('Error al guardar. Revisa la consola.', 'error');
+    }
     return ok;
   } catch (e) {
     setSyncStatus('error');
-    toast('❌ Error: ' + e.message, 'error');
+    toast('Error: ' + e.message, 'error');
     return false;
   }
 }
@@ -1212,7 +1221,7 @@ function renderHomeMusicPlayer() {
   handleImage(im, cover.name, cover.url);
   coverEl.appendChild(im);
   const body = $('#homeMusicBody'); body.innerHTML = '';
-  const eb = document.createElement('div'); eb.className = 'music-card-eyebrow'; eb.textContent = cover.featured ? '★ Cover destacado' : 'Ahora suena'; body.appendChild(eb);
+  const eb = document.createElement('div'); eb.className = 'music-card-eyebrow'; eb.textContent = cover.featured ? 'Cover destacado' : 'Ahora suena'; body.appendChild(eb);
   const title = document.createElement('h3'); title.className = 'music-card-title'; title.textContent = cover.name || '(Sin título)'; body.appendChild(title);
   const ar = document.createElement('div'); ar.className = 'music-card-artist'; ar.textContent = [cover.artist, cover.year].filter(Boolean).join(' · '); body.appendChild(ar);
   const link = document.createElement('a'); link.className = 'music-card-link'; link.href = '#'; link.textContent = 'Ver proyecto →';
@@ -1348,7 +1357,7 @@ const Lightbox = {
     if (this.el) return;
     const o = document.createElement('div'); o.className = 'lightbox-overlay';
     const im = document.createElement('img'); im.className = 'lightbox-img';
-    const close = document.createElement('button'); close.className = 'lightbox-close'; close.textContent = '✕';
+    const close = document.createElement('button'); close.className = 'lightbox-close'; close.textContent = 'X';
     const prev = document.createElement('button'); prev.className = 'lightbox-nav prev'; prev.textContent = '‹';
     const next = document.createElement('button'); next.className = 'lightbox-nav next'; next.textContent = '›';
     const counter = document.createElement('div'); counter.className = 'lightbox-counter';
@@ -1481,14 +1490,18 @@ $('#loginForm').addEventListener('submit', async e => {
   GH.save(token, repo, branch);
   
   const user = await GH.getUser();
-  if (!user) { GH.clear(); msg.textContent = 'Error 401: Token inválido.'; return; }
+  if (!user) { GH.clear(); msg.textContent = 'Error 401: Token inválido o mal copiado.'; return; }
   
   const info = await GH.getRepoInfo();
   
-  if (info && info.error) { GH.clear(); msg.textContent = `Error ${info.status}: ${info.message}`; return; }
+  if (info && info.error) { 
+    GH.clear(); 
+    msg.textContent = `Error ${info.status}: ${info.message}`; 
+    return; 
+  }
   if (!info) { GH.clear(); msg.textContent = 'No tienes acceso a ese repositorio'; return; }
   
-  if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura. Se puede leer pero no guardar.'; }
+  if (info.permissions && !info.permissions.push) { msg.textContent = 'Advertencia: el token no tiene permiso de escritura.'; }
   msg.textContent = '';
   window.isAdminUnlocked = true;
   $('#loginScreen').classList.remove('active');
@@ -1517,7 +1530,7 @@ $('#closeAdminBtn').onclick = () => {
 };
 
 $('#viewSiteBtn').onclick = () => { $('#adminOverlay').classList.remove('active'); document.body.classList.remove('locked'); window.scrollTo(0, 0); };
-$('#pullBtn').onclick = async () => { await reloadFromGitHub(); toast('✅ Recargado de GitHub', 'ok'); };
+$('#pullBtn').onclick = async () => { await reloadFromGitHub(); toast('Recargado de GitHub', 'ok'); };
 
 function renderAdmin() {
   const f = $('#adminHeroForm');
@@ -1536,51 +1549,51 @@ $$('.admin-tabs-inner button').forEach(b => {
 });
 
 /* ============================================================
-   ADD FROM URL FUNCTIONS
+   ADD FROM URL FUNCTIONS (MULTIPLE)
    ============================================================ */
-$('#addCoverUrlBtn').onclick = async () => {
-  const url = $('#coverUrlInput').value.trim();
-  if (!url) return toast('Pega una URL válida', 'error');
-  const name = $('#coverNameInput').value.trim();
-  const artist = $('#coverArtistInput').value.trim();
-  const year = $('#coverYearInput').value.trim();
+$('#addCoverUrlsBtn').onclick = async () => {
+  const urls = $('#coverUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return toast('Pega al menos una URL válida', 'error');
+  const cat = selectedUploadCategory;
   
-  COVERS.push({ id: uid(), url, category: selectedUploadCategory, name, artist, year, review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
+  urls.forEach(url => {
+    COVERS.push({ id: uid(), url, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false });
+  });
   
   await saveData(true);
   renderCoversAdmin(); renderCovers();
-  $('#coverUrlInput').value = ''; $('#coverNameInput').value = ''; $('#coverArtistInput').value = ''; $('#coverYearInput').value = '';
-  toast('✅ Cover añadido', 'ok');
+  $('#coverUrlsInput').value = '';
+  toast('Covers añadidos correctamente', 'ok');
 };
 
-$('#addClienteUrlBtn').onclick = async () => {
-  const url = $('#clienteUrlInput').value.trim();
-  if (!url) return toast('Pega una URL válida', 'error');
-  DATA.clientes.push(url);
+$('#addClienteUrlsBtn').onclick = async () => {
+  const urls = $('#clienteUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return toast('Pega al menos una URL válida', 'error');
+  DATA.clientes.push(...urls);
   await saveData(true);
   renderClientesGrid(); renderClientes();
-  $('#clienteUrlInput').value = '';
-  toast('✅ Logo añadido', 'ok');
+  $('#clienteUrlsInput').value = '';
+  toast('Logos añadidos correctamente', 'ok');
 };
 
-$('#addSoftwareUrlBtn').onclick = async () => {
-  const url = $('#softwareUrlInput').value.trim();
-  if (!url) return toast('Pega una URL válida', 'error');
-  DATA.software.push(url);
+$('#addSoftwareUrlsBtn').onclick = async () => {
+  const urls = $('#softwareUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return toast('Pega al menos una URL válida', 'error');
+  DATA.software.push(...urls);
   await saveData(true);
   renderSoftwareGrid(); renderSoftware();
-  $('#softwareUrlInput').value = '';
-  toast('✅ Herramienta añadida', 'ok');
+  $('#softwareUrlsInput').value = '';
+  toast('Herramientas añadidas correctamente', 'ok');
 };
 
-$('#addHeroBgUrlBtn').onclick = async () => {
-  const url = $('#heroBgUrlInput').value.trim();
-  if (!url) return toast('Pega una URL válida', 'error');
-  DATA.heroImages.push(url);
+$('#addHeroUrlsBtn').onclick = async () => {
+  const urls = $('#heroUrlsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return toast('Pega al menos una URL válida', 'error');
+  DATA.heroImages.push(...urls);
   await saveData(true);
   renderHeroBgGrid(); renderHome();
-  $('#heroBgUrlInput').value = '';
-  toast('✅ Fondo añadido', 'ok');
+  $('#heroUrlsInput').value = '';
+  toast('Fondos añadidos correctamente', 'ok');
 };
 
 /* HERO BG GRID */
@@ -1599,14 +1612,14 @@ function renderHeroBgGrid() {
     const actions = document.createElement('div'); actions.className = 'img-card-actions';
     const up = document.createElement('button'); up.textContent = '↑'; up.disabled = i === 0; up.onclick = () => { [list[i - 1], list[i]] = [list[i], list[i - 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
     const dn = document.createElement('button'); dn.textContent = '↓'; dn.disabled = i === list.length - 1; dn.onclick = () => { [list[i + 1], list[i]] = [list[i], list[i + 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = '🗑'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderHeroBgGrid(); renderHome(); };
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderHeroBgGrid(); renderHome(); };
     actions.append(up, dn, rm); card.appendChild(actions);
     grid.appendChild(card);
   });
 }
 
 /* COVERS ADMIN */
-$$('.cat-opt').forEach(b => b.onclick = () => { selectedUploadCategory = b.dataset.cat; $$('.cat-opt').forEach(x => x.classList.toggle('active', x === b)); });
+$$('.cat-opt').forEach(b => b.onclick = () => { selectedUploadCategory = b.dataset.cat; $$('.cat-opt').forEach(x => x.classList.toggle('active', x === b)); $('#currentCatLabel').textContent = b.textContent; });
 $$('.covers-filter-btn[data-admin-filter]').forEach(b => b.onclick = () => { currentAdminFilter = b.dataset.adminFilter; $$('.covers-filter-btn[data-admin-filter]').forEach(x => x.classList.toggle('active', x === b)); renderCoversAdmin(); });
 function renderCoversAdmin() {
   const grid = $('#coversAdminGrid'); if (!grid) return;
@@ -1622,8 +1635,8 @@ function renderCoversAdmin() {
     const n = document.createElement('div'); n.className = 'meta-name'; n.textContent = c.name || '(Sin título)'; meta.appendChild(n);
     const sub = document.createElement('div'); sub.className = 'meta-sub'; sub.textContent = [c.artist, c.year].filter(Boolean).join(' · ') || 'Sin datos'; meta.appendChild(sub);
     item.appendChild(meta);
-    const ed = document.createElement('button'); ed.className = 'ed'; ed.textContent = '✎'; ed.onclick = e => { e.stopPropagation(); openCoverEdit(realIdx); }; item.appendChild(ed);
-    const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕'; rm.onclick = async e => { e.stopPropagation(); if (!confirm('¿Eliminar?')) return; COVERS.splice(realIdx, 1); await saveData(true); renderCoversAdmin(); renderCovers(); toast('Eliminado', 'ok'); }; item.appendChild(rm);
+    const ed = document.createElement('button'); ed.className = 'ed'; ed.textContent = 'Editar'; ed.onclick = e => { e.stopPropagation(); openCoverEdit(realIdx); }; item.appendChild(ed);
+    const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = 'Eliminar'; rm.onclick = async e => { e.stopPropagation(); if (!confirm('¿Eliminar?')) return; COVERS.splice(realIdx, 1); await saveData(true); renderCoversAdmin(); renderCovers(); toast('Eliminado', 'ok'); }; item.appendChild(rm);
     grid.appendChild(item);
   });
 }
@@ -1664,7 +1677,7 @@ $('#coverEditForm').addEventListener('submit', async e => {
   COVERS[i].extraImages = e.target.elements.extraImages.value.split('\n').map(s => s.trim()).filter(Boolean);
   if (COVERS[i].featured) COVERS.forEach((c, j) => { if (j !== i) c.featured = false; });
   await saveData(true);
-  $('#coverEditModal').classList.remove('active'); renderCoversAdmin(); renderCovers(); toast('✅ Actualizado', 'ok');
+  $('#coverEditModal').classList.remove('active'); renderCoversAdmin(); renderCovers(); toast('Actualizado', 'ok');
 });
 
 /* CLIENTES */
@@ -1679,7 +1692,7 @@ function renderClientesGrid() {
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
     const im = document.createElement('img'); handleImage(im, 'Logo', ref); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = '🗑'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderClientesGrid(); renderClientes(); }; act.appendChild(rm);
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderClientesGrid(); renderClientes(); }; act.appendChild(rm);
     c.appendChild(act);
     grid.appendChild(c);
   });
@@ -1697,7 +1710,7 @@ function renderSoftwareGrid() {
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
     const im = document.createElement('img'); handleImage(im, 'Tool', ref); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = '🗑'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderSoftwareGrid(); renderSoftware(); }; act.appendChild(rm);
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderSoftwareGrid(); renderSoftware(); }; act.appendChild(rm);
     c.appendChild(act); grid.appendChild(c);
   });
 }
@@ -1719,13 +1732,13 @@ function renderAdminCats() {
     const p = document.createElement('p'); p.textContent = cat.description || ''; info.appendChild(p);
     head.appendChild(info);
     const act = document.createElement('div'); act.className = 'category-actions';
-    const edit = document.createElement('button'); edit.className = 'abtn outline small'; edit.textContent = '✎'; edit.onclick = () => openCatModal(cat); act.appendChild(edit);
-    const del = document.createElement('button'); del.className = 'abtn danger small'; del.textContent = '🗑'; del.onclick = () => { if (!confirm('¿Eliminar categoría?')) return; DATA.categories.splice(ci, 1); saveData(true); renderAdminCats(); renderCatRows(); }; act.appendChild(del);
+    const edit = document.createElement('button'); edit.className = 'abtn outline small'; edit.textContent = 'Editar'; edit.onclick = () => openCatModal(cat); act.appendChild(edit);
+    const del = document.createElement('button'); del.className = 'abtn danger small'; del.textContent = 'Eliminar'; del.onclick = () => { if (!confirm('¿Eliminar categoría?')) return; DATA.categories.splice(ci, 1); saveData(true); renderAdminCats(); renderCatRows(); }; act.appendChild(del);
     head.appendChild(act); block.appendChild(head);
     const projS = document.createElement('div'); projS.className = 'category-projects-section';
     const projH = document.createElement('div'); projH.className = 'projects-section-head';
     projH.innerHTML = '<div class="projects-section-title">Proyectos <span class="badge">' + (cat.projects?.length || 0) + '</span></div>';
-    const addBtn = document.createElement('button'); addBtn.className = 'abtn primary small'; addBtn.textContent = '＋ Añadir'; addBtn.onclick = () => openProjModal(cat.id, null); projH.appendChild(addBtn);
+    const addBtn = document.createElement('button'); addBtn.className = 'abtn primary small'; addBtn.textContent = '+ Añadir'; addBtn.onclick = () => openProjModal(cat.id, null); projH.appendChild(addBtn);
     projS.appendChild(projH);
     (cat.projects || []).forEach((p, pi) => {
       const item = document.createElement('div'); item.className = 'project-item';
@@ -1738,8 +1751,8 @@ function renderAdminCats() {
       const pp = document.createElement('p'); pp.textContent = p.description || ''; info.appendChild(pp);
       row.appendChild(info);
       const actions = document.createElement('div'); actions.className = 'project-actions';
-      const e = document.createElement('button'); e.className = 'abtn outline small'; e.textContent = '✎'; e.onclick = () => openProjModal(cat.id, p); actions.appendChild(e);
-      const d = document.createElement('button'); d.className = 'abtn danger small'; d.textContent = '🗑'; d.onclick = () => { if (!confirm('¿Eliminar proyecto?')) return; cat.projects.splice(pi, 1); saveData(true); renderAdminCats(); }; actions.appendChild(d);
+      const e = document.createElement('button'); e.className = 'abtn outline small'; e.textContent = 'Editar'; e.onclick = () => openProjModal(cat.id, p); actions.appendChild(e);
+      const d = document.createElement('button'); d.className = 'abtn danger small'; d.textContent = 'Eliminar'; d.onclick = () => { if (!confirm('¿Eliminar proyecto?')) return; cat.projects.splice(pi, 1); saveData(true); renderAdminCats(); }; actions.appendChild(d);
       row.appendChild(actions);
       item.appendChild(row); projS.appendChild(item);
     });
@@ -1765,7 +1778,7 @@ catForm.addEventListener('submit', async e => {
   if (id) { const c = DATA.categories.find(x => x.id === id); if (c) { c.name = name; c.description = desc; c.cover = cover; } }
   else { DATA.categories.push({ id: uid(), name, description: desc, cover, projects: [] }); }
   await saveData(true);
-  catModal.classList.remove('active'); renderAdminCats(); renderCatRows(); toast('✅ Guardado', 'ok');
+  catModal.classList.remove('active'); renderAdminCats(); renderCatRows(); toast('Guardado', 'ok');
 });
 
 /* PROYECTOS */
@@ -1802,21 +1815,21 @@ projForm.addEventListener('submit', async e => {
   if (id) { const p = cat.projects.find(x => x.id === id); if (p) Object.assign(p, obj); }
   else { cat.projects.push({ id: uid(), ...obj }); }
   await saveData(true);
-  projModal.classList.remove('active'); renderAdminCats(); toast('✅ Guardado', 'ok');
+  projModal.classList.remove('active'); renderAdminCats(); toast('Guardado', 'ok');
 });
 
 /* FORMULARIO HERO/CONTACTO */
 $('#adminHeroForm').addEventListener('submit', async e => {
   e.preventDefault();
   DATA.hero = { eyebrow: e.target.eyebrow.value, title: e.target.title.value, lead: e.target.lead.value };
-  await saveData(true); renderHome(); toast('✅ Publicado', 'ok');
+  await saveData(true); renderHome(); toast('Publicado', 'ok');
 });
 $('#adminContactForm').addEventListener('submit', async e => {
   e.preventDefault();
   DATA.contact = { email: e.target.email.value, phone: e.target.phone.value, location: e.target.location.value };
-  await saveData(true); renderHome(); toast('✅ Publicado', 'ok');
+  await saveData(true); renderHome(); toast('Publicado', 'ok');
 });
-$('#adminTextsForm').addEventListener('submit', async e => { e.preventDefault(); await saveData(true); toast('✅ Guardado', 'ok'); });
+$('#adminTextsForm').addEventListener('submit', async e => { e.preventDefault(); await saveData(true); toast('Guardado', 'ok'); });
 
 /* THEME */
 function populateThemeAdmin() {
@@ -1830,7 +1843,7 @@ $('#adminThemeForm').addEventListener('submit', async e => {
   DATA.theme.bg = f.elements.bg.value;
   DATA.theme.text = f.elements.text.value;
   DATA.theme.muted = f.elements.muted.value;
-  await saveData(true); applyTheme(); toast('✅ Guardado', 'ok');
+  await saveData(true); applyTheme(); toast('Guardado', 'ok');
 });
 
 /* CONTACTO */
@@ -1870,7 +1883,7 @@ async function init() {
   }
 }
 init();
-console.log('%c🔐 Grobdesigns v46 — URLs de imágenes (Drive/Dropbox ready)', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('%cGrobdesigns v47 — URLs y guardado verificado', 'color:#C9A961;font-weight:bold;font-size:14px');
 </script>
 </body>
 </html>
