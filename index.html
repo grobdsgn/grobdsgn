@@ -27,8 +27,8 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
 input,textarea,select{font:inherit;color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(24px,5vw,56px)}
 em{font-family:'Fraunces',serif;font-style:italic;font-weight:700;color:var(--accent)}
-nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:18px 0;transition:padding .35s var(--ease),background .35s var(--ease);border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent)}
-nav.top.scrolled{padding:12px 0;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);border-bottom-color:var(--line)}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:18px 0;transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s;border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent)}
+nav.top.scrolled{padding:12px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);border-bottom-color:var(--line);box-shadow:0 4px 30px rgba(0,0,0,0.5)}
 .nav-inner{max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:24px}
 .logo{display:flex;align-items:center;cursor:pointer;user-select:none;padding:4px 0}
 .logo-img{height:26px;width:auto;display:block;filter:brightness(0) invert(1)}
@@ -106,6 +106,8 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:100px;background:#0a0a0a}
 .masonry-empty{padding:80px 24px;text-align:center;color:var(--muted);columns:1}
+.embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
+.embed-item iframe{width:100%;border:0;display:block}
 .lightbox-overlay{position:fixed;inset:0;z-index:24000;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:40px;opacity:0;pointer-events:none;transition:opacity .3s}
 .lightbox-overlay.active{opacity:1;pointer-events:auto}
 .lightbox-img{max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:4px}
@@ -206,9 +208,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .c-value{font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;display:inline-block}
 .c-value:hover{color:var(--accent)}
 .c-item-flex{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.copy-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);cursor:pointer;flex-shrink:0}
-.copy-btn:hover{background:var(--accent);color:#000}
-.copy-btn svg{width:13px;height:13px}
 .field{margin-bottom:24px}
 .field label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
 .field input,.field textarea{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;outline:none}
@@ -455,7 +454,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             <div class="detalle-meta-line" id="coverHeroMeta" style="margin-top:32px"></div>
           </div>
           <div class="cover-extra-block" style="margin-bottom:20px">
-            <div class="cover-extra-label">Imágenes</div>
+            <div class="cover-extra-label">Galería y Multimedia</div>
           </div>
           <div class="cover-extra-imgs-wrap" id="coverExtraImgs"></div>
         </div>
@@ -507,7 +506,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
      PANEL DE ADMINISTRACIÓN
      ============================================================ -->
 <div id="adminApp">
-  <!-- Login -->
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
       <img src="logo.svg" alt="Grobdesigns" class="a-login-logo" onerror="this.style.display='none'">
@@ -532,7 +530,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
     </div>
   </div>
 
-  <!-- Dashboard -->
   <div class="admin-layout" id="aDashboard" style="display:none">
     <aside class="a-sidebar">
       <div class="a-sidebar-header">
@@ -609,12 +606,19 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
                   <option value="ediciones">Edición</option>
                 </select>
               </div>
+              
+              <div class="a-form-group">
+                <label class="a-form-label">Link de YouTube / Spotify / Apple Music</label>
+                <input type="url" id="aCoverMusicLink" class="a-form-input" placeholder="https://youtube.com/watch?v=... o https://open.spotify.com/track/...">
+                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Si añades un link de YouTube sin imagen, se usará la miniatura del video.</small>
+              </div>
+
               <div class="a-upload-zone" onclick="document.getElementById('aCoverFileInput').click()">
-                <p>Haz clic para subir covers (se guardan en media)</p>
+                <p>Haz clic para subir covers (imágenes)</p>
               </div>
               <input type="file" id="aCoverFileInput" accept="image/*" multiple hidden>
               <div class="a-form-group mt-4">
-                <label class="a-form-label">O pegar URLs externas (una por línea)</label>
+                <label class="a-form-label">O pegar URLs de imágenes externas (una por línea)</label>
                 <div style="display:flex;gap:10px">
                   <textarea id="aCoverUrlsInput" class="a-form-textarea" rows="2"></textarea>
                   <button class="a-btn a-btn-outline" id="aBtnAddCoverUrls">Añadir</button>
@@ -739,7 +743,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        <div class="a-form-group"><label class="a-form-label">Spotify URL</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        <div class="a-form-group"><label class="a-form-label">Link Musical (YouTube, Spotify, Apple Music)</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL o ruta, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3"></textarea></div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
@@ -760,12 +764,37 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 
 <script>
 /* ============================================================
-   LÓGICA GLOBAL
+   HELPERS GLOBALES
    ============================================================ */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 
-// Helper para URLs de imágenes
+function getYouTubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function getEmbedUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  url = url.trim(); if (!url) return null;
+  if (url.includes('spotify.com')) {
+    const m = url.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/([a-zA-Z0-9]+)/);
+    if (m) return { platform: 'spotify', height: m[1] === 'track' ? 152 : 380, url: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator` };
+    if (url.includes('/embed/')) return { platform: 'spotify', height: 152, url };
+  }
+  if (url.includes('music.apple.com')) {
+    const isAlbum = url.includes('/album/') && !url.includes('?i=');
+    return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
+  }
+  const ytId = getYouTubeId(url);
+  if (ytId) {
+    return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
+  }
+  return null;
+}
+
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
@@ -775,7 +804,6 @@ function getDirectImageUrl(url) {
   return url;
 }
 
-// Resuelve la URL de la imagen (soporta rutas locales en media y URLs externas)
 function resolveImageUrl(url) {
   if (!url) return '';
   if (url.startsWith('http')) return getDirectImageUrl(url);
@@ -813,7 +841,7 @@ function compressImage(file, maxWidth = 1200, quality = 0.85) {
 }
 
 /* ============================================================
-   GITHUB API (Compartida)
+   GITHUB API (Blindado contra Error 409)
    ============================================================ */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -830,7 +858,7 @@ const GH = {
     return res;
   },
   async getFile(path) {
-    const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`);
+    const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const d = await res.json();
@@ -840,7 +868,7 @@ const GH = {
     return { sha: d.sha, content: new TextDecoder('utf-8').decode(bytes) };
   },
   async putFile(path, base64Content, message) {
-    let retries = 3;
+    let retries = 5;
     while (retries > 0) {
       try {
         const existing = await this.getFile(path);
@@ -854,14 +882,18 @@ const GH = {
         });
         
         if (res.ok) return true;
-        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1000)); continue; }
+        if (res.status === 409) { 
+          retries--; 
+          await new Promise(r => setTimeout(r, 2000)); 
+          continue; 
+        }
         
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
       } catch (e) {
         retries--;
         if (retries === 0) throw e;
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 2000));
       }
     }
   },
@@ -907,8 +939,16 @@ let DATA = {
 };
 
 /* ============================================================
-   ENRUTADOR
+   ENRUTADOR Y SCROLL HEADER
    ============================================================ */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (nav) {
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+});
+
 function initRouter() {
   const isAdmin = location.hash.toLowerCase() === '#admin';
   if (isAdmin) {
@@ -1032,12 +1072,82 @@ function renderPublicCovers(covers) {
     info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
     item.appendChild(info);
     item.onclick = () => {
-      // Navegar a cover detalle
       window.location.hash = `#cover-${c.id}`;
     };
     grid.appendChild(item);
   });
 }
+
+// Cover Detalle Público (Muestra embed y galería)
+window.addEventListener('hashchange', () => {
+  const hash = location.hash;
+  if (hash.startsWith('#cover-')) {
+    const id = hash.replace('#cover-', '');
+    const c = DATA.covers.find(x => x.id === id);
+    if (c) {
+      $('#coverHeroImg').src = resolveImageUrl(c.url);
+      $('#coverHeroTitle').textContent = c.name || 'Sin título';
+      $('#coverHeroArtist').textContent = c.artist || '';
+      $('#coverHeroBadge').textContent = c.category || 'SENCILLO';
+      
+      const ytBtn = $('#coverHeroYouTube');
+      if (c.spotifyUrl && getYouTubeId(c.spotifyUrl)) {
+        ytBtn.href = c.spotifyUrl; ytBtn.style.display = 'inline-flex';
+      } else ytBtn.style.display = 'none';
+
+      $('#coverHeroMusic').innerHTML = '';
+      const embedData = getEmbedUrl(c.spotifyUrl);
+      if (embedData) {
+        const ifr = document.createElement('iframe');
+        ifr.src = embedData.url;
+        ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
+        ifr.height = embedData.height;
+        ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
+        $('#coverHeroMusic').appendChild(ifr);
+      }
+
+      $('#coverHeroResena').textContent = c.review || '';
+      const extraImgs = $('#coverExtraImgs');
+      extraImgs.innerHTML = '';
+      
+      const masonry = document.createElement('div');
+      masonry.className = 'masonry-gallery';
+      
+      // Añadir embed a la galería si existe
+      if (embedData) {
+        const embedBox = document.createElement('div');
+        embedBox.className = 'embed-item';
+        const ifr2 = document.createElement('iframe');
+        ifr2.src = embedData.url;
+        ifr2.height = embedData.height;
+        ifr2.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
+        embedBox.appendChild(ifr2);
+        masonry.appendChild(embedBox);
+      }
+
+      (c.extraImages || []).forEach(url => {
+        const item = document.createElement('div'); item.className = 'masonry-item';
+        const im = document.createElement('img');
+        im.src = resolveImageUrl(url);
+        im.onerror = () => handleImgError(im);
+        item.appendChild(im);
+        item.onclick = () => window.open(resolveImageUrl(url), '_blank');
+        masonry.appendChild(item);
+      });
+      
+      if (masonry.children.length > 0) {
+        $('#coverExtraSection').classList.remove('hidden');
+        extraImgs.appendChild(masonry);
+      } else {
+        $('#coverExtraSection').classList.add('hidden');
+      }
+
+      // Switch view logic (simulado)
+      $$('.view').forEach(v => v.classList.remove('active'));
+      $('[data-view="coverDetalle"]').classList.add('active');
+    }
+  }
+});
 
 /* ============================================================
    LÓGICA PANEL ADMIN
@@ -1115,11 +1225,17 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // Clientes
+  // Clientes (Con botones de orden)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
-    el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff"><div class="a-cover-card-actions" style="padding:10px"><button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('clientes', ${i})">Eliminar</button></div>`;
+    el.innerHTML = `
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
+      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''}>↑</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''}>↓</button>
+        <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
+      </div>`;
     clGrid.appendChild(el);
   });
 
@@ -1148,6 +1264,14 @@ window.delAdminItem = (key, i) => {
     DATA[key].splice(i, 1);
     renderAdmin(); saveAdminData();
   }
+};
+
+window.moveItem = (key, i, dir) => {
+  const arr = DATA[key];
+  const temp = arr[i];
+  arr[i] = arr[i + dir];
+  arr[i + dir] = temp;
+  renderAdmin(); saveAdminData();
 };
 
 window.openAdminCoverModal = (i) => {
@@ -1188,24 +1312,41 @@ $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
 // Uploads Admin
-async function handleAUpload(files, target, cat='sencillo') {
-  if(!files.length) return;
-  aToast(`Subiendo ${files.length} imágenes...`);
+async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
+  if(!files.length && !musicUrl) return;
+  
+  if (files.length) aToast(`Subiendo ${files.length} imágenes...`);
+  
   for(const f of files) {
     try {
       const path = await GH.uploadImage(f);
       if(target === DATA.covers) {
-        DATA.covers.push({ id: uid(), url: path, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', featured: false });
+        DATA.covers.push({ id: uid(), url: path, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false });
       } else {
         target.push(path);
       }
     } catch(e) { aToast(`Error subiendo ${f.name}`, 'error'); }
   }
-  renderAdmin(); saveAdminData(); aToast('Subida completada');
+  
+  // Si hay link musical pero no imágenes, usamos la miniatura de YouTube (si es YT)
+  if (!files.length && musicUrl && target === DATA.covers) {
+    let thumb = '';
+    const ytId = getYouTubeId(musicUrl);
+    if (ytId) thumb = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+    
+    DATA.covers.push({ id: uid(), url: thumb, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false });
+  }
+
+  renderAdmin(); saveAdminData(); aToast('Añadido correctamente');
 }
 
 $('#aHeroFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.heroImages); e.target.value=''; };
-$('#aCoverFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.covers, $('#aCoverCategorySelect').value); e.target.value=''; };
+$('#aCoverFileInput').onchange = async e => { 
+  const musicUrl = $('#aCoverMusicLink').value.trim();
+  await handleAUpload([...e.target.files], DATA.covers, $('#aCoverCategorySelect').value, musicUrl); 
+  e.target.value=''; 
+  $('#aCoverMusicLink').value='';
+};
 $('#aClientFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.clientes); e.target.value=''; };
 $('#aToolFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.software); e.target.value=''; };
 
@@ -1216,9 +1357,10 @@ $('#aBtnAddHeroUrls').onclick = () => {
 };
 $('#aBtnAddCoverUrls').onclick = () => {
   const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const musicUrl = $('#aCoverMusicLink').value.trim();
   const cat = $('#aCoverCategorySelect').value;
-  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', featured: false }));
-  $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData();
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false }));
+  $('#aCoverUrlsInput').value=''; $('#aCoverMusicLink').value=''; renderAdmin(); saveAdminData();
 };
 $('#aBtnAddClientUrls').onclick = () => {
   const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
