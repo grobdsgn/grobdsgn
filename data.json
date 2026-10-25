@@ -23,6 +23,13 @@
       "description": "",
       "cover": "",
       "projects": []
+    },
+    {
+      "id": "mmlfg3tomvo0ovmp",
+      "name": "Eventos",
+      "description": "",
+      "cover": "",
+      "projects": []
     }
   ],
   "clientes": [
@@ -43,7 +50,15 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943729888-ei0vkv.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943731147-4osy69.png"
   ],
-  "software": [],
+  "software": [
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944370110-n1t94n.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944371689-lx7wpg.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944372982-tbnfzd.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944374168-nu6lt6.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944375289-67ep95.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944376451-fcfof8.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944377520-q6441v.png"
+  ],
   "covers": [
     {
       "id": "zhj2nt9emvo0ixwy",
