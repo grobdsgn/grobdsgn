@@ -998,12 +998,17 @@
       "id": "vhqace36mvocby5i",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792963761944-l8ebc3.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "El Experimento",
+      "artist": "Oma",
+      "year": "2017",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963772026-hv58wd.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963773193-la68nx.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963774427-4a1dta.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792963775471-am943g.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/6MCsxhSAOaBnPFJHhmzDLQ?si=fbdb04b65db740aa",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
