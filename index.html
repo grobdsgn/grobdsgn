@@ -27,14 +27,13 @@ img{max-width:100%;display:block}
   .sidebar{transform:translateX(-100%);transition:transform 0.3s ease}
   .sidebar.open{transform:translateX(0)}
   .main-content{margin-left:0}
-  .mobile-menu-btn{display:block !important}
 }
 
 /* Sidebar */
 .sidebar-header{padding:24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
 .sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .sidebar-nav{padding:16px 12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
-.nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:12px;transition:all 0.2s;cursor:pointer}
+.nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);transition:all 0.2s;cursor:pointer}
 .nav-item:hover{background:var(--surface-hover);color:var(--text)}
 .nav-item.active{background:rgba(201,169,97,0.1);color:var(--accent);font-weight:600}
 .sidebar-footer{padding:20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
@@ -92,6 +91,10 @@ img{max-width:100%;display:block}
 .cover-card-actions{display:flex;gap:6px;margin-top:10px}
 .cover-card-actions .btn{flex:1;padding:6px;font-size:11px}
 .cover-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:var(--accent);font-size:10px;font-weight:700;padding:4px 8px;border-radius:4px;text-transform:uppercase}
+
+/* Portfolio Management */
+.portfolio-cat-card{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:16px}
+.portfolio-cat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 
 /* Modals */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
@@ -159,7 +162,7 @@ img{max-width:100%;display:block}
 <!-- Admin Layout -->
 <div class="admin-layout hidden" id="adminLayout">
   
-  <!-- Sidebar -->
+  <!-- Sidebar (Clean, Icon-free) -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <img src="logo.svg" alt="Grobdesigns" class="sidebar-logo" onerror="this.style.display='none'">
@@ -218,7 +221,7 @@ img{max-width:100%;display:block}
         </div>
 
         <div class="card">
-          <div class="card-header"><h2 class="card-title">Fondos del Carrusel (URLs)</h2></div>
+          <div class="card-header"><h2 class="card-title">Fondos del Carrusel (URLs de Imágenes)</h2></div>
           <div class="card-body">
             <div class="form-group">
               <label class="form-label">Añadir URLs de imágenes (una por línea)</label>
@@ -257,14 +260,16 @@ img{max-width:100%;display:block}
         </div>
       </div>
 
-      <!-- Panel: Portfolio -->
+      <!-- Panel: Portfolio (Updated with link/image upload integration) -->
       <div class="panel" id="panel-portfolio">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Categorías del Portafolio</h2>
+            <h2 class="card-title">Categorías y Proyectos del Portafolio</h2>
             <button class="btn btn-primary btn-sm" id="btnNewCategory">Nueva Categoría</button>
           </div>
-          <div class="card-body" id="portfolioCategoriesList"></div>
+          <div class="card-body" id="portfolioCategoriesList">
+            <!-- Rendered dynamically -->
+          </div>
         </div>
       </div>
 
@@ -274,7 +279,7 @@ img{max-width:100%;display:block}
           <div class="card-header"><h2 class="card-title">Logos de Clientes</h2></div>
           <div class="card-body">
             <div class="form-group">
-              <label class="form-label">Pegar URLs (una por línea)</label>
+              <label class="form-label">Pegar URLs de Logos (una por línea)</label>
               <div class="input-group">
                 <textarea id="clientUrlsInput" class="form-textarea" rows="3" placeholder="https://ejemplo.com/logo.png"></textarea>
                 <button class="btn btn-primary" id="btnAddClients">Añadir</button>
@@ -291,7 +296,7 @@ img{max-width:100%;display:block}
           <div class="card-header"><h2 class="card-title">Software / Herramientas</h2></div>
           <div class="card-body">
             <div class="form-group">
-              <label class="form-label">Pegar URLs (una por línea)</label>
+              <label class="form-label">Pegar URLs de Iconos/Herramientas (una por línea)</label>
               <div class="input-group">
                 <textarea id="toolUrlsInput" class="form-textarea" rows="3" placeholder="https://ejemplo.com/tool.png"></textarea>
                 <button class="btn btn-primary" id="btnAddTools">Añadir</button>
@@ -348,7 +353,7 @@ img{max-width:100%;display:block}
   </main>
 </div>
 
-<!-- Modals -->
+<!-- Cover Modal -->
 <div class="modal-overlay" id="coverModal">
   <div class="modal-content">
     <div class="modal-header">
@@ -588,6 +593,57 @@ function renderCovers() {
   });
 }
 
+function renderPortfolio() {
+  const container = $('#portfolioCategoriesList');
+  container.innerHTML = '';
+  
+  if (!DATA.categories || DATA.categories.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px;">No hay categorías creadas. Haz clic en "Nueva Categoría".</p>';
+    return;
+  }
+
+  DATA.categories.forEach((cat, catIndex) => {
+    const catEl = document.createElement('div');
+    catEl.className = 'portfolio-cat-card';
+    catEl.innerHTML = `
+      <div class="portfolio-cat-header">
+        <div style="flex:1;margin-right:12px;">
+          <input type="text" class="form-input" value="${cat.name || ''}" placeholder="Nombre de categoría" oninput="updateCategoryName(${catIndex}, this.value)">
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteCategory(${catIndex})">Eliminar Categoría</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Añadir imágenes de proyectos por URLs (una por línea)</label>
+        <div class="input-group">
+          <textarea class="form-textarea" rows="2" placeholder="https://ejemplo.com/proyecto1.jpg" id="catInput_${catIndex}"></textarea>
+          <button class="btn btn-primary" onclick="addCategoryImages(${catIndex})">Añadir</button>
+        </div>
+      </div>
+      <div class="grid-covers" id="catGrid_${catIndex}"></div>
+    `;
+    container.appendChild(catEl);
+
+    // Render items/images inside category
+    const grid = catEl.querySelector(`#catGrid_${catIndex}`);
+    if (cat.items && Array.isArray(cat.items)) {
+      cat.items.forEach((itemUrl, itemIndex) => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cover-card';
+        itemEl.innerHTML = `
+          <img src="${getDirectImageUrl(typeof itemUrl === 'string' ? itemUrl : itemUrl.url)}" onerror="handleImgError(this)">
+          <div class="cover-card-info">
+            <div class="cover-card-meta">Proyecto #${itemIndex + 1}</div>
+            <div class="cover-card-actions">
+              <button class="btn btn-danger btn-sm" onclick="deleteCategoryItem(${catIndex}, ${itemIndex})">Eliminar</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(itemEl);
+      });
+    }
+  });
+}
+
 function renderClients() {
   const grid = $('#clientsGrid');
   grid.innerHTML = '';
@@ -632,11 +688,38 @@ function renderTheme() {
   $('#themeText').value = DATA.theme.text || '#F5F3EF';
 }
 
-// Global functions for inline onclick
+// Global functions for inline onclick & portfolio management
 window.deleteHeroImage = (i) => { DATA.heroImages.splice(i, 1); renderHero(); saveAllData(); };
 window.deleteCover = (i) => { if(confirm('¿Eliminar?')) { DATA.covers.splice(i, 1); renderCovers(); saveAllData(); } };
 window.deleteClient = (i) => { DATA.clientes.splice(i, 1); renderClients(); saveAllData(); };
 window.deleteTool = (i) => { DATA.software.splice(i, 1); renderTools(); saveAllData(); };
+
+window.updateCategoryName = (catIndex, val) => {
+  if (!DATA.categories[catIndex]) DATA.categories[catIndex] = {};
+  DATA.categories[catIndex].name = val;
+};
+window.deleteCategory = (catIndex) => {
+  if (confirm('¿Eliminar esta categoría del portafolio?')) {
+    DATA.categories.splice(catIndex, 1);
+    renderPortfolio();
+    saveAllData();
+  }
+};
+window.addCategoryImages = (catIndex) => {
+  const inputEl = $(`#catInput_${catIndex}`);
+  const urls = inputEl.value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  if (!DATA.categories[catIndex].items) DATA.categories[catIndex].items = [];
+  DATA.categories[catIndex].items.push(...urls);
+  inputEl.value = '';
+  renderPortfolio();
+  saveAllData();
+};
+window.deleteCategoryItem = (catIndex, itemIndex) => {
+  DATA.categories[catIndex].items.splice(itemIndex, 1);
+  renderPortfolio();
+  saveAllData();
+};
 
 window.openCoverModal = (i) => {
   const c = DATA.covers[i];
@@ -697,6 +780,13 @@ $('#btnAddCovers').addEventListener('click', () => {
   });
   $('#coverUrlsInput').value = '';
   renderCovers(); saveAllData();
+});
+
+$('#btnNewCategory').addEventListener('click', () => {
+  if (!DATA.categories) DATA.categories = [];
+  DATA.categories.push({ name: 'Nueva Categoría', items: [] });
+  renderPortfolio();
+  saveAllData();
 });
 
 $('#btnAddClients').addEventListener('click', () => {
@@ -796,7 +886,7 @@ async function initData() {
     toast('Error cargando datos. ¿Existe el archivo data.json?', 'error');
   }
   
-  renderHero(); renderCovers(); renderClients(); renderTools(); renderContact(); renderTheme();
+  renderHero(); renderCovers(); renderPortfolio(); renderClients(); renderTools(); renderContact(); renderTheme();
 }
 
 // Check auth on load
