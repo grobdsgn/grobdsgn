@@ -22,7 +22,28 @@
       "name": "Marcas",
       "description": "",
       "cover": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "utblto6imvo6s6mc",
+          "title": "Nav Aviation",
+          "description": "Escuela Aeronáutica de Aviación.",
+          "year": "2024",
+          "youtubeUrl": "",
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954382880-bmfcx6.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954389523-klxajj.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954390658-sfszyj.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954391802-guxq2c.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954393022-kvypm6.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954394175-jjd0ur.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954395265-7czyi0.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954405512-1taqwv.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954406627-00qi7r.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954407719-miy03m.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792954408839-xc3daq.jpg"
+          ]
+        }
+      ]
     },
     {
       "id": "mmlfg3tomvo0ovmp",
