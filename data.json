@@ -1040,12 +1040,19 @@
       "id": "lcbkl5lvmvocmzlg",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792964277043-7ocynp.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
+      "name": "TAbla remix",
+      "artist": "RAmster, Ft Xavi Devine, baby zoom, Briell, sano",
       "year": "",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964323112-qz1c0m.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964324611-c1i004.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964325860-plhjgt.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964327169-3a0p9q.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964328696-xby1tg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792964329946-zz27bf.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/7ry5kDaNu1jyd6QaZKZPbA?si=041a6e610d0b43a3",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
