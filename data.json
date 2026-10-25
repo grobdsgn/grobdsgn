@@ -350,7 +350,7 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": false
     },
     {
       "id": "5t1ivhgpmvo0j0px",
@@ -440,14 +440,14 @@
       "id": "s3yuzo4wmvo0j62h",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943944013-9i4ifr.jpg",
       "category": "sencillo",
-      "name": "ab67616d0000b27376cb69e2aebfdfca2818e6bc",
-      "artist": "",
-      "year": "",
+      "name": "Dile que tu me quieres Remix",
+      "artist": "Ozuna ft Yandel",
+      "year": "2017",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/3nhIVP0aPmQ9y9FAeTthMc?si=d64fabd10012440f",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/WaZCYP-qSIA?si=Eq7wHr2dyIgAZbPP",
       "featured": false
     },
     {
@@ -489,8 +489,8 @@
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6SIrNxmmdbv1KUbFBu1PaN?si=d180ef1a0ef54d3f",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
+      "youtubeUrl": "https://youtu.be/rKeT3qA6Zao?si=MQ1Vd6nTZMqINcwk",
+      "featured": true
     },
     {
       "id": "6rbdl8nnmvo0j9lg",
