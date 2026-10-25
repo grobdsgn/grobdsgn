@@ -4,11 +4,7 @@
     "title": "Diseño experiencias\nque se recuerdan.",
     "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
   },
-  "heroImages": [
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792942463028-25e8h8.jpg",
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792942469424-g7rkmh.jpg",
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792942470646-1bybnx.jpg"
-  ],
+  "heroImages": [],
   "categories": [
     {
       "id": "ixu0nanfmvnzw0b3",
@@ -38,20 +34,6 @@
   ],
   "software": [],
   "covers": [
-    {
-      "id": "1au2574kmvo0b3x4",
-      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943567902-u0wjq6.jpg",
-      "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
-      "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
-    },
     {
       "id": "scn6qnigmvo0bdic",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943580311-38u9fp.jpg",
