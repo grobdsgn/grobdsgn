@@ -1277,6 +1277,23 @@
       "id": "uqq13z2omvogpknp",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792971116063-tqsl8k.jpg",
       "category": "sencillo",
+      "name": "Ganas locas",
+      "artist": "Winner Boys",
+      "year": "2018",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971126286-csnn51.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792971127332-3mr1kq.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/41bNcgpPE2pe6E0nmys6Oj?si=cb4f20b242ae4d11",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "3cfnugrrmvogrbtq",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792971198361-9ki269.jpg",
+      "category": "sencillo",
       "name": "",
       "artist": "",
       "year": "",
