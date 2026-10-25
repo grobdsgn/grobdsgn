@@ -528,8 +528,11 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945609139-hjulwb.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945610311-3nxmbz.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/2xZDf65wh9SdCU8lEN30ek?si=3b02b6cff566457a",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
