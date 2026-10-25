@@ -403,7 +403,10 @@
       "artist": "Los Wizzards",
       "year": "2022",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968198305-4w2073.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792968200107-jocf0o.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2uilya4Nb8WfVWhLyrTwwd?si=bc9834a71e274cd8",
       "appleMusicUrl": "",
       "youtubeUrl": "",
@@ -433,12 +436,12 @@
       "id": "5t1ivhgpmvo0j0px",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943936932-srn1wx.jpg",
       "category": "sencillo",
-      "name": "images (1)",
-      "artist": "",
-      "year": "",
+      "name": "Sangazoo",
+      "artist": "Obrinn ft farruko, abrahan mateo, Davido",
+      "year": "2021",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/6RcQeYGYy2N8CR6N1HJN5T?si=bfe52a77e0b7464e",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
