@@ -777,7 +777,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         </div>
         <div class="a-form-group">
           <label class="a-form-label">URL del Logotipo (Opcional, se mostrará en blanco)</label>
-          <input type="url" id="aEditProjectLogo" class="a-form-input" placeholder="https://ejemplo.com/logo.png">
+          <div style="display:flex;gap:10px">
+            <input type="url" id="aEditProjectLogo" class="a-form-input" placeholder="https://...">
+            <button class="a-btn a-btn-outline" onclick="document.getElementById('aProjLogoFileInput').click()">Subir</button>
+          </div>
+          <input type="file" id="aProjLogoFileInput" accept="image/*" hidden>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">Descripción</label>
@@ -798,7 +802,14 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group">
-          <label class="a-form-label">Posición de la Portada (Área visible)</label>
+          <label class="a-form-label">Imagen Destacada (Estrella)</label>
+          <select id="aEditProjectFeatured" class="a-form-input">
+            <option value="">Ninguna</option>
+          </select>
+          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Se mostrará debajo del nombre o logo en la web.</small>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Posición de la Portada</label>
           <select id="aEditProjectCoverPosition" class="a-form-input">
             <option value="center">Centro</option>
             <option value="top">Arriba</option>
@@ -1169,7 +1180,6 @@ window.addEventListener('hashchange', () => {
       const masonry = document.createElement('div');
       masonry.className = 'masonry-gallery';
       
-      // Añadir embed a la galería si existe
       if (embedData) {
         const embedBox = document.createElement('div');
         embedBox.className = 'embed-item';
@@ -1198,7 +1208,6 @@ window.addEventListener('hashchange', () => {
         $('#coverExtraSection').classList.add('hidden');
       }
 
-      // Switch view logic (simulado)
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="coverDetalle"]').classList.add('active');
     }
@@ -1215,7 +1224,6 @@ window.addEventListener('hashchange', () => {
         const row = document.createElement('div'); row.className = 'parallax-row';
         const bg = document.createElement('div'); bg.className = 'parallax-bg' + (p.images?.length ? '' : ' empty');
         
-        // USAR IMAGEN DE PORTADA Y POSICIÓN
         let coverImg = p.coverImage || (p.images && p.images[0]);
         if (coverImg) {
           bg.style.backgroundImage = `url("${resolveImageUrl(coverImg)}")`;
@@ -1226,16 +1234,22 @@ window.addEventListener('hashchange', () => {
         const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
         const content = document.createElement('div'); content.className = 'parallax-content';
         
-        // MOSTRAR LOGO O TEXTO
-        if (p.logoUrl) {
-          content.innerHTML = `<span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
-          <img src="${resolveImageUrl(p.logoUrl)}" style="max-height:80px;margin:0 auto 20px;filter:brightness(0) invert(1);">
-          <p class="desc">${p.description || ''}</p>`;
-        } else {
-          content.innerHTML = `<span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
-          <h2>${p.title}</h2>
-          <p class="desc">${p.description || ''}</p>`;
-        }
+        // LOGO O TEXTO
+        const titleHtml = p.logoUrl 
+            ? `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height: 100px; margin: 0 auto 20px; filter: brightness(0) invert(1); display: block;">` 
+            : `<h2>${p.title}</h2>`;
+        
+        // IMAGEN DESTACADA
+        const featuredHtml = p.featuredImage 
+            ? `<img src="${resolveImageUrl(p.featuredImage)}" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">` 
+            : '';
+
+        content.innerHTML = `
+          <span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
+          ${titleHtml}
+          ${featuredHtml}
+          <p class="desc">${p.description || ''}</p>
+        `;
         
         row.appendChild(content);
         row.onclick = () => { window.location.hash = `#proyecto-${cat.id}-${p.id}`; };
@@ -1258,7 +1272,6 @@ window.addEventListener('hashchange', () => {
       $('#proyectoBadge').textContent = 'Proyecto';
       $('#proyectoResena').textContent = p.description || '';
       
-      // Lógica Logo vs Texto
       const logoWrap = $('#proyectoLogoWrap');
       if (p.logoUrl) {
         logoWrap.innerHTML = `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height:120px;filter:brightness(0) invert(1);">`;
@@ -1278,7 +1291,6 @@ window.addEventListener('hashchange', () => {
       const masonry = document.createElement('div');
       masonry.className = 'masonry-gallery';
 
-      // Embed YouTube en la galería
       if (p.youtubeUrl && getYouTubeId(p.youtubeUrl)) {
         const embedBox = document.createElement('div');
         embedBox.className = 'embed-item';
@@ -1305,7 +1317,6 @@ window.addEventListener('hashchange', () => {
       $('[data-view="proyecto"]').classList.add('active');
     }
   } else {
-    // Volver a home si no hay hash válido
     const curView = $('.view.active');
     if (curView && (curView.dataset.view === 'coverDetalle' || curView.dataset.view === 'categoria' || curView.dataset.view === 'proyecto')) {
       $$('.view').forEach(v => v.classList.remove('active'));
@@ -1430,6 +1441,8 @@ function renderAdmin() {
             <span style="font-size:14px">${p.title}</span>
           </div>
           <div style="display:flex;gap:4px">
+            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, -1)" ${pi===0?'disabled':''}>↑</button>
+            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, 1)" ${pi===cat.projects.length-1?'disabled':''}>↓</button>
             <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', ${pi})">Editar</button>
             <button class="a-btn a-btn-danger a-btn-sm" onclick="delProject('${cat.id}', ${pi})">X</button>
           </div>
@@ -1495,6 +1508,14 @@ window.moveItem = (key, i, dir) => {
   renderAdmin(); saveAdminData();
 };
 
+window.moveProject = (catId, pi, dir) => {
+  const cat = DATA.categories.find(c => c.id === catId);
+  const temp = cat.projects[pi];
+  cat.projects[pi] = cat.projects[pi + dir];
+  cat.projects[pi + dir] = temp;
+  renderAdmin(); saveAdminData();
+};
+
 window.openAdminCoverModal = (i) => {
   const c = DATA.covers[i];
   $('#aEditCoverIndex').value = i;
@@ -1526,16 +1547,25 @@ window.openAdminProjectModal = (catId, pi) => {
   $('#aEditProjectImages').value = p ? (p.images || []).join('\n') : '';
   $('#aEditProjectCoverPosition').value = p ? (p.coverPosition || 'center') : 'center';
   
-  // Poblar select de portada
-  const select = $('#aEditProjectCover');
-  select.innerHTML = '<option value="">Usar primera imagen</option>';
+  // Poblar selects
+  const selectCover = $('#aEditProjectCover');
+  const selectFeatured = $('#aEditProjectFeatured');
+  selectCover.innerHTML = '<option value="">Usar primera imagen</option>';
+  selectFeatured.innerHTML = '<option value="">Ninguna</option>';
+  
   if (p && p.images) {
     p.images.forEach((img, idx) => {
-      const opt = document.createElement('option');
-      opt.value = img;
-      opt.textContent = `Imagen ${idx + 1}`;
-      if (p.coverImage === img) opt.selected = true;
-      select.appendChild(opt);
+      const opt1 = document.createElement('option');
+      opt1.value = img;
+      opt1.textContent = `Imagen ${idx + 1}`;
+      if (p.coverImage === img) opt1.selected = true;
+      selectCover.appendChild(opt1);
+      
+      const opt2 = document.createElement('option');
+      opt2.value = img;
+      opt2.textContent = `Imagen ${idx + 1}`;
+      if (p.featuredImage === img) opt2.selected = true;
+      selectFeatured.appendChild(opt2);
     });
   }
 
@@ -1564,6 +1594,32 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
+// Actualizar dropdowns de proyecto dinámicamente al escribir URLs
+$('#aEditProjectImages').oninput = (e) => {
+  const urls = e.target.value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const selectCover = $('#aEditProjectCover');
+  const selectFeatured = $('#aEditProjectFeatured');
+  const valCover = selectCover.value;
+  const valFeatured = selectFeatured.value;
+  
+  selectCover.innerHTML = '<option value="">Usar primera imagen</option>';
+  selectFeatured.innerHTML = '<option value="">Ninguna</option>';
+  
+  urls.forEach((url, i) => {
+    const opt1 = document.createElement('option');
+    opt1.value = url;
+    opt1.textContent = `Imagen ${i + 1}`;
+    if (url === valCover) opt1.selected = true;
+    selectCover.appendChild(opt1);
+    
+    const opt2 = document.createElement('option');
+    opt2.value = url;
+    opt2.textContent = `Imagen ${i + 1}`;
+    if (url === valFeatured) opt2.selected = true;
+    selectFeatured.appendChild(opt2);
+  });
+};
+
 // Uploads Admin
 async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
   if(!files.length && !musicUrl) return;
@@ -1581,7 +1637,6 @@ async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
     } catch(e) { aToast(`Error subiendo ${f.name}`, 'error'); }
   }
   
-  // Si hay link musical pero no imágenes, usamos la miniatura de YouTube (si es YT)
   if (!files.length && musicUrl && target === DATA.covers) {
     let thumb = '';
     const ytId = getYouTubeId(musicUrl);
@@ -1602,6 +1657,18 @@ $('#aCoverFileInput').onchange = async e => {
 };
 $('#aClientFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.clientes); e.target.value=''; };
 $('#aToolFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.software); e.target.value=''; };
+
+$('#aProjLogoFileInput').onchange = async e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  aToast('Subiendo logo...');
+  try {
+    const path = await GH.uploadImage(f, 'logo');
+    $('#aEditProjectLogo').value = path;
+    aToast('Logo subido');
+  } catch (err) { aToast('Error subiendo logo', 'error'); }
+  e.target.value = '';
+};
 
 // Adders Admin (URLs)
 $('#aBtnAddHeroUrls').onclick = () => {
@@ -1662,6 +1729,7 @@ $('#aBtnSaveProject').onclick = () => {
     youtubeUrl: $('#aEditProjectYt').value.trim(),
     images: $('#aEditProjectImages').value.split('\n').map(s=>s.trim()).filter(Boolean),
     coverImage: $('#aEditProjectCover').value,
+    featuredImage: $('#aEditProjectFeatured').value,
     coverPosition: $('#aEditProjectCoverPosition').value
   };
 
