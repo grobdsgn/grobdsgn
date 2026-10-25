@@ -336,9 +336,9 @@
       "id": "odp3d5oymvo0izry",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943935759-693eu4.jpg",
       "category": "sencillo",
-      "name": "1900x1900-000000-80-0-0",
-      "artist": "",
-      "year": "",
+      "name": "Aprendi",
+      "artist": "jacob Forever ft De la Guetto",
+      "year": "2021",
       "review": "",
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945467507-swaugh.jpg",
@@ -347,7 +347,7 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945471900-33bvoi.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945473492-8qrds1.jpg"
       ],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/7cMVpWRrAvGwEMlGPmJkx2?si=0b2c2d41dbdf4700",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
@@ -490,7 +490,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6SIrNxmmdbv1KUbFBu1PaN?si=d180ef1a0ef54d3f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/rKeT3qA6Zao?si=MQ1Vd6nTZMqINcwk",
-      "featured": false
+      "featured": true
     },
     {
       "id": "6rbdl8nnmvo0j9lg",
@@ -642,9 +642,9 @@
       "id": "vja0dac1mvo0jihs",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943959991-yphrc7.jpg",
       "category": "sencillo",
-      "name": "the-world",
-      "artist": "",
-      "year": "",
+      "name": "The world is mine",
+      "artist": "Neutro shorty",
+      "year": "2019",
       "review": "",
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6IA5CopmI6RHeRb7mclGTN?si=4d702d6bc9c4456d",
@@ -799,7 +799,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": false
     },
     {
       "id": "az9703hfmvo0xokz",
