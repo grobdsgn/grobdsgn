@@ -647,7 +647,7 @@
       "year": "",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/6IA5CopmI6RHeRb7mclGTN?si=4d702d6bc9c4456d",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
@@ -799,7 +799,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": true
     },
     {
       "id": "az9703hfmvo0xokz",
@@ -813,7 +813,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/03oX3KPyi8ydzOaMNTpX0N?si=HPL02JqdT6S762IlTqw9Ng",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": false
     },
     {
       "id": "0hkaqewpmvo17fyd",
