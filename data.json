@@ -1,20 +1,18 @@
 {
   "hero": {
-    "eyebrow": "Disponible · 2026",
+    "eyebrow": "Disponible · 2025",
     "title": "Diseño experiencias\nque se recuerdan.",
     "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
   },
-  "heroImages": [
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/hero-1792938777438-cf9jgk.jpg"
-  ],
+  "heroImages": [],
   "categories": [],
   "clientes": [],
   "software": [],
   "covers": [],
   "contact": {
     "email": "hola@grobdesigns.com",
-    "phone": "+34 600 000 000",
-    "location": "Madrid, España"
+    "phone": "+58 4141299366",
+    "location": "Caracas, Venezuela"
   },
   "texts": {
     "navHome": "Inicio",
