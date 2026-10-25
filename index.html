@@ -7,7 +7,7 @@
 <meta name="description" content="Portafolio de Grobdesigns: diseño de portadas musicales, identidad visual y dirección de arte.">
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index, follow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.github.com https://raw.githubusercontent.com https://cdn.jsdelivr.net https://objects.githubusercontent.com https://open.spotify.com https://itunes.apple.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.github.com https://raw.githubusercontent.com https://cdn.jsdelivr.net https://objects.githubusercontent.com https://open.spotify.com https://itunes.apple.com https://www.youtube.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -610,8 +610,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
               
               <div class="a-form-group">
                 <label class="a-form-label">Link de YouTube / Spotify / Apple Music</label>
-                <input type="url" id="aCoverMusicLink" class="a-form-input" placeholder="https://youtube.com/watch?v=... o https://open.spotify.com/track/...">
-                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Si añades un link de YouTube sin imagen, se usará la miniatura del video.</small>
+                <div style="display:flex;gap:10px">
+                  <input type="url" id="aCoverMusicLink" class="a-form-input" placeholder="https://youtube.com/watch?v=... o https://open.spotify.com/track/...">
+                  <button class="a-btn a-btn-outline" id="aBtnFetchMetadata" style="white-space:nowrap">Auto-rellenar</button>
+                </div>
+                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Pega el link y pulsa Auto-rellenar para extraer la portada, título y artista automáticamente.</small>
               </div>
 
               <div class="a-upload-zone" onclick="document.getElementById('aCoverFileInput').click()">
@@ -744,7 +747,15 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        <div class="a-form-group"><label class="a-form-label">Link Musical (YouTube, Spotify, Apple Music)</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        
+        <div class="a-form-group">
+          <label class="a-form-label">Link Musical (YouTube, Spotify, Apple Music)</label>
+          <div style="display:flex;gap:10px">
+            <input type="url" id="aEditCoverSpotify" class="a-form-input">
+            <button class="a-btn a-btn-outline" id="aBtnFetchMetadataEdit" style="white-space:nowrap">Auto-rellenar</button>
+          </div>
+        </div>
+
         <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL o ruta, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3"></textarea></div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
@@ -905,6 +916,38 @@ function compressImage(file, maxWidth = 1200, quality = 0.85) {
     };
     reader.readAsDataURL(file);
   });
+}
+
+/* ============================================================
+   NUEVA FUNCIÓN: EXTRACCIÓN DE METADATOS (OEMBED)
+   ============================================================ */
+async function fetchMetadata(url) {
+  if (!url) return null;
+  try {
+    let apiUrl = '';
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      apiUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
+    } else if (url.includes('spotify.com')) {
+      apiUrl = `https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`;
+    } else if (url.includes('music.apple.com')) {
+      apiUrl = `https://music.apple.com/oembed?url=${encodeURIComponent(url)}`;
+    } else {
+      return null; // Plataforma no soportada
+    }
+
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error('Error de red');
+    const data = await res.json();
+    
+    return {
+      title: data.title || '',
+      artist: data.author_name || '', // Spotify y YouTube suelen incluir esto
+      thumbnail: data.thumbnail_url || ''
+    };
+  } catch (e) {
+    console.warn("No se pudieron extraer metadatos:", e);
+    return null;
+  }
 }
 
 /* ============================================================
@@ -1234,12 +1277,10 @@ window.addEventListener('hashchange', () => {
         const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
         const content = document.createElement('div'); content.className = 'parallax-content';
         
-        // LOGO O TEXTO
         const titleHtml = p.logoUrl 
             ? `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height: 100px; margin: 0 auto 20px; filter: brightness(0) invert(1); display: block;">` 
             : `<h2>${p.title}</h2>`;
         
-        // IMAGEN DESTACADA
         const featuredHtml = p.featuredImage 
             ? `<img src="${resolveImageUrl(p.featuredImage)}" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">` 
             : '';
@@ -1618,6 +1659,49 @@ $('#aEditProjectImages').oninput = (e) => {
     if (url === valFeatured) opt2.selected = true;
     selectFeatured.appendChild(opt2);
   });
+};
+
+/* ============================================================
+   BOTONES AUTO-RELLENAR (METADATOS)
+   ============================================================ */
+$('#aBtnFetchMetadata').onclick = async () => {
+  const url = $('#aCoverMusicLink').value.trim();
+  if (!url) return aToast('Pega un link primero', 'error');
+  aToast('Extrayendo metadatos...');
+  const meta = await fetchMetadata(url);
+  if (meta) {
+    if (meta.thumbnail) {
+      $('#aCoverUrlsInput').value = meta.thumbnail;
+      // Forzar la subida usando el link de la miniatura
+      const cat = $('#aCoverCategorySelect').value;
+      DATA.covers.push({ id: uid(), url: meta.thumbnail, category: cat, name: meta.title, artist: meta.artist, year: '', review: '', extraImages: [], spotifyUrl: url, featured: false });
+      $('#aCoverMusicLink').value = '';
+      $('#aCoverUrlsInput').value = '';
+      renderAdmin(); saveAdminData(); aToast('Cover añadido con metadatos');
+    } else {
+      aToast('No se encontró miniatura', 'error');
+    }
+  } else {
+    aToast('No se pudieron extraer los datos', 'error');
+  }
+};
+
+$('#aBtnFetchMetadataEdit').onclick = async () => {
+  const url = $('#aEditCoverSpotify').value.trim();
+  if (!url) return aToast('Pega un link primero', 'error');
+  aToast('Extrayendo metadatos...');
+  const meta = await fetchMetadata(url);
+  if (meta) {
+    if (meta.title) $('#aEditCoverName').value = meta.title;
+    if (meta.artist) $('#aEditCoverArtist').value = meta.artist;
+    if (meta.thumbnail) {
+      $('#aEditCoverUrl').value = meta.thumbnail;
+      $('#aEditCoverPreview').src = meta.thumbnail;
+    }
+    aToast('Datos rellenados');
+  } else {
+    aToast('No se pudieron extraer los datos', 'error');
+  }
 };
 
 // Uploads Admin
