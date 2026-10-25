@@ -36,11 +36,13 @@
           "description": "",
           "year": "",
           "youtubeUrl": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792947432058-kvtyjz.jpg"
+          ]
         },
         {
           "id": "yij4dhxpmvo1rs3i",
-          "title": "Las locas Nigth Club",
+          "title": "Selva Nigth Club",
           "description": "",
           "year": "",
           "youtubeUrl": "",
