@@ -389,7 +389,15 @@
       "artist": "Los Wizzards",
       "year": "2023",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969509585-0d09or.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969511189-jm5hfm.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969512282-wqje8j.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969513486-97os8e.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969514648-off9j8.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969515848-c9xzoi.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969517035-ftv8q4.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/3JjHG60vzkUptBRRRLodXc?si=b4f79b7d2e2a4beb",
       "appleMusicUrl": "",
       "youtubeUrl": "",
