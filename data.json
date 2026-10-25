@@ -710,7 +710,29 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953308506-392n8d.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953309606-485aqe.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953310701-iexy3m.jpg",
-        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953311898-p5w1lz.jpg"
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953311898-p5w1lz.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953439180-o2q3du.jpg"
+      ],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "y9f4tsudmvo678xl",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792953465456-b855ps.jpg",
+      "category": "albums",
+      "name": "BECOMING",
+      "artist": "Santos P",
+      "year": "2026",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953490732-ajo29p.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953492019-auyukh.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953493328-hyjazx.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953494551-say3l2.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953495829-z3oeqb.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792953497003-d5fs1y.jpg"
       ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
