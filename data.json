@@ -394,7 +394,8 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943729888-ei0vkv.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943731147-4osy69.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792946223140-1oxapd.png",
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792970853500-0tljhp.png"
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792970853500-0tljhp.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792970894496-zn5xgc.png"
   ],
   "software": [
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944370110-n1t94n.png",
@@ -1268,6 +1269,20 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792969762490-mc8ijb.jpg"
       ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4FmiCa6KOcqYTf28FEl7Ge?si=fe61cfc5db4643f6",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "uqq13z2omvogpknp",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792971116063-tqsl8k.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
