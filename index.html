@@ -476,7 +476,7 @@ que se recuerdan.</h1>
       <h1 class="detalle-titulo" id="proyectoTitulo"></h1>
       <div class="detalle-actions">
         <a class="detalle-cta" href="#proyectoImagenes"><span id="proyectoVerTxt">Ver proyecto</span></a>
-        <a class="yt-btn" id="proyectoYouTube" target="_blank" rel="noopener" style="display:none">▶ YouTube</a>
+        <a class="yt-btn" id="proyectoYouTube" target="_blank" rel="noopener" style="display:none">YouTube</a>
       </div>
       <p class="detalle-resena" id="proyectoResena"></p>
       <div class="detalle-meta-line" id="proyectoMeta"></div>
@@ -496,7 +496,7 @@ que se recuerdan.</h1>
     <div class="covers-toolbar">
       <div class="covers-search-wrap">
         <input type="search" id="coversSearchInput" class="covers-search-input" placeholder="Buscar artista o canción..." autocomplete="off" style="padding-left:16px">
-        <button type="button" id="coversSearchClear" class="covers-search-clear" hidden>✕</button>
+        <button type="button" id="coversSearchClear" class="covers-search-clear" hidden>X</button>
       </div>
       <div class="covers-filters" style="padding:0;margin:0">
         <button class="covers-filter-btn active" data-filter="todos"><span id="cfTodos">Todos</span> <span class="count" id="countTodos">0</span></button>
@@ -520,7 +520,7 @@ que se recuerdan.</h1>
         <div class="cover-hero-artist" id="coverHeroArtist"></div>
         <div class="cover-hero-actions">
           <a class="cover-hero-cta" href="#cover-imgs"><span id="coverVerTxt">Ver proyecto</span></a>
-          <a class="yt-btn" id="coverHeroYouTube" target="_blank" rel="noopener" style="display:none">▶ YouTube</a>
+          <a class="yt-btn" id="coverHeroYouTube" target="_blank" rel="noopener" style="display:none">YouTube</a>
         </div>
         <div class="cover-hero-music" id="coverHeroMusic"></div>
       </div>
@@ -855,12 +855,10 @@ function imgPlaceholder(label) {
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
-  // Google Drive
   const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (driveMatch && driveMatch[1]) {
     return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
   }
-  // Dropbox
   if (url.includes('dropbox.com')) {
     return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '').replace('&dl=0', '');
   }
@@ -1610,9 +1608,9 @@ function renderHeroBgGrid() {
     prev.appendChild(im);
     const pos = document.createElement('span'); pos.className = 'img-card-position'; pos.textContent = '#' + (i + 1); prev.appendChild(pos); card.appendChild(prev);
     const actions = document.createElement('div'); actions.className = 'img-card-actions';
-    const up = document.createElement('button'); up.textContent = '↑'; up.disabled = i === 0; up.onclick = () => { [list[i - 1], list[i]] = [list[i], list[i - 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
-    const dn = document.createElement('button'); dn.textContent = '↓'; dn.disabled = i === list.length - 1; dn.onclick = () => { [list[i + 1], list[i]] = [list[i], list[i + 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderHeroBgGrid(); renderHome(); };
+    const up = document.createElement('button'); up.textContent = 'Subir'; up.disabled = i === 0; up.onclick = () => { [list[i - 1], list[i]] = [list[i], list[i - 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
+    const dn = document.createElement('button'); dn.textContent = 'Bajar'; dn.disabled = i === list.length - 1; dn.onclick = () => { [list[i + 1], list[i]] = [list[i], list[i + 1]]; saveData(true); renderHeroBgGrid(); renderHome(); };
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'Eliminar'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderHeroBgGrid(); renderHome(); };
     actions.append(up, dn, rm); card.appendChild(actions);
     grid.appendChild(card);
   });
@@ -1692,7 +1690,7 @@ function renderClientesGrid() {
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
     const im = document.createElement('img'); handleImage(im, 'Logo', ref); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderClientesGrid(); renderClientes(); }; act.appendChild(rm);
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'Eliminar'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderClientesGrid(); renderClientes(); }; act.appendChild(rm);
     c.appendChild(act);
     grid.appendChild(c);
   });
@@ -1710,7 +1708,7 @@ function renderSoftwareGrid() {
     const prev = document.createElement('div'); prev.className = 'cliente-admin-preview';
     const im = document.createElement('img'); handleImage(im, 'Tool', ref); prev.appendChild(im); c.appendChild(prev);
     const act = document.createElement('div'); act.className = 'cliente-admin-actions';
-    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'X'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderSoftwareGrid(); renderSoftware(); }; act.appendChild(rm);
+    const rm = document.createElement('button'); rm.className = 'danger'; rm.textContent = 'Eliminar'; rm.onclick = () => { list.splice(i, 1); saveData(true); renderSoftwareGrid(); renderSoftware(); }; act.appendChild(rm);
     c.appendChild(act); grid.appendChild(c);
   });
 }
@@ -1883,7 +1881,7 @@ async function init() {
   }
 }
 init();
-console.log('%cGrobdesigns v47 — URLs y guardado verificado', 'color:#C9A961;font-weight:bold;font-size:14px');
+console.log('Grobdesigns v48 — URLs y guardado verificado');
 </script>
 </body>
 </html>
