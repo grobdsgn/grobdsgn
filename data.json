@@ -336,9 +336,9 @@
       "id": "odp3d5oymvo0izry",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943935759-693eu4.jpg",
       "category": "sencillo",
-      "name": "Aprendi",
-      "artist": "jacob Forever ft De la Guetto",
-      "year": "2021",
+      "name": "1900x1900-000000-80-0-0",
+      "artist": "",
+      "year": "",
       "review": "",
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945467507-swaugh.jpg",
@@ -347,7 +347,7 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945471900-33bvoi.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792945473492-8qrds1.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/7cMVpWRrAvGwEMlGPmJkx2?si=0b2c2d41dbdf4700",
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
@@ -490,7 +490,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6SIrNxmmdbv1KUbFBu1PaN?si=d180ef1a0ef54d3f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/rKeT3qA6Zao?si=MQ1Vd6nTZMqINcwk",
-      "featured": true
+      "featured": false
     },
     {
       "id": "6rbdl8nnmvo0j9lg",
@@ -642,9 +642,9 @@
       "id": "vja0dac1mvo0jihs",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943959991-yphrc7.jpg",
       "category": "sencillo",
-      "name": "The world is mine",
-      "artist": "Neutro shorty",
-      "year": "2019",
+      "name": "the-world",
+      "artist": "",
+      "year": "",
       "review": "",
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6IA5CopmI6RHeRb7mclGTN?si=4d702d6bc9c4456d",
@@ -656,9 +656,9 @@
       "id": "93yw2gusmvo0jjy5",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943961198-mr7429.jpg",
       "category": "sencillo",
-      "name": "Si tu cama hablara",
-      "artist": "lenny tavarez ft Cosculluela",
-      "year": "2016",
+      "name": "ab67616d0000b2732c313ebdca83338668542df4",
+      "artist": "",
+      "year": "",
       "review": "",
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1c58NqLYSElM2PmcpiW9xx?si=c10573451b9a47f5",
@@ -799,7 +799,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": true
     },
     {
       "id": "az9703hfmvo0xokz",
@@ -909,6 +909,20 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792960687356-rwgg36.jpg"
       ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4AMhfpjLv8kvutKhayvfhP?si=942d89b354cd4df0",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "c25pzncsmvob6qj0",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792961839518-wv4g41.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
