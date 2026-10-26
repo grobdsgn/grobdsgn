@@ -1634,12 +1634,18 @@
       "id": "3z883thtmvokr8on",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792977912679-roch01.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Encantadora",
+      "artist": "Poetiko ft Santos",
+      "year": "2023",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977940394-clocv0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977941682-wq2u6n.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977942952-2y0h1k.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977944071-fzpe59.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977945198-tw42i5.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/1axZcm7CupYVJAhOcSY1my?si=10ba3045be9448ec",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
