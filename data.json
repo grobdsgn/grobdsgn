@@ -1445,12 +1445,16 @@
     {
       "id": "147zr2jzmvoj2q2m",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792975088837-0sm5sl.jpg",
-      "category": "sencillo",
+      "category": "albums",
       "name": "",
-      "artist": "",
-      "year": "",
+      "artist": "Ramster",
+      "year": "2018",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975144296-8cvr4i.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975146007-09sc10.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975147177-8folzf.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
