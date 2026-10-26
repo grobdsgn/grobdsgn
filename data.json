@@ -870,8 +870,8 @@
     {
       "id": "m7xry7eemvo0xccd",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792944604725-no9d5p.jpg",
-      "category": "albums",
-      "name": "Kong",
+      "category": "ediciones",
+      "name": "Kong (No Official)",
       "artist": "Don Omar",
       "year": "",
       "review": "Propuesta Realizada en Colaboración, Para Don Omar.",
@@ -1463,7 +1463,7 @@
     {
       "id": "33ax330rmvoj6vxo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792975283252-z0mud7.jpg",
-      "category": "sencillo",
+      "category": "ediciones",
       "name": "Trap Island (No Official)",
       "artist": "Noriel",
       "year": "2024",
@@ -1473,6 +1473,20 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975363416-hdnd4h.jpg"
       ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/2YiziMql3dRV3ic0gkEDgv?si=240bfcccdad8408f",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "fpva6jojmvojhcoz",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792975771570-5rh7mf.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
