@@ -1372,6 +1372,22 @@
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
+    },
+    {
+      "id": "lge9an5umvoitanp",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974649377-9ezirm.jpg",
+      "category": "sencillo",
+      "name": "Maldito amor",
+      "artist": "Ralphy Dreamz",
+      "year": "2026",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974664162-xknxjk.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/5XhcVslLrEPbF1ZiJ0k6ip?si=37cb6f64a1624f35",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
