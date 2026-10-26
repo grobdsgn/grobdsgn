@@ -1388,6 +1388,34 @@
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
+    },
+    {
+      "id": "lem4wsxwmvoiurrw",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974718198-7a4w80.jpg",
+      "category": "sencillo",
+      "name": "Por no perderte te perdi",
+      "artist": "Ralphy Dreamz",
+      "year": "2026",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/57RM67Rt2vO9Dgjqc1eC5a?si=1ca2d4168c6c43d2",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "guwtm6x1mvoiw64t",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974783212-9mm3l8.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
