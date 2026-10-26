@@ -1543,20 +1543,22 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // LOGOS DE CLIENTES (FLECHAS)
+  // LOGOS DE CLIENTES (ENTRADA NUMÉRICA)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     
     el.innerHTML = `
-      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border-bottom:1px solid var(--a-line); padding: 4px 10px;">
-        <span style="font-size:12px; color:var(--a-muted);">#${i+1}</span>
+      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.8); border-bottom:1px solid var(--a-line); padding: 8px 10px;">
+        <span style="font-size:12px; color:var(--a-muted); margin-right: 8px; font-weight:bold;">#</span>
+        <input type="number" min="1" max="${DATA.clientes.length}" value="${i+1}" 
+               style="width: 55px; background: transparent; border: 1px solid var(--a-line); color: var(--a-text); border-radius: 4px; padding: 4px; text-align: center; font-size: 13px; font-weight: bold; outline: none;"
+               onchange="changeClientOrder(${i}, this.value)"
+               title="Escribe un número para cambiar la posición">
       </div>
       <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff;">
-      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover Arriba">↑</button>
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover Abajo">↓</button>
-        <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
+      <div class="a-cover-card-actions" style="padding:10px;">
+        <button class="a-btn a-btn-danger a-btn-sm" style="width:100%" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>`;
     
     clGrid.appendChild(el);
@@ -1645,20 +1647,24 @@ window.delProject = (catId, pi) => {
   }
 };
 
-window.moveItem = (key, i, dir) => {
-  const arr = DATA[key];
-  const temp = arr[i];
-  arr[i] = arr[i + dir];
-  arr[i + dir] = temp;
-  renderAdmin(); saveAdminData();
-};
-
 window.moveProject = (catId, pi, dir) => {
   const cat = DATA.categories.find(c => c.id === catId);
   const temp = cat.projects[pi];
   cat.projects[pi] = cat.projects[pi + dir];
   cat.projects[pi + dir] = temp;
   renderAdmin(); saveAdminData();
+};
+
+window.changeClientOrder = (oldIndex, newOrder) => {
+  const newIndex = parseInt(newOrder) - 1;
+  if (isNaN(newIndex) || newIndex < 0 || newIndex >= DATA.clientes.length || oldIndex === newIndex) {
+    renderAdmin();
+    return;
+  }
+  const item = DATA.clientes.splice(oldIndex, 1)[0];
+  DATA.clientes.splice(newIndex, 0, item);
+  renderAdmin();
+  saveAdminData();
 };
 
 window.openAdminCoverModal = (i) => {
