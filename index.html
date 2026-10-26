@@ -71,18 +71,17 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
 @keyframes marqueeScroll{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
 
-/* FEATURED COVERS SCROLLER */
+/* FEATURED COVERS (BILLBOARDS) */
 .featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
-.featured-scroll{display:flex;gap:20px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.featured-scroll::-webkit-scrollbar{display:none}
-.featured-card{flex:0 0 260px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.6);border:1px solid var(--line);transition:transform 0.4s var(--ease),border-color 0.4s}
-.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
-.featured-card:hover{transform:translateY(-6px);border-color:var(--accent)}
-.featured-card:hover img{transform:scale(1.08)}
-.featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
-.featured-info{position:absolute;bottom:0;inset-x:0;padding:16px;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);z-index:2}
-.featured-info-title{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.featured-info-artist{font-size:11px;color:var(--muted)}
+.billboard-scroll{width:100%;overflow:hidden;padding:20px 0;position:relative}
+.billboard-inner{display:flex;gap:20px;width:max-content;animation:billboardScroll 35s linear infinite}
+.billboard-scroll:hover .billboard-inner{animation-play-state:paused}
+.billboard-card{flex:0 0 280px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.6);border:1px solid var(--line);transition:transform 0.4s var(--ease),border-color 0.4s}
+.billboard-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
+.billboard-card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.billboard-card:hover img{transform:scale(1.08)}
+.billboard-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
+@keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 .philosophy{padding:clamp(90px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .philosophy h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:24px}
@@ -200,7 +199,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 
 /* ============================================================
-   ESTILOS PANEL ADMIN (SIN ICONOS, MINIMALISTA)
+   ESTILOS PANEL ADMIN (100% TEXTO, CERO ICONOS)
    ============================================================ */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
@@ -318,19 +317,21 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         </div></div></div>
       </section>
       
-      <!-- MARQUEE BANNER ROTATIVO DE PALABRAS -->
+      <!-- MARQUEE BANNER ROTATIVO -->
       <div class="marquee">
         <div class="marquee-inner" id="marquee"></div>
       </div>
       
-      <!-- FEATURED COVERS ROTATIVO / MULTI-SELECCIÓN -->
+      <!-- FEATURED COVERS (BILLBOARDS AUTOMÁTICOS) -->
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap">
           <div class="section-head" style="margin-bottom: 20px;">
             <div class="label">— Destacados</div>
             <div><h2>Proyectos <em>seleccionados</em>.</h2></div>
           </div>
-          <div class="featured-scroll" id="featuredCoversTrack"></div>
+        </div>
+        <div class="billboard-scroll">
+          <div class="billboard-inner" id="featuredCoversTrack"></div>
         </div>
       </section>
 
@@ -466,7 +467,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
 </div>
 
-<!-- MODO ADMIN (SIN ICONOS EN SIDEBAR/BOTONES) -->
+<!-- MODO ADMIN (SIN ICONOS) -->
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -587,7 +588,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CLIENTS (CON BOTONES DE MOVER SUBIR / BAJAR) -->
+        <!-- CLIENTS (BOTONES DE SUBIR / BAJAR) -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Logos de Clientes</h2></div>
@@ -687,7 +688,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" id="aEditCoverFeatured" style="width:18px;height:18px;accent-color:var(--a-accent)">
-            <span style="font-size:14px">Destacar en la página de inicio (Permite múltiples)</span>
+            <span style="font-size:14px">Destacar en la página de inicio (Billboard)</span>
           </label>
         </div>
       </div>
@@ -905,7 +906,7 @@ function renderPublicSite() {
   // BANNER ROTATIVO (MARQUEE)
   renderMarquee();
 
-  // COVER DESTACADOS (CARRUSEL ROTATIVO / MULTI-SELECCIÓN)
+  // COVER DESTACADOS (BILLBOARDS ROTATIVOS)
   renderFeaturedCovers();
 
   // PORTAFOLIO Y PARALLAX DE CATEGORÍAS
@@ -914,7 +915,7 @@ function renderPublicSite() {
   // COVERS
   renderPublicCovers(DATA.covers || []);
 
-  // CLIENTES (MOSTRAR SEGÚN ORDEN)
+  // CLIENTES
   renderPublicClients();
 
   // HERRAMIENTAS
@@ -952,20 +953,19 @@ function renderFeaturedCovers() {
   if (sec) sec.style.display = 'block';
   if (track) {
     track.innerHTML = '';
-    featured.forEach(c => {
+    const buildCard = (c) => {
       const el = document.createElement('div');
-      el.className = 'featured-card';
+      el.className = 'billboard-card';
       el.innerHTML = `
         <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
-        <span class="featured-badge">Destacado</span>
-        <div class="featured-info">
-          <div class="featured-info-title">${c.name || 'Sin título'}</div>
-          <div class="featured-info-artist">${c.artist || ''}</div>
-        </div>
+        <span class="billboard-badge">Destacado</span>
       `;
       el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
-      track.appendChild(el);
-    });
+      return el;
+    };
+    // Duplicamos para efecto de bucle infinito
+    featured.forEach(c => track.appendChild(buildCard(c)));
+    featured.forEach(c => track.appendChild(buildCard(c)));
   }
 }
 
@@ -1192,13 +1192,13 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // CLIENTES CON ORDENAMIENTO (SUBIR / BAJAR)
+  // CLIENTES CON ORDENAMIENTO (BOTONES SUBIR / BAJAR)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `
       <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
-      <div class="a-cover-card-actions" style="padding:10px">
+      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>Subir</button>
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>Bajar</button>
         <button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
