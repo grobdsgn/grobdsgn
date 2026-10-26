@@ -120,12 +120,15 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .project-yt-wrap.visible{display:block}
 .project-yt-inner{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000}
 .project-yt-inner iframe{width:100%;height:100%;border:0;display:block}
+
+/* GALERÍAS MASONRY (RECUPERADAS) */
 .masonry-gallery{max-width:1400px;margin:40px auto 0;padding:0 clamp(16px,4vw,48px) 80px;column-gap:12px;columns:3}
 @media(max-width:900px){.masonry-gallery{columns:2}}
 @media(max-width:540px){.masonry-gallery{columns:1}}
 .masonry-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a;cursor:zoom-in;opacity:0;animation:masonryIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--entry-delay,0s)}
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:100px;background:#0a0a0a}
+.masonry-empty{padding:80px 24px;text-align:center;color:var(--muted);columns:1}
 .embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
 .embed-item iframe{width:100%;border:0;display:block;aspect-ratio:16/9}
 
@@ -146,7 +149,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 @media(max-width:640px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
 .cover-item{--cover-glow:rgba(201,169,97,.5);--cover-glow-line:rgba(201,169,97,.45);position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s}
 .cover-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.95);transform:scale(1.06);transition:filter .7s,transform 1s;min-height:100px}
-/* Efecto de destello (Shine) */
 .cover-shine{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.2) 45%,rgba(255,255,255,.08) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1.1s;border-radius:6px}
 .cover-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 45%,transparent 75%);opacity:.65;transition:opacity .55s;pointer-events:none;z-index:2}
 .cover-item:hover{transform:translateY(-14px) scale(1.08);box-shadow:0 40px 80px -20px var(--cover-glow),0 25px 60px -10px rgba(0,0,0,.85),0 0 0 1.5px var(--cover-glow-line);z-index:20}
@@ -158,6 +160,11 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px}
 .cover-info-meta{font-size:.72rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
 
+/* ICONOS DE MÚSICA Y VIDEO EN LOS COVERS */
+.cover-music-icon{position:absolute;top:10px;right:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.9rem;pointer-events:none}
+.cover-yt-icon{position:absolute;top:10px;left:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.7rem;pointer-events:none}
+
+/* COVER DETAIL (PÁGINA INDIVIDUAL) */
 .cover-detail-page{background:#000;min-height:100vh;width:100%}
 .cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:140px clamp(24px,5vw,80px) 100px;min-height:100vh;box-sizing:border-box}
 @media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:48px;padding:110px 24px 60px;min-height:auto}}
@@ -166,7 +173,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .cover-hero-badge{display:inline-flex;align-items:center;padding:10px 22px;border:1.5px solid var(--accent);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:36px}
 .cover-hero-title{font-weight:900;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 28px 0;word-break:break-word}
 .cover-hero-artist{font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 32px 0}
-.cover-hero-music{width:100%;max-width:520px;min-height:80px}
+.cover-hero-music{width:100%;max-width:520px;min-height:80px;margin-top:20px;}
 .cover-extra-section{background:#000;width:100%;padding:80px 0 40px}
 .cover-extra-section.hidden{display:none}
 .cover-extra-block{max-width:1000px;margin:0 auto 60px;padding:0 clamp(24px,5vw,56px)}
@@ -439,6 +446,9 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             <div class="cover-extra-label">Reseña</div>
             <p class="cover-extra-resena" id="coverHeroResena"></p>
           </div>
+          <div class="cover-extra-block" style="margin-bottom:20px">
+            <div class="cover-extra-label">Galería</div>
+          </div>
           <div class="cover-extra-imgs-wrap" id="coverExtraImgs"></div>
         </div>
       </section>
@@ -610,7 +620,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CLIENTS (BOTONES DE SUBIR / BAJAR) -->
+        <!-- CLIENTS -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Logos de Clientes</h2></div>
@@ -672,7 +682,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
     </main>
   </div>
 
-  <!-- Modal Editar Cover -->
+  <!-- Modal Editar Cover (RECUPERADOS CAMPOS DE AUDIO/VIDEO) -->
   <div class="a-modal-overlay" id="aCoverModal">
     <div class="a-modal-content">
       <div class="a-modal-header">
@@ -705,8 +715,13 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        <div class="a-form-group"><label class="a-form-label">Link de Spotify / YouTube</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
-        <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3"></textarea></div>
+        
+        <!-- CAMPOS RESTAURADOS PARA MULTIMEDIA -->
+        <div class="a-form-group"><label class="a-form-label">Link de Spotify (Música)</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        <div class="a-form-group"><label class="a-form-label">Link de Apple Music</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
+        <div class="a-form-group"><label class="a-form-label">Link de YouTube (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
+
+        <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/extra1.jpg"></textarea></div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" id="aEditCoverFeatured" style="width:18px;height:18px;accent-color:var(--a-accent)">
@@ -732,6 +747,32 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 
+/* FUNCIONES DE EXTRACCIÓN DE MULTIMEDIA RESTAURADAS */
+function getYouTubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function getEmbedUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  url = url.trim(); if (!url) return null;
+  if (url.includes('spotify.com')) {
+    const m = url.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/([a-zA-Z0-9]+)/);
+    if (m) return { platform: 'spotify', height: m[1] === 'track' ? 152 : 380, url: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator` };
+  }
+  if (url.includes('music.apple.com')) {
+    const isAlbum = url.includes('/album/') && !url.includes('?i=');
+    return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
+  }
+  const ytId = getYouTubeId(url);
+  if (ytId) {
+    return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
+  }
+  return null;
+}
+
+/* UTILS */
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
@@ -750,9 +791,7 @@ function handleImgError(img) {
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
 }
 
-/* ============================================================
-   EXTRACCIÓN DE COLOR DOMINANTE (PARA EL BRILLO)
-   ============================================================ */
+/* EXTRACCIÓN DE COLOR DOMINANTE */
 const colorCache = new Map();
 function rgbToHsl(r, g, b) { r /= 255; g /= 255; b /= 255; const max = Math.max(r, g, b), min = Math.min(r, g, b); let h = 0, s = 0, l = (max + min) / 2; if (max !== min) { const d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min); switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; } } return { h: h * 360, s, l }; }
 function hslToHex(h, s, l) { s = Math.max(0, Math.min(1, s)); l = Math.max(0, Math.min(1, l)); const c = (1 - Math.abs(2 * l - 1)) * s; const x = c * (1 - Math.abs((h / 60) % 2 - 1)); const m = l - c / 2; let r, g, b; if (h < 60) [r, g, b] = [c, x, 0]; else if (h < 120) [r, g, b] = [x, c, 0]; else if (h < 180) [r, g, b] = [0, c, x]; else if (h < 240) [r, g, b] = [0, x, c]; else if (h < 300) [r, g, b] = [x, 0, c]; else [r, g, b] = [c, 0, x]; const t = v => Math.round((v + m) * 255); return '#' + [t(r), t(g), t(b)].map(v => v.toString(16).padStart(2, '0')).join(''); }
@@ -763,7 +802,6 @@ function hexToRgba(hex, alpha) {
   if ([r, g, b].some(isNaN)) return `rgba(201,169,97,${alpha})`;
   return `rgba(${r},${g},${b},${alpha})`;
 }
-
 function extractDominantColor(url) {
   if (!url) return Promise.resolve(null);
   if (colorCache.has(url)) return Promise.resolve(colorCache.get(url));
@@ -791,9 +829,7 @@ function extractDominantColor(url) {
   });
 }
 
-/* ============================================================
-   GITHUB API
-   ============================================================ */
+/* GITHUB API */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
   get repo() { return localStorage.getItem('gh_repo') || ''; },
@@ -864,9 +900,7 @@ const GH = {
   }
 };
 
-/* ============================================================
-   ESTADO GLOBAL
-   ============================================================ */
+/* ESTADO GLOBAL */
 let DATA = {
   hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' },
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
@@ -874,9 +908,7 @@ let DATA = {
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }
 };
 
-/* ============================================================
-   EFECTO PARALLAX SUAVE
-   ============================================================ */
+/* PARALLAX */
 let ticking = false;
 function updateParallax() {
   const rows = document.querySelectorAll('.parallax-bg');
@@ -893,19 +925,16 @@ function updateParallax() {
   });
   ticking = false;
 }
-
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (nav) {
     if (window.scrollY > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   }
-  if (!ticking) {
-    window.requestAnimationFrame(updateParallax);
-    ticking = true;
-  }
+  if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
 });
 
+/* ROUTER INICIAL */
 function initRouter() {
   const isAdmin = location.hash.toLowerCase() === '#admin';
   if (isAdmin) {
@@ -925,36 +954,27 @@ function initRouter() {
     loadPublicData();
   }
 }
-
 window.addEventListener('hashchange', initRouter);
 
-/* ============================================================
-   LÓGICA WEB PÚBLICA
-   ============================================================ */
+/* LÓGICA WEB PÚBLICA */
 async function loadPublicData() {
   const remote = await GH.load();
-  if (remote) {
-    DATA = Object.assign(DATA, remote);
-  }
+  if (remote) DATA = Object.assign(DATA, remote);
   renderPublicSite();
 }
 
 function renderPublicSite() {
-  // Hero text
   const ee = $('#pubHeroEyebrow'); if (ee) ee.textContent = DATA.hero.eyebrow || '';
   const t = $('#pubHeroTitle');
   if (t) {
     t.innerHTML = '';
     (DATA.hero.title || '').split('\n').forEach((line, i) => {
       if (i > 0) t.appendChild(document.createElement('br'));
-      const sp = document.createElement('span');
-      sp.textContent = line;
-      t.appendChild(sp);
+      const sp = document.createElement('span'); sp.textContent = line; t.appendChild(sp);
     });
   }
   const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
 
-  // Hero Background Carousel
   const heroBg = $('#heroBg');
   if (heroBg) {
     heroBg.innerHTML = '';
@@ -966,25 +986,13 @@ function renderPublicSite() {
     });
   }
 
-  // BANNER ROTATIVO (MARQUEE)
   renderMarquee();
-
-  // COVER DESTACADOS (BILLBOARDS ROTATIVOS)
   renderFeaturedCovers();
-
-  // PORTAFOLIO Y PARALLAX DE CATEGORÍAS
   renderPortfolioCategories();
-
-  // COVERS
   renderPublicCovers(DATA.covers || []);
-
-  // CLIENTES
   renderPublicClients();
-
-  // HERRAMIENTAS
   renderPublicTools();
 
-  // CONTACTO
   const ce = $('#pubContactEmail'); if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
   const cp = $('#pubContactPhone'); if (cp) { cp.textContent = DATA.contact.phone || ''; cp.href = 'tel:' + (DATA.contact.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = DATA.contact.location || '';
@@ -996,9 +1004,7 @@ function renderMarquee() {
   if (!container) return;
   let html = '';
   for (let j = 0; j < 4; j++) {
-    words.forEach(item => {
-      html += `<div class="mq-item">${item}</div>`;
-    });
+    words.forEach(item => { html += `<div class="mq-item">${item}</div>`; });
   }
   container.innerHTML = html;
 }
@@ -1019,14 +1025,10 @@ function renderFeaturedCovers() {
     const buildCard = (c) => {
       const el = document.createElement('div');
       el.className = 'billboard-card';
-      el.innerHTML = `
-        <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
-        <span class="billboard-badge">Destacado</span>
-      `;
+      el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)"><span class="billboard-badge">Destacado</span>`;
       el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
       return el;
     };
-    // Duplicamos para efecto de bucle infinito
     featured.forEach(c => track.appendChild(buildCard(c)));
     featured.forEach(c => track.appendChild(buildCard(c)));
   }
@@ -1045,14 +1047,10 @@ function renderPortfolioCategories() {
     const bg = document.createElement('div');
     bg.className = 'parallax-bg' + (firstImg ? '' : ' empty');
     if (firstImg) bg.style.backgroundImage = `url("${resolveImageUrl(firstImg)}")`;
-    
     row.appendChild(bg);
-    const ov = document.createElement('div');
-    ov.className = 'parallax-overlay';
-    row.appendChild(ov);
     
-    const content = document.createElement('div');
-    content.className = 'parallax-content';
+    const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
+    const content = document.createElement('div'); content.className = 'parallax-content';
     content.innerHTML = `
       <span class="num">0${i+1} / 0${DATA.categories.length}</span>
       <h2>${cat.name}</h2>
@@ -1069,13 +1067,9 @@ function renderPublicClients() {
   if (!grid) return;
   grid.innerHTML = '';
   (DATA.clientes || []).forEach(url => {
-    const c = document.createElement('div');
-    c.className = 'cliente-logo';
-    const im = document.createElement('img');
-    im.src = resolveImageUrl(url);
-    im.onerror = () => handleImgError(im);
-    c.appendChild(im);
-    grid.appendChild(c);
+    const c = document.createElement('div'); c.className = 'cliente-logo';
+    const im = document.createElement('img'); im.src = resolveImageUrl(url); im.onerror = () => handleImgError(im);
+    c.appendChild(im); grid.appendChild(c);
   });
 }
 
@@ -1087,9 +1081,7 @@ function renderPublicTools() {
     const sec = $('#softwareSection'); if (sec) sec.style.display = 'block';
     DATA.software.forEach(url => {
       const card = document.createElement('div'); card.className = 'software-logo';
-      const im = document.createElement('img');
-      im.src = resolveImageUrl(url);
-      im.onerror = () => handleImgError(im);
+      const im = document.createElement('img'); im.src = resolveImageUrl(url); im.onerror = () => handleImgError(im);
       card.appendChild(im); grid.appendChild(card);
     });
   } else {
@@ -1103,21 +1095,23 @@ function renderPublicCovers(covers) {
   grid.innerHTML = '';
   covers.forEach(c => {
     const item = document.createElement('div'); item.className = 'cover-item';
-    const im = document.createElement('img');
-    im.src = resolveImageUrl(c.url);
-    im.onerror = () => handleImgError(im);
+    const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im);
     item.appendChild(im);
     
-    // Efecto Shine (Destello)
+    // Shine
     const shine = document.createElement('div'); shine.className = 'cover-shine'; item.appendChild(shine);
     
-    // Extraer color dominante para el brillo
+    // Glow color
     extractDominantColor(c.url).then(col => {
       if (col) {
         item.style.setProperty('--cover-glow', hexToRgba(col, .55));
         item.style.setProperty('--cover-glow-line', hexToRgba(col, .5));
       }
     });
+
+    // Íconos
+    if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
+    if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
 
     const info = document.createElement('div'); info.className = 'cover-info';
     info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
@@ -1127,7 +1121,7 @@ function renderPublicCovers(covers) {
   });
 }
 
-// ROUTING DE SECCIONES INTERNAS
+/* ROUTING INTERNO */
 window.addEventListener('hashchange', () => {
   const hash = location.hash;
   if (hash.startsWith('#cover-')) {
@@ -1140,6 +1134,44 @@ window.addEventListener('hashchange', () => {
       $('#coverHeroBadge').textContent = c.category || 'SENCILLO';
       $('#coverHeroResena').textContent = c.review || '';
       
+      // RESTAURADO: Reproductor
+      const musicWrap = $('#coverHeroMusic');
+      musicWrap.innerHTML = '';
+      const embedData = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl) || getEmbedUrl(c.youtubeUrl);
+      if (embedData) {
+        const ifr = document.createElement('iframe');
+        ifr.src = embedData.url;
+        ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
+        ifr.height = embedData.height;
+        ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
+        musicWrap.appendChild(ifr);
+        musicWrap.style.display = 'block';
+      } else {
+        musicWrap.style.display = 'none';
+      }
+
+      // RESTAURADO: Galería extra
+      const extraImgs = $('#coverExtraImgs');
+      extraImgs.innerHTML = '';
+      if (c.extraImages && c.extraImages.length > 0) {
+        const gallery = document.createElement('div');
+        gallery.className = 'masonry-gallery';
+        c.extraImages.forEach((imgUrl, idx) => {
+          const imgItem = document.createElement('div');
+          imgItem.className = 'masonry-item';
+          const img = document.createElement('img');
+          img.src = resolveImageUrl(imgUrl);
+          img.onerror = () => handleImgError(img);
+          imgItem.appendChild(img);
+          gallery.appendChild(imgItem);
+        });
+        extraImgs.appendChild(gallery);
+        $('#coverExtraSection').classList.remove('hidden');
+      } else {
+        if(c.review) $('#coverExtraSection').classList.remove('hidden');
+        else $('#coverExtraSection').classList.add('hidden');
+      }
+
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="coverDetalle"]').classList.add('active');
     }
@@ -1152,26 +1184,27 @@ window.addEventListener('hashchange', () => {
       const container = $('#catProjRows');
       container.innerHTML = '';
       
-      (cat.items || []).forEach((item, i) => {
-        const itemUrl = typeof item === 'string' ? item : item.url;
-        const row = document.createElement('div');
-        row.className = 'parallax-row';
-        
-        const bg = document.createElement('div');
-        bg.className = 'parallax-bg';
-        bg.style.backgroundImage = `url("${resolveImageUrl(itemUrl)}")`;
-        row.appendChild(bg);
-        
-        const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
-        const content = document.createElement('div'); content.className = 'parallax-content';
-        content.innerHTML = `<span class="num">0${i+1} / 0${cat.items.length}</span><h2>${cat.name} — Item #${i+1}</h2>`;
-        row.appendChild(content);
-        container.appendChild(row);
-      });
+      // RESTAURADO: Galería de imágenes de la categoría
+      if (cat.items && cat.items.length > 0) {
+        const gallery = document.createElement('div');
+        gallery.className = 'masonry-gallery';
+        cat.items.forEach((item, i) => {
+          const itemUrl = typeof item === 'string' ? item : item.url;
+          const imgItem = document.createElement('div');
+          imgItem.className = 'masonry-item';
+          const img = document.createElement('img');
+          img.src = resolveImageUrl(itemUrl);
+          img.onerror = () => handleImgError(img);
+          imgItem.appendChild(img);
+          gallery.appendChild(imgItem);
+        });
+        container.appendChild(gallery);
+      } else {
+        container.innerHTML = '<p style="text-align:center;padding:40px;color:var(--muted);">No hay imágenes en esta categoría.</p>';
+      }
 
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="categoria"]').classList.add('active');
-      setTimeout(() => window.dispatchEvent(new Event('scroll')), 50);
     }
   } else if (!hash || hash === '#home') {
     $$('.view').forEach(v => v.classList.remove('active'));
@@ -1179,7 +1212,6 @@ window.addEventListener('hashchange', () => {
   }
 });
 
-// NAVEGACIÓN TABS PÚBLICAS
 $$('.tab').forEach(btn => {
   btn.onclick = () => {
     $$('.tab').forEach(t => t.classList.remove('active'));
@@ -1191,38 +1223,27 @@ $$('.tab').forEach(btn => {
   };
 });
 
-/* ============================================================
-   LÓGICA PANEL ADMIN (CON MENÚ DESPLEGABLE)
-   ============================================================ */
+/* LÓGICA PANEL ADMIN */
 function aToast(msg, type = 'success') {
   const container = $('#aToastContainer');
-  const el = document.createElement('div');
-  el.className = `a-toast ${type}`;
-  el.textContent = msg;
+  const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg;
   container.appendChild(el);
   setTimeout(() => el.classList.add('show'), 10);
   setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000);
 }
-
 function setASync(status, text) {
-  const el = $('#aSyncStatus');
-  const txt = $('#aSyncStatusText');
-  el.className = `a-sync ${status}`;
-  txt.textContent = text;
+  const el = $('#aSyncStatus'); const txt = $('#aSyncStatusText');
+  el.className = `a-sync ${status}`; txt.textContent = text;
 }
-
 async function loadAdminData() {
   setASync('saving', 'Cargando...');
   try {
     const remote = await GH.load();
     if (remote) DATA = Object.assign(DATA, remote);
     setASync('ok', 'Sincronizado');
-  } catch(e) {
-    setASync('error', 'Error');
-  }
+  } catch(e) { setASync('error', 'Error'); }
   renderAdmin();
 }
-
 async function saveAdminData() {
   setASync('saving', 'Guardando...');
   try {
@@ -1240,7 +1261,6 @@ function renderAdmin() {
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
   
-  // HERO IMAGES
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1248,7 +1268,6 @@ function renderAdmin() {
     hGrid.appendChild(el);
   });
 
-  // COVERS
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = '';
   (DATA.covers || []).forEach((c, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1267,7 +1286,6 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // CLIENTES CON ORDENAMIENTO (BOTONES SUBIR / BAJAR)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1282,7 +1300,6 @@ function renderAdmin() {
     clGrid.appendChild(el);
   });
 
-  // TOOLS
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = '';
   (DATA.software || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1290,7 +1307,6 @@ function renderAdmin() {
     tGrid.appendChild(el);
   });
 
-  // PORTFOLIO CATEGORIES
   renderAdminPortfolio();
 
   $('#aContactEmail').value = DATA.contact.email || '';
@@ -1339,51 +1355,26 @@ function renderAdminPortfolio() {
   });
 }
 
-// FUNCIONES DE CONTROL EN ADMIN
 window.moveClientItem = (index, direction) => {
   const newIndex = index + direction;
   if (newIndex < 0 || newIndex >= DATA.clientes.length) return;
   const temp = DATA.clientes[index];
   DATA.clientes[index] = DATA.clientes[newIndex];
   DATA.clientes[newIndex] = temp;
-  renderAdmin();
-  saveAdminData();
+  renderAdmin(); saveAdminData();
 };
-
-window.updateCatName = (catIdx, val) => {
-  if (DATA.categories[catIdx]) DATA.categories[catIdx].name = val;
-};
-
+window.updateCatName = (catIdx, val) => { if (DATA.categories[catIdx]) DATA.categories[catIdx].name = val; };
 window.addCatImages = (catIdx) => {
   const textarea = $(`#catInput_${catIdx}`);
   const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
   if (!urls.length) return;
   if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
   DATA.categories[catIdx].items.push(...urls);
-  textarea.value = '';
-  renderAdmin();
-  saveAdminData();
+  textarea.value = ''; renderAdmin(); saveAdminData();
 };
-
-window.delCatItem = (catIdx, itemIdx) => {
-  DATA.categories[catIdx].items.splice(itemIdx, 1);
-  renderAdmin();
-  saveAdminData();
-};
-
-window.delAdminItem = (key, i) => {
-  if(confirm('¿Eliminar elemento?')) {
-    DATA[key].splice(i, 1);
-    renderAdmin(); saveAdminData();
-  }
-};
-
-window.delCategory = (i) => {
-  if(confirm('¿Eliminar categoría completa?')) {
-    DATA.categories.splice(i, 1);
-    renderAdmin(); saveAdminData();
-  }
-};
+window.delCatItem = (catIdx, itemIdx) => { DATA.categories[catIdx].items.splice(itemIdx, 1); renderAdmin(); saveAdminData(); };
+window.delAdminItem = (key, i) => { if(confirm('¿Eliminar elemento?')) { DATA[key].splice(i, 1); renderAdmin(); saveAdminData(); } };
+window.delCategory = (i) => { if(confirm('¿Eliminar categoría completa?')) { DATA.categories.splice(i, 1); renderAdmin(); saveAdminData(); } };
 
 window.openAdminCoverModal = (i) => {
   const c = DATA.covers[i];
@@ -1396,26 +1387,17 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverCategory').value = c.category || 'sencillo';
   $('#aEditCoverReview').value = c.review || '';
   $('#aEditCoverSpotify').value = c.spotifyUrl || '';
+  $('#aEditCoverApple').value = c.appleMusicUrl || '';
+  $('#aEditCoverYouTube').value = c.youtubeUrl || '';
   $('#aEditCoverExtras').value = (c.extraImages || []).join('\n');
   $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
 };
 
-// LÓGICA DE MENÚ DESPLEGABLE
-$('#aMenuBtn').onclick = () => {
-  $('#aSidebar').classList.add('open');
-  $('#aOverlay').classList.add('active');
-};
-$('#aCloseSidebar').onclick = () => {
-  $('#aSidebar').classList.remove('open');
-  $('#aOverlay').classList.remove('active');
-};
-$('#aOverlay').onclick = () => {
-  $('#aSidebar').classList.remove('open');
-  $('#aOverlay').classList.remove('active');
-};
+$('#aMenuBtn').onclick = () => { $('#aSidebar').classList.add('open'); $('#aOverlay').classList.add('active'); };
+$('#aCloseSidebar').onclick = () => { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); };
+$('#aOverlay').onclick = () => { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); };
 
-// LISTENERS DE INPUTS
 $$('.a-nav-item').forEach(item => {
   item.onclick = () => {
     $$('.a-nav-item').forEach(n => n.classList.remove('active'));
@@ -1423,11 +1405,7 @@ $$('.a-nav-item').forEach(item => {
     $$('.a-panel').forEach(p => p.classList.remove('active'));
     $(`#a-panel-${item.dataset.target}`).classList.add('active');
     $('#aPageTitle').textContent = item.textContent;
-    // Cerrar menú en móvil al seleccionar
-    if (window.innerWidth <= 900) {
-      $('#aSidebar').classList.remove('open');
-      $('#aOverlay').classList.remove('active');
-    }
+    if (window.innerWidth <= 900) { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); }
   };
 });
 
@@ -1441,24 +1419,10 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
-$('#aBtnAddHeroUrls').onclick = () => {
-  const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData();
-};
-$('#aBtnAddCoverUrls').onclick = () => {
-  const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  const cat = $('#aCoverCategorySelect').value;
-  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', featured: false }));
-  $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData();
-};
-$('#aBtnAddClientUrls').onclick = () => {
-  const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  DATA.clientes.push(...urls); $('#aClientUrlsInput').value=''; renderAdmin(); saveAdminData();
-};
-$('#aBtnAddToolUrls').onclick = () => {
-  const urls = $('#aToolUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  DATA.software.push(...urls); $('#aToolUrlsInput').value=''; renderAdmin(); saveAdminData();
-};
+$('#aBtnAddHeroUrls').onclick = () => { const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData(); };
+$('#aBtnAddCoverUrls').onclick = () => { const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); const cat = $('#aCoverCategorySelect').value; urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false })); $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData(); };
+$('#aBtnAddClientUrls').onclick = () => { const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.clientes.push(...urls); $('#aClientUrlsInput').value=''; renderAdmin(); saveAdminData(); };
+$('#aBtnAddToolUrls').onclick = () => { const urls = $('#aToolUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.software.push(...urls); $('#aToolUrlsInput').value=''; renderAdmin(); saveAdminData(); };
 
 $('#aCloseCoverModal').onclick = () => $('#aCoverModal').classList.remove('active');
 $('#aBtnSaveCover').onclick = () => {
@@ -1471,15 +1435,15 @@ $('#aBtnSaveCover').onclick = () => {
   c.category = $('#aEditCoverCategory').value;
   c.review = $('#aEditCoverReview').value.trim();
   c.spotifyUrl = $('#aEditCoverSpotify').value.trim();
+  c.appleMusicUrl = $('#aEditCoverApple').value.trim();
+  c.youtubeUrl = $('#aEditCoverYouTube').value.trim();
   c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
   c.featured = $('#aEditCoverFeatured').checked;
   $('#aCoverModal').classList.remove('active'); renderAdmin(); saveAdminData();
 };
 $('#aBtnDeleteCover').onclick = () => {
   const i = parseInt($('#aEditCoverIndex').value);
-  if(confirm('¿Eliminar este cover?')) {
-    DATA.covers.splice(i, 1); $('#aCoverModal').classList.remove('active'); renderAdmin(); saveAdminData();
-  }
+  if(confirm('¿Eliminar este cover?')) { DATA.covers.splice(i, 1); $('#aCoverModal').classList.remove('active'); renderAdmin(); saveAdminData(); }
 };
 
 $('#aBtnSaveAll').onclick = saveAdminData;
@@ -1501,10 +1465,7 @@ $('#aLoginForm').onsubmit = async e => {
     $('#aLoginScreen').classList.remove('active');
     $('#aDashboard').style.display = 'flex';
     await loadAdminData();
-  } catch (err) {
-    GH.clear();
-    errEl.textContent = 'Error. Verifica el token y repositorio.';
-  }
+  } catch (err) { GH.clear(); errEl.textContent = 'Error. Verifica el token y repositorio.'; }
 };
 
 $('#aBtnNewCategory').onclick = () => {
