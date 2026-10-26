@@ -403,8 +403,8 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943718970-bkak1y.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943715536-xeetsj.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943720049-e1mm82.png",
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943722317-w25233.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943728846-lzxvhu.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943722317-w25233.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943723472-ezc9fl.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943725676-0pcx0n.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792943714053-n8p8w0.png",
@@ -1767,6 +1767,17 @@
     "phone": "+58 4141299366",
     "location": "Caracas, Venezuela"
   },
+  "theme": {
+    "accent": "#C9A961",
+    "bg": "#000000",
+    "surface": "#0f0f10",
+    "text": "#F5F3EF",
+    "muted": "#8A8A8A",
+    "philBg": "#F5F3EF",
+    "philText": "#0A0A0A",
+    "philEm": "#A88B45",
+    "philMuted": "#4A4A4A"
+  },
   "texts": {
     "navHome": "Inicio",
     "navPortafolio": "Portafolio",
@@ -1810,16 +1821,5 @@
     "footerRight": "Diseñado con intención",
     "pageTitle": "Grobdesigns",
     "metaDescription": "Portafolio de Grobdesigns."
-  },
-  "theme": {
-    "accent": "#C9A961",
-    "bg": "#000000",
-    "surface": "#0f0f10",
-    "text": "#F5F3EF",
-    "muted": "#8A8A8A",
-    "philBg": "#F5F3EF",
-    "philText": "#0A0A0A",
-    "philEm": "#A88B45",
-    "philMuted": "#4A4A4A"
   }
 }
