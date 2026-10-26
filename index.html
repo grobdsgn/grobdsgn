@@ -7,15 +7,11 @@
 <meta name="description" content="Portafolio de Grobdesigns: diseño de portadas musicales, identidad visual y dirección de arte.">
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index, follow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' data: https:; connect-src 'self' https: https://api.github.com https://raw.githubusercontent.com https://cdn.jsdelivr.net https://objects.githubusercontent.com https://open.spotify.com https://itunes.apple.com https://www.youtube.com; frame-src 'self' https://open.spotify.com https://embed.spotify.com https://embed.music.apple.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com; base-uri 'self'; form-action 'self';">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   ESTILOS WEB PÚBLICA
-   ============================================================ */
 :root{--bg:#000;--surface:#0f0f10;--line:rgba(255,255,255,.09);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--ease:cubic-bezier(.22,1,.36,1);--danger:#E5484D;--ok:#30A46C;--phil-bg:#F5F3EF;--phil-text:#0A0A0A;--phil-em:#A88B45;--phil-muted:#4A4A4A}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -37,17 +33,17 @@ nav.top.scrolled{padding:12px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);position:relative;padding:6px 0;transition:color .3s}
 .tab:hover,.tab.active{color:var(--text)}
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
-.nav-right{display:flex;align-items:center;gap:12px}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav-back{display:none;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);transition:.3s;padding:6px 0}
 .nav-back.show{display:flex}
+.nav-back:hover{color:var(--text)}
+.music-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;flex-shrink:0}
+.music-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.music-btn.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+.music-btn.playing{border-color:var(--accent);color:var(--accent);animation:musicPulse 2s infinite}
+@keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,97,0.4)}50%{box-shadow:0 0 0 8px rgba(201,169,97,0)}}
 main{position:relative}
 .view{display:none}.view.active{display:block}
-.view.entering{animation:viewEnter .5s cubic-bezier(.22,1,.36,1) forwards}
-.view.leaving{display:block;position:absolute;top:0;left:0;right:0;pointer-events:none;z-index:10;animation:viewLeave .4s cubic-bezier(.22,1,.36,1) forwards}
-@keyframes viewEnter{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:none}}
-@keyframes viewLeave{0%{opacity:1}100%{opacity:0;transform:translateY(-15px)}}
-
-/* HERO */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.2s}
@@ -62,16 +58,12 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text)}
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
-
-/* MARQUEE BANNER */
 .marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:24px 0;display:flex;background:#000;position:relative;z-index:5}
 .marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
 .marquee:hover .marquee-inner{animation-play-state:paused}
 .mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:clamp(1.2rem,2.5vw,1.8rem);padding:0 32px;display:inline-flex;align-items:center;gap:32px;color:var(--text);letter-spacing:0.02em}
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
 @keyframes marqueeScroll{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
-
-/* FEATURED COVERS (BILLBOARDS) */
 .featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
 .billboard-scroll{width:100%;overflow:hidden;padding:20px 0;position:relative}
 .billboard-inner{display:flex;gap:20px;width:max-content;animation:billboardScroll 35s linear infinite}
@@ -82,15 +74,12 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .billboard-card:hover img{transform:scale(1.08)}
 .billboard-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
 .philosophy{padding:clamp(90px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .philosophy h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:24px}
 .philosophy h2 em{color:var(--phil-em)}
 .philosophy p{color:var(--phil-muted);max-width:56ch;font-size:1.05rem}
 .section-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(30px,6vw,90px);align-items:start}
 .label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600;padding-top:.5em;white-space:nowrap}
-
-/* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
 .parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
@@ -98,13 +87,14 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
 .parallax-content .num{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:22px;display:block}
 .parallax-content h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,8vw,7rem);line-height:.98;letter-spacing:-.04em;margin-bottom:22px;color:#fff}
+.parallax-content .cat-logo-img{max-width:min(380px,75vw);max-height:130px;width:auto;height:auto;margin:0 auto 24px;display:block;object-fit:contain;filter:drop-shadow(0 6px 30px rgba(0,0,0,0.7))}
 .parallax-content .desc{font-size:clamp(.9rem,1.3vw,1.05rem);color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 24px}
 .parallax-content .meta{display:inline-flex;align-items:center;gap:14px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
 .parallax-content .meta::before,.parallax-content .meta::after{content:'';width:32px;height:1px;background:rgba(255,255,255,.3)}
-
 .categoria-intro{padding:150px 0 60px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(24px,5vw,56px)}
 .categoria-intro h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:22px;color:var(--text)}
 .categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.95rem,1.3vw,1.08rem);line-height:1.8}
+.cat-logo-detail{max-height:90px;max-width:340px;margin-bottom:24px;object-fit:contain}
 .detalle-view{background:#000;min-height:100vh;padding:130px 0 0}
 .detalle-header{max-width:1000px;margin:0 auto;padding:0 clamp(24px,5vw,56px) 60px}
 .detalle-counter{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px;font-variant-numeric:tabular-nums}
@@ -120,19 +110,12 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .project-yt-wrap.visible{display:block}
 .project-yt-inner{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000}
 .project-yt-inner iframe{width:100%;height:100%;border:0;display:block}
-
-/* GALERÍAS MASONRY (RECUPERADAS) */
 .masonry-gallery{max-width:1400px;margin:40px auto 0;padding:0 clamp(16px,4vw,48px) 80px;column-gap:12px;columns:3}
 @media(max-width:900px){.masonry-gallery{columns:2}}
 @media(max-width:540px){.masonry-gallery{columns:1}}
 .masonry-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a;cursor:zoom-in;opacity:0;animation:masonryIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--entry-delay,0s)}
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:100px;background:#0a0a0a}
-.masonry-empty{padding:80px 24px;text-align:center;color:var(--muted);columns:1}
-.embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
-.embed-item iframe{width:100%;border:0;display:block;aspect-ratio:16/9}
-
-/* COVERS GRID & BRILLO DINÁMICO */
 .covers-view{padding:150px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(24px,5vw,56px) 40px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:24px;max-width:20ch}
@@ -159,16 +142,12 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
 .cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px}
 .cover-info-meta{font-size:.72rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
-
-/* ICONOS DE MÚSICA Y VIDEO EN LOS COVERS */
 .cover-music-icon{position:absolute;top:10px;right:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.9rem;pointer-events:none}
 .cover-yt-icon{position:absolute;top:10px;left:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.7rem;pointer-events:none}
-
-/* COVER DETAIL (PÁGINA INDIVIDUAL) */
 .cover-detail-page{background:#000;min-height:100vh;width:100%}
 .cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:140px clamp(24px,5vw,80px) 100px;min-height:100vh;box-sizing:border-box}
 @media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:48px;padding:110px 24px 60px;min-height:auto}}
-.cover-hero-image img{width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#0a0a0a}
+.cover-hero-image img{width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#0a0a0a;cursor:zoom-in}
 .cover-hero-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:600px}
 .cover-hero-badge{display:inline-flex;align-items:center;padding:10px 22px;border:1.5px solid var(--accent);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:36px}
 .cover-hero-title{font-weight:900;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 28px 0;word-break:break-word}
@@ -180,20 +159,17 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .cover-extra-label{font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;display:flex;align-items:center;gap:18px}
 .cover-extra-label::before{content:'';width:38px;height:1px;background:var(--line)}
 .cover-extra-resena{font-size:clamp(1rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch}
-
 .software-section{padding:clamp(70px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
 .software-section h2{color:var(--text);font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
 .software-section p{color:var(--muted);max-width:56ch;font-size:1rem}
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:30px 40px;margin-top:50px;align-items:center}
 .software-logo{display:grid;place-items:center;padding:14px;min-height:70px}
 .software-logo img{max-width:100%;max-height:50px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;transition:.4s}
-
 .clientes-view{padding:180px 0 100px;min-height:100vh;background:#000}
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(40px,5vw,80px) clamp(30px,4vw,60px);margin-top:60px;align-items:center}
 .cliente-logo{display:grid;place-items:center;padding:20px;cursor:pointer;min-height:80px}
 .cliente-logo img{max-width:100%;max-height:70px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.55;transition:.5s}
 .cliente-logo:hover img{opacity:1;transform:scale(1.1);filter:brightness(0) invert(1) drop-shadow(0 0 24px rgba(201,169,97,.45))}
-
 .contacto-view{padding:180px 0 80px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:60px}}
@@ -208,25 +184,28 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .form-btn{width:100%;padding:18px;background:var(--text);color:var(--bg);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:12px;cursor:pointer}
 footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:#000}
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-
-/* ============================================================
-   ESTILOS PANEL ADMIN (REDISEÑADO: MENÚ DESPLEGABLE)
-   ============================================================ */
+.lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;backdrop-filter:blur(8px)}
+.lightbox.active{display:flex;animation:lbFade .25s ease}
+@keyframes lbFade{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 100px rgba(0,0,0,0.9);cursor:default;animation:lbZoom .35s cubic-bezier(.16,1,.3,1)}
+@keyframes lbZoom{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.lightbox-close{position:absolute;top:20px;right:20px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:22px;display:grid;place-items:center;cursor:pointer;transition:.2s;z-index:2}
+.lightbox-close:hover{background:rgba(255,255,255,0.22);transform:rotate(90deg)}
+@media(max-width:640px){.lightbox{padding:12px}.lightbox-close{top:10px;right:10px;width:40px;height:40px;font-size:18px}}
+.zoomable{cursor:zoom-in}
+.public-toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:rgba(20,20,22,.98);border:1px solid var(--line);color:var(--text);padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;z-index:99998;opacity:0;transition:.3s;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.public-toast.show{transform:translate(-50%,0);opacity:1}
+.public-toast.error{border-left:3px solid var(--danger)}
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.5;min-height:100vh;display:none}
 #adminApp.active{display:block}
 .admin-layout{display:flex;min-height:100vh;position:relative}
-
-/* Sidebar Desplegable */
 .a-sidebar{width:260px;background:var(--a-surface);border-right:1px solid var(--a-line);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:1000;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.22,1,.36,1);box-shadow:5px 0 30px rgba(0,0,0,0.5)}
 .a-sidebar.open{transform:translateX(0)}
 .a-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:999;display:none}
 .a-overlay.active{display:block}
-
-/* Main Content (Ocupa todo el ancho) */
 .a-main{flex:1;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg);width:100%}
-
 .a-sidebar-header{padding:24px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center}
 .a-sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .a-sidebar-nav{padding:16px 12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
@@ -239,14 +218,12 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-sync.saving .a-sync-dot{background:var(--a-accent);animation:pulse 1s infinite}
 .a-sync.error .a-sync-dot{background:var(--a-danger)}
 @keyframes pulse{50%{opacity:0.5}}
-
 .a-topbar{padding:20px 32px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;background:var(--a-bg);position:sticky;top:0;z-index:50;width:100%}
 .a-topbar-left{display:flex;align-items:center;gap:16px}
 .a-menu-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--a-line);color:var(--a-text);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}
 .a-menu-btn:hover{background:var(--a-surface-hover)}
 .a-page-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}
 .a-topbar-actions{display:flex;gap:12px}
-
 .a-content{padding:32px;flex:1;max-width:1200px;margin:0 auto;width:100%}
 .a-panel{display:none;animation:fadeIn 0.3s ease}
 .a-panel.active{display:block}
@@ -258,10 +235,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-form-group{margin-bottom:20px}
 .a-form-group:last-child{margin-bottom:0}
 .a-form-label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--a-muted);margin-bottom:8px}
+.a-form-hint{font-size:12px;color:var(--a-muted);margin-top:6px;display:block;line-height:1.5}
 .a-form-input,.a-form-textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:6px;font-size:14px;color:var(--a-text);outline:none;transition:border 0.2s}
 .a-form-input:focus,.a-form-textarea:focus{border-color:var(--a-accent)}
-.a-form-textarea{min-height:100px;resize:vertical}
-.a-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;font-size:13px;font-weight:600;border-radius:6px;transition:all 0.2s;cursor:pointer}
+.a-form-textarea{min-height:100px;resize:vertical;font-family:'Inter',sans-serif}
+.a-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;font-size:13px;font-weight:600;border-radius:6px;transition:all 0.2s;cursor:pointer;white-space:nowrap}
 .a-btn-primary{background:var(--a-accent);color:#000;border:1px solid var(--a-accent)}
 .a-btn-primary:hover{background:var(--a-accent-hover)}
 .a-btn-outline{background:transparent;border:1px solid var(--a-line);color:var(--a-text)}
@@ -270,7 +248,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-btn-danger:hover{background:var(--a-danger);color:#fff}
 .a-btn-sm{padding:6px 12px;font-size:12px}
 .a-btn-block{width:100%}
-.a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
+.a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:20px}
 .a-cover-card{background:#000;border:1px solid var(--a-line);border-radius:6px;overflow:hidden;position:relative}
 .a-cover-card img{width:100%;aspect-ratio:1;object-fit:cover}
 .a-cover-card-info{padding:12px;background:var(--a-surface)}
@@ -279,15 +257,17 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-cover-card-actions{display:flex;gap:6px;margin-top:10px}
 .a-cover-card-actions .a-btn{flex:1;padding:6px;font-size:11px}
 .a-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:var(--a-accent);font-size:10px;font-weight:700;padding:4px 8px;border-radius:4px;text-transform:uppercase}
-.a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
-.a-modal-overlay.active{display:flex}
-.a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:8px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative}
-.a-modal-header{padding:20px 24px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--a-surface);z-index:10}
-.a-modal-title{font-size:1.2rem;font-weight:700}
-.a-modal-close{font-size:20px;color:var(--a-muted);cursor:pointer}
-.a-modal-close:hover{color:var(--a-text)}
-.a-modal-body{padding:24px}
-.a-modal-footer{padding:20px 24px;border-top:1px solid var(--a-line);display:flex;justify-content:flex-end;gap:12px;position:sticky;bottom:0;background:var(--a-surface);z-index:10}
+.cat-admin-block{background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:8px;padding:20px;margin-bottom:20px}
+.cat-admin-header{display:flex;gap:12px;margin-bottom:16px;align-items:center}
+.cat-admin-header .a-form-input{flex:1}
+.cat-admin-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:12px}
+.cat-admin-item{position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:.2s;background:#000}
+.cat-admin-item:hover{border-color:rgba(255,255,255,0.25);transform:translateY(-2px)}
+.cat-admin-item.parallax-selected{border-color:var(--a-accent);box-shadow:0 0 18px rgba(201,169,97,0.5)}
+.cat-admin-item.parallax-selected::before{content:'PARALLAX';position:absolute;top:0;left:0;right:0;background:linear-gradient(to bottom,rgba(201,169,97,0.9),rgba(201,169,97,0));color:#000;font-size:9px;font-weight:800;padding:5px 0;text-align:center;letter-spacing:0.1em;z-index:2}
+.cat-admin-item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cat-admin-item-del{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(229,72,77,0.95);color:#fff;font-size:14px;font-weight:700;display:grid;place-items:center;z-index:3;opacity:0;transition:.2s}
+.cat-admin-item:hover .cat-admin-item-del{opacity:1}
 .a-login-screen{position:fixed;inset:0;background:var(--a-bg);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:400px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:40px}
@@ -295,6 +275,15 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-login-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:8px}
 .a-login-subtitle{font-size:14px;color:var(--a-muted);text-align:center;margin-bottom:32px}
 .a-login-error{color:var(--a-danger);font-size:13px;text-align:center;margin-top:16px;min-height:20px}
+.a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.a-modal-overlay.active{display:flex}
+.a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:8px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative}
+.a-modal-header{padding:20px 24px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--a-surface);z-index:10}
+.a-modal-title{font-size:1.2rem;font-weight:700}
+.a-modal-close{font-size:20px;color:var(--a-muted);cursor:pointer;background:none;border:none}
+.a-modal-close:hover{color:var(--a-text)}
+.a-modal-body{padding:24px}
+.a-modal-footer{padding:20px 24px;border-top:1px solid var(--a-line);display:flex;justify-content:flex-end;gap:12px;position:sticky;bottom:0;background:var(--a-surface);z-index:10}
 .a-toast-container{position:fixed;bottom:24px;right:24px;z-index:3000;display:flex;flex-direction:column;gap:10px}
 .a-toast{background:var(--a-surface);border:1px solid var(--a-line);padding:12px 20px;border-radius:6px;font-size:14px;font-weight:500;transform:translateY(100px);opacity:0;transition:all 0.3s;display:flex;align-items:center;gap:12px;min-width:250px}
 .a-toast.show{transform:translateY(0);opacity:1}
@@ -319,6 +308,9 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         <button class="tab" data-tab="contacto">Contacto</button>
       </div>
       <div class="nav-right">
+        <button class="music-btn disabled" id="musicBtn" title="Reproducir / Pausar música" aria-label="Música">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="musicIcon"><path d="M8 5v14l11-7z"/></svg>
+        </button>
         <button class="nav-back" id="navBack">← Volver</button>
       </div>
     </div>
@@ -339,32 +331,20 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div></div></div>
       </section>
-      
-      <!-- MARQUEE BANNER ROTATIVO -->
-      <div class="marquee">
-        <div class="marquee-inner" id="marquee"></div>
-      </div>
-      
-      <!-- FEATURED COVERS (BILLBOARDS AUTOMÁTICOS) -->
+      <div class="marquee"><div class="marquee-inner" id="marquee"></div></div>
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
-        <div class="wrap">
-          <div class="section-head" style="margin-bottom: 20px;">
-            <div class="label">— Destacados</div>
-            <div><h2>Proyectos <em>seleccionados</em>.</h2></div>
-          </div>
-        </div>
-        <div class="billboard-scroll">
-          <div class="billboard-inner" id="featuredCoversTrack"></div>
-        </div>
+        <div class="wrap"><div class="section-head" style="margin-bottom:20px">
+          <div class="label">— Destacados</div>
+          <div><h2>Proyectos <em>seleccionados</em>.</h2></div>
+        </div></div>
+        <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
       </section>
-
       <section class="philosophy">
         <div class="wrap"><div class="section-head">
           <div class="label">— Filosofía</div>
           <div><h2>Diseño con <em>intención</em>.</h2><p>Más de ocho años traduciendo ideas complejas en sistemas visuales claros.</p></div>
         </div></div>
       </section>
-
       <section class="software-section" id="softwareSection" style="display:none">
         <div class="wrap">
           <div class="section-head">
@@ -382,30 +362,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       <div class="categoria-intro">
         <button id="volverPortafolio" style="display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:30px">← Volver a Portafolio</button>
         <span class="label" id="catLabelNum">— Categoría</span>
+        <img class="cat-logo-detail" id="catLogo" style="display:none" alt="">
         <h2 id="catNombre"></h2>
         <p id="catDescripcion"></p>
       </div>
       <div id="catProjRows"></div>
-    </div>
-
-    <div class="view" data-view="proyecto">
-      <section class="detalle-view">
-        <div class="detalle-header">
-          <button id="proyectoBack" style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:40px">← Volver</button>
-          <div class="detalle-counter" id="proyectoCounter"></div>
-          <div class="detalle-badge" id="proyectoBadge"></div>
-          <div id="proyectoLogoWrap" style="margin-bottom: 24px;"></div>
-          <h1 class="detalle-titulo" id="proyectoTitulo"></h1>
-          <div class="detalle-actions">
-            <a class="detalle-cta" href="#proyectoImagenes">Ver proyecto</a>
-            <a class="yt-btn" id="proyectoYouTube" target="_blank" rel="noopener" style="display:none">YouTube</a>
-          </div>
-          <p class="detalle-resena" id="proyectoResena"></p>
-          <div class="detalle-meta-line" id="proyectoMeta"></div>
-        </div>
-        <div class="project-yt-wrap" id="proyectoYouTubeEmbed"></div>
-        <div class="detalle-imagenes" id="proyectoImagenes"></div>
-      </section>
     </div>
 
     <div class="view" data-view="covers">
@@ -433,7 +394,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
     <div class="view" data-view="coverDetalle">
       <section class="cover-detail-page">
         <div class="cover-hero">
-          <div class="cover-hero-image"><img id="coverHeroImg" src="" alt=""></div>
+          <div class="cover-hero-image"><img id="coverHeroImg" src="" alt="" data-zoom=""></div>
           <div class="cover-hero-info">
             <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO</div>
             <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
@@ -442,7 +403,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
         <div class="cover-extra-section hidden" id="coverExtraSection">
-          <div class="cover-extra-block">
+          <div class="cover-extra-block" id="coverResenaBlock">
             <div class="cover-extra-label">Reseña</div>
             <p class="cover-extra-resena" id="coverHeroResena"></p>
           </div>
@@ -493,7 +454,13 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
 </div>
 
-<!-- MODO ADMIN (REDISEÑADO CON MENÚ DESPLEGABLE) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<audio id="globalAudio" loop preload="none"></audio>
+
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -521,7 +488,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 
   <div class="admin-layout" id="aDashboard" style="display:none">
     <div class="a-overlay" id="aOverlay"></div>
-    
+
     <aside class="a-sidebar" id="aSidebar">
       <div class="a-sidebar-header">
         <img src="logo.svg" alt="Grobdesigns" class="a-sidebar-logo" onerror="this.style.display='none'">
@@ -537,10 +504,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         <div class="a-nav-item" data-target="theme">Apariencia</div>
       </div>
       <div class="a-sidebar-footer">
-        <div class="a-sync" id="aSyncStatus">
-          <div class="a-sync-dot"></div>
-          <span id="aSyncStatusText">Sincronizado</span>
-        </div>
+        <div class="a-sync" id="aSyncStatus"><div class="a-sync-dot"></div><span id="aSyncStatusText">Sincronizado</span></div>
         <button class="a-btn a-btn-outline a-btn-sm" id="aBtnViewSite">Ver web</button>
         <button class="a-btn a-btn-danger a-btn-sm" id="aBtnLogout">Cerrar sesión</button>
       </div>
@@ -559,7 +523,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </header>
 
       <div class="a-content">
-        <!-- HERO -->
         <div class="a-panel active" id="a-panel-hero">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Texto Principal</h2></div>
@@ -584,12 +547,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- COVERS -->
         <div class="a-panel" id="a-panel-covers">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Añadir Covers</h2></div>
             <div class="a-card-body">
-              <div class="a-form-group" style="display:flex;gap:12px">
+              <div class="a-form-group" style="display:flex;gap:12px;align-items:center">
                 <label class="a-form-label" style="margin:0">Categoría:</label>
                 <select id="aCoverCategorySelect" class="a-form-input" style="width:auto">
                   <option value="sencillo">Sencillo</option>
@@ -609,18 +571,19 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- PORTFOLIO -->
         <div class="a-panel" id="a-panel-portfolio">
           <div class="a-card">
             <div class="a-card-header">
               <h2 class="a-card-title">Categorías y Proyectos</h2>
-              <button class="a-btn a-btn-primary a-btn-sm" id="aBtnNewCategory">Nueva Categoría</button>
+              <button class="a-btn a-btn-primary a-btn-sm" id="aBtnNewCategory">+ Nueva Categoría</button>
             </div>
-            <div class="a-card-body" id="aPortfolioCategoriesList"></div>
+            <div class="a-card-body">
+              <p class="a-form-hint" style="margin-bottom:20px">💡 Añade un logo a cada categoría para que aparezca en lugar del título. Haz clic en cualquier imagen para usarla como fondo parallax de la categoría.</p>
+              <div id="aPortfolioCategoriesList"></div>
+            </div>
           </div>
         </div>
 
-        <!-- CLIENTS -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Logos de Clientes</h2></div>
@@ -637,7 +600,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- TOOLS -->
         <div class="a-panel" id="a-panel-tools">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Software / Herramientas</h2></div>
@@ -654,7 +616,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CONTACT -->
         <div class="a-panel" id="a-panel-contact">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Información de Contacto</h2></div>
@@ -666,7 +627,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- THEME -->
         <div class="a-panel" id="a-panel-theme">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Colores del Tema</h2></div>
@@ -676,18 +636,26 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
               <div class="a-form-group"><label class="a-form-label">Texto</label><input type="color" id="aThemeText" class="a-form-input" style="height:50px;padding:4px"></div>
             </div>
           </div>
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title">Música de Fondo</h2></div>
+            <div class="a-card-body">
+              <div class="a-form-group">
+                <label class="a-form-label">URL del audio (mp3, ogg, wav…)</label>
+                <input type="url" id="aMusicUrl" class="a-form-input" placeholder="https://ejemplo.com/musica.mp3">
+                <span class="a-form-hint">Si se configura, aparecerá un botón de Play/Pausa en la cabecera del sitio público.</span>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
     </main>
   </div>
 
-  <!-- Modal Editar Cover (RECUPERADOS CAMPOS DE AUDIO/VIDEO) -->
   <div class="a-modal-overlay" id="aCoverModal">
     <div class="a-modal-content">
       <div class="a-modal-header">
         <h2 class="a-modal-title">Editar Cover</h2>
-        <span class="a-modal-close" id="aCloseCoverModal">X</span>
+        <button class="a-modal-close" id="aCloseCoverModal">✕</button>
       </div>
       <div class="a-modal-body">
         <input type="hidden" id="aEditCoverIndex">
@@ -715,17 +683,14 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        
-        <!-- CAMPOS RESTAURADOS PARA MULTIMEDIA -->
-        <div class="a-form-group"><label class="a-form-label">Link de Spotify (Música)</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        <div class="a-form-group"><label class="a-form-label">Link de Spotify</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">Link de Apple Music</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
-        <div class="a-form-group"><label class="a-form-label">Link de YouTube (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
-
+        <div class="a-form-group"><label class="a-form-label">Link de YouTube</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/extra1.jpg"></textarea></div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" id="aEditCoverFeatured" style="width:18px;height:18px;accent-color:var(--a-accent)">
-            <span style="font-size:14px">Destacar en la página de inicio (Billboard)</span>
+            <span style="font-size:14px">Destacar en la página de inicio</span>
           </label>
         </div>
       </div>
@@ -740,20 +705,16 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 </div>
 
 <script>
-/* ============================================================
-   HELPERS GLOBALES
-   ============================================================ */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
+function getItemUrl(item) { if (!item) return ''; return typeof item === 'string' ? item : (item.url || ''); }
 
-/* FUNCIONES DE EXTRACCIÓN DE MULTIMEDIA RESTAURADAS */
 function getYouTubeId(url) {
   if (!url) return null;
   const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   return m ? m[1] : null;
 }
-
 function getEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null;
   url = url.trim(); if (!url) return null;
@@ -766,13 +727,9 @@ function getEmbedUrl(url) {
     return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
   }
   const ytId = getYouTubeId(url);
-  if (ytId) {
-    return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
-  }
+  if (ytId) return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
   return null;
 }
-
-/* UTILS */
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
@@ -781,17 +738,12 @@ function getDirectImageUrl(url) {
   if (url.includes('dropbox.com')) return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '').replace('&dl=0', '');
   return url;
 }
-
-function resolveImageUrl(url) {
-  return getDirectImageUrl(url);
-}
-
+function resolveImageUrl(url) { return getDirectImageUrl(url); }
 function handleImgError(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
 }
 
-/* EXTRACCIÓN DE COLOR DOMINANTE */
 const colorCache = new Map();
 function rgbToHsl(r, g, b) { r /= 255; g /= 255; b /= 255; const max = Math.max(r, g, b), min = Math.min(r, g, b); let h = 0, s = 0, l = (max + min) / 2; if (max !== min) { const d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min); switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; } } return { h: h * 360, s, l }; }
 function hslToHex(h, s, l) { s = Math.max(0, Math.min(1, s)); l = Math.max(0, Math.min(1, l)); const c = (1 - Math.abs(2 * l - 1)) * s; const x = c * (1 - Math.abs((h / 60) % 2 - 1)); const m = l - c / 2; let r, g, b; if (h < 60) [r, g, b] = [c, x, 0]; else if (h < 120) [r, g, b] = [x, c, 0]; else if (h < 180) [r, g, b] = [0, c, x]; else if (h < 240) [r, g, b] = [0, x, c]; else if (h < 300) [r, g, b] = [x, 0, c]; else [r, g, b] = [c, 0, x]; const t = v => Math.round((v + m) * 255); return '#' + [t(r), t(g), t(b)].map(v => v.toString(16).padStart(2, '0')).join(''); }
@@ -808,28 +760,25 @@ function extractDominantColor(url) {
   return new Promise(res => {
     const im = new Image();
     if (location.protocol !== 'file:' && /^https?:/.test(url)) im.crossOrigin = 'anonymous';
-    im.onload = () => { 
-      try { 
-        const s = 40, c = document.createElement('canvas'); c.width = s; c.height = s; 
-        const ctx = c.getContext('2d'); ctx.drawImage(im, 0, 0, s, s); 
-        const d = ctx.getImageData(0, 0, s, s).data; 
-        let r = 0, g = 0, b = 0, n = 0; 
-        for (let i = 0; i < d.length; i += 4) { 
-          const br = (d[i] + d[i + 1] + d[i + 2]) / 3; 
-          if (br < 30 || br > 225) continue; 
-          r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; 
-        } 
-        if (!n) return res(null); 
-        const hsl = rgbToHsl(r / n, g / n, b / n); 
-        const hex = hslToHex(hsl.h, Math.max(.6, Math.min(.9, hsl.s + .2)), Math.max(.5, Math.min(.7, hsl.l))); 
-        colorCache.set(url, hex); res(hex); 
-      } catch (e) { res(null); } 
-    };
+    im.onload = () => { try {
+      const s = 40, c = document.createElement('canvas'); c.width = s; c.height = s;
+      const ctx = c.getContext('2d'); ctx.drawImage(im, 0, 0, s, s);
+      const d = ctx.getImageData(0, 0, s, s).data;
+      let r = 0, g = 0, b = 0, n = 0;
+      for (let i = 0; i < d.length; i += 4) {
+        const br = (d[i] + d[i + 1] + d[i + 2]) / 3;
+        if (br < 30 || br > 225) continue;
+        r += d[i]; g += d[i + 1]; b += d[i + 2]; n++;
+      }
+      if (!n) return res(null);
+      const hsl = rgbToHsl(r / n, g / n, b / n);
+      const hex = hslToHex(hsl.h, Math.max(.6, Math.min(.9, hsl.s + .2)), Math.max(.5, Math.min(.7, hsl.l)));
+      colorCache.set(url, hex); res(hex);
+    } catch (e) { res(null); } };
     im.onerror = () => res(null); im.src = url;
   });
 }
 
-/* GITHUB API */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
   get repo() { return localStorage.getItem('gh_repo') || ''; },
@@ -861,13 +810,7 @@ const GH = {
         const existing = await this.getFile(path);
         const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
         if (existing) body.sha = existing.sha;
-        
-        const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-        
+        const res = await this.api(`/repos/${this.repo}/contents/${path}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
         if (res.ok) return true;
         if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1000)); continue; }
         const err = await res.json().catch(() => ({}));
@@ -900,15 +843,14 @@ const GH = {
   }
 };
 
-/* ESTADO GLOBAL */
 let DATA = {
   hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' },
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', location: 'Madrid, España' },
-  theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }
+  theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
+  music: { url: '' }
 };
 
-/* PARALLAX */
 let ticking = false;
 function updateParallax() {
   const rows = document.querySelectorAll('.parallax-bg');
@@ -918,8 +860,7 @@ function updateParallax() {
     if (!row) return;
     const rect = row.getBoundingClientRect();
     if (rect.top < winHeight && rect.bottom > 0) {
-      const speed = 0.35;
-      const yPos = (rect.top * speed);
+      const yPos = rect.top * 0.35;
       bg.style.transform = `translate3d(0, ${yPos}px, 0)`;
     }
   });
@@ -927,17 +868,94 @@ function updateParallax() {
 }
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
-  if (nav) {
-    if (window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  }
-  if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+  if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
 });
 
-/* ROUTER INICIAL */
-function initRouter() {
-  const isAdmin = location.hash.toLowerCase() === '#admin';
-  if (isAdmin) {
+function showToast(msg, type) {
+  const existing = document.querySelector('.public-toast');
+  if (existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'public-toast' + (type ? ' ' + type : '');
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.classList.add('show'), 10);
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2500);
+}
+
+function openLightbox(url) {
+  if (!url) return;
+  const lb = $('#lightbox'), img = $('#lightboxImg');
+  img.src = resolveImageUrl(url);
+  lb.classList.add('active');
+  document.body.classList.add('locked');
+}
+function closeLightbox() {
+  $('#lightbox').classList.remove('active');
+  $('#lightboxImg').src = '';
+  document.body.classList.remove('locked');
+}
+document.addEventListener('click', e => {
+  if (e.target.id === 'lightbox') closeLightbox();
+  if (e.target.id === 'lightboxClose') closeLightbox();
+  const zoom = e.target.closest('[data-zoom]');
+  if (zoom && zoom.dataset.zoom) { e.stopPropagation(); openLightbox(zoom.dataset.zoom); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+const PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+const PAUSE_ICON = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+function initMusic() {
+  const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
+  if (!audio || !btn) return;
+  const url = DATA.music && DATA.music.url;
+  if (url) {
+    if (audio.src !== url) { audio.src = url; audio.pause(); btn.classList.remove('playing'); if (icon) icon.innerHTML = PLAY_ICON; }
+    btn.classList.remove('disabled');
+  } else {
+    btn.classList.add('disabled');
+    audio.pause();
+  }
+}
+function toggleMusic() {
+  const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
+  if (!audio || !btn || !DATA.music?.url) return;
+  if (audio.paused) {
+    audio.play().then(() => {
+      btn.classList.add('playing');
+      if (icon) icon.innerHTML = PAUSE_ICON;
+    }).catch(() => showToast('No se pudo reproducir la música', 'error'));
+  } else {
+    audio.pause();
+    btn.classList.remove('playing');
+    if (icon) icon.innerHTML = PLAY_ICON;
+  }
+}
+
+function showView(name) {
+  $$('.view').forEach(v => v.classList.remove('active'));
+  const el = $(`[data-view="${name}"]`);
+  if (el) el.classList.add('active');
+}
+function syncTabs(name) {
+  $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+}
+function updateNavBack(hash) {
+  const back = $('#navBack');
+  if (!back) return;
+  const show = hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin');
+  back.classList.toggle('show', !!show);
+}
+function goBack() {
+  const h = location.hash || '';
+  if (h.startsWith('#cover-')) location.hash = '#covers';
+  else if (h.startsWith('#categoria-')) location.hash = '#portafolio';
+  else location.hash = '#home';
+}
+
+function handleRoute() {
+  const h = (location.hash || '#home').toLowerCase();
+  if (h === '#admin') {
     $('#publicApp').style.display = 'none';
     $('#adminApp').classList.add('active');
     if (GH.isConfigured()) {
@@ -948,19 +966,35 @@ function initRouter() {
       $('#aLoginScreen').classList.add('active');
       $('#aDashboard').style.display = 'none';
     }
-  } else {
+    return;
+  }
+  if ($('#adminApp').classList.contains('active') || $('#publicApp').style.display === 'none') {
     $('#publicApp').style.display = 'block';
     $('#adminApp').classList.remove('active');
-    loadPublicData();
+    renderPublicSite();
   }
+  updateNavBack(h);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+  if (h === '#home' || h === '') { showView('home'); syncTabs('home'); }
+  else if (h === '#portafolio') { showView('portafolio'); syncTabs('portafolio'); }
+  else if (h === '#covers') { showView('covers'); syncTabs('covers'); }
+  else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
+  else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
+  else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
+  else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
+  else { showView('home'); syncTabs('home'); }
 }
-window.addEventListener('hashchange', initRouter);
+window.addEventListener('hashchange', handleRoute);
 
-/* LÓGICA WEB PÚBLICA */
 async function loadPublicData() {
   const remote = await GH.load();
-  if (remote) DATA = Object.assign(DATA, remote);
+  if (remote) {
+    DATA = Object.assign(DATA, remote);
+    if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
+  }
   renderPublicSite();
+  initMusic();
+  handleRoute();
 }
 
 function renderPublicSite() {
@@ -974,7 +1008,6 @@ function renderPublicSite() {
     });
   }
   const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
-
   const heroBg = $('#heroBg');
   if (heroBg) {
     heroBg.innerHTML = '';
@@ -985,14 +1018,12 @@ function renderPublicSite() {
       heroBg.appendChild(l);
     });
   }
-
   renderMarquee();
   renderFeaturedCovers();
   renderPortfolioCategories();
   renderPublicCovers(DATA.covers || []);
   renderPublicClients();
   renderPublicTools();
-
   const ce = $('#pubContactEmail'); if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
   const cp = $('#pubContactPhone'); if (cp) { cp.textContent = DATA.contact.phone || ''; cp.href = 'tel:' + (DATA.contact.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = DATA.contact.location || '';
@@ -1003,22 +1034,14 @@ function renderMarquee() {
   const container = $('#marquee');
   if (!container) return;
   let html = '';
-  for (let j = 0; j < 4; j++) {
-    words.forEach(item => { html += `<div class="mq-item">${item}</div>`; });
-  }
+  for (let j = 0; j < 4; j++) words.forEach(item => { html += `<div class="mq-item">${item}</div>`; });
   container.innerHTML = html;
 }
 
 function renderFeaturedCovers() {
   const featured = (DATA.covers || []).filter(c => c.featured);
-  const sec = $('#homeFeaturedSection');
-  const track = $('#featuredCoversTrack');
-  
-  if (featured.length === 0) {
-    if (sec) sec.style.display = 'none';
-    return;
-  }
-  
+  const sec = $('#homeFeaturedSection'), track = $('#featuredCoversTrack');
+  if (featured.length === 0) { if (sec) sec.style.display = 'none'; return; }
   if (sec) sec.style.display = 'block';
   if (track) {
     track.innerHTML = '';
@@ -1026,7 +1049,7 @@ function renderFeaturedCovers() {
       const el = document.createElement('div');
       el.className = 'billboard-card';
       el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)"><span class="billboard-badge">Destacado</span>`;
-      el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
+      el.onclick = () => { location.hash = `#cover-${c.id}`; };
       return el;
     };
     featured.forEach(c => track.appendChild(buildCard(c)));
@@ -1041,25 +1064,33 @@ function renderPortfolioCategories() {
   (DATA.categories || []).forEach((cat, i) => {
     const row = document.createElement('div');
     row.className = 'parallax-row';
-    row.onclick = () => { window.location.hash = `#categoria-${cat.id || i}`; };
-    
-    let firstImg = (cat.items && cat.items[0]) ? (typeof cat.items[0] === 'string' ? cat.items[0] : cat.items[0].url) : '';
+    row.onclick = () => { location.hash = `#categoria-${cat.id || i}`; };
+    let bgUrl = cat.parallaxImage || '';
+    if (!bgUrl && cat.items && cat.items.length > 0) bgUrl = getItemUrl(cat.items[0]);
     const bg = document.createElement('div');
-    bg.className = 'parallax-bg' + (firstImg ? '' : ' empty');
-    if (firstImg) bg.style.backgroundImage = `url("${resolveImageUrl(firstImg)}")`;
+    bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty');
+    if (bgUrl) bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`;
     row.appendChild(bg);
-    
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const content = document.createElement('div'); content.className = 'parallax-content';
-    content.innerHTML = `
-      <span class="num">0${i+1} / 0${DATA.categories.length}</span>
-      <h2>${cat.name}</h2>
-      <p class="desc">${cat.description || ''}</p>
-      <span class="meta">Ver categoría</span>
-    `;
+    if (cat.logo) {
+      content.innerHTML = `
+        <span class="num">0${i+1} / 0${DATA.categories.length}</span>
+        <img class="cat-logo-img" src="${resolveImageUrl(cat.logo)}" alt="${cat.name || ''}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <h2 style="display:none">${cat.name || ''}</h2>
+        <p class="desc">${cat.description || ''}</p>
+        <span class="meta">Ver categoría</span>`;
+    } else {
+      content.innerHTML = `
+        <span class="num">0${i+1} / 0${DATA.categories.length}</span>
+        <h2>${cat.name || ''}</h2>
+        <p class="desc">${cat.description || ''}</p>
+        <span class="meta">Ver categoría</span>`;
+    }
     row.appendChild(content);
     catRows.appendChild(row);
   });
+  updateParallax();
 }
 
 function renderPublicClients() {
@@ -1078,14 +1109,14 @@ function renderPublicTools() {
   if (!grid) return;
   grid.innerHTML = '';
   if ((DATA.software || []).length) {
-    const sec = $('#softwareSection'); if (sec) sec.style.display = 'block';
+    $('#softwareSection').style.display = 'block';
     DATA.software.forEach(url => {
       const card = document.createElement('div'); card.className = 'software-logo';
       const im = document.createElement('img'); im.src = resolveImageUrl(url); im.onerror = () => handleImgError(im);
       card.appendChild(im); grid.appendChild(card);
     });
   } else {
-    const sec = $('#softwareSection'); if (sec) sec.style.display = 'none';
+    $('#softwareSection').style.display = 'none';
   }
 }
 
@@ -1093,153 +1124,175 @@ function renderPublicCovers(covers) {
   const grid = $('#coversGrid');
   if (!grid) return;
   grid.innerHTML = '';
+  const all = DATA.covers || [];
+  $('#countTodos').textContent = all.length;
+  $('#countSencillo').textContent = all.filter(c => c.category === 'sencillo').length;
+  $('#countAlbums').textContent = all.filter(c => c.category === 'albums').length;
+  $('#countEdiciones').textContent = all.filter(c => c.category === 'ediciones').length;
   covers.forEach(c => {
     const item = document.createElement('div'); item.className = 'cover-item';
     const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im);
     item.appendChild(im);
-    
-    // Shine
     const shine = document.createElement('div'); shine.className = 'cover-shine'; item.appendChild(shine);
-    
-    // Glow color
     extractDominantColor(c.url).then(col => {
       if (col) {
         item.style.setProperty('--cover-glow', hexToRgba(col, .55));
         item.style.setProperty('--cover-glow-line', hexToRgba(col, .5));
       }
     });
-
-    // Íconos
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
-
     const info = document.createElement('div'); info.className = 'cover-info';
     info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
     item.appendChild(info);
-    item.onclick = () => { window.location.hash = `#cover-${c.id}`; };
+    item.onclick = () => { location.hash = `#cover-${c.id}`; };
     grid.appendChild(item);
   });
 }
 
-/* ROUTING INTERNO */
-window.addEventListener('hashchange', () => {
-  const hash = location.hash;
-  if (hash.startsWith('#cover-')) {
-    const id = hash.replace('#cover-', '');
-    const c = DATA.covers.find(x => x.id === id);
-    if (c) {
-      $('#coverHeroImg').src = resolveImageUrl(c.url);
-      $('#coverHeroTitle').textContent = c.name || 'Sin título';
-      $('#coverHeroArtist').textContent = c.artist || '';
-      $('#coverHeroBadge').textContent = c.category || 'SENCILLO';
-      $('#coverHeroResena').textContent = c.review || '';
-      
-      // RESTAURADO: Reproductor
-      const musicWrap = $('#coverHeroMusic');
-      musicWrap.innerHTML = '';
-      const embedData = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl) || getEmbedUrl(c.youtubeUrl);
-      if (embedData) {
-        const ifr = document.createElement('iframe');
-        ifr.src = embedData.url;
-        ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
-        ifr.height = embedData.height;
-        ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
-        musicWrap.appendChild(ifr);
-        musicWrap.style.display = 'block';
-      } else {
-        musicWrap.style.display = 'none';
-      }
-
-      // RESTAURADO: Galería extra
-      const extraImgs = $('#coverExtraImgs');
-      extraImgs.innerHTML = '';
-      if (c.extraImages && c.extraImages.length > 0) {
-        const gallery = document.createElement('div');
-        gallery.className = 'masonry-gallery';
-        c.extraImages.forEach((imgUrl, idx) => {
-          const imgItem = document.createElement('div');
-          imgItem.className = 'masonry-item';
-          const img = document.createElement('img');
-          img.src = resolveImageUrl(imgUrl);
-          img.onerror = () => handleImgError(img);
-          imgItem.appendChild(img);
-          gallery.appendChild(imgItem);
-        });
-        extraImgs.appendChild(gallery);
-        $('#coverExtraSection').classList.remove('hidden');
-      } else {
-        if(c.review) $('#coverExtraSection').classList.remove('hidden');
-        else $('#coverExtraSection').classList.add('hidden');
-      }
-
-      $$('.view').forEach(v => v.classList.remove('active'));
-      $('[data-view="coverDetalle"]').classList.add('active');
-    }
-  } else if (hash.startsWith('#categoria-')) {
-    const id = hash.replace('#categoria-', '');
-    const cat = DATA.categories.find((c, idx) => c.id === id || String(idx) === id);
-    if (cat) {
-      $('#catNombre').textContent = cat.name;
-      $('#catDescripcion').textContent = cat.description || '';
-      const container = $('#catProjRows');
-      container.innerHTML = '';
-      
-      // RESTAURADO: Galería de imágenes de la categoría
-      if (cat.items && cat.items.length > 0) {
-        const gallery = document.createElement('div');
-        gallery.className = 'masonry-gallery';
-        cat.items.forEach((item, i) => {
-          const itemUrl = typeof item === 'string' ? item : item.url;
-          const imgItem = document.createElement('div');
-          imgItem.className = 'masonry-item';
-          const img = document.createElement('img');
-          img.src = resolveImageUrl(itemUrl);
-          img.onerror = () => handleImgError(img);
-          imgItem.appendChild(img);
-          gallery.appendChild(imgItem);
-        });
-        container.appendChild(gallery);
-      } else {
-        container.innerHTML = '<p style="text-align:center;padding:40px;color:var(--muted);">No hay imágenes en esta categoría.</p>';
-      }
-
-      $$('.view').forEach(v => v.classList.remove('active'));
-      $('[data-view="categoria"]').classList.add('active');
-    }
-  } else if (!hash || hash === '#home') {
-    $$('.view').forEach(v => v.classList.remove('active'));
-    $('[data-view="home"]').classList.add('active');
+function renderCoverDetail(id) {
+  const c = (DATA.covers || []).find(x => x.id === id);
+  if (!c) { location.hash = '#covers'; return; }
+  const heroImg = $('#coverHeroImg');
+  heroImg.src = resolveImageUrl(c.url);
+  heroImg.dataset.zoom = c.url;
+  $('#coverHeroTitle').textContent = c.name || 'Sin título';
+  $('#coverHeroArtist').textContent = c.artist || '';
+  $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
+  const musicWrap = $('#coverHeroMusic');
+  musicWrap.innerHTML = '';
+  const embedData = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl) || getEmbedUrl(c.youtubeUrl);
+  if (embedData) {
+    const ifr = document.createElement('iframe');
+    ifr.src = embedData.url;
+    ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
+    ifr.height = embedData.height;
+    ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
+    musicWrap.appendChild(ifr);
+    musicWrap.style.display = 'block';
+  } else {
+    musicWrap.style.display = 'none';
   }
-});
+  const extraImgs = $('#coverExtraImgs');
+  extraImgs.innerHTML = '';
+  const extra = $('#coverExtraSection');
+  const resenaBlock = $('#coverResenaBlock');
+  const hasReview = !!c.review;
+  const hasExtras = c.extraImages && c.extraImages.length > 0;
+  if (hasReview) {
+    $('#coverHeroResena').textContent = c.review;
+    resenaBlock.style.display = 'block';
+  } else {
+    resenaBlock.style.display = 'none';
+  }
+  if (hasExtras) {
+    const gallery = document.createElement('div');
+    gallery.className = 'masonry-gallery';
+    c.extraImages.forEach((imgUrl) => {
+      const imgItem = document.createElement('div');
+      imgItem.className = 'masonry-item';
+      const img = document.createElement('img');
+      img.src = resolveImageUrl(imgUrl);
+      img.dataset.zoom = imgUrl;
+      img.onerror = () => handleImgError(img);
+      imgItem.appendChild(img);
+      gallery.appendChild(imgItem);
+    });
+    extraImgs.appendChild(gallery);
+  }
+  if (hasReview || hasExtras) extra.classList.remove('hidden');
+  else extra.classList.add('hidden');
+  showView('coverDetalle');
+}
 
-$$('.tab').forEach(btn => {
+function renderCategoryDetail(id) {
+  const cat = (DATA.categories || []).find((c, idx) => c.id === id || String(idx) === id);
+  if (!cat) { location.hash = '#portafolio'; return; }
+  $('#catNombre').textContent = cat.name || 'Sin título';
+  $('#catDescripcion').textContent = cat.description || '';
+  const logo = $('#catLogo');
+  if (cat.logo) { logo.src = resolveImageUrl(cat.logo); logo.style.display = 'block'; }
+  else logo.style.display = 'none';
+  const container = $('#catProjRows');
+  container.innerHTML = '';
+  if (cat.items && cat.items.length > 0) {
+    const gallery = document.createElement('div');
+    gallery.className = 'masonry-gallery';
+    cat.items.forEach((item, i) => {
+      const itemUrl = getItemUrl(item);
+      const imgItem = document.createElement('div');
+      imgItem.className = 'masonry-item';
+      imgItem.style.setProperty('--entry-delay', (i * 0.05) + 's');
+      const img = document.createElement('img');
+      img.src = resolveImageUrl(itemUrl);
+      img.dataset.zoom = itemUrl;
+      img.loading = 'lazy';
+      img.onerror = () => handleImgError(img);
+      imgItem.appendChild(img);
+      gallery.appendChild(imgItem);
+    });
+    container.appendChild(gallery);
+  } else {
+    container.innerHTML = '<p style="text-align:center;padding:60px 20px;color:var(--muted);">No hay imágenes en esta categoría.</p>';
+  }
+  showView('categoria');
+}
+
+$$('.tab').forEach(btn => { btn.onclick = () => { location.hash = '#' + btn.dataset.tab; }; });
+$$('[data-route]').forEach(el => { el.onclick = () => { location.hash = '#' + el.dataset.route; }; });
+$('#navBack').onclick = goBack;
+$('#musicBtn').onclick = toggleMusic;
+$('#volverPortafolio').onclick = () => { location.hash = '#portafolio'; };
+
+$$('.covers-filter-btn').forEach(btn => {
   btn.onclick = () => {
-    $$('.tab').forEach(t => t.classList.remove('active'));
+    $$('.covers-filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const target = btn.dataset.tab;
-    $$('.view').forEach(v => v.classList.remove('active'));
-    const targetView = $(`[data-view="${target}"]`);
-    if (targetView) targetView.classList.add('active');
+    const f = btn.dataset.filter;
+    const list = f === 'todos' ? (DATA.covers || []) : (DATA.covers || []).filter(c => c.category === f);
+    renderPublicCovers(list);
   };
 });
+$('#coversSearchInput').oninput = e => {
+  const q = e.target.value.toLowerCase().trim();
+  const active = $('.covers-filter-btn.active')?.dataset.filter || 'todos';
+  let list = DATA.covers || [];
+  if (active !== 'todos') list = list.filter(c => c.category === active);
+  if (q) list = list.filter(c => ((c.name || '') + ' ' + (c.artist || '')).toLowerCase().includes(q));
+  renderPublicCovers(list);
+};
 
-/* LÓGICA PANEL ADMIN */
+$('#contactForm').onsubmit = e => {
+  e.preventDefault();
+  showToast('Mensaje preparado. Abre tu cliente de email para enviarlo.');
+  const email = DATA.contact.email || '';
+  const name = e.target.name.value, msg = e.target.message.value;
+  window.location.href = `mailto:${email}?subject=Contacto de ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
+};
+
 function aToast(msg, type = 'success') {
   const container = $('#aToastContainer');
+  if (!container) return;
   const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg;
   container.appendChild(el);
   setTimeout(() => el.classList.add('show'), 10);
   setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000);
 }
 function setASync(status, text) {
-  const el = $('#aSyncStatus'); const txt = $('#aSyncStatusText');
-  el.className = `a-sync ${status}`; txt.textContent = text;
+  const el = $('#aSyncStatus'), txt = $('#aSyncStatusText');
+  if (!el) return;
+  el.className = `a-sync ${status}`;
+  if (txt) txt.textContent = text;
 }
 async function loadAdminData() {
   setASync('saving', 'Cargando...');
   try {
     const remote = await GH.load();
-    if (remote) DATA = Object.assign(DATA, remote);
+    if (remote) {
+      DATA = Object.assign(DATA, remote);
+      if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
+      else if (!DATA.music) DATA.music = { url: '' };
+    }
     setASync('ok', 'Sincronizado');
   } catch(e) { setASync('error', 'Error'); }
   renderAdmin();
@@ -1250,6 +1303,7 @@ async function saveAdminData() {
     await GH.save(DATA);
     setASync('ok', 'Guardado');
     aToast('Cambios guardados en GitHub');
+    initMusic();
   } catch (e) {
     setASync('error', 'Error');
     aToast(e.message, 'error');
@@ -1257,17 +1311,16 @@ async function saveAdminData() {
 }
 
 function renderAdmin() {
+  if (!$('#aHeroEyebrow')) return;
   $('#aHeroEyebrow').value = DATA.hero.eyebrow || '';
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
-  
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `<img src="${resolveImageUrl(url)}"><div class="a-cover-card-info"><div class="a-cover-card-actions"><button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('heroImages', ${i})">Eliminar</button></div></div>`;
     hGrid.appendChild(el);
   });
-
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = '';
   (DATA.covers || []).forEach((c, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1281,103 +1334,173 @@ function renderAdmin() {
           <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminCoverModal(${i})">Editar</button>
           <button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('covers', ${i})">Eliminar</button>
         </div>
-      </div>
-    `;
+      </div>`;
     cGrid.appendChild(el);
   });
-
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `
       <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
       <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>Subir</button>
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>Bajar</button>
-        <button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
-      </div>
-    `;
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>↑</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>↓</button>
+        <button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('clientes', ${i})">✕</button>
+      </div>`;
     clGrid.appendChild(el);
   });
-
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = '';
   (DATA.software || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff"><div class="a-cover-card-actions" style="padding:10px"><button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('software', ${i})">Eliminar</button></div>`;
     tGrid.appendChild(el);
   });
-
   renderAdminPortfolio();
-
   $('#aContactEmail').value = DATA.contact.email || '';
   $('#aContactPhone').value = DATA.contact.phone || '';
   $('#aContactLocation').value = DATA.contact.location || '';
   $('#aThemeAccent').value = DATA.theme.accent || '#C9A961';
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
+  $('#aMusicUrl').value = (DATA.music && DATA.music.url) || '';
 }
 
 function renderAdminPortfolio() {
   const container = $('#aPortfolioCategoriesList');
   if (!container) return;
   container.innerHTML = '';
-  (DATA.categories || []).forEach((cat, catIdx) => {
+  if (!DATA.categories || DATA.categories.length === 0) {
+    container.innerHTML = '<p style="text-align:center;padding:30px;color:var(--a-muted)">No hay categorías. Añade una nueva.</p>';
+    return;
+  }
+  DATA.categories.forEach((cat, catIdx) => {
     const block = document.createElement('div');
-    block.style.cssText = 'background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:8px;padding:20px;margin-bottom:16px;';
-    block.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <input type="text" class="a-form-input" style="flex:1;margin-right:12px;" value="${cat.name || ''}" placeholder="Nombre Categoría" onchange="updateCatName(${catIdx}, this.value)">
-        <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${catIdx})">Eliminar Categoría</button>
+    block.className = 'cat-admin-block';
+    const header = document.createElement('div');
+    header.className = 'cat-admin-header';
+    header.innerHTML = `
+      <input type="text" class="a-form-input" value="${(cat.name || '').replace(/"/g, '&quot;')}" placeholder="Nombre de la categoría" onchange="updateCatField(${catIdx}, 'name', this.value)">
+      <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${catIdx})">Eliminar</button>`;
+    block.appendChild(header);
+    const descGroup = document.createElement('div');
+    descGroup.className = 'a-form-group';
+    descGroup.innerHTML = `<label class="a-form-label">Descripción</label>
+      <textarea class="a-form-textarea" rows="2" onchange="updateCatField(${catIdx}, 'description', this.value)">${cat.description || ''}</textarea>`;
+    block.appendChild(descGroup);
+    const logoGroup = document.createElement('div');
+    logoGroup.className = 'a-form-group';
+    logoGroup.innerHTML = `<label class="a-form-label">Logo (opcional — reemplaza el título en el parallax)</label>
+      <input type="text" class="a-form-input" placeholder="https://ejemplo.com/logo.png" value="${(cat.logo || '').replace(/"/g, '&quot;')}" onchange="updateCatField(${catIdx}, 'logo', this.value)">
+      ${cat.logo ? `<img src="${resolveImageUrl(cat.logo)}" style="max-height:40px;margin-top:10px;background:#000;padding:6px;border-radius:4px;border:1px solid var(--a-line)" onerror="this.style.display='none'">` : ''}
+      <span class="a-form-hint">Si lo dejas vacío se muestra el nombre de la categoría.</span>`;
+    block.appendChild(logoGroup);
+    const pxGroup = document.createElement('div');
+    pxGroup.className = 'a-form-group';
+    const currentPx = cat.parallaxImage || '';
+    pxGroup.innerHTML = `<label class="a-form-label">Fondo parallax</label>
+      <div style="font-size:12px;color:var(--a-muted);margin-bottom:8px">
+        ${currentPx
+          ? `✓ Seleccionada: <span style="color:var(--a-accent);word-break:break-all">${currentPx.slice(-50)}</span> <button class="a-btn a-btn-outline a-btn-sm" onclick="clearCatParallax(${catIdx})" style="margin-left:8px">Quitar</button>`
+          : 'Haz clic en cualquier imagen de abajo para usarla como fondo parallax. Por defecto se usa la primera.'}
       </div>
-      <div class="a-form-group">
-        <label class="a-form-label">Añadir URLs de proyectos (una por línea)</label>
-        <div style="display:flex;gap:10px">
-          <textarea class="a-form-textarea" id="catInput_${catIdx}" rows="2" placeholder="https://ejemplo.com/proyecto.jpg"></textarea>
-          <button class="a-btn a-btn-primary" onclick="addCatImages(${catIdx})">Añadir</button>
-        </div>
-      </div>
-      <div class="a-grid" id="catGrid_${catIdx}"></div>
-    `;
-    container.appendChild(block);
-
-    const grid = block.querySelector(`#catGrid_${catIdx}`);
-    (cat.items || []).forEach((itemUrl, itemIdx) => {
-      const url = typeof itemUrl === 'string' ? itemUrl : itemUrl.url;
-      const el = document.createElement('div'); el.className = 'a-cover-card';
-      el.innerHTML = `
-        <img src="${resolveImageUrl(url)}">
-        <div class="a-cover-card-actions" style="padding:8px;">
-          <button class="a-btn a-btn-danger a-btn-sm" onclick="delCatItem(${catIdx}, ${itemIdx})">Eliminar</button>
-        </div>
-      `;
-      grid.appendChild(el);
+      <input type="text" class="a-form-input" placeholder="O pega una URL personalizada…" value="${currentPx.replace(/"/g, '&quot;')}" onchange="updateCatField(${catIdx}, 'parallaxImage', this.value)">`;
+    block.appendChild(pxGroup);
+    const addGroup = document.createElement('div');
+    addGroup.className = 'a-form-group';
+    addGroup.innerHTML = `<label class="a-form-label">Añadir imágenes (URL, una por línea)</label>
+      <div style="display:flex;gap:10px">
+        <textarea class="a-form-textarea" id="catInput_${catIdx}" rows="2" placeholder="https://ejemplo.com/img1.jpg"></textarea>
+        <button class="a-btn a-btn-primary" onclick="addCatImages(${catIdx})">Añadir</button>
+      </div>`;
+    block.appendChild(addGroup);
+    const grid = document.createElement('div');
+    grid.className = 'cat-admin-items';
+    (cat.items || []).forEach((item, itemIdx) => {
+      const url = getItemUrl(item);
+      const isPx = cat.parallaxImage === url;
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'cat-admin-item' + (isPx ? ' parallax-selected' : '');
+      itemDiv.onclick = (ev) => { if (!ev.target.closest('.cat-admin-item-del')) toggleCatParallax(catIdx, itemIdx); };
+      itemDiv.innerHTML = `
+        <img src="${resolveImageUrl(url)}" onerror="handleImgError(this)">
+        <button class="cat-admin-item-del" onclick="event.stopPropagation(); delCatItem(${catIdx}, ${itemIdx})">✕</button>`;
+      grid.appendChild(itemDiv);
     });
+    if (!(cat.items || []).length) {
+      const empty = document.createElement('p');
+      empty.style.cssText = 'color:var(--a-muted);font-size:13px;padding:16px 0;';
+      empty.textContent = 'Sin imágenes todavía.';
+      grid.appendChild(empty);
+    }
+    block.appendChild(grid);
+    container.appendChild(block);
   });
 }
 
+window.updateCatField = (catIdx, field, value) => {
+  if (!DATA.categories[catIdx]) return;
+  DATA.categories[catIdx][field] = value;
+  renderAdmin();
+};
+window.clearCatParallax = (catIdx) => {
+  if (!DATA.categories[catIdx]) return;
+  DATA.categories[catIdx].parallaxImage = '';
+  renderAdmin();
+};
+window.toggleCatParallax = (catIdx, itemIdx) => {
+  const cat = DATA.categories[catIdx];
+  if (!cat || !cat.items[itemIdx]) return;
+  const url = getItemUrl(cat.items[itemIdx]);
+  if (cat.parallaxImage === url) cat.parallaxImage = '';
+  else cat.parallaxImage = url;
+  renderAdmin();
+};
+window.addCatImages = (catIdx) => {
+  const textarea = $(`#catInput_${catIdx}`);
+  if (!textarea) return;
+  const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
+  DATA.categories[catIdx].items.push(...urls);
+  textarea.value = '';
+  renderAdmin();
+  saveAdminData();
+};
+window.delCatItem = (catIdx, itemIdx) => {
+  if (!confirm('¿Eliminar esta imagen?')) return;
+  const cat = DATA.categories[catIdx];
+  if (!cat || !cat.items) return;
+  const url = getItemUrl(cat.items[itemIdx]);
+  cat.items.splice(itemIdx, 1);
+  if (cat.parallaxImage === url) cat.parallaxImage = '';
+  renderAdmin();
+  saveAdminData();
+};
+window.delCategory = (i) => {
+  if (!confirm('¿Eliminar toda la categoría?')) return;
+  DATA.categories.splice(i, 1);
+  renderAdmin();
+  saveAdminData();
+};
+window.delAdminItem = (key, i) => {
+  if (!confirm('¿Eliminar elemento?')) return;
+  DATA[key].splice(i, 1);
+  renderAdmin();
+  saveAdminData();
+};
 window.moveClientItem = (index, direction) => {
   const newIndex = index + direction;
   if (newIndex < 0 || newIndex >= DATA.clientes.length) return;
   const temp = DATA.clientes[index];
   DATA.clientes[index] = DATA.clientes[newIndex];
   DATA.clientes[newIndex] = temp;
-  renderAdmin(); saveAdminData();
+  renderAdmin();
+  saveAdminData();
 };
-window.updateCatName = (catIdx, val) => { if (DATA.categories[catIdx]) DATA.categories[catIdx].name = val; };
-window.addCatImages = (catIdx) => {
-  const textarea = $(`#catInput_${catIdx}`);
-  const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
-  if (!urls.length) return;
-  if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
-  DATA.categories[catIdx].items.push(...urls);
-  textarea.value = ''; renderAdmin(); saveAdminData();
-};
-window.delCatItem = (catIdx, itemIdx) => { DATA.categories[catIdx].items.splice(itemIdx, 1); renderAdmin(); saveAdminData(); };
-window.delAdminItem = (key, i) => { if(confirm('¿Eliminar elemento?')) { DATA[key].splice(i, 1); renderAdmin(); saveAdminData(); } };
-window.delCategory = (i) => { if(confirm('¿Eliminar categoría completa?')) { DATA.categories.splice(i, 1); renderAdmin(); saveAdminData(); } };
 
 window.openAdminCoverModal = (i) => {
   const c = DATA.covers[i];
+  if (!c) return;
   $('#aEditCoverIndex').value = i;
   $('#aEditCoverUrl').value = c.url || '';
   $('#aEditCoverPreview').src = resolveImageUrl(c.url);
@@ -1403,8 +1526,9 @@ $$('.a-nav-item').forEach(item => {
     $$('.a-nav-item').forEach(n => n.classList.remove('active'));
     item.classList.add('active');
     $$('.a-panel').forEach(p => p.classList.remove('active'));
-    $(`#a-panel-${item.dataset.target}`).classList.add('active');
-    $('#aPageTitle').textContent = item.textContent;
+    const panel = $(`#a-panel-${item.dataset.target}`);
+    if (panel) panel.classList.add('active');
+    $('#aPageTitle').textContent = item.textContent.trim();
     if (window.innerWidth <= 900) { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); }
   };
 });
@@ -1418,16 +1542,36 @@ $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
 $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
+$('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 
-$('#aBtnAddHeroUrls').onclick = () => { const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData(); };
-$('#aBtnAddCoverUrls').onclick = () => { const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); const cat = $('#aCoverCategorySelect').value; urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false })); $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData(); };
-$('#aBtnAddClientUrls').onclick = () => { const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.clientes.push(...urls); $('#aClientUrlsInput').value=''; renderAdmin(); saveAdminData(); };
-$('#aBtnAddToolUrls').onclick = () => { const urls = $('#aToolUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); DATA.software.push(...urls); $('#aToolUrlsInput').value=''; renderAdmin(); saveAdminData(); };
+$('#aBtnAddHeroUrls').onclick = () => {
+  const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData();
+};
+$('#aBtnAddCoverUrls').onclick = () => {
+  const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const cat = $('#aCoverCategorySelect').value;
+  if (!urls.length) return;
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
+  $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData();
+};
+$('#aBtnAddClientUrls').onclick = () => {
+  const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  DATA.clientes.push(...urls); $('#aClientUrlsInput').value=''; renderAdmin(); saveAdminData();
+};
+$('#aBtnAddToolUrls').onclick = () => {
+  const urls = $('#aToolUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  DATA.software.push(...urls); $('#aToolUrlsInput').value=''; renderAdmin(); saveAdminData();
+};
 
 $('#aCloseCoverModal').onclick = () => $('#aCoverModal').classList.remove('active');
 $('#aBtnSaveCover').onclick = () => {
   const i = parseInt($('#aEditCoverIndex').value);
   const c = DATA.covers[i];
+  if (!c) return;
   c.url = $('#aEditCoverUrl').value.trim();
   c.name = $('#aEditCoverName').value.trim();
   c.artist = $('#aEditCoverArtist').value.trim();
@@ -1443,13 +1587,19 @@ $('#aBtnSaveCover').onclick = () => {
 };
 $('#aBtnDeleteCover').onclick = () => {
   const i = parseInt($('#aEditCoverIndex').value);
-  if(confirm('¿Eliminar este cover?')) { DATA.covers.splice(i, 1); $('#aCoverModal').classList.remove('active'); renderAdmin(); saveAdminData(); }
+  if (!confirm('¿Eliminar este cover?')) return;
+  DATA.covers.splice(i, 1);
+  $('#aCoverModal').classList.remove('active');
+  renderAdmin(); saveAdminData();
 };
 
 $('#aBtnSaveAll').onclick = saveAdminData;
-$('#aBtnReload').onclick = async () => { if(confirm('¿Recargar de GitHub?')) { await loadAdminData(); aToast('Recargado'); } };
-$('#aBtnViewSite').onclick = () => { window.location.hash = ''; window.location.reload(); };
-$('#aBtnLogout').onclick = () => { GH.clear(); window.location.reload(); };
+$('#aBtnReload').onclick = async () => {
+  if (!confirm('¿Recargar datos desde GitHub? Se perderán cambios sin guardar.')) return;
+  await loadAdminData(); aToast('Recargado');
+};
+$('#aBtnViewSite').onclick = () => { location.hash = '#home'; };
+$('#aBtnLogout').onclick = () => { GH.clear(); location.reload(); };
 
 $('#aLoginForm').onsubmit = async e => {
   e.preventDefault();
@@ -1465,17 +1615,22 @@ $('#aLoginForm').onsubmit = async e => {
     $('#aLoginScreen').classList.remove('active');
     $('#aDashboard').style.display = 'flex';
     await loadAdminData();
-  } catch (err) { GH.clear(); errEl.textContent = 'Error. Verifica el token y repositorio.'; }
+  } catch (err) {
+    GH.clear();
+    errEl.textContent = 'Error. Verifica el token y repositorio.';
+  }
 };
 
 $('#aBtnNewCategory').onclick = () => {
   if (!DATA.categories) DATA.categories = [];
-  DATA.categories.push({ id: uid(), name: 'Nueva Categoría', description: '', items: [] });
+  DATA.categories.push({ id: uid(), name: 'Nueva Categoría', description: '', logo: '', parallaxImage: '', items: [] });
   renderAdmin(); saveAdminData();
 };
 
-// INICIALIZACIÓN
-initRouter();
+handleRoute();
+if (!location.hash || location.hash === '#home') {
+  loadPublicData();
+}
 </script>
 </body>
 </html>
