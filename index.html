@@ -13,6 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   ESTILOS WEB PÚBLICA
+   ============================================================ */
 :root{--bg:#000;--surface:#0f0f10;--line:rgba(255,255,255,.09);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--ease:cubic-bezier(.22,1,.36,1);--danger:#E5484D;--ok:#30A46C;--phil-bg:#F5F3EF;--phil-text:#0A0A0A;--phil-em:#A88B45;--phil-muted:#4A4A4A}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -57,19 +60,33 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text)}
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
+
+/* MARQUEE BANNER */
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding:28px 0;display:flex;background:#000}
-.marquee-inner{display:flex;animation:mq 40s linear infinite}
-.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.4rem;white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px}
+.marquee-inner{display:flex;animation:mq 30s linear infinite;width:max-content}
+.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.6rem;white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px;color:var(--text)}
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
 @keyframes mq{to{transform:translateX(-50%)}}
+
+/* FEATURED COVERS SCROLLER */
+.featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
+.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.featured-scroll::-webkit-scrollbar{display:none}
+.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line)}
+.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.featured-card:hover img{transform:scale(1.1)}
+.featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 8px;border-radius:100px;text-transform:uppercase}
+
 .philosophy{padding:clamp(90px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .philosophy h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:24px}
 .philosophy h2 em{color:var(--phil-em)}
 .philosophy p{color:var(--phil-muted);max-width:56ch;font-size:1.05rem}
 .section-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(30px,6vw,90px);align-items:start}
 .label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600;padding-top:.5em;white-space:nowrap}
+
+/* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
-.parallax-bg{position:absolute;inset:-45% 0;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111}
+.parallax-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;transition:transform 0.1s linear;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
@@ -78,6 +95,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .parallax-content .desc{font-size:clamp(.9rem,1.3vw,1.05rem);color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 24px}
 .parallax-content .meta{display:inline-flex;align-items:center;gap:14px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
 .parallax-content .meta::before,.parallax-content .meta::after{content:'';width:32px;height:1px;background:rgba(255,255,255,.3)}
+
 .categoria-intro{padding:150px 0 60px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(24px,5vw,56px)}
 .categoria-intro h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:22px;color:var(--text)}
 .categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.95rem,1.3vw,1.08rem);line-height:1.8}
@@ -305,6 +323,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .pending-cover-info h4{font-size:14px;font-weight:700;color:var(--a-text);margin-bottom:4px;}
 .pending-cover-info p{font-size:12px;color:var(--a-muted);margin:0;}
 .pending-cover-actions{display:flex;gap:8px;}
+
+/* Estilo para el Drag and Drop */
+.drag-handle{cursor: grab; padding: 10px; color: var(--a-muted); font-size: 18px; user-select: none;}
+.drag-handle:active{cursor: grabbing;}
+.drag-over{border: 2px dashed var(--a-accent) !important; opacity: 0.5;}
 </style>
 </head>
 <body>
@@ -344,16 +367,17 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div></div></div>
       </section>
+      
+      <!-- MARQUEE BANNER -->
       <div class="marquee"><div class="marquee-inner" id="marquee"></div></div>
       
-      <section class="music-section" id="homeMusicSection" style="display:none">
+      <!-- FEATURED COVERS SECTION -->
+      <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap">
-          <div class="music-head">
-            <span class="music-label">Ahora suena</span>
-            <h2 class="music-title">Escucha el <em>proyecto</em>.</h2>
-            <p class="music-subtitle">El sonido detrás de los covers.</p>
+          <div class="music-head" style="margin-bottom: 20px;">
+            <span class="music-label">Proyectos destacados</span>
           </div>
-          <div class="music-card" id="homeMusicCard"></div>
+          <div class="featured-scroll" id="featuredCoversTrack"></div>
         </div>
       </section>
 
@@ -608,7 +632,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
                 <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Pega el link y pulsa Auto-rellenar para extraer la portada, título y artista.</small>
               </div>
 
-              <!-- PREVIEW DE METADATOS (oculto por defecto) -->
               <div id="pendingCoverPreview" class="pending-cover" style="display:none;">
                 <img id="pendingCoverThumb" src="">
                 <div class="pending-cover-info">
@@ -984,7 +1007,6 @@ const GH = {
     return res;
   },
   async getFile(path) {
-    // Añadimos &t= para evitar la caché
     const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Error ${res.status}`);
@@ -998,11 +1020,8 @@ const GH = {
     let retries = 5;
     while (retries > 0) {
       try {
-        // 1. Obtener el SHA más reciente
         const existing = await this.getFile(path);
         const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
-        
-        // 2. Incluir SHA si el archivo existe
         if (existing) body.sha = existing.sha;
         
         const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
@@ -1012,26 +1031,13 @@ const GH = {
         });
         
         if (res.ok) return true;
-        
-        // 3. Si hay conflicto (409), esperar y reintentar
-        if (res.status === 409) { 
-          console.warn(`Conflicto 409 en ${path}. Reintentando...`);
-          retries--; 
-          await new Promise(r => setTimeout(r, 1000 + Math.random() * 1500)); 
-          continue; 
-        }
-        
-        // 4. Si es error 404, avisar de permisos
-        if (res.status === 404) {
-           throw new Error("Error 404: Revisa los permisos de tu Token en GitHub (Contents: Read and write).");
-        }
-
+        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1500)); continue; }
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
       } catch (e) {
         retries--;
         if (retries === 0) throw e;
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 1500));
       }
     }
   },
@@ -1077,11 +1083,29 @@ let DATA = {
 };
 let pendingCoverData = null;
 
+/* ============================================================
+   EFECTO PARALLAX
+   ============================================================ */
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (nav) {
     if (window.scrollY > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+  }
+  
+  // Parallax logic
+  if (window.innerWidth > 768) {
+    const scrollY = window.scrollY;
+    document.querySelectorAll('.parallax-bg').forEach(bg => {
+      const row = bg.parentElement;
+      const rect = row.getBoundingClientRect();
+      // Only apply if row is in viewport
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Speed 0.4 gives a strong parallax effect
+        const offset = (scrollY - row.offsetTop) * 0.4;
+        bg.style.transform = `translateY(${offset}px)`;
+      }
+    });
   }
 });
 
@@ -1130,6 +1154,7 @@ function renderPublicSite() {
   });
   $('#pubHeroLead').textContent = DATA.hero.lead || '';
 
+  // Hero Background
   const heroBg = $('#heroBg');
   heroBg.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
@@ -1139,8 +1164,16 @@ function renderPublicSite() {
     heroBg.appendChild(l);
   });
 
+  // MARQUEE
+  renderMarquee();
+
+  // FEATURED COVERS
+  renderFeaturedCovers();
+
+  // COVERS
   renderPublicCovers(DATA.covers || []);
 
+  // CLIENTES
   const clientsGrid = $('#publicClientesGrid');
   clientsGrid.innerHTML = '';
   (DATA.clientes || []).forEach(url => {
@@ -1151,6 +1184,7 @@ function renderPublicSite() {
     c.appendChild(im); clientsGrid.appendChild(c);
   });
 
+  // HERRAMIENTAS
   const toolsGrid = $('#publicSoftwareGrid');
   toolsGrid.innerHTML = '';
   if ((DATA.software || []).length) {
@@ -1166,6 +1200,7 @@ function renderPublicSite() {
     $('#softwareSection').style.display = 'none';
   }
 
+  // CONTACTO
   const ce = $('#pubContactEmail');
   if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
   const cp = $('#pubContactPhone');
@@ -1173,6 +1208,7 @@ function renderPublicSite() {
   const cl = $('#pubContactLocation');
   if (cl) cl.textContent = DATA.contact.location || '';
 
+  // PORTAFOLIO
   const catRows = $('#catRows');
   catRows.innerHTML = '';
   (DATA.categories || []).forEach((cat, i) => {
@@ -1185,6 +1221,45 @@ function renderPublicSite() {
     const content = document.createElement('div'); content.className = 'parallax-content';
     content.innerHTML = `<span class="num">0${i+1} / 0${DATA.categories.length}</span><h2>${cat.name}</h2><p class="desc">${cat.description || ''}</p>`;
     row.appendChild(content); catRows.appendChild(row);
+  });
+}
+
+function renderMarquee() {
+  const words = ['Covers', 'Logos', 'Marcas', 'Videolyrics', 'IA', 'Video'];
+  const container = $('#marquee');
+  if (!container) return;
+  let html = '';
+  // Doble bucle para que el efecto de bucle sea perfecto
+  for (let j = 0; j < 2; j++) {
+    words.forEach(item => {
+      html += `<div class="mq-item">${item}</div>`;
+    });
+  }
+  container.innerHTML = html;
+}
+
+function renderFeaturedCovers() {
+  const featured = (DATA.covers || []).filter(c => c.featured);
+  const sec = $('#homeFeaturedSection');
+  const track = $('#featuredCoversTrack');
+  
+  if (featured.length === 0) {
+    sec.style.display = 'none';
+    return;
+  }
+  
+  sec.style.display = 'block';
+  track.innerHTML = '';
+  
+  featured.forEach(c => {
+    const el = document.createElement('div');
+    el.className = 'featured-card';
+    el.innerHTML = `
+      <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
+      <span class="featured-badge">Destacado</span>
+    `;
+    el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
+    track.appendChild(el);
   });
 }
 
@@ -1293,12 +1368,10 @@ window.addEventListener('hashchange', () => {
         const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
         const content = document.createElement('div'); content.className = 'parallax-content';
         
-        // Si hay logo, se muestra en blanco. Si no, texto.
         const titleHtml = p.logoUrl 
             ? `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height: 100px; margin: 0 auto 20px; filter: brightness(0) invert(1); display: block;">` 
             : `<h2>${p.title}</h2>`;
         
-        // Imagen destacada debajo del título
         const featuredHtml = p.featuredImage 
             ? `<img src="${resolveImageUrl(p.featuredImage)}" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">` 
             : '';
@@ -1317,6 +1390,9 @@ window.addEventListener('hashchange', () => {
 
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="categoria"]').classList.add('active');
+      
+      // Ejecutar parallax después de renderizar
+      setTimeout(() => window.dispatchEvent(new Event('scroll')), 50);
     }
   } else if (hash.startsWith('#proyecto-')) {
     const parts = hash.replace('#proyecto-', '').split('-');
@@ -1445,7 +1521,7 @@ function renderAdmin() {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `
       <img src="${resolveImageUrl(c.url)}">
-      <span class="a-badge">${c.category}</span>
+      <span class="a-badge">${c.category} ${c.featured ? '★' : ''}</span>
       <div class="a-cover-card-info">
         <div class="a-cover-card-title">${c.name || 'Sin título'}</div>
         <div class="a-cover-card-meta">${c.artist || '-'}</div>
@@ -1458,16 +1534,46 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
+  // LOGOS DE CLIENTES CON DRAG & DROP
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
-    const el = document.createElement('div'); el.className = 'a-cover-card';
+    const el = document.createElement('div'); 
+    el.className = 'a-cover-card';
+    el.draggable = true;
+    el.dataset.index = i;
+    
     el.innerHTML = `
+      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border-bottom:1px solid var(--a-line);">
+        <span class="drag-handle" title="Arrastrar para mover">≡</span>
+        <span style="font-size:12px; color:var(--a-muted); margin-left:auto; padding-right:10px;">#${i+1}</span>
+      </div>
       <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
-      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px;">
+      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover arriba">↑</button>
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover abajo">↓</button>
         <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>`;
+      
+    // Drag and Drop events
+    el.ondragstart = (e) => {
+      e.dataTransfer.setData('text/plain', i);
+      setTimeout(() => el.style.opacity = '0.4', 0);
+    };
+    el.ondragend = (e) => { el.style.opacity = '1'; };
+    el.ondragover = (e) => { e.preventDefault(); el.classList.add('drag-over'); };
+    el.ondragleave = (e) => { el.classList.remove('drag-over'); };
+    el.ondrop = (e) => {
+      e.preventDefault();
+      el.classList.remove('drag-over');
+      const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+      const toIndex = parseInt(el.dataset.index);
+      if (fromIndex === toIndex) return;
+      
+      const item = DATA.clientes.splice(fromIndex, 1)[0];
+      DATA.clientes.splice(toIndex, 0, item);
+      renderAdmin(); saveAdminData();
+    };
+    
     clGrid.appendChild(el);
   });
 
@@ -1494,7 +1600,7 @@ function renderAdmin() {
             <img src="${thumb}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">
             <div>
               <span style="font-size:14px; font-weight:600;">${p.title}</span>
-              ${p.logoUrl ? '<span style="font-size:11px;color:var(--a-accent);margin-left:6px;">(con logo)</span>' : ''}
+              ${p.logoUrl ? '<span style="font-size:11px;color:var(--a-accent);margin-left:6px;">(logo)</span>' : ''}
             </div>
           </div>
           <div style="display:flex;gap:4px">
@@ -1638,7 +1744,6 @@ function updateProjectThumbs() {
   const coverVal = coverSelect.value;
   const featuredVal = featuredSelect.value;
   
-  // Repoblar si es necesario
   if (coverSelect.options.length - 1 !== currentImages.length) {
     coverSelect.innerHTML = '<option value="">Usar primera imagen</option>';
     featuredSelect.innerHTML = '<option value="">Ninguna</option>';
@@ -1658,7 +1763,6 @@ function updateProjectThumbs() {
     });
   }
 
-  // Actualizar thumbnails
   const coverImg = coverSelect.value || (currentImages[0] || '');
   const featuredImg = featuredSelect.value;
   
@@ -1690,9 +1794,6 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
-/* ============================================================
-   METADATA CON VALIDACIÓN (PREVIEW)
-   ============================================================ */
 $('#aBtnFetchMetadata').onclick = async () => {
   const url = $('#aCoverMusicLink').value.trim();
   if (!url) return aToast('Pega un link primero', 'error');
@@ -1770,9 +1871,6 @@ $('#aBtnFetchMetadataEdit').onclick = async () => {
   aToast('Datos rellenados. Revisa antes de guardar.', 'success');
 };
 
-/* ============================================================
-   UPLOADS
-   ============================================================ */
 async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
   if(!files.length && !musicUrl) return;
   
@@ -1874,7 +1972,6 @@ $('#aBtnSaveProject').onclick = () => {
   let coverImage = $('#aEditProjectCover').value;
   let featuredImage = $('#aEditProjectFeatured').value;
   
-  // Validar que cover/featured sigan existiendo en las imágenes
   if (coverImage && !newImages.includes(coverImage)) coverImage = '';
   if (featuredImage && !newImages.includes(featuredImage)) featuredImage = '';
   
