@@ -129,6 +129,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
 .embed-item iframe{width:100%;border:0;display:block;aspect-ratio:16/9}
 
+/* COVERS GRID & BRILLO DINÁMICO */
 .covers-view{padding:150px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(24px,5vw,56px) 40px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:24px;max-width:20ch}
@@ -145,10 +146,13 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 @media(max-width:640px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
 .cover-item{--cover-glow:rgba(201,169,97,.5);--cover-glow-line:rgba(201,169,97,.45);position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s}
 .cover-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.95);transform:scale(1.06);transition:filter .7s,transform 1s;min-height:100px}
+/* Efecto de destello (Shine) */
+.cover-shine{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.2) 45%,rgba(255,255,255,.08) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1.1s;border-radius:6px}
 .cover-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 45%,transparent 75%);opacity:.65;transition:opacity .55s;pointer-events:none;z-index:2}
 .cover-item:hover{transform:translateY(-14px) scale(1.08);box-shadow:0 40px 80px -20px var(--cover-glow),0 25px 60px -10px rgba(0,0,0,.85),0 0 0 1.5px var(--cover-glow-line);z-index:20}
 .cover-item:hover img{filter:brightness(1.15) saturate(1.25);transform:scale(1.22)}
 .cover-item:hover::after{opacity:1}
+.cover-item:hover .cover-shine{transform:translateX(120%)}
 .cover-info{position:absolute;bottom:0;left:0;right:0;padding:24px 26px;z-index:5;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none}
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
 .cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px}
@@ -199,17 +203,24 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 
 /* ============================================================
-   ESTILOS PANEL ADMIN (100% TEXTO, CERO ICONOS)
+   ESTILOS PANEL ADMIN (REDISEÑADO: MENÚ DESPLEGABLE)
    ============================================================ */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.5;min-height:100vh;display:none}
 #adminApp.active{display:block}
-.admin-layout{display:flex;min-height:100vh}
-.a-sidebar{width:260px;background:var(--a-surface);border-right:1px solid var(--a-line);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:100}
-.a-main{flex:1;margin-left:260px;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg)}
-@media(max-width:900px){.a-sidebar{transform:translateX(-100%);transition:transform 0.3s ease}.a-sidebar.open{transform:translateX(0)}.a-main{margin-left:0}}
-.a-sidebar-header{padding:24px;border-bottom:1px solid var(--a-line);display:flex;align-items:center;justify-content:space-between}
+.admin-layout{display:flex;min-height:100vh;position:relative}
+
+/* Sidebar Desplegable */
+.a-sidebar{width:260px;background:var(--a-surface);border-right:1px solid var(--a-line);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:1000;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.22,1,.36,1);box-shadow:5px 0 30px rgba(0,0,0,0.5)}
+.a-sidebar.open{transform:translateX(0)}
+.a-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:999;display:none}
+.a-overlay.active{display:block}
+
+/* Main Content (Ocupa todo el ancho) */
+.a-main{flex:1;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg);width:100%}
+
+.a-sidebar-header{padding:24px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center}
 .a-sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .a-sidebar-nav{padding:16px 12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
 .a-nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--a-muted);display:flex;align-items:center;transition:all 0.2s;cursor:pointer}
@@ -221,9 +232,14 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-sync.saving .a-sync-dot{background:var(--a-accent);animation:pulse 1s infinite}
 .a-sync.error .a-sync-dot{background:var(--a-danger)}
 @keyframes pulse{50%{opacity:0.5}}
-.a-topbar{padding:20px 32px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;background:var(--a-bg);position:sticky;top:0;z-index:50}
+
+.a-topbar{padding:20px 32px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;background:var(--a-bg);position:sticky;top:0;z-index:50;width:100%}
+.a-topbar-left{display:flex;align-items:center;gap:16px}
+.a-menu-btn{display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--a-line);color:var(--a-text);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.a-menu-btn:hover{background:var(--a-surface-hover)}
 .a-page-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}
 .a-topbar-actions{display:flex;gap:12px}
+
 .a-content{padding:32px;flex:1;max-width:1200px;margin:0 auto;width:100%}
 .a-panel{display:none;animation:fadeIn 0.3s ease}
 .a-panel.active{display:block}
@@ -256,7 +272,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-cover-card-actions{display:flex;gap:6px;margin-top:10px}
 .a-cover-card-actions .a-btn{flex:1;padding:6px;font-size:11px}
 .a-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:var(--a-accent);font-size:10px;font-weight:700;padding:4px 8px;border-radius:4px;text-transform:uppercase}
-.a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
 .a-modal-overlay.active{display:flex}
 .a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:8px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative}
 .a-modal-header{padding:20px 24px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--a-surface);z-index:10}
@@ -265,7 +281,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-modal-close:hover{color:var(--a-text)}
 .a-modal-body{padding:24px}
 .a-modal-footer{padding:20px 24px;border-top:1px solid var(--a-line);display:flex;justify-content:flex-end;gap:12px;position:sticky;bottom:0;background:var(--a-surface);z-index:10}
-.a-login-screen{position:fixed;inset:0;background:var(--a-bg);display:none;align-items:center;justify-content:center;padding:20px;z-index:2000}
+.a-login-screen{position:fixed;inset:0;background:var(--a-bg);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:400px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:40px}
 .a-login-logo{height:32px;margin:0 auto 24px;filter:brightness(0) invert(1)}
@@ -467,7 +483,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
 </div>
 
-<!-- MODO ADMIN (SIN ICONOS) -->
+<!-- MODO ADMIN (REDISEÑADO CON MENÚ DESPLEGABLE) -->
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -494,9 +510,12 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   </div>
 
   <div class="admin-layout" id="aDashboard" style="display:none">
-    <aside class="a-sidebar">
+    <div class="a-overlay" id="aOverlay"></div>
+    
+    <aside class="a-sidebar" id="aSidebar">
       <div class="a-sidebar-header">
         <img src="logo.svg" alt="Grobdesigns" class="a-sidebar-logo" onerror="this.style.display='none'">
+        <button class="a-btn a-btn-outline a-btn-sm" id="aCloseSidebar">Cerrar</button>
       </div>
       <div class="a-sidebar-nav">
         <div class="a-nav-item active" data-target="hero">Inicio (Hero)</div>
@@ -519,7 +538,10 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 
     <main class="a-main">
       <header class="a-topbar">
-        <h1 class="a-page-title" id="aPageTitle">Inicio</h1>
+        <div class="a-topbar-left">
+          <button class="a-menu-btn" id="aMenuBtn">MENÚ</button>
+          <h1 class="a-page-title" id="aPageTitle">Inicio</h1>
+        </div>
         <div class="a-topbar-actions">
           <button class="a-btn a-btn-outline" id="aBtnReload">Recargar datos</button>
           <button class="a-btn a-btn-primary" id="aBtnSaveAll">Guardar todo</button>
@@ -726,6 +748,47 @@ function resolveImageUrl(url) {
 function handleImgError(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
+}
+
+/* ============================================================
+   EXTRACCIÓN DE COLOR DOMINANTE (PARA EL BRILLO)
+   ============================================================ */
+const colorCache = new Map();
+function rgbToHsl(r, g, b) { r /= 255; g /= 255; b /= 255; const max = Math.max(r, g, b), min = Math.min(r, g, b); let h = 0, s = 0, l = (max + min) / 2; if (max !== min) { const d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min); switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; } } return { h: h * 360, s, l }; }
+function hslToHex(h, s, l) { s = Math.max(0, Math.min(1, s)); l = Math.max(0, Math.min(1, l)); const c = (1 - Math.abs(2 * l - 1)) * s; const x = c * (1 - Math.abs((h / 60) % 2 - 1)); const m = l - c / 2; let r, g, b; if (h < 60) [r, g, b] = [c, x, 0]; else if (h < 120) [r, g, b] = [x, c, 0]; else if (h < 180) [r, g, b] = [0, c, x]; else if (h < 240) [r, g, b] = [0, x, c]; else if (h < 300) [r, g, b] = [x, 0, c]; else [r, g, b] = [c, 0, x]; const t = v => Math.round((v + m) * 255); return '#' + [t(r), t(g), t(b)].map(v => v.toString(16).padStart(2, '0')).join(''); }
+function hexToRgba(hex, alpha) {
+  if (!hex || !hex.startsWith('#')) return `rgba(201,169,97,${alpha})`;
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16), g = parseInt(h.substring(2, 4), 16), b = parseInt(h.substring(4, 6), 16);
+  if ([r, g, b].some(isNaN)) return `rgba(201,169,97,${alpha})`;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function extractDominantColor(url) {
+  if (!url) return Promise.resolve(null);
+  if (colorCache.has(url)) return Promise.resolve(colorCache.get(url));
+  return new Promise(res => {
+    const im = new Image();
+    if (location.protocol !== 'file:' && /^https?:/.test(url)) im.crossOrigin = 'anonymous';
+    im.onload = () => { 
+      try { 
+        const s = 40, c = document.createElement('canvas'); c.width = s; c.height = s; 
+        const ctx = c.getContext('2d'); ctx.drawImage(im, 0, 0, s, s); 
+        const d = ctx.getImageData(0, 0, s, s).data; 
+        let r = 0, g = 0, b = 0, n = 0; 
+        for (let i = 0; i < d.length; i += 4) { 
+          const br = (d[i] + d[i + 1] + d[i + 2]) / 3; 
+          if (br < 30 || br > 225) continue; 
+          r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; 
+        } 
+        if (!n) return res(null); 
+        const hsl = rgbToHsl(r / n, g / n, b / n); 
+        const hex = hslToHex(hsl.h, Math.max(.6, Math.min(.9, hsl.s + .2)), Math.max(.5, Math.min(.7, hsl.l))); 
+        colorCache.set(url, hex); res(hex); 
+      } catch (e) { res(null); } 
+    };
+    im.onerror = () => res(null); im.src = url;
+  });
 }
 
 /* ============================================================
@@ -1044,6 +1107,18 @@ function renderPublicCovers(covers) {
     im.src = resolveImageUrl(c.url);
     im.onerror = () => handleImgError(im);
     item.appendChild(im);
+    
+    // Efecto Shine (Destello)
+    const shine = document.createElement('div'); shine.className = 'cover-shine'; item.appendChild(shine);
+    
+    // Extraer color dominante para el brillo
+    extractDominantColor(c.url).then(col => {
+      if (col) {
+        item.style.setProperty('--cover-glow', hexToRgba(col, .55));
+        item.style.setProperty('--cover-glow-line', hexToRgba(col, .5));
+      }
+    });
+
     const info = document.createElement('div'); info.className = 'cover-info';
     info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
     item.appendChild(info);
@@ -1117,7 +1192,7 @@ $$('.tab').forEach(btn => {
 });
 
 /* ============================================================
-   LÓGICA PANEL ADMIN (SIN ICONOS)
+   LÓGICA PANEL ADMIN (CON MENÚ DESPLEGABLE)
    ============================================================ */
 function aToast(msg, type = 'success') {
   const container = $('#aToastContainer');
@@ -1326,6 +1401,20 @@ window.openAdminCoverModal = (i) => {
   $('#aCoverModal').classList.add('active');
 };
 
+// LÓGICA DE MENÚ DESPLEGABLE
+$('#aMenuBtn').onclick = () => {
+  $('#aSidebar').classList.add('open');
+  $('#aOverlay').classList.add('active');
+};
+$('#aCloseSidebar').onclick = () => {
+  $('#aSidebar').classList.remove('open');
+  $('#aOverlay').classList.remove('active');
+};
+$('#aOverlay').onclick = () => {
+  $('#aSidebar').classList.remove('open');
+  $('#aOverlay').classList.remove('active');
+};
+
 // LISTENERS DE INPUTS
 $$('.a-nav-item').forEach(item => {
   item.onclick = () => {
@@ -1334,6 +1423,11 @@ $$('.a-nav-item').forEach(item => {
     $$('.a-panel').forEach(p => p.classList.remove('active'));
     $(`#a-panel-${item.dataset.target}`).classList.add('active');
     $('#aPageTitle').textContent = item.textContent;
+    // Cerrar menú en móvil al seleccionar
+    if (window.innerWidth <= 900) {
+      $('#aSidebar').classList.remove('open');
+      $('#aOverlay').classList.remove('active');
+    }
   };
 });
 
