@@ -578,7 +578,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/3nhIVP0aPmQ9y9FAeTthMc?si=d64fabd10012440f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/WaZCYP-qSIA?si=Eq7wHr2dyIgAZbPP",
-      "featured": false
+      "featured": true
     },
     {
       "id": "lcy957eomvo0j7v9",
@@ -904,7 +904,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": false
     },
     {
       "id": "az9703hfmvo0xokz",
