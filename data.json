@@ -410,7 +410,8 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792946223140-1oxapd.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792970853500-0tljhp.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792970894496-zn5xgc.png",
-    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792977791505-xfl81u.png"
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792977791505-xfl81u.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cliente-1792978323436-ve9rsi.png"
   ],
   "software": [
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/software-1792944370110-n1t94n.png",
@@ -1646,6 +1647,24 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977945198-tw42i5.jpg"
       ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1axZcm7CupYVJAhOcSY1my?si=10ba3045be9448ec",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "y5i7h8fcmvokswf5",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792977990254-gvmqzp.jpg",
+      "category": "sencillo",
+      "name": "Santa Bandida",
+      "artist": "poetiko",
+      "year": "2025",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792978026322-pifosh.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792978027628-42r3nx.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792978028907-uiofaf.jpg"
+      ],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
