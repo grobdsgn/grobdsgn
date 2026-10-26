@@ -62,18 +62,18 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn-primary:hover{background:transparent;color:var(--text)}
 
 /* MARQUEE BANNER */
-.marquee{overflow:hidden;border-block:1px solid var(--line);padding:24px 0;display:flex;background:#000;white-space:nowrap;}
-.marquee-inner{display:inline-flex;animation:mq 25s linear infinite;white-space:nowrap;}
-.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.4rem;padding:0 30px;display:inline-flex;align-items:center;gap:30px;color:var(--text)}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:28px 0;display:flex;background:#000}
+.marquee-inner{display:flex;animation:mq 30s linear infinite;width:max-content}
+.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.6rem;white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px;color:var(--text)}
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes mq{to{transform:translateX(-50%)}}
 
 /* FEATURED COVERS SCROLLER */
 .featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
-.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
+.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .featured-scroll::-webkit-scrollbar{display:none}
-.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line);flex-shrink:0;}
-.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s; pointer-events: none;}
+.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line)}
+.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
 .featured-card:hover img{transform:scale(1.1)}
 .featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 8px;border-radius:100px;text-transform:uppercase}
 
@@ -86,7 +86,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 
 /* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
-.parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;will-change:transform;}
+.parallax-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;transition:transform 0.1s linear;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
@@ -1143,26 +1143,31 @@ async function loadPublicData() {
 }
 
 function renderPublicSite() {
-  $('#pubHeroEyebrow').textContent = DATA.hero.eyebrow || '';
-  const titleEl = $('#pubHeroTitle');
-  titleEl.innerHTML = '';
-  (DATA.hero.title || '').split('\n').forEach((line, i) => {
-    if (i > 0) titleEl.appendChild(document.createElement('br'));
-    const sp = document.createElement('span');
-    sp.textContent = line;
-    titleEl.appendChild(sp);
-  });
-  $('#pubHeroLead').textContent = DATA.hero.lead || '';
+  // Hero text
+  const ee = $('#pubHeroEyebrow'); if (ee) ee.textContent = DATA.hero.eyebrow || '';
+  const t = $('#pubHeroTitle');
+  if (t) {
+    t.innerHTML = '';
+    (DATA.hero.title || '').split('\n').forEach((line, i) => {
+      if (i > 0) t.appendChild(document.createElement('br'));
+      const sp = document.createElement('span');
+      sp.textContent = line;
+      t.appendChild(sp);
+    });
+  }
+  const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
 
   // Hero Background
   const heroBg = $('#heroBg');
-  heroBg.innerHTML = '';
-  (DATA.heroImages || []).forEach((url, i) => {
-    const l = document.createElement('div');
-    l.className = 'hero-bg-layer' + (i === 0 ? ' active' : '');
-    l.style.backgroundImage = `url("${resolveImageUrl(url)}")`;
-    heroBg.appendChild(l);
-  });
+  if (heroBg) {
+    heroBg.innerHTML = '';
+    (DATA.heroImages || []).forEach((url, i) => {
+      const l = document.createElement('div');
+      l.className = 'hero-bg-layer' + (i === 0 ? ' active' : '');
+      l.style.backgroundImage = `url("${resolveImageUrl(url)}")`;
+      heroBg.appendChild(l);
+    });
+  }
 
   // MARQUEE
   renderMarquee();
@@ -1175,29 +1180,35 @@ function renderPublicSite() {
 
   // CLIENTES
   const clientsGrid = $('#publicClientesGrid');
-  clientsGrid.innerHTML = '';
-  (DATA.clientes || []).forEach(url => {
-    const c = document.createElement('div'); c.className = 'cliente-logo';
-    const im = document.createElement('img');
-    im.src = resolveImageUrl(url);
-    im.onerror = () => handleImgError(im);
-    c.appendChild(im); clientsGrid.appendChild(c);
-  });
-
-  // HERRAMIENTAS
-  const toolsGrid = $('#publicSoftwareGrid');
-  toolsGrid.innerHTML = '';
-  if ((DATA.software || []).length) {
-    $('#softwareSection').style.display = 'block';
-    DATA.software.forEach(url => {
-      const card = document.createElement('div'); card.className = 'software-logo';
+  if (clientsGrid) {
+    clientsGrid.innerHTML = '';
+    (DATA.clientes || []).forEach(url => {
+      const c = document.createElement('div'); c.className = 'cliente-logo';
       const im = document.createElement('img');
       im.src = resolveImageUrl(url);
       im.onerror = () => handleImgError(im);
-      card.appendChild(im); toolsGrid.appendChild(card);
+      c.appendChild(im); clientsGrid.appendChild(c);
     });
-  } else {
-    $('#softwareSection').style.display = 'none';
+  }
+
+  // HERRAMIENTAS
+  const toolsGrid = $('#publicSoftwareGrid');
+  if (toolsGrid) {
+    toolsGrid.innerHTML = '';
+    if ((DATA.software || []).length) {
+      const sec = $('#softwareSection');
+      if (sec) sec.style.display = 'block';
+      DATA.software.forEach(url => {
+        const card = document.createElement('div'); card.className = 'software-logo';
+        const im = document.createElement('img');
+        im.src = resolveImageUrl(url);
+        im.onerror = () => handleImgError(im);
+        card.appendChild(im); toolsGrid.appendChild(card);
+      });
+    } else {
+      const sec = $('#softwareSection');
+      if (sec) sec.style.display = 'none';
+    }
   }
 
   // CONTACTO
@@ -1210,18 +1221,20 @@ function renderPublicSite() {
 
   // PORTAFOLIO
   const catRows = $('#catRows');
-  catRows.innerHTML = '';
-  (DATA.categories || []).forEach((cat, i) => {
-    const row = document.createElement('div'); row.className = 'parallax-row';
-    row.onclick = () => { window.location.hash = `#categoria-${cat.id}`; };
-    const bg = document.createElement('div'); bg.className = 'parallax-bg' + (cat.cover ? '' : ' empty');
-    if (cat.cover) bg.style.backgroundImage = `url("${resolveImageUrl(cat.cover)}")`;
-    row.appendChild(bg);
-    const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
-    const content = document.createElement('div'); content.className = 'parallax-content';
-    content.innerHTML = `<span class="num">0${i+1} / 0${DATA.categories.length}</span><h2>${cat.name}</h2><p class="desc">${cat.description || ''}</p>`;
-    row.appendChild(content); catRows.appendChild(row);
-  });
+  if (catRows) {
+    catRows.innerHTML = '';
+    (DATA.categories || []).forEach((cat, i) => {
+      const row = document.createElement('div'); row.className = 'parallax-row';
+      row.onclick = () => { window.location.hash = `#categoria-${cat.id}`; };
+      const bg = document.createElement('div'); bg.className = 'parallax-bg' + (cat.cover ? '' : ' empty');
+      if (cat.cover) bg.style.backgroundImage = `url("${resolveImageUrl(cat.cover)}")`;
+      row.appendChild(bg);
+      const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
+      const content = document.createElement('div'); content.className = 'parallax-content';
+      content.innerHTML = `<span class="num">0${i+1} / 0${DATA.categories.length}</span><h2>${cat.name}</h2><p class="desc">${cat.description || ''}</p>`;
+      row.appendChild(content); catRows.appendChild(row);
+    });
+  }
 }
 
 function renderMarquee() {
@@ -1243,27 +1256,29 @@ function renderFeaturedCovers() {
   const track = $('#featuredCoversTrack');
   
   if (featured.length === 0) {
-    sec.style.display = 'none';
+    if (sec) sec.style.display = 'none';
     return;
   }
   
-  sec.style.display = 'block';
-  track.innerHTML = '';
-  
-  featured.forEach(c => {
-    const el = document.createElement('div');
-    el.className = 'featured-card';
-    el.innerHTML = `
-      <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
-      <span class="featured-badge">Destacado</span>
-    `;
-    el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
-    track.appendChild(el);
-  });
+  if (sec) sec.style.display = 'block';
+  if (track) {
+    track.innerHTML = '';
+    featured.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'featured-card';
+      el.innerHTML = `
+        <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
+        <span class="featured-badge">Destacado</span>
+      `;
+      el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
+      track.appendChild(el);
+    });
+  }
 }
 
 function renderPublicCovers(covers) {
   const grid = $('#coversGrid');
+  if (!grid) return;
   grid.innerHTML = '';
   covers.forEach(c => {
     const item = document.createElement('div'); item.className = 'cover-item';
@@ -2052,6 +2067,7 @@ $('#aBtnNewCategory').onclick = () => {
   renderAdmin(); saveAdminData();
 };
 
+// Init
 initRouter();
 </script>
 </body>
