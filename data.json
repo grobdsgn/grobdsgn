@@ -1406,6 +1406,23 @@
     {
       "id": "guwtm6x1mvoiw64t",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974783212-9mm3l8.jpg",
+      "category": "albums",
+      "name": "Borron y cuenta nueva",
+      "artist": "Ralphy Dreamz",
+      "year": "2025",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974814528-nsbte0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974815863-1du48r.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/2K41UHPju1j3EWmoePHt4S?si=1OWC67KUQ6qoiFxj6ai6mg",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "h56iogn9mvoizqvd",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974950090-f39tk7.jpg",
       "category": "sencillo",
       "name": "",
       "artist": "",
