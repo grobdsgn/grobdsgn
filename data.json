@@ -1728,6 +1728,23 @@
     {
       "id": "psghfl0emvoll2t0",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792979304584-wvhk7u.jpg",
+      "category": "albums",
+      "name": "XXI",
+      "artist": "Samy Hawk",
+      "year": "2014",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979315173-r05tsm.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979316334-eb0ba2.jpg"
+      ],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "pykie6ncmvolmisg",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792979372121-ldfu6n.jpg",
       "category": "sencillo",
       "name": "",
       "artist": "",
