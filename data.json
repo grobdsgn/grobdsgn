@@ -1735,7 +1735,8 @@
       "review": "",
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979315173-r05tsm.jpg",
-        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979316334-eb0ba2.jpg"
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979316334-eb0ba2.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979461648-rnvaxa.jpg"
       ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
@@ -1746,11 +1747,15 @@
       "id": "pykie6ncmvolmisg",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792979372121-ldfu6n.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Innovación",
+      "artist": "Raymond",
+      "year": "2014",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979386325-6y82jz.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979387444-cqnycg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792979405838-09d0rq.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
