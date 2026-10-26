@@ -782,20 +782,6 @@
       "featured": false
     },
     {
-      "id": "f6o0rxa4mvo0jlk5",
-      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943963150-0w9swr.png",
-      "category": "sencillo",
-      "name": "cuantos-son",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
-      "appleMusicUrl": "",
-      "youtubeUrl": "",
-      "featured": false
-    },
-    {
       "id": "1xklxq8jmvo0jmdf",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792943965173-ym2ctt.jpg",
       "category": "sencillo",
@@ -1640,6 +1626,20 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977704060-k0f2ia.jpg"
       ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4RU1KlIro6jl1qkDTcruMD?si=ad9573d749ce4c39",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "3z883thtmvokr8on",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792977912679-roch01.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
