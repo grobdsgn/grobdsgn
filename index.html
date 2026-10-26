@@ -728,7 +728,7 @@ function handleImgError(img) {
 }
 
 /* ============================================================
-   GITHUB API
+   GITHUB API (Blindado contra fallos 404 o tokens vacíos)
    ============================================================ */
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -745,14 +745,18 @@ const GH = {
     return res;
   },
   async getFile(path) {
-    const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
-    if (res.status === 404) return null;
-    if (!res.ok) throw new Error(`Error ${res.status}`);
-    const d = await res.json();
-    const bin = atob(d.content.replace(/\n/g, ''));
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return { sha: d.sha, content: new TextDecoder('utf-8').decode(bytes) };
+    try {
+      const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error(`Error ${res.status}`);
+      const d = await res.json();
+      const bin = atob(d.content.replace(/\n/g, ''));
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return { sha: d.sha, content: new TextDecoder('utf-8').decode(bytes) };
+    } catch(e) {
+      return null;
+    }
   },
   async putFile(path, base64Content, message) {
     let retries = 3;
@@ -783,15 +787,18 @@ const GH = {
     if (this.isConfigured()) {
       try {
         const file = await this.getFile('data.json');
-        if (file) return JSON.parse(file.content);
-        return null;
+        if (file && file.content) return JSON.parse(file.content);
       } catch(e) { console.warn('API load error:', e); }
     }
     try {
       const res = await fetch('data.json?t=' + Date.now());
-      if (!res.ok) return null;
-      return await res.json();
-    } catch (e) { return null; }
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (e) { 
+      console.warn('Local data.json not found, using default DATA');
+    }
+    return null; // Retorna null para forzar el uso de los datos por defecto
   },
   async save(data) {
     const json = JSON.stringify(data, null, 2);
