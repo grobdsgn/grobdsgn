@@ -1464,12 +1464,15 @@
       "id": "33ax330rmvoj6vxo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792975283252-z0mud7.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "name": "Trap Island (No Official)",
+      "artist": "Noriel",
+      "year": "2024",
+      "review": "Propuesta presentada para Noriel. Trap Island Album.",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975361736-6qpy62.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792975363416-hdnd4h.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/2YiziMql3dRV3ic0gkEDgv?si=240bfcccdad8408f",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
