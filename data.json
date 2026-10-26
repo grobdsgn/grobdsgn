@@ -664,7 +664,7 @@
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5aifhDhsh8lRatTax02HuO?si=a8c1d5fae1f7433d",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://www.youtube.com/watch?v=xDyXYqQTHRM",
       "featured": false
     },
     {
@@ -1687,12 +1687,12 @@
       "id": "gfvasi0ymvol4fko",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792978528311-9wk6hy.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Ahora que te vas",
+      "artist": "Christian Daniel ft Cosculluela",
+      "year": "2015",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/playlist/5kw1kasEgI2rq7SLaoD0qD?si=f8230ebb2a864cfe",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
