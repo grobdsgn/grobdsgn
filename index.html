@@ -63,7 +63,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
 
-/* MARQUEE BANNER INTEGRADO Y VISIBLE */
+/* MARQUEE BANNER */
 .marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:24px 0;display:flex;background:#000;position:relative;z-index:5}
 .marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
 .marquee:hover .marquee-inner{animation-play-state:paused}
@@ -587,7 +587,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CLIENTS (CON BOTONES DE MOVER MÁS Y MENOS) -->
+        <!-- CLIENTS (CON BOTONES DE MOVER SUBIR / BAJAR) -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Logos de Clientes</h2></div>
@@ -819,6 +819,7 @@ function updateParallax() {
   const winHeight = window.innerHeight;
   rows.forEach(bg => {
     const row = bg.parentElement;
+    if (!row) return;
     const rect = row.getBoundingClientRect();
     if (rect.top < winHeight && rect.bottom > 0) {
       const speed = 0.35;
