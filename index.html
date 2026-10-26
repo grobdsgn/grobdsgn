@@ -984,6 +984,7 @@ const GH = {
     return res;
   },
   async getFile(path) {
+    // Añadimos &t= para evitar la caché
     const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Error ${res.status}`);
@@ -997,8 +998,11 @@ const GH = {
     let retries = 5;
     while (retries > 0) {
       try {
+        // 1. Obtener el SHA más reciente
         const existing = await this.getFile(path);
         const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
+        
+        // 2. Incluir SHA si el archivo existe
         if (existing) body.sha = existing.sha;
         
         const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
@@ -1008,13 +1012,26 @@ const GH = {
         });
         
         if (res.ok) return true;
-        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 2000)); continue; }
+        
+        // 3. Si hay conflicto (409), esperar y reintentar
+        if (res.status === 409) { 
+          console.warn(`Conflicto 409 en ${path}. Reintentando...`);
+          retries--; 
+          await new Promise(r => setTimeout(r, 1000 + Math.random() * 1500)); 
+          continue; 
+        }
+        
+        // 4. Si es error 404, avisar de permisos
+        if (res.status === 404) {
+           throw new Error("Error 404: Revisa los permisos de tu Token en GitHub (Contents: Read and write).");
+        }
+
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
       } catch (e) {
         retries--;
         if (retries === 0) throw e;
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 1000));
       }
     }
   },
