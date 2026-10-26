@@ -390,7 +390,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964124754-n62sp2.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792964212865-qsa339.jpg"
           ],
-          "parallaxImage": ""
+          "parallaxImage": "",
+          "name": "Padel Fest"
         },
         {
           "id": "4qszry7mmvoe3rie",
@@ -402,7 +403,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792966723177-6vyw2r.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792966725065-51oaih.jpg"
           ],
-          "parallaxImage": ""
+          "parallaxImage": "",
+          "name": "White Party"
         },
         {
           "id": "7ezkyhiwmvoe4zff",
@@ -414,7 +416,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792966787781-r2mrf1.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/proj-1792966789710-2y4iih.jpg"
           ],
-          "parallaxImage": ""
+          "parallaxImage": "",
+          "name": "Tropical Sunday"
         }
       ],
       "parallaxImage": ""
