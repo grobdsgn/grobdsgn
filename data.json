@@ -1494,6 +1494,22 @@
     {
       "id": "skeehpzdmvojmwna",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792976030496-p3x3f6.jpg",
+      "category": "albums",
+      "name": "Delorean 90´s",
+      "artist": "Bape Og´s",
+      "year": "2017",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792976073133-9935p0.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/382rMfJUDCCqLlAqmoVeHk?si=3IhQH5AMTCqr5vgWPeFB_A",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
+    },
+    {
+      "id": "gdl3qg9zmvojr2cd",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792976224764-7krhrb.jpg",
       "category": "sencillo",
       "name": "",
       "artist": "",
