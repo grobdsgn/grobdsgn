@@ -62,18 +62,18 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn-primary:hover{background:transparent;color:var(--text)}
 
 /* MARQUEE BANNER */
-.marquee{overflow:hidden;border-block:1px solid var(--line);padding:28px 0;display:flex;background:#000}
-.marquee-inner{display:flex;animation:mq 30s linear infinite;width:max-content}
-.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.6rem;white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px;color:var(--text)}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:24px 0;display:flex;background:#000;white-space:nowrap;}
+.marquee-inner{display:inline-flex;animation:mq 25s linear infinite;white-space:nowrap;}
+.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.4rem;padding:0 30px;display:inline-flex;align-items:center;gap:30px;color:var(--text)}
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
-@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* FEATURED COVERS SCROLLER */
 .featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
-.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}
 .featured-scroll::-webkit-scrollbar{display:none}
-.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line)}
-.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line);flex-shrink:0;}
+.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s; pointer-events: none;}
 .featured-card:hover img{transform:scale(1.1)}
 .featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 8px;border-radius:100px;text-transform:uppercase}
 
@@ -86,7 +86,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 
 /* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
-.parallax-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;transition:transform 0.1s linear;will-change:transform}
+.parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;will-change:transform;}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
@@ -374,7 +374,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       <!-- FEATURED COVERS SECTION -->
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap">
-          <div class="music-head" style="margin-bottom: 20px;">
+          <div class="music-head" style="margin-bottom: 20px; text-align: left;">
             <span class="music-label">Proyectos destacados</span>
           </div>
           <div class="featured-scroll" id="featuredCoversTrack"></div>
@@ -1084,7 +1084,7 @@ let DATA = {
 let pendingCoverData = null;
 
 /* ============================================================
-   EFECTO PARALLAX
+   EFECTO PARALLAX Y NAVBAR
    ============================================================ */
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
@@ -1095,15 +1095,15 @@ window.addEventListener('scroll', () => {
   
   // Parallax logic
   if (window.innerWidth > 768) {
-    const scrollY = window.scrollY;
     document.querySelectorAll('.parallax-bg').forEach(bg => {
       const row = bg.parentElement;
       const rect = row.getBoundingClientRect();
       // Only apply if row is in viewport
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Speed 0.4 gives a strong parallax effect
-        const offset = (scrollY - row.offsetTop) * 0.4;
-        bg.style.transform = `translateY(${offset}px)`;
+        // Fórmula ajustada para un efecto más marcado (0.5)
+        const speed = 0.5; 
+        const yPos = -(rect.top * speed);
+        bg.style.transform = `translateY(${yPos}px)`;
       }
     });
   }
@@ -1229,8 +1229,7 @@ function renderMarquee() {
   const container = $('#marquee');
   if (!container) return;
   let html = '';
-  // Doble bucle para que el efecto de bucle sea perfecto
-  for (let j = 0; j < 2; j++) {
+  for (let j = 0; j < 3; j++) {
     words.forEach(item => {
       html += `<div class="mq-item">${item}</div>`;
     });
@@ -1534,35 +1533,48 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // LOGOS DE CLIENTES CON DRAG & DROP
+  // LOGOS DE CLIENTES CON DRAG & DROP MEJORADO
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); 
     el.className = 'a-cover-card';
-    el.draggable = true;
+    el.setAttribute('draggable', 'true');
     el.dataset.index = i;
     
     el.innerHTML = `
       <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border-bottom:1px solid var(--a-line);">
-        <span class="drag-handle" title="Arrastrar para mover">≡</span>
+        <span class="drag-handle" title="Arrastrar para mover" style="cursor:grab; padding:8px; font-size:20px;">≡</span>
         <span style="font-size:12px; color:var(--a-muted); margin-left:auto; padding-right:10px;">#${i+1}</span>
       </div>
-      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff; pointer-events:none;" draggable="false">
       <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover arriba">↑</button>
         <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover abajo">↓</button>
         <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>`;
       
-    // Drag and Drop events
-    el.ondragstart = (e) => {
+    el.addEventListener('dragstart', (e) => {
       e.dataTransfer.setData('text/plain', i);
+      e.dataTransfer.effectAllowed = 'move';
       setTimeout(() => el.style.opacity = '0.4', 0);
-    };
-    el.ondragend = (e) => { el.style.opacity = '1'; };
-    el.ondragover = (e) => { e.preventDefault(); el.classList.add('drag-over'); };
-    el.ondragleave = (e) => { el.classList.remove('drag-over'); };
-    el.ondrop = (e) => {
+    });
+    
+    el.addEventListener('dragend', () => {
+      el.style.opacity = '1';
+      document.querySelectorAll('.a-cover-card').forEach(c => c.classList.remove('drag-over'));
+    });
+
+    el.addEventListener('dragover', (e) => {
+      e.preventDefault(); 
+      e.dataTransfer.dropEffect = 'move';
+      el.classList.add('drag-over');
+    });
+
+    el.addEventListener('dragleave', () => {
+      el.classList.remove('drag-over');
+    });
+
+    el.addEventListener('drop', (e) => {
       e.preventDefault();
       el.classList.remove('drag-over');
       const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
@@ -1571,8 +1583,10 @@ function renderAdmin() {
       
       const item = DATA.clientes.splice(fromIndex, 1)[0];
       DATA.clientes.splice(toIndex, 0, item);
-      renderAdmin(); saveAdminData();
-    };
+      
+      renderAdmin(); 
+      saveAdminData();
+    });
     
     clGrid.appendChild(el);
   });
