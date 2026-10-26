@@ -578,7 +578,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/3nhIVP0aPmQ9y9FAeTthMc?si=d64fabd10012440f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/WaZCYP-qSIA?si=Eq7wHr2dyIgAZbPP",
-      "featured": true
+      "featured": false
     },
     {
       "id": "lcy957eomvo0j7v9",
@@ -904,7 +904,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": true
     },
     {
       "id": "az9703hfmvo0xokz",
@@ -1763,7 +1763,7 @@
     }
   ],
   "contact": {
-    "email": "hola@grobdesigns.com",
+    "email": "Grobdsgnartes@gmail.com",
     "phone": "+58 4141299366",
     "location": "Caracas, Venezuela"
   },
