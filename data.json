@@ -1345,12 +1345,16 @@
       "id": "8skr9zgwmvoilkln",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974288668-cnyn0z.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "La Noche",
+      "artist": "Ronald Borjas ft Gente de zona",
+      "year": "2025",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974312348-98tyjg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974313533-vcg8g0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974314646-qj2skd.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/4719W4pIdmaH0tawsJBeNf?si=bed32fb5728c4ea0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
