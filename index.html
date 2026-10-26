@@ -86,7 +86,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 
 /* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
-.parallax-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;transition:transform 0.1s linear;will-change:transform}
+.parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;will-change:transform;transition:transform 0.1s linear}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
@@ -323,11 +323,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .pending-cover-info h4{font-size:14px;font-weight:700;color:var(--a-text);margin-bottom:4px;}
 .pending-cover-info p{font-size:12px;color:var(--a-muted);margin:0;}
 .pending-cover-actions{display:flex;gap:8px;}
-
-/* Estilo para el Drag and Drop */
-.drag-handle{cursor: grab; padding: 10px; color: var(--a-muted); font-size: 18px; user-select: none;}
-.drag-handle:active{cursor: grabbing;}
-.drag-over{border: 2px dashed var(--a-accent) !important; opacity: 0.5;}
 </style>
 </head>
 <body>
@@ -1548,60 +1543,21 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // LOGOS DE CLIENTES CON DRAG & DROP MEJORADO
+  // LOGOS DE CLIENTES (FLECHAS)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
-    const el = document.createElement('div'); 
-    el.className = 'a-cover-card';
-    el.setAttribute('draggable', 'true');
-    el.dataset.index = i;
+    const el = document.createElement('div'); el.className = 'a-cover-card';
     
     el.innerHTML = `
-      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border-bottom:1px solid var(--a-line);">
-        <span class="drag-handle" title="Arrastrar para mover" style="cursor:grab; padding:8px; font-size:20px;">≡</span>
-        <span style="font-size:12px; color:var(--a-muted); margin-left:auto; padding-right:10px;">#${i+1}</span>
+      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.5); border-bottom:1px solid var(--a-line); padding: 4px 10px;">
+        <span style="font-size:12px; color:var(--a-muted);">#${i+1}</span>
       </div>
-      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff; pointer-events:none;" draggable="false">
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff;">
       <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover arriba">↑</button>
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover abajo">↓</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover Arriba">↑</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover Abajo">↓</button>
         <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>`;
-      
-    el.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', i);
-      e.dataTransfer.effectAllowed = 'move';
-      setTimeout(() => el.style.opacity = '0.4', 0);
-    });
-    
-    el.addEventListener('dragend', () => {
-      el.style.opacity = '1';
-      document.querySelectorAll('.a-cover-card').forEach(c => c.classList.remove('drag-over'));
-    });
-
-    el.addEventListener('dragover', (e) => {
-      e.preventDefault(); 
-      e.dataTransfer.dropEffect = 'move';
-      el.classList.add('drag-over');
-    });
-
-    el.addEventListener('dragleave', () => {
-      el.classList.remove('drag-over');
-    });
-
-    el.addEventListener('drop', (e) => {
-      e.preventDefault();
-      el.classList.remove('drag-over');
-      const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
-      const toIndex = parseInt(el.dataset.index);
-      if (fromIndex === toIndex) return;
-      
-      const item = DATA.clientes.splice(fromIndex, 1)[0];
-      DATA.clientes.splice(toIndex, 0, item);
-      
-      renderAdmin(); 
-      saveAdminData();
-    });
     
     clGrid.appendChild(el);
   });
