@@ -6,7 +6,6 @@
 <title>Grobdesigns — Diseño gráfico, portadas e identidad visual</title>
 <meta name="description" content="Portafolio de Grobdesigns: diseño de portadas musicales, identidad visual y dirección de arte.">
 <meta name="theme-color" content="#000000">
-<meta name="robots" content="index, follow">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,6 +94,12 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .categoria-intro h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:22px;color:var(--text)}
 .categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.95rem,1.3vw,1.08rem);line-height:1.8}
 .cat-logo-detail{max-height:90px;max-width:340px;margin-bottom:24px;object-fit:contain}
+.proyecto-header{padding:150px 0 40px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(24px,5vw,56px);text-align:center}
+.proyecto-header .back-btn{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:30px}
+.proyecto-header .back-btn:hover{color:var(--text)}
+.proyecto-logo{max-height:110px;max-width:400px;margin:0 auto 24px;object-fit:contain}
+.proyecto-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;color:var(--text)}
+.proyecto-cat-label{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px}
 .masonry-gallery{max-width:1400px;margin:40px auto 0;padding:0 clamp(16px,4vw,48px) 80px;column-gap:12px;columns:3}
 @media(max-width:900px){.masonry-gallery{columns:2}}
 @media(max-width:540px){.masonry-gallery{columns:1}}
@@ -164,7 +169,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
 @media(max-width:540px){.contact-actions{grid-template-columns:1fr}}
 .contact-action-btn{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,0.02);transition:all .3s;cursor:pointer}
-.contact-action-btn:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(201,169,97,0.08)}
+.contact-action-btn:hover{transform:translateY(-3px)}
 .contact-action-btn.wa:hover{border-color:#25D366;background:rgba(37,211,102,0.08)}
 .contact-action-btn.em:hover{border-color:var(--accent);background:rgba(201,169,97,0.08)}
 .contact-action-btn svg{width:22px;height:22px;flex-shrink:0}
@@ -192,8 +197,8 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
-/* ADMIN REDISEÑADO */
-#adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C;--a-blue:#4A9EFF;--a-purple:#A78BFA;--a-pink:#EC4899}
+/* ============ ADMIN ============ */
+#adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.5;min-height:100vh;display:none}
 #adminApp.active{display:block}
@@ -229,7 +234,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-panel.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* Hero panel del admin */
 .a-hero{padding:32px;border-radius:16px;background:linear-gradient(135deg,rgba(201,169,97,0.15) 0%,rgba(201,169,97,0.04) 100%);border:1px solid rgba(201,169,97,0.2);margin-bottom:24px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
 .a-hero-icon{font-size:44px;flex-shrink:0;line-height:1}
 .a-hero-text{flex:1;min-width:200px}
@@ -262,22 +266,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-btn-sm{padding:7px 13px;font-size:12px;border-radius:6px}
 .a-btn-xs{padding:5px 10px;font-size:11px;border-radius:5px}
 .a-btn-block{width:100%}
-
-/* Zona de subida */
-.upload-zone{border:2px dashed var(--a-line);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.25s;background:rgba(255,255,255,0.01);position:relative}
-.upload-zone:hover,.upload-zone.dragover{border-color:var(--a-accent);background:rgba(201,169,97,0.06);transform:scale(1.005)}
-.upload-zone.dragover{border-style:solid;box-shadow:0 0 0 4px rgba(201,169,97,0.15)}
-.upload-zone-icon{font-size:32px;margin-bottom:10px;display:block;filter:grayscale(0.3)}
-.upload-zone-text{font-size:13px;color:var(--a-muted);line-height:1.5}
-.upload-zone-text strong{color:var(--a-text);display:block;margin-bottom:2px;font-size:14px}
-.upload-zone.compact{padding:14px;border-radius:10px}
-.upload-zone.compact .upload-zone-icon{font-size:20px;margin-bottom:4px}
-.upload-zone.compact .upload-zone-text{font-size:11px}
-
-.divider-or{display:flex;align-items:center;gap:14px;margin:18px 0;color:var(--a-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
-.divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
-
-/* Grid de items admin */
 .a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-top:20px}
 .a-cover-card{background:#000;border:1px solid var(--a-line);border-radius:10px;overflow:hidden;position:relative;transition:transform 0.2s,border-color 0.2s}
 .a-cover-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.2)}
@@ -290,35 +278,89 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.85);color:var(--a-accent);font-size:10px;font-weight:700;padding:4px 9px;border-radius:6px;text-transform:uppercase;z-index:2;border:1px solid rgba(201,169,97,0.4)}
 .a-badge.featured{background:var(--a-accent);color:#000;border-color:var(--a-accent)}
 
-/* Categoría admin */
-.cat-admin-block{background:linear-gradient(180deg,rgba(255,255,255,0.03) 0%,rgba(255,255,255,0.01) 100%);border:1px solid var(--a-line);border-radius:12px;padding:20px;margin-bottom:20px;transition:border-color 0.2s}
-.cat-admin-block:hover{border-color:rgba(255,255,255,0.15)}
-.cat-admin-header{display:flex;gap:12px;margin-bottom:16px;align-items:center;flex-wrap:wrap}
-.cat-admin-header .a-form-input{flex:1;min-width:150px;font-size:15px;font-weight:700}
-.cat-admin-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:12px}
-.cat-admin-item{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:.2s;background:#000}
-.cat-admin-item:hover{border-color:rgba(255,255,255,0.3);transform:translateY(-2px)}
-.cat-admin-item.parallax-selected{border-color:var(--a-accent);box-shadow:0 0 18px rgba(201,169,97,0.6)}
-.cat-admin-item.parallax-selected::before{content:'★ PARALLAX';position:absolute;top:0;left:0;right:0;background:linear-gradient(to bottom,rgba(201,169,97,0.95),rgba(201,169,97,0));color:#000;font-size:9px;font-weight:800;padding:5px 0;text-align:center;letter-spacing:0.1em;z-index:2}
-.cat-admin-item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.cat-admin-item-del{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(229,72,77,0.95);color:#fff;font-size:14px;font-weight:700;display:grid;place-items:center;z-index:3;opacity:0;transition:.2s}
-.cat-admin-item:hover .cat-admin-item-del{opacity:1}
+.upload-zone{border:2px dashed var(--a-line);border-radius:12px;padding:26px 20px;text-align:center;cursor:pointer;transition:all 0.25s;background:rgba(255,255,255,0.01);position:relative}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--a-accent);background:rgba(201,169,97,0.06)}
+.upload-zone.dragover{border-style:solid;box-shadow:0 0 0 4px rgba(201,169,97,0.15)}
+.upload-zone-icon{font-size:30px;margin-bottom:8px;display:block}
+.upload-zone-text{font-size:13px;color:var(--a-muted);line-height:1.5}
+.upload-zone-text strong{color:var(--a-text);display:block;margin-bottom:2px;font-size:14px}
+.upload-zone.compact{padding:14px;border-radius:10px}
+.upload-zone.compact .upload-zone-icon{font-size:20px;margin-bottom:4px}
+.upload-zone.compact .upload-zone-text{font-size:11px}
+.upload-zone.compact .upload-zone-text strong{font-size:12px}
 
-/* Mini logo preview */
-.logo-preview{display:inline-flex;align-items:center;gap:12px;margin-top:10px;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:8px}
-.logo-preview img{max-height:36px;max-width:140px;object-fit:contain;background:#000;padding:4px;border-radius:4px}
+.divider-or{display:flex;align-items:center;gap:14px;margin:14px 0;color:var(--a-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+.divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
+.divider-line{height:1px;background:var(--a-line);margin:24px 0}
 
-/* Parallax mini-preview */
-.parallax-preview{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.3);border-radius:8px;margin-bottom:10px;font-size:12px}
-.parallax-preview img{width:60px;height:60px;object-fit:cover;border-radius:6px}
-.parallax-preview-text{flex:1;color:var(--a-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.parallax-preview-label{color:var(--a-accent);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px}
+/* PORTFOLIO MASTER-DETAIL */
+.portfolio-layout{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
+@media(max-width:900px){.portfolio-layout{grid-template-columns:1fr}}
+.portfolio-sidebar{background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:16px;position:sticky;top:100px;max-height:calc(100vh - 120px);overflow-y:auto}
+@media(max-width:900px){.portfolio-sidebar{position:static;max-height:none}}
+.portfolio-sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--a-line)}
+.portfolio-sidebar-header h3{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--a-muted)}
+.portfolio-sidebar-header button{width:32px;height:32px;border-radius:8px;background:rgba(201,169,97,0.15);color:var(--a-accent);border:1px solid rgba(201,169,97,0.3);font-size:16px;font-weight:700;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.portfolio-sidebar-header button:hover{background:var(--a-accent);color:#000}
+.category-list-item{padding:11px 14px;border-radius:8px;cursor:pointer;transition:all 0.15s;margin-bottom:4px;display:flex;align-items:center;gap:10px;font-size:13px}
+.category-list-item:hover{background:var(--a-surface-hover)}
+.category-list-item.active{background:linear-gradient(135deg,rgba(201,169,97,0.18) 0%,rgba(201,169,97,0.06) 100%);color:var(--a-accent);font-weight:600;box-shadow:inset 2px 0 0 var(--a-accent)}
+.cat-list-icon{font-size:14px;flex-shrink:0;opacity:.7}
+.cat-list-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-list-count{background:rgba(255,255,255,0.06);color:var(--a-muted);padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600;flex-shrink:0}
+.category-list-item.active .cat-list-count{background:rgba(201,169,97,0.2);color:var(--a-accent)}
 
-/* Upload button */
-.file-input-btn{position:relative;overflow:hidden;display:inline-flex}
-.file-input-btn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.portfolio-main{background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:24px;min-height:400px}
 
-/* Login */
+.cat-detail-header{display:flex;gap:12px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+.cat-detail-name{flex:1;min-width:200px;padding:10px 16px;background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:10px;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--a-text);outline:none;transition:.2s}
+.cat-detail-name:focus{border-color:var(--a-accent);background:rgba(255,255,255,0.05)}
+
+.projects-header{display:flex;justify-content:space-between;align-items:center;margin:24px 0 16px;flex-wrap:wrap;gap:12px}
+.projects-header h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px;letter-spacing:0.02em}
+.projects-header .badge{background:rgba(201,169,97,0.15);color:var(--a-accent);padding:2px 10px;border-radius:100px;font-size:11px;font-weight:700}
+
+.project-admin-card{background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:12px;padding:18px;margin-bottom:14px;transition:border-color 0.2s}
+.project-admin-card:hover{border-color:rgba(255,255,255,0.15)}
+.project-admin-header{display:flex;gap:12px;align-items:center;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--a-line)}
+.project-number{width:28px;height:28px;border-radius:6px;background:rgba(201,169,97,0.15);color:var(--a-accent);font-size:12px;font-weight:800;display:grid;place-items:center;flex-shrink:0}
+.project-name-input{flex:1;padding:8px 12px;background:transparent;border:none;font-size:15px;font-weight:700;color:var(--a-text);outline:none;border-bottom:1px dashed transparent;transition:.2s}
+.project-name-input:focus{border-bottom-color:var(--a-accent)}
+.project-name-input::placeholder{color:var(--a-muted);font-weight:500}
+
+.project-field{margin-bottom:16px}
+.project-field:last-child{margin-bottom:0}
+.project-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--a-muted);margin-bottom:8px}
+.project-field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.project-field-row{grid-template-columns:1fr}}
+
+.logo-preview{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:8px}
+.logo-preview img{max-height:36px;max-width:120px;object-fit:contain;background:#000;padding:4px;border-radius:4px}
+
+.parallax-preview{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.3);border-radius:8px}
+.parallax-preview img{width:44px;height:44px;object-fit:cover;border-radius:6px}
+.parallax-preview-text{flex:1;overflow:hidden}
+.parallax-preview-label{color:var(--a-accent);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px}
+.parallax-preview-hint{font-size:10px;color:var(--a-muted)}
+
+.project-image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px}
+.project-image-item{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:.2s;background:#000}
+.project-image-item:hover{border-color:rgba(255,255,255,0.25);transform:translateY(-2px)}
+.project-image-item.parallax-selected{border-color:var(--a-accent);box-shadow:0 0 16px rgba(201,169,97,0.55)}
+.project-image-item.parallax-selected::before{content:'★ PARALLAX';position:absolute;top:0;left:0;right:0;background:linear-gradient(to bottom,rgba(201,169,97,0.95),rgba(201,169,97,0));color:#000;font-size:9px;font-weight:800;padding:4px 0;text-align:center;letter-spacing:0.08em;z-index:2}
+.project-image-item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.project-image-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(229,72,77,0.95);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;z-index:3;opacity:0;transition:.2s}
+.project-image-item:hover .project-image-del{opacity:1}
+
+.empty-state{text-align:center;padding:60px 20px;background:rgba(255,255,255,0.02);border:1px dashed var(--a-line);border-radius:12px}
+.empty-state.small{padding:32px 16px}
+.empty-icon{font-size:44px;margin-bottom:14px;line-height:1}
+.empty-state.small .empty-icon{font-size:32px;margin-bottom:8px}
+.empty-state h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.empty-state p{color:var(--a-muted);font-size:13px;margin-bottom:16px}
+.empty-state.small p{font-size:12px;margin-bottom:12px}
+
+/* LOGIN */
 .a-login-screen{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#151518,#050505);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:420px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:16px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
@@ -327,7 +369,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-login-subtitle{font-size:14px;color:var(--a-muted);text-align:center;margin-bottom:32px}
 .a-login-error{color:var(--a-danger);font-size:13px;text-align:center;margin-top:16px;min-height:20px}
 
-/* Modal */
+/* MODAL */
 .a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
 .a-modal-overlay.active{display:flex;animation:fadeIn 0.2s}
 .a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:14px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.7)}
@@ -343,7 +385,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-toast.success{border-left:3px solid var(--a-ok)}
 .a-toast.error{border-left:3px solid var(--a-danger)}
 
-/* Cover modal preview */
 .cover-preview-row{display:grid;grid-template-columns:140px 1fr;gap:18px;margin-bottom:20px;align-items:start}
 @media(max-width:540px){.cover-preview-row{grid-template-columns:1fr}}
 .cover-preview-img{width:140px;height:140px;object-fit:cover;border-radius:10px;border:1px solid var(--a-line);background:#000}
@@ -420,11 +461,20 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       <div class="categoria-intro">
         <button id="volverPortafolio" style="display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:30px">← Volver a Portafolio</button>
         <span class="label" id="catLabelNum">— Categoría</span>
-        <img class="cat-logo-detail" id="catLogo" style="display:none" alt="">
         <h2 id="catNombre"></h2>
         <p id="catDescripcion"></p>
       </div>
       <div id="catProjRows"></div>
+    </div>
+
+    <div class="view" data-view="proyecto">
+      <div class="proyecto-header">
+        <button id="volverCategoria" class="back-btn">← Volver a la categoría</button>
+        <div class="proyecto-cat-label" id="projCatLabel"></div>
+        <img class="proyecto-logo" id="projLogo" style="display:none" alt="">
+        <h1 class="proyecto-title" id="projNombre"></h1>
+      </div>
+      <div id="projImagesGrid"></div>
     </div>
 
     <div class="view" data-view="covers">
@@ -536,7 +586,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 
 <audio id="globalAudio" loop preload="none"></audio>
 
-<!-- ADMIN -->
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -599,16 +648,13 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
       </header>
 
       <div class="a-content">
-        <!-- HERO -->
         <div class="a-panel active" id="a-panel-hero">
           <div class="a-hero">
             <div class="a-hero-icon">🎬</div>
             <div class="a-hero-text">
               <h2>Página de Inicio</h2>
               <p>Edita el titular, la descripción y las imágenes de fondo del carrusel principal.</p>
-              <div class="a-hero-stats">
-                <div class="a-stat">Imágenes carrusel: <strong id="statHeroImgs">0</strong></div>
-              </div>
+              <div class="a-hero-stats"><div class="a-stat">Imágenes carrusel: <strong id="statHeroImgs">0</strong></div></div>
             </div>
           </div>
           <div class="a-card">
@@ -637,7 +683,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- COVERS -->
         <div class="a-panel" id="a-panel-covers">
           <div class="a-hero">
             <div class="a-hero-icon">💿</div>
@@ -679,45 +724,41 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             <div class="a-card-header">
               <h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Todos los Covers<span class="a-count" id="aCoversCount">0</span></h2>
             </div>
-            <div class="a-card-body">
-              <div class="a-grid" id="aCoversGrid"></div>
-            </div>
+            <div class="a-card-body"><div class="a-grid" id="aCoversGrid"></div></div>
           </div>
         </div>
 
-        <!-- PORTAFOLIO -->
         <div class="a-panel" id="a-panel-portfolio">
           <div class="a-hero">
             <div class="a-hero-icon">🎨</div>
             <div class="a-hero-text">
               <h2>Portafolio</h2>
-              <p>Cada categoría tiene un logo opcional, una imagen parallax de fondo, y una galería de proyectos. Sube desde tu PC o pega URLs.</p>
+              <p>Cada categoría contiene varios proyectos. Los proyectos tienen logo, imágenes y su propia imagen parallax.</p>
               <div class="a-hero-stats">
                 <div class="a-stat">Categorías: <strong id="statCategories">0</strong></div>
+                <div class="a-stat">Proyectos: <strong id="statProjects">0</strong></div>
               </div>
             </div>
           </div>
-          <div class="a-card">
-            <div class="a-card-header">
-              <h2 class="a-card-title"><span class="a-card-title-icon">📁</span>Categorías y Proyectos</h2>
-              <button class="a-btn a-btn-primary a-btn-sm" id="aBtnNewCategory">+ Nueva Categoría</button>
-            </div>
-            <div class="a-card-body">
-              <div id="aPortfolioCategoriesList"></div>
-            </div>
+          <div class="portfolio-layout">
+            <aside class="portfolio-sidebar">
+              <div class="portfolio-sidebar-header">
+                <h3>Categorías</h3>
+                <button id="aBtnNewCategory" title="Nueva categoría">+</button>
+              </div>
+              <div id="catList"></div>
+            </aside>
+            <main class="portfolio-main" id="catDetail"></main>
           </div>
         </div>
 
-        <!-- CLIENTES -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-hero">
             <div class="a-hero-icon">🏢</div>
             <div class="a-hero-text">
               <h2>Clientes</h2>
               <p>Logos de las marcas y artistas con los que has trabajado.</p>
-              <div class="a-hero-stats">
-                <div class="a-stat">Logos: <strong id="statClients">0</strong></div>
-              </div>
+              <div class="a-hero-stats"><div class="a-stat">Logos: <strong id="statClients">0</strong></div></div>
             </div>
           </div>
           <div class="a-card">
@@ -741,16 +782,13 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- HERRAMIENTAS -->
         <div class="a-panel" id="a-panel-tools">
           <div class="a-hero">
             <div class="a-hero-icon">🛠️</div>
             <div class="a-hero-text">
               <h2>Herramientas</h2>
               <p>Iconos del software con el que trabajas.</p>
-              <div class="a-hero-stats">
-                <div class="a-stat">Iconos: <strong id="statTools">0</strong></div>
-              </div>
+              <div class="a-hero-stats"><div class="a-stat">Iconos: <strong id="statTools">0</strong></div></div>
             </div>
           </div>
           <div class="a-card">
@@ -774,26 +812,24 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CONTACTO -->
         <div class="a-panel" id="a-panel-contact">
           <div class="a-hero">
             <div class="a-hero-icon">📧</div>
             <div class="a-hero-text">
               <h2>Información de Contacto</h2>
-              <p>Estos datos aparecen en la página de contacto y alimentan los botones de WhatsApp y Email.</p>
+              <p>Estos datos alimentan los botones de WhatsApp y Email en la página de contacto.</p>
             </div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📇</span>Datos de Contacto</h2></div>
             <div class="a-card-body">
               <div class="a-form-group"><label class="a-form-label">Email</label><input type="email" id="aContactEmail" class="a-form-input" placeholder="hola@ejemplo.com"></div>
-              <div class="a-form-group"><label class="a-form-label">Teléfono (WhatsApp)</label><input type="text" id="aContactPhone" class="a-form-input" placeholder="+34 600 000 000"><span class="a-form-hint">Añade el código de país para que el botón de WhatsApp funcione correctamente.</span></div>
+              <div class="a-form-group"><label class="a-form-label">Teléfono (WhatsApp)</label><input type="text" id="aContactPhone" class="a-form-input" placeholder="+34 600 000 000"><span class="a-form-hint">Incluye el código de país para que WhatsApp funcione correctamente.</span></div>
               <div class="a-form-group"><label class="a-form-label">Ubicación</label><input type="text" id="aContactLocation" class="a-form-input" placeholder="Madrid, España"></div>
             </div>
           </div>
         </div>
 
-        <!-- APARIENCIA -->
         <div class="a-panel" id="a-panel-theme">
           <div class="a-hero">
             <div class="a-hero-icon">🎨</div>
@@ -827,7 +863,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
     </main>
   </div>
 
-  <!-- MODAL COVER -->
   <div class="a-modal-overlay" id="aCoverModal">
     <div class="a-modal-content">
       <div class="a-modal-header">
@@ -898,6 +933,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 function getItemUrl(item) { if (!item) return ''; return typeof item === 'string' ? item : (item.url || ''); }
+function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
 
 function getYouTubeId(url) {
   if (!url) return null;
@@ -933,7 +969,6 @@ function handleImgError(img) {
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
 }
 
-/* COMPRESIÓN DE IMÁGENES PARA SUBIDA DESDE PC */
 function compressImage(file, maxDim = 1800, quality = 0.88) {
   return new Promise((res, rej) => {
     if (file.type === 'image/svg+xml') {
@@ -948,10 +983,7 @@ function compressImage(file, maxDim = 1800, quality = 0.88) {
       const img = new Image();
       img.onload = () => {
         const { width, height } = img;
-        if (file.size < 300 * 1024 && width <= maxDim && height <= maxDim) {
-          res(reader.result);
-          return;
-        }
+        if (file.size < 300 * 1024 && width <= maxDim && height <= maxDim) { res(reader.result); return; }
         let nw = width, nh = height;
         if (width > height) { nw = Math.min(maxDim, width); nh = Math.round(height * (nw / width)); }
         else { nh = Math.min(maxDim, height); nw = Math.round(width * (nh / height)); }
@@ -973,49 +1005,29 @@ async function processImageFiles(files, maxDim = 1800) {
   const results = [];
   for (const file of files) {
     if (!file.type.startsWith('image/')) continue;
-    try {
-      const dataUrl = await compressImage(file, maxDim);
-      results.push(dataUrl);
-    } catch (e) { console.warn('Error al comprimir', file.name, e); }
+    try { results.push(await compressImage(file, maxDim)); }
+    catch (e) { console.warn('Error al comprimir', file.name, e); }
   }
   return results;
 }
-
-/* SETUP ZONA DE SUBIDA (drag & drop + click) */
 function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800) {
   const zone = document.getElementById(zoneId);
   const input = document.getElementById(inputId);
   if (!zone || !input) return;
   zone.onclick = (e) => { if (e.target === input) return; input.click(); };
-  input.onchange = async (e) => {
-    const files = [...e.target.files];
+  const handler = async (files) => {
     if (!files.length) return;
-    if (zone.querySelector('.upload-zone-text')) {
-      zone.querySelector('.upload-zone-text strong').textContent = 'Procesando...';
-    }
+    const lbl = zone.querySelector('.upload-zone-text strong');
+    const orig = lbl ? lbl.textContent : '';
+    if (lbl) lbl.textContent = 'Procesando...';
     const urls = await processImageFiles(files, maxDim);
-    input.value = '';
     if (urls.length) onFiles(urls);
-    if (zone.querySelector('.upload-zone-text')) {
-      zone.querySelector('.upload-zone-text strong').textContent = 'Arrastra imágenes aquí';
-    }
+    if (lbl) lbl.textContent = orig;
   };
+  input.onchange = async (e) => { const files = [...e.target.files]; input.value = ''; await handler(files); };
   zone.ondragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
   zone.ondragleave = () => zone.classList.remove('dragover');
-  zone.ondrop = async (e) => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    const files = [...e.dataTransfer.files];
-    if (!files.length) return;
-    if (zone.querySelector('.upload-zone-text')) {
-      zone.querySelector('.upload-zone-text strong').textContent = 'Procesando...';
-    }
-    const urls = await processImageFiles(files, maxDim);
-    if (urls.length) onFiles(urls);
-    if (zone.querySelector('.upload-zone-text')) {
-      zone.querySelector('.upload-zone-text strong').textContent = 'Arrastra imágenes aquí';
-    }
-  };
+  zone.ondrop = async (e) => { e.preventDefault(); zone.classList.remove('dragover'); await handler([...e.dataTransfer.files]); };
 }
 
 const colorCache = new Map();
@@ -1061,11 +1073,10 @@ const GH = {
   clear() { localStorage.removeItem('gh_token'); localStorage.removeItem('gh_repo'); localStorage.removeItem('gh_branch'); },
   isConfigured() { return !!(this.token && this.repo); },
   async api(path, options = {}) {
-    const res = await fetch(`https://api.github.com${path}`, {
+    return fetch(`https://api.github.com${path}`, {
       ...options,
       headers: { 'Authorization': `Bearer ${this.token}`, 'Accept': 'application/vnd.github+json', ...(options.headers || {}) }
     });
-    return res;
   },
   async getFile(path) {
     const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
@@ -1117,6 +1128,40 @@ const GH = {
   }
 };
 
+/* ============ MIGRACIÓN DE DATOS ============ */
+function migrateData(data) {
+  if (!data || !data.categories) return data;
+  data.categories.forEach(cat => {
+    // Formato antiguo: cat.items = array plano de imágenes
+    if (cat.items !== undefined) {
+      if (!cat.projects) {
+        const imgs = (cat.items || []).map(item => getItemUrl(item));
+        cat.projects = imgs.length ? [{
+          id: uid(),
+          name: cat.name || 'Proyectos',
+          logo: cat.logo || '',
+          parallaxImage: cat.parallaxImage || imgs[0] || '',
+          images: imgs
+        }] : [];
+      }
+      delete cat.items;
+      delete cat.logo;
+      delete cat.parallaxImage;
+      // El parallax de la categoría se mantiene a nivel categoría
+      // pero si venía de un proyecto, lo guardamos ahí
+    }
+    if (!cat.projects) cat.projects = [];
+    if (!cat.parallaxImage) cat.parallaxImage = '';
+    cat.projects.forEach(proj => {
+      if (!proj.id) proj.id = uid();
+      if (!proj.images) proj.images = [];
+      proj.images = proj.images.map(img => typeof img === 'string' ? img : getItemUrl(img));
+      if (proj.parallaxImage === undefined) proj.parallaxImage = '';
+    });
+  });
+  return data;
+}
+
 let DATA = {
   hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' },
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
@@ -1124,6 +1169,8 @@ let DATA = {
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
   music: { url: '' }
 };
+
+let ADMIN_SELECTED_CAT = null;
 
 let ticking = false;
 function updateParallax() {
@@ -1170,8 +1217,7 @@ function closeLightbox() {
   document.body.classList.remove('locked');
 }
 document.addEventListener('click', e => {
-  if (e.target.id === 'lightbox') closeLightbox();
-  if (e.target.id === 'lightboxClose') closeLightbox();
+  if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') closeLightbox();
   const zoom = e.target.closest('[data-zoom]');
   if (zoom && zoom.dataset.zoom) { e.stopPropagation(); openLightbox(zoom.dataset.zoom); }
 });
@@ -1195,14 +1241,10 @@ function toggleMusic() {
   const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
   if (!audio || !btn || !DATA.music?.url) return;
   if (audio.paused) {
-    audio.play().then(() => {
-      btn.classList.add('playing');
-      if (icon) icon.innerHTML = PAUSE_ICON;
-    }).catch(() => showToast('No se pudo reproducir la música', 'error'));
+    audio.play().then(() => { btn.classList.add('playing'); if (icon) icon.innerHTML = PAUSE_ICON; })
+      .catch(() => showToast('No se pudo reproducir la música', 'error'));
   } else {
-    audio.pause();
-    btn.classList.remove('playing');
-    if (icon) icon.innerHTML = PLAY_ICON;
+    audio.pause(); btn.classList.remove('playing'); if (icon) icon.innerHTML = PLAY_ICON;
   }
 }
 
@@ -1220,10 +1262,23 @@ function updateNavBack(hash) {
   const show = hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin');
   back.classList.toggle('show', !!show);
 }
+function findProject(projId) {
+  for (const cat of (DATA.categories || [])) {
+    for (const proj of (cat.projects || [])) {
+      if (proj.id === projId) return { cat, proj };
+    }
+  }
+  return null;
+}
 function goBack() {
   const h = location.hash || '';
   if (h.startsWith('#cover-')) location.hash = '#covers';
   else if (h.startsWith('#categoria-')) location.hash = '#portafolio';
+  else if (h.startsWith('#proyecto-')) {
+    const found = findProject(h.replace('#proyecto-', ''));
+    if (found) location.hash = `#categoria-${found.cat.id}`;
+    else location.hash = '#portafolio';
+  }
   else location.hash = '#home';
 }
 
@@ -1256,6 +1311,7 @@ function handleRoute() {
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
+  else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
   else { showView('home'); syncTabs('home'); }
 }
 window.addEventListener('hashchange', handleRoute);
@@ -1265,6 +1321,7 @@ async function loadPublicData() {
   if (remote) {
     DATA = Object.assign(DATA, remote);
     if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
+    migrateData(DATA);
   }
   renderPublicSite();
   initMusic();
@@ -1309,36 +1366,18 @@ function renderContact() {
   if (cp) { cp.textContent = c.phone || '-'; cp.href = 'tel:' + (c.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = c.location || '-';
 
-  // WhatsApp button
   const waBtn = $('#contactWaBtn'), waVal = $('#contactWaValue');
   const phoneDigits = (c.phone || '').replace(/[^0-9]/g, '');
   if (waBtn) {
-    if (phoneDigits) {
-      waBtn.href = `https://wa.me/${phoneDigits}`;
-      waBtn.target = '_blank';
-      waBtn.rel = 'noopener';
-      waBtn.style.pointerEvents = '';
-      waBtn.style.opacity = '';
-    } else {
-      waBtn.href = '#';
-      waBtn.style.pointerEvents = 'none';
-      waBtn.style.opacity = '0.4';
-    }
+    if (phoneDigits) { waBtn.href = `https://wa.me/${phoneDigits}`; waBtn.target = '_blank'; waBtn.rel = 'noopener'; waBtn.style.pointerEvents = ''; waBtn.style.opacity = ''; }
+    else { waBtn.href = '#'; waBtn.style.pointerEvents = 'none'; waBtn.style.opacity = '0.4'; }
   }
   if (waVal) waVal.textContent = c.phone || 'No configurado';
 
-  // Email button
   const emBtn = $('#contactEmailBtn'), emVal = $('#contactEmailValue');
   if (emBtn) {
-    if (c.email) {
-      emBtn.href = `mailto:${c.email}`;
-      emBtn.style.pointerEvents = '';
-      emBtn.style.opacity = '';
-    } else {
-      emBtn.href = '#';
-      emBtn.style.pointerEvents = 'none';
-      emBtn.style.opacity = '0.4';
-    }
+    if (c.email) { emBtn.href = `mailto:${c.email}`; emBtn.style.pointerEvents = ''; emBtn.style.opacity = ''; }
+    else { emBtn.href = '#'; emBtn.style.pointerEvents = 'none'; emBtn.style.opacity = '0.4'; }
   }
   if (emVal) emVal.textContent = c.email || 'No configurado';
 }
@@ -1379,28 +1418,18 @@ function renderPortfolioCategories() {
     const row = document.createElement('div');
     row.className = 'parallax-row';
     row.onclick = () => { location.hash = `#categoria-${cat.id || i}`; };
-    let bgUrl = cat.parallaxImage || '';
-    if (!bgUrl && cat.items && cat.items.length > 0) bgUrl = getItemUrl(cat.items[0]);
+    const bgUrl = cat.parallaxImage || '';
     const bg = document.createElement('div');
     bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty');
     if (bgUrl) bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`;
     row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const content = document.createElement('div'); content.className = 'parallax-content';
-    if (cat.logo) {
-      content.innerHTML = `
-        <span class="num">0${i+1} / 0${DATA.categories.length}</span>
-        <img class="cat-logo-img" src="${resolveImageUrl(cat.logo)}" alt="${cat.name || ''}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <h2 style="display:none">${cat.name || ''}</h2>
-        <p class="desc">${cat.description || ''}</p>
-        <span class="meta">Ver categoría</span>`;
-    } else {
-      content.innerHTML = `
-        <span class="num">0${i+1} / 0${DATA.categories.length}</span>
-        <h2>${cat.name || ''}</h2>
-        <p class="desc">${cat.description || ''}</p>
-        <span class="meta">Ver categoría</span>`;
-    }
+    content.innerHTML = `
+      <span class="num">0${i+1} / 0${DATA.categories.length}</span>
+      <h2>${escHtml(cat.name || '')}</h2>
+      <p class="desc">${escHtml(cat.description || '')}</p>
+      <span class="meta">Ver categoría</span>`;
     row.appendChild(content);
     catRows.appendChild(row);
   });
@@ -1457,7 +1486,7 @@ function renderPublicCovers(covers) {
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
     const info = document.createElement('div'); info.className = 'cover-info';
-    info.innerHTML = `<div class="cover-info-name">${c.name || 'Sin título'}</div><div class="cover-info-meta">${c.artist || 'Artista'}</div>`;
+    info.innerHTML = `<div class="cover-info-name">${escHtml(c.name || 'Sin título')}</div><div class="cover-info-meta">${escHtml(c.artist || 'Artista')}</div>`;
     item.appendChild(info);
     item.onclick = () => { location.hash = `#cover-${c.id}`; };
     grid.appendChild(item);
@@ -1494,12 +1523,8 @@ function renderCoverDetail(id) {
   const galeriaLabel = $('#coverGaleriaLabel');
   const hasReview = !!c.review;
   const hasExtras = c.extraImages && c.extraImages.length > 0;
-  if (hasReview) {
-    $('#coverHeroResena').textContent = c.review;
-    resenaBlock.style.display = 'block';
-  } else {
-    resenaBlock.style.display = 'none';
-  }
+  if (hasReview) { $('#coverHeroResena').textContent = c.review; resenaBlock.style.display = 'block'; }
+  else resenaBlock.style.display = 'none';
   if (hasExtras) {
     const gallery = document.createElement('div');
     gallery.className = 'masonry-gallery';
@@ -1523,37 +1548,94 @@ function renderCoverDetail(id) {
   showView('coverDetalle');
 }
 
+/* Vista de categoría: parallax rows de proyectos */
 function renderCategoryDetail(id) {
   const cat = (DATA.categories || []).find((c, idx) => c.id === id || String(idx) === id);
   if (!cat) { location.hash = '#portafolio'; return; }
   $('#catNombre').textContent = cat.name || 'Sin título';
   $('#catDescripcion').textContent = cat.description || '';
-  const logo = $('#catLogo');
-  if (cat.logo) { logo.src = resolveImageUrl(cat.logo); logo.style.display = 'block'; }
-  else logo.style.display = 'none';
   const container = $('#catProjRows');
   container.innerHTML = '';
-  if (cat.items && cat.items.length > 0) {
+
+  const projects = cat.projects || [];
+  if (projects.length === 0) {
+    container.innerHTML = '<p style="text-align:center;padding:80px 20px;color:var(--muted);">Aún no hay proyectos en esta categoría.</p>';
+    showView('categoria');
+    return;
+  }
+
+  projects.forEach((proj, i) => {
+    const row = document.createElement('div');
+    row.className = 'parallax-row';
+    row.onclick = () => { location.hash = `#proyecto-${proj.id}`; };
+
+    let bgUrl = proj.parallaxImage || '';
+    if (!bgUrl && proj.images && proj.images.length) bgUrl = proj.images[0];
+
+    const bg = document.createElement('div');
+    bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty');
+    if (bgUrl) bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`;
+    row.appendChild(bg);
+
+    const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
+    const content = document.createElement('div'); content.className = 'parallax-content';
+
+    if (proj.logo) {
+      content.innerHTML = `
+        <span class="num">0${i+1} / 0${projects.length}</span>
+        <img class="cat-logo-img" src="${resolveImageUrl(proj.logo)}" alt="${escHtml(proj.name || '')}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <h2 style="display:none">${escHtml(proj.name || '')}</h2>
+        <span class="meta">Ver proyecto</span>`;
+    } else {
+      content.innerHTML = `
+        <span class="num">0${i+1} / 0${projects.length}</span>
+        <h2>${escHtml(proj.name || 'Sin título')}</h2>
+        <span class="meta">Ver proyecto</span>`;
+    }
+    row.appendChild(content);
+    container.appendChild(row);
+  });
+
+  updateParallax();
+  showView('categoria');
+}
+
+/* Vista de proyecto: masonry de imágenes */
+function renderProjectDetail(id) {
+  const found = findProject(id);
+  if (!found) { location.hash = '#portafolio'; return; }
+  const { cat, proj } = found;
+
+  $('#projCatLabel').textContent = `— ${cat.name || 'Categoría'}`;
+  const logo = $('#projLogo');
+  if (proj.logo) { logo.src = resolveImageUrl(proj.logo); logo.style.display = 'block'; }
+  else logo.style.display = 'none';
+  const titleEl = $('#projNombre');
+  titleEl.textContent = proj.name || 'Sin título';
+  titleEl.style.display = proj.logo ? 'none' : 'block';
+
+  const container = $('#projImagesGrid');
+  container.innerHTML = '';
+  if (proj.images && proj.images.length) {
     const gallery = document.createElement('div');
     gallery.className = 'masonry-gallery';
-    cat.items.forEach((item, i) => {
-      const itemUrl = getItemUrl(item);
-      const imgItem = document.createElement('div');
-      imgItem.className = 'masonry-item';
-      imgItem.style.setProperty('--entry-delay', (i * 0.05) + 's');
+    proj.images.forEach((imgUrl, i) => {
+      const item = document.createElement('div');
+      item.className = 'masonry-item';
+      item.style.setProperty('--entry-delay', (i * 0.04) + 's');
       const img = document.createElement('img');
-      img.src = resolveImageUrl(itemUrl);
-      img.dataset.zoom = itemUrl;
+      img.src = resolveImageUrl(imgUrl);
+      img.dataset.zoom = imgUrl;
       img.loading = 'lazy';
       img.onerror = () => handleImgError(img);
-      imgItem.appendChild(img);
-      gallery.appendChild(imgItem);
+      item.appendChild(img);
+      gallery.appendChild(item);
     });
     container.appendChild(gallery);
   } else {
-    container.innerHTML = '<p style="text-align:center;padding:60px 20px;color:var(--muted);">No hay imágenes en esta categoría.</p>';
+    container.innerHTML = '<p style="text-align:center;padding:80px 20px;color:var(--muted);">Este proyecto aún no tiene imágenes.</p>';
   }
-  showView('categoria');
+  showView('proyecto');
 }
 
 $$('.tab').forEach(btn => { btn.onclick = () => { location.hash = '#' + btn.dataset.tab; }; });
@@ -1561,6 +1643,14 @@ $$('[data-route]').forEach(el => { el.onclick = () => { location.hash = '#' + el
 $('#navBack').onclick = goBack;
 $('#musicBtn').onclick = toggleMusic;
 $('#volverPortafolio').onclick = () => { location.hash = '#portafolio'; };
+$('#volverCategoria').onclick = () => {
+  const h = location.hash || '';
+  if (h.startsWith('#proyecto-')) {
+    const found = findProject(h.replace('#proyecto-', ''));
+    if (found) { location.hash = `#categoria-${found.cat.id}`; return; }
+  }
+  location.hash = '#portafolio';
+};
 
 $$('.covers-filter-btn').forEach(btn => {
   btn.onclick = () => {
@@ -1588,7 +1678,7 @@ $('#contactForm').onsubmit = e => {
   window.location.href = `mailto:${email}?subject=Contacto de ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
 };
 
-/* ADMIN */
+/* ============ ADMIN ============ */
 function aToast(msg, type = 'success') {
   const container = $('#aToastContainer');
   if (!container) return;
@@ -1611,6 +1701,7 @@ async function loadAdminData() {
       DATA = Object.assign(DATA, remote);
       if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
       else if (!DATA.music) DATA.music = { url: '' };
+      migrateData(DATA);
     }
     setASync('ok', 'Sincronizado');
   } catch(e) { setASync('error', 'Error'); }
@@ -1633,11 +1724,13 @@ function updateAdminBadges() {
   const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
   set('aBadgeHero', (DATA.heroImages || []).length);
   set('aBadgeCovers', (DATA.covers || []).length);
-  set('aBadgePortfolio', (DATA.categories || []).length);
+  const totalProjects = (DATA.categories || []).reduce((sum, c) => sum + (c.projects || []).length, 0);
+  set('aBadgePortfolio', totalProjects);
   set('aBadgeClients', (DATA.clientes || []).length);
   set('aBadgeTools', (DATA.software || []).length);
   set('statHeroImgs', (DATA.heroImages || []).length);
   set('statCategories', (DATA.categories || []).length);
+  set('statProjects', totalProjects);
   set('statClients', (DATA.clientes || []).length);
   set('statTools', (DATA.software || []).length);
   set('aCoversCount', (DATA.covers || []).length);
@@ -1668,10 +1761,10 @@ function renderAdmin() {
     const el = document.createElement('div'); el.className = 'a-cover-card';
     el.innerHTML = `
       <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
-      ${c.featured ? '<span class="a-badge featured">★ Destacado</span>' : `<span class="a-badge">${c.category || ''}</span>`}
+      ${c.featured ? '<span class="a-badge featured">★ Destacado</span>' : `<span class="a-badge">${escHtml(c.category || '')}</span>`}
       <div class="a-cover-card-info">
-        <div class="a-cover-card-title">${c.name || 'Sin título'}</div>
-        <div class="a-cover-card-meta">${c.artist || 'Sin artista'}</div>
+        <div class="a-cover-card-title">${escHtml(c.name || 'Sin título')}</div>
+        <div class="a-cover-card-meta">${escHtml(c.artist || 'Sin artista')}</div>
         <div class="a-cover-card-actions">
           <button class="a-btn a-btn-outline a-btn-xs" onclick="openAdminCoverModal(${i})">✏️ Editar</button>
           <button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('covers', ${i})">✕</button>
@@ -1713,175 +1806,269 @@ function renderAdmin() {
   updateAdminBadges();
 }
 
+/* ============ ADMIN PORTFOLIO (MASTER-DETAIL) ============ */
 function renderAdminPortfolio() {
-  const container = $('#aPortfolioCategoriesList');
-  if (!container) return;
-  container.innerHTML = '';
+  const catList = $('#catList');
+  const detail = $('#catDetail');
+  if (!catList || !detail) return;
 
-  if (!DATA.categories || DATA.categories.length === 0) {
-    container.innerHTML = '<div style="text-align:center;padding:60px 20px;background:rgba(255,255,255,0.02);border:1px dashed var(--a-line);border-radius:12px"><div style="font-size:44px;margin-bottom:12px">📁</div><p style="color:var(--a-muted);margin-bottom:16px">No hay categorías todavía</p><button class="a-btn a-btn-primary" onclick="document.getElementById(\'aBtnNewCategory\').click()">+ Crear primera categoría</button></div>';
+  const cats = DATA.categories || [];
+  // Validar selección
+  if (!ADMIN_SELECTED_CAT || !cats.find(c => c.id === ADMIN_SELECTED_CAT)) {
+    ADMIN_SELECTED_CAT = cats[0]?.id || null;
+  }
+
+  // Sidebar list
+  catList.innerHTML = '';
+  if (!cats.length) {
+    catList.innerHTML = '<p style="color:var(--a-muted);font-size:12px;text-align:center;padding:16px 0;">Sin categorías</p>';
+  } else {
+    cats.forEach(cat => {
+      const item = document.createElement('div');
+      item.className = 'category-list-item' + (cat.id === ADMIN_SELECTED_CAT ? ' active' : '');
+      item.innerHTML = `
+        <span class="cat-list-icon">📁</span>
+        <span class="cat-list-name">${escHtml(cat.name || 'Sin nombre')}</span>
+        <span class="cat-list-count">${(cat.projects || []).length}</span>
+      `;
+      item.onclick = () => {
+        ADMIN_SELECTED_CAT = cat.id;
+        renderAdminPortfolio();
+      };
+      catList.appendChild(item);
+    });
+  }
+
+  // Detail panel
+  if (!ADMIN_SELECTED_CAT) {
+    detail.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">📁</div>
+      <h3>Sin categorías todavía</h3>
+      <p>Crea tu primera categoría para empezar a organizar tus proyectos.</p>
+      <button class="a-btn a-btn-primary" onclick="document.getElementById('aBtnNewCategory').click()">+ Crear primera categoría</button>
+    </div>`;
     return;
   }
 
-  DATA.categories.forEach((cat, catIdx) => {
-    const block = document.createElement('div');
-    block.className = 'cat-admin-block';
+  const catIdx = cats.findIndex(c => c.id === ADMIN_SELECTED_CAT);
+  const cat = cats[catIdx];
 
-    // Header con nombre + eliminar
-    const header = document.createElement('div');
-    header.className = 'cat-admin-header';
-    header.innerHTML = `
-      <span style="font-size:20px">📁</span>
-      <input type="text" class="a-form-input" value="${(cat.name || '').replace(/"/g, '&quot;')}" placeholder="Nombre de la categoría" onchange="updateCatField(${catIdx}, 'name', this.value)">
-      <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${catIdx})">🗑️ Eliminar</button>`;
-    block.appendChild(header);
+  detail.innerHTML = `
+    <div class="cat-detail-header">
+      <input type="text" class="cat-detail-name" value="${escHtml(cat.name || '')}" placeholder="Nombre de la categoría" oninput="updateCatField(${catIdx}, 'name', this.value)">
+      <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${catIdx})">🗑️ Eliminar</button>
+    </div>
 
-    // Descripción
-    const descGroup = document.createElement('div');
-    descGroup.className = 'a-form-group';
-    descGroup.innerHTML = `<label class="a-form-label">Descripción</label>
-      <textarea class="a-form-textarea" rows="2" onchange="updateCatField(${catIdx}, 'description', this.value)">${cat.description || ''}</textarea>`;
-    block.appendChild(descGroup);
+    <div class="a-form-group">
+      <label class="a-form-label">📝 Descripción de la categoría</label>
+      <textarea class="a-form-textarea" rows="2" placeholder="Describe brevemente esta categoría..." oninput="updateCatField(${catIdx}, 'description', this.value)">${escHtml(cat.description || '')}</textarea>
+    </div>
 
-    // Logo (upload + URL)
-    const logoGroup = document.createElement('div');
-    logoGroup.className = 'a-form-group';
-    logoGroup.innerHTML = `<label class="a-form-label">🖼️ Logo de la categoría</label>
-      <div class="upload-zone compact" id="catLogoZone_${catIdx}" style="margin-bottom:10px">
+    <div class="a-form-group">
+      <label class="a-form-label">🌟 Imagen parallax de la categoría</label>
+      <div class="upload-zone compact" id="catPxZone_${catIdx}">
         <span class="upload-zone-icon">📤</span>
-        <div class="upload-zone-text"><strong>Subir logo desde PC</strong>o arrastra una imagen</div>
-        <input type="file" id="catLogoInput_${catIdx}" accept="image/*" hidden>
-      </div>
-      <input type="text" class="a-form-input" placeholder="O pega una URL de logo…" value="${(cat.logo || '').replace(/"/g, '&quot;')}" onchange="updateCatField(${catIdx}, 'logo', this.value)">
-      ${cat.logo ? `<div class="logo-preview"><img src="${resolveImageUrl(cat.logo)}" onerror="this.parentElement.style.display='none'"><button class="a-btn a-btn-danger a-btn-xs" onclick="updateCatField(${catIdx}, 'logo', '')">Quitar</button></div>` : ''}
-      <span class="a-form-hint">Si lo dejas vacío se muestra el nombre de la categoría.</span>`;
-    block.appendChild(logoGroup);
-
-    // Parallax
-    const pxGroup = document.createElement('div');
-    pxGroup.className = 'a-form-group';
-    const currentPx = cat.parallaxImage || '';
-    let pxHtml = `<label class="a-form-label">🌟 Fondo parallax</label>`;
-    if (currentPx) {
-      pxHtml += `<div class="parallax-preview">
-        <img src="${resolveImageUrl(currentPx)}" onerror="this.style.display='none'">
-        <div class="parallax-preview-text">
-          <div class="parallax-preview-label">Imagen parallax actual</div>
-          <div style="font-size:11px;color:var(--a-muted)">Haz clic en otra imagen para cambiarla</div>
-        </div>
-        <button class="a-btn a-btn-outline a-btn-xs" onclick="clearCatParallax(${catIdx})">Quitar</button>
-      </div>`;
-    } else {
-      pxHtml += `<div class="a-form-hint" style="margin-bottom:10px">Haz clic en cualquier imagen de la galería de abajo para usarla como fondo parallax. Por defecto se usa la primera imagen.</div>`;
-    }
-    pxHtml += `<div class="upload-zone compact" id="catPxZone_${catIdx}" style="margin-bottom:10px">
-        <span class="upload-zone-icon">📤</span>
-        <div class="upload-zone-text"><strong>Subir fondo parallax desde PC</strong>o arrastra una imagen</div>
+        <div class="upload-zone-text"><strong>Subir fondo desde PC</strong></div>
         <input type="file" id="catPxInput_${catIdx}" accept="image/*" hidden>
       </div>
-      <input type="text" class="a-form-input" placeholder="O pega una URL personalizada…" value="${currentPx.replace(/"/g, '&quot;')}" onchange="updateCatField(${catIdx}, 'parallaxImage', this.value)">`;
-    pxGroup.innerHTML = pxHtml;
-    block.appendChild(pxGroup);
+      <input type="text" class="a-form-input" style="margin-top:10px" placeholder="O pega una URL..." value="${escHtml(cat.parallaxImage || '')}" onchange="updateCatField(${catIdx}, 'parallaxImage', this.value)">
+      ${cat.parallaxImage ? `<div class="parallax-preview" style="margin-top:10px"><img src="${resolveImageUrl(cat.parallaxImage)}" onerror="handleImgError(this)"><div class="parallax-preview-text"><div class="parallax-preview-label">Fondo actual</div><div class="parallax-preview-hint">Imagen que se ve en la portada</div></div><button class="a-btn a-btn-outline a-btn-xs" onclick="updateCatField(${catIdx}, 'parallaxImage', '')">Quitar</button></div>` : ''}
+    </div>
 
-    // Añadir imágenes (upload + URLs)
-    const addGroup = document.createElement('div');
-    addGroup.className = 'a-form-group';
-    addGroup.innerHTML = `<label class="a-form-label">📸 Imágenes de proyectos</label>
-      <div class="upload-zone" id="catItemsZone_${catIdx}">
-        <span class="upload-zone-icon">📤</span>
-        <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o haz clic para subir desde tu PC</div>
-        <input type="file" id="catItemsInput_${catIdx}" accept="image/*" multiple hidden>
-      </div>
-      <div class="divider-or"><span>o pega URLs</span></div>
-      <div style="display:flex;gap:10px">
-        <textarea class="a-form-textarea" id="catInput_${catIdx}" rows="2" placeholder="https://ejemplo.com/img1.jpg"></textarea>
-        <button class="a-btn a-btn-outline" onclick="addCatImages(${catIdx})">Añadir</button>
-      </div>`;
-    block.appendChild(addGroup);
+    <div class="divider-line"></div>
 
-    // Grid de items
-    const grid = document.createElement('div');
-    grid.className = 'cat-admin-items';
-    (cat.items || []).forEach((item, itemIdx) => {
-      const url = getItemUrl(item);
-      const isPx = cat.parallaxImage === url;
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'cat-admin-item' + (isPx ? ' parallax-selected' : '');
-      itemDiv.onclick = (ev) => { if (!ev.target.closest('.cat-admin-item-del')) toggleCatParallax(catIdx, itemIdx); };
-      itemDiv.title = 'Clic para usar como fondo parallax';
-      itemDiv.innerHTML = `
-        <img src="${resolveImageUrl(url)}" onerror="handleImgError(this)">
-        <button class="cat-admin-item-del" onclick="event.stopPropagation(); delCatItem(${catIdx}, ${itemIdx})">✕</button>`;
-      grid.appendChild(itemDiv);
-    });
-    if (!(cat.items || []).length) {
-      const empty = document.createElement('p');
-      empty.style.cssText = 'color:var(--a-muted);font-size:13px;padding:16px 0;text-align:center;';
-      empty.textContent = 'Sin imágenes todavía. Sube algunas arriba.';
-      grid.appendChild(empty);
+    <div class="projects-header">
+      <h3>🎨 Proyectos <span class="badge">${(cat.projects || []).length}</span></h3>
+      <button class="a-btn a-btn-primary a-btn-sm" onclick="addProject(${catIdx})">+ Nuevo Proyecto</button>
+    </div>
+
+    <div id="projectsList_${catIdx}"></div>
+  `;
+
+  // Setup category parallax upload
+  setupUploadZone(`catPxZone_${catIdx}`, `catPxInput_${catIdx}`, (urls) => {
+    if (urls[0]) {
+      DATA.categories[catIdx].parallaxImage = urls[0];
+      renderAdminPortfolio();
+      saveAdminData();
     }
-    block.appendChild(grid);
-    container.appendChild(block);
+  });
 
-    // Setup de las zonas de subida de esta categoría
-    setupUploadZone(`catLogoZone_${catIdx}`, `catLogoInput_${catIdx}`, (urls) => {
-      if (urls[0]) { DATA.categories[catIdx].logo = urls[0]; renderAdmin(); saveAdminData(); }
+  renderAdminProjects(catIdx);
+}
+
+function renderAdminProjects(catIdx) {
+  const cat = DATA.categories[catIdx];
+  const container = $(`#projectsList_${catIdx}`);
+  if (!container) return;
+
+  if (!cat.projects || cat.projects.length === 0) {
+    container.innerHTML = `<div class="empty-state small">
+      <div class="empty-icon">🎨</div>
+      <p>Esta categoría aún no tiene proyectos.</p>
+      <button class="a-btn a-btn-primary a-btn-sm" onclick="addProject(${catIdx})">+ Crear primer proyecto</button>
+    </div>`;
+    return;
+  }
+
+  container.innerHTML = '';
+  cat.projects.forEach((proj, projIdx) => {
+    const projKey = `p_${catIdx}_${projIdx}`;
+    const card = document.createElement('div');
+    card.className = 'project-admin-card';
+    card.innerHTML = `
+      <div class="project-admin-header">
+        <span class="project-number">${projIdx + 1}</span>
+        <input type="text" class="project-name-input" value="${escHtml(proj.name || '')}" placeholder="Nombre del proyecto" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)">
+        <button class="a-btn a-btn-danger a-btn-xs" onclick="delProject(${catIdx}, ${projIdx})" title="Eliminar proyecto">🗑️</button>
+      </div>
+
+      <div class="project-field-row">
+        <div class="project-field">
+          <label class="a-form-label">🖼️ Logo del proyecto</label>
+          <div class="upload-zone compact" id="projLogoZone_${projKey}">
+            <span class="upload-zone-icon">📤</span>
+            <div class="upload-zone-text"><strong>Subir logo</strong>desde PC</div>
+            <input type="file" id="projLogoInput_${projKey}" accept="image/*" hidden>
+          </div>
+          <input type="text" class="a-form-input" style="margin-top:10px" placeholder="O URL del logo..." value="${escHtml(proj.logo || '')}" onchange="updateProjectField(${catIdx}, ${projIdx}, 'logo', this.value)">
+          ${proj.logo ? `<div class="logo-preview"><img src="${resolveImageUrl(proj.logo)}" onerror="handleImgError(this)"><button class="a-btn a-btn-danger a-btn-xs" onclick="updateProjectField(${catIdx}, ${projIdx}, 'logo', '')">Quitar</button></div>` : ''}
+        </div>
+        <div class="project-field">
+          <label class="a-form-label">🌟 Imagen parallax del proyecto</label>
+          ${proj.parallaxImage
+            ? `<div class="parallax-preview"><img src="${resolveImageUrl(proj.parallaxImage)}" onerror="handleImgError(this)"><div class="parallax-preview-text"><div class="parallax-preview-label">Parallax actual</div><div class="parallax-preview-hint">Se muestra al entrar en la categoría</div></div><button class="a-btn a-btn-outline a-btn-xs" onclick="updateProjectField(${catIdx}, ${projIdx}, 'parallaxImage', '')">Quitar</button></div>`
+            : `<div class="a-form-hint" style="margin-top:0;padding:8px 12px;background:rgba(255,255,255,0.02);border:1px dashed var(--a-line);border-radius:8px;font-size:12px">Haz clic en cualquier imagen de abajo para usarla como fondo parallax de este proyecto.</div>`}
+        </div>
+      </div>
+
+      <div class="project-field">
+        <label class="a-form-label">📸 Imágenes del proyecto</label>
+        <div class="upload-zone" id="projImgsZone_${projKey}">
+          <span class="upload-zone-icon">📤</span>
+          <div class="upload-zone-text"><strong>Arrastra imágenes</strong>o haz clic para subir desde tu PC</div>
+          <input type="file" id="projImgsInput_${projKey}" accept="image/*" multiple hidden>
+        </div>
+        <div class="divider-or"><span>o pega URLs</span></div>
+        <div style="display:flex;gap:8px">
+          <textarea class="a-form-textarea" id="projImgsUrls_${projKey}" rows="2" placeholder="https://ejemplo.com/img1.jpg"></textarea>
+          <button class="a-btn a-btn-outline" onclick="addProjectImages(${catIdx}, ${projIdx}, 'projImgsUrls_${projKey}')">Añadir</button>
+        </div>
+        <div class="project-image-grid" id="projGrid_${projKey}"></div>
+      </div>
+    `;
+    container.appendChild(card);
+
+    // Setup upload zones
+    setupUploadZone(`projLogoZone_${projKey}`, `projLogoInput_${projKey}`, (urls) => {
+      if (urls[0]) { DATA.categories[catIdx].projects[projIdx].logo = urls[0]; renderAdminPortfolio(); saveAdminData(); }
     }, 800);
-    setupUploadZone(`catPxZone_${catIdx}`, `catPxInput_${catIdx}`, (urls) => {
-      if (urls[0]) { DATA.categories[catIdx].parallaxImage = urls[0]; renderAdmin(); saveAdminData(); }
-    });
-    setupUploadZone(`catItemsZone_${catIdx}`, `catItemsInput_${catIdx}`, (urls) => {
-      if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
-      DATA.categories[catIdx].items.push(...urls);
-      renderAdmin();
+    setupUploadZone(`projImgsZone_${projKey}`, `projImgsInput_${projKey}`, (urls) => {
+      if (!DATA.categories[catIdx].projects[projIdx].images) DATA.categories[catIdx].projects[projIdx].images = [];
+      DATA.categories[catIdx].projects[projIdx].images.push(...urls);
+      renderAdminPortfolio();
       saveAdminData();
     });
+
+    // Render image grid
+    const grid = $(`#projGrid_${projKey}`);
+    (proj.images || []).forEach((imgUrl, imgIdx) => {
+      const isPx = proj.parallaxImage === imgUrl;
+      const el = document.createElement('div');
+      el.className = 'project-image-item' + (isPx ? ' parallax-selected' : '');
+      el.title = isPx ? 'Clic para quitar como parallax' : 'Clic para usar como fondo parallax';
+      el.onclick = (e) => {
+        if (e.target.closest('.project-image-del')) return;
+        toggleProjectParallax(catIdx, projIdx, imgIdx);
+      };
+      el.innerHTML = `
+        <img src="${resolveImageUrl(imgUrl)}" onerror="handleImgError(this)">
+        <button class="project-image-del" onclick="event.stopPropagation(); delProjectImage(${catIdx}, ${projIdx}, ${imgIdx})" title="Eliminar imagen">✕</button>
+      `;
+      grid.appendChild(el);
+    });
+    if (!(proj.images || []).length) {
+      grid.innerHTML = '<p style="color:var(--a-muted);font-size:12px;padding:14px;text-align:center;grid-column:1/-1">Sin imágenes todavía. Sube algunas arriba.</p>';
+    }
   });
 }
+
+window.addProject = (catIdx) => {
+  if (!DATA.categories[catIdx]) return;
+  if (!DATA.categories[catIdx].projects) DATA.categories[catIdx].projects = [];
+  DATA.categories[catIdx].projects.push({
+    id: uid(),
+    name: 'Nuevo Proyecto',
+    logo: '',
+    parallaxImage: '',
+    images: []
+  });
+  renderAdminPortfolio();
+  saveAdminData();
+};
+window.delProject = (catIdx, projIdx) => {
+  if (!confirm('¿Eliminar este proyecto y todas sus imágenes?')) return;
+  DATA.categories[catIdx].projects.splice(projIdx, 1);
+  renderAdminPortfolio();
+  saveAdminData();
+};
+window.updateProjectField = (catIdx, projIdx, field, value) => {
+  const proj = DATA.categories[catIdx]?.projects?.[projIdx];
+  if (!proj) return;
+  proj[field] = value;
+};
+window.toggleProjectParallax = (catIdx, projIdx, imgIdx) => {
+  const proj = DATA.categories[catIdx]?.projects?.[projIdx];
+  if (!proj || !proj.images[imgIdx]) return;
+  const url = proj.images[imgIdx];
+  proj.parallaxImage = proj.parallaxImage === url ? '' : url;
+  renderAdminPortfolio();
+  saveAdminData();
+};
+window.addProjectImages = (catIdx, projIdx, textareaId) => {
+  const textarea = document.getElementById(textareaId);
+  if (!textarea) return;
+  const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  const proj = DATA.categories[catIdx]?.projects?.[projIdx];
+  if (!proj) return;
+  if (!proj.images) proj.images = [];
+  proj.images.push(...urls);
+  textarea.value = '';
+  renderAdminPortfolio();
+  saveAdminData();
+};
+window.delProjectImage = (catIdx, projIdx, imgIdx) => {
+  if (!confirm('¿Eliminar esta imagen?')) return;
+  const proj = DATA.categories[catIdx]?.projects?.[projIdx];
+  if (!proj || !proj.images) return;
+  const removedUrl = proj.images[imgIdx];
+  proj.images.splice(imgIdx, 1);
+  if (proj.parallaxImage === removedUrl) proj.parallaxImage = '';
+  renderAdminPortfolio();
+  saveAdminData();
+};
 
 window.updateCatField = (catIdx, field, value) => {
   if (!DATA.categories[catIdx]) return;
   DATA.categories[catIdx][field] = value;
-  renderAdmin();
-};
-window.clearCatParallax = (catIdx) => {
-  if (!DATA.categories[catIdx]) return;
-  DATA.categories[catIdx].parallaxImage = '';
-  renderAdmin();
-};
-window.toggleCatParallax = (catIdx, itemIdx) => {
-  const cat = DATA.categories[catIdx];
-  if (!cat || !cat.items[itemIdx]) return;
-  const url = getItemUrl(cat.items[itemIdx]);
-  if (cat.parallaxImage === url) cat.parallaxImage = '';
-  else cat.parallaxImage = url;
-  renderAdmin();
-};
-window.addCatImages = (catIdx) => {
-  const textarea = $(`#catInput_${catIdx}`);
-  if (!textarea) return;
-  const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
-  if (!urls.length) return;
-  if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
-  DATA.categories[catIdx].items.push(...urls);
-  textarea.value = '';
-  renderAdmin();
-  saveAdminData();
-};
-window.delCatItem = (catIdx, itemIdx) => {
-  if (!confirm('¿Eliminar esta imagen?')) return;
-  const cat = DATA.categories[catIdx];
-  if (!cat || !cat.items) return;
-  const url = getItemUrl(cat.items[itemIdx]);
-  cat.items.splice(itemIdx, 1);
-  if (cat.parallaxImage === url) cat.parallaxImage = '';
-  renderAdmin();
-  saveAdminData();
+  if (field === 'name') {
+    // Actualizar solo el nombre en la lista, sin re-renderizar todo
+    const list = $$('.category-list-item');
+    if (list[catIdx]) {
+      const nameEl = list[catIdx].querySelector('.cat-list-name');
+      if (nameEl) nameEl.textContent = value || 'Sin nombre';
+    }
+  }
 };
 window.delCategory = (i) => {
-  if (!confirm('¿Eliminar toda la categoría y todos sus proyectos?')) return;
+  if (!confirm('¿Eliminar toda la categoría con todos sus proyectos?')) return;
+  const removedId = DATA.categories[i].id;
   DATA.categories.splice(i, 1);
-  renderAdmin();
+  if (ADMIN_SELECTED_CAT === removedId) {
+    ADMIN_SELECTED_CAT = DATA.categories[0]?.id || null;
+  }
+  renderAdminPortfolio();
   saveAdminData();
 };
 window.delAdminItem = (key, i) => {
@@ -1946,45 +2133,24 @@ $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 
-/* Subida desde PC — zonas principales */
-setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => {
-  DATA.heroImages.push(...urls);
-  renderAdmin();
-  saveAdminData();
-});
+setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); renderAdmin(); saveAdminData(); });
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
   const cat = $('#aCoverCategorySelect').value;
   urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
-  renderAdmin();
-  saveAdminData();
+  renderAdmin(); saveAdminData();
 }, 1600);
-setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => {
-  DATA.clientes.push(...urls);
-  renderAdmin();
-  saveAdminData();
-}, 800);
-setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => {
-  DATA.software.push(...urls);
-  renderAdmin();
-  saveAdminData();
-}, 600);
-
-/* Subida dentro del modal de cover */
+setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); renderAdmin(); saveAdminData(); }, 800);
+setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.push(...urls); renderAdmin(); saveAdminData(); }, 600);
 setupUploadZone('coverMainUploadZone', 'coverMainFileInput', (urls) => {
-  if (urls[0]) {
-    $('#aEditCoverUrl').value = urls[0];
-    $('#aEditCoverPreview').src = urls[0];
-    aToast('Imagen cargada. Recuerda guardar.');
-  }
+  if (urls[0]) { $('#aEditCoverUrl').value = urls[0]; $('#aEditCoverPreview').src = urls[0]; aToast('Imagen cargada. Recuerda guardar.'); }
 }, 1600);
 setupUploadZone('coverExtrasUploadZone', 'coverExtrasFileInput', (urls) => {
   const ta = $('#aEditCoverExtras');
   const existing = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
   ta.value = [...existing, ...urls].join('\n');
-  aToast(`${urls.length} imagen(es) añadida(s) a la galería.`);
+  aToast(`${urls.length} imagen(es) añadida(s).`);
 });
 
-/* Botones URLs */
 $('#aBtnAddHeroUrls').onclick = () => {
   const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
   if (!urls.length) return;
@@ -2064,11 +2230,14 @@ $('#aLoginForm').onsubmit = async e => {
 
 $('#aBtnNewCategory').onclick = () => {
   if (!DATA.categories) DATA.categories = [];
-  DATA.categories.push({ id: uid(), name: 'Nueva Categoría', description: '', logo: '', parallaxImage: '', items: [] });
-  renderAdmin(); saveAdminData();
+  const newCat = { id: uid(), name: 'Nueva Categoría', description: '', parallaxImage: '', projects: [] };
+  DATA.categories.push(newCat);
+  ADMIN_SELECTED_CAT = newCat.id;
+  renderAdminPortfolio();
+  updateAdminBadges();
+  saveAdminData();
 };
 
-/* INICIALIZACIÓN */
 handleRoute();
 if (!location.hash || location.hash === '#home') {
   loadPublicData();
