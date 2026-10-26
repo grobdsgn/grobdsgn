@@ -1328,12 +1328,15 @@
       "id": "lt40g4y4mvoihv9u",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792974115558-rj7g8n.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Mal de la cabeza",
+      "artist": "Katie  Angel",
+      "year": "2018",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974128709-o5xwh5.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792974129859-mu7pr8.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/3BIKYAofSCSuRtHaGxbprF?si=5deb0d0f3a51463f",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false
