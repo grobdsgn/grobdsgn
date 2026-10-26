@@ -1625,6 +1625,23 @@
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=Qqg5DVoUezA",
       "featured": false
+    },
+    {
+      "id": "awxtocc5mvokmkeb",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792977694796-hdjequ.jpg",
+      "category": "sencillo",
+      "name": "Tortura",
+      "artist": "Lenny Tavarez ft Pusho",
+      "year": "2016",
+      "review": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977702999-6y9111.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/extra-1792977704060-k0f2ia.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/4RU1KlIro6jl1qkDTcruMD?si=ad9573d749ce4c39",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false
     }
   ],
   "contact": {
