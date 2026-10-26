@@ -46,6 +46,8 @@ main{position:relative}
 .view.leaving{display:block;position:absolute;top:0;left:0;right:0;pointer-events:none;z-index:10;animation:viewLeave .4s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes viewEnter{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:none}}
 @keyframes viewLeave{0%{opacity:1}100%{opacity:0;transform:translateY(-15px)}}
+
+/* HERO */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.2s}
@@ -61,21 +63,26 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
 
-/* MARQUEE BANNER */
-.marquee{overflow:hidden;border-block:1px solid var(--line);padding:28px 0;display:flex;background:#000}
-.marquee-inner{display:flex;animation:mq 30s linear infinite;width:max-content}
-.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:1.6rem;white-space:nowrap;padding:0 32px;display:flex;align-items:center;gap:32px;color:var(--text)}
+/* MARQUEE BANNER INTEGRADO Y VISIBLE */
+.marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:24px 0;display:flex;background:#000;position:relative;z-index:5}
+.marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
+.marquee:hover .marquee-inner{animation-play-state:paused}
+.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:clamp(1.2rem,2.5vw,1.8rem);padding:0 32px;display:inline-flex;align-items:center;gap:32px;color:var(--text);letter-spacing:0.02em}
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
-@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes marqueeScroll{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
 
 /* FEATURED COVERS SCROLLER */
 .featured-section{padding:60px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
-.featured-scroll{display:flex;gap:16px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.featured-scroll{display:flex;gap:20px;padding:20px 0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .featured-scroll::-webkit-scrollbar{display:none}
-.featured-card{min-width:240px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:1px solid var(--line)}
-.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
-.featured-card:hover img{transform:scale(1.1)}
-.featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 8px;border-radius:100px;text-transform:uppercase}
+.featured-card{flex:0 0 260px;aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;box-shadow:0 10px 30px rgba(0,0,0,0.6);border:1px solid var(--line);transition:transform 0.4s var(--ease),border-color 0.4s}
+.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
+.featured-card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.featured-card:hover img{transform:scale(1.08)}
+.featured-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
+.featured-info{position:absolute;bottom:0;inset-x:0;padding:16px;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);z-index:2}
+.featured-info-title{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.featured-info-artist{font-size:11px;color:var(--muted)}
 
 .philosophy{padding:clamp(90px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .philosophy h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:24px}
@@ -86,7 +93,7 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 
 /* PARALLAX ROWS */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:560px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
-.parallax-bg{position:absolute;top:-20%;left:0;width:100%;height:140%;background-size:cover;background-position:center;z-index:0;filter:brightness(.7) saturate(1.05);background-color:#111;will-change:transform}
+.parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(24px,5vw,64px);max-width:900px;color:#fff}
@@ -120,45 +127,16 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 .masonry-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a;cursor:zoom-in;opacity:0;animation:masonryIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--entry-delay,0s)}
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:100px;background:#0a0a0a}
-.masonry-empty{padding:80px 24px;text-align:center;color:var(--muted);columns:1}
 .embed-item{break-inside:avoid;margin-bottom:12px;border-radius:4px;overflow:hidden;background:#0a0a0a}
 .embed-item iframe{width:100%;border:0;display:block;aspect-ratio:16/9}
-.lightbox-overlay{position:fixed;inset:0;z-index:24000;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:40px;opacity:0;pointer-events:none;transition:opacity .3s}
-.lightbox-overlay.active{opacity:1;pointer-events:auto}
-.lightbox-img{max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:4px}
-.lightbox-close{position:absolute;top:22px;right:22px;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:1.2rem;display:grid;place-items:center;cursor:pointer;z-index:5}
-.lightbox-close:hover{background:var(--accent);color:#000}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:2rem;display:grid;place-items:center;cursor:pointer;z-index:5}
-.lightbox-nav.prev{left:24px}.lightbox-nav.next{right:24px}
-.lightbox-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);padding:8px 20px;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.16em;color:#fff;z-index:5}
-.cover-detail-page{background:#000;min-height:100vh;width:100%}
-.cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:140px clamp(24px,5vw,80px) 100px;min-height:100vh;box-sizing:border-box}
-@media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:48px;padding:110px 24px 60px;min-height:auto}}
-.cover-hero-image{display:flex;justify-content:center;align-items:center}
-.cover-hero-image img{width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#0a0a0a}
-.cover-hero-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:600px}
-.cover-hero-counter{font-size:.8rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;font-variant-numeric:tabular-nums}
-.cover-hero-badge{display:inline-flex;align-items:center;padding:10px 22px;border:1.5px solid var(--accent);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:36px}
-.cover-hero-title{font-weight:900;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 28px 0;word-break:break-word}
-.cover-hero-artist{font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 32px 0}
-.cover-hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:32px}
-.cover-hero-cta{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--text);padding-bottom:10px;border-bottom:1.5px solid var(--accent)}
-.cover-hero-music{width:100%;max-width:520px;min-height:80px}
-.cover-extra-section{background:#000;width:100%;padding:80px 0 40px}
-.cover-extra-section.hidden{display:none}
-.cover-extra-block{max-width:1000px;margin:0 auto 60px;padding:0 clamp(24px,5vw,56px)}
-.cover-extra-label{font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;display:flex;align-items:center;gap:18px}
-.cover-extra-label::before{content:'';width:38px;height:1px;background:var(--line)}
-.cover-extra-resena{font-size:clamp(1rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch}
+
 .covers-view{padding:150px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(24px,5vw,56px) 40px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:24px;max-width:20ch}
 .covers-toolbar{max-width:1400px;margin:0 auto;padding:0 clamp(24px,5vw,56px) 28px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
 .covers-search-wrap{position:relative;flex:1 1 280px;max-width:440px}
-.covers-search-input{width:100%;padding:11px 40px 11px 42px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;color:var(--text);font-size:.82rem;outline:none}
+.covers-search-input{width:100%;padding:11px 40px 11px 16px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;color:var(--text);font-size:.82rem;outline:none}
 .covers-search-input:focus{border-color:var(--accent)}
-.covers-search-clear{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--muted);font-size:.65rem;display:grid;place-items:center;cursor:pointer;border:none}
-.covers-search-clear[hidden]{display:none !important}
 .covers-filters{max-width:1400px;margin:0 auto;padding:0 clamp(24px,5vw,56px) 40px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .covers-filter-btn{padding:10px 22px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:100px;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
 .covers-filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
@@ -168,73 +146,61 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.6rem,7
 @media(max-width:640px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px}}
 .cover-item{--cover-glow:rgba(201,169,97,.5);--cover-glow-line:rgba(201,169,97,.45);position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s}
 .cover-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.95);transform:scale(1.06);transition:filter .7s,transform 1s;min-height:100px}
-.cover-shine{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.18) 45%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1.1s;border-radius:6px}
 .cover-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 45%,transparent 75%);opacity:.65;transition:opacity .55s;pointer-events:none;z-index:2}
 .cover-item:hover{transform:translateY(-14px) scale(1.08);box-shadow:0 40px 80px -20px var(--cover-glow),0 25px 60px -10px rgba(0,0,0,.85),0 0 0 1.5px var(--cover-glow-line);z-index:20}
 .cover-item:hover img{filter:brightness(1.15) saturate(1.25);transform:scale(1.22)}
 .cover-item:hover::after{opacity:1}
-.cover-item:hover .cover-shine{transform:translateX(120%)}
 .cover-info{position:absolute;bottom:0;left:0;right:0;padding:24px 26px;z-index:5;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none}
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
-.cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.1rem,1.6vw,1.5rem);line-height:1.15;color:#fff;margin-bottom:6px}
 .cover-info-meta{font-size:.72rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
-.cover-music-icon{position:absolute;top:10px;right:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.9rem;pointer-events:none}
-.cover-yt-icon{position:absolute;top:10px;left:10px;z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.7rem;pointer-events:none}
-.covers-empty{padding:120px 24px;text-align:center;color:var(--muted);max-width:600px;margin:0 auto;grid-column:1/-1}
-.covers-empty strong{display:block;color:var(--text);font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:12px}
-.music-section{padding:clamp(80px,12vh,140px) 0;background:#000;border-top:1px solid var(--line);position:relative;overflow:hidden}
-.music-head{text-align:center;margin-bottom:40px}
-.music-label{display:inline-flex;align-items:center;gap:14px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px}
-.music-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,4.4vw,3.2rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:10px}
-.music-subtitle{color:var(--muted);font-size:.95rem;max-width:50ch;margin:0 auto}
-.music-card{max-width:1000px;margin:0 auto;background:linear-gradient(135deg,#111,#08080a);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;grid-template-columns:96px 1fr minmax(380px,1fr);gap:18px;align-items:center}
-.music-card-cover{width:96px;height:96px}
-.music-card-cover img{width:100%;height:100%;object-fit:cover;border-radius:6px;background:#0a0a0a}
-.music-card-body{min-width:0}
-.music-card-eyebrow{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
-.music-card-title{font-weight:900;font-size:clamp(1rem,2vw,1.35rem);line-height:1.05;text-transform:uppercase;margin-bottom:6px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.music-card-artist{color:rgba(245,243,239,.65);font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.music-card-link{display:inline-flex;align-items:center;gap:8px;font-size:.64rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text);padding-bottom:4px;border-bottom:1px solid var(--accent);margin-top:10px}
-.music-card-embed{width:100%;min-height:152px;border-radius:8px;background:rgba(255,255,255,.02)}
-@media(max-width:900px){.music-card{grid-template-columns:80px 1fr;gap:14px;padding:16px}.music-card-cover,.music-card-cover img{width:80px;height:80px}.music-card-embed{grid-column:1/-1;width:100%}}
+
+.cover-detail-page{background:#000;min-height:100vh;width:100%}
+.cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:140px clamp(24px,5vw,80px) 100px;min-height:100vh;box-sizing:border-box}
+@media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:48px;padding:110px 24px 60px;min-height:auto}}
+.cover-hero-image img{width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#0a0a0a}
+.cover-hero-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:600px}
+.cover-hero-badge{display:inline-flex;align-items:center;padding:10px 22px;border:1.5px solid var(--accent);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:36px}
+.cover-hero-title{font-weight:900;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 28px 0;word-break:break-word}
+.cover-hero-artist{font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 32px 0}
+.cover-hero-music{width:100%;max-width:520px;min-height:80px}
+.cover-extra-section{background:#000;width:100%;padding:80px 0 40px}
+.cover-extra-section.hidden{display:none}
+.cover-extra-block{max-width:1000px;margin:0 auto 60px;padding:0 clamp(24px,5vw,56px)}
+.cover-extra-label{font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:32px;display:flex;align-items:center;gap:18px}
+.cover-extra-label::before{content:'';width:38px;height:1px;background:var(--line)}
+.cover-extra-resena{font-size:clamp(1rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch}
+
 .software-section{padding:clamp(70px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
 .software-section h2{color:var(--text);font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
 .software-section p{color:var(--muted);max-width:56ch;font-size:1rem}
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:30px 40px;margin-top:50px;align-items:center}
-@media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:24px 20px}}
 .software-logo{display:grid;place-items:center;padding:14px;min-height:70px}
-.software-logo img{max-width:100%;max-height:50px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;transition:.4s;pointer-events:none}
+.software-logo img{max-width:100%;max-height:50px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.65;transition:.4s}
+
 .clientes-view{padding:180px 0 100px;min-height:100vh;background:#000}
-.clientes-view h2{color:var(--text)}
-.clientes-view p{color:var(--muted);max-width:56ch;font-size:1.05rem}
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(40px,5vw,80px) clamp(30px,4vw,60px);margin-top:60px;align-items:center}
-@media(max-width:640px){.clientes-grid{grid-template-columns:repeat(2,1fr);gap:44px 24px}}
 .cliente-logo{display:grid;place-items:center;padding:20px;cursor:pointer;min-height:80px}
-.cliente-logo img{max-width:100%;max-height:70px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.55;transition:.5s;pointer-events:none}
-.cliente-logo.lit img{opacity:1;transform:scale(1.1);filter:brightness(0) invert(1) drop-shadow(0 0 24px rgba(201,169,97,.45))}
-.clientes-empty{padding:80px 0;text-align:center;color:var(--muted)}
+.cliente-logo img{max-width:100%;max-height:70px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.55;transition:.5s}
+.cliente-logo:hover img{opacity:1;transform:scale(1.1);filter:brightness(0) invert(1) drop-shadow(0 0 24px rgba(201,169,97,.45))}
+
 .contacto-view{padding:180px 0 80px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:60px}}
-.contacto-view h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:22px}
 .c-item{padding:22px 0;border-top:1px solid var(--line)}
-.c-item:last-of-type{border-bottom:1px solid var(--line)}
 .c-label{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
 .c-value{font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;display:inline-block}
-.c-value:hover{color:var(--accent)}
-.c-item-flex{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .field{margin-bottom:24px}
 .field label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
 .field input,.field textarea{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;outline:none}
 .field input:focus,.field textarea:focus{border-color:var(--accent)}
 .field textarea{min-height:110px;resize:vertical}
 .form-btn{width:100%;padding:18px;background:var(--text);color:var(--bg);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:12px;cursor:pointer}
-.form-btn:hover{background:var(--accent)}
 footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:#000}
 .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 
 /* ============================================================
-   ESTILOS PANEL ADMIN
+   ESTILOS PANEL ADMIN (SIN ICONOS, MINIMALISTA)
    ============================================================ */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
@@ -247,7 +213,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-sidebar-header{padding:24px;border-bottom:1px solid var(--a-line);display:flex;align-items:center;justify-content:space-between}
 .a-sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .a-sidebar-nav{padding:16px 12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
-.a-nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--a-muted);display:flex;align-items:center;gap:12px;transition:all 0.2s;cursor:pointer}
+.a-nav-item{padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;color:var(--a-muted);display:flex;align-items:center;transition:all 0.2s;cursor:pointer}
 .a-nav-item:hover{background:var(--a-surface-hover);color:var(--a-text)}
 .a-nav-item.active{background:rgba(201,169,97,0.1);color:var(--a-accent);font-weight:600}
 .a-sidebar-footer{padding:20px;border-top:1px solid var(--a-line);display:flex;flex-direction:column;gap:12px}
@@ -273,7 +239,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-form-input,.a-form-textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:6px;font-size:14px;color:var(--a-text);outline:none;transition:border 0.2s}
 .a-form-input:focus,.a-form-textarea:focus{border-color:var(--a-accent)}
 .a-form-textarea{min-height:100px;resize:vertical}
-.a-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;font-size:13px;font-weight:600;border-radius:6px;transition:all 0.2s;cursor:pointer}
+.a-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;font-size:13px;font-weight:600;border-radius:6px;transition:all 0.2s;cursor:pointer}
 .a-btn-primary{background:var(--a-accent);color:#000;border:1px solid var(--a-accent)}
 .a-btn-primary:hover{background:var(--a-accent-hover)}
 .a-btn-outline{background:transparent;border:1px solid var(--a-line);color:var(--a-text)}
@@ -282,9 +248,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-btn-danger:hover{background:var(--a-danger);color:#fff}
 .a-btn-sm{padding:6px 12px;font-size:12px}
 .a-btn-block{width:100%}
-.a-upload-zone{border:2px dashed rgba(255,255,255,0.15);padding:30px;text-align:center;border-radius:6px;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
-.a-upload-zone:hover{border-color:var(--a-accent);background:rgba(201,169,97,0.05)}
-.a-upload-zone p{color:var(--a-muted);font-size:14px}
 .a-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
 .a-cover-card{background:#000;border:1px solid var(--a-line);border-radius:6px;overflow:hidden;position:relative}
 .a-cover-card img{width:100%;aspect-ratio:1;object-fit:cover}
@@ -315,14 +278,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
 .a-toast.show{transform:translateY(0);opacity:1}
 .a-toast.success{border-left:3px solid var(--a-ok)}
 .a-toast.error{border-left:3px solid var(--a-danger)}
-
-/* Estilos extra para las nuevas funciones */
-.pending-cover{display:flex;gap:16px;align-items:center;padding:16px;background:rgba(201,169,97,0.08);border:1px solid var(--a-accent);border-radius:8px;margin-bottom:20px;}
-.pending-cover img{width:80px;height:80px;object-fit:cover;border-radius:6px;background:#000;}
-.pending-cover-info{flex:1;}
-.pending-cover-info h4{font-size:14px;font-weight:700;color:var(--a-text);margin-bottom:4px;}
-.pending-cover-info p{font-size:12px;color:var(--a-muted);margin:0;}
-.pending-cover-actions{display:flex;gap:8px;}
 </style>
 </head>
 <body>
@@ -363,14 +318,17 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         </div></div></div>
       </section>
       
-      <!-- MARQUEE BANNER -->
-      <div class="marquee"><div class="marquee-inner" id="marquee"></div></div>
+      <!-- MARQUEE BANNER ROTATIVO DE PALABRAS -->
+      <div class="marquee">
+        <div class="marquee-inner" id="marquee"></div>
+      </div>
       
-      <!-- FEATURED COVERS SECTION -->
+      <!-- FEATURED COVERS ROTATIVO / MULTI-SELECCIÓN -->
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap">
-          <div class="music-head" style="margin-bottom: 20px; text-align: left;">
-            <span class="music-label">Proyectos destacados</span>
+          <div class="section-head" style="margin-bottom: 20px;">
+            <div class="label">— Destacados</div>
+            <div><h2>Proyectos <em>seleccionados</em>.</h2></div>
           </div>
           <div class="featured-scroll" id="featuredCoversTrack"></div>
         </div>
@@ -435,9 +393,9 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         </div>
         <div class="covers-toolbar">
           <div class="covers-search-wrap">
-            <input type="search" id="coversSearchInput" class="covers-search-input" placeholder="Buscar artista o canción..." autocomplete="off" style="padding-left:16px">
+            <input type="search" id="coversSearchInput" class="covers-search-input" placeholder="Buscar artista o canción..." autocomplete="off">
           </div>
-          <div class="covers-filters" style="padding:0;margin:0">
+          <div class="covers-filters">
             <button class="covers-filter-btn active" data-filter="todos">Todos <span class="count" id="countTodos">0</span></button>
             <button class="covers-filter-btn" data-filter="sencillo">Sencillos <span class="count" id="countSencillo">0</span></button>
             <button class="covers-filter-btn" data-filter="albums">Álbumes <span class="count" id="countAlbums">0</span></button>
@@ -453,13 +411,9 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
         <div class="cover-hero">
           <div class="cover-hero-image"><img id="coverHeroImg" src="" alt=""></div>
           <div class="cover-hero-info">
-            <div class="cover-hero-counter" id="coverHeroCounter">00 / 00</div>
-            <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO · 00</div>
+            <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO</div>
             <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
             <div class="cover-hero-artist" id="coverHeroArtist"></div>
-            <div class="cover-hero-actions">
-              <a class="yt-btn" id="coverHeroYouTube" target="_blank" rel="noopener" style="display:none">YouTube</a>
-            </div>
             <div class="cover-hero-music" id="coverHeroMusic"></div>
           </div>
         </div>
@@ -467,10 +421,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <div class="cover-extra-block">
             <div class="cover-extra-label">Reseña</div>
             <p class="cover-extra-resena" id="coverHeroResena"></p>
-            <div class="detalle-meta-line" id="coverHeroMeta" style="margin-top:32px"></div>
-          </div>
-          <div class="cover-extra-block" style="margin-bottom:20px">
-            <div class="cover-extra-label">Galería y Multimedia</div>
           </div>
           <div class="cover-extra-imgs-wrap" id="coverExtraImgs"></div>
         </div>
@@ -496,10 +446,10 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             <h2>¿Trabajamos <em>juntos</em>?</h2>
             <p style="color:var(--muted);margin-bottom:40px">Cuéntame sobre tu proyecto.</p>
             <div class="c-item"><div class="c-label">Email</div>
-              <div class="c-item-flex"><a class="c-value" id="pubContactEmail" href="mailto:">-</a></div>
+              <a class="c-value" id="pubContactEmail" href="mailto:">-</a>
             </div>
             <div class="c-item"><div class="c-label">Teléfono</div>
-              <div class="c-item-flex"><a class="c-value" id="pubContactPhone" href="tel:">-</a></div>
+              <a class="c-value" id="pubContactPhone" href="tel:">-</a>
             </div>
             <div class="c-item"><div class="c-label">Ubicación</div><span class="c-value" id="pubContactLocation">-</span></div>
           </div>
@@ -516,6 +466,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
   <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
 </div>
 
+<!-- MODO ADMIN (SIN ICONOS EN SIDEBAR/BOTONES) -->
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -535,7 +486,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <label class="a-form-label">Rama (Branch)</label>
           <input type="text" id="aLoginBranch" class="a-form-input" value="main" required>
         </div>
-        <button type="submit" class="a-btn a-btn-primary a-btn-block mt-4">Conectar</button>
+        <button type="submit" class="a-btn a-btn-primary a-btn-block" style="margin-top:16px">Conectar</button>
         <div class="a-login-error" id="aLoginError"></div>
       </form>
     </div>
@@ -586,17 +537,13 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
             </div>
           </div>
           <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title">Fondos del Carrusel</h2></div>
+            <div class="a-card-header"><h2 class="a-card-title">Fondos del Carrusel (URLs)</h2></div>
             <div class="a-card-body">
-              <div class="a-upload-zone" onclick="document.getElementById('aHeroFileInput').click()">
-                <p>Haz clic para subir imágenes (se guardan en media)</p>
-              </div>
-              <input type="file" id="aHeroFileInput" accept="image/*" multiple hidden>
-              <div class="a-form-group mt-4">
-                <label class="a-form-label">O pegar URLs externas (una por línea)</label>
+              <div class="a-form-group">
+                <label class="a-form-label">Pegar URLs de imágenes (una por línea)</label>
                 <div style="display:flex;gap:10px">
-                  <textarea id="aHeroUrlsInput" class="a-form-textarea" rows="2"></textarea>
-                  <button class="a-btn a-btn-outline" id="aBtnAddHeroUrls">Añadir</button>
+                  <textarea id="aHeroUrlsInput" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/fondo1.jpg"></textarea>
+                  <button class="a-btn a-btn-primary" id="aBtnAddHeroUrls">Añadir</button>
                 </div>
               </div>
               <div class="a-grid" id="aHeroImagesGrid"></div>
@@ -617,38 +564,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
                   <option value="ediciones">Edición</option>
                 </select>
               </div>
-              
               <div class="a-form-group">
-                <label class="a-form-label">Link de YouTube / Spotify / Apple Music</label>
+                <label class="a-form-label">Pegar URLs de imágenes (una por línea)</label>
                 <div style="display:flex;gap:10px">
-                  <input type="url" id="aCoverMusicLink" class="a-form-input" placeholder="https://youtube.com/watch?v=... o https://open.spotify.com/track/...">
-                  <button class="a-btn a-btn-outline" id="aBtnFetchMetadata" style="white-space:nowrap">Auto-rellenar</button>
-                </div>
-                <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Pega el link y pulsa Auto-rellenar para extraer la portada, título y artista.</small>
-              </div>
-
-              <div id="pendingCoverPreview" class="pending-cover" style="display:none;">
-                <img id="pendingCoverThumb" src="">
-                <div class="pending-cover-info">
-                  <h4 id="pendingCoverName">Título</h4>
-                  <p id="pendingCoverArtist">Artista</p>
-                  <p style="font-size:11px;color:var(--a-accent);margin-top:4px;" id="pendingCoverUrl">URL</p>
-                </div>
-                <div class="pending-cover-actions">
-                  <button class="a-btn a-btn-primary a-btn-sm" id="btnConfirmPendingCover">Confirmar y Añadir</button>
-                  <button class="a-btn a-btn-outline a-btn-sm" id="btnCancelPendingCover">Cancelar</button>
-                </div>
-              </div>
-
-              <div class="a-upload-zone" onclick="document.getElementById('aCoverFileInput').click()">
-                <p>Haz clic para subir covers (imágenes)</p>
-              </div>
-              <input type="file" id="aCoverFileInput" accept="image/*" multiple hidden>
-              <div class="a-form-group mt-4">
-                <label class="a-form-label">O pegar URLs de imágenes externas (una por línea)</label>
-                <div style="display:flex;gap:10px">
-                  <textarea id="aCoverUrlsInput" class="a-form-textarea" rows="2"></textarea>
-                  <button class="a-btn a-btn-outline" id="aBtnAddCoverUrls">Añadir</button>
+                  <textarea id="aCoverUrlsInput" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/cover1.jpg"></textarea>
+                  <button class="a-btn a-btn-primary" id="aBtnAddCoverUrls">Añadir</button>
                 </div>
               </div>
               <div class="a-grid" id="aCoversGrid"></div>
@@ -667,20 +587,16 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </div>
         </div>
 
-        <!-- CLIENTS -->
+        <!-- CLIENTS (CON BOTONES DE MOVER MÁS Y MENOS) -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Logos de Clientes</h2></div>
             <div class="a-card-body">
-              <div class="a-upload-zone" onclick="document.getElementById('aClientFileInput').click()">
-                <p>Haz clic para subir logos (se guardan en media)</p>
-              </div>
-              <input type="file" id="aClientFileInput" accept="image/*" multiple hidden>
-              <div class="a-form-group mt-4">
-                <label class="a-form-label">O pegar URLs externas</label>
+              <div class="a-form-group">
+                <label class="a-form-label">Pegar URLs de Logos (una por línea)</label>
                 <div style="display:flex;gap:10px">
-                  <textarea id="aClientUrlsInput" class="a-form-textarea" rows="2"></textarea>
-                  <button class="a-btn a-btn-outline" id="aBtnAddClientUrls">Añadir</button>
+                  <textarea id="aClientUrlsInput" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/logo.png"></textarea>
+                  <button class="a-btn a-btn-primary" id="aBtnAddClientUrls">Añadir</button>
                 </div>
               </div>
               <div class="a-grid" id="aClientsGrid"></div>
@@ -693,15 +609,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title">Software / Herramientas</h2></div>
             <div class="a-card-body">
-              <div class="a-upload-zone" onclick="document.getElementById('aToolFileInput').click()">
-                <p>Haz clic para subir iconos (se guardan en media)</p>
-              </div>
-              <input type="file" id="aToolFileInput" accept="image/*" multiple hidden>
-              <div class="a-form-group mt-4">
-                <label class="a-form-label">O pegar URLs externas</label>
+              <div class="a-form-group">
+                <label class="a-form-label">Pegar URLs de Iconos (una por línea)</label>
                 <div style="display:flex;gap:10px">
-                  <textarea id="aToolUrlsInput" class="a-form-textarea" rows="2"></textarea>
-                  <button class="a-btn a-btn-outline" id="aBtnAddToolUrls">Añadir</button>
+                  <textarea id="aToolUrlsInput" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/tool.png"></textarea>
+                  <button class="a-btn a-btn-primary" id="aBtnAddToolUrls">Añadir</button>
                 </div>
               </div>
               <div class="a-grid" id="aToolsGrid"></div>
@@ -750,7 +662,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           <img id="aEditCoverPreview" src="" style="width:100px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--a-line);background:#000">
           <div style="flex:1">
             <div class="a-form-group">
-              <label class="a-form-label">URL o Ruta (media/..)</label>
+              <label class="a-form-label">URL Imagen</label>
               <input type="text" id="aEditCoverUrl" class="a-form-input">
             </div>
             <div class="a-form-group">
@@ -770,103 +682,18 @@ footer{border-top:1px solid var(--line);padding:32px 0;font-size:.72rem;letter-s
           </select>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        
-        <div class="a-form-group">
-          <label class="a-form-label">Link Musical (YouTube, Spotify, Apple Music)</label>
-          <div style="display:flex;gap:10px">
-            <input type="url" id="aEditCoverSpotify" class="a-form-input">
-            <button class="a-btn a-btn-outline" id="aBtnFetchMetadataEdit" style="white-space:nowrap">Auto-rellenar</button>
-          </div>
-        </div>
-
-        <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL o ruta, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3"></textarea></div>
+        <div class="a-form-group"><label class="a-form-label">Link de Spotify / YouTube</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        <div class="a-form-group"><label class="a-form-label">Imágenes Extra (URL, una por línea)</label><textarea id="aEditCoverExtras" class="a-form-textarea" rows="3"></textarea></div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" id="aEditCoverFeatured" style="width:18px;height:18px;accent-color:var(--a-accent)">
-            <span style="font-size:14px">Destacar en inicio</span>
+            <span style="font-size:14px">Destacar en la página de inicio (Permite múltiples)</span>
           </label>
         </div>
       </div>
       <div class="a-modal-footer">
         <button class="a-btn a-btn-danger" id="aBtnDeleteCover">Eliminar</button>
         <button class="a-btn a-btn-primary" id="aBtnSaveCover">Guardar Cambios</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Editar/Crear Proyecto -->
-  <div class="a-modal-overlay" id="aProjectModal">
-    <div class="a-modal-content">
-      <div class="a-modal-header">
-        <h2 class="a-modal-title" id="aProjectModalTitle">Editar Proyecto</h2>
-        <span class="a-modal-close" id="aCloseProjectModal">X</span>
-      </div>
-      <div class="a-modal-body">
-        <input type="hidden" id="aEditProjectCategoryId">
-        <input type="hidden" id="aEditProjectIndex">
-        
-        <div class="a-form-group">
-          <label class="a-form-label">Nombre del Proyecto (Texto)</label>
-          <input type="text" id="aEditProjectName" class="a-form-input" placeholder="Ej. Diseño de Identidad">
-        </div>
-        <div class="a-form-group">
-          <label class="a-form-label">URL del Logotipo (Opcional, se mostrará en blanco)</label>
-          <div style="display:flex;gap:10px">
-            <input type="url" id="aEditProjectLogo" class="a-form-input" placeholder="https://...">
-            <button class="a-btn a-btn-outline" onclick="document.getElementById('aProjLogoFileInput').click()">Subir</button>
-          </div>
-          <input type="file" id="aProjLogoFileInput" accept="image/*" hidden>
-          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Si subes un logo, reemplazará al texto en la web pública.</small>
-        </div>
-        <div class="a-form-group">
-          <label class="a-form-label">Descripción</label>
-          <textarea id="aEditProjectDesc" class="a-form-textarea" rows="2"></textarea>
-        </div>
-        <div class="a-form-group">
-          <label class="a-form-label">Enlace de YouTube (Opcional)</label>
-          <input type="url" id="aEditProjectYt" class="a-form-input" placeholder="https://youtube.com/watch?v=...">
-        </div>
-        <div class="a-form-group">
-          <label class="a-form-label">Imágenes (URL o ruta, una por línea)</label>
-          <textarea id="aEditProjectImages" class="a-form-textarea" rows="4" placeholder="https://ejemplo.com/foto1.jpg&#10;https://ejemplo.com/foto2.jpg"></textarea>
-        </div>
-        
-        <div class="a-form-group">
-          <label class="a-form-label">Imagen de Portada (Para Categorías)</label>
-          <div style="display:flex;gap:10px;align-items:center;">
-            <select id="aEditProjectCover" class="a-form-input" style="flex:1;">
-              <option value="">Usar primera imagen</option>
-            </select>
-            <img id="aEditProjectCoverThumb" src="" style="width:60px;height:60px;object-fit:cover;border-radius:4px;background:#222;border:1px solid var(--a-line);">
-          </div>
-          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Selecciona qué imagen se verá como fondo en la lista de proyectos.</small>
-        </div>
-
-        <div class="a-form-group">
-          <label class="a-form-label">Imagen Destacada (Estrella)</label>
-          <div style="display:flex;gap:10px;align-items:center;">
-            <select id="aEditProjectFeatured" class="a-form-input" style="flex:1;">
-              <option value="">Ninguna</option>
-            </select>
-            <img id="aEditProjectFeaturedThumb" src="" style="width:60px;height:60px;object-fit:cover;border-radius:4px;background:#222;border:1px solid var(--a-line);">
-          </div>
-          <small style="display:block;margin-top:6px;color:var(--a-muted);font-size:12px;">Se mostrará debajo del nombre/logo en la web.</small>
-        </div>
-        
-        <div class="a-form-group">
-          <label class="a-form-label">Posición de la Portada</label>
-          <select id="aEditProjectCoverPosition" class="a-form-input">
-            <option value="center">Centro</option>
-            <option value="top">Arriba</option>
-            <option value="bottom">Abajo</option>
-            <option value="left">Izquierda</option>
-            <option value="right">Derecha</option>
-          </select>
-        </div>
-      </div>
-      <div class="a-modal-footer">
-        <button class="a-btn a-btn-danger" id="aBtnDeleteProject" style="display:none">Eliminar</button>
-        <button class="a-btn a-btn-primary" id="aBtnSaveProject">Guardar Proyecto</button>
       </div>
     </div>
   </div>
@@ -882,31 +709,6 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 
-function getYouTubeId(url) {
-  if (!url) return null;
-  const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  return m ? m[1] : null;
-}
-
-function getEmbedUrl(url) {
-  if (!url || typeof url !== 'string') return null;
-  url = url.trim(); if (!url) return null;
-  if (url.includes('spotify.com')) {
-    const m = url.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/([a-zA-Z0-9]+)/);
-    if (m) return { platform: 'spotify', height: m[1] === 'track' ? 152 : 380, url: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator` };
-    if (url.includes('/embed/')) return { platform: 'spotify', height: 152, url };
-  }
-  if (url.includes('music.apple.com')) {
-    const isAlbum = url.includes('/album/') && !url.includes('?i=');
-    return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
-  }
-  const ytId = getYouTubeId(url);
-  if (ytId) {
-    return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
-  }
-  return null;
-}
-
 function getDirectImageUrl(url) {
   if (!url) return '';
   url = url.trim();
@@ -917,71 +719,12 @@ function getDirectImageUrl(url) {
 }
 
 function resolveImageUrl(url) {
-  if (!url) return '';
-  if (url.startsWith('http')) return getDirectImageUrl(url);
-  if (url.startsWith('media/')) {
-    return `https://cdn.jsdelivr.net/gh/${GH.repo}@${GH.branch}/${url}`;
-  }
-  return url;
+  return getDirectImageUrl(url);
 }
 
 function handleImgError(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Error</text></svg>`);
-}
-
-function compressImage(file, maxWidth = 1200, quality = 0.85) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onerror = rej;
-    reader.onload = e => {
-      const im = new Image();
-      im.onerror = rej;
-      im.onload = () => {
-        let w = im.width, h = im.height;
-        if (w > maxWidth) { h = Math.round(maxWidth / w * h); w = maxWidth; }
-        const c = document.createElement('canvas');
-        c.width = w; c.height = h;
-        c.getContext('2d').drawImage(im, 0, 0, w, h);
-        const mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-        res(c.toDataURL(mime, quality));
-      };
-      im.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-/* ============================================================
-   METADATA (OEMBED)
-   ============================================================ */
-async function fetchMetadata(url) {
-  if (!url) return null;
-  try {
-    let apiUrl = '';
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      apiUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
-    } else if (url.includes('spotify.com')) {
-      apiUrl = `https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`;
-    } else if (url.includes('music.apple.com')) {
-      apiUrl = `https://music.apple.com/oembed?url=${encodeURIComponent(url)}`;
-    } else {
-      return null;
-    }
-
-    const res = await fetch(apiUrl);
-    if (!res.ok) throw new Error('Error de red');
-    const data = await res.json();
-    
-    return {
-      title: data.title || '',
-      artist: data.author_name || '',
-      thumbnail: data.thumbnail_url || ''
-    };
-  } catch (e) {
-    console.warn("No se pudieron extraer metadatos:", e);
-    return null;
-  }
 }
 
 /* ============================================================
@@ -1012,7 +755,7 @@ const GH = {
     return { sha: d.sha, content: new TextDecoder('utf-8').decode(bytes) };
   },
   async putFile(path, base64Content, message) {
-    let retries = 5;
+    let retries = 3;
     while (retries > 0) {
       try {
         const existing = await this.getFile(path);
@@ -1026,25 +769,15 @@ const GH = {
         });
         
         if (res.ok) return true;
-        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1500)); continue; }
+        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1000)); continue; }
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
       } catch (e) {
         retries--;
         if (retries === 0) throw e;
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 1000));
       }
     }
-  },
-  async uploadImage(file, prefix = 'img') {
-    const base64 = await compressImage(file, 1200, 0.85);
-    const clean = base64.split(',')[1];
-    const ext = (file.name.match(/\.(jpe?g|png|webp|gif|avif)$/i) || ['.jpg'])[0].toLowerCase();
-    const filename = `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-    const path = `media/${filename}`;
-    const ok = await this.putFile(path, clean, `Upload ${filename}`);
-    if (!ok) throw new Error('Upload failed');
-    return path; 
   },
   async load() {
     if (this.isConfigured()) {
@@ -1076,31 +809,35 @@ let DATA = {
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }
 };
-let pendingCoverData = null;
 
 /* ============================================================
-   EFECTO PARALLAX Y NAVBAR
+   EFECTO PARALLAX SUAVE
    ============================================================ */
+let ticking = false;
+function updateParallax() {
+  const rows = document.querySelectorAll('.parallax-bg');
+  const winHeight = window.innerHeight;
+  rows.forEach(bg => {
+    const row = bg.parentElement;
+    const rect = row.getBoundingClientRect();
+    if (rect.top < winHeight && rect.bottom > 0) {
+      const speed = 0.35;
+      const yPos = (rect.top * speed);
+      bg.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    }
+  });
+  ticking = false;
+}
+
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (nav) {
     if (window.scrollY > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   }
-  
-  // Parallax logic
-  if (window.innerWidth > 768) {
-    document.querySelectorAll('.parallax-bg').forEach(bg => {
-      const row = bg.parentElement;
-      const rect = row.getBoundingClientRect();
-      // Only apply if row is in viewport
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Fórmula ajustada para un efecto más marcado (0.5)
-        const speed = 0.5; 
-        const yPos = -(rect.top * speed);
-        bg.style.transform = `translateY(${yPos}px)`;
-      }
-    });
+  if (!ticking) {
+    window.requestAnimationFrame(updateParallax);
+    ticking = true;
   }
 });
 
@@ -1152,7 +889,7 @@ function renderPublicSite() {
   }
   const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
 
-  // Hero Background
+  // Hero Background Carousel
   const heroBg = $('#heroBg');
   if (heroBg) {
     heroBg.innerHTML = '';
@@ -1164,80 +901,36 @@ function renderPublicSite() {
     });
   }
 
-  // MARQUEE
+  // BANNER ROTATIVO (MARQUEE)
   renderMarquee();
 
-  // FEATURED COVERS
+  // COVER DESTACADOS (CARRUSEL ROTATIVO / MULTI-SELECCIÓN)
   renderFeaturedCovers();
+
+  // PORTAFOLIO Y PARALLAX DE CATEGORÍAS
+  renderPortfolioCategories();
 
   // COVERS
   renderPublicCovers(DATA.covers || []);
 
-  // CLIENTES
-  const clientsGrid = $('#publicClientesGrid');
-  if (clientsGrid) {
-    clientsGrid.innerHTML = '';
-    (DATA.clientes || []).forEach(url => {
-      const c = document.createElement('div'); c.className = 'cliente-logo';
-      const im = document.createElement('img');
-      im.src = resolveImageUrl(url);
-      im.onerror = () => handleImgError(im);
-      c.appendChild(im); clientsGrid.appendChild(c);
-    });
-  }
+  // CLIENTES (MOSTRAR SEGÚN ORDEN)
+  renderPublicClients();
 
   // HERRAMIENTAS
-  const toolsGrid = $('#publicSoftwareGrid');
-  if (toolsGrid) {
-    toolsGrid.innerHTML = '';
-    if ((DATA.software || []).length) {
-      const sec = $('#softwareSection');
-      if (sec) sec.style.display = 'block';
-      DATA.software.forEach(url => {
-        const card = document.createElement('div'); card.className = 'software-logo';
-        const im = document.createElement('img');
-        im.src = resolveImageUrl(url);
-        im.onerror = () => handleImgError(im);
-        card.appendChild(im); toolsGrid.appendChild(card);
-      });
-    } else {
-      const sec = $('#softwareSection');
-      if (sec) sec.style.display = 'none';
-    }
-  }
+  renderPublicTools();
 
   // CONTACTO
-  const ce = $('#pubContactEmail');
-  if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
-  const cp = $('#pubContactPhone');
-  if (cp) { cp.textContent = DATA.contact.phone || ''; cp.href = 'tel:' + (DATA.contact.phone || '').replace(/\s/g, ''); }
-  const cl = $('#pubContactLocation');
-  if (cl) cl.textContent = DATA.contact.location || '';
-
-  // PORTAFOLIO
-  const catRows = $('#catRows');
-  if (catRows) {
-    catRows.innerHTML = '';
-    (DATA.categories || []).forEach((cat, i) => {
-      const row = document.createElement('div'); row.className = 'parallax-row';
-      row.onclick = () => { window.location.hash = `#categoria-${cat.id}`; };
-      const bg = document.createElement('div'); bg.className = 'parallax-bg' + (cat.cover ? '' : ' empty');
-      if (cat.cover) bg.style.backgroundImage = `url("${resolveImageUrl(cat.cover)}")`;
-      row.appendChild(bg);
-      const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
-      const content = document.createElement('div'); content.className = 'parallax-content';
-      content.innerHTML = `<span class="num">0${i+1} / 0${DATA.categories.length}</span><h2>${cat.name}</h2><p class="desc">${cat.description || ''}</p>`;
-      row.appendChild(content); catRows.appendChild(row);
-    });
-  }
+  const ce = $('#pubContactEmail'); if (ce) { ce.textContent = DATA.contact.email || ''; ce.href = 'mailto:' + (DATA.contact.email || ''); }
+  const cp = $('#pubContactPhone'); if (cp) { cp.textContent = DATA.contact.phone || ''; cp.href = 'tel:' + (DATA.contact.phone || '').replace(/\s/g, ''); }
+  const cl = $('#pubContactLocation'); if (cl) cl.textContent = DATA.contact.location || '';
 }
 
 function renderMarquee() {
-  const words = ['Covers', 'Logos', 'Marcas', 'Videolyrics', 'IA', 'Video'];
+  const words = ['COVERS', 'LOGOS', 'MARCAS', 'VIDEOLYRICS', 'IA', 'DIRECCIÓN DE ARTE', 'PORTAFOLIO', 'DISCOS'];
   const container = $('#marquee');
   if (!container) return;
   let html = '';
-  for (let j = 0; j < 3; j++) {
+  for (let j = 0; j < 4; j++) {
     words.forEach(item => {
       html += `<div class="mq-item">${item}</div>`;
     });
@@ -1264,10 +957,79 @@ function renderFeaturedCovers() {
       el.innerHTML = `
         <img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">
         <span class="featured-badge">Destacado</span>
+        <div class="featured-info">
+          <div class="featured-info-title">${c.name || 'Sin título'}</div>
+          <div class="featured-info-artist">${c.artist || ''}</div>
+        </div>
       `;
       el.onclick = () => { window.location.hash = `#cover-${c.id}`; };
       track.appendChild(el);
     });
+  }
+}
+
+function renderPortfolioCategories() {
+  const catRows = $('#catRows');
+  if (!catRows) return;
+  catRows.innerHTML = '';
+  (DATA.categories || []).forEach((cat, i) => {
+    const row = document.createElement('div');
+    row.className = 'parallax-row';
+    row.onclick = () => { window.location.hash = `#categoria-${cat.id || i}`; };
+    
+    let firstImg = (cat.items && cat.items[0]) ? (typeof cat.items[0] === 'string' ? cat.items[0] : cat.items[0].url) : '';
+    const bg = document.createElement('div');
+    bg.className = 'parallax-bg' + (firstImg ? '' : ' empty');
+    if (firstImg) bg.style.backgroundImage = `url("${resolveImageUrl(firstImg)}")`;
+    
+    row.appendChild(bg);
+    const ov = document.createElement('div');
+    ov.className = 'parallax-overlay';
+    row.appendChild(ov);
+    
+    const content = document.createElement('div');
+    content.className = 'parallax-content';
+    content.innerHTML = `
+      <span class="num">0${i+1} / 0${DATA.categories.length}</span>
+      <h2>${cat.name}</h2>
+      <p class="desc">${cat.description || ''}</p>
+      <span class="meta">Ver categoría</span>
+    `;
+    row.appendChild(content);
+    catRows.appendChild(row);
+  });
+}
+
+function renderPublicClients() {
+  const grid = $('#publicClientesGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  (DATA.clientes || []).forEach(url => {
+    const c = document.createElement('div');
+    c.className = 'cliente-logo';
+    const im = document.createElement('img');
+    im.src = resolveImageUrl(url);
+    im.onerror = () => handleImgError(im);
+    c.appendChild(im);
+    grid.appendChild(c);
+  });
+}
+
+function renderPublicTools() {
+  const grid = $('#publicSoftwareGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if ((DATA.software || []).length) {
+    const sec = $('#softwareSection'); if (sec) sec.style.display = 'block';
+    DATA.software.forEach(url => {
+      const card = document.createElement('div'); card.className = 'software-logo';
+      const im = document.createElement('img');
+      im.src = resolveImageUrl(url);
+      im.onerror = () => handleImgError(im);
+      card.appendChild(im); grid.appendChild(card);
+    });
+  } else {
+    const sec = $('#softwareSection'); if (sec) sec.style.display = 'none';
   }
 }
 
@@ -1289,6 +1051,7 @@ function renderPublicCovers(covers) {
   });
 }
 
+// ROUTING DE SECCIONES INTERNAS
 window.addEventListener('hashchange', () => {
   const hash = location.hash;
   if (hash.startsWith('#cover-')) {
@@ -1299,178 +1062,61 @@ window.addEventListener('hashchange', () => {
       $('#coverHeroTitle').textContent = c.name || 'Sin título';
       $('#coverHeroArtist').textContent = c.artist || '';
       $('#coverHeroBadge').textContent = c.category || 'SENCILLO';
-      
-      const ytBtn = $('#coverHeroYouTube');
-      if (c.spotifyUrl && getYouTubeId(c.spotifyUrl)) {
-        ytBtn.href = c.spotifyUrl; ytBtn.style.display = 'inline-flex';
-      } else ytBtn.style.display = 'none';
-
-      $('#coverHeroMusic').innerHTML = '';
-      const embedData = getEmbedUrl(c.spotifyUrl);
-      if (embedData) {
-        const ifr = document.createElement('iframe');
-        ifr.src = embedData.url;
-        ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
-        ifr.height = embedData.height;
-        ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
-        $('#coverHeroMusic').appendChild(ifr);
-      }
-
       $('#coverHeroResena').textContent = c.review || '';
-      const extraImgs = $('#coverExtraImgs');
-      extraImgs.innerHTML = '';
       
-      const masonry = document.createElement('div');
-      masonry.className = 'masonry-gallery';
-      
-      if (embedData) {
-        const embedBox = document.createElement('div');
-        embedBox.className = 'embed-item';
-        const ifr2 = document.createElement('iframe');
-        ifr2.src = embedData.url;
-        ifr2.height = embedData.height;
-        ifr2.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
-        embedBox.appendChild(ifr2);
-        masonry.appendChild(embedBox);
-      }
-
-      (c.extraImages || []).forEach(url => {
-        const item = document.createElement('div'); item.className = 'masonry-item';
-        const im = document.createElement('img');
-        im.src = resolveImageUrl(url);
-        im.onerror = () => handleImgError(im);
-        item.appendChild(im);
-        item.onclick = () => window.open(resolveImageUrl(url), '_blank');
-        masonry.appendChild(item);
-      });
-      
-      if (masonry.children.length > 0) {
-        $('#coverExtraSection').classList.remove('hidden');
-        extraImgs.appendChild(masonry);
-      } else {
-        $('#coverExtraSection').classList.add('hidden');
-      }
-
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="coverDetalle"]').classList.add('active');
     }
   } else if (hash.startsWith('#categoria-')) {
     const id = hash.replace('#categoria-', '');
-    const cat = DATA.categories.find(c => c.id === id);
+    const cat = DATA.categories.find((c, idx) => c.id === id || String(idx) === id);
     if (cat) {
       $('#catNombre').textContent = cat.name;
       $('#catDescripcion').textContent = cat.description || '';
-      
       const container = $('#catProjRows');
       container.innerHTML = '';
-      (cat.projects || []).forEach((p, i) => {
-        const row = document.createElement('div'); row.className = 'parallax-row';
-        const bg = document.createElement('div'); bg.className = 'parallax-bg' + (p.images?.length ? '' : ' empty');
+      
+      (cat.items || []).forEach((item, i) => {
+        const itemUrl = typeof item === 'string' ? item : item.url;
+        const row = document.createElement('div');
+        row.className = 'parallax-row';
         
-        let coverImg = p.coverImage || (p.images && p.images[0]);
-        if (coverImg) {
-          bg.style.backgroundImage = `url("${resolveImageUrl(coverImg)}")`;
-          bg.style.backgroundPosition = p.coverPosition || 'center';
-        }
-        
+        const bg = document.createElement('div');
+        bg.className = 'parallax-bg';
+        bg.style.backgroundImage = `url("${resolveImageUrl(itemUrl)}")`;
         row.appendChild(bg);
+        
         const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
         const content = document.createElement('div'); content.className = 'parallax-content';
-        
-        const titleHtml = p.logoUrl 
-            ? `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height: 100px; margin: 0 auto 20px; filter: brightness(0) invert(1); display: block;">` 
-            : `<h2>${p.title}</h2>`;
-        
-        const featuredHtml = p.featuredImage 
-            ? `<img src="${resolveImageUrl(p.featuredImage)}" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 20px auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">` 
-            : '';
-
-        content.innerHTML = `
-          <span class="num">${String(i + 1).padStart(2, '0')} / ${String(cat.projects.length).padStart(2, '0')}</span>
-          ${titleHtml}
-          ${featuredHtml}
-          <p class="desc">${p.description || ''}</p>
-        `;
-        
+        content.innerHTML = `<span class="num">0${i+1} / 0${cat.items.length}</span><h2>${cat.name} — Item #${i+1}</h2>`;
         row.appendChild(content);
-        row.onclick = () => { window.location.hash = `#proyecto-${cat.id}-${p.id}`; };
         container.appendChild(row);
       });
 
       $$('.view').forEach(v => v.classList.remove('active'));
       $('[data-view="categoria"]').classList.add('active');
-      
-      // Ejecutar parallax después de renderizar
       setTimeout(() => window.dispatchEvent(new Event('scroll')), 50);
     }
-  } else if (hash.startsWith('#proyecto-')) {
-    const parts = hash.replace('#proyecto-', '').split('-');
-    const catId = parts[0];
-    const projId = parts[1];
-    
-    const cat = DATA.categories.find(c => c.id === catId);
-    const p = cat?.projects.find(x => x.id === projId);
-    
-    if (p) {
-      $('#proyectoTitulo').textContent = p.title;
-      $('#proyectoBadge').textContent = 'Proyecto';
-      $('#proyectoResena').textContent = p.description || '';
-      
-      const logoWrap = $('#proyectoLogoWrap');
-      if (p.logoUrl) {
-        logoWrap.innerHTML = `<img src="${resolveImageUrl(p.logoUrl)}" style="max-height:120px;filter:brightness(0) invert(1);">`;
-        $('#proyectoTitulo').style.display = 'none';
-      } else {
-        logoWrap.innerHTML = '';
-        $('#proyectoTitulo').style.display = 'block';
-      }
-
-      const ytBtn = $('#proyectoYouTube');
-      if (p.youtubeUrl && getYouTubeId(p.youtubeUrl)) {
-        ytBtn.href = p.youtubeUrl; ytBtn.style.display = 'inline-flex';
-      } else ytBtn.style.display = 'none';
-
-      const gallery = $('#proyectoImagenes');
-      gallery.innerHTML = '';
-      const masonry = document.createElement('div');
-      masonry.className = 'masonry-gallery';
-
-      if (p.youtubeUrl && getYouTubeId(p.youtubeUrl)) {
-        const embedBox = document.createElement('div');
-        embedBox.className = 'embed-item';
-        const ifr = document.createElement('iframe');
-        ifr.src = `https://www.youtube.com/embed/${getYouTubeId(p.youtubeUrl)}`;
-        ifr.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
-        embedBox.appendChild(ifr);
-        masonry.appendChild(embedBox);
-      }
-
-      (p.images || []).forEach(url => {
-        const item = document.createElement('div'); item.className = 'masonry-item';
-        const im = document.createElement('img');
-        im.src = resolveImageUrl(url);
-        im.onerror = () => handleImgError(im);
-        item.appendChild(im);
-        item.onclick = () => window.open(resolveImageUrl(url), '_blank');
-        masonry.appendChild(item);
-      });
-
-      gallery.appendChild(masonry);
-
-      $$('.view').forEach(v => v.classList.remove('active'));
-      $('[data-view="proyecto"]').classList.add('active');
-    }
-  } else {
-    const curView = $('.view.active');
-    if (curView && (curView.dataset.view === 'coverDetalle' || curView.dataset.view === 'categoria' || curView.dataset.view === 'proyecto')) {
-      $$('.view').forEach(v => v.classList.remove('active'));
-      $('[data-view="home"]').classList.add('active');
-    }
+  } else if (!hash || hash === '#home') {
+    $$('.view').forEach(v => v.classList.remove('active'));
+    $('[data-view="home"]').classList.add('active');
   }
 });
 
+// NAVEGACIÓN TABS PÚBLICAS
+$$('.tab').forEach(btn => {
+  btn.onclick = () => {
+    $$('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.tab;
+    $$('.view').forEach(v => v.classList.remove('active'));
+    const targetView = $(`[data-view="${target}"]`);
+    if (targetView) targetView.classList.add('active');
+  };
+});
+
 /* ============================================================
-   LÓGICA PANEL ADMIN
+   LÓGICA PANEL ADMIN (SIN ICONOS)
    ============================================================ */
 function aToast(msg, type = 'success') {
   const container = $('#aToastContainer');
@@ -1506,7 +1152,7 @@ async function saveAdminData() {
   try {
     await GH.save(DATA);
     setASync('ok', 'Guardado');
-    aToast('Cambios guardados');
+    aToast('Cambios guardados en GitHub');
   } catch (e) {
     setASync('error', 'Error');
     aToast(e.message, 'error');
@@ -1518,6 +1164,7 @@ function renderAdmin() {
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
   
+  // HERO IMAGES
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1525,6 +1172,7 @@ function renderAdmin() {
     hGrid.appendChild(el);
   });
 
+  // COVERS
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = '';
   (DATA.covers || []).forEach((c, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1543,25 +1191,22 @@ function renderAdmin() {
     cGrid.appendChild(el);
   });
 
-  // LOGOS DE CLIENTES CON FLECHAS
+  // CLIENTES CON ORDENAMIENTO (SUBIR / BAJAR)
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = '';
   (DATA.clientes || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
-    
     el.innerHTML = `
-      <div style="display:flex; align-items:center; background: rgba(0,0,0,0.8); border-bottom:1px solid var(--a-line); padding: 8px 10px;">
-        <span style="font-size:12px; color:var(--a-muted); font-weight:bold;">#${i+1}</span>
+      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff">
+      <div class="a-cover-card-actions" style="padding:10px">
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>Subir</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>Bajar</button>
+        <button class="a-btn a-btn-danger a-btn-sm" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
       </div>
-      <img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:20px;background:#fff;">
-      <div class="a-cover-card-actions" style="padding:10px;display:flex;gap:4px">
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, -1)" ${i===0?'disabled':''} title="Mover arriba">↑</button>
-        <button class="a-btn a-btn-outline a-btn-sm" onclick="moveItem('clientes', ${i}, 1)" ${i===DATA.clientes.length-1?'disabled':''} title="Mover abajo">↓</button>
-        <button class="a-btn a-btn-danger a-btn-sm" style="flex:1" onclick="delAdminItem('clientes', ${i})">Eliminar</button>
-      </div>`;
-    
+    `;
     clGrid.appendChild(el);
   });
 
+  // TOOLS
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = '';
   (DATA.software || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1569,59 +1214,86 @@ function renderAdmin() {
     tGrid.appendChild(el);
   });
 
-  const portfolioList = $('#aPortfolioCategoriesList'); portfolioList.innerHTML = '';
-  (DATA.categories || []).forEach((cat, ci) => {
-    const block = document.createElement('div');
-    block.style.cssText = 'margin-bottom:24px;padding:16px;border:1px solid var(--a-line);border-radius:8px;background:rgba(255,255,255,0.02)';
-    
-    let projHtml = '';
-    (cat.projects || []).forEach((p, pi) => {
-      let coverImg = p.coverImage || (p.images && p.images[0]) || '';
-      let thumb = coverImg ? resolveImageUrl(coverImg) : 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#222"/></svg>`);
-      
-      projHtml += `
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid var(--a-line)">
-          <div style="display:flex;gap:12px;align-items:center">
-            <img src="${thumb}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">
-            <div>
-              <span style="font-size:14px; font-weight:600;">${p.title}</span>
-              ${p.logoUrl ? '<span style="font-size:11px;color:var(--a-accent);margin-left:6px;">(logo)</span>' : ''}
-            </div>
-          </div>
-          <div style="display:flex;gap:4px">
-            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, -1)" ${pi===0?'disabled':''} title="Mover arriba">↑</button>
-            <button class="a-btn a-btn-outline a-btn-sm" onclick="moveProject('${cat.id}', ${pi}, 1)" ${pi===cat.projects.length-1?'disabled':''} title="Mover abajo">↓</button>
-            <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', ${pi})">Editar</button>
-            <button class="a-btn a-btn-danger a-btn-sm" onclick="delProject('${cat.id}', ${pi})">X</button>
-          </div>
-        </div>
-      `;
-    });
-
-    block.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-        <div>
-          <h3 style="font-size:16px;font-weight:600">${cat.name}</h3>
-          <p style="font-size:12px;color:var(--a-muted)">${cat.description || ''}</p>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="a-btn a-btn-outline a-btn-sm" onclick="openAdminProjectModal('${cat.id}', -1)">+ Nuevo Proyecto</button>
-          <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${ci})">Eliminar Cat.</button>
-        </div>
-      </div>
-      <div>${projHtml || '<p style="font-size:12px;color:var(--a-muted)">No hay proyectos en esta categoría.</p>'}</div>
-    `;
-    portfolioList.appendChild(block);
-  });
+  // PORTFOLIO CATEGORIES
+  renderAdminPortfolio();
 
   $('#aContactEmail').value = DATA.contact.email || '';
   $('#aContactPhone').value = DATA.contact.phone || '';
   $('#aContactLocation').value = DATA.contact.location || '';
-
   $('#aThemeAccent').value = DATA.theme.accent || '#C9A961';
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
 }
+
+function renderAdminPortfolio() {
+  const container = $('#aPortfolioCategoriesList');
+  if (!container) return;
+  container.innerHTML = '';
+  (DATA.categories || []).forEach((cat, catIdx) => {
+    const block = document.createElement('div');
+    block.style.cssText = 'background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:8px;padding:20px;margin-bottom:16px;';
+    block.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <input type="text" class="a-form-input" style="flex:1;margin-right:12px;" value="${cat.name || ''}" placeholder="Nombre Categoría" onchange="updateCatName(${catIdx}, this.value)">
+        <button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${catIdx})">Eliminar Categoría</button>
+      </div>
+      <div class="a-form-group">
+        <label class="a-form-label">Añadir URLs de proyectos (una por línea)</label>
+        <div style="display:flex;gap:10px">
+          <textarea class="a-form-textarea" id="catInput_${catIdx}" rows="2" placeholder="https://ejemplo.com/proyecto.jpg"></textarea>
+          <button class="a-btn a-btn-primary" onclick="addCatImages(${catIdx})">Añadir</button>
+        </div>
+      </div>
+      <div class="a-grid" id="catGrid_${catIdx}"></div>
+    `;
+    container.appendChild(block);
+
+    const grid = block.querySelector(`#catGrid_${catIdx}`);
+    (cat.items || []).forEach((itemUrl, itemIdx) => {
+      const url = typeof itemUrl === 'string' ? itemUrl : itemUrl.url;
+      const el = document.createElement('div'); el.className = 'a-cover-card';
+      el.innerHTML = `
+        <img src="${resolveImageUrl(url)}">
+        <div class="a-cover-card-actions" style="padding:8px;">
+          <button class="a-btn a-btn-danger a-btn-sm" onclick="delCatItem(${catIdx}, ${itemIdx})">Eliminar</button>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+  });
+}
+
+// FUNCIONES DE CONTROL EN ADMIN
+window.moveClientItem = (index, direction) => {
+  const newIndex = index + direction;
+  if (newIndex < 0 || newIndex >= DATA.clientes.length) return;
+  const temp = DATA.clientes[index];
+  DATA.clientes[index] = DATA.clientes[newIndex];
+  DATA.clientes[newIndex] = temp;
+  renderAdmin();
+  saveAdminData();
+};
+
+window.updateCatName = (catIdx, val) => {
+  if (DATA.categories[catIdx]) DATA.categories[catIdx].name = val;
+};
+
+window.addCatImages = (catIdx) => {
+  const textarea = $(`#catInput_${catIdx}`);
+  const urls = textarea.value.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!urls.length) return;
+  if (!DATA.categories[catIdx].items) DATA.categories[catIdx].items = [];
+  DATA.categories[catIdx].items.push(...urls);
+  textarea.value = '';
+  renderAdmin();
+  saveAdminData();
+};
+
+window.delCatItem = (catIdx, itemIdx) => {
+  DATA.categories[catIdx].items.splice(itemIdx, 1);
+  renderAdmin();
+  saveAdminData();
+};
 
 window.delAdminItem = (key, i) => {
   if(confirm('¿Eliminar elemento?')) {
@@ -1635,30 +1307,6 @@ window.delCategory = (i) => {
     DATA.categories.splice(i, 1);
     renderAdmin(); saveAdminData();
   }
-};
-
-window.delProject = (catId, pi) => {
-  if(confirm('¿Eliminar proyecto?')) {
-    const cat = DATA.categories.find(c => c.id === catId);
-    cat.projects.splice(pi, 1);
-    renderAdmin(); saveAdminData();
-  }
-};
-
-window.moveItem = (key, i, dir) => {
-  const arr = DATA[key];
-  const temp = arr[i];
-  arr[i] = arr[i + dir];
-  arr[i + dir] = temp;
-  renderAdmin(); saveAdminData();
-};
-
-window.moveProject = (catId, pi, dir) => {
-  const cat = DATA.categories.find(c => c.id === catId);
-  const temp = cat.projects[pi];
-  cat.projects[pi] = cat.projects[pi + dir];
-  cat.projects[pi + dir] = temp;
-  renderAdmin(); saveAdminData();
 };
 
 window.openAdminCoverModal = (i) => {
@@ -1677,88 +1325,7 @@ window.openAdminCoverModal = (i) => {
   $('#aCoverModal').classList.add('active');
 };
 
-window.openAdminProjectModal = (catId, pi) => {
-  const cat = DATA.categories.find(c => c.id === catId);
-  $('#aEditProjectCategoryId').value = catId;
-  $('#aEditProjectIndex').value = pi;
-
-  const p = pi >= 0 ? cat.projects[pi] : null;
-  
-  $('#aProjectModalTitle').textContent = p ? 'Editar Proyecto' : 'Nuevo Proyecto';
-  $('#aEditProjectName').value = p ? (p.title || '') : '';
-  $('#aEditProjectLogo').value = p ? (p.logoUrl || '') : '';
-  $('#aEditProjectDesc').value = p ? (p.description || '') : '';
-  $('#aEditProjectYt').value = p ? (p.youtubeUrl || '') : '';
-  $('#aEditProjectImages').value = p ? (p.images || []).join('\n') : '';
-  $('#aEditProjectCoverPosition').value = p ? (p.coverPosition || 'center') : 'center';
-  
-  const selectCover = $('#aEditProjectCover');
-  const selectFeatured = $('#aEditProjectFeatured');
-  selectCover.innerHTML = '<option value="">Usar primera imagen</option>';
-  selectFeatured.innerHTML = '<option value="">Ninguna</option>';
-  
-  if (p && p.images) {
-    p.images.forEach((img, idx) => {
-      const opt1 = document.createElement('option');
-      opt1.value = img;
-      opt1.textContent = `Imagen ${idx + 1}`;
-      if (p.coverImage === img) opt1.selected = true;
-      selectCover.appendChild(opt1);
-      
-      const opt2 = document.createElement('option');
-      opt2.value = img;
-      opt2.textContent = `Imagen ${idx + 1}`;
-      if (p.featuredImage === img) opt2.selected = true;
-      selectFeatured.appendChild(opt2);
-    });
-  }
-
-  updateProjectThumbs();
-
-  $('#aBtnDeleteProject').style.display = p ? 'inline-flex' : 'none';
-  $('#aProjectModal').classList.add('active');
-};
-
-function updateProjectThumbs() {
-  const imgUrl = $('#aEditProjectImages').value;
-  const currentImages = imgUrl.split('\n').map(s => s.trim()).filter(Boolean);
-
-  const coverSelect = $('#aEditProjectCover');
-  const featuredSelect = $('#aEditProjectFeatured');
-  
-  const coverVal = coverSelect.value;
-  const featuredVal = featuredSelect.value;
-  
-  if (coverSelect.options.length - 1 !== currentImages.length) {
-    coverSelect.innerHTML = '<option value="">Usar primera imagen</option>';
-    featuredSelect.innerHTML = '<option value="">Ninguna</option>';
-    
-    currentImages.forEach((url, i) => {
-      const opt1 = document.createElement('option');
-      opt1.value = url;
-      opt1.textContent = `Imagen ${i + 1}`;
-      if (url === coverVal) opt1.selected = true;
-      coverSelect.appendChild(opt1);
-      
-      const opt2 = document.createElement('option');
-      opt2.value = url;
-      opt2.textContent = `Imagen ${i + 1}`;
-      if (url === featuredVal) opt2.selected = true;
-      featuredSelect.appendChild(opt2);
-    });
-  }
-
-  const coverImg = coverSelect.value || (currentImages[0] || '');
-  const featuredImg = featuredSelect.value;
-  
-  $('#aEditProjectCoverThumb').src = coverImg ? resolveImageUrl(coverImg) : '';
-  $('#aEditProjectFeaturedThumb').src = featuredImg ? resolveImageUrl(featuredImg) : '';
-}
-
-$('#aEditProjectCover').addEventListener('change', updateProjectThumbs);
-$('#aEditProjectFeatured').addEventListener('change', updateProjectThumbs);
-$('#aEditProjectImages').addEventListener('input', updateProjectThumbs);
-
+// LISTENERS DE INPUTS
 $$('.a-nav-item').forEach(item => {
   item.onclick = () => {
     $$('.a-nav-item').forEach(n => n.classList.remove('active'));
@@ -1779,142 +1346,15 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 
-$('#aBtnFetchMetadata').onclick = async () => {
-  const url = $('#aCoverMusicLink').value.trim();
-  if (!url) return aToast('Pega un link primero', 'error');
-  
-  aToast('Extrayendo metadatos...');
-  const meta = await fetchMetadata(url);
-  
-  if (!meta || !meta.thumbnail) {
-    return aToast('No se pudieron extraer los datos. Verifica el link.', 'error');
-  }
-  
-  pendingCoverData = {
-    url: meta.thumbnail,
-    name: meta.title,
-    artist: meta.artist,
-    category: $('#aCoverCategorySelect').value,
-    spotifyUrl: url
-  };
-  
-  $('#pendingCoverThumb').src = meta.thumbnail;
-  $('#pendingCoverName').textContent = meta.title || 'Sin título';
-  $('#pendingCoverArtist').textContent = meta.artist || 'Artista desconocido';
-  $('#pendingCoverUrl').textContent = url;
-  $('#pendingCoverPreview').style.display = 'flex';
-  
-  aToast('Metadatos extraídos. Revisa y confirma.');
-};
-
-$('#btnConfirmPendingCover').onclick = () => {
-  if (!pendingCoverData) return;
-  
-  DATA.covers.push({
-    id: uid(),
-    url: pendingCoverData.url,
-    category: pendingCoverData.category,
-    name: pendingCoverData.name,
-    artist: pendingCoverData.artist,
-    year: '',
-    review: '',
-    extraImages: [],
-    spotifyUrl: pendingCoverData.spotifyUrl,
-    featured: false
-  });
-  
-  pendingCoverData = null;
-  $('#pendingCoverPreview').style.display = 'none';
-  $('#aCoverMusicLink').value = '';
-  
-  renderAdmin(); saveAdminData(); aToast('Cover añadido correctamente', 'success');
-};
-
-$('#btnCancelPendingCover').onclick = () => {
-  pendingCoverData = null;
-  $('#pendingCoverPreview').style.display = 'none';
-};
-
-$('#aBtnFetchMetadataEdit').onclick = async () => {
-  const url = $('#aEditCoverSpotify').value.trim();
-  if (!url) return aToast('Pega un link primero', 'error');
-  
-  aToast('Extrayendo metadatos...');
-  const meta = await fetchMetadata(url);
-  
-  if (!meta) {
-    return aToast('No se pudieron extraer los datos.', 'error');
-  }
-  
-  if (meta.title) $('#aEditCoverName').value = meta.title;
-  if (meta.artist) $('#aEditCoverArtist').value = meta.artist;
-  if (meta.thumbnail) {
-    $('#aEditCoverUrl').value = meta.thumbnail;
-    $('#aEditCoverPreview').src = meta.thumbnail;
-  }
-  
-  aToast('Datos rellenados. Revisa antes de guardar.', 'success');
-};
-
-async function handleAUpload(files, target, cat='sencillo', musicUrl='') {
-  if(!files.length && !musicUrl) return;
-  
-  if (files.length) aToast(`Subiendo ${files.length} imágenes...`);
-  
-  for(const f of files) {
-    try {
-      const path = await GH.uploadImage(f);
-      if(target === DATA.covers) {
-        DATA.covers.push({ id: uid(), url: path, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false });
-      } else {
-        target.push(path);
-      }
-    } catch(e) { aToast(`Error subiendo ${f.name}`, 'error'); }
-  }
-  
-  if (!files.length && musicUrl && target === DATA.covers) {
-    let thumb = '';
-    const ytId = getYouTubeId(musicUrl);
-    if (ytId) thumb = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
-    
-    DATA.covers.push({ id: uid(), url: thumb, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false });
-  }
-
-  renderAdmin(); saveAdminData(); aToast('Añadido correctamente');
-}
-
-$('#aHeroFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.heroImages); e.target.value=''; };
-$('#aCoverFileInput').onchange = async e => { 
-  const musicUrl = $('#aCoverMusicLink').value.trim();
-  await handleAUpload([...e.target.files], DATA.covers, $('#aCoverCategorySelect').value, musicUrl); 
-  e.target.value=''; 
-  $('#aCoverMusicLink').value='';
-};
-$('#aClientFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.clientes); e.target.value=''; };
-$('#aToolFileInput').onchange = async e => { await handleAUpload([...e.target.files], DATA.software); e.target.value=''; };
-
-$('#aProjLogoFileInput').onchange = async e => {
-  const f = e.target.files[0];
-  if (!f) return;
-  aToast('Subiendo logo...');
-  try {
-    const path = await GH.uploadImage(f, 'logo');
-    $('#aEditProjectLogo').value = path;
-    aToast('Logo subido');
-  } catch (err) { aToast('Error subiendo logo', 'error'); }
-  e.target.value = '';
-};
-
 $('#aBtnAddHeroUrls').onclick = () => {
   const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
   DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; renderAdmin(); saveAdminData();
 };
 $('#aBtnAddCoverUrls').onclick = () => {
   const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  const musicUrl = $('#aCoverMusicLink').value.trim();
   const cat = $('#aCoverCategorySelect').value;
-  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: musicUrl, featured: false }));
-  $('#aCoverUrlsInput').value=''; $('#aCoverMusicLink').value=''; renderAdmin(); saveAdminData();
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', featured: false }));
+  $('#aCoverUrlsInput').value=''; renderAdmin(); saveAdminData();
 };
 $('#aBtnAddClientUrls').onclick = () => {
   const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
@@ -1947,50 +1387,6 @@ $('#aBtnDeleteCover').onclick = () => {
   }
 };
 
-$('#aCloseProjectModal').onclick = () => $('#aProjectModal').classList.remove('active');
-$('#aBtnSaveProject').onclick = () => {
-  const catId = $('#aEditProjectCategoryId').value;
-  const pi = parseInt($('#aEditProjectIndex').value);
-  const cat = DATA.categories.find(c => c.id === catId);
-  
-  const newImages = $('#aEditProjectImages').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  let coverImage = $('#aEditProjectCover').value;
-  let featuredImage = $('#aEditProjectFeatured').value;
-  
-  if (coverImage && !newImages.includes(coverImage)) coverImage = '';
-  if (featuredImage && !newImages.includes(featuredImage)) featuredImage = '';
-  
-  const projData = {
-    id: pi >= 0 ? cat.projects[pi].id : uid(),
-    title: $('#aEditProjectName').value.trim(),
-    logoUrl: $('#aEditProjectLogo').value.trim(),
-    description: $('#aEditProjectDesc').value.trim(),
-    youtubeUrl: $('#aEditProjectYt').value.trim(),
-    images: newImages,
-    coverImage: coverImage,
-    featuredImage: featuredImage,
-    coverPosition: $('#aEditProjectCoverPosition').value
-  };
-
-  if (pi >= 0) {
-    cat.projects[pi] = projData;
-  } else {
-    if (!cat.projects) cat.projects = [];
-    cat.projects.push(projData);
-  }
-  
-  $('#aProjectModal').classList.remove('active'); renderAdmin(); saveAdminData();
-};
-$('#aBtnDeleteProject').onclick = () => {
-  const catId = $('#aEditProjectCategoryId').value;
-  const pi = parseInt($('#aEditProjectIndex').value);
-  if(confirm('¿Eliminar este proyecto?')) {
-    const cat = DATA.categories.find(c => c.id === catId);
-    cat.projects.splice(pi, 1);
-    $('#aProjectModal').classList.remove('active'); renderAdmin(); saveAdminData();
-  }
-};
-
 $('#aBtnSaveAll').onclick = saveAdminData;
 $('#aBtnReload').onclick = async () => { if(confirm('¿Recargar de GitHub?')) { await loadAdminData(); aToast('Recargado'); } };
 $('#aBtnViewSite').onclick = () => { window.location.hash = ''; window.location.reload(); };
@@ -2017,13 +1413,12 @@ $('#aLoginForm').onsubmit = async e => {
 };
 
 $('#aBtnNewCategory').onclick = () => {
-  const name = prompt("Nombre de la nueva categoría:");
-  if (!name) return;
-  DATA.categories.push({ id: uid(), name, description: '', cover: '', projects: [] });
+  if (!DATA.categories) DATA.categories = [];
+  DATA.categories.push({ id: uid(), name: 'Nueva Categoría', description: '', items: [] });
   renderAdmin(); saveAdminData();
 };
 
-// Init
+// INICIALIZACIÓN
 initRouter();
 </script>
 </body>
