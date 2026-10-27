@@ -1893,5 +1893,10 @@
     "conBtn": "Enviar mensaje",
     "techTitle": "★ FICHA TÉCNICA"
   },
-  "ficha": []
+  "ficha": [
+    {
+      "label": "Nueva etiqueta",
+      "value": "Valor"
+    }
+  ]
 }
