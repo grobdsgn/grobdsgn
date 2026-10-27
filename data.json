@@ -2413,8 +2413,8 @@
   },
   "settings": {
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
-    "rapidApiKey": "9cc282abfdmshc8f24d384dc9facp1f998djsn2349059681e5",
-    "rapidApiHost": "spotify-stream-count.p.rapidapi.com"
+    "rapidApiKey": "",
+    "rapidApiHost": ""
   },
   "texts": {
     "navHome": "Inicio",
