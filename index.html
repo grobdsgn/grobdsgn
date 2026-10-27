@@ -1713,27 +1713,50 @@ async function fetchSpotifyStats() {
   if (!apiKey || !apiHost) return;
 
   const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl);
+  
   for (const c of coversWithSpotify) {
     const m = c.spotifyUrl.match(/spotify\.com\/(?:intl-[a-z]+\/)?track\/([a-zA-Z0-9]+)/);
     if (!m) continue;
     const trackId = m[1];
     
-    try {
-      const res = await fetch(`https://${apiHost}/api/v1/tracks/${trackId}`, {
-        headers: {
-          'X-RapidAPI-Key': apiKey,
-          'X-RapidAPI-Host': apiHost
+    let success = false;
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (!success && attempts < maxAttempts) {
+      try {
+        // Pequeña pausa para no saturar la API
+        await new Promise(r => setTimeout(r, 500)); 
+
+        const res = await fetch(`https://${apiHost}/api/v1/tracks/${trackId}`, {
+          headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': apiHost
+          }
+        });
+        
+        if (res.ok) {
+          const data = await res.json();
+          const streams = data.total_streams || data.playcount || 0;
+          if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+          c.plays.spotify = parseInt(streams) || 0;
+          success = true;
+        } else if (res.status === 429) {
+          // Si es 429, esperamos un tiempo más largo antes de reintentar
+          attempts++;
+          const waitTime = attempts * 2000; // 2s, 4s, 6s...
+          console.warn(`Rate limit alcanzado para ${trackId}. Reintentando en ${waitTime/1000}s... (Intento ${attempts}/${maxAttempts})`);
+          await new Promise(r => setTimeout(r, waitTime));
+        } else {
+          // Errores como 403 no se reintentan, se detiene el bucle
+          console.error(`Error ${res.status} para ${trackId}. Revisa tu suscripción en RapidAPI.`);
+          break;
         }
-      });
-      
-      if (res.ok) {
-        const data = await res.json();
-        const streams = data.total_streams || data.playcount || 0;
-        if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
-        c.plays.spotify = parseInt(streams) || 0;
+      } catch (e) {
+        console.error(`Error de red para ${trackId}:`, e);
+        attempts++;
+        await new Promise(r => setTimeout(r, 2000));
       }
-    } catch (e) {
-      console.warn(`Spotify stats error for track ${trackId}:`, e);
     }
   }
 }
