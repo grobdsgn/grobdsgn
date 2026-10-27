@@ -62,14 +62,14 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
-/* HERO */
+/* HERO (Alineado a la izquierda) */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
 .hero-bg-layer.active{opacity:1;animation-play-state:running}
 @keyframes heroZoomIn{from{transform:scale(1)}to{transform:scale(1.1)}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.45) 35%,rgba(0,0,0,.85));z-index:1;pointer-events:none}
-.hero .wrap{position:relative;z-index:2;width:100%}
+.hero .wrap{position:relative;z-index:2;width:100%;max-width:none;margin:0;padding-left:clamp(24px, 10vw, 140px);padding-right:20px;}
 .hero-grid{max-width:820px;margin:0;text-align:left}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;margin-bottom:28px}
 .eyebrow::before{content:'';width:32px;height:1.5px;background:rgba(255,255,255,.3)}
@@ -79,7 +79,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
 
-/* MARQUEE */
 .marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:18px 0;display:flex;background:#000;position:relative;z-index:5}
 .marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
 .marquee:hover .marquee-inner{animation-play-state:paused}
@@ -87,7 +86,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .mq-item::after{content:'◆';color:var(--accent);font-size:.5em}
 @keyframes marqueeScroll{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
 
-/* FEATURED */
 .featured-section{padding:50px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
 .billboard-scroll{width:100%;overflow:hidden;padding:18px 0;position:relative}
 .billboard-inner{display:flex;gap:16px;width:max-content;animation:billboardScroll 35s linear infinite}
@@ -100,7 +98,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:640px){.billboard-card{flex:0 0 180px}}
 
-/* PHILOSOPHY & TECH SHEET */
 .philosophy{padding:clamp(70px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start}
 @media(max-width:900px){.phil-grid{grid-template-columns:1fr;gap:50px}}
@@ -127,7 +124,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tech-label{color:var(--muted);font-weight:400}
 .tech-value{color:#fff;font-weight:700;text-align:right;white-space:pre-line;font-family:var(--font-title);line-height:1.3}
 
-/* PARALLAX */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:480px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
 .parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
@@ -232,17 +228,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .c-item{padding:18px 0;border-top:1px solid var(--line)}
 .c-label{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
 .c-value{font-family:var(--font-title);font-weight:700;font-size:clamp(1rem,2vw,1.3rem);display:inline-block;word-break:break-word}
-.contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
-@media(max-width:540px){.contact-actions{grid-template-columns:1fr}}
-.contact-action-btn{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,0.02);transition:all .3s;cursor:pointer}
-.contact-action-btn:hover{transform:translateY(-3px)}
-.contact-action-btn.wa:hover{border-color:#25D366;background:rgba(37,211,102,0.08)}
-.contact-action-btn.em:hover{border-color:var(--accent);background:rgba(201,169,97,0.08)}
-.contact-action-btn svg{width:20px;height:20px;flex-shrink:0}
-.contact-action-btn.wa svg{color:#25D366}
-.contact-action-btn.em svg{color:var(--accent)}
-.contact-action-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
-.contact-action-value{font-size:.85rem;font-weight:700;color:var(--text);word-break:break-all}
 .field{margin-bottom:20px}
 .field label{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
 .field input,.field textarea{width:100%;padding:12px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:var(--font-title);font-size:1.05rem;font-weight:600;outline:none}
@@ -251,9 +236,92 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .form-btn{width:100%;padding:16px;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:10px;cursor:pointer;font-family:var(--font-title);transition:.3s}
 .form-btn:hover{opacity:0.9}
 
-footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:#000}
-.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
-@media(max-width:540px){.footer-inner{justify-content:center;text-align:center}}
+/* NUEVA SECCIÓN CTA (Trabajamos Juntos) */
+.contact-cta-section {
+  background: var(--phil-bg);
+  color: var(--phil-text);
+  padding: clamp(60px, 12vh, 120px) 0;
+  text-align: center;
+}
+.contact-cta-section h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 50px;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: var(--phil-text);
+  transition: transform 0.3s;
+}
+.cta-btn:hover {
+  transform: translateY(-6px);
+}
+.cta-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s;
+}
+.cta-btn:hover .cta-icon {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+.cta-icon svg {
+  width: 32px;
+  height: 32px;
+}
+.cta-btn.wa .cta-icon svg { color: #25D366; }
+.cta-btn.ig .cta-icon svg { color: #E1306C; }
+.cta-btn.em .cta-icon svg { color: #000; }
+.cta-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--phil-text);
+}
+
+/* FOOTER NUEVO */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 50px 0 40px;
+  background: #000;
+  text-align: center;
+}
+.footer-logo {
+  height: 48px;
+  width: auto;
+  margin: 0 auto 24px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
 
 .lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;backdrop-filter:blur(8px)}
 .lightbox.active{display:flex;animation:lbFade .25s ease}
@@ -268,9 +336,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
-/* ============================================================
-   ADMIN
-   ============================================================ */
+/* ADMIN - Sidebar desplegable siempre */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:none}
@@ -278,11 +344,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .admin-layout{display:flex;min-height:100vh;position:relative}
 .a-sidebar{width:280px;background:linear-gradient(180deg,#0d0d10 0%,#0a0a0c 100%);border-right:1px solid var(--a-line);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:1000;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.22,1,.36,1);box-shadow:5px 0 30px rgba(0,0,0,0.5)}
 .a-sidebar.open{transform:translateX(0)}
-@media (min-width: 1024px) {
-  .a-sidebar { transform: translateX(0); }
-  .a-main { margin-left: 280px; }
-  .a-menu-btn, #aCloseSidebar, .a-overlay { display: none !important; }
-}
 .a-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:999;display:none}
 .a-overlay.active{display:block}
 .a-main{flex:1;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg);width:100%}
@@ -308,7 +369,8 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-page-title{font-family:var(--font-title);font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .a-topbar-actions{display:flex;gap:8px;flex-wrap:wrap}
 @media(max-width:640px){.a-topbar{padding:12px 14px}.a-page-title{font-size:1.05rem}.a-topbar-actions .a-btn{padding:6px 10px;font-size:11px}}
-.a-content{padding:32px 20px;flex:1;max-width:1000px;margin:0 auto;width:100%}
+/* Admin: Contenido alineado a la derecha/expandido */
+.a-content{padding:32px 40px;flex:1;width:100%;}
 @media(max-width:640px){.a-content{padding:16px 12px}}
 .a-panel{display:none;animation:fadeIn 0.3s ease}
 .a-panel.active{display:block}
@@ -371,14 +433,12 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
 .divider-line{height:1px;background:var(--a-line);margin:20px 0}
 
-/* ADMIN FICHA TÉCNICA */
 .ficha-row-editor{display:grid;grid-template-columns:1fr 2fr 40px;gap:8px;margin-bottom:8px;align-items:start}
 @media(max-width:640px){.ficha-row-editor{grid-template-columns:1fr;gap:6px;padding:12px;border:1px solid var(--a-line);border-radius:8px}}
 .ficha-row-editor input, .ficha-row-editor textarea { background: rgba(255,255,255,0.03); border: 1px solid var(--a-line); border-radius: 6px; padding: 8px; font-size: 12px; color: var(--text); outline: none; }
 .ficha-row-editor input:focus, .ficha-row-editor textarea:focus { border-color: var(--a-accent); }
 .ficha-row-editor textarea { resize: vertical; min-height: 40px; }
 
-/* PORTFOLIO ADMIN */
 .admin-back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:8px;color:var(--a-muted);cursor:pointer;transition:.2s;margin-bottom:16px;font-family:var(--font-title)}
 .admin-back-btn:hover{background:var(--a-surface-hover);color:var(--a-text);border-color:rgba(255,255,255,0.2)}
 .admin-page-header{margin-bottom:20px}
@@ -620,22 +680,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
               <a class="c-value" id="pubContactPhone" href="tel:">-</a>
             </div>
             <div class="c-item"><div class="c-label">Ubicación</div><span class="c-value" id="pubContactLocation">-</span></div>
-            <div class="contact-actions">
-              <a class="contact-action-btn wa" id="contactWaBtn" href="#" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-                <div>
-                  <div class="contact-action-label">WhatsApp</div>
-                  <div class="contact-action-value" id="contactWaValue">-</div>
-                </div>
-              </a>
-              <a class="contact-action-btn em" id="contactEmailBtn" href="mailto:">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <div>
-                  <div class="contact-action-label">Email</div>
-                  <div class="contact-action-value" id="contactEmailValue">-</div>
-                </div>
-              </a>
-            </div>
           </div>
           <form id="contactForm">
             <div class="field"><label>01 — Nombre</label><input type="text" required maxlength="80" name="name"></div>
@@ -647,7 +691,44 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
       </section>
     </div>
   </main>
-  <footer><div class="wrap footer-inner"><span id="txtFooterLeft">© 2025 Grobdesigns</span><span id="txtFooterRight">Diseñado con intención</span></div></footer>
+
+  <!-- NUEVA SECCIÓN TRABAJAMOS JUNTOS -->
+  <section class="contact-cta-section">
+    <div class="wrap">
+      <h2>¿Trabajamos juntos?</h2>
+      <div class="cta-buttons">
+        <a class="cta-btn wa" id="ctaWa" href="#" target="_blank" rel="noopener">
+          <div class="cta-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+          </div>
+          <span class="cta-label">WhatsApp</span>
+        </a>
+        <a class="cta-btn ig" id="ctaInstagram" href="#" target="_blank" rel="noopener">
+          <div class="cta-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </div>
+          <span class="cta-label">Instagram</span>
+        </a>
+        <a class="cta-btn em" id="ctaEmail" href="#">
+          <div class="cta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="cta-label">Email</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NUEVO CON LOGO CENTRADO -->
+  <footer>
+    <div class="wrap">
+      <img src="logo.svg" alt="Grobdesigns" class="footer-logo" onerror="this.style.display='none'">
+      <div class="footer-inner">
+        <span id="txtFooterLeft">© 2025 Grobdesigns</span>
+        <span id="txtFooterRight">Diseñado con intención</span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -951,13 +1032,14 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <div class="a-panel" id="a-panel-contact">
           <div class="a-hero">
             <div class="a-hero-icon">📧</div>
-            <div class="a-hero-text"><h2>Información de Contacto</h2><p>Datos para los botones de WhatsApp y Email.</p></div>
+            <div class="a-hero-text"><h2>Información de Contacto</h2><p>Datos para los botones de WhatsApp, Instagram y Email.</p></div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📇</span>Datos</h2></div>
             <div class="a-card-body">
               <div class="a-form-group"><label class="a-form-label">Email</label><input type="email" id="aContactEmail" class="a-form-input" placeholder="hola@ejemplo.com"></div>
               <div class="a-form-group"><label class="a-form-label">Teléfono (WhatsApp)</label><input type="text" id="aContactPhone" class="a-form-input" placeholder="+34 600 000 000"></div>
+              <div class="a-form-group"><label class="a-form-label">Usuario de Instagram</label><input type="text" id="aContactInstagram" class="a-form-input" placeholder="@usuario o URL"></div>
               <div class="a-form-group"><label class="a-form-label">Ubicación</label><input type="text" id="aContactLocation" class="a-form-input" placeholder="Madrid, España"></div>
             </div>
           </div>
@@ -1347,7 +1429,7 @@ function migrateData(data) {
 let DATA = {
   hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' },
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
-  contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', location: 'Madrid, España' },
+  contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
   music: { url: '' },
   texts: {},
@@ -1575,6 +1657,7 @@ async function loadPublicData() {
   if (remote) {
     DATA = Object.assign(DATA, remote);
     if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
+    if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
     migrateData(DATA);
   }
   renderPublicSite();
@@ -1657,19 +1740,36 @@ function renderContact() {
   const cp = $('#pubContactPhone');
   if (cp) { cp.textContent = c.phone || '-'; cp.href = 'tel:' + (c.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = c.location || '-';
-  const waBtn = $('#contactWaBtn'), waVal = $('#contactWaValue');
+
+  // CTA WhatsApp
+  const ctaWa = $('#ctaWa');
   const phoneDigits = (c.phone || '').replace(/[^0-9]/g, '');
-  if (waBtn) {
-    if (phoneDigits) { waBtn.href = `https://wa.me/${phoneDigits}`; waBtn.target = '_blank'; waBtn.rel = 'noopener'; waBtn.style.pointerEvents = ''; waBtn.style.opacity = ''; }
-    else { waBtn.href = '#'; waBtn.style.pointerEvents = 'none'; waBtn.style.opacity = '0.4'; }
+  if (ctaWa) {
+    ctaWa.href = phoneDigits ? `https://wa.me/${phoneDigits}` : '#';
+    if (!phoneDigits) ctaWa.style.pointerEvents = 'none';
+    else ctaWa.style.pointerEvents = '';
   }
-  if (waVal) waVal.textContent = c.phone || 'No configurado';
-  const emBtn = $('#contactEmailBtn'), emVal = $('#contactEmailValue');
-  if (emBtn) {
-    if (c.email) { emBtn.href = `mailto:${c.email}`; emBtn.style.pointerEvents = ''; emBtn.style.opacity = ''; }
-    else { emBtn.href = '#'; emBtn.style.pointerEvents = 'none'; emBtn.style.opacity = '0.4'; }
+
+  // CTA Instagram
+  const ctaIg = $('#ctaInstagram');
+  if (ctaIg) {
+    let igUser = c.instagram || '';
+    if (igUser && !igUser.startsWith('http')) {
+      igUser = igUser.replace('@', '');
+      igUser = `https://instagram.com/${igUser}`;
+    }
+    ctaIg.href = igUser || '#';
+    if (!igUser) ctaIg.style.pointerEvents = 'none';
+    else ctaIg.style.pointerEvents = '';
   }
-  if (emVal) emVal.textContent = c.email || 'No configurado';
+
+  // CTA Email
+  const ctaEm = $('#ctaEmail');
+  if (ctaEm) {
+    ctaEm.href = c.email ? `mailto:${c.email}` : '#';
+    if (!c.email) ctaEm.style.pointerEvents = 'none';
+    else ctaEm.style.pointerEvents = '';
+  }
 }
 
 function renderMarquee() {
@@ -2010,6 +2110,7 @@ async function loadAdminData() {
       DATA = Object.assign(DATA, remote);
       if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
       else if (!DATA.music) DATA.music = { url: '' };
+      if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
       migrateData(DATA);
     }
     setASync('ok', 'Sincronizado');
@@ -2133,6 +2234,7 @@ function renderAdmin() {
 
   $('#aContactEmail').value = DATA.contact.email || '';
   $('#aContactPhone').value = DATA.contact.phone || '';
+  $('#aContactInstagram').value = DATA.contact.instagram || '';
   $('#aContactLocation').value = DATA.contact.location || '';
   $('#aThemeAccent').value = DATA.theme.accent || '#C9A961';
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
@@ -2526,6 +2628,7 @@ $('#aTextTechTitle').oninput = e => DATA.texts.techTitle = e.target.value;
 
 $('#aContactEmail').oninput = e => DATA.contact.email = e.target.value;
 $('#aContactPhone').oninput = e => DATA.contact.phone = e.target.value;
+$('#aContactInstagram').oninput = e => DATA.contact.instagram = e.target.value;
 $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
 $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
