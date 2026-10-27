@@ -9,25 +9,42 @@
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#000;--surface:#0f0f10;--line:rgba(255,255,255,.09);--text:#F5F3EF;--muted:#8A8A8A;--accent:#C9A961;--ease:cubic-bezier(.22,1,.36,1);--danger:#E5484D;--ok:#30A46C;--phil-bg:#F5F3EF;--phil-text:#0A0A0A;--phil-em:#A88B45;--phil-muted:#4A4A4A}
+:root {
+  --bg: #000;
+  --surface: #0f0f10;
+  --line: rgba(255,255,255,.09);
+  --text: #F5F3EF;
+  --muted: #8A8A8A;
+  --accent: #C9A961;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --danger: #E5484D;
+  --ok: #30A46C;
+  --phil-bg: #F5F3EF;
+  --phil-text: #0A0A0A;
+  --phil-em: #A88B45;
+  --phil-muted: #4A4A4A;
+  --font-title: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body.locked{overflow:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
 input,textarea,select{font:inherit;color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
-em{font-family:'Fraunces',serif;font-style:italic;font-weight:700;color:var(--accent)}
+em{font-family:var(--font-title);font-style:normal;font-weight:800;color:var(--accent)}
+
 nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 0;transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s;border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.75),transparent)}
 nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--line);box-shadow:0 4px 30px rgba(0,0,0,0.5)}
 .nav-inner{max-width:1400px;margin:0 auto;padding:0 clamp(14px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:14px}
 .logo{display:flex;align-items:center;cursor:pointer;user-select:none;padding:4px 0;flex-shrink:0}
 .logo-img{height:24px;width:auto;display:block;filter:brightness(0) invert(1)}
-.logo-text{font-family:'Fraunces',serif;font-weight:800;font-size:1.15rem;display:none}
+.logo-text{font-family:var(--font-title);font-weight:800;font-size:1.15rem;display:none}
 .tabs{display:flex;gap:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0}
 .tabs::-webkit-scrollbar{display:none}
 .tab{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);position:relative;padding:6px 0;transition:color .3s;white-space:nowrap;flex-shrink:0}
@@ -45,7 +62,7 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
-/* HERO con zoom in por imagen */
+/* HERO */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
@@ -56,17 +73,21 @@ main{position:relative}
 .hero-grid{max-width:820px;margin:0;text-align:left}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;margin-bottom:28px}
 .eyebrow::before{content:'';width:32px;height:1.5px;background:rgba(255,255,255,.3)}
-h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7vw,5.5rem);line-height:1;letter-spacing:-.03em;margin-bottom:24px;white-space:pre-line}
+h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,7vw,5.5rem);line-height:1;letter-spacing:-.03em;margin-bottom:24px;white-space:pre-line}
 .lead{color:rgba(255,255,255,.75);font-size:clamp(.95rem,1.3vw,1.1rem);max-width:46ch;margin-bottom:32px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text);transition:.3s}
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
+
+/* MARQUEE */
 .marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:18px 0;display:flex;background:#000;position:relative;z-index:5}
 .marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
 .marquee:hover .marquee-inner{animation-play-state:paused}
-.mq-item{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:clamp(1rem,2.5vw,1.8rem);padding:0 24px;display:inline-flex;align-items:center;gap:24px;color:var(--text);letter-spacing:0.02em}
-.mq-item::after{content:'◆';color:var(--accent);font-size:.5em;font-style:normal}
+.mq-item{font-family:var(--font-title);font-weight:700;font-size:clamp(1rem,2.5vw,1.8rem);padding:0 24px;display:inline-flex;align-items:center;gap:24px;color:var(--text);letter-spacing:0.02em;text-transform:uppercase}
+.mq-item::after{content:'◆';color:var(--accent);font-size:.5em}
 @keyframes marqueeScroll{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
+
+/* FEATURED */
 .featured-section{padding:50px 0;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
 .billboard-scroll{width:100%;overflow:hidden;padding:18px 0;position:relative}
 .billboard-inner{display:flex;gap:16px;width:max-content;animation:billboardScroll 35s linear infinite}
@@ -78,34 +99,59 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .billboard-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:640px){.billboard-card{flex:0 0 180px}}
+
+/* PHILOSOPHY & TECH SHEET */
 .philosophy{padding:clamp(70px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
-.philosophy h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
-.philosophy h2 em{color:var(--phil-em)}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start}
+@media(max-width:900px){.phil-grid{grid-template-columns:1fr;gap:50px}}
+.philosophy h2{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;color:var(--phil-text)}
+.philosophy h2 em{color:var(--phil-em);font-style:normal;}
 .philosophy p{color:var(--phil-muted);max-width:56ch;font-size:1rem}
 .section-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,6vw,90px);align-items:start}
 @media(max-width:640px){.section-head{grid-template-columns:1fr;gap:16px}}
 .label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600;padding-top:.5em;white-space:nowrap}
+
+.tech-sheet{
+  background:#09090a;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:20px;
+  padding:clamp(24px,4vw,40px);
+  color:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+.tech-title{
+  font-family:var(--font-title); color:var(--accent); font-size:1.1rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:10px;
+}
+.tech-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:0.95rem;gap:20px}
+.tech-row:last-child{border-bottom:none;padding-bottom:0}
+.tech-label{color:var(--muted);font-weight:400}
+.tech-value{color:#fff;font-weight:700;text-align:right;white-space:pre-line;font-family:var(--font-title);line-height:1.3}
+
+/* PARALLAX */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:480px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
 .parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
 .parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.25) 40%,rgba(0,0,0,.8));z-index:1;pointer-events:none}
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(20px,5vw,64px);max-width:900px;color:#fff}
 .parallax-content .num{font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;display:block}
-.parallax-content h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,8vw,7rem);line-height:.98;letter-spacing:-.04em;margin-bottom:18px;color:#fff}
+.parallax-content h2{font-family:var(--font-title);font-weight:800;font-size:clamp(2rem,8vw,7rem);line-height:.98;letter-spacing:-.04em;margin-bottom:18px;color:#fff;text-transform:uppercase}
 .parallax-content .cat-logo-img{max-width:min(380px,75vw);max-height:110px;width:auto;height:auto;margin:0 auto 20px;display:block;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 6px 30px rgba(0,0,0,0.7));transition:filter .4s,transform .4s}
 .parallax-row:hover .cat-logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 30px rgba(255,255,255,0.55)) drop-shadow(0 0 60px rgba(255,255,255,0.2));transform:scale(1.04)}
 .parallax-content .desc{font-size:clamp(.85rem,1.3vw,1.05rem);color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 20px}
 .parallax-content .meta{display:inline-flex;align-items:center;gap:12px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
 .parallax-content .meta::before,.parallax-content .meta::after{content:'';width:28px;height:1px;background:rgba(255,255,255,.3)}
+
 .categoria-intro{padding:110px 0 40px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
-.categoria-intro h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.8rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:18px;color:var(--text)}
+.categoria-intro h2{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:18px;color:var(--text);text-transform:uppercase}
 .categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.9rem,1.3vw,1.08rem);line-height:1.8}
+
 .proyecto-header{padding:110px 0 30px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px);text-align:center}
 .proyecto-header .back-btn{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px}
 .proyecto-header .back-btn:hover{color:var(--text)}
 .proyecto-logo{max-height:100px;max-width:340px;margin:0 auto 20px;object-fit:contain;filter:brightness(0) invert(1);transition:filter .3s}
-.proyecto-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.6rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;color:var(--text)}
+.proyecto-title{font-family:var(--font-title);font-weight:800;font-size:clamp(1.6rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;color:var(--text);text-transform:uppercase}
 .proyecto-cat-label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+
 .masonry-gallery{max-width:1400px;margin:30px auto 0;padding:0 clamp(12px,4vw,48px) 70px;column-gap:10px;columns:3}
 @media(max-width:900px){.masonry-gallery{columns:2}}
 @media(max-width:540px){.masonry-gallery{columns:2;column-gap:6px}}
@@ -115,9 +161,10 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .masonry-item.video-item{cursor:default;overflow:hidden;border-radius:2px}
 .video-wrapper{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;border-radius:2px}
 .video-wrapper iframe{display:block;width:100%;height:100%;border:0}
+
 .covers-view{padding:110px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(20px,5vw,56px) 30px;max-width:1400px;margin:0 auto}
-.covers-intro h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px;max-width:20ch}
+.covers-intro h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px;max-width:20ch;text-transform:uppercase}
 .covers-toolbar{max-width:1400px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 20px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 .covers-search-wrap{position:relative;flex:1 1 240px;max-width:440px}
 .covers-search-input{width:100%;padding:11px 16px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;color:var(--text);font-size:.85rem;outline:none}
@@ -139,18 +186,19 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .cover-item:hover .cover-shine{transform:translateX(120%)}
 .cover-info{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;z-index:5;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none}
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
-.cover-info-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(.9rem,1.6vw,1.3rem);line-height:1.15;color:#fff;margin-bottom:4px}
+.cover-info-name{font-family:var(--font-title);font-weight:700;font-size:clamp(.9rem,1.6vw,1.3rem);line-height:1.15;color:#fff;margin-bottom:4px;text-transform:uppercase}
 .cover-info-meta{font-size:.65rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
 @media(max-width:540px){.cover-info{padding:10px 12px}.cover-info-name{font-size:.85rem}}
 .cover-music-icon{position:absolute;top:8px;right:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.8rem;pointer-events:none}
 .cover-yt-icon{position:absolute;top:8px;left:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.65rem;pointer-events:none}
+
 .cover-detail-page{background:#000;min-height:100vh;width:100%}
 .cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:100px clamp(20px,5vw,80px) 80px;min-height:100vh;box-sizing:border-box}
 @media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:32px;padding:90px 20px 50px;min-height:auto}}
 .cover-hero-image img{width:100%;max-width:540px;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#0a0a0a;cursor:zoom-in;margin:0 auto}
 .cover-hero-info{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:600px;margin:0 auto}
 .cover-hero-badge{display:inline-flex;align-items:center;padding:8px 18px;border:1.5px solid var(--accent);border-radius:100px;font-size:.65rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
-.cover-hero-title{font-weight:900;font-size:clamp(1.8rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 20px 0;word-break:break-word}
+.cover-hero-title{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 20px 0;word-break:break-word}
 .cover-hero-artist{font-size:clamp(.9rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 24px 0}
 .cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
 .cover-hero-music iframe{border-radius:4px;background:transparent;}
@@ -160,14 +208,16 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .cover-extra-label{font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:16px}
 .cover-extra-label::before{content:'';width:32px;height:1px;background:var(--line)}
 .cover-extra-resena{font-size:clamp(.9rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch}
+
 .software-section{padding:clamp(60px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
-.software-section h2{color:var(--text);font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.6rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px}
+.software-section h2{color:var(--text);font-family:var(--font-title);font-weight:800;font-size:clamp(1.6rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;text-transform:uppercase}
 .software-section p{color:var(--muted);max-width:56ch;font-size:.95rem}
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:20px 24px;margin-top:40px;align-items:center}
 @media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
 .software-logo{display:grid;place-items:center;padding:16px;min-height:80px;cursor:pointer;transition:.3s}
 .software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
 .software-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));transform:scale(1.06)}
+
 .clientes-view{padding:120px 0 80px;min-height:100vh;background:#000}
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:clamp(20px,4vw,50px) clamp(16px,3vw,40px);margin-top:40px;align-items:center}
 @media(max-width:640px){.clientes-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
@@ -175,12 +225,13 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .cliente-logo{display:grid;place-items:center;padding:24px;cursor:pointer;min-height:100px;transition:.3s}
 .cliente-logo img{max-width:100%;max-height:70px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
 .cliente-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65));transform:scale(1.05)}
+
 .contacto-view{padding:120px 0 60px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
 @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:40px}}
 .c-item{padding:18px 0;border-top:1px solid var(--line)}
 .c-label{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
-.c-value{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1rem,2vw,1.3rem);display:inline-block;word-break:break-word}
+.c-value{font-family:var(--font-title);font-weight:700;font-size:clamp(1rem,2vw,1.3rem);display:inline-block;word-break:break-word}
 .contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
 @media(max-width:540px){.contact-actions{grid-template-columns:1fr}}
 .contact-action-btn{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,0.02);transition:all .3s;cursor:pointer}
@@ -194,13 +245,16 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .contact-action-value{font-size:.85rem;font-weight:700;color:var(--text);word-break:break-all}
 .field{margin-bottom:20px}
 .field label{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
-.field input,.field textarea{width:100%;padding:12px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;outline:none}
+.field input,.field textarea{width:100%;padding:12px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:var(--font-title);font-size:1.05rem;font-weight:600;outline:none}
 .field input:focus,.field textarea:focus{border-color:var(--accent)}
 .field textarea{min-height:100px;resize:vertical}
-.form-btn{width:100%;padding:16px;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:10px;cursor:pointer}
+.form-btn{width:100%;padding:16px;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:10px;cursor:pointer;font-family:var(--font-title);transition:.3s}
+.form-btn:hover{opacity:0.9}
+
 footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:#000}
 .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 @media(max-width:540px){.footer-inner{justify-content:center;text-align:center}}
+
 .lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;backdrop-filter:blur(8px)}
 .lightbox.active{display:flex;animation:lbFade .25s ease}
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
@@ -209,11 +263,14 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .lightbox-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:20px;display:grid;place-items:center;cursor:pointer;transition:.2s;z-index:2}
 .lightbox-close:hover{background:rgba(255,255,255,0.22);transform:rotate(90deg)}
 @media(max-width:640px){.lightbox{padding:12px}.lightbox-close{top:10px;right:10px;width:38px;height:38px;font-size:16px}}
+
 .public-toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,80px);background:rgba(20,20,22,.98);border:1px solid var(--line);color:var(--text);padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:99998;opacity:0;transition:.3s;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.6);max-width:calc(100vw - 32px);text-align:center}
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
-/* ADMIN */
+/* ============================================================
+   ADMIN
+   ============================================================ */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:none}
@@ -221,6 +278,11 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .admin-layout{display:flex;min-height:100vh;position:relative}
 .a-sidebar{width:280px;background:linear-gradient(180deg,#0d0d10 0%,#0a0a0c 100%);border-right:1px solid var(--a-line);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:1000;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(.22,1,.36,1);box-shadow:5px 0 30px rgba(0,0,0,0.5)}
 .a-sidebar.open{transform:translateX(0)}
+@media (min-width: 1024px) {
+  .a-sidebar { transform: translateX(0); }
+  .a-main { margin-left: 280px; }
+  .a-menu-btn, #aCloseSidebar, .a-overlay { display: none !important; }
+}
 .a-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:999;display:none}
 .a-overlay.active{display:block}
 .a-main{flex:1;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg);width:100%}
@@ -243,10 +305,10 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-topbar-left{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
 .a-menu-btn{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,169,97,0.12),rgba(201,169,97,0.04));border:1px solid rgba(201,169,97,0.25);color:var(--a-accent);padding:8px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.08em;flex-shrink:0}
 .a-menu-btn:hover{background:linear-gradient(135deg,rgba(201,169,97,0.25),rgba(201,169,97,0.1))}
-.a-page-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.a-page-title{font-family:var(--font-title);font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .a-topbar-actions{display:flex;gap:8px;flex-wrap:wrap}
 @media(max-width:640px){.a-topbar{padding:12px 14px}.a-page-title{font-size:1.05rem}.a-topbar-actions .a-btn{padding:6px 10px;font-size:11px}}
-.a-content{padding:22px 20px;flex:1;max-width:1300px;margin:0 auto;width:100%}
+.a-content{padding:32px 20px;flex:1;max-width:1000px;margin:0 auto;width:100%}
 @media(max-width:640px){.a-content{padding:16px 12px}}
 .a-panel{display:none;animation:fadeIn 0.3s ease}
 .a-panel.active{display:block}
@@ -255,7 +317,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 @media(max-width:640px){.a-hero{padding:18px;gap:12px}.a-hero-icon{font-size:32px}}
 .a-hero-icon{font-size:40px;flex-shrink:0;line-height:1}
 .a-hero-text{flex:1;min-width:180px}
-.a-hero-text h2{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:800;margin-bottom:4px;letter-spacing:-0.02em}
+.a-hero-text h2{font-family:var(--font-title);font-size:1.35rem;font-weight:800;margin-bottom:4px;letter-spacing:-0.02em}
 @media(max-width:640px){.a-hero-text h2{font-size:1.15rem}}
 .a-hero-text p{color:var(--a-muted);font-size:13px;line-height:1.5}
 .a-hero-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
@@ -263,7 +325,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-stat strong{color:var(--a-accent);font-size:13px;font-weight:700}
 .a-card{background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;margin-bottom:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
 .a-card-header{padding:16px 20px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
-.a-card-title{font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px;letter-spacing:0.01em}
+.a-card-title{font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px;letter-spacing:0.01em;font-family:var(--font-title)}
 .a-card-title-icon{font-size:18px}
 .a-card-title .a-count{background:rgba(201,169,97,0.15);color:var(--a-accent);padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;margin-left:auto}
 .a-card-body{padding:20px}
@@ -274,7 +336,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-form-input,.a-form-textarea{width:100%;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:8px;font-size:13px;color:var(--a-text);outline:none;transition:border 0.2s,background 0.2s}
 .a-form-input:focus,.a-form-textarea:focus{border-color:var(--a-accent);background:rgba(255,255,255,0.05)}
 .a-form-textarea{min-height:80px;resize:vertical;font-family:'Inter',sans-serif}
-.a-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;font-size:12px;font-weight:600;border-radius:8px;transition:all 0.2s;cursor:pointer;white-space:nowrap;letter-spacing:0.01em}
+.a-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;font-size:12px;font-weight:600;border-radius:8px;transition:all 0.2s;cursor:pointer;white-space:nowrap;letter-spacing:0.01em;font-family:var(--font-title)}
 .a-btn-primary{background:linear-gradient(135deg,var(--a-accent) 0%,#b8934e 100%);color:#000;border:1px solid var(--a-accent);box-shadow:0 4px 14px rgba(201,169,97,0.3)}
 .a-btn-primary:hover{background:linear-gradient(135deg,var(--a-accent-hover) 0%,var(--a-accent) 100%);transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,97,0.4)}
 .a-btn-outline{background:rgba(255,255,255,0.03);border:1px solid var(--a-line);color:var(--a-text)}
@@ -308,10 +370,19 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .divider-or{display:flex;align-items:center;gap:12px;margin:12px 0;color:var(--a-muted);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
 .divider-line{height:1px;background:var(--a-line);margin:20px 0}
-.admin-back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:8px;color:var(--a-muted);cursor:pointer;transition:.2s;margin-bottom:16px}
+
+/* ADMIN FICHA TÉCNICA */
+.ficha-row-editor{display:grid;grid-template-columns:1fr 2fr 40px;gap:8px;margin-bottom:8px;align-items:start}
+@media(max-width:640px){.ficha-row-editor{grid-template-columns:1fr;gap:6px;padding:12px;border:1px solid var(--a-line);border-radius:8px}}
+.ficha-row-editor input, .ficha-row-editor textarea { background: rgba(255,255,255,0.03); border: 1px solid var(--a-line); border-radius: 6px; padding: 8px; font-size: 12px; color: var(--text); outline: none; }
+.ficha-row-editor input:focus, .ficha-row-editor textarea:focus { border-color: var(--a-accent); }
+.ficha-row-editor textarea { resize: vertical; min-height: 40px; }
+
+/* PORTFOLIO ADMIN */
+.admin-back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:8px;color:var(--a-muted);cursor:pointer;transition:.2s;margin-bottom:16px;font-family:var(--font-title)}
 .admin-back-btn:hover{background:var(--a-surface-hover);color:var(--a-text);border-color:rgba(255,255,255,0.2)}
 .admin-page-header{margin-bottom:20px}
-.admin-page-header h2{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px}
+.admin-page-header h2{font-family:var(--font-title);font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px}
 @media(max-width:640px){.admin-page-header h2{font-size:1.25rem}}
 .admin-page-header p{color:var(--a-muted);font-size:13px}
 .cat-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
@@ -321,7 +392,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .cat-card-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;display:block}
 .cat-card-img.empty{background:linear-gradient(160deg,#1a1a20,#0a0a0c);display:grid;place-items:center;color:var(--a-muted);font-size:36px}
 .cat-card-body{padding:14px}
-.cat-card-title{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.cat-card-title{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;font-family:var(--font-title)}
 .cat-card-meta{font-size:11px;color:var(--a-muted);display:flex;align-items:center;gap:6px}
 .cat-card-count{background:rgba(201,169,97,0.15);color:var(--a-accent);padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700}
 .project-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
@@ -331,7 +402,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .project-card-img{width:100%;aspect-ratio:1;object-fit:cover;background:#000;display:block}
 .project-card-img.empty{background:linear-gradient(160deg,#1a1a20,#0a0a0c);display:grid;place-items:center;color:var(--a-muted);font-size:32px;aspect-ratio:1}
 .project-card-body{padding:10px}
-.project-card-title{font-size:12px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.project-card-title{font-size:12px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-title)}
 .project-card-meta{font-size:10px;color:var(--a-muted);display:flex;align-items:center;gap:4px}
 .project-card-logo{position:absolute;top:6px;left:6px;max-height:22px;max-width:60%;object-fit:contain;background:rgba(0,0,0,0.75);padding:2px 6px;border-radius:4px;z-index:2}
 .project-edit-logo-preview{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:8px;margin-top:8px}
@@ -350,22 +421,24 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .project-image-item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .project-image-del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(229,72,77,0.95);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;z-index:3;opacity:0;transition:.2s}
 .project-image-item:hover .project-image-del{opacity:1}
+
 .empty-state{text-align:center;padding:40px 16px;background:rgba(255,255,255,0.02);border:1px dashed var(--a-line);border-radius:12px}
 .empty-icon{font-size:40px;margin-bottom:10px;line-height:1}
-.empty-state h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.empty-state h3{font-size:15px;font-weight:700;margin-bottom:6px;font-family:var(--font-title)}
 .empty-state p{color:var(--a-muted);font-size:12px;margin-bottom:14px}
+
 .a-login-screen{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#151518,#050505);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:400px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:16px;padding:32px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
 .a-login-logo{height:28px;margin:0 auto 20px;filter:brightness(0) invert(1)}
-.a-login-title{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;text-align:center;margin-bottom:6px}
+.a-login-title{font-family:var(--font-title);font-size:1.35rem;font-weight:700;text-align:center;margin-bottom:6px}
 .a-login-subtitle{font-size:13px;color:var(--a-muted);text-align:center;margin-bottom:24px}
 .a-login-error{color:var(--a-danger);font-size:12px;text-align:center;margin-top:12px;min-height:18px}
 .a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:2000;padding:16px}
 .a-modal-overlay.active{display:flex;animation:fadeIn 0.2s}
 .a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:14px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.7)}
 .a-modal-header{padding:16px 20px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--a-surface);z-index:10;border-radius:14px 14px 0 0}
-.a-modal-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.a-modal-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px;font-family:var(--font-title)}
 .a-modal-close{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.05);color:var(--a-muted);cursor:pointer;display:grid;place-items:center;font-size:14px;border:none;transition:.2s}
 .a-modal-close:hover{background:rgba(229,72,77,0.15);color:var(--a-danger)}
 .a-modal-body{padding:20px}
@@ -390,11 +463,11 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <span class="logo-text" id="logoText">Grobdesigns</span>
       </div>
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="home">Inicio</button>
-        <button class="tab" data-tab="portafolio">Portafolio</button>
-        <button class="tab" data-tab="covers">Covers</button>
-        <button class="tab" data-tab="clientes">Clientes</button>
-        <button class="tab" data-tab="contacto">Contacto</button>
+        <button class="tab active" data-tab="home" id="navTabHome">Inicio</button>
+        <button class="tab" data-tab="portafolio" id="navTabPort">Portafolio</button>
+        <button class="tab" data-tab="covers" id="navTabCov">Covers</button>
+        <button class="tab" data-tab="clientes" id="navTabCli">Clientes</button>
+        <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
       </div>
       <div class="nav-right">
         <button class="music-btn disabled" id="musicBtn" title="Reproducir / Pausar música" aria-label="Música">
@@ -411,34 +484,43 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <div class="hero-bg" id="heroBg"></div>
         <div class="hero-overlay"></div>
         <div class="wrap"><div class="hero-grid"><div>
-          <p class="eyebrow" id="pubHeroEyebrow">Disponible · 2025</p>
-          <h1 class="hero-h1" id="pubHeroTitle"></h1>
-          <p class="lead" id="pubHeroLead"></p>
+          <p class="eyebrow" id="txtHeroEyebrow">Disponible · 2025</p>
+          <h1 class="hero-h1" id="txtHeroTitle"></h1>
+          <p class="lead" id="txtHeroLead"></p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <button class="btn btn-primary" data-route="portafolio">Ver portafolio →</button>
-            <button class="btn" data-route="contacto">Contáctame</button>
+            <button class="btn btn-primary" data-route="portafolio" id="txtHeroBtn1">Ver portafolio →</button>
+            <button class="btn" data-route="contacto" id="txtHeroBtn2">Contáctame</button>
           </div>
         </div></div></div>
       </section>
       <div class="marquee"><div class="marquee-inner" id="marquee"></div></div>
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap"><div class="section-head" style="margin-bottom:16px">
-          <div class="label">— Destacados</div>
-          <div><h2>Proyectos <em>seleccionados</em>.</h2></div>
+          <div class="label" id="txtFeaturedLabel">— Destacados</div>
+          <div><h2 id="txtFeaturedTitle">Proyectos <em>seleccionados</em>.</h2></div>
         </div></div>
         <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
       </section>
       <section class="philosophy">
-        <div class="wrap"><div class="section-head">
-          <div class="label">— Filosofía</div>
-          <div><h2>Diseño con <em>intención</em>.</h2><p>Más de ocho años traduciendo ideas complejas en sistemas visuales claros.</p></div>
-        </div></div>
+        <div class="wrap">
+          <div class="phil-grid">
+            <div>
+              <div class="label" id="txtPhilLabel" style="color:#8A8A8A;margin-bottom:16px;display:block">— Filosofía</div>
+              <h2 id="txtPhilTitle">Diseño con <em>intención</em>.</h2>
+              <p id="txtPhilDesc">Más de ocho años traduciendo ideas complejas en sistemas visuales claros.</p>
+            </div>
+            <div class="tech-sheet" id="techSheetContainer">
+              <div class="tech-title" id="txtTechTitle">★ FICHA TÉCNICA</div>
+              <div id="techSheetRows"></div>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="software-section" id="softwareSection" style="display:none">
         <div class="wrap">
           <div class="section-head">
-            <div class="label">— Herramientas</div>
-            <div><h2>Con las que <em>trabajo</em>.</h2><p>Los programas y herramientas que uso cada día.</p></div>
+            <div class="label" id="txtToolsLabel">— Herramientas</div>
+            <div><h2 id="txtToolsTitle">Con las que <em>trabajo</em>.</h2><p id="txtToolsDesc">Los programas y herramientas que uso cada día.</p></div>
           </div>
           <div class="software-grid" id="publicSoftwareGrid"></div>
         </div>
@@ -470,9 +552,9 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
     <div class="view" data-view="covers">
       <section class="covers-view">
         <div class="covers-intro">
-          <p class="eyebrow">— Covers</p>
-          <h1>Una pared de <em>covers</em>.</h1>
-          <p>Portadas, artwork y ediciones.</p>
+          <p class="eyebrow" id="txtCovEyebrow">— Covers</p>
+          <h1 id="txtCovTitle">Una pared de <em>covers</em>.</h1>
+          <p id="txtCovDesc">Portadas, artwork y ediciones.</p>
         </div>
         <div class="covers-toolbar">
           <div class="covers-search-wrap">
@@ -517,8 +599,8 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
       <section class="clientes-view">
         <div class="wrap">
           <div class="section-head">
-            <div class="label">— Clientes</div>
-            <div><h2>Confían en <em>Grobdesigns</em>.</h2><p>Marcas, artistas y proyectos.</p></div>
+            <div class="label" id="txtCliLabel">— Clientes</div>
+            <div><h2 id="txtCliTitle">Confían en <em>Grobdesigns</em>.</h2><p id="txtCliDesc">Marcas, artistas y proyectos.</p></div>
           </div>
           <div class="clientes-grid" id="publicClientesGrid"></div>
         </div>
@@ -529,8 +611,8 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
       <section class="contacto-view">
         <div class="wrap"><div class="contact-grid">
           <div>
-            <h2>¿Trabajamos <em>juntos</em>?</h2>
-            <p style="color:var(--muted);margin-bottom:24px">Cuéntame sobre tu proyecto.</p>
+            <h2 id="txtConTitle">¿Trabajamos <em>juntos</em>?</h2>
+            <p style="color:var(--muted);margin-bottom:24px" id="txtConDesc">Cuéntame sobre tu proyecto.</p>
             <div class="c-item"><div class="c-label">Email</div>
               <a class="c-value" id="pubContactEmail" href="mailto:">-</a>
             </div>
@@ -559,13 +641,13 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="field"><label>01 — Nombre</label><input type="text" required maxlength="80" name="name"></div>
             <div class="field"><label>02 — Email</label><input type="email" required maxlength="120" name="email"></div>
             <div class="field"><label>03 — Mensaje</label><textarea required maxlength="1500" name="message"></textarea></div>
-            <button class="form-btn" type="submit">Enviar mensaje</button>
+            <button class="form-btn" type="submit" id="txtConBtn">Enviar mensaje</button>
           </form>
         </div></div>
       </section>
     </div>
   </main>
-  <footer><div class="wrap footer-inner"><span>© 2025 Grobdesigns</span><span>Diseñado con intención</span></div></footer>
+  <footer><div class="wrap footer-inner"><span id="txtFooterLeft">© 2025 Grobdesigns</span><span id="txtFooterRight">Diseñado con intención</span></div></footer>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -605,6 +687,8 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <div class="a-nav-item" data-target="portfolio"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Portafolio</span><span class="a-nav-badge" id="aBadgePortfolio">0</span></div>
         <div class="a-nav-item" data-target="clients"><span class="a-nav-icon">🏢</span><span class="a-nav-label">Clientes</span><span class="a-nav-badge" id="aBadgeClients">0</span></div>
         <div class="a-nav-item" data-target="tools"><span class="a-nav-icon">🛠️</span><span class="a-nav-label">Herramientas</span><span class="a-nav-badge" id="aBadgeTools">0</span></div>
+        <div class="a-nav-item" data-target="texts"><span class="a-nav-icon">📝</span><span class="a-nav-label">Textos Generales</span></div>
+        <div class="a-nav-item" data-target="ficha"><span class="a-nav-icon">★</span><span class="a-nav-label">Ficha Técnica</span></div>
         <div class="a-nav-item" data-target="contact"><span class="a-nav-icon">📧</span><span class="a-nav-label">Contacto</span></div>
         <div class="a-nav-item" data-target="theme"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Apariencia</span></div>
       </div>
@@ -628,30 +712,24 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
       </header>
 
       <div class="a-content">
+        
+        <!-- HERO -->
         <div class="a-panel active" id="a-panel-hero">
           <div class="a-hero">
             <div class="a-hero-icon">🎬</div>
             <div class="a-hero-text">
               <h2>Página de Inicio</h2>
-              <p>Las imágenes rotan con un zoom lento y disolución. Se guardan en alta calidad (hasta 4K).</p>
+              <p>Las imágenes rotan con zoom y disolución. Se guardan en alta calidad (hasta 4K).</p>
               <div class="a-hero-stats"><div class="a-stat">Imágenes: <strong id="statHeroImgs">0</strong></div></div>
-            </div>
-          </div>
-          <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">✍️</span>Texto Principal</h2></div>
-            <div class="a-card-body">
-              <div class="a-form-group"><label class="a-form-label">Etiqueta superior</label><input type="text" id="aHeroEyebrow" class="a-form-input"></div>
-              <div class="a-form-group"><label class="a-form-label">Titular</label><textarea id="aHeroTitle" class="a-form-textarea" rows="3"></textarea><span class="a-form-hint">Usa saltos de línea para separar líneas.</span></div>
-              <div class="a-form-group"><label class="a-form-label">Descripción</label><textarea id="aHeroLead" class="a-form-textarea" rows="2"></textarea></div>
             </div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Fondos del Carrusel</h2></div>
             <div class="a-card-body">
-              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K). Para máxima calidad en pantallas 5K+, usa el campo de URL pegando un enlace directo.</div>
+              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K).</div>
               <div class="upload-zone" id="heroUploadZone">
                 <span class="upload-zone-icon">📤</span>
-                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar (alta calidad)</div>
+                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar</div>
                 <input type="file" id="heroFileInput" accept="image/*" multiple hidden>
               </div>
               <div class="divider-or"><span>o pega URLs (máxima calidad)</span></div>
@@ -664,6 +742,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           </div>
         </div>
 
+        <!-- COVERS -->
         <div class="a-panel" id="a-panel-covers">
           <div class="a-hero">
             <div class="a-hero-icon">💿</div>
@@ -706,10 +785,12 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           </div>
         </div>
 
+        <!-- PORTFOLIO -->
         <div class="a-panel" id="a-panel-portfolio">
           <div id="portfolioPanelContent"></div>
         </div>
 
+        <!-- CLIENTS -->
         <div class="a-panel" id="a-panel-clients">
           <div class="a-hero">
             <div class="a-hero-icon">🏢</div>
@@ -740,12 +821,13 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           </div>
         </div>
 
+        <!-- TOOLS -->
         <div class="a-panel" id="a-panel-tools">
           <div class="a-hero">
             <div class="a-hero-icon">🛠️</div>
             <div class="a-hero-text">
               <h2>Herramientas</h2>
-              <p>Iconos del software con el que trabajas. Se muestran en blanco sobre la web pública, con glow al pasar el mouse.</p>
+              <p>Iconos del software. Se muestran en blanco con glow al hover.</p>
               <div class="a-hero-stats"><div class="a-stat">Iconos: <strong id="statTools">0</strong></div></div>
             </div>
           </div>
@@ -770,21 +852,118 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           </div>
         </div>
 
+        <!-- TEXTS -->
+        <div class="a-panel" id="a-panel-texts">
+          <div class="a-hero">
+            <div class="a-hero-icon">📝</div>
+            <div class="a-hero-text"><h2>Textos Generales</h2><p>Edita los textos de la web: Inicio, secciones, botones y footer.</p></div>
+          </div>
+          
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎬</span>Hero (Inicio)</h2></div>
+            <div class="a-card-body">
+              <div class="a-form-group"><label class="a-form-label">Etiqueta superior</label><input type="text" id="aHeroEyebrow" class="a-form-input"></div>
+              <div class="a-form-group"><label class="a-form-label">Titular</label><textarea id="aHeroTitle" class="a-form-textarea" rows="3"></textarea></div>
+              <div class="a-form-group"><label class="a-form-label">Descripción</label><textarea id="aHeroLead" class="a-form-textarea" rows="2"></textarea></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Botón 1</label><input type="text" id="aTextHeroBtn1" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Botón 2</label><input type="text" id="aTextHeroBtn2" class="a-form-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🌟</span>Destacados & Filosofía</h2></div>
+            <div class="a-card-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Etiqueta Destacados</label><input type="text" id="aTextFeatLabel" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Título Destacados</label><input type="text" id="aTextFeatTitle" class="a-form-input"></div>
+              </div>
+              <div class="divider-line"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Etiqueta Filosofía</label><input type="text" id="aTextPhilLabel" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Título Filosofía</label><input type="text" id="aTextPhilTitle" class="a-form-input"></div>
+              </div>
+              <div class="a-form-group"><label class="a-form-label">Texto Filosofía</label><textarea id="aTextPhilDesc" class="a-form-textarea" rows="3"></textarea></div>
+            </div>
+          </div>
+
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🛠️</span>Herramientas & Clientes</h2></div>
+            <div class="a-card-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Etiqueta Herramientas</label><input type="text" id="aTextToolsLabel" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Título Herramientas</label><input type="text" id="aTextToolsTitle" class="a-form-input"></div>
+              </div>
+              <div class="a-form-group"><label class="a-form-label">Texto Herramientas</label><input type="text" id="aTextToolsDesc" class="a-form-input"></div>
+              <div class="divider-line"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Etiqueta Clientes</label><input type="text" id="aTextCliLabel" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Título Clientes</label><input type="text" id="aTextCliTitle" class="a-form-input"></div>
+              </div>
+              <div class="a-form-group"><label class="a-form-label">Texto Clientes</label><input type="text" id="aTextCliDesc" class="a-form-input"></div>
+            </div>
+          </div>
+
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📧</span>Contacto & Footer</h2></div>
+            <div class="a-card-body">
+              <div class="a-form-group"><label class="a-form-label">Título Contacto</label><input type="text" id="aTextConTitle" class="a-form-input"></div>
+              <div class="a-form-group"><label class="a-form-label">Texto Contacto</label><input type="text" id="aTextConDesc" class="a-form-input"></div>
+              <div class="a-form-group"><label class="a-form-label">Botón Enviar</label><input type="text" id="aTextConBtn" class="a-form-input"></div>
+              <div class="divider-line"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="a-form-group"><label class="a-form-label">Footer Izquierda</label><input type="text" id="aTextFooterLeft" class="a-form-input"></div>
+                <div class="a-form-group"><label class="a-form-label">Footer Derecha</label><input type="text" id="aTextFooterRight" class="a-form-input"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FICHA TÉCNICA -->
+        <div class="a-panel" id="a-panel-ficha">
+          <div class="a-hero">
+            <div class="a-hero-icon">★</div>
+            <div class="a-hero-text"><h2>Ficha Técnica</h2><p>Datos que aparecen en el bloque junto a la Filosofía en el Inicio.</p></div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header">
+              <h2 class="a-card-title"><span class="a-card-title-icon">✍️</span>Título de la Ficha</h2>
+            </div>
+            <div class="a-card-body">
+              <div class="a-form-group">
+                <input type="text" id="aTextTechTitle" class="a-form-input" placeholder="★ FICHA TÉCNICA">
+              </div>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header">
+              <h2 class="a-card-title"><span class="a-card-title-icon">📋</span>Filas de la Ficha</h2>
+              <button class="a-btn a-btn-primary a-btn-sm" onclick="addFichaRow()">+ Añadir Fila</button>
+            </div>
+            <div class="a-card-body">
+              <div id="fichaEditorList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACTO -->
         <div class="a-panel" id="a-panel-contact">
           <div class="a-hero">
             <div class="a-hero-icon">📧</div>
             <div class="a-hero-text"><h2>Información de Contacto</h2><p>Datos para los botones de WhatsApp y Email.</p></div>
           </div>
           <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📇</span>Datos de Contacto</h2></div>
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📇</span>Datos</h2></div>
             <div class="a-card-body">
               <div class="a-form-group"><label class="a-form-label">Email</label><input type="email" id="aContactEmail" class="a-form-input" placeholder="hola@ejemplo.com"></div>
-              <div class="a-form-group"><label class="a-form-label">Teléfono (WhatsApp)</label><input type="text" id="aContactPhone" class="a-form-input" placeholder="+34 600 000 000"><span class="a-form-hint">Incluye el código de país.</span></div>
+              <div class="a-form-group"><label class="a-form-label">Teléfono (WhatsApp)</label><input type="text" id="aContactPhone" class="a-form-input" placeholder="+34 600 000 000"></div>
               <div class="a-form-group"><label class="a-form-label">Ubicación</label><input type="text" id="aContactLocation" class="a-form-input" placeholder="Madrid, España"></div>
             </div>
           </div>
         </div>
 
+        <!-- THEME -->
         <div class="a-panel" id="a-panel-theme">
           <div class="a-hero">
             <div class="a-hero-icon">🎨</div>
@@ -806,11 +985,12 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
               <div class="a-form-group">
                 <label class="a-form-label">URL del audio</label>
                 <input type="url" id="aMusicUrl" class="a-form-input" placeholder="https://ejemplo.com/musica.mp3">
-                <span class="a-form-hint">Aparecerá un botón Play/Pausa en la cabecera del sitio.</span>
+                <span class="a-form-hint">Aparecerá un botón Play/Pausa en la cabecera.</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </main>
   </div>
@@ -855,7 +1035,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <div class="a-form-group">
           <label class="a-form-label">YouTube (el video aparecerá en la galería)</label>
           <input type="url" id="aEditCoverYouTube" class="a-form-input" placeholder="https://youtube.com/watch?v=...">
-          <span class="a-form-hint">Si hay link de YouTube, el video se reproducirá inline en la galería del cover.</span>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">Imágenes extra (galería)</label>
@@ -1098,28 +1277,70 @@ const GH = {
 };
 
 function migrateData(data) {
-  if (!data || !data.categories) return data;
-  data.categories.forEach(cat => {
-    if (cat.items !== undefined) {
-      if (!cat.projects) {
-        const imgs = (cat.items || []).map(item => getItemUrl(item));
-        cat.projects = imgs.length ? [{
-          id: uid(), name: cat.name || 'Proyectos', logo: cat.logo || '',
-          parallaxImage: cat.parallaxImage || imgs[0] || '', images: imgs
-        }] : [];
+  if (!data) return data;
+  // Migrar categorías
+  if (data.categories) {
+    data.categories.forEach(cat => {
+      if (cat.items !== undefined) {
+        if (!cat.projects) {
+          const imgs = (cat.items || []).map(item => getItemUrl(item));
+          cat.projects = imgs.length ? [{
+            id: uid(), name: cat.name || 'Proyectos', logo: cat.logo || '',
+            parallaxImage: cat.parallaxImage || imgs[0] || '', images: imgs
+          }] : [];
+        }
+        delete cat.items;
+        delete cat.logo;
       }
-      delete cat.items;
-      delete cat.logo;
-    }
-    if (!cat.projects) cat.projects = [];
-    if (!cat.parallaxImage) cat.parallaxImage = '';
-    cat.projects.forEach(proj => {
-      if (!proj.id) proj.id = uid();
-      if (!proj.images) proj.images = [];
-      proj.images = proj.images.map(img => typeof img === 'string' ? img : getItemUrl(img));
-      if (proj.parallaxImage === undefined) proj.parallaxImage = '';
+      if (!cat.projects) cat.projects = [];
+      if (!cat.parallaxImage) cat.parallaxImage = '';
+      cat.projects.forEach(proj => {
+        if (!proj.id) proj.id = uid();
+        if (!proj.images) proj.images = [];
+        proj.images = proj.images.map(img => typeof img === 'string' ? img : getItemUrl(img));
+        if (proj.parallaxImage === undefined) proj.parallaxImage = '';
+      });
     });
-  });
+  }
+  // Migrar textos
+  if (!data.texts) data.texts = {};
+  const defaultTexts = {
+    heroEyebrow: 'Disponible · 2025',
+    heroBtn1: 'Ver portafolio →',
+    heroBtn2: 'Contáctame',
+    featLabel: '— Destacados',
+    featTitle: 'Proyectos <em>seleccionados</em>.',
+    philLabel: '— Filosofía',
+    philTitle: 'Diseño con <em>intención</em>.',
+    philDesc: 'Más de ocho años traduciendo ideas complejas en sistemas visuales claros.',
+    toolsLabel: '— Herramientas',
+    toolsTitle: 'Con las que <em>trabajo</em>.',
+    toolsDesc: 'Los programas y herramientas que uso cada día.',
+    cliLabel: '— Clientes',
+    cliTitle: 'Confían en <em>Grobdesigns</em>.',
+    cliDesc: 'Marcas, artistas y proyectos.',
+    conTitle: '¿Trabajamos <em>juntos</em>?',
+    conDesc: 'Cuéntame sobre tu proyecto.',
+    conBtn: 'Enviar mensaje',
+    footerLeft: '© 2025 Grobdesigns',
+    footerRight: 'Diseñado con intención',
+    techTitle: '★ FICHA TÉCNICA'
+  };
+  for (let k in defaultTexts) {
+    if (data.texts[k] === undefined) data.texts[k] = defaultTexts[k];
+  }
+  // Migrar ficha
+  if (!data.ficha) {
+    data.ficha = [
+      { label: 'Fundadores', value: 'Luis Albornoz\nKaren Guevara' },
+      { label: 'Origen', value: 'Caracas, VE' },
+      { label: 'Bases', value: 'Caracas, VE\nCDMX, MX' },
+      { label: 'Fundación', value: '2012' },
+      { label: 'Tesis IDC', value: '2011' },
+      { label: 'Estética', value: 'Kawaii latino' },
+      { label: 'Disciplinas', value: 'Personajes · 3D\nMarca · Toys' }
+    ];
+  }
   return data;
 }
 
@@ -1128,12 +1349,13 @@ let DATA = {
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
-  music: { url: '' }
+  music: { url: '' },
+  texts: {},
+  ficha: []
 };
 
 const ADMIN_NAV = { view: 'categories', catId: null, projId: null };
 
-/* ESTADO DE COVERS: shuffle + filtro + búsqueda */
 let _coversOrder = null;
 let _currentFilter = 'todos';
 let _currentSearch = '';
@@ -1215,7 +1437,6 @@ function toggleMusic() {
   }
 }
 
-/* HERO ROTATION con zoom in por imagen */
 let heroInterval = null;
 function initHeroRotation() {
   if (heroInterval) { clearInterval(heroInterval); heroInterval = null; }
@@ -1273,7 +1494,6 @@ function goBack() {
   else location.hash = '#home';
 }
 
-/* COVERS: shuffle y orden */
 function shuffleCovers() {
   const all = DATA.covers || [];
   _coversOrder = all.map(c => c.id);
@@ -1363,7 +1583,31 @@ async function loadPublicData() {
 }
 
 function renderPublicSite() {
-  const ee = $('#pubHeroEyebrow'); if (ee) ee.textContent = DATA.hero.eyebrow || '';
+  const txt = DATA.texts || {};
+  
+  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.innerHTML = text; };
+
+  setText('txtHeroEyebrow', txt.heroEyebrow);
+  setText('txtHeroBtn1', txt.heroBtn1);
+  setText('txtHeroBtn2', txt.heroBtn2);
+  setText('txtFeaturedLabel', txt.featLabel);
+  setText('txtFeaturedTitle', txt.featTitle);
+  setText('txtPhilLabel', txt.philLabel);
+  setText('txtPhilTitle', txt.philTitle);
+  setText('txtPhilDesc', txt.philDesc);
+  setText('txtToolsLabel', txt.toolsLabel);
+  setText('txtToolsTitle', txt.toolsTitle);
+  setText('txtToolsDesc', txt.toolsDesc);
+  setText('txtCliLabel', txt.cliLabel);
+  setText('txtCliTitle', txt.cliTitle);
+  setText('txtCliDesc', txt.cliDesc);
+  setText('txtConTitle', txt.conTitle);
+  setText('txtConDesc', txt.conDesc);
+  setText('txtConBtn', txt.conBtn);
+  setText('txtFooterLeft', txt.footerLeft);
+  setText('txtFooterRight', txt.footerRight);
+  setText('txtTechTitle', txt.techTitle);
+
   const t = $('#pubHeroTitle');
   if (t) {
     t.innerHTML = '';
@@ -1373,6 +1617,19 @@ function renderPublicSite() {
     });
   }
   const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
+  
+  // Render Ficha
+  const techRows = $('#techSheetRows');
+  if (techRows) {
+    techRows.innerHTML = '';
+    (DATA.ficha || []).forEach(row => {
+      const div = document.createElement('div');
+      div.className = 'tech-row';
+      div.innerHTML = `<div class="tech-label">${escHtml(row.label)}</div><div class="tech-value">${escHtml(row.value)}</div>`;
+      techRows.appendChild(div);
+    });
+  }
+
   const heroBg = $('#heroBg');
   if (heroBg) {
     heroBg.innerHTML = '';
@@ -1542,7 +1799,6 @@ function renderCoverDetail(id) {
   $('#coverHeroArtist').textContent = c.artist || '';
   $('#coverHeroBadge').textContent = (c.category || 'SANCILLO').toUpperCase();
 
-  // Hero music: solo Spotify/Apple minimalista
   const musicWrap = $('#coverHeroMusic');
   musicWrap.innerHTML = '';
   const heroEmbed = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl);
@@ -1558,7 +1814,6 @@ function renderCoverDetail(id) {
     musicWrap.style.display = 'none';
   }
 
-  // Reseña
   const extra = $('#coverExtraSection');
   const resenaBlock = $('#coverResenaBlock');
   const galeriaLabel = $('#coverGaleriaLabel');
@@ -1566,7 +1821,6 @@ function renderCoverDetail(id) {
   if (hasReview) { $('#coverHeroResena').textContent = c.review; resenaBlock.style.display = 'block'; }
   else resenaBlock.style.display = 'none';
 
-  // Galería: video de YouTube minimalista + imágenes extra
   const extraImgs = $('#coverExtraImgs');
   extraImgs.innerHTML = '';
   const ytId = c.youtubeUrl ? getYouTubeId(c.youtubeUrl) : null;
@@ -1800,10 +2054,37 @@ function updateAdminBadges() {
 
 function renderAdmin() {
   if (!$('#aHeroEyebrow')) return;
-  $('#aHeroEyebrow').value = DATA.hero.eyebrow || '';
+  
+  // Hero text
+  $('#aHeroEyebrow').value = DATA.texts.heroEyebrow || '';
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
+  $('#aTextHeroBtn1').value = DATA.texts.heroBtn1 || '';
+  $('#aTextHeroBtn2').value = DATA.texts.heroBtn2 || '';
+  
+  // Section texts
+  $('#aTextFeatLabel').value = DATA.texts.featLabel || '';
+  $('#aTextFeatTitle').value = DATA.texts.featTitle || '';
+  $('#aTextPhilLabel').value = DATA.texts.philLabel || '';
+  $('#aTextPhilTitle').value = DATA.texts.philTitle || '';
+  $('#aTextPhilDesc').value = DATA.texts.philDesc || '';
+  $('#aTextToolsLabel').value = DATA.texts.toolsLabel || '';
+  $('#aTextToolsTitle').value = DATA.texts.toolsTitle || '';
+  $('#aTextToolsDesc').value = DATA.texts.toolsDesc || '';
+  $('#aTextCliLabel').value = DATA.texts.cliLabel || '';
+  $('#aTextCliTitle').value = DATA.texts.cliTitle || '';
+  $('#aTextCliDesc').value = DATA.texts.cliDesc || '';
+  $('#aTextConTitle').value = DATA.texts.conTitle || '';
+  $('#aTextConDesc').value = DATA.texts.conDesc || '';
+  $('#aTextConBtn').value = DATA.texts.conBtn || '';
+  $('#aTextFooterLeft').value = DATA.texts.footerLeft || '';
+  $('#aTextFooterRight').value = DATA.texts.footerRight || '';
 
+  // Ficha
+  $('#aTextTechTitle').value = DATA.texts.techTitle || '';
+  renderFichaEditor();
+
+  // Images
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -1860,6 +2141,26 @@ function renderAdmin() {
 
   updateAdminBadges();
 }
+
+function renderFichaEditor() {
+  const container = $('#fichaEditorList');
+  if (!container) return;
+  container.innerHTML = '';
+  (DATA.ficha || []).forEach((row, i) => {
+    const div = document.createElement('div');
+    div.className = 'ficha-row-editor';
+    div.innerHTML = `
+      <input type="text" value="${escHtml(row.label)}" placeholder="Etiqueta (ej: Origen)" oninput="updateFichaRow(${i}, 'label', this.value)">
+      <textarea placeholder="Valor (ej: Caracas, VE)" oninput="updateFichaRow(${i}, 'value', this.value)">${escHtml(row.value)}</textarea>
+      <button class="a-btn a-btn-danger" onclick="delFichaRow(${i})" title="Eliminar">✕</button>
+    `;
+    container.appendChild(div);
+  });
+}
+window.updateFichaRow = (idx, field, val) => { if(DATA.ficha[idx]) DATA.ficha[idx][field] = val; };
+window.addFichaRow = () => { DATA.ficha.push({label: 'Nueva etiqueta', value: 'Valor'}); renderFichaEditor(); saveAdminData(); };
+window.delFichaRow = (idx) => { if(confirm('¿Eliminar fila?')) { DATA.ficha.splice(idx, 1); renderFichaEditor(); saveAdminData(); } };
+
 
 function renderAdminPortfolio() {
   const container = $('#portfolioPanelContent');
@@ -1940,7 +2241,7 @@ function renderAdminCategoryPage(container) {
       <div class="a-card-body">
         <div class="a-form-group">
           <label class="a-form-label">Nombre de la categoría</label>
-          <input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${catIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
+          <input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${catIdx}, 'name', this.value)" style="font-family:var(--font-title);font-size:1.1rem;font-weight:700">
         </div>
         <div class="a-form-group">
           <label class="a-form-label">Descripción</label>
@@ -2002,7 +2303,7 @@ function renderAdminProjectPage(container) {
       <div class="a-card-body">
         <div class="a-form-group">
           <label class="a-form-label">Nombre del proyecto</label>
-          <input type="text" class="a-form-input" value="${escHtml(proj.name || '')}" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
+          <input type="text" class="a-form-input" value="${escHtml(proj.name || '')}" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)" style="font-family:var(--font-title);font-size:1.1rem;font-weight:700">
         </div>
         <div class="a-form-group">
           <label class="a-form-label">🖼️ Logo del proyecto</label>
@@ -2195,13 +2496,34 @@ $$('.a-nav-item').forEach(item => {
       ADMIN_NAV.projId = null;
     }
     if (item.dataset.target === 'portfolio') renderAdminPortfolio();
-    if (window.innerWidth <= 900) { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); }
+    if (window.innerWidth <= 1024) { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); }
   };
 });
 
-$('#aHeroEyebrow').oninput = e => DATA.hero.eyebrow = e.target.value;
+/* Inputs listeners */
+$('#aHeroEyebrow').oninput = e => DATA.texts.heroEyebrow = e.target.value;
 $('#aHeroTitle').oninput = e => DATA.hero.title = e.target.value;
 $('#aHeroLead').oninput = e => DATA.hero.lead = e.target.value;
+$('#aTextHeroBtn1').oninput = e => DATA.texts.heroBtn1 = e.target.value;
+$('#aTextHeroBtn2').oninput = e => DATA.texts.heroBtn2 = e.target.value;
+$('#aTextFeatLabel').oninput = e => DATA.texts.featLabel = e.target.value;
+$('#aTextFeatTitle').oninput = e => DATA.texts.featTitle = e.target.value;
+$('#aTextPhilLabel').oninput = e => DATA.texts.philLabel = e.target.value;
+$('#aTextPhilTitle').oninput = e => DATA.texts.philTitle = e.target.value;
+$('#aTextPhilDesc').oninput = e => DATA.texts.philDesc = e.target.value;
+$('#aTextToolsLabel').oninput = e => DATA.texts.toolsLabel = e.target.value;
+$('#aTextToolsTitle').oninput = e => DATA.texts.toolsTitle = e.target.value;
+$('#aTextToolsDesc').oninput = e => DATA.texts.toolsDesc = e.target.value;
+$('#aTextCliLabel').oninput = e => DATA.texts.cliLabel = e.target.value;
+$('#aTextCliTitle').oninput = e => DATA.texts.cliTitle = e.target.value;
+$('#aTextCliDesc').oninput = e => DATA.texts.cliDesc = e.target.value;
+$('#aTextConTitle').oninput = e => DATA.texts.conTitle = e.target.value;
+$('#aTextConDesc').oninput = e => DATA.texts.conDesc = e.target.value;
+$('#aTextConBtn').oninput = e => DATA.texts.conBtn = e.target.value;
+$('#aTextFooterLeft').oninput = e => DATA.texts.footerLeft = e.target.value;
+$('#aTextFooterRight').oninput = e => DATA.texts.footerRight = e.target.value;
+$('#aTextTechTitle').oninput = e => DATA.texts.techTitle = e.target.value;
+
 $('#aContactEmail').oninput = e => DATA.contact.email = e.target.value;
 $('#aContactPhone').oninput = e => DATA.contact.phone = e.target.value;
 $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
