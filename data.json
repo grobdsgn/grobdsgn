@@ -497,7 +497,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/3JjHG60vzkUptBRRRLodXc?si=b4f79b7d2e2a4beb",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "wyrz1buemvo0iyus",
@@ -514,7 +519,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2uilya4Nb8WfVWhLyrTwwd?si=bc9834a71e274cd8",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "odp3d5oymvo0izry",
@@ -534,7 +544,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/7cMVpWRrAvGwEMlGPmJkx2?si=rkoNCHlTT0qL5EzVhHMPYA",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "5t1ivhgpmvo0j0px",
@@ -548,7 +563,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6RcQeYGYy2N8CR6N1HJN5T?si=bfe52a77e0b7464e",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "5tbknvmgmvo0j1nc",
@@ -562,7 +582,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2SzgK8i6si6ETtu57nTdSn?si=760970bf76fd4615",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "2vri1e9xmvo0j2ia",
@@ -576,7 +601,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/0UQCoF3iR72kpFoipPbZcs?si=6e778bceb1ad49a8",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "kmo8me8nmvo0j3gy",
@@ -590,7 +620,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/1x1l4HTXeFzxKcRovL23h3?si=2sWjK-n9TlOzpbcd1q2xxg",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "ek4bvwwbmvo0j4cj",
@@ -604,7 +639,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5EXu5aKT2VLLzjOkBW1ADI?si=afd07e403a5f46a8",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "4t7dnbjemvo0j57z",
@@ -618,7 +658,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1Bo5CD2Tg8di5QSJHEoHmZ?si=cde69413935d4b36",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "s3yuzo4wmvo0j62h",
@@ -632,7 +677,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/3nhIVP0aPmQ9y9FAeTthMc?si=d64fabd10012440f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/WaZCYP-qSIA?si=Eq7wHr2dyIgAZbPP",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lcy957eomvo0j7v9",
@@ -646,7 +696,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5u5MvmVtitax9R1Mxh3reC?si=a19a3773bfd14e85",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "bjre79x2mvo0j8sc",
@@ -660,7 +715,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6SIrNxmmdbv1KUbFBu1PaN?si=d180ef1a0ef54d3f",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/rKeT3qA6Zao?si=MQ1Vd6nTZMqINcwk",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "6rbdl8nnmvo0j9lg",
@@ -674,7 +734,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5frzZHGsepF5x7CNtnSeec?si=f408948f1a8a46de",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "tkesn1bamvo0jagr",
@@ -688,7 +753,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1xBzdDFceuRCllQ4jl2VHr?si=98259f820a844b1d",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=bF5cfzdOVCY",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "efmmf0vxmvo0jbf6",
@@ -705,7 +775,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "d9vvue64mvo0jccq",
@@ -719,7 +794,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5aifhDhsh8lRatTax02HuO?si=a8c1d5fae1f7433d",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=xDyXYqQTHRM",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "vx1v8ucnmvo0jdfn",
@@ -736,7 +816,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6iA5zCSpvk3pvwQLypP7SB?si=5e385fd6b6b54eaf",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "ikzjvn6xmvo0je9c",
@@ -750,7 +835,12 @@
       "spotifyUrl": "https://i.scdn.co/image/ab67616d0000b273e3f90eacd1066086ece11704",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=ezC3Gl-vvP0",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "znkeu3wqmvo0jf05",
@@ -764,7 +854,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4KtaAZFe7XzFLzq6XOMB9K?si=de8fb610d1634eb3",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "06xhe9qamvo0jfvs",
@@ -778,7 +873,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/29dYlNzCwxW1pKNyUk2rvp?si=9ZP8hn3BSD298yw-xIYwpA",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "g629oaklmvo0jgq2",
@@ -792,7 +892,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/2DDCrInfnq5rY1cORGtuBW?si=LtkzjXf5Q6SrF2ekD63njg",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "1j8ocbq9mvo0jhkj",
@@ -806,7 +911,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4irNNJ4ZbtKqcvfpvp9ud6?si=2486bd22c38b40e4",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "vja0dac1mvo0jihs",
@@ -820,7 +930,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6IA5CopmI6RHeRb7mclGTN?si=4d702d6bc9c4456d",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "93yw2gusmvo0jjy5",
@@ -834,7 +949,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1c58NqLYSElM2PmcpiW9xx?si=c10573451b9a47f5",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=nyqOWhYsRb4",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "1xklxq8jmvo0jmdf",
@@ -848,7 +968,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2gLxf2V3xAEitxNawDhgJb?si=f7b747883573409c",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "zodsyoptmvo0jnnx",
@@ -862,7 +987,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "trmvjp1imvo0jora",
@@ -876,7 +1006,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "w8rlrrrlmvo0jpvj",
@@ -890,7 +1025,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4U1DsHDDVj7iPuQGGUbWPe?si=K3NHkTM-Q8O_kh-XLfj8LA",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "yomc8ay7mvo0jqzr",
@@ -907,7 +1047,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/1umEpouHOqscAho8jhazbQ?si=MDSBiXvXSj-VPOx1f7dc8Q",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "m7xry7eemvo0xccd",
@@ -927,7 +1072,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "w1w7xqxwmvo0xdwz",
@@ -944,7 +1094,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2xZDf65wh9SdCU8lEN30ek?si=3b02b6cff566457a",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "elwhk65vmvo0xepm",
@@ -958,7 +1113,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/54FoR5osiOJtVae7SCdSnq?si=651bae2d6c4c4b01",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "az9703hfmvo0xokz",
@@ -972,7 +1132,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/03oX3KPyi8ydzOaMNTpX0N?si=HPL02JqdT6S762IlTqw9Ng",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "0hkaqewpmvo17fyd",
@@ -986,7 +1151,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2Vt4eQL6qvEZMLtKhrJYu3?si=d25b0f379d734675",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "ndmr8aqqmvo1tlfy",
@@ -1009,7 +1179,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1Tf8WS7Byx8RboRAxs3tv0?si=763705b73da64639",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "drrfsxnamvo63akc",
@@ -1030,7 +1205,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/6rBQjDqg37kLwlvVyRxsTK?si=47a79385ff384f6e",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "y9f4tsudmvo678xl",
@@ -1051,7 +1231,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "fkce49ckmvoahkwe",
@@ -1070,7 +1255,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4AMhfpjLv8kvutKhayvfhP?si=942d89b354cd4df0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "c25pzncsmvob6qj0",
@@ -1084,7 +1274,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/78DpyPlM2nP5rDwbwZS5x7?si=540483b1de194f2e",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "18m0l9jimvobcz4b",
@@ -1098,7 +1293,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/09JhhWN8iqvzAFtDkWOVzg?si=c295c30a3d264ff7",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "ocbr7tpbmvobu04i",
@@ -1112,7 +1312,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5fCwG6V6HmwBTBQfcWxP2j?si=e25282cda4de41cf",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "ou7wrnfcmvobucgh",
@@ -1137,7 +1342,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5vmJp7MZZ1bms4H2RXxZox?si=ba077f5d56c948bc",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "h94f9811mvobx3x7",
@@ -1151,7 +1361,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "gxptm0xxmvobypaw",
@@ -1165,7 +1380,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1quxsSsiHJEvy8BdMhG3hS?si=f5d6bda618b14f61",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "vhqace36mvocby5i",
@@ -1184,7 +1404,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/6MCsxhSAOaBnPFJHhmzDLQ?si=fbdb04b65db740aa",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lcbkl5lvmvocmzlg",
@@ -1205,7 +1430,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/7ry5kDaNu1jyd6QaZKZPbA?si=041a6e610d0b43a3",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "oirjk7f4mvoe7tn7",
@@ -1222,7 +1452,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5S1MwS8tKYDEirfQgUXa5T?si=56f52ce935c84415",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "gtcukk06mvoeiq37",
@@ -1236,7 +1471,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/40067qY1n6hA4xNtBTnUXS?si=ukHrj0HaSbKawZ5qQFuuwQ",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "6ctkgvnlmvoeqakj",
@@ -1259,7 +1499,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/1euCvB9YCT2PkCEe0wZSpR?si=hrSUVy_GSAa8LWYPsdAwnA",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "spi0vgn3mvof6fgp",
@@ -1276,7 +1521,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/3MBxsHVfVYdc9lKIvMI2I7?si=i--NuC1ETBiHfkOBHbTp4w",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "x95d8fshmvofcnl9",
@@ -1295,7 +1545,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/71nrF94Pis47Je6SvodtLR?si=b78d0cbb805146b2",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "wujxlfzomvofirmp",
@@ -1309,7 +1564,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/39hXZ6X7NFimTrYYB3wT16?si=583f7deb25654d28",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=B7jLN9ae-Qo",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "y6tomw0jmvofw2bv",
@@ -1327,7 +1587,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4FmiCa6KOcqYTf28FEl7Ge?si=fe61cfc5db4643f6",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "uqq13z2omvogpknp",
@@ -1344,7 +1609,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/41bNcgpPE2pe6E0nmys6Oj?si=cb4f20b242ae4d11",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "3cfnugrrmvogrbtq",
@@ -1364,7 +1634,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/6QKVi2KR0jAzdL6wDpfOyk?si=fbca99b1dc234c91",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "adbm5p18mvogwqfr",
@@ -1385,7 +1660,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/5AJTZdKxe3DzLYbpowIaH4?si=H2r1I4VbTZuBVl2Qh0JWQQ",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lt40g4y4mvoihv9u",
@@ -1402,7 +1682,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/3BIKYAofSCSuRtHaGxbprF?si=5deb0d0f3a51463f",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "8skr9zgwmvoilkln",
@@ -1420,7 +1705,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4719W4pIdmaH0tawsJBeNf?si=bed32fb5728c4ea0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lge9an5umvoitanp",
@@ -1436,7 +1726,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/5XhcVslLrEPbF1ZiJ0k6ip?si=37cb6f64a1624f35",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lem4wsxwmvoiurrw",
@@ -1450,7 +1745,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/57RM67Rt2vO9Dgjqc1eC5a?si=1ca2d4168c6c43d2",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "guwtm6x1mvoiw64t",
@@ -1467,7 +1767,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/2K41UHPju1j3EWmoePHt4S?si=1OWC67KUQ6qoiFxj6ai6mg",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "h56iogn9mvoizqvd",
@@ -1489,7 +1794,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/69jPnyg383LhOCJ8fEAoIb?si=811800b771a24bc1",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "147zr2jzmvoj2q2m",
@@ -1507,7 +1817,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "33ax330rmvoj6vxo",
@@ -1524,7 +1839,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/2YiziMql3dRV3ic0gkEDgv?si=240bfcccdad8408f",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "fpva6jojmvojhcoz",
@@ -1538,7 +1858,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4L187IuwvBySJqpBMHYbrW?si=8e22e0f9c0fc4b63",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "skeehpzdmvojmwna",
@@ -1554,7 +1879,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/382rMfJUDCCqLlAqmoVeHk?si=3IhQH5AMTCqr5vgWPeFB_A",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "gdl3qg9zmvojr2cd",
@@ -1568,7 +1898,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2nLk4rvfrk8uVzv8CMckBF?si=d40eef7d32ef41e0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "2xj9rjupmvojw6ju",
@@ -1582,7 +1917,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/7gDmPRpv9oLHbTLwicn4Zl?si=4269b1e8c70c470a",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "2ys7a7mkmvojy99m",
@@ -1596,7 +1936,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1S32oqt982qaSQEQfRFcOz?si=aea11166a2234a8a",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "xva6hb7emvok2p0i",
@@ -1610,7 +1955,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/7kxYYjOYRO8HamP4RKBhJ0?si=7fc9e294f8bd4bc7",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "bllluuuimvok5mt9",
@@ -1624,7 +1974,12 @@
       "spotifyUrl": "https://youtu.be/QWZABcajGoE?si=Z_aBD7dv_nZAX8xh",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/QWZABcajGoE?si=0_vJYNnBn7CSalsj",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "lipn6lwomvok7yeb",
@@ -1638,7 +1993,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1EtJXZk1deGllYcxkToHPj?si=806d21bce3374c11",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "a9h7nbeymvokgbyl",
@@ -1652,7 +2012,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=VsRLbBm9ffk",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "bk3j939jmvokii4d",
@@ -1666,7 +2031,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=Qqg5DVoUezA",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "awxtocc5mvokmkeb",
@@ -1683,7 +2053,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4RU1KlIro6jl1qkDTcruMD?si=ad9573d749ce4c39",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "3z883thtmvokr8on",
@@ -1703,7 +2078,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1axZcm7CupYVJAhOcSY1my?si=10ba3045be9448ec",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "y5i7h8fcmvokswf5",
@@ -1721,7 +2101,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1YWEt98k8n5WN3OKKyDVrt?si=62cc6ec892ea493e",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "kugbz3mhmvol34i3",
@@ -1735,7 +2120,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/2hi1aFllOFRNH8gIHxQvD9?si=85b9e7fd82294f97",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "gfvasi0ymvol4fko",
@@ -1749,7 +2139,12 @@
       "spotifyUrl": "https://open.spotify.com/playlist/5kw1kasEgI2rq7SLaoD0qD?si=f8230ebb2a864cfe",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "vbg1xdaqmvolegap",
@@ -1763,7 +2158,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/0ksn45NhLxZ5tnExC7iqQq?si=e54a4a79882d4d78",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "bz868vthmvolge6k",
@@ -1777,7 +2177,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.instagram.com/p/nrnq-ZCESr/?utm_source=ig_web_copy_link&psln=MWQ1ZGUxMzBkMA==&srtk=MWQ1ZGUxMzBkMA==",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "psghfl0emvoll2t0",
@@ -1795,7 +2200,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "pykie6ncmvolmisg",
@@ -1813,7 +2223,12 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "rcj0a7p6mvq4mvlh",
@@ -1830,7 +2245,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/4eAS7xdukBW1AKvUYAVnxR?si=c2VIjmvDT3SUKWnnzb3GkA",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "e09krixxmvq4oh2f",
@@ -1846,7 +2266,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/3oqb1OJye6xZqABH3wPOAA?si=c915d49c45a54a9a",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     },
     {
       "id": "zr751mk8mvq59408",
@@ -1862,7 +2287,12 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/track/55oQpXCwZdx7rFOtFDaZU9?si=7944cc4ec6244a61",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true
+      "featured": true,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
@@ -1884,6 +2314,9 @@
   },
   "music": {
     "url": ""
+  },
+  "settings": {
+    "youtubeApiKey": ""
   },
   "texts": {
     "navHome": "Inicio",
