@@ -224,7 +224,7 @@
     {
       "id": "mmlfg3tomvo0ovmp",
       "name": "Eventos",
-      "description": "",
+      "description": "Haz real tu visión",
       "cover": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cat-1792973665602-8l4u23.jpg",
       "projects": [
         {
@@ -1816,6 +1816,7 @@
     }
   ],
   "contact": {
+    "instagram": "",
     "email": "Grobdsgnartes@gmail.com",
     "phone": "+58 4141299366",
     "location": "Caracas, Venezuela"
@@ -1876,6 +1877,21 @@
     "footerLeft": "© 2025 Grobdesigns",
     "footerRight": "Diseñado con intención",
     "pageTitle": "Grobdesigns",
-    "metaDescription": "Portafolio de Grobdesigns."
-  }
+    "metaDescription": "Portafolio de Grobdesigns.",
+    "heroEyebrow": "Disponible · 2025",
+    "featLabel": "— Destacados",
+    "featTitle": "Proyectos <em>seleccionados</em>.",
+    "philDesc": "Más de ocho años traduciendo ideas complejas en sistemas visuales claros.",
+    "toolsLabel": "— Herramientas",
+    "toolsTitle": "Con las que <em>trabajo</em>.",
+    "toolsDesc": "Los programas y herramientas que uso cada día.",
+    "cliLabel": "— Clientes",
+    "cliTitle": "Confían en <em>Grobdesigns</em>.",
+    "cliDesc": "Marcas, artistas y proyectos.",
+    "conTitle": "¿Trabajamos <em>juntos</em>?",
+    "conDesc": "Cuéntame sobre tu proyecto.",
+    "conBtn": "Enviar mensaje",
+    "techTitle": "★ FICHA TÉCNICA"
+  },
+  "ficha": []
 }
