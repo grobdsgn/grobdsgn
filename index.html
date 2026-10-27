@@ -178,7 +178,23 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-item:hover .cover-shine{transform:translateX(120%)}
 .cover-info{display:none}
 
-/* LIKE + VISTAS (esquinas inferiores) */
+/* LIKE + VISTAS (ocultos por defecto, aparecen en hover) */
+.cover-like-btn,
+.cover-view-badge{
+  opacity:0;
+  transition:opacity .3s ease, transform .25s, background .25s, border-color .25s, color .25s;
+}
+.cover-item:hover .cover-like-btn,
+.cover-item:hover .cover-view-badge{
+  opacity:1;
+}
+@media (hover: none){
+  .cover-like-btn,
+  .cover-view-badge{
+    opacity:1 !important;
+  }
+}
+
 .cover-like-btn{
   position:absolute;bottom:10px;right:10px;z-index:10;
   display:flex;align-items:center;gap:5px;
@@ -1067,16 +1083,17 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             </div>
           </div>
           <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎵</span>Integración Spotify API (RapidAPI)</h2></div>
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎵</span>Integración Spotify (Apify)</h2></div>
             <div class="a-card-body">
               <div class="a-form-group">
-                <label class="a-form-label">RapidAPI Key</label>
-                <input type="text" id="aRapidApiKey" class="a-form-input" placeholder="Tu X-RapidAPI-Key">
+                <label class="a-form-label">Apify API Token</label>
+                <input type="text" id="aApifyToken" class="a-form-input" placeholder="apify_api_...">
+                <span class="a-form-hint">Token de API de Apify. Se usa para obtener los conteos de reproducciones de Spotify vía scraping. El plan gratuito incluye $5/mes (≈5,000 tracks).</span>
               </div>
               <div class="a-form-group">
-                <label class="a-form-label">RapidAPI Host</label>
-                <input type="text" id="aRapidApiHost" class="a-form-input" placeholder="Ej: spotify-stream-count-api.p.rapidapi.com">
-                <span class="a-form-hint">Revisa la documentación de la API de Spotify que contrataste en RapidAPI para obtener este Host.</span>
+                <label class="a-form-label">Actor de Apify</label>
+                <input type="text" id="aApifyActor" class="a-form-input" value="eduair94/spotify-play-count-scraper" placeholder="eduair94/spotify-play-count-scraper">
+                <span class="a-form-hint">ID del actor de Apify. Por defecto usa <code>eduair94/spotify-play-count-scraper</code>.</span>
               </div>
             </div>
           </div>
@@ -1451,8 +1468,8 @@ function migrateData(data) {
   if (!data) return data;
   if (!data.settings) data.settings = {};
   if (data.settings.youtubeApiKey === undefined) data.settings.youtubeApiKey = '';
-  if (data.settings.rapidApiKey === undefined) data.settings.rapidApiKey = '';
-  if (data.settings.rapidApiHost === undefined) data.settings.rapidApiHost = '';
+  if (data.settings.apifyToken === undefined) data.settings.apifyToken = '';
+  if (data.settings.apifyActor === undefined) data.settings.apifyActor = 'eduair94/spotify-play-count-scraper';
 
   if (data.categories) {
     data.categories.forEach(cat => {
@@ -1530,7 +1547,7 @@ let DATA = {
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
   music: { url: '' },
-  settings: { youtubeApiKey: '', rapidApiKey: '', rapidApiHost: '' },
+  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' },
   texts: {},
   ficha: []
 };
@@ -1800,53 +1817,52 @@ async function fetchYouTubeStats() {
 }
 
 async function fetchSpotifyStats() {
-  const apiKey = DATA.settings?.rapidApiKey;
-  const apiHost = DATA.settings?.rapidApiHost;
-  if (!apiKey || !apiHost) return;
+  const token = DATA.settings?.apifyToken;
+  const actor = DATA.settings?.apifyActor || 'eduair94/spotify-play-count-scraper';
+  if (!token) return;
 
   const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl);
-  
-  for (const c of coversWithSpotify) {
-    const m = c.spotifyUrl.match(/spotify\.com\/(?:intl-[a-z]+\/)?track\/([a-zA-Z0-9]+)/);
-    if (!m) continue;
-    const trackId = m[1];
-    
-    let success = false;
-    let attempts = 0;
-    const maxAttempts = 3;
+  if (!coversWithSpotify.length) return;
 
-    while (!success && attempts < maxAttempts) {
-      try {
-        await new Promise(r => setTimeout(r, 600)); 
+  const spotifyUrls = coversWithSpotify
+    .map(c => c.spotifyUrl.trim())
+    .filter(url => url.includes('spotify.com'));
 
-        const res = await fetch(`https://${apiHost}/api/v1/tracks/${trackId}`, {
-          headers: {
-            'X-RapidAPI-Key': apiKey,
-            'X-RapidAPI-Host': apiHost
-          }
-        });
-        
-        if (res.ok) {
-          const data = await res.json();
-          const streams = data.total_streams || data.playcount || 0;
-          if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
-          c.plays.spotify = parseInt(streams) || 0;
-          success = true;
-        } else if (res.status === 429) {
-          attempts++;
-          const waitTime = attempts * 2000;
-          console.warn(`Rate limit alcanzado para ${trackId}. Reintentando en ${waitTime/1000}s...`);
-          await new Promise(r => setTimeout(r, waitTime));
-        } else {
-          console.error(`Error ${res.status} para ${trackId}. Revisa tu suscripción en RapidAPI.`);
-          break;
-        }
-      } catch (e) {
-        console.error(`Error de red para ${trackId}:`, e);
-        attempts++;
-        await new Promise(r => setTimeout(r, 2000));
-      }
+  if (!spotifyUrls.length) return;
+
+  try {
+    const res = await fetch(`https://api.apify.com/v2/acts/${actor}/run-sync-get-dataset-items?token=${token}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ urls: spotifyUrls })
+    });
+
+    if (!res.ok) {
+      console.warn(`Apify error ${res.status}: ${await res.text().catch(() => '')}`);
+      return;
     }
+
+    const items = await res.json();
+    if (!Array.isArray(items)) return;
+
+    const playCountMap = new Map();
+    items.forEach(item => {
+      const url = item.url || item.spotifyUrl || item.trackUrl || '';
+      const plays = item.playCount || item.streams || item.plays || item.totalStreams || 0;
+      if (url && plays) {
+        playCountMap.set(url.trim(), parseInt(plays) || 0);
+      }
+    });
+
+    coversWithSpotify.forEach(c => {
+      const normalizedUrl = c.spotifyUrl.trim();
+      if (playCountMap.has(normalizedUrl)) {
+        if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+        c.plays.spotify = playCountMap.get(normalizedUrl);
+      }
+    });
+  } catch (e) {
+    console.warn('Apify fetch error:', e);
   }
 }
 
@@ -1856,7 +1872,7 @@ async function loadPublicData() {
     DATA = Object.assign(DATA, remote);
     if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
     if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
-    if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', rapidApiKey: '', rapidApiHost: '' }, remote.settings);
+    if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' }, remote.settings);
     migrateData(DATA);
   }
   
@@ -2133,13 +2149,13 @@ function renderPublicCovers(covers) {
     
     const coverStat = stats[c.id] || { views: 0, likes: 0, liked: false };
 
-    // Contador de vistas — abajo a la izquierda
+    // Contador de vistas — abajo a la izquierda (oculto hasta hover)
     const viewBadge = document.createElement('div');
     viewBadge.className = 'cover-view-badge';
     viewBadge.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg><span>${coverStat.views}</span>`;
     item.appendChild(viewBadge);
 
-    // Botón de like — abajo a la derecha (esquina contraria)
+    // Botón de like — abajo a la derecha (oculto hasta hover)
     const likeBtn = document.createElement('button');
     likeBtn.className = 'cover-like-btn' + (coverStat.liked ? ' liked' : '');
     likeBtn.setAttribute('aria-label', 'Me gusta');
@@ -2459,10 +2475,11 @@ async function loadAdminData() {
       if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
       else if (!DATA.music) DATA.music = { url: '' };
       if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
-      if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', rapidApiKey: '', rapidApiHost: '' }, remote.settings);
+      if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' }, remote.settings);
       migrateData(DATA);
     }
     await fetchYouTubeStats();
+    await fetchSpotifyStats();
     setASync('ok', 'Sincronizado');
   } catch(e) { setASync('error', 'Error'); }
   renderAdmin();
@@ -2587,8 +2604,8 @@ function renderAdmin() {
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
   $('#aMusicUrl').value = (DATA.music && DATA.music.url) || '';
   $('#aYoutubeApiKey').value = (DATA.settings && DATA.settings.youtubeApiKey) || '';
-  $('#aRapidApiKey').value = (DATA.settings && DATA.settings.rapidApiKey) || '';
-  $('#aRapidApiHost').value = (DATA.settings && DATA.settings.rapidApiHost) || '';
+  $('#aApifyToken').value = (DATA.settings && DATA.settings.apifyToken) || '';
+  $('#aApifyActor').value = (DATA.settings && DATA.settings.apifyActor) || 'eduair94/spotify-play-count-scraper';
 
   updateAdminBadges();
 }
@@ -2983,8 +3000,8 @@ $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 $('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; };
-$('#aRapidApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.rapidApiKey = e.target.value; };
-$('#aRapidApiHost').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.rapidApiHost = e.target.value; };
+$('#aApifyToken').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyToken = e.target.value; };
+$('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
 
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 3840, 0.92, 3000);
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
