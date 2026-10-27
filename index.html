@@ -98,10 +98,11 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @media(max-width:640px){.billboard-card{flex:0 0 180px}}
 
 /* PLAYS BANNER */
-.plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap}
+.plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+.plays-banner-block{display:flex;align-items:center;gap:12px}
 .plays-banner-label{font-family:var(--font-title);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .plays-banner-count{font-family:var(--font-title);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
-.plays-banner-icon{width:24px;height:24px;fill:var(--accent);margin-right:8px;vertical-align:middle;display:inline-block;margin-top:-4px;}
+.plays-banner-icon{width:24px;height:24px;fill:var(--accent);display:inline-block;margin-top:-4px;}
 
 .philosophy{padding:clamp(70px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start}
@@ -184,8 +185,8 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-music-icon{position:absolute;top:8px;right:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.8rem;pointer-events:none}
 .cover-yt-icon{position:absolute;top:8px;left:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.65rem;pointer-events:none}
 
-/* BADGE PLAYS EN COVER */
-.cover-plays-badge{position:absolute;bottom:10px;left:10px;z-index:6;background:rgba(0,0,0,0.85);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 10px;border-radius:100px;font-size:.65rem;font-weight:700;display:flex;align-items:center;gap:6px;pointer-events:none;backdrop-filter:blur(4px)}
+/* BADGE PLAYS EN COVER (Ahora en color Ocre) */
+.cover-plays-badge{position:absolute;bottom:10px;left:10px;z-index:6;background:rgba(0,0,0,0.85);border:1px solid rgba(201,169,97,0.4);color:var(--accent);padding:4px 10px;border-radius:100px;font-size:.65rem;font-weight:700;display:flex;align-items:center;gap:6px;pointer-events:none;backdrop-filter:blur(4px)}
 .cover-plays-badge svg{width:10px;height:10px;fill:var(--accent)}
 
 .cover-detail-page{background:#000;min-height:100vh;width:100%}
@@ -197,13 +198,10 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-hero-title{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 20px 0;word-break:break-word}
 .cover-hero-artist{font-size:clamp(.9rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 24px 0}
 
-/* ESTILOS DE REPRODUCCIONES DETALLE */
+/* ESTILOS DE REPRODUCCIONES DETALLE (Ahora en color Ocre) */
 .cover-hero-plays { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-.play-stat { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text); background: rgba(255,255,255,0.06); padding: 8px 16px; border-radius: 100px; font-weight: 700; border: 1px solid rgba(255,255,255,0.08); }
-.play-stat svg { width: 16px; height: 16px; }
-.play-stat.spotify svg { fill: #1DB954; }
-.play-stat.youtube svg { fill: #FF0000; }
-.play-stat.apple svg { fill: #FA243C; }
+.play-stat { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--accent); background: rgba(201,169,97,0.06); padding: 8px 16px; border-radius: 100px; font-weight: 700; border: 1px solid rgba(201,169,97,0.2); }
+.play-stat svg { width: 16px; height: 16px; fill: var(--accent); }
 
 .cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
 .cover-hero-music iframe{border-radius:4px;background:transparent;}
@@ -502,13 +500,18 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
       </section>
 
-      <!-- PLAYS BANNER -->
+      <!-- PLAYS BANNER ACTUALIZADO (Spotify + YouTube por separado) -->
       <section class="plays-banner" id="homePlaysBanner" style="display:none">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <svg class="plays-banner-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span class="plays-banner-label">Reproducciones totales</span>
+        <div class="plays-banner-block">
+          <svg class="plays-banner-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          <span class="plays-banner-label">Spotify</span>
+          <span class="plays-banner-count" id="totalPlaysSpotify">0</span>
         </div>
-        <span class="plays-banner-count" id="totalPlaysCount">0</span>
+        <div class="plays-banner-block">
+          <svg class="plays-banner-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="plays-banner-label">YouTube</span>
+          <span class="plays-banner-count" id="totalPlaysYouTube">0</span>
+        </div>
       </section>
 
       <section class="philosophy">
@@ -589,9 +592,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO</div>
             <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
             <div class="cover-hero-artist" id="coverHeroArtist"></div>
-            <!-- NUEVO: Contenedor de reproducciones -->
             <div class="cover-hero-plays" id="coverHeroPlays" style="display:none;"></div>
-            
             <div class="cover-hero-music" id="coverHeroMusic"></div>
           </div>
         </div>
@@ -645,7 +646,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
     </div>
   </main>
 
-  <!-- CTA SECTION -->
   <section class="contact-cta-section">
     <div class="wrap">
       <h2>¿Trabajamos juntos?</h2>
@@ -1171,9 +1171,6 @@ function handleImgError(img) {
 function getCoverTotalPlays(c) {
   return (c.plays?.spotify || 0) + (c.plays?.youtube || 0) + (c.plays?.apple || 0);
 }
-function getGlobalTotalPlays() {
-  return (DATA.covers || []).reduce((sum, c) => sum + getCoverTotalPlays(c), 0);
-}
 
 function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   return new Promise((res, rej) => {
@@ -1674,7 +1671,6 @@ async function fetchYouTubeStats() {
   }
 }
 
-// NUEVA FUNCIÓN: Scraping público para Spotify (No oficial, usado para estadísticas)
 async function fetchSpotifyStats() {
   const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl);
   for (const c of coversWithSpotify) {
@@ -1682,7 +1678,6 @@ async function fetchSpotifyStats() {
     if (!m) continue;
     const trackId = m[1];
     try {
-      // API de terceros usada por la comunidad para extraer playcount
       const res = await fetch(`https://api.spotifydown.com/metadata/track/${trackId}`);
       if (res.ok) {
         const data = await res.json();
@@ -1707,7 +1702,6 @@ async function loadPublicData() {
     migrateData(DATA);
   }
   
-  // Ejecutar ambas peticiones en paralelo para no bloquear la carga
   await Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]);
   
   renderPublicSite();
@@ -1733,23 +1727,28 @@ function animateCounter(el, target) {
 let playsAnimated = false;
 function setupPlaysBanner() {
   const banner = $('#homePlaysBanner');
-  const counterEl = $('#totalPlaysCount');
-  if (!banner || !counterEl) return;
+  const counterSpotify = $('#totalPlaysSpotify');
+  const counterYouTube = $('#totalPlaysYouTube');
+  if (!banner || !counterSpotify || !counterYouTube) return;
   
-  const total = getGlobalTotalPlays();
+  const totalSpotify = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
+  const totalYouTube = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.youtube || 0), 0);
+  
   if ((DATA.covers || []).length === 0) {
     banner.style.display = 'none';
     return;
   }
   banner.style.display = 'flex';
-  counterEl.textContent = '0';
+  counterSpotify.textContent = '0';
+  counterYouTube.textContent = '0';
   playsAnimated = false;
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !playsAnimated) {
         playsAnimated = true;
-        animateCounter(counterEl, total);
+        animateCounter(counterSpotify, totalSpotify);
+        animateCounter(counterYouTube, totalYouTube);
         observer.disconnect();
       }
     });
@@ -1971,7 +1970,6 @@ function renderPublicCovers(covers) {
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
     
-    // Play count badge
     const totalPlays = getCoverTotalPlays(c);
     if (totalPlays > 0) {
       const badge = document.createElement('div');
@@ -1998,7 +1996,6 @@ function renderCoverDetail(id) {
   $('#coverHeroArtist').textContent = c.artist || '';
   $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
 
-  // Reproducciones Detalle
   const playsWrap = $('#coverHeroPlays');
   playsWrap.innerHTML = '';
   const p = c.plays || {};
@@ -2805,8 +2802,6 @@ $('#aBtnSaveCover').onclick = () => {
   c.appleMusicUrl = $('#aEditCoverApple').value.trim();
   c.youtubeUrl = $('#aEditCoverYouTube').value.trim();
   
-  // Se ha eliminado la lectura de inputs manuales. Las plays se gestionan vía API.
-  // Al guardar, conservamos el objeto plays existente para no perder lo que ya se obtuvo.
   if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
 
   c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
