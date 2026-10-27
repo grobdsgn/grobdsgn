@@ -735,7 +735,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 529057938,
         "apple": 0
       }
     },
@@ -773,7 +773,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 5233160,
         "apple": 0
       }
     },
@@ -814,7 +814,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 138933,
         "apple": 0
       }
     },
@@ -855,7 +855,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 51762,
         "apple": 0
       }
     },
@@ -969,7 +969,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 38076310,
         "apple": 0
       }
     },
@@ -1020,7 +1020,7 @@
       "year": "2023",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "https://open.spotify.com/intl-es/track/789saXHvZdOWbXrKwQaW5X?si=0e0ef454e05c4eca",
+      "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
@@ -1450,7 +1450,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 1356,
         "apple": 0
       }
     },
@@ -1584,7 +1584,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 224384,
         "apple": 0
       }
     },
@@ -1994,7 +1994,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 94614,
         "apple": 0
       }
     },
@@ -2032,7 +2032,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 288,
         "apple": 0
       }
     },
@@ -2051,7 +2051,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 278457,
         "apple": 0
       }
     },
@@ -2227,7 +2227,7 @@
     {
       "id": "pykie6ncmvolmisg",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/cover-1792979372121-ldfu6n.jpg",
-      "category": "albums",
+      "category": "sencillo",
       "name": "Innovación",
       "artist": "Raymond",
       "year": "2014",
@@ -2333,7 +2333,9 @@
     "url": ""
   },
   "settings": {
-    "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4"
+    "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
+    "rapidApiKey": "9cc282abfdmshc8f24d384dc9facp1f998djsn2349059681e5",
+    "rapidApiHost": "rapidapi.com"
   },
   "texts": {
     "navHome": "Inicio",
