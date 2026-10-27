@@ -62,7 +62,6 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
-/* HERO - Alineado Abajo a la Izquierda */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;padding:100px 0 80px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
@@ -181,9 +180,26 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-info{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;z-index:5;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;pointer-events:none;display:flex;flex-direction:column;justify-content:flex-end}
 .cover-item:hover .cover-info{opacity:1;transform:translateY(0)}
 
-/* NUEVO: Contador encima del nombre */
-.cover-plays-inline { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; background: rgba(201,169,97,0.15); padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(201,169,97,0.3); width: fit-content; backdrop-filter: blur(4px); }
+/* BOTÓN DE LIKE Y VISTAS */
+.cover-like-btn {
+  position: absolute; top: 12px; right: 12px; z-index: 10;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: grid; place-items: center;
+  color: #fff; cursor: pointer; transition: all 0.3s;
+  opacity: 0; transform: translateY(-5px);
+}
+.cover-item:hover .cover-like-btn { opacity: 1; transform: translateY(0); }
+.cover-like-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+.cover-like-btn.liked { color: #E5484D; border-color: #E5484D; }
+.cover-like-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+.cover-plays-inline { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; background: rgba(201,169,97,0.15); padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(201,169,97,0.3); width: fit-content; backdrop-filter: blur(4px); }
 .cover-plays-inline svg { width: 10px; height: 10px; fill: var(--accent); }
+
+.cover-view-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.65rem; color: rgba(255,255,255,0.6); margin-top: 6px; font-weight: 600; }
+.cover-view-badge svg { width: 12px; height: 12px; fill: currentColor; }
 
 .cover-info-name{font-family:var(--font-title);font-weight:700;font-size:clamp(.9rem,1.6vw,1.3rem);line-height:1.15;color:#fff;margin-bottom:4px;text-transform:uppercase}
 .cover-info-meta{font-size:.65rem;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,.82);text-transform:uppercase}
@@ -245,7 +261,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .form-btn{width:100%;padding:16px;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:10px;cursor:pointer;font-family:var(--font-title);transition:.3s}
 .form-btn:hover{opacity:0.9}
 
-/* SECCIÓN CTA (Trabajamos juntos) - LOGOS EN NEGRO */
 .contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
 .contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
 .cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
@@ -276,7 +291,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
-/* ADMIN */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:none}
@@ -501,7 +515,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
       </section>
 
-      <!-- PLAYS BANNER -->
       <section class="plays-banner" id="homePlaysBanner" style="display:none">
         <div class="plays-banner-block">
           <svg class="plays-banner-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -1142,6 +1155,29 @@ function formatNumber(num) {
   return num.toString();
 }
 
+// ============================================================
+// ALMACENAMIENTO LOCAL PARA VISTAS Y LIKES
+// ============================================================
+function getCoverStats() {
+  return JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+}
+function saveCoverStats(stats) {
+  localStorage.setItem('grob_cover_stats', JSON.stringify(stats));
+}
+function recordView(id) {
+  const stats = getCoverStats();
+  if (!stats[id]) stats[id] = { views: 0, liked: false };
+  stats[id].views += 1;
+  saveCoverStats(stats);
+}
+function toggleLike(id) {
+  const stats = getCoverStats();
+  if (!stats[id]) stats[id] = { views: 0, liked: false };
+  stats[id].liked = !stats[id].liked;
+  saveCoverStats(stats);
+  return stats[id].liked;
+}
+
 function getYouTubeId(url) {
   if (!url) return null;
   const m = String(url).match(/(?:youtube\.com\/(?:watch\?.*v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -1517,7 +1553,6 @@ function toggleMusic() {
   const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
   if (!audio || !btn) return;
 
-  // Detener música de fondo si hay un cover reproduciéndose
   const coverMusicWrap = $('#coverHeroMusic');
   if (coverMusicWrap && coverMusicWrap.innerHTML.trim() !== '') {
     coverMusicWrap.innerHTML = '';
@@ -1645,7 +1680,6 @@ function handleRoute() {
   updateNavBack(h);
   window.scrollTo({ top: 0, behavior: 'auto' });
 
-  // Detener audio si salimos de la vista de detalle del cover
   if (!h.startsWith('#cover-')) {
     const musicWrap = $('#coverHeroMusic');
     if (musicWrap) musicWrap.innerHTML = '';
@@ -1725,8 +1759,7 @@ async function fetchSpotifyStats() {
 
     while (!success && attempts < maxAttempts) {
       try {
-        // Pequeña pausa para no saturar la API
-        await new Promise(r => setTimeout(r, 500)); 
+        await new Promise(r => setTimeout(r, 600)); 
 
         const res = await fetch(`https://${apiHost}/api/v1/tracks/${trackId}`, {
           headers: {
@@ -1742,13 +1775,11 @@ async function fetchSpotifyStats() {
           c.plays.spotify = parseInt(streams) || 0;
           success = true;
         } else if (res.status === 429) {
-          // Si es 429, esperamos un tiempo más largo antes de reintentar
           attempts++;
-          const waitTime = attempts * 2000; // 2s, 4s, 6s...
-          console.warn(`Rate limit alcanzado para ${trackId}. Reintentando en ${waitTime/1000}s... (Intento ${attempts}/${maxAttempts})`);
+          const waitTime = attempts * 2000;
+          console.warn(`Rate limit alcanzado para ${trackId}. Reintentando en ${waitTime/1000}s...`);
           await new Promise(r => setTimeout(r, waitTime));
         } else {
-          // Errores como 403 no se reintentan, se detiene el bucle
           console.error(`Error ${res.status} para ${trackId}. Revisa tu suscripción en RapidAPI.`);
           break;
         }
@@ -2025,6 +2056,9 @@ function renderPublicCovers(covers) {
   $('#countSencillo').textContent = all.filter(c => c.category === 'sencillo').length;
   $('#countAlbums').textContent = all.filter(c => c.category === 'albums').length;
   $('#countEdiciones').textContent = all.filter(c => c.category === 'ediciones').length;
+  
+  const stats = getCoverStats();
+
   covers.forEach(c => {
     const item = document.createElement('div'); item.className = 'cover-item';
     const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im);
@@ -2039,7 +2073,22 @@ function renderPublicCovers(covers) {
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
     
-    // Play count above name
+    const coverStat = stats[c.id] || { views: 0, liked: false };
+
+    // Like Button
+    const likeBtn = document.createElement('button');
+    likeBtn.className = 'cover-like-btn' + (coverStat.liked ? ' liked' : '');
+    likeBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+    likeBtn.onclick = (e) => {
+      e.stopPropagation();
+      const isLiked = toggleLike(c.id);
+      likeBtn.classList.toggle('liked', isLiked);
+    };
+    item.appendChild(likeBtn);
+
+    // View Badge
+    const viewBadge = `<div class="cover-view-badge"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg> ${coverStat.views}</div>`;
+
     const totalPlays = getCoverTotalPlays(c);
     let playsHtml = '';
     if (totalPlays > 0) {
@@ -2051,6 +2100,7 @@ function renderPublicCovers(covers) {
       ${playsHtml}
       <div class="cover-info-name">${escHtml(c.name || 'Sin título')}</div>
       <div class="cover-info-meta">${escHtml(c.artist || 'Artista')}</div>
+      ${viewBadge}
     `;
     item.appendChild(info);
     item.onclick = () => { location.hash = `#cover-${c.id}`; };
@@ -2061,6 +2111,9 @@ function renderPublicCovers(covers) {
 function renderCoverDetail(id) {
   const c = (DATA.covers || []).find(x => x.id === id);
   if (!c) { location.hash = '#covers'; return; }
+
+  recordView(id); // Registrar vista al abrir el detalle
+
   const heroImg = $('#coverHeroImg');
   heroImg.src = resolveImageUrl(c.url);
   heroImg.dataset.zoom = c.url;
