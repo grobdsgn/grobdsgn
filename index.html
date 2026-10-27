@@ -199,8 +199,11 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 
 /* ESTILOS DE REPRODUCCIONES DETALLE */
 .cover-hero-plays { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-.play-stat { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text); background: rgba(255,255,255,0.08); padding: 6px 12px; border-radius: 100px; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); }
-.play-stat svg { width: 14px; height: 14px; fill: var(--accent); }
+.play-stat { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text); background: rgba(255,255,255,0.06); padding: 8px 16px; border-radius: 100px; font-weight: 700; border: 1px solid rgba(255,255,255,0.08); }
+.play-stat svg { width: 16px; height: 16px; }
+.play-stat.spotify svg { fill: #1DB954; }
+.play-stat.youtube svg { fill: #FF0000; }
+.play-stat.apple svg { fill: #FA243C; }
 
 .cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
 .cover-hero-music iframe{border-radius:4px;background:transparent;}
@@ -252,7 +255,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cta-icon {width: 72px;height: 72px;border-radius: 50%;background: #fff;display: grid;place-items: center;box-shadow: 0 10px 30px rgba(0,0,0,0.08);transition: box-shadow 0.3s;}
 .cta-btn:hover .cta-icon {box-shadow: 0 15px 40px rgba(0,0,0,0.15);}
 .cta-icon svg {width: 32px;height: 32px;}
-/* Todos los iconos en negro */
 .cta-btn.wa .cta-icon svg,
 .cta-btn.ig .cta-icon svg,
 .cta-btn.em .cta-icon svg { color: #000; }
@@ -1022,12 +1024,12 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             </div>
           </div>
           <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📺</span>Integración YouTube (Opcional)</h2></div>
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📺</span>Integración YouTube API</h2></div>
             <div class="a-card-body">
               <div class="a-form-group">
-                <label class="a-form-label">YouTube API Key</label>
+                <label class="a-form-label">YouTube API Key (Obligatoria para contador automático)</label>
                 <input type="text" id="aYoutubeApiKey" class="a-form-input" placeholder="AIzaSy...">
-                <span class="a-form-hint">Si se configura, podrás usar el botón "Traer vistas" en el modal de los covers para actualizar automáticamente las vistas de YouTube. Deja en blanco si no lo necesitas.</span>
+                <span class="a-form-hint">Pega aquí tu API Key oficial de Google Cloud. El sistema buscará las vistas reales automáticamente. (Spotify y Apple usan servicios no oficiales de escucha).</span>
               </div>
             </div>
           </div>
@@ -1071,24 +1073,10 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             </select>
           </div>
         </div>
-        
+
         <div class="a-form-group" style="background:rgba(255,255,255,0.02); padding:14px; border-radius:8px; border:1px solid var(--a-line); margin-bottom:20px;">
-          <label class="a-form-label">📊 Reproducciones</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px; margin-bottom:8px;">
-            <div>
-              <label class="a-form-label" style="font-size:10px">Spotify (Manual)</label>
-              <input type="number" id="aEditCoverPlaysSpotify" class="a-form-input" value="0">
-            </div>
-            <div>
-              <label class="a-form-label" style="font-size:10px">YouTube</label>
-              <input type="number" id="aEditCoverPlaysYoutube" class="a-form-input" value="0">
-            </div>
-            <div>
-              <label class="a-form-label" style="font-size:10px">Apple Music (Manual)</label>
-              <input type="number" id="aEditCoverPlaysApple" class="a-form-input" value="0">
-            </div>
-          </div>
-          <span class="a-form-hint">Spotify y Apple Music requieren ingreso manual. YouTube puede ser automático si usas el botón de la URL.</span>
+          <label class="a-form-label">📊 Reproducciones (Automáticas)</label>
+          <p style="font-size:12px; color:#888; line-height:1.5;">Las reproducciones se extraen automáticamente al cargar la página pública. No pueden editarse manualmente para garantizar su veracidad.</p>
         </div>
 
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
@@ -1097,10 +1085,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         
         <div class="a-form-group">
           <label class="a-form-label">YouTube URL (el video aparecerá en la galería)</label>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <input type="url" id="aEditCoverYouTube" class="a-form-input" placeholder="https://youtube.com/watch?v=..." style="flex:1;">
-            <button class="a-btn a-btn-outline" onclick="fetchSingleCoverYtStats()">📥 Traer vistas</button>
-          </div>
+          <input type="url" id="aEditCoverYouTube" class="a-form-input" placeholder="https://youtube.com/watch?v=...">
         </div>
 
         <div class="a-form-group">
@@ -1689,6 +1674,29 @@ async function fetchYouTubeStats() {
   }
 }
 
+// NUEVA FUNCIÓN: Scraping público para Spotify (No oficial, usado para estadísticas)
+async function fetchSpotifyStats() {
+  const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl);
+  for (const c of coversWithSpotify) {
+    const m = c.spotifyUrl.match(/spotify\.com\/(?:intl-[a-z]+\/)?track\/([a-zA-Z0-9]+)/);
+    if (!m) continue;
+    const trackId = m[1];
+    try {
+      // API de terceros usada por la comunidad para extraer playcount
+      const res = await fetch(`https://api.spotifydown.com/metadata/track/${trackId}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.playCount) {
+          if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+          c.plays.spotify = parseInt(data.playCount) || 0;
+        }
+      }
+    } catch (e) {
+      console.warn('Spotify stats no disponibles para:', trackId);
+    }
+  }
+}
+
 async function loadPublicData() {
   const remote = await GH.load();
   if (remote) {
@@ -1698,7 +1706,10 @@ async function loadPublicData() {
     if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '' }, remote.settings);
     migrateData(DATA);
   }
-  await fetchYouTubeStats();
+  
+  // Ejecutar ambas peticiones en paralelo para no bloquear la carga
+  await Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]);
+  
   renderPublicSite();
   initMusic();
   handleRoute();
@@ -1726,7 +1737,6 @@ function setupPlaysBanner() {
   if (!banner || !counterEl) return;
   
   const total = getGlobalTotalPlays();
-  // Show banner even if 0, as long as there are covers
   if ((DATA.covers || []).length === 0) {
     banner.style.display = 'none';
     return;
@@ -1994,9 +2004,9 @@ function renderCoverDetail(id) {
   const p = c.plays || {};
   let hasPlays = false;
   let playsHtml = '';
-  if (p.spotify > 0) { playsHtml += `<div class="play-stat"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> ${formatNumber(p.spotify)}</div>`; hasPlays = true; }
-  if (p.youtube > 0) { playsHtml += `<div class="play-stat"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> ${formatNumber(p.youtube)}</div>`; hasPlays = true; }
-  if (p.apple > 0) { playsHtml += `<div class="play-stat"><svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.702z"/></svg> ${formatNumber(p.apple)}</div>`; hasPlays = true; }
+  if (p.spotify > 0) { playsHtml += `<div class="play-stat spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> ${formatNumber(p.spotify)}</div>`; hasPlays = true; }
+  if (p.youtube > 0) { playsHtml += `<div class="play-stat youtube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> ${formatNumber(p.youtube)}</div>`; hasPlays = true; }
+  if (p.apple > 0) { playsHtml += `<div class="play-stat apple"><svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.702z"/></svg> ${formatNumber(p.apple)}</div>`; hasPlays = true; }
   if (hasPlays) {
     playsWrap.innerHTML = playsHtml;
     playsWrap.style.display = 'flex';
@@ -2679,39 +2689,9 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverSpotify').value = c.spotifyUrl || '';
   $('#aEditCoverApple').value = c.appleMusicUrl || '';
   $('#aEditCoverYouTube').value = c.youtubeUrl || '';
-  $('#aEditCoverPlaysSpotify').value = (c.plays?.spotify !== undefined) ? c.plays.spotify : 0;
-  $('#aEditCoverPlaysYoutube').value = (c.plays?.youtube !== undefined) ? c.plays.youtube : 0;
-  $('#aEditCoverPlaysApple').value = (c.plays?.apple !== undefined) ? c.plays.apple : 0;
   $('#aEditCoverExtras').value = (c.extraImages || []).join('\n');
   $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
-};
-
-window.fetchSingleCoverYtStats = async () => {
-  const url = $('#aEditCoverYouTube').value.trim();
-  if (!url) return alert('Pega primero una URL de YouTube.');
-  const apiKey = DATA.settings?.youtubeApiKey;
-  if (!apiKey) return alert('Configura la API Key de YouTube en "Apariencia & API" para usar esta función.');
-  const vid = getYouTubeId(url);
-  if (!vid) return alert('La URL no parece válida.');
-  
-  const btn = event.target;
-  const orig = btn.textContent;
-  btn.textContent = 'Cargando...';
-  try {
-    const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${vid}&part=statistics&key=${apiKey}`);
-    const data = await res.json();
-    if (data.items && data.items[0]) {
-      const views = parseInt(data.items[0].statistics.viewCount) || 0;
-      $('#aEditCoverPlaysYoutube').value = views;
-      aToast(`Vistas actualizadas: ${formatNumber(views)}`);
-    } else {
-      aToast('No se encontraron estadísticas', 'error');
-    }
-  } catch (e) {
-    aToast('Error al conectar con YouTube', 'error');
-  }
-  btn.textContent = orig;
 };
 
 $('#aMenuBtn').onclick = () => { $('#aSidebar').classList.add('open'); $('#aOverlay').classList.add('active'); };
@@ -2825,12 +2805,10 @@ $('#aBtnSaveCover').onclick = () => {
   c.appleMusicUrl = $('#aEditCoverApple').value.trim();
   c.youtubeUrl = $('#aEditCoverYouTube').value.trim();
   
-  c.plays = {
-    spotify: parseInt($('#aEditCoverPlaysSpotify').value) || 0,
-    youtube: parseInt($('#aEditCoverPlaysYoutube').value) || 0,
-    apple: parseInt($('#aEditCoverPlaysApple').value) || 0
-  };
-  
+  // Se ha eliminado la lectura de inputs manuales. Las plays se gestionan vía API.
+  // Al guardar, conservamos el objeto plays existente para no perder lo que ya se obtuvo.
+  if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+
   c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
   c.featured = $('#aEditCoverFeatured').checked;
   $('#aCoverModal').classList.remove('active');
