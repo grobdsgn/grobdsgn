@@ -97,7 +97,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:640px){.billboard-card{flex:0 0 180px}}
 
-/* PLAYS BANNER */
 .plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
 .plays-banner-block{display:flex;align-items:center;gap:12px}
 .plays-banner-label{font-family:var(--font-title);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -183,17 +182,18 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 /* BOTÓN DE LIKE Y VISTAS */
 .cover-like-btn {
   position: absolute; top: 12px; right: 12px; z-index: 10;
-  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; gap: 6px;
   background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
   border: 1px solid rgba(255,255,255,0.2);
-  display: grid; place-items: center;
+  padding: 4px 10px; border-radius: 100px;
   color: #fff; cursor: pointer; transition: all 0.3s;
   opacity: 0; transform: translateY(-5px);
 }
 .cover-item:hover .cover-like-btn { opacity: 1; transform: translateY(0); }
-.cover-like-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+.cover-like-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
 .cover-like-btn.liked { color: #E5484D; border-color: #E5484D; }
-.cover-like-btn svg { width: 16px; height: 16px; fill: currentColor; }
+.cover-like-btn svg { width: 14px; height: 14px; fill: currentColor; }
+.cover-like-btn span { font-size: 0.7rem; font-weight: 700; }
 
 .cover-plays-inline { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; background: rgba(201,169,97,0.15); padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(201,169,97,0.3); width: fit-content; backdrop-filter: blur(4px); }
 .cover-plays-inline svg { width: 10px; height: 10px; fill: var(--accent); }
@@ -1159,23 +1159,47 @@ function formatNumber(num) {
 // ALMACENAMIENTO LOCAL PARA VISTAS Y LIKES
 // ============================================================
 function getCoverStats() {
-  return JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+  let stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+  let changed = false;
+  (DATA.covers || []).forEach(c => {
+    if (!stats[c.id]) {
+      stats[c.id] = {
+        views: Math.floor(Math.random() * 6),
+        likes: Math.floor(Math.random() * 6),
+        liked: false
+      };
+      changed = true;
+    }
+  });
+  if (changed) saveCoverStats(stats);
+  return stats;
 }
 function saveCoverStats(stats) {
   localStorage.setItem('grob_cover_stats', JSON.stringify(stats));
 }
 function recordView(id) {
   const stats = getCoverStats();
-  if (!stats[id]) stats[id] = { views: 0, liked: false };
-  stats[id].views += 1;
-  saveCoverStats(stats);
+  if (stats[id]) {
+    stats[id].views += 1;
+    saveCoverStats(stats);
+  }
 }
 function toggleLike(id) {
   const stats = getCoverStats();
-  if (!stats[id]) stats[id] = { views: 0, liked: false };
+  if (!stats[id]) return false;
   stats[id].liked = !stats[id].liked;
+  if (stats[id].liked) {
+    stats[id].likes += 1;
+  } else {
+    stats[id].likes = Math.max(0, stats[id].likes - 1);
+  }
   saveCoverStats(stats);
   return stats[id].liked;
+}
+
+function isVideoUrl(url) {
+  if (!url) return false;
+  return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('vimeo.com') || url.includes('drive.google.com');
 }
 
 function getYouTubeId(url) {
@@ -1203,6 +1227,21 @@ function getEmbedUrl(url) {
   }
   const ytId = getYouTubeId(url);
   if (ytId) return { platform: 'youtube', height: 315, url: `https://www.youtube-nocookie.com/embed/${ytId}?modestbranding=1&rel=0&iv_load_policy=3&color=white` };
+
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return { platform: 'drive', height: 315, url: `https://drive.google.com/file/d/${driveMatch[1]}/preview` };
+  }
+
+  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+  if (vimeoMatch && vimeoMatch[1]) {
+    return { platform: 'vimeo', height: 315, url: `https://player.vimeo.com/video/${vimeoMatch[1]}` };
+  }
+
+  if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    return { platform: 'video', height: 315, url: url };
+  }
+
   return null;
 }
 function getDirectImageUrl(url) {
@@ -2073,16 +2112,18 @@ function renderPublicCovers(covers) {
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
     
-    const coverStat = stats[c.id] || { views: 0, liked: false };
+    const coverStat = stats[c.id] || { views: 0, likes: 0, liked: false };
 
     // Like Button
     const likeBtn = document.createElement('button');
     likeBtn.className = 'cover-like-btn' + (coverStat.liked ? ' liked' : '');
-    likeBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+    likeBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>${coverStat.likes}</span>`;
     likeBtn.onclick = (e) => {
       e.stopPropagation();
       const isLiked = toggleLike(c.id);
+      const newStats = getCoverStats();
       likeBtn.classList.toggle('liked', isLiked);
+      likeBtn.querySelector('span').textContent = newStats[c.id].likes;
     };
     item.appendChild(likeBtn);
 
@@ -2112,7 +2153,7 @@ function renderCoverDetail(id) {
   const c = (DATA.covers || []).find(x => x.id === id);
   if (!c) { location.hash = '#covers'; return; }
 
-  recordView(id); // Registrar vista al abrir el detalle
+  recordView(id);
 
   const heroImg = $('#coverHeroImg');
   heroImg.src = resolveImageUrl(c.url);
@@ -2200,14 +2241,38 @@ function renderCoverDetail(id) {
 
     if (hasExtraImages) {
       c.extraImages.forEach((imgUrl, idx) => {
+        const isVid = isVideoUrl(imgUrl);
+        const embedInfo = getEmbedUrl(imgUrl);
         const imgItem = document.createElement('div');
-        imgItem.className = 'masonry-item';
+        imgItem.className = 'masonry-item' + (isVid ? ' video-item' : '');
         imgItem.style.setProperty('--entry-delay', ((idx + (hasVideo ? 1 : 0)) * 0.05) + 's');
-        const img = document.createElement('img');
-        img.src = resolveImageUrl(imgUrl);
-        img.dataset.zoom = imgUrl;
-        img.onerror = () => handleImgError(img);
-        imgItem.appendChild(img);
+        
+        if (isVid && embedInfo) {
+          if (embedInfo.platform === 'video') {
+            const vid = document.createElement('video');
+            vid.src = embedInfo.url;
+            vid.controls = true;
+            vid.style.width = '100%';
+            vid.style.borderRadius = '4px';
+            imgItem.appendChild(vid);
+          } else {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'video-wrapper';
+            const ifr = document.createElement('iframe');
+            ifr.src = embedInfo.url;
+            ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+            ifr.setAttribute('allowfullscreen', '');
+            ifr.setAttribute('loading', 'lazy');
+            wrapper.appendChild(ifr);
+            imgItem.appendChild(wrapper);
+          }
+        } else {
+          const img = document.createElement('img');
+          img.src = resolveImageUrl(imgUrl);
+          img.dataset.zoom = imgUrl;
+          img.onerror = () => handleImgError(img);
+          imgItem.appendChild(img);
+        }
         gallery.appendChild(imgItem);
       });
     }
@@ -2284,15 +2349,39 @@ function renderProjectDetail(id) {
     const gallery = document.createElement('div');
     gallery.className = 'masonry-gallery';
     proj.images.forEach((imgUrl, i) => {
+      const isVid = isVideoUrl(imgUrl);
+      const embedInfo = getEmbedUrl(imgUrl);
       const item = document.createElement('div');
-      item.className = 'masonry-item';
+      item.className = 'masonry-item' + (isVid ? ' video-item' : '');
       item.style.setProperty('--entry-delay', (i * 0.04) + 's');
-      const img = document.createElement('img');
-      img.src = resolveImageUrl(imgUrl);
-      img.dataset.zoom = imgUrl;
-      img.loading = 'lazy';
-      img.onerror = () => handleImgError(img);
-      item.appendChild(img);
+      
+      if (isVid && embedInfo) {
+        if (embedInfo.platform === 'video') {
+          const vid = document.createElement('video');
+          vid.src = embedInfo.url;
+          vid.controls = true;
+          vid.style.width = '100%';
+          vid.style.borderRadius = '4px';
+          item.appendChild(vid);
+        } else {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'video-wrapper';
+          const ifr = document.createElement('iframe');
+          ifr.src = embedInfo.url;
+          ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+          ifr.setAttribute('allowfullscreen', '');
+          ifr.setAttribute('loading', 'lazy');
+          wrapper.appendChild(ifr);
+          item.appendChild(wrapper);
+        }
+      } else {
+        const img = document.createElement('img');
+        img.src = resolveImageUrl(imgUrl);
+        img.dataset.zoom = imgUrl;
+        img.loading = 'lazy';
+        img.onerror = () => handleImgError(img);
+        item.appendChild(img);
+      }
       gallery.appendChild(item);
     });
     container.appendChild(gallery);
