@@ -467,10 +467,18 @@
     },
     {
       "id": "wbjjlalmmvq9hwqo",
-      "name": "Nueva Categoría",
+      "name": "3D",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "f2cmffxxmvq9idwd",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "clientes": [
