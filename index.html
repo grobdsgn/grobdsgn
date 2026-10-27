@@ -62,7 +62,6 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
-/* HERO (Alineado a la izquierda) */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
@@ -98,6 +97,12 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:640px){.billboard-card{flex:0 0 180px}}
 
+/* PLAYS BANNER */
+.plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap}
+.plays-banner-label{font-family:var(--font-title);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.plays-banner-count{font-family:var(--font-title);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.plays-banner-icon{width:24px;height:24px;fill:var(--accent);margin-right:8px;vertical-align:middle;display:inline-block;margin-top:-4px;}
+
 .philosophy{padding:clamp(70px,12vh,160px) 0;background:var(--phil-bg);color:var(--phil-text)}
 .phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start}
 @media(max-width:900px){.phil-grid{grid-template-columns:1fr;gap:50px}}
@@ -108,17 +113,8 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @media(max-width:640px){.section-head{grid-template-columns:1fr;gap:16px}}
 .label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600;padding-top:.5em;white-space:nowrap}
 
-.tech-sheet{
-  background:#09090a;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:20px;
-  padding:clamp(24px,4vw,40px);
-  color:#fff;
-  box-shadow:0 20px 40px rgba(0,0,0,0.1);
-}
-.tech-title{
-  font-family:var(--font-title); color:var(--accent); font-size:1.1rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:10px;
-}
+.tech-sheet{background:#09090a;border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:clamp(24px,4vw,40px);color:#fff;box-shadow:0 20px 40px rgba(0,0,0,0.1)}
+.tech-title{font-family:var(--font-title); color:var(--accent); font-size:1.1rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:10px;}
 .tech-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:0.95rem;gap:20px}
 .tech-row:last-child{border-bottom:none;padding-bottom:0}
 .tech-label{color:var(--muted);font-weight:400}
@@ -188,6 +184,10 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-music-icon{position:absolute;top:8px;right:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.8rem;pointer-events:none}
 .cover-yt-icon{position:absolute;top:8px;left:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.65rem;pointer-events:none}
 
+/* BADGE PLAYS EN COVER */
+.cover-plays-badge{position:absolute;bottom:10px;left:10px;z-index:6;background:rgba(0,0,0,0.85);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:4px 10px;border-radius:100px;font-size:.65rem;font-weight:700;display:flex;align-items:center;gap:6px;pointer-events:none;backdrop-filter:blur(4px)}
+.cover-plays-badge svg{width:10px;height:10px;fill:var(--accent)}
+
 .cover-detail-page{background:#000;min-height:100vh;width:100%}
 .cover-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,110px);align-items:center;width:100%;max-width:1500px;margin:0 auto;padding:100px clamp(20px,5vw,80px) 80px;min-height:100vh;box-sizing:border-box}
 @media(max-width:900px){.cover-hero{grid-template-columns:1fr;gap:32px;padding:90px 20px 50px;min-height:auto}}
@@ -198,6 +198,10 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-hero-artist{font-size:clamp(.9rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 24px 0}
 .cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
 .cover-hero-music iframe{border-radius:4px;background:transparent;}
+
+.cover-plays-detail{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);font-weight:500;margin-top:12px;background:rgba(255,255,255,0.05);padding:8px 14px;border-radius:100px}
+.cover-plays-detail svg{width:14px;height:14px;fill:var(--accent)}
+
 .cover-extra-section{background:#000;width:100%;padding:60px 0 30px}
 .cover-extra-section.hidden{display:none}
 .cover-extra-block{max-width:1000px;margin:0 auto 40px;padding:0 clamp(20px,5vw,56px)}
@@ -236,92 +240,24 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .form-btn{width:100%;padding:16px;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-top:10px;cursor:pointer;font-family:var(--font-title);transition:.3s}
 .form-btn:hover{opacity:0.9}
 
-/* NUEVA SECCIÓN CTA (Trabajamos Juntos) */
-.contact-cta-section {
-  background: var(--phil-bg);
-  color: var(--phil-text);
-  padding: clamp(60px, 12vh, 120px) 0;
-  text-align: center;
-}
-.contact-cta-section h2 {
-  font-family: var(--font-title);
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 50px;
-}
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.cta-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  text-decoration: none;
-  color: var(--phil-text);
-  transition: transform 0.3s;
-}
-.cta-btn:hover {
-  transform: translateY(-6px);
-}
-.cta-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #fff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: box-shadow 0.3s;
-}
-.cta-btn:hover .cta-icon {
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
-.cta-icon svg {
-  width: 32px;
-  height: 32px;
-}
-.cta-btn.wa .cta-icon svg { color: #25D366; }
-.cta-btn.ig .cta-icon svg { color: #E1306C; }
+/* SECCIÓN CTA (Trabajamos juntos) - LOGOS EN NEGRO */
+.contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
+.contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
+.cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
+.cta-btn {display: flex;flex-direction: column;align-items: center;gap: 16px;text-decoration: none;color: var(--phil-text);transition: transform 0.3s;}
+.cta-btn:hover {transform: translateY(-6px);}
+.cta-icon {width: 72px;height: 72px;border-radius: 50%;background: #fff;display: grid;place-items: center;box-shadow: 0 10px 30px rgba(0,0,0,0.08);transition: box-shadow 0.3s;}
+.cta-btn:hover .cta-icon {box-shadow: 0 15px 40px rgba(0,0,0,0.15);}
+.cta-icon svg {width: 32px;height: 32px;}
+/* Todos los iconos en negro */
+.cta-btn.wa .cta-icon svg,
+.cta-btn.ig .cta-icon svg,
 .cta-btn.em .cta-icon svg { color: #000; }
-.cta-label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--phil-text);
-}
+.cta-label {font-size: 0.85rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.15em;color: var(--phil-text);}
 
-/* FOOTER NUEVO */
-footer {
-  border-top: 1px solid var(--line);
-  padding: 50px 0 40px;
-  background: #000;
-  text-align: center;
-}
-.footer-logo {
-  height: 48px;
-  width: auto;
-  margin: 0 auto 24px;
-  display: block;
-  filter: brightness(0) invert(1);
-}
-.footer-inner {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  align-items: center;
-  font-size: .66rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-}
+footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;text-align: center;}
+.footer-logo {height: 48px;width: auto;margin: 0 auto 24px;display: block;filter: brightness(0) invert(1);}
+.footer-inner {display: flex;justify-content: center;gap: 24px;flex-wrap: wrap;align-items: center;font-size: .66rem;letter-spacing: .14em;text-transform: uppercase;color: var(--muted);font-weight: 500;}
 
 .lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;backdrop-filter:blur(8px)}
 .lightbox.active{display:flex;animation:lbFade .25s ease}
@@ -336,7 +272,7 @@ footer {
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
-/* ADMIN - Sidebar desplegable siempre */
+/* ADMIN */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:none}
@@ -369,7 +305,6 @@ footer {
 .a-page-title{font-family:var(--font-title);font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .a-topbar-actions{display:flex;gap:8px;flex-wrap:wrap}
 @media(max-width:640px){.a-topbar{padding:12px 14px}.a-page-title{font-size:1.05rem}.a-topbar-actions .a-btn{padding:6px 10px;font-size:11px}}
-/* Admin: Contenido alineado a la derecha/expandido */
 .a-content{padding:32px 40px;flex:1;width:100%;}
 @media(max-width:640px){.a-content{padding:16px 12px}}
 .a-panel{display:none;animation:fadeIn 0.3s ease}
@@ -561,6 +496,16 @@ footer {
         </div></div>
         <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
       </section>
+
+      <!-- PLAYS BANNER -->
+      <section class="plays-banner" id="homePlaysBanner" style="display:none">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg class="plays-banner-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span class="plays-banner-label">Reproducciones totales</span>
+        </div>
+        <span class="plays-banner-count" id="totalPlaysCount">0</span>
+      </section>
+
       <section class="philosophy">
         <div class="wrap">
           <div class="phil-grid">
@@ -692,7 +637,7 @@ footer {
     </div>
   </main>
 
-  <!-- NUEVA SECCIÓN TRABAJAMOS JUNTOS -->
+  <!-- CTA SECTION -->
   <section class="contact-cta-section">
     <div class="wrap">
       <h2>¿Trabajamos juntos?</h2>
@@ -719,7 +664,6 @@ footer {
     </div>
   </section>
 
-  <!-- FOOTER NUEVO CON LOGO CENTRADO -->
   <footer>
     <div class="wrap">
       <img src="logo.svg" alt="Grobdesigns" class="footer-logo" onerror="this.style.display='none'">
@@ -771,7 +715,7 @@ footer {
         <div class="a-nav-item" data-target="texts"><span class="a-nav-icon">📝</span><span class="a-nav-label">Textos Generales</span></div>
         <div class="a-nav-item" data-target="ficha"><span class="a-nav-icon">★</span><span class="a-nav-label">Ficha Técnica</span></div>
         <div class="a-nav-item" data-target="contact"><span class="a-nav-icon">📧</span><span class="a-nav-label">Contacto</span></div>
-        <div class="a-nav-item" data-target="theme"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Apariencia</span></div>
+        <div class="a-nav-item" data-target="theme"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Apariencia & API</span></div>
       </div>
       <div class="a-sidebar-footer">
         <div class="a-sync" id="aSyncStatus"><div class="a-sync-dot"></div><span id="aSyncStatusText">Sincronizado</span></div>
@@ -1045,11 +989,11 @@ footer {
           </div>
         </div>
 
-        <!-- THEME -->
+        <!-- THEME & API -->
         <div class="a-panel" id="a-panel-theme">
           <div class="a-hero">
             <div class="a-hero-icon">🎨</div>
-            <div class="a-hero-text"><h2>Apariencia</h2><p>Colores del tema y música de fondo.</p></div>
+            <div class="a-hero-text"><h2>Apariencia & API</h2><p>Colores del tema, música y claves de API.</p></div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎨</span>Colores</h2></div>
@@ -1068,6 +1012,16 @@ footer {
                 <label class="a-form-label">URL del audio</label>
                 <input type="url" id="aMusicUrl" class="a-form-input" placeholder="https://ejemplo.com/musica.mp3">
                 <span class="a-form-hint">Aparecerá un botón Play/Pausa en la cabecera.</span>
+              </div>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📺</span>Integración YouTube (Opcional)</h2></div>
+            <div class="a-card-body">
+              <div class="a-form-group">
+                <label class="a-form-label">YouTube API Key</label>
+                <input type="text" id="aYoutubeApiKey" class="a-form-input" placeholder="AIzaSy...">
+                <span class="a-form-hint">Si se configura, las vistas de YouTube se actualizarán automáticamente en la web. Deja en blanco para usar los valores manuales.</span>
               </div>
             </div>
           </div>
@@ -1111,6 +1065,26 @@ footer {
             </select>
           </div>
         </div>
+        
+        <div class="a-form-group">
+          <label class="a-form-label">📊 Reproducciones (Manual)</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div>
+              <label class="a-form-label" style="font-size:10px">Spotify</label>
+              <input type="number" id="aEditCoverPlaysSpotify" class="a-form-input" value="0">
+            </div>
+            <div>
+              <label class="a-form-label" style="font-size:10px">YouTube</label>
+              <input type="number" id="aEditCoverPlaysYoutube" class="a-form-input" value="0">
+            </div>
+            <div>
+              <label class="a-form-label" style="font-size:10px">Apple Music</label>
+              <input type="number" id="aEditCoverPlaysApple" class="a-form-input" value="0">
+            </div>
+          </div>
+          <span class="a-form-hint">Si configuras la API de YouTube, las vistas de YouTube se actualizarán automáticamente al cargar la web.</span>
+        </div>
+
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
         <div class="a-form-group"><label class="a-form-label">Spotify</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">Apple Music</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
@@ -1150,6 +1124,12 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 function getItemUrl(item) { if (!item) return ''; return typeof item === 'string' ? item : (item.url || ''); }
 function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+function formatNumber(num) {
+  if (num >= 1000000000) return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
+  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return num.toString();
+}
 
 function getYouTubeId(url) {
   if (!url) return null;
@@ -1190,6 +1170,13 @@ function resolveImageUrl(url) { return getDirectImageUrl(url); }
 function handleImgError(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
+}
+
+function getCoverTotalPlays(c) {
+  return (c.plays?.spotify || 0) + (c.plays?.youtube || 0) + (c.plays?.apple || 0);
+}
+function getGlobalTotalPlays() {
+  return (DATA.covers || []).reduce((sum, c) => sum + getCoverTotalPlays(c), 0);
 }
 
 function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
@@ -1360,7 +1347,9 @@ const GH = {
 
 function migrateData(data) {
   if (!data) return data;
-  // Migrar categorías
+  if (!data.settings) data.settings = {};
+  if (data.settings.youtubeApiKey === undefined) data.settings.youtubeApiKey = '';
+
   if (data.categories) {
     data.categories.forEach(cat => {
       if (cat.items !== undefined) {
@@ -1384,7 +1373,13 @@ function migrateData(data) {
       });
     });
   }
-  // Migrar textos
+  
+  if (data.covers) {
+    data.covers.forEach(c => {
+      if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+    });
+  }
+
   if (!data.texts) data.texts = {};
   const defaultTexts = {
     heroEyebrow: 'Disponible · 2025',
@@ -1411,7 +1406,6 @@ function migrateData(data) {
   for (let k in defaultTexts) {
     if (data.texts[k] === undefined) data.texts[k] = defaultTexts[k];
   }
-  // Migrar ficha
   if (!data.ficha) {
     data.ficha = [
       { label: 'Fundadores', value: 'Luis Albornoz\nKaren Guevara' },
@@ -1432,6 +1426,7 @@ let DATA = {
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
   music: { url: '' },
+  settings: { youtubeApiKey: '' },
   texts: {},
   ficha: []
 };
@@ -1652,17 +1647,92 @@ function handleRoute() {
 }
 window.addEventListener('hashchange', handleRoute);
 
+async function fetchYouTubeStats() {
+  const apiKey = DATA.settings?.youtubeApiKey;
+  if (!apiKey) return;
+  const coversWithYt = (DATA.covers || []).filter(c => c.youtubeUrl && getYouTubeId(c.youtubeUrl));
+  const videoIds = [...new Set(coversWithYt.map(c => getYouTubeId(c.youtubeUrl)))];
+  if (!videoIds.length) return;
+
+  for (let i = 0; i < videoIds.length; i += 50) {
+    const chunk = videoIds.slice(i, i + 50);
+    try {
+      const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${chunk.join(',')}&part=statistics&key=${apiKey}`);
+      const data = await res.json();
+      if (data.items) {
+        const statsMap = {};
+        data.items.forEach(item => {
+          statsMap[item.id] = parseInt(item.statistics.viewCount) || 0;
+        });
+        coversWithYt.forEach(c => {
+          const vid = getYouTubeId(c.youtubeUrl);
+          if (statsMap[vid] !== undefined) {
+            if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+            c.plays.youtube = statsMap[vid];
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Error fetching YouTube stats:', e);
+    }
+  }
+}
+
 async function loadPublicData() {
   const remote = await GH.load();
   if (remote) {
     DATA = Object.assign(DATA, remote);
     if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
     if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
+    if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '' }, remote.settings);
     migrateData(DATA);
   }
+  await fetchYouTubeStats();
   renderPublicSite();
   initMusic();
   handleRoute();
+}
+
+function animateCounter(el, target) {
+  const duration = 2000;
+  const startTime = performance.now();
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    const current = Math.floor(ease * target);
+    el.textContent = formatNumber(current);
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = formatNumber(target);
+  }
+  requestAnimationFrame(update);
+}
+
+let playsAnimated = false;
+function setupPlaysBanner() {
+  const banner = $('#homePlaysBanner');
+  const counterEl = $('#totalPlaysCount');
+  if (!banner || !counterEl) return;
+  
+  const total = getGlobalTotalPlays();
+  if (total === 0) {
+    banner.style.display = 'none';
+    return;
+  }
+  banner.style.display = 'flex';
+  counterEl.textContent = '0';
+  playsAnimated = false;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !playsAnimated) {
+        playsAnimated = true;
+        animateCounter(counterEl, total);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(banner);
 }
 
 function renderPublicSite() {
@@ -1701,7 +1771,6 @@ function renderPublicSite() {
   }
   const hl = $('#pubHeroLead'); if (hl) hl.textContent = DATA.hero.lead || '';
   
-  // Render Ficha
   const techRows = $('#techSheetRows');
   if (techRows) {
     techRows.innerHTML = '';
@@ -1726,6 +1795,7 @@ function renderPublicSite() {
   }
   renderMarquee();
   renderFeaturedCovers();
+  setupPlaysBanner();
   renderPortfolioCategories();
   renderPublicCovers(getCoversList());
   renderPublicClients();
@@ -1741,7 +1811,6 @@ function renderContact() {
   if (cp) { cp.textContent = c.phone || '-'; cp.href = 'tel:' + (c.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = c.location || '-';
 
-  // CTA WhatsApp
   const ctaWa = $('#ctaWa');
   const phoneDigits = (c.phone || '').replace(/[^0-9]/g, '');
   if (ctaWa) {
@@ -1750,7 +1819,6 @@ function renderContact() {
     else ctaWa.style.pointerEvents = '';
   }
 
-  // CTA Instagram
   const ctaIg = $('#ctaInstagram');
   if (ctaIg) {
     let igUser = c.instagram || '';
@@ -1763,7 +1831,6 @@ function renderContact() {
     else ctaIg.style.pointerEvents = '';
   }
 
-  // CTA Email
   const ctaEm = $('#ctaEmail');
   if (ctaEm) {
     ctaEm.href = c.email ? `mailto:${c.email}` : '#';
@@ -1881,6 +1948,16 @@ function renderPublicCovers(covers) {
     });
     if (c.spotifyUrl || c.appleMusicUrl) { const mi = document.createElement('div'); mi.className = 'cover-music-icon'; mi.textContent = '♪'; item.appendChild(mi); }
     if (c.youtubeUrl && getYouTubeId(c.youtubeUrl)) { const yt = document.createElement('div'); yt.className = 'cover-yt-icon'; yt.textContent = '▶'; item.appendChild(yt); }
+    
+    // Play count badge
+    const totalPlays = getCoverTotalPlays(c);
+    if (totalPlays > 0) {
+      const badge = document.createElement('div');
+      badge.className = 'cover-plays-badge';
+      badge.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> ${formatNumber(totalPlays)}`;
+      item.appendChild(badge);
+    }
+
     const info = document.createElement('div'); info.className = 'cover-info';
     info.innerHTML = `<div class="cover-info-name">${escHtml(c.name || 'Sin título')}</div><div class="cover-info-meta">${escHtml(c.artist || 'Artista')}</div>`;
     item.appendChild(info);
@@ -1897,7 +1974,7 @@ function renderCoverDetail(id) {
   heroImg.dataset.zoom = c.url;
   $('#coverHeroTitle').textContent = c.name || 'Sin título';
   $('#coverHeroArtist').textContent = c.artist || '';
-  $('#coverHeroBadge').textContent = (c.category || 'SANCILLO').toUpperCase();
+  $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
 
   const musicWrap = $('#coverHeroMusic');
   musicWrap.innerHTML = '';
@@ -1909,6 +1986,17 @@ function renderCoverDetail(id) {
     ifr.height = heroEmbed.height;
     ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
     musicWrap.appendChild(ifr);
+    
+    // Play count for Spotify/Apple
+    let platformName = heroEmbed.platform === 'spotify' ? 'Spotify' : 'Apple Music';
+    let playsCount = heroEmbed.platform === 'spotify' ? (c.plays?.spotify || 0) : (c.plays?.apple || 0);
+    if (playsCount > 0) {
+      const playsDiv = document.createElement('div');
+      playsDiv.className = 'cover-plays-detail';
+      playsDiv.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> ${formatNumber(playsCount)} reproducciones en ${platformName}`;
+      musicWrap.appendChild(playsDiv);
+    }
+    
     musicWrap.style.display = 'block';
   } else {
     musicWrap.style.display = 'none';
@@ -1945,6 +2033,16 @@ function renderCoverDetail(id) {
       ifr.setAttribute('loading', 'lazy');
       wrapper.appendChild(ifr);
       videoItem.appendChild(wrapper);
+      
+      // Play count for YouTube
+      const ytPlays = c.plays?.youtube || 0;
+      if (ytPlays > 0) {
+        const playsInfo = document.createElement('div');
+        playsInfo.style.cssText = 'padding: 10px 12px; font-size: 13px; color: #888; background: rgba(255,255,255,0.03); display: flex; align-items: center; gap: 8px;';
+        playsInfo.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M8 5v14l11-7z"/></svg> ${formatNumber(ytPlays)} vistas en YouTube`;
+        videoItem.appendChild(playsInfo);
+      }
+      
       gallery.appendChild(videoItem);
     }
 
@@ -2111,8 +2209,10 @@ async function loadAdminData() {
       if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
       else if (!DATA.music) DATA.music = { url: '' };
       if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
+      if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '' }, remote.settings);
       migrateData(DATA);
     }
+    await fetchYouTubeStats();
     setASync('ok', 'Sincronizado');
   } catch(e) { setASync('error', 'Error'); }
   renderAdmin();
@@ -2156,14 +2256,12 @@ function updateAdminBadges() {
 function renderAdmin() {
   if (!$('#aHeroEyebrow')) return;
   
-  // Hero text
   $('#aHeroEyebrow').value = DATA.texts.heroEyebrow || '';
   $('#aHeroTitle').value = DATA.hero.title || '';
   $('#aHeroLead').value = DATA.hero.lead || '';
   $('#aTextHeroBtn1').value = DATA.texts.heroBtn1 || '';
   $('#aTextHeroBtn2').value = DATA.texts.heroBtn2 || '';
   
-  // Section texts
   $('#aTextFeatLabel').value = DATA.texts.featLabel || '';
   $('#aTextFeatTitle').value = DATA.texts.featTitle || '';
   $('#aTextPhilLabel').value = DATA.texts.philLabel || '';
@@ -2181,11 +2279,9 @@ function renderAdmin() {
   $('#aTextFooterLeft').value = DATA.texts.footerLeft || '';
   $('#aTextFooterRight').value = DATA.texts.footerRight || '';
 
-  // Ficha
   $('#aTextTechTitle').value = DATA.texts.techTitle || '';
   renderFichaEditor();
 
-  // Images
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = '';
   (DATA.heroImages || []).forEach((url, i) => {
     const el = document.createElement('div'); el.className = 'a-cover-card';
@@ -2240,6 +2336,7 @@ function renderAdmin() {
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
   $('#aMusicUrl').value = (DATA.music && DATA.music.url) || '';
+  $('#aYoutubeApiKey').value = (DATA.settings && DATA.settings.youtubeApiKey) || '';
 
   updateAdminBadges();
 }
@@ -2575,6 +2672,9 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverSpotify').value = c.spotifyUrl || '';
   $('#aEditCoverApple').value = c.appleMusicUrl || '';
   $('#aEditCoverYouTube').value = c.youtubeUrl || '';
+  $('#aEditCoverPlaysSpotify').value = (c.plays?.spotify !== undefined) ? c.plays.spotify : 0;
+  $('#aEditCoverPlaysYoutube').value = (c.plays?.youtube !== undefined) ? c.plays.youtube : 0;
+  $('#aEditCoverPlaysApple').value = (c.plays?.apple !== undefined) ? c.plays.apple : 0;
   $('#aEditCoverExtras').value = (c.extraImages || []).join('\n');
   $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
@@ -2602,7 +2702,6 @@ $$('.a-nav-item').forEach(item => {
   };
 });
 
-/* Inputs listeners */
 $('#aHeroEyebrow').oninput = e => DATA.texts.heroEyebrow = e.target.value;
 $('#aHeroTitle').oninput = e => DATA.hero.title = e.target.value;
 $('#aHeroLead').oninput = e => DATA.hero.lead = e.target.value;
@@ -2634,11 +2733,12 @@ $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
+$('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; };
 
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 3840, 0.92, 3000);
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
   const cat = $('#aCoverCategorySelect').value;
-  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } }));
   updateAdminBadges(); renderAdmin(); saveAdminData();
 }, 2000, 0.9, 500);
 setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 800, 0.9, 300);
@@ -2662,7 +2762,7 @@ $('#aBtnAddCoverUrls').onclick = () => {
   const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
   const cat = $('#aCoverCategorySelect').value;
   if (!urls.length) return;
-  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } }));
   $('#aCoverUrlsInput').value=''; updateAdminBadges(); renderAdmin(); saveAdminData();
 };
 $('#aBtnAddClientUrls').onclick = () => {
@@ -2690,6 +2790,13 @@ $('#aBtnSaveCover').onclick = () => {
   c.spotifyUrl = $('#aEditCoverSpotify').value.trim();
   c.appleMusicUrl = $('#aEditCoverApple').value.trim();
   c.youtubeUrl = $('#aEditCoverYouTube').value.trim();
+  
+  c.plays = {
+    spotify: parseInt($('#aEditCoverPlaysSpotify').value) || 0,
+    youtube: parseInt($('#aEditCoverPlaysYoutube').value) || 0,
+    apple: parseInt($('#aEditCoverPlaysApple').value) || 0
+  };
+  
   c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
   c.featured = $('#aEditCoverFeatured').checked;
   $('#aCoverModal').classList.remove('active');
