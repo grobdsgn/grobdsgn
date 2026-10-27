@@ -44,9 +44,11 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 @keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,97,0.4)}50%{box-shadow:0 0 0 8px rgba(201,169,97,0)}}
 main{position:relative}
 .view{display:none}.view.active{display:block}
+
+/* HERO — imágenes a máxima calidad (image-rendering high quality, no stretch) */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.2s}
+.hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality}
 .hero-bg-layer.active{opacity:1}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.45) 35%,rgba(0,0,0,.85));z-index:1;pointer-events:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
@@ -89,7 +91,9 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(20px,5vw,64px);max-width:900px;color:#fff}
 .parallax-content .num{font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;display:block}
 .parallax-content h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,8vw,7rem);line-height:.98;letter-spacing:-.04em;margin-bottom:18px;color:#fff}
-.parallax-content .cat-logo-img{max-width:min(380px,75vw);max-height:110px;width:auto;height:auto;margin:0 auto 20px;display:block;object-fit:contain;filter:drop-shadow(0 6px 30px rgba(0,0,0,0.7))}
+/* LOGO DEL PROYECTO EN PARALLAX — en blanco con glow al hover */
+.parallax-content .cat-logo-img{max-width:min(380px,75vw);max-height:110px;width:auto;height:auto;margin:0 auto 20px;display:block;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 6px 30px rgba(0,0,0,0.7));transition:filter .4s,transform .4s}
+.parallax-row:hover .cat-logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 30px rgba(255,255,255,0.55)) drop-shadow(0 0 60px rgba(255,255,255,0.2));transform:scale(1.04)}
 .parallax-content .desc{font-size:clamp(.85rem,1.3vw,1.05rem);color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 20px}
 .parallax-content .meta{display:inline-flex;align-items:center;gap:12px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
 .parallax-content .meta::before,.parallax-content .meta::after{content:'';width:28px;height:1px;background:rgba(255,255,255,.3)}
@@ -99,7 +103,8 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .proyecto-header{padding:110px 0 30px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px);text-align:center}
 .proyecto-header .back-btn{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px}
 .proyecto-header .back-btn:hover{color:var(--text)}
-.proyecto-logo{max-height:100px;max-width:340px;margin:0 auto 20px;object-fit:contain}
+/* LOGO DEL PROYECTO (cabecera detalle) — blanco */
+.proyecto-logo{max-height:100px;max-width:340px;margin:0 auto 20px;object-fit:contain;filter:brightness(0) invert(1);transition:filter .3s}
 .proyecto-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.6rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;color:var(--text)}
 .proyecto-cat-label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
 .masonry-gallery{max-width:1400px;margin:30px auto 0;padding:0 clamp(12px,4vw,48px) 70px;column-gap:10px;columns:3}
@@ -108,6 +113,9 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .masonry-item{break-inside:avoid;margin-bottom:10px;border-radius:4px;overflow:hidden;background:#0a0a0a;cursor:zoom-in;opacity:0;animation:masonryIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--entry-delay,0s)}
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:80px;background:#0a0a0a}
+.masonry-item.video-item{cursor:default}
+.video-wrapper{width:100%;aspect-ratio:16/9;background:#000;border-radius:4px;overflow:hidden}
+.video-wrapper iframe{display:block;width:100%;height:100%;border:0}
 .covers-view{padding:110px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(20px,5vw,56px) 30px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px;max-width:20ch}
@@ -157,17 +165,18 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .software-section p{color:var(--muted);max-width:56ch;font-size:.95rem}
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:20px 24px;margin-top:40px;align-items:center}
 @media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
-.software-logo{display:grid;place-items:center;padding:16px;min-height:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;transition:.3s}
-.software-logo:hover{background:rgba(255,255,255,0.08);border-color:rgba(201,169,97,0.4)}
-.software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;transition:.3s;opacity:.95;min-height:20px}
+/* LOGOS HERRAMIENTAS — en blanco, sin recuadros */
+.software-logo{display:grid;place-items:center;padding:16px;min-height:80px;cursor:pointer;transition:.3s}
+.software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
+.software-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));transform:scale(1.06)}
 .clientes-view{padding:120px 0 80px;min-height:100vh;background:#000}
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:clamp(20px,4vw,50px) clamp(16px,3vw,40px);margin-top:40px;align-items:center}
 @media(max-width:640px){.clientes-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
 @media(max-width:380px){.clientes-grid{grid-template-columns:1fr}}
-.cliente-logo{display:grid;place-items:center;padding:24px;cursor:pointer;min-height:100px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:16px;transition:.4s}
-.cliente-logo img{max-width:100%;max-height:70px;width:auto;height:auto;object-fit:contain;transition:.4s;opacity:.95;min-height:20px}
-.cliente-logo:hover{background:rgba(255,255,255,0.08);border-color:rgba(201,169,97,0.5);transform:translateY(-3px)}
-.cliente-logo:hover img{transform:scale(1.05);filter:drop-shadow(0 0 24px rgba(201,169,97,.35))}
+/* LOGOS CLIENTES — en blanco, sin recuadros */
+.cliente-logo{display:grid;place-items:center;padding:24px;cursor:pointer;min-height:100px;transition:.3s}
+.cliente-logo img{max-width:100%;max-height:70px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
+.cliente-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65));transform:scale(1.05)}
 .contacto-view{padding:120px 0 60px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
 @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:40px}}
@@ -217,7 +226,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:999;display:none}
 .a-overlay.active{display:block}
 .a-main{flex:1;display:flex;flex-direction:column;min-height:100vh;background:var(--a-bg);width:100%}
-.a-sidebar-header{padding:20px 20px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center}
+.a-sidebar-header{padding:20px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center}
 .a-sidebar-logo{height:24px;width:auto;filter:brightness(0) invert(1)}
 .a-sidebar-nav{padding:14px 10px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
 .a-nav-item{padding:12px 14px;border-radius:10px;font-size:13px;font-weight:500;color:var(--a-muted);display:flex;align-items:center;gap:10px;transition:all 0.2s;cursor:pointer}
@@ -301,17 +310,12 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .divider-or{display:flex;align-items:center;gap:12px;margin:12px 0;color:var(--a-muted);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
 .divider-line{height:1px;background:var(--a-line);margin:20px 0}
-
-/* ADMIN PORTFOLIO SUB-PAGES */
-.admin-sub-page{padding:0}
 .admin-back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:8px;color:var(--a-muted);cursor:pointer;transition:.2s;margin-bottom:16px}
 .admin-back-btn:hover{background:var(--a-surface-hover);color:var(--a-text);border-color:rgba(255,255,255,0.2)}
 .admin-page-header{margin-bottom:20px}
 .admin-page-header h2{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px}
 @media(max-width:640px){.admin-page-header h2{font-size:1.25rem}}
 .admin-page-header p{color:var(--a-muted);font-size:13px}
-
-/* Categories list (in admin) */
 .cat-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 @media(max-width:640px){.cat-cards-grid{grid-template-columns:1fr;gap:10px}}
 .cat-card{background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.2s;position:relative}
@@ -322,8 +326,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .cat-card-title{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
 .cat-card-meta{font-size:11px;color:var(--a-muted);display:flex;align-items:center;gap:6px}
 .cat-card-count{background:rgba(201,169,97,0.15);color:var(--a-accent);padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700}
-
-/* Project cards (in category page) */
 .project-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 @media(max-width:640px){.project-cards-grid{grid-template-columns:repeat(2,1fr);gap:8px}}
 .project-card{background:rgba(255,255,255,0.02);border:1px solid var(--a-line);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.2s;position:relative}
@@ -334,8 +336,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .project-card-title{font-size:12px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .project-card-meta{font-size:10px;color:var(--a-muted);display:flex;align-items:center;gap:4px}
 .project-card-logo{position:absolute;top:6px;left:6px;max-height:22px;max-width:60%;object-fit:contain;background:rgba(0,0,0,0.75);padding:2px 6px;border-radius:4px;z-index:2}
-
-/* Project edit page */
 .project-edit-logo-preview{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--a-line);border-radius:8px;margin-top:8px}
 .project-edit-logo-preview img{max-height:34px;max-width:100px;object-fit:contain;background:#000;padding:4px;border-radius:4px}
 .parallax-preview{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.3);border-radius:8px;margin-top:8px}
@@ -356,8 +356,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .empty-icon{font-size:40px;margin-bottom:10px;line-height:1}
 .empty-state h3{font-size:15px;font-weight:700;margin-bottom:6px}
 .empty-state p{color:var(--a-muted);font-size:12px;margin-bottom:14px}
-
-/* Login */
 .a-login-screen{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#151518,#050505);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:400px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:16px;padding:32px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
@@ -365,8 +363,6 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 .a-login-title{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;text-align:center;margin-bottom:6px}
 .a-login-subtitle{font-size:13px;color:var(--a-muted);text-align:center;margin-bottom:24px}
 .a-login-error{color:var(--a-danger);font-size:12px;text-align:center;margin-top:12px;min-height:18px}
-
-/* Modal */
 .a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:2000;padding:16px}
 .a-modal-overlay.active{display:flex;animation:fadeIn 0.2s}
 .a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:14px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.7)}
@@ -455,7 +451,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
 
     <div class="view" data-view="categoria">
       <div class="categoria-intro">
-        <button id="volverPortafolio" class="admin-back-btn" style="background:none;border:none;padding:10px 0;color:var(--muted)">← Volver a Portafolio</button>
+        <button id="volverPortafolio" style="display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px">← Volver a Portafolio</button>
         <span class="label" id="catLabelNum">— Categoría</span>
         <h2 id="catNombre"></h2>
         <p id="catDescripcion"></p>
@@ -639,7 +635,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🎬</div>
             <div class="a-hero-text">
               <h2>Página de Inicio</h2>
-              <p>Edita el titular, la descripción y las imágenes de fondo del carrusel principal.</p>
+              <p>Edita el titular, la descripción y las imágenes de fondo del carrusel principal. Las imágenes se guardan en alta calidad (hasta 4K).</p>
               <div class="a-hero-stats"><div class="a-stat">Imágenes: <strong id="statHeroImgs">0</strong></div></div>
             </div>
           </div>
@@ -654,12 +650,13 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Fondos del Carrusel</h2></div>
             <div class="a-card-body">
+              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K) sin compresión agresiva. Para máxima calidad en pantallas 5K+, usa el campo de URL pegando un enlace directo a tu imagen.</div>
               <div class="upload-zone" id="heroUploadZone">
                 <span class="upload-zone-icon">📤</span>
-                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar</div>
+                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar (alta calidad preservada)</div>
                 <input type="file" id="heroFileInput" accept="image/*" multiple hidden>
               </div>
-              <div class="divider-or"><span>o pega URLs</span></div>
+              <div class="divider-or"><span>o pega URLs (máxima calidad)</span></div>
               <div style="display:flex;gap:8px">
                 <textarea id="aHeroUrlsInput" class="a-form-textarea" rows="2" placeholder="https://ejemplo.com/fondo1.jpg"></textarea>
                 <button class="a-btn a-btn-outline" id="aBtnAddHeroUrls">Añadir</button>
@@ -674,7 +671,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">💿</div>
             <div class="a-hero-text">
               <h2>Covers</h2>
-              <p>Sube portadas desde tu PC o pega URLs.</p>
+              <p>Sube portadas desde tu PC o pega URLs. Los covers con link de YouTube mostrarán el video en la galería.</p>
               <div class="a-hero-stats">
                 <div class="a-stat">Sencillos: <strong id="statSencillo">0</strong></div>
                 <div class="a-stat">Álbumes: <strong id="statAlbums">0</strong></div>
@@ -720,7 +717,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🏢</div>
             <div class="a-hero-text">
               <h2>Clientes</h2>
-              <p>Logos de marcas y artistas.</p>
+              <p>Logos de marcas y artistas. Se muestran en blanco sobre la web pública.</p>
               <div class="a-hero-stats"><div class="a-stat">Logos: <strong id="statClients">0</strong></div></div>
             </div>
           </div>
@@ -750,7 +747,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🛠️</div>
             <div class="a-hero-text">
               <h2>Herramientas</h2>
-              <p>Iconos del software con el que trabajas.</p>
+              <p>Iconos del software con el que trabajas. Se muestran en blanco sobre la web pública.</p>
               <div class="a-hero-stats"><div class="a-stat">Iconos: <strong id="statTools">0</strong></div></div>
             </div>
           </div>
@@ -857,9 +854,13 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
         <div class="a-form-group"><label class="a-form-label">Spotify</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">Apple Music</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
-        <div class="a-form-group"><label class="a-form-label">YouTube</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
         <div class="a-form-group">
-          <label class="a-form-label">Imágenes extra</label>
+          <label class="a-form-label">YouTube (el video aparecerá en la galería)</label>
+          <input type="url" id="aEditCoverYouTube" class="a-form-input" placeholder="https://youtube.com/watch?v=...">
+          <span class="a-form-hint">Si hay link de YouTube, el video se reproducirá inline en la galería del cover.</span>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Imágenes extra (galería)</label>
           <div class="upload-zone compact" id="coverExtrasUploadZone" style="margin-bottom:8px">
             <span class="upload-zone-icon">📤</span>
             <div class="upload-zone-text"><strong>Subir imágenes</strong>desde PC</div>
@@ -925,52 +926,8 @@ function handleImgError(img) {
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
 }
 
-/* Detección de brillo para logos - aplica filtro solo si el logo es oscuro */
-const brightnessCache = new Map();
-function getImageBrightness(url) {
-  if (!url) return Promise.resolve(128);
-  if (brightnessCache.has(url)) return Promise.resolve(brightnessCache.get(url));
-  return new Promise(res => {
-    const im = new Image();
-    if (location.protocol !== 'file:' && /^https?:|^data:/i.test(url)) im.crossOrigin = 'anonymous';
-    const timeout = setTimeout(() => res(80), 3000);
-    im.onload = () => {
-      clearTimeout(timeout);
-      try {
-        const s = 20;
-        const c = document.createElement('canvas');
-        c.width = s; c.height = s;
-        const ctx = c.getContext('2d');
-        ctx.drawImage(im, 0, 0, s, s);
-        const d = ctx.getImageData(0, 0, s, s).data;
-        let total = 0, count = 0;
-        for (let i = 0; i < d.length; i += 4) {
-          if (d[i + 3] < 50) continue;
-          total += (d[i] * 299 + d[i + 1] * 587 + d[i + 2] * 114) / 1000;
-          count++;
-        }
-        const avg = count > 0 ? total / count : 80;
-        brightnessCache.set(url, avg);
-        res(avg);
-      } catch (e) { res(80); }
-    };
-    im.onerror = () => { clearTimeout(timeout); res(80); };
-    im.src = url;
-  });
-}
-/* Aplica filtro condicionalmente para que el logo se vea sobre fondo oscuro */
-function applySmartLogoFilter(img, url) {
-  if (!img || !url) return;
-  getImageBrightness(url).then(b => {
-    if (b < 120) {
-      img.style.filter = 'brightness(0) invert(1)';
-    } else {
-      img.style.filter = 'none';
-    }
-  });
-}
-
-function compressImage(file, maxDim = 1800, quality = 0.88) {
+/* COMPRESIÓN CON SOPORTE DE ALTA CALIDAD */
+function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   return new Promise((res, rej) => {
     if (file.type === 'image/svg+xml') {
       const r = new FileReader();
@@ -984,13 +941,22 @@ function compressImage(file, maxDim = 1800, quality = 0.88) {
       const img = new Image();
       img.onload = () => {
         const { width, height } = img;
-        if (file.size < 300 * 1024 && width <= maxDim && height <= maxDim) { res(reader.result); return; }
+        // Si cabe dentro de las dimensiones y no pesa demasiado, conservar original (sin recompresión)
+        if (file.size < thresholdKB * 1024 && width <= maxDim && height <= maxDim) {
+          res(reader.result);
+          return;
+        }
+        // Redimensionar si excede
         let nw = width, nh = height;
-        if (width > height) { nw = Math.min(maxDim, width); nh = Math.round(height * (nw / width)); }
-        else { nh = Math.min(maxDim, height); nw = Math.round(width * (nh / height)); }
+        if (width > maxDim || height > maxDim) {
+          if (width > height) { nw = Math.min(maxDim, width); nh = Math.round(height * (nw / width)); }
+          else { nh = Math.min(maxDim, height); nw = Math.round(width * (nh / height)); }
+        }
         const c = document.createElement('canvas');
         c.width = nw; c.height = nh;
         const ctx = c.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, 0, 0, nw, nh);
         const isPng = file.type === 'image/png';
         res(c.toDataURL(isPng ? 'image/png' : 'image/jpeg', quality));
@@ -1002,16 +968,16 @@ function compressImage(file, maxDim = 1800, quality = 0.88) {
     reader.readAsDataURL(file);
   });
 }
-async function processImageFiles(files, maxDim = 1800) {
+async function processImageFiles(files, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   const results = [];
   for (const file of files) {
     if (!file.type.startsWith('image/')) continue;
-    try { results.push(await compressImage(file, maxDim)); }
+    try { results.push(await compressImage(file, maxDim, quality, thresholdKB)); }
     catch (e) { console.warn('Error al comprimir', file.name, e); }
   }
   return results;
 }
-function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800) {
+function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   const zone = document.getElementById(zoneId);
   const input = document.getElementById(inputId);
   if (!zone || !input) return;
@@ -1021,7 +987,7 @@ function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800) {
     const lbl = zone.querySelector('.upload-zone-text strong');
     const orig = lbl ? lbl.textContent : '';
     if (lbl) lbl.textContent = 'Procesando...';
-    const urls = await processImageFiles(files, maxDim);
+    const urls = await processImageFiles(files, maxDim, quality, thresholdKB);
     if (urls.length) onFiles(urls);
     if (lbl) lbl.textContent = orig;
   };
@@ -1136,11 +1102,8 @@ function migrateData(data) {
       if (!cat.projects) {
         const imgs = (cat.items || []).map(item => getItemUrl(item));
         cat.projects = imgs.length ? [{
-          id: uid(),
-          name: cat.name || 'Proyectos',
-          logo: cat.logo || '',
-          parallaxImage: cat.parallaxImage || imgs[0] || '',
-          images: imgs
+          id: uid(), name: cat.name || 'Proyectos', logo: cat.logo || '',
+          parallaxImage: cat.parallaxImage || imgs[0] || '', images: imgs
         }] : [];
       }
       delete cat.items;
@@ -1363,7 +1326,6 @@ function renderContact() {
   const cp = $('#pubContactPhone');
   if (cp) { cp.textContent = c.phone || '-'; cp.href = 'tel:' + (c.phone || '').replace(/\s/g, ''); }
   const cl = $('#pubContactLocation'); if (cl) cl.textContent = c.location || '-';
-
   const waBtn = $('#contactWaBtn'), waVal = $('#contactWaValue');
   const phoneDigits = (c.phone || '').replace(/[^0-9]/g, '');
   if (waBtn) {
@@ -1371,7 +1333,6 @@ function renderContact() {
     else { waBtn.href = '#'; waBtn.style.pointerEvents = 'none'; waBtn.style.opacity = '0.4'; }
   }
   if (waVal) waVal.textContent = c.phone || 'No configurado';
-
   const emBtn = $('#contactEmailBtn'), emVal = $('#contactEmailValue');
   if (emBtn) {
     if (c.email) { emBtn.href = `mailto:${c.email}`; emBtn.style.pointerEvents = ''; emBtn.style.opacity = ''; }
@@ -1443,7 +1404,6 @@ function renderPublicClients() {
     const im = document.createElement('img');
     im.src = resolveImageUrl(url);
     im.onerror = () => handleImgError(im);
-    applySmartLogoFilter(im, url);
     c.appendChild(im);
     grid.appendChild(c);
   });
@@ -1460,7 +1420,6 @@ function renderPublicTools() {
       const im = document.createElement('img');
       im.src = resolveImageUrl(url);
       im.onerror = () => handleImgError(im);
-      applySmartLogoFilter(im, url);
       card.appendChild(im);
       grid.appendChild(card);
     });
@@ -1508,48 +1467,80 @@ function renderCoverDetail(id) {
   $('#coverHeroTitle').textContent = c.name || 'Sin título';
   $('#coverHeroArtist').textContent = c.artist || '';
   $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
+
+  // Hero music: solo Spotify/Apple (el video YouTube va en la galería para no duplicar)
   const musicWrap = $('#coverHeroMusic');
   musicWrap.innerHTML = '';
-  const embedData = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl) || getEmbedUrl(c.youtubeUrl);
-  if (embedData) {
+  const heroEmbed = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl);
+  if (heroEmbed) {
     const ifr = document.createElement('iframe');
-    ifr.src = embedData.url;
+    ifr.src = heroEmbed.url;
     ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
-    ifr.height = embedData.height;
+    ifr.height = heroEmbed.height;
     ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
     musicWrap.appendChild(ifr);
     musicWrap.style.display = 'block';
   } else {
     musicWrap.style.display = 'none';
   }
-  const extraImgs = $('#coverExtraImgs');
-  extraImgs.innerHTML = '';
+
+  // Reseña
   const extra = $('#coverExtraSection');
   const resenaBlock = $('#coverResenaBlock');
   const galeriaLabel = $('#coverGaleriaLabel');
   const hasReview = !!c.review;
-  const hasExtras = c.extraImages && c.extraImages.length > 0;
   if (hasReview) { $('#coverHeroResena').textContent = c.review; resenaBlock.style.display = 'block'; }
   else resenaBlock.style.display = 'none';
-  if (hasExtras) {
+
+  // Galería: video de YouTube (si existe) + imágenes extra
+  const extraImgs = $('#coverExtraImgs');
+  extraImgs.innerHTML = '';
+  const ytId = c.youtubeUrl ? getYouTubeId(c.youtubeUrl) : null;
+  const hasVideo = !!ytId;
+  const hasExtraImages = c.extraImages && c.extraImages.length > 0;
+  const hasGallery = hasVideo || hasExtraImages;
+
+  if (hasGallery) {
     const gallery = document.createElement('div');
     gallery.className = 'masonry-gallery';
-    c.extraImages.forEach((imgUrl) => {
-      const imgItem = document.createElement('div');
-      imgItem.className = 'masonry-item';
-      const img = document.createElement('img');
-      img.src = resolveImageUrl(imgUrl);
-      img.dataset.zoom = imgUrl;
-      img.onerror = () => handleImgError(img);
-      imgItem.appendChild(img);
-      gallery.appendChild(imgItem);
-    });
+
+    if (hasVideo) {
+      const videoItem = document.createElement('div');
+      videoItem.className = 'masonry-item video-item';
+      videoItem.style.setProperty('--entry-delay', '0s');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'video-wrapper';
+      const ifr = document.createElement('iframe');
+      ifr.src = `https://www.youtube.com/embed/${ytId}`;
+      ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+      ifr.setAttribute('allowfullscreen', '');
+      ifr.setAttribute('loading', 'lazy');
+      wrapper.appendChild(ifr);
+      videoItem.appendChild(wrapper);
+      gallery.appendChild(videoItem);
+    }
+
+    if (hasExtraImages) {
+      c.extraImages.forEach((imgUrl, idx) => {
+        const imgItem = document.createElement('div');
+        imgItem.className = 'masonry-item';
+        imgItem.style.setProperty('--entry-delay', ((idx + (hasVideo ? 1 : 0)) * 0.05) + 's');
+        const img = document.createElement('img');
+        img.src = resolveImageUrl(imgUrl);
+        img.dataset.zoom = imgUrl;
+        img.onerror = () => handleImgError(img);
+        imgItem.appendChild(img);
+        gallery.appendChild(imgItem);
+      });
+    }
+
     extraImgs.appendChild(gallery);
     if (galeriaLabel) galeriaLabel.style.display = 'block';
   } else {
     if (galeriaLabel) galeriaLabel.style.display = 'none';
   }
-  if (hasReview || hasExtras) extra.classList.remove('hidden');
+
+  if (hasReview || hasGallery) extra.classList.remove('hidden');
   else extra.classList.add('hidden');
   showView('coverDetalle');
 }
@@ -1561,14 +1552,12 @@ function renderCategoryDetail(id) {
   $('#catDescripcion').textContent = cat.description || '';
   const container = $('#catProjRows');
   container.innerHTML = '';
-
   const projects = cat.projects || [];
   if (projects.length === 0) {
     container.innerHTML = '<p style="text-align:center;padding:80px 20px;color:var(--muted);">Aún no hay proyectos en esta categoría.</p>';
     showView('categoria');
     return;
   }
-
   projects.forEach((proj, i) => {
     const row = document.createElement('div');
     row.className = 'parallax-row';
@@ -1611,7 +1600,6 @@ function renderProjectDetail(id) {
   const titleEl = $('#projNombre');
   titleEl.textContent = proj.name || 'Sin título';
   titleEl.style.display = proj.logo ? 'none' : 'block';
-
   const container = $('#projImagesGrid');
   container.innerHTML = '';
   if (proj.images && proj.images.length) {
@@ -1804,28 +1792,21 @@ function renderAdmin() {
   updateAdminBadges();
 }
 
-/* ============ ADMIN PORTFOLIO: SUB-PÁGINAS ============ */
 function renderAdminPortfolio() {
   const container = $('#portfolioPanelContent');
   if (!container) return;
-
-  if (ADMIN_NAV.view === 'categories') {
-    renderAdminCategoriesPage(container);
-  } else if (ADMIN_NAV.view === 'category') {
-    renderAdminCategoryPage(container);
-  } else if (ADMIN_NAV.view === 'project') {
-    renderAdminProjectPage(container);
-  }
+  if (ADMIN_NAV.view === 'categories') renderAdminCategoriesPage(container);
+  else if (ADMIN_NAV.view === 'category') renderAdminCategoryPage(container);
+  else if (ADMIN_NAV.view === 'project') renderAdminProjectPage(container);
 }
 
-/* PÁGINA 1: Lista de categorías */
 function renderAdminCategoriesPage(container) {
   const cats = DATA.categories || [];
   let cardsHtml = '';
   if (cats.length === 0) {
     cardsHtml = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">📁</div><h3>Sin categorías</h3><p>Crea tu primera categoría para organizar tus proyectos.</p><button class="a-btn a-btn-primary" onclick="createNewCategory()">+ Crear categoría</button></div>`;
   } else {
-    cardsHtml = cats.map((cat, i) => {
+    cardsHtml = cats.map((cat) => {
       const projCount = (cat.projects || []).length;
       const bgImg = cat.parallaxImage ? `<img class="cat-card-img" src="${resolveImageUrl(cat.parallaxImage)}" onerror="handleImgError(this)">` : `<div class="cat-card-img empty">📁</div>`;
       return `
@@ -1833,15 +1814,11 @@ function renderAdminCategoriesPage(container) {
           ${bgImg}
           <div class="cat-card-body">
             <div class="cat-card-title">${escHtml(cat.name || 'Sin nombre')}</div>
-            <div class="cat-card-meta">
-              <span class="cat-card-count">${projCount} ${projCount === 1 ? 'proyecto' : 'proyectos'}</span>
-            </div>
+            <div class="cat-card-meta"><span class="cat-card-count">${projCount} ${projCount === 1 ? 'proyecto' : 'proyectos'}</span></div>
           </div>
-        </div>
-      `;
+        </div>`;
     }).join('');
   }
-
   container.innerHTML = `
     <div class="a-hero">
       <div class="a-hero-icon">🎨</div>
@@ -1855,67 +1832,50 @@ function renderAdminCategoriesPage(container) {
       </div>
     </div>
     <div class="admin-page-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-      <div>
-        <h2>Categorías</h2>
-        <p>Haz clic en una categoría para ver sus proyectos.</p>
-      </div>
+      <div><h2>Categorías</h2><p>Haz clic en una categoría para ver sus proyectos.</p></div>
       <button class="a-btn a-btn-primary" onclick="createNewCategory()">+ Nueva Categoría</button>
     </div>
     <div class="cat-cards-grid">${cardsHtml}</div>
   `;
 }
 
-/* PÁGINA 2: Detalle de categoría + lista de proyectos */
 function renderAdminCategoryPage(container) {
   const catIdx = (DATA.categories || []).findIndex(c => c.id === ADMIN_NAV.catId);
-  if (catIdx < 0) {
-    ADMIN_NAV.view = 'categories';
-    renderAdminPortfolio();
-    return;
-  }
+  if (catIdx < 0) { ADMIN_NAV.view = 'categories'; renderAdminPortfolio(); return; }
   const cat = DATA.categories[catIdx];
   const projects = cat.projects || [];
-
   let projectsHtml = '';
   if (projects.length === 0) {
     projectsHtml = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🎨</div><h3>Sin proyectos</h3><p>Esta categoría aún no tiene proyectos.</p><button class="a-btn a-btn-primary" onclick="addProjectToCategory('${cat.id}')">+ Crear proyecto</button></div>`;
   } else {
-    projectsHtml = projects.map((proj, i) => {
+    projectsHtml = projects.map((proj) => {
       const imgCount = (proj.images || []).length;
       const coverImg = proj.parallaxImage || (proj.images && proj.images[0]) || '';
-      const imgHtml = coverImg
-        ? `<img class="project-card-img" src="${resolveImageUrl(coverImg)}" onerror="handleImgError(this)">`
-        : `<div class="project-card-img empty">🎨</div>`;
+      const imgHtml = coverImg ? `<img class="project-card-img" src="${resolveImageUrl(coverImg)}" onerror="handleImgError(this)">` : `<div class="project-card-img empty">🎨</div>`;
       const logoHtml = proj.logo ? `<img class="project-card-logo" src="${resolveImageUrl(proj.logo)}" onerror="this.style.display='none'">` : '';
       return `
         <div class="project-card" onclick="openProject('${proj.id}')">
-          ${imgHtml}
-          ${logoHtml}
+          ${imgHtml}${logoHtml}
           <div class="project-card-body">
             <div class="project-card-title">${escHtml(proj.name || 'Sin nombre')}</div>
             <div class="project-card-meta">📸 ${imgCount} ${imgCount === 1 ? 'imagen' : 'imágenes'}</div>
           </div>
-        </div>
-      `;
+        </div>`;
     }).join('');
   }
-
   container.innerHTML = `
     <button class="admin-back-btn" onclick="goBackToCategories()">← Volver a Categorías</button>
-    <div class="admin-page-header">
-      <h2>${escHtml(cat.name || 'Categoría')}</h2>
-      <p>Configura esta categoría y gestiona sus proyectos.</p>
-    </div>
+    <div class="admin-page-header"><h2>${escHtml(cat.name || 'Categoría')}</h2><p>Configura esta categoría y gestiona sus proyectos.</p></div>
     <div class="a-card">
       <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📁</span>Configuración de Categoría</h2></div>
       <div class="a-card-body">
         <div class="a-form-group">
           <label class="a-form-label">Nombre de la categoría</label>
-          <input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" placeholder="Nombre" oninput="updateCatField(${catIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
+          <input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${catIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
         </div>
         <div class="a-form-group">
           <label class="a-form-label">Descripción</label>
-          <textarea class="a-form-textarea" rows="2" oninput="updateCatField(${catIdx}, 'description', this.value)" placeholder="Describe esta categoría...">${escHtml(cat.description || '')}</textarea>
+          <textarea class="a-form-textarea" rows="2" oninput="updateCatField(${catIdx}, 'description', this.value)">${escHtml(cat.description || '')}</textarea>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">🌟 Imagen parallax de la categoría</label>
@@ -1937,22 +1897,14 @@ function renderAdminCategoryPage(container) {
         <h2 class="a-card-title"><span class="a-card-title-icon">🎨</span>Proyectos<span class="a-count">${projects.length}</span></h2>
         <button class="a-btn a-btn-primary a-btn-sm" onclick="addProjectToCategory('${cat.id}')">+ Nuevo Proyecto</button>
       </div>
-      <div class="a-card-body">
-        <div class="project-cards-grid">${projectsHtml}</div>
-      </div>
+      <div class="a-card-body"><div class="project-cards-grid">${projectsHtml}</div></div>
     </div>
   `;
-
   setupUploadZone(`catPxZone_${catIdx}`, `catPxInput_${catIdx}`, (urls) => {
-    if (urls[0]) {
-      DATA.categories[catIdx].parallaxImage = urls[0];
-      renderAdminPortfolio();
-      saveAdminData();
-    }
+    if (urls[0]) { DATA.categories[catIdx].parallaxImage = urls[0]; renderAdminPortfolio(); saveAdminData(); }
   });
 }
 
-/* PÁGINA 3: Detalle de proyecto */
 function renderAdminProjectPage(container) {
   const catIdx = (DATA.categories || []).findIndex(c => c.id === ADMIN_NAV.catId);
   if (catIdx < 0) { ADMIN_NAV.view = 'categories'; renderAdminPortfolio(); return; }
@@ -1961,7 +1913,6 @@ function renderAdminProjectPage(container) {
   if (projIdx < 0) { ADMIN_NAV.view = 'category'; renderAdminPortfolio(); return; }
   const proj = cat.projects[projIdx];
   const projKey = `${catIdx}_${projIdx}`;
-
   let imgGridHtml = '';
   (proj.images || []).forEach((imgUrl, imgIdx) => {
     const isPx = proj.parallaxImage === imgUrl;
@@ -1969,27 +1920,21 @@ function renderAdminProjectPage(container) {
       <div class="project-image-item${isPx ? ' parallax-selected' : ''}" onclick="toggleProjectParallax(${catIdx}, ${projIdx}, ${imgIdx})" title="${isPx ? 'Clic para quitar' : 'Clic para usar como parallax'}">
         <img src="${resolveImageUrl(imgUrl)}" onerror="handleImgError(this)">
         <button class="project-image-del" onclick="event.stopPropagation(); delProjectImage(${catIdx}, ${projIdx}, ${imgIdx})">✕</button>
-      </div>
-    `;
+      </div>`;
   });
   if (!(proj.images || []).length) {
     imgGridHtml = '<p style="color:var(--a-muted);font-size:12px;padding:20px;text-align:center;grid-column:1/-1">Sin imágenes todavía. Sube algunas arriba.</p>';
   }
-
   container.innerHTML = `
     <button class="admin-back-btn" onclick="goBackToCategory()">← Volver a ${escHtml(cat.name || 'categoría')}</button>
-    <div class="admin-page-header">
-      <h2>${escHtml(proj.name || 'Proyecto')}</h2>
-      <p>Edita el logo, la imagen parallax y las imágenes del proyecto.</p>
-    </div>
+    <div class="admin-page-header"><h2>${escHtml(proj.name || 'Proyecto')}</h2><p>Edita el logo, la imagen parallax y las imágenes del proyecto.</p></div>
     <div class="a-card">
       <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">✏️</span>Datos del Proyecto</h2></div>
       <div class="a-card-body">
         <div class="a-form-group">
           <label class="a-form-label">Nombre del proyecto</label>
-          <input type="text" class="a-form-input" value="${escHtml(proj.name || '')}" placeholder="Nombre" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
+          <input type="text" class="a-form-input" value="${escHtml(proj.name || '')}" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700">
         </div>
-
         <div class="a-form-group">
           <label class="a-form-label">🖼️ Logo del proyecto</label>
           <div class="upload-zone compact" id="projLogoZone_${projKey}">
@@ -1999,9 +1944,8 @@ function renderAdminProjectPage(container) {
           </div>
           <input type="text" class="a-form-input" style="margin-top:8px" placeholder="O URL del logo..." value="${escHtml(proj.logo || '')}" onchange="updateProjectField(${catIdx}, ${projIdx}, 'logo', this.value); renderAdminPortfolio()">
           ${proj.logo ? `<div class="project-edit-logo-preview"><img src="${resolveImageUrl(proj.logo)}" onerror="handleImgError(this)"><span style="font-size:11px;color:var(--a-muted)">Logo actual</span><button class="a-btn a-btn-outline a-btn-xs" onclick="updateProjectField(${catIdx}, ${projIdx}, 'logo', ''); renderAdminPortfolio()">Quitar</button></div>` : ''}
-          <span class="a-form-hint">Si no hay logo, se muestra el nombre del proyecto.</span>
+          <span class="a-form-hint">En la web pública, el logo se muestra en blanco (silueta) con glow al pasar el mouse. Si no hay logo, se muestra el nombre del proyecto.</span>
         </div>
-
         <div class="a-form-group">
           <label class="a-form-label">🌟 Imagen parallax del proyecto</label>
           ${proj.parallaxImage
@@ -2010,11 +1954,8 @@ function renderAdminProjectPage(container) {
         </div>
       </div>
     </div>
-
     <div class="a-card">
-      <div class="a-card-header">
-        <h2 class="a-card-title"><span class="a-card-title-icon">📸</span>Imágenes<span class="a-count">${(proj.images || []).length}</span></h2>
-      </div>
+      <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📸</span>Imágenes<span class="a-count">${(proj.images || []).length}</span></h2></div>
       <div class="a-card-body">
         <div class="upload-zone" id="projImgsZone_${projKey}">
           <span class="upload-zone-icon">📤</span>
@@ -2033,10 +1974,9 @@ function renderAdminProjectPage(container) {
       </div>
     </div>
   `;
-
   setupUploadZone(`projLogoZone_${projKey}`, `projLogoInput_${projKey}`, (urls) => {
     if (urls[0]) { DATA.categories[catIdx].projects[projIdx].logo = urls[0]; renderAdminPortfolio(); saveAdminData(); }
-  }, 800);
+  }, 1000, 0.9, 300);
   setupUploadZone(`projImgsZone_${projKey}`, `projImgsInput_${projKey}`, (urls) => {
     if (!DATA.categories[catIdx].projects[projIdx].images) DATA.categories[catIdx].projects[projIdx].images = [];
     DATA.categories[catIdx].projects[projIdx].images.push(...urls);
@@ -2045,12 +1985,10 @@ function renderAdminProjectPage(container) {
   });
 }
 
-/* Navegación admin portfolio */
 window.openCategory = (id) => { ADMIN_NAV.view = 'category'; ADMIN_NAV.catId = id; ADMIN_NAV.projId = null; renderAdminPortfolio(); window.scrollTo({top:0,behavior:'auto'}); };
 window.openProject = (id) => { ADMIN_NAV.view = 'project'; ADMIN_NAV.projId = id; renderAdminPortfolio(); window.scrollTo({top:0,behavior:'auto'}); };
 window.goBackToCategories = () => { ADMIN_NAV.view = 'categories'; ADMIN_NAV.catId = null; ADMIN_NAV.projId = null; renderAdminPortfolio(); window.scrollTo({top:0,behavior:'auto'}); };
 window.goBackToCategory = () => { ADMIN_NAV.view = 'category'; ADMIN_NAV.projId = null; renderAdminPortfolio(); window.scrollTo({top:0,behavior:'auto'}); };
-
 window.createNewCategory = () => {
   if (!DATA.categories) DATA.categories = [];
   const newCat = { id: uid(), name: 'Nueva Categoría', description: '', parallaxImage: '', projects: [] };
@@ -2074,7 +2012,6 @@ window.addProjectToCategory = (catId) => {
   ADMIN_NAV.projId = newProj.id;
   renderAdminPortfolio();
 };
-
 window.updateCatField = (catIdx, field, value) => {
   if (!DATA.categories[catIdx]) return;
   DATA.categories[catIdx][field] = value;
@@ -2183,7 +2120,6 @@ $$('.a-nav-item').forEach(item => {
     const panel = $(`#a-panel-${item.dataset.target}`);
     if (panel) panel.classList.add('active');
     $('#aPageTitle').textContent = item.querySelector('.a-nav-label')?.textContent || item.textContent.trim();
-    // Reset portfolio nav when leaving portfolio
     if (item.dataset.target !== 'portfolio' && ADMIN_NAV.view !== 'categories') {
       ADMIN_NAV.view = 'categories';
       ADMIN_NAV.catId = null;
@@ -2205,23 +2141,25 @@ $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 
-setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); });
+/* HERO: alta calidad (4K, 0.92, 3MB threshold) */
+setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 3840, 0.92, 3000);
+/* COVERS: mejor calidad */
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
   const cat = $('#aCoverCategorySelect').value;
   urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
   updateAdminBadges(); renderAdmin(); saveAdminData();
-}, 1600);
-setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 800);
-setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 600);
+}, 2000, 0.9, 500);
+setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 800, 0.9, 300);
+setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 600, 0.9, 300);
 setupUploadZone('coverMainUploadZone', 'coverMainFileInput', (urls) => {
   if (urls[0]) { $('#aEditCoverUrl').value = urls[0]; $('#aEditCoverPreview').src = urls[0]; aToast('Imagen cargada. Recuerda guardar.'); }
-}, 1600);
+}, 2000, 0.9, 500);
 setupUploadZone('coverExtrasUploadZone', 'coverExtrasFileInput', (urls) => {
   const ta = $('#aEditCoverExtras');
   const existing = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
   ta.value = [...existing, ...urls].join('\n');
   aToast(`${urls.length} imagen(es) añadida(s).`);
-});
+}, 2000, 0.9, 500);
 
 $('#aBtnAddHeroUrls').onclick = () => {
   const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean);
@@ -2263,18 +2201,14 @@ $('#aBtnSaveCover').onclick = () => {
   c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
   c.featured = $('#aEditCoverFeatured').checked;
   $('#aCoverModal').classList.remove('active');
-  updateAdminBadges();
-  renderAdmin();
-  saveAdminData();
+  updateAdminBadges(); renderAdmin(); saveAdminData();
 };
 $('#aBtnDeleteCover').onclick = () => {
   const i = parseInt($('#aEditCoverIndex').value);
   if (!confirm('¿Eliminar este cover?')) return;
   DATA.covers.splice(i, 1);
   $('#aCoverModal').classList.remove('active');
-  updateAdminBadges();
-  renderAdmin();
-  saveAdminData();
+  updateAdminBadges(); renderAdmin(); saveAdminData();
 };
 
 $('#aBtnSaveAll').onclick = saveAdminData;
@@ -2308,16 +2242,10 @@ $('#aLoginForm').onsubmit = async e => {
   }
 };
 
-/* ============ BOOT ============ */
 async function boot() {
   const h = (location.hash || '#home').toLowerCase();
-  if (h === '#admin' || h.startsWith('#admin')) {
-    // Admin router maneja su propia carga de datos
-    handleRoute();
-  } else {
-    // Público: SIEMPRE cargar datos primero
-    await loadPublicData();
-  }
+  if (h === '#admin' || h.startsWith('#admin')) handleRoute();
+  else await loadPublicData();
 }
 boot();
 </script>
