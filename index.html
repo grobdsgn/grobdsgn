@@ -45,11 +45,12 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
-/* HERO — imágenes a máxima calidad (image-rendering high quality, no stretch) */
+/* HERO con zoom in por imagen */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality}
-.hero-bg-layer.active{opacity:1}
+.hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
+.hero-bg-layer.active{opacity:1;animation-play-state:running}
+@keyframes heroZoomIn{from{transform:scale(1)}to{transform:scale(1.1)}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.45) 35%,rgba(0,0,0,.85));z-index:1;pointer-events:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
 .hero-grid{max-width:820px;margin:0;text-align:left}
@@ -91,7 +92,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .parallax-content{position:relative;z-index:2;text-align:center;padding:0 clamp(20px,5vw,64px);max-width:900px;color:#fff}
 .parallax-content .num{font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;display:block}
 .parallax-content h2{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,8vw,7rem);line-height:.98;letter-spacing:-.04em;margin-bottom:18px;color:#fff}
-/* LOGO DEL PROYECTO EN PARALLAX — en blanco con glow al hover */
 .parallax-content .cat-logo-img{max-width:min(380px,75vw);max-height:110px;width:auto;height:auto;margin:0 auto 20px;display:block;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 6px 30px rgba(0,0,0,0.7));transition:filter .4s,transform .4s}
 .parallax-row:hover .cat-logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 30px rgba(255,255,255,0.55)) drop-shadow(0 0 60px rgba(255,255,255,0.2));transform:scale(1.04)}
 .parallax-content .desc{font-size:clamp(.85rem,1.3vw,1.05rem);color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 20px}
@@ -103,7 +103,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .proyecto-header{padding:110px 0 30px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px);text-align:center}
 .proyecto-header .back-btn{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px}
 .proyecto-header .back-btn:hover{color:var(--text)}
-/* LOGO DEL PROYECTO (cabecera detalle) — blanco */
 .proyecto-logo{max-height:100px;max-width:340px;margin:0 auto 20px;object-fit:contain;filter:brightness(0) invert(1);transition:filter .3s}
 .proyecto-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.6rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;color:var(--text)}
 .proyecto-cat-label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
@@ -113,8 +112,8 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .masonry-item{break-inside:avoid;margin-bottom:10px;border-radius:4px;overflow:hidden;background:#0a0a0a;cursor:zoom-in;opacity:0;animation:masonryIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--entry-delay,0s)}
 @keyframes masonryIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .masonry-item img{width:100%;height:auto;display:block;min-height:80px;background:#0a0a0a}
-.masonry-item.video-item{cursor:default}
-.video-wrapper{width:100%;aspect-ratio:16/9;background:#000;border-radius:4px;overflow:hidden}
+.masonry-item.video-item{cursor:default;overflow:hidden;border-radius:2px}
+.video-wrapper{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;border-radius:2px}
 .video-wrapper iframe{display:block;width:100%;height:100%;border:0}
 .covers-view{padding:110px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(20px,5vw,56px) 30px;max-width:1400px;margin:0 auto}
@@ -153,7 +152,8 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .cover-hero-badge{display:inline-flex;align-items:center;padding:8px 18px;border:1.5px solid var(--accent);border-radius:100px;font-size:.65rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
 .cover-hero-title{font-weight:900;font-size:clamp(1.8rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 20px 0;word-break:break-word}
 .cover-hero-artist{font-size:clamp(.9rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 24px 0}
-.cover-hero-music{width:100%;max-width:520px;min-height:80px;margin-top:16px;}
+.cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
+.cover-hero-music iframe{border-radius:4px;background:transparent;}
 .cover-extra-section{background:#000;width:100%;padding:60px 0 30px}
 .cover-extra-section.hidden{display:none}
 .cover-extra-block{max-width:1000px;margin:0 auto 40px;padding:0 clamp(20px,5vw,56px)}
@@ -165,7 +165,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .software-section p{color:var(--muted);max-width:56ch;font-size:.95rem}
 .software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:20px 24px;margin-top:40px;align-items:center}
 @media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
-/* LOGOS HERRAMIENTAS — en blanco, sin recuadros */
 .software-logo{display:grid;place-items:center;padding:16px;min-height:80px;cursor:pointer;transition:.3s}
 .software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
 .software-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));transform:scale(1.06)}
@@ -173,7 +172,6 @@ h1.hero-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,7
 .clientes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:clamp(20px,4vw,50px) clamp(16px,3vw,40px);margin-top:40px;align-items:center}
 @media(max-width:640px){.clientes-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
 @media(max-width:380px){.clientes-grid{grid-template-columns:1fr}}
-/* LOGOS CLIENTES — en blanco, sin recuadros */
 .cliente-logo{display:grid;place-items:center;padding:24px;cursor:pointer;min-height:100px;transition:.3s}
 .cliente-logo img{max-width:100%;max-height:70px;width:auto;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;min-height:16px}
 .cliente-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65));transform:scale(1.05)}
@@ -635,7 +633,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🎬</div>
             <div class="a-hero-text">
               <h2>Página de Inicio</h2>
-              <p>Edita el titular, la descripción y las imágenes de fondo del carrusel principal. Las imágenes se guardan en alta calidad (hasta 4K).</p>
+              <p>Las imágenes rotan con un zoom lento y disolución. Se guardan en alta calidad (hasta 4K).</p>
               <div class="a-hero-stats"><div class="a-stat">Imágenes: <strong id="statHeroImgs">0</strong></div></div>
             </div>
           </div>
@@ -650,10 +648,10 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Fondos del Carrusel</h2></div>
             <div class="a-card-body">
-              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K) sin compresión agresiva. Para máxima calidad en pantallas 5K+, usa el campo de URL pegando un enlace directo a tu imagen.</div>
+              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K). Para máxima calidad en pantallas 5K+, usa el campo de URL pegando un enlace directo.</div>
               <div class="upload-zone" id="heroUploadZone">
                 <span class="upload-zone-icon">📤</span>
-                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar (alta calidad preservada)</div>
+                <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar (alta calidad)</div>
                 <input type="file" id="heroFileInput" accept="image/*" multiple hidden>
               </div>
               <div class="divider-or"><span>o pega URLs (máxima calidad)</span></div>
@@ -671,7 +669,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">💿</div>
             <div class="a-hero-text">
               <h2>Covers</h2>
-              <p>Sube portadas desde tu PC o pega URLs. Los covers con link de YouTube mostrarán el video en la galería.</p>
+              <p>Sube portadas desde tu PC o pega URLs. Los covers con link de YouTube muestran el video dentro de la galería.</p>
               <div class="a-hero-stats">
                 <div class="a-stat">Sencillos: <strong id="statSencillo">0</strong></div>
                 <div class="a-stat">Álbumes: <strong id="statAlbums">0</strong></div>
@@ -717,7 +715,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🏢</div>
             <div class="a-hero-text">
               <h2>Clientes</h2>
-              <p>Logos de marcas y artistas. Se muestran en blanco sobre la web pública.</p>
+              <p>Logos de marcas y artistas. Se muestran en blanco sobre la web pública, con glow al pasar el mouse.</p>
               <div class="a-hero-stats"><div class="a-stat">Logos: <strong id="statClients">0</strong></div></div>
             </div>
           </div>
@@ -747,7 +745,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.66rem;letter-s
             <div class="a-hero-icon">🛠️</div>
             <div class="a-hero-text">
               <h2>Herramientas</h2>
-              <p>Iconos del software con el que trabajas. Se muestran en blanco sobre la web pública.</p>
+              <p>Iconos del software con el que trabajas. Se muestran en blanco sobre la web pública, con glow al pasar el mouse.</p>
               <div class="a-hero-stats"><div class="a-stat">Iconos: <strong id="statTools">0</strong></div></div>
             </div>
           </div>
@@ -902,14 +900,21 @@ function getEmbedUrl(url) {
   url = url.trim(); if (!url) return null;
   if (url.includes('spotify.com')) {
     const m = url.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show)\/([a-zA-Z0-9]+)/);
-    if (m) return { platform: 'spotify', height: m[1] === 'track' ? 152 : 380, url: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator` };
+    if (m) {
+      const isSingle = m[1] === 'track' || m[1] === 'episode';
+      return {
+        platform: 'spotify',
+        height: isSingle ? 80 : 152,
+        url: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0`
+      };
+    }
   }
   if (url.includes('music.apple.com')) {
     const isAlbum = url.includes('/album/') && !url.includes('?i=');
     return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') };
   }
   const ytId = getYouTubeId(url);
-  if (ytId) return { platform: 'youtube', height: 315, url: `https://www.youtube.com/embed/${ytId}` };
+  if (ytId) return { platform: 'youtube', height: 315, url: `https://www.youtube-nocookie.com/embed/${ytId}?modestbranding=1&rel=0&iv_load_policy=3&color=white` };
   return null;
 }
 function getDirectImageUrl(url) {
@@ -926,7 +931,6 @@ function handleImgError(img) {
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
 }
 
-/* COMPRESIÓN CON SOPORTE DE ALTA CALIDAD */
 function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   return new Promise((res, rej) => {
     if (file.type === 'image/svg+xml') {
@@ -941,12 +945,10 @@ function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
       const img = new Image();
       img.onload = () => {
         const { width, height } = img;
-        // Si cabe dentro de las dimensiones y no pesa demasiado, conservar original (sin recompresión)
         if (file.size < thresholdKB * 1024 && width <= maxDim && height <= maxDim) {
           res(reader.result);
           return;
         }
-        // Redimensionar si excede
         let nw = width, nh = height;
         if (width > maxDim || height > maxDim) {
           if (width > height) { nw = Math.min(maxDim, width); nh = Math.round(height * (nw / width)); }
@@ -1131,6 +1133,12 @@ let DATA = {
 
 const ADMIN_NAV = { view: 'categories', catId: null, projId: null };
 
+/* ESTADO DE COVERS: shuffle + filtro + búsqueda */
+let _coversOrder = null;
+let _currentFilter = 'todos';
+let _currentSearch = '';
+let _prevRoute = null;
+
 let ticking = false;
 function updateParallax() {
   const rows = document.querySelectorAll('.parallax-bg');
@@ -1207,6 +1215,30 @@ function toggleMusic() {
   }
 }
 
+/* HERO ROTATION con zoom in por imagen */
+let heroInterval = null;
+function initHeroRotation() {
+  if (heroInterval) { clearInterval(heroInterval); heroInterval = null; }
+  const layers = $$('.hero-bg-layer');
+  if (layers.length === 0) return;
+  layers.forEach(l => { l.classList.remove('active'); l.style.animation = ''; });
+  activateHeroLayer(layers[0]);
+  if (layers.length > 1) {
+    let current = 0;
+    heroInterval = setInterval(() => {
+      layers[current].classList.remove('active');
+      current = (current + 1) % layers.length;
+      activateHeroLayer(layers[current]);
+    }, 8000);
+  }
+}
+function activateHeroLayer(layer) {
+  layer.classList.add('active');
+  layer.style.animation = 'none';
+  void layer.offsetWidth;
+  layer.style.animation = '';
+}
+
 function showView(name) {
   $$('.view').forEach(v => v.classList.remove('active'));
   const el = $(`[data-view="${name}"]`);
@@ -1241,6 +1273,34 @@ function goBack() {
   else location.hash = '#home';
 }
 
+/* COVERS: shuffle y orden */
+function shuffleCovers() {
+  const all = DATA.covers || [];
+  _coversOrder = all.map(c => c.id);
+  for (let i = _coversOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [_coversOrder[i], _coversOrder[j]] = [_coversOrder[j], _coversOrder[i]];
+  }
+}
+function getCoversList() {
+  let list = DATA.covers || [];
+  if (_currentFilter !== 'todos') list = list.filter(c => c.category === _currentFilter);
+  if (_currentSearch) {
+    const q = _currentSearch.toLowerCase();
+    list = list.filter(c => ((c.name || '') + ' ' + (c.artist || '')).toLowerCase().includes(q));
+  }
+  if (_coversOrder && _coversOrder.length > 0) {
+    const orderMap = new Map();
+    _coversOrder.forEach((id, i) => orderMap.set(id, i));
+    list = [...list].sort((a, b) => {
+      const ai = orderMap.has(a.id) ? orderMap.get(a.id) : 999999;
+      const bi = orderMap.has(b.id) ? orderMap.get(b.id) : 999999;
+      return ai - bi;
+    });
+  }
+  return list;
+}
+
 function handleRoute() {
   const h = (location.hash || '#home').toLowerCase();
   if (h === '#admin' || h.startsWith('#admin')) {
@@ -1257,6 +1317,7 @@ function handleRoute() {
       $('#aLoginScreen').classList.add('active');
       $('#aDashboard').style.display = 'none';
     }
+    _prevRoute = h;
     return;
   }
   if ($('#adminApp').classList.contains('active') || $('#publicApp').style.display === 'none') {
@@ -1265,15 +1326,27 @@ function handleRoute() {
   }
   updateNavBack(h);
   window.scrollTo({ top: 0, behavior: 'auto' });
+
   if (h === '#home' || h === '') { showView('home'); syncTabs('home'); }
   else if (h === '#portafolio') { showView('portafolio'); syncTabs('portafolio'); }
-  else if (h === '#covers') { showView('covers'); syncTabs('covers'); }
+  else if (h === '#covers') {
+    const wasInCovers = _prevRoute === '#covers' || (_prevRoute && _prevRoute.startsWith('#cover-'));
+    if (!wasInCovers) {
+      shuffleCovers();
+      renderPublicCovers(getCoversList());
+    } else {
+      renderPublicCovers(getCoversList());
+    }
+    showView('covers'); syncTabs('covers');
+  }
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
   else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
   else { showView('home'); syncTabs('home'); }
+
+  _prevRoute = h;
 }
 window.addEventListener('hashchange', handleRoute);
 
@@ -1303,17 +1376,18 @@ function renderPublicSite() {
   const heroBg = $('#heroBg');
   if (heroBg) {
     heroBg.innerHTML = '';
-    (DATA.heroImages || []).forEach((url, i) => {
+    (DATA.heroImages || []).forEach((url) => {
       const l = document.createElement('div');
-      l.className = 'hero-bg-layer' + (i === 0 ? ' active' : '');
+      l.className = 'hero-bg-layer';
       l.style.backgroundImage = `url("${resolveImageUrl(url)}")`;
       heroBg.appendChild(l);
     });
+    initHeroRotation();
   }
   renderMarquee();
   renderFeaturedCovers();
   renderPortfolioCategories();
-  renderPublicCovers(DATA.covers || []);
+  renderPublicCovers(getCoversList());
   renderPublicClients();
   renderPublicTools();
   renderContact();
@@ -1466,16 +1540,16 @@ function renderCoverDetail(id) {
   heroImg.dataset.zoom = c.url;
   $('#coverHeroTitle').textContent = c.name || 'Sin título';
   $('#coverHeroArtist').textContent = c.artist || '';
-  $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
+  $('#coverHeroBadge').textContent = (c.category || 'SANCILLO').toUpperCase();
 
-  // Hero music: solo Spotify/Apple (el video YouTube va en la galería para no duplicar)
+  // Hero music: solo Spotify/Apple minimalista
   const musicWrap = $('#coverHeroMusic');
   musicWrap.innerHTML = '';
   const heroEmbed = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl);
   if (heroEmbed) {
     const ifr = document.createElement('iframe');
     ifr.src = heroEmbed.url;
-    ifr.style.cssText = 'width:100%;border:0;border-radius:8px';
+    ifr.style.cssText = 'width:100%;border:0;border-radius:4px;background:transparent;display:block';
     ifr.height = heroEmbed.height;
     ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen');
     musicWrap.appendChild(ifr);
@@ -1492,7 +1566,7 @@ function renderCoverDetail(id) {
   if (hasReview) { $('#coverHeroResena').textContent = c.review; resenaBlock.style.display = 'block'; }
   else resenaBlock.style.display = 'none';
 
-  // Galería: video de YouTube (si existe) + imágenes extra
+  // Galería: video de YouTube minimalista + imágenes extra
   const extraImgs = $('#coverExtraImgs');
   extraImgs.innerHTML = '';
   const ytId = c.youtubeUrl ? getYouTubeId(c.youtubeUrl) : null;
@@ -1511,7 +1585,7 @@ function renderCoverDetail(id) {
       const wrapper = document.createElement('div');
       wrapper.className = 'video-wrapper';
       const ifr = document.createElement('iframe');
-      ifr.src = `https://www.youtube.com/embed/${ytId}`;
+      ifr.src = `https://www.youtube-nocookie.com/embed/${ytId}?modestbranding=1&rel=0&iv_load_policy=3&color=white`;
       ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
       ifr.setAttribute('allowfullscreen', '');
       ifr.setAttribute('loading', 'lazy');
@@ -1642,18 +1716,13 @@ $$('.covers-filter-btn').forEach(btn => {
   btn.onclick = () => {
     $$('.covers-filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const f = btn.dataset.filter;
-    const list = f === 'todos' ? (DATA.covers || []) : (DATA.covers || []).filter(c => c.category === f);
-    renderPublicCovers(list);
+    _currentFilter = btn.dataset.filter;
+    renderPublicCovers(getCoversList());
   };
 });
 $('#coversSearchInput').oninput = e => {
-  const q = e.target.value.toLowerCase().trim();
-  const active = $('.covers-filter-btn.active')?.dataset.filter || 'todos';
-  let list = DATA.covers || [];
-  if (active !== 'todos') list = list.filter(c => c.category === active);
-  if (q) list = list.filter(c => ((c.name || '') + ' ' + (c.artist || '')).toLowerCase().includes(q));
-  renderPublicCovers(list);
+  _currentSearch = e.target.value.trim();
+  renderPublicCovers(getCoversList());
 };
 
 $('#contactForm').onsubmit = e => {
@@ -1944,7 +2013,7 @@ function renderAdminProjectPage(container) {
           </div>
           <input type="text" class="a-form-input" style="margin-top:8px" placeholder="O URL del logo..." value="${escHtml(proj.logo || '')}" onchange="updateProjectField(${catIdx}, ${projIdx}, 'logo', this.value); renderAdminPortfolio()">
           ${proj.logo ? `<div class="project-edit-logo-preview"><img src="${resolveImageUrl(proj.logo)}" onerror="handleImgError(this)"><span style="font-size:11px;color:var(--a-muted)">Logo actual</span><button class="a-btn a-btn-outline a-btn-xs" onclick="updateProjectField(${catIdx}, ${projIdx}, 'logo', ''); renderAdminPortfolio()">Quitar</button></div>` : ''}
-          <span class="a-form-hint">En la web pública, el logo se muestra en blanco (silueta) con glow al pasar el mouse. Si no hay logo, se muestra el nombre del proyecto.</span>
+          <span class="a-form-hint">En la web, el logo se muestra en blanco con glow al pasar el mouse. Si no hay logo, se muestra el nombre.</span>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">🌟 Imagen parallax del proyecto</label>
@@ -2141,9 +2210,7 @@ $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 
-/* HERO: alta calidad (4K, 0.92, 3MB threshold) */
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 3840, 0.92, 3000);
-/* COVERS: mejor calidad */
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
   const cat = $('#aCoverCategorySelect').value;
   urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false }));
