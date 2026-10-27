@@ -1895,6 +1895,10 @@
   },
   "ficha": [
     {
+      "label": "Nombre",
+      "value": "Roberts Guevara"
+    },
+    {
       "label": "Nueva etiqueta",
       "value": "Valor"
     }
