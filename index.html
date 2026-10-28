@@ -1158,11 +1158,20 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 
         <div class="a-form-group" style="background:rgba(255,255,255,0.02); padding:14px; border-radius:8px; border:1px solid var(--a-line); margin-bottom:20px;">
           <label class="a-form-label">📊 Reproducciones (Automáticas)</label>
-          <p style="font-size:12px; color:#888; line-height:1.5;">Las reproducciones se extraen automáticamente desde las APIs al cargar la página pública. No pueden editarse manualmente para garantizar su veracidad.</p>
+          <p style="font-size:12px; color:#888; line-height:1.5;">Las reproducciones se extraen automáticamente desde las APIs al cargar la página pública. Usa el botón Autocompletar para obtenerlas ahora mismo.</p>
         </div>
 
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        <div class="a-form-group"><label class="a-form-label">Spotify URL</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        
+        <div class="a-form-group">
+          <label class="a-form-label">Spotify URL</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input type="url" id="aEditCoverSpotify" class="a-form-input" style="flex:1;min-width:180px" placeholder="https://open.spotify.com/track/...">
+            <button type="button" class="a-btn a-btn-primary" onclick="autofillFromSpotify()" id="aBtnAutofillSpotify" style="white-space:nowrap" title="Obtener nombre, artistas, año y reproducciones automáticamente">✨ Autocompletar</button>
+          </div>
+          <span class="a-form-hint">Pega el enlace del track/álbum en Spotify y pulsa <strong>Autocompletar</strong> para rellenar nombre, artistas, año y reproducciones.</span>
+        </div>
+
         <div class="a-form-group"><label class="a-form-label">Apple Music URL</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
         
         <div class="a-form-group">
@@ -2010,6 +2019,193 @@ async function fetchSpotifyStats() {
     console.warn('Apify fetch error:', e);
   }
 }
+
+// ============================================================
+// EXTRACCIÓN DE METADATOS DE SPOTIFY (para el modal de edición)
+// ============================================================
+const CORS_PROXIES = [
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`
+];
+
+async function fetchSpotifyHtml(spotifyUrl) {
+  for (const buildProxy of CORS_PROXIES) {
+    try {
+      const res = await fetch(buildProxy(spotifyUrl), { cache: 'no-store' });
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.length > 2000) return text;
+      }
+    } catch (e) {
+      console.warn('Proxy failed:', e.message);
+    }
+  }
+  return null;
+}
+
+async function fetchSpotifyMetadata(spotifyUrl) {
+  const result = { name: '', artists: '', year: '' };
+
+  // 1) oEmbed (rápido, CORS permitido)
+  try {
+    const oeRes = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`);
+    if (oeRes.ok) {
+      const oeData = await oeRes.json();
+      if (oeData.title) result.name = oeData.title;
+    }
+  } catch (e) { console.warn('oEmbed error:', e); }
+
+  // 2) HTML vía proxy CORS para artistas + año
+  try {
+    const html = await fetchSpotifyHtml(spotifyUrl);
+    if (html) {
+      // Método A: JSON-LD
+      const ldMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+      if (ldMatch) {
+        try {
+          const ld = JSON.parse(ldMatch[1]);
+          if (ld.name) result.name = ld.name;
+          if (ld.byArtist) {
+            if (Array.isArray(ld.byArtist)) {
+              result.artists = ld.byArtist.map(a => a.name).filter(Boolean).join(', ');
+            } else if (ld.byArtist.name) {
+              result.artists = ld.byArtist.name;
+            }
+          }
+          if (ld.datePublished) {
+            const m = String(ld.datePublished).match(/^(\d{4})/);
+            if (m) result.year = m[1];
+          }
+        } catch (e) { console.warn('JSON-LD parse error:', e); }
+      }
+
+      // Método B: __NEXT_DATA__ (fallback)
+      if (!result.artists || !result.year) {
+        const nextMatch = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+        if (nextMatch) {
+          try {
+            const nd = JSON.parse(nextMatch[1]);
+            const entity = nd?.props?.pageProps?.state?.data?.entity
+              || nd?.props?.pageProps?.state?.data?.track
+              || nd?.props?.pageProps?.track
+              || nd?.props?.pageProps?.data?.track;
+            if (entity) {
+              if (!result.name && entity.name) result.name = entity.name;
+              if (!result.name && entity.title) result.name = entity.title;
+              if (!result.artists && Array.isArray(entity.artists) && entity.artists.length) {
+                result.artists = entity.artists.map(a => a.name).filter(Boolean).join(', ');
+              }
+              if (!result.artists && Array.isArray(entity.byArtist)) {
+                result.artists = entity.byArtist.map(a => a.name).filter(Boolean).join(', ');
+              }
+              if (!result.year && entity.releaseDate) {
+                const d = entity.releaseDate;
+                if (d.isoString) result.year = String(d.isoString).slice(0, 4);
+                else if (d.year) result.year = String(d.year);
+              }
+            }
+          } catch (e) { console.warn('__NEXT_DATA__ parse error:', e); }
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('fetchSpotifyMetadata error:', e);
+  }
+
+  return result;
+}
+
+async function fetchSpotifyPlaysForUrl(spotifyUrl, apifyToken, apifyActor) {
+  if (!apifyToken) return 0;
+  try {
+    const actorSlug = (apifyActor || DEFAULT_APIFY_ACTOR).replace('/', '~');
+    const res = await fetch(
+      `https://api.apify.com/v2/acts/${actorSlug}/run-sync-get-dataset-items?token=${encodeURIComponent(apifyToken)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urls: [{ url: spotifyUrl }] })
+      }
+    );
+    if (!res.ok) return 0;
+    const items = await res.json();
+    if (!Array.isArray(items) || !items.length) return 0;
+    const item = items[0];
+    const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams
+              ?? item.streamCount ?? item.stream_count ?? item.totalStreams
+              ?? item.total_streams ?? item.totalPlays ?? item.total_plays ?? 0;
+    return parseInt(plays) || 0;
+  } catch (e) {
+    console.warn('Apify single-track error:', e);
+    return 0;
+  }
+}
+
+async function fetchSpotifyTrackData(spotifyUrl) {
+  const [metadata, plays] = await Promise.all([
+    fetchSpotifyMetadata(spotifyUrl),
+    fetchSpotifyPlaysForUrl(
+      spotifyUrl,
+      DATA.settings?.apifyToken,
+      DATA.settings?.apifyActor
+    )
+  ]);
+  return { ...metadata, plays };
+}
+
+window.autofillFromSpotify = async function() {
+  const spotifyUrl = $('#aEditCoverSpotify').value.trim();
+  if (!spotifyUrl) {
+    aToast('Primero pega una URL de Spotify', 'error');
+    return;
+  }
+  if (!/spotify\.com\/(track|album|episode)\//.test(spotifyUrl)) {
+    aToast('La URL no parece un track o álbum de Spotify', 'error');
+    return;
+  }
+
+  const btn = $('#aBtnAutofillSpotify');
+  const origText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '⏳ Cargando...'; btn.disabled = true; }
+
+  try {
+    const data = await fetchSpotifyTrackData(spotifyUrl);
+    const filled = [];
+
+    if (data.name) {
+      $('#aEditCoverName').value = data.name;
+      filled.push('nombre');
+    }
+    if (data.artists) {
+      $('#aEditCoverArtist').value = data.artists;
+      filled.push('artista(s)');
+    }
+    if (data.year) {
+      $('#aEditCoverYear').value = data.year;
+      filled.push('año');
+    }
+    if (data.plays > 0) {
+      const idx = parseInt($('#aEditCoverIndex').value);
+      if (DATA.covers[idx]) {
+        DATA.covers[idx].plays = DATA.covers[idx].plays || { spotify: 0, youtube: 0, apple: 0 };
+        DATA.covers[idx].plays.spotify = data.plays;
+      }
+      filled.push(`${formatNumber(data.plays)} plays`);
+    }
+
+    if (filled.length > 0) {
+      aToast(`✅ Rellenado: ${filled.join(', ')}`);
+    } else {
+      aToast('⚠️ No se pudieron obtener datos. Revisa la URL.', 'error');
+    }
+  } catch (e) {
+    console.error(e);
+    aToast('❌ Error al obtener datos de Spotify', 'error');
+  } finally {
+    if (btn) { btn.textContent = origText; btn.disabled = false; }
+  }
+};
 
 async function loadPublicData() {
   const remote = await GH.load();
