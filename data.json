@@ -714,7 +714,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529198922,
+        "youtube": 529199693,
         "apple": 0
       }
     },
@@ -898,7 +898,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598383,
+        "youtube": 598384,
         "apple": 0
       }
     },
@@ -935,6 +935,25 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164152193_rtck.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164154159_qr1e.jpg"
       ],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
+    },
+    {
+      "id": "p4z4n851mvrnujjf",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164503141_k2ba.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
