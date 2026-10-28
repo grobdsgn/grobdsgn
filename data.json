@@ -495,10 +495,12 @@
         },
         {
           "id": "uyo8at7jmvsef0ze",
-          "name": "Nuevo Proyecto",
+          "name": "GUAYO WINTER",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209161358_oe2y.jpg"
+          ]
         }
       ]
     },
