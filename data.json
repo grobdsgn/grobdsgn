@@ -33,7 +33,7 @@
           "id": "7d0hoprhmvrpr34f",
           "name": "Lotho ",
           "logo": "",
-          "parallaxImage": "",
+          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167733516_yhwi.jpg",
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167729955_lzed.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167731662_vcrd.jpg",
@@ -60,7 +60,9 @@
           "logo": "",
           "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168860231_ik8c.png",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168860231_ik8c.png"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168860231_ik8c.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168875281_ujce.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168877198_z84u.jpg"
           ]
         }
       ]
