@@ -337,10 +337,14 @@
         },
         {
           "id": "zxofw7vimvrqnyh6",
-          "name": "Nuevo Proyecto",
+          "name": "MIRANDA BLACK ",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169267760_h1oc.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169269570_5trp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169271485_qlb5.jpg"
+          ]
         }
       ]
     },
