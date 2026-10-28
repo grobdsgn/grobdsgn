@@ -272,10 +272,15 @@
         },
         {
           "id": "ksz8dl4emvrqcry5",
-          "name": "Nuevo Proyecto",
+          "name": "Samy Hawk",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168735931_8ig2.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168737897_a105.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168739779_mmsm.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168741704_0i6u.jpg"
+          ]
         }
       ]
     },
