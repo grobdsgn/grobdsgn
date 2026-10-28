@@ -246,10 +246,21 @@
         },
         {
           "id": "4f0ec7s6mvse2b09",
-          "name": "Nuevo Proyecto",
+          "name": "TROPI SUNDAY",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208566502_liof.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208568803_2dob.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208570692_pxd9.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208572634_e4h2.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208574627_9qv6.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208576903_4ibz.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208579080_z9jn.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208581152_l7e8.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208583675_j34j.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208585732_p1yy.png"
+          ]
         }
       ]
     },
