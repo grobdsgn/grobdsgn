@@ -188,10 +188,12 @@
       "projects": [
         {
           "id": "9dka7twbmvrpcgdk",
-          "name": "Nuevo Proyecto",
+          "name": "Bolívar Exclusive",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167063772_wq5q.png"
+          ]
         }
       ]
     }
