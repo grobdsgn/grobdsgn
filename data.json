@@ -2738,12 +2738,19 @@
     {
       "id": "b27si1l4mvshc0em",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214027103_5066.jpg",
-      "category": "sencillo",
+      "category": "albums",
       "name": "",
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214054703_02vb.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214056849_m5sp.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214058787_msul.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214060724_8znz.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214062619_booy.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214064933_ez2u.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
