@@ -53,10 +53,17 @@
         },
         {
           "id": "nj1yf9ldmvro7m2h",
-          "name": "Nuevo Proyecto",
+          "name": "COYOTE mexican food",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165145559_76n7.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165147525_vtuw.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165149346_9y1t.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165151173_hpzb.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165153006_ig6a.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165154794_a5sj.jpg"
+          ]
         }
       ]
     }
