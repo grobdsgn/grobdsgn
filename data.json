@@ -194,6 +194,13 @@
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167063772_wq5q.png"
           ]
+        },
+        {
+          "id": "td1ug5rdmvrpe32x",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     }
