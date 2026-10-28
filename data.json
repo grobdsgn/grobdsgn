@@ -918,6 +918,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "1w9aoxyfmvrnmn74",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164134521_tskj.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
