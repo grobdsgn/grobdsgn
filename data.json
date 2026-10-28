@@ -1244,10 +1244,12 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://youtu.be/VsRLbBm9ffk?si=-kMXFNsVqTyX8naX"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/Uy5Be2JVdt8?si=hZZHms9ZVK9VMnbn",
       "featured": false,
       "plays": {
         "spotify": 0,
