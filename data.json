@@ -1502,7 +1502,10 @@
       "artist": "Alex Sensation Ft anitta y Luis fonsi",
       "year": "2019",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793224705789_d6lv.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793224733410_sij0.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/24wIxeVejXRhYJPrOFpJbg?si=d5ec44326c6e42bf",
       "appleMusicUrl": "",
       "youtubeUrl": "",
