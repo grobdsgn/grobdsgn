@@ -149,10 +149,13 @@
       "projects": [
         {
           "id": "lglwj0s0mvroxdhx",
-          "name": "Nuevo Proyecto",
+          "name": "Lual Lual",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166369805_g3ra.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166371747_t1e7.jpg"
+          ]
         }
       ]
     }
