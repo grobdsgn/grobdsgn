@@ -172,7 +172,16 @@
           "name": "white box",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169339248_rpgx.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169362509_v30m.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169364262_z0rh.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169366396_ncys.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169368324_rmws.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169370290_y81u.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169371934_yeku.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169373646_2oqy.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169375352_stix.jpg"
+          ]
         }
       ]
     },
