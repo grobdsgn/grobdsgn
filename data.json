@@ -1720,7 +1720,11 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207855673_wfwy.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207857493_cegp.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207859529_eqp2.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
