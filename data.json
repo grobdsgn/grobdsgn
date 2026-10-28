@@ -1853,6 +1853,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "vrd34k6rmvsecbkp",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209002530_hopn.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
