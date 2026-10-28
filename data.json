@@ -234,10 +234,15 @@
         },
         {
           "id": "2bvuofzlmvse048e",
-          "name": "Nuevo Proyecto",
+          "name": "Los Meñi",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208453408_d8ip.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208455307_8lk4.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208457228_bdtd.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208459012_0pi8.jpg"
+          ]
         }
       ]
     },
