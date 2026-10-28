@@ -1637,7 +1637,15 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169674952_nzh5.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169676699_omuc.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169678940_8oet.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169680801_yvre.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169682655_g1yj.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169684691_lkgp.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169686600_qq2t.png"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
