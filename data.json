@@ -31,10 +31,16 @@
         },
         {
           "id": "7d0hoprhmvrpr34f",
-          "name": "Nuevo Proyecto",
+          "name": "Lotho ",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167729955_lzed.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167731662_vcrd.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167733516_yhwi.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167735386_y08y.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167737099_4zcj.jpg"
+          ]
         }
       ]
     },
