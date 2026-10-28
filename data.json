@@ -106,7 +106,15 @@
       "name": "Eventos",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "9gkxbwesmvrpnjql",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     },
     {
       "id": "mldqy0anmvroglbz",
