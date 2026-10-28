@@ -1210,6 +1210,15 @@ function formatNumber(num) {
 }
 
 // ============================================================
+// FIX: handleImgError expuesta globalmente
+// ============================================================
+function handleImgError(img) {
+  img.onerror = null;
+  img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
+}
+window.handleImgError = handleImgError;
+
+// ============================================================
 // ALMACENAMIENTO LOCAL PARA VISTAS Y LIKES
 // ============================================================
 function getCoverStats() {
@@ -1307,10 +1316,6 @@ function getDirectImageUrl(url) {
   return url;
 }
 function resolveImageUrl(url) { return getDirectImageUrl(url); }
-function handleImgError(img) {
-  img.onerror = null;
-  img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
-}
 
 function getCoverTotalPlays(c) {
   return (c.plays?.spotify || 0) + (c.plays?.youtube || 0) + (c.plays?.apple || 0);
@@ -1419,6 +1424,9 @@ function extractDominantColor(url) {
   });
 }
 
+// ============================================================
+// GITHUB API + FIX: Manejo seguro de JSON y archivos vacíos
+// ============================================================
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
   get repo() { return localStorage.getItem('gh_repo') || ''; },
@@ -1437,10 +1445,18 @@ const GH = {
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const d = await res.json();
+    
+    // Evitar errores de JSON.parse('') si el archivo está vacío
+    if (!d || !d.content) return null;
+    
     const bin = atob(d.content.replace(/\n/g, ''));
     const bytes = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return { sha: d.sha, content: new TextDecoder('utf-8').decode(bytes) };
+    const content = new TextDecoder('utf-8').decode(bytes);
+    
+    if (!content || !content.trim()) return null;
+    
+    return { sha: d.sha, content };
   },
   async putFile(path, base64Content, message) {
     let retries = 3;
@@ -1465,15 +1481,29 @@ const GH = {
     if (this.isConfigured()) {
       try {
         const file = await this.getFile('data.json');
-        if (file) return JSON.parse(file.content);
+        if (file && file.content) {
+          try {
+            return JSON.parse(file.content);
+          } catch (parseError) {
+            console.error('data.json en GitHub contiene JSON inválido:', parseError);
+            return null;
+          }
+        }
         return null;
-      } catch(e) { console.warn('API load error:', e); }
+      } catch(e) { 
+        console.warn('API load error:', e); 
+        return null;
+      }
     }
     try {
       const res = await fetch('data.json?t=' + Date.now());
       if (!res.ok) return null;
-      return await res.json();
-    } catch (e) { return null; }
+      const text = await res.text();
+      if (!text || !text.trim()) return null;
+      return JSON.parse(text);
+    } catch (e) { 
+      return null; 
+    }
   },
   async save(data) {
     const json = JSON.stringify(data, null, 2);
@@ -2525,7 +2555,10 @@ async function loadAdminData() {
     await fetchYouTubeStats();
     await fetchSpotifyStats();
     setASync('ok', 'Sincronizado');
-  } catch(e) { setASync('error', 'Error'); }
+  } catch(e) { 
+    console.warn('loadAdminData error:', e);
+    setASync('error', 'Error'); 
+  }
   renderAdmin();
 }
 async function saveAdminData() {
