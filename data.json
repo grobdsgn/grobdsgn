@@ -201,6 +201,13 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169499088_81a1.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169502023_bm7w.jpg"
           ]
+        },
+        {
+          "id": "1zm6egdpmvsehqll",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     },
@@ -499,7 +506,12 @@
           "logo": "",
           "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209161358_oe2y.jpg",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209161358_oe2y.jpg"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209161358_oe2y.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209177611_iz5i.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209179347_w5z5.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209181174_dxns.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209182986_es12.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209184897_4385.jpg"
           ]
         }
       ]
