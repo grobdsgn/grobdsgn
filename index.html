@@ -826,7 +826,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Fondos del Carrusel</h2></div>
             <div class="a-card-body">
-              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes se guardan en la carpeta <code>media/</code> de tu repositorio para mantener el JSON ligero.</div>
+              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes se guardan en la carpeta <code>media/</code> de tu repositorio sin compresión para máxima calidad.</div>
               <div class="upload-zone" id="heroUploadZone">
                 <span class="upload-zone-icon">📤</span>
                 <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar</div>
@@ -1331,7 +1331,8 @@ function getCoverTotalPlays(c) {
 
 function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   return new Promise((res, rej) => {
-    if (file.type === 'image/svg+xml') {
+    // Si maxDim es 0 o muy grande, evitamos la compresión (para el Hero)
+    if (file.type === 'image/svg+xml' || maxDim >= 10000) {
       const r = new FileReader();
       r.onload = () => res(r.result);
       r.onerror = rej;
@@ -3396,17 +3397,28 @@ $('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DA
 $('#aApifyToken').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyToken = e.target.value; };
 $('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
 
-setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 3840, 0.92, 3000);
+// HERO: maxDim = 10000 (sin compresión, calidad original)
+setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 10000, 1.0, 10240);
+
+// COVERS: compresión normal (2000px, 90% calidad)
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
   const cat = $('#aCoverCategorySelect').value;
   urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } }));
   updateAdminBadges(); renderAdmin(); saveAdminData();
 }, 2000, 0.9, 500);
+
+// CLIENTES: compresión normal (800px)
 setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 800, 0.9, 300);
+
+// HERRAMIENTAS: compresión normal (600px)
 setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 600, 0.9, 300);
+
+// COVER PRINCIPAL: compresión normal (2000px)
 setupUploadZone('coverMainUploadZone', 'coverMainFileInput', (urls) => {
   if (urls[0]) { $('#aEditCoverUrl').value = urls[0]; $('#aEditCoverPreview').src = urls[0]; aToast('Imagen cargada. Recuerda guardar.'); }
 }, 2000, 0.9, 500);
+
+// COVER EXTRAS: compresión normal (2000px)
 setupUploadZone('coverExtrasUploadZone', 'coverExtrasFileInput', (urls) => {
   const ta = $('#aEditCoverExtras');
   const existing = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
