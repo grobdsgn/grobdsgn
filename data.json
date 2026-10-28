@@ -1350,13 +1350,15 @@
     {
       "id": "tgu16ouemvrj5eeo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793156578798_n6vy.jpg",
-      "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
-      "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "category": "albums",
+      "name": "DeLorean 90's",
+      "artist": "bape Ogt´s",
+      "year": "2019",
+      "review": "Su concepto estético retrofuturista  visual gira por completo en torno a las marcas de culto (\"OG\") de los 90 y los 2000, los NFT y el imaginario del hip-hop",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793223711538_rrvx.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/album/382rMfJUDCCqLlAqmoVeHk?si=ODr5GB4MQnavYz-tiE4vJg",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
