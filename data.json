@@ -390,10 +390,16 @@
         },
         {
           "id": "zbzgs4ahmvsdekxj",
-          "name": "Nuevo Proyecto",
+          "name": "Afro Criollo",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207497366_10uc.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207494085_4erz.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207496320_ppfz.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207498246_s4b8.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207500528_1wir.jpg"
+          ]
         }
       ]
     },
