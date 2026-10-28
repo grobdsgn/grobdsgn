@@ -784,7 +784,14 @@
           "name": "kiosty",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212737787_wuz2.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212747970_dybf.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212749903_ru9f.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212751768_4oc0.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212753572_v9zz.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212755253_1m9w.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212756878_64cc.jpg"
+          ]
         }
       ]
     },
