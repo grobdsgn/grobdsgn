@@ -6,7 +6,14 @@
   },
   "heroImages": [],
   "categories": [],
-  "clientes": [],
+  "clientes": [
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157354423_tjdi.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157355967_xyet.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157357292_rpsg.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157358443_tzji.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157359638_skmm.png",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157360891_e7nr.png"
+  ],
   "software": [],
   "covers": [
     {
@@ -808,7 +815,7 @@
       }
     }
   ],
-    "contact": {
+  "contact": {
     "instagram": "@grobdesigns",
     "email": "grobdsgnartes@gmail.com",
     "phone": "+58 4141299366",
@@ -830,8 +837,8 @@
   },
   "settings": {
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
-    "rapidApiKey": "",
-    "rapidApiHost": ""
+    "apifyToken": "",
+    "apifyActor": "beatanalytics/spotify-play-count-scraper"
   },
   "texts": {
     "navHome": "Inicio",
