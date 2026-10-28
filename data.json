@@ -2599,7 +2599,10 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213024010_c1ga.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213026585_a6ft.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
