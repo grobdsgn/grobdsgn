@@ -612,7 +612,10 @@
           "name": "fraile",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210515368_e8es.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210527651_245b.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210529256_pthk.jpg"
+          ]
         }
       ]
     },
