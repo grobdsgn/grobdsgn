@@ -216,10 +216,12 @@
         },
         {
           "id": "waec5vykmvrpydai",
-          "name": "Nuevo Proyecto",
+          "name": "el duke",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168052453_mjal.jpg"
+          ]
         }
       ]
     },
