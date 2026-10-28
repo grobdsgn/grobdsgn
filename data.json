@@ -375,10 +375,13 @@
         },
         {
           "id": "j0539qwqmvsfeoba",
-          "name": "Nuevo Proyecto",
+          "name": "Las locas nigt",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210810793_ffdt.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210813112_2ttp.jpg"
+          ]
         }
       ]
     },
