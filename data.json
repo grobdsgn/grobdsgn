@@ -255,7 +255,7 @@
         },
         {
           "id": "wiu1ag3pmvsepdbb",
-          "name": "zonautos",
+          "name": "zonautos vip",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209684342_d50n.png",
           "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209649837_c801.jpg",
           "images": [
@@ -1950,6 +1950,25 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209044251_utv6.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209055730_9p9k.jpg"
       ],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
+    },
+    {
+      "id": "mw2t4jzrmvserpbh",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209719718_edkr.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
