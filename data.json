@@ -287,10 +287,19 @@
         },
         {
           "id": "a8ktvzywmvsf2nhe",
-          "name": "Nuevo Proyecto",
+          "name": "venpax",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210290865_vbze.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210293510_gy6y.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210295489_at42.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210297099_uupm.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210298973_n25h.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210302445_afle.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210305568_t36u.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210307256_lxgp.jpg"
+          ]
         }
       ]
     },
