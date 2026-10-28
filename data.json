@@ -455,10 +455,12 @@
         },
         {
           "id": "awu44lmvmvsfwk01",
-          "name": "Nuevo Proyecto",
+          "name": "amanecer vallenato",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211648825_y4kx.jpg"
+          ]
         }
       ]
     },
