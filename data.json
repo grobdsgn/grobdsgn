@@ -319,10 +319,17 @@
         },
         {
           "id": "mb5fzrulmvsg5hi1",
-          "name": "Nuevo Proyecto",
+          "name": "e+ ",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212081201_anyp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212082988_ongb.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212084927_p4cr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212086531_207n.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212088184_mmp1.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212090020_qfgo.jpg"
+          ]
         }
       ]
     },
