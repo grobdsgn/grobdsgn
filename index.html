@@ -1378,12 +1378,14 @@ async function processAndUploadImages(files, maxDim = 1800, quality = 0.88, thre
     if (!file.type.startsWith('image/')) continue;
     try {
       const base64 = await compressImage(file, maxDim, quality, thresholdKB);
-      const base64Data = base64.split(',')[1];
+      let base64Data = base64.split(',')[1];
       if (!base64Data) continue;
+      
+      // Limpieza crítica para evitar el error 422 de GitHub
+      base64Data = base64Data.replace(/\s/g, '');
 
       if (!GH.isConfigured()) {
-        urls.push(base64);
-        continue;
+        throw new Error('GitHub no está configurado. No se pueden subir imágenes.');
       }
 
       const ext = file.name.split('.').pop() || 'jpg';
@@ -1391,25 +1393,19 @@ async function processAndUploadImages(files, maxDim = 1800, quality = 0.88, thre
       const path = `media/${filename}`;
       
       try {
-        const res = await GH.api(`/repos/${GH.repo}/contents/${path}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: `Upload ${filename}`, content: base64Data, branch: GH.branch })
-        });
-        
-        if (res.ok) {
-          const rawUrl = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
-          urls.push(rawUrl);
-        } else {
-          console.warn('Fallo subida a GitHub, usando base64 local');
-          urls.push(base64);
-        }
+        // Usamos el nuevo método simplificado
+        await GH.putFile(path, base64Data, `Upload ${filename}`);
+        const rawUrl = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
+        urls.push(rawUrl);
       } catch (err) {
-        console.warn('Excepción subiendo a GitHub:', err);
-        urls.push(base64);
+        console.error('Error subiendo a GitHub:', err);
+        // LANZAMOS el error para que NO se guarde Base64
+        throw new Error(`No se pudo subir la imagen a GitHub: ${err.message}`);
       }
     } catch (e) {
-      console.warn('Error al procesar', file.name, e);
+      console.warn('Error procesando imagen:', file.name, e);
+      // Propagamos el error para que el usuario sepa que falló
+      throw e;
     }
   }
   return urls;
@@ -1426,9 +1422,15 @@ function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88
     const orig = lbl ? lbl.textContent : '';
     if (lbl) lbl.textContent = 'Subiendo a GitHub...';
     
-    const urls = await processAndUploadImages(files, maxDim, quality, thresholdKB);
-    if (urls.length) onFiles(urls);
-    if (lbl) lbl.textContent = orig;
+    try {
+      const urls = await processAndUploadImages(files, maxDim, quality, thresholdKB);
+      if (urls.length) onFiles(urls);
+    } catch (error) {
+      // Mostramos el error al usuario de forma explícita
+      alert(`❌ Error al subir la imagen:\n\n${error.message}`);
+    } finally {
+      if (lbl) lbl.textContent = orig;
+    }
   };
   input.onchange = async (e) => { const files = [...e.target.files]; input.value = ''; await handler(files); };
   zone.ondragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
@@ -1472,7 +1474,7 @@ function extractDominantColor(url) {
 }
 
 // ============================================================
-// GITHUB API (Git Data API para evitar 409)
+// GITHUB API (API de Contenidos para evitar error 422)
 // ============================================================
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -1514,60 +1516,23 @@ const GH = {
     
     return { sha: d.sha, content };
   },
+  // NUEVO MÉTODO SIMPLIFICADO (API de Contenidos)
   async putFile(path, base64Content, message) {
-    try {
-      // 1. Obtener referencia
-      const refRes = await this.api(`/repos/${this.repo}/git/refs/heads/${this.branch}`);
-      if (!refRes.ok) throw new Error('No se pudo obtener la rama');
-      const ref = await refRes.json();
-      const latestCommitSha = ref.object.sha;
+    const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: message || `Update ${path}`,
+        content: base64Content,
+        branch: this.branch
+      })
+    });
 
-      // 2. Obtener árbol base
-      const commitRes = await this.api(`/repos/${this.repo}/git/commits/${latestCommitSha}`);
-      const commit = await commitRes.json();
-      const baseTreeSha = commit.tree.sha;
-
-      // 3. Crear blob
-      const blobRes = await this.api(`/repos/${this.repo}/git/blobs`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: base64Content, encoding: 'base64' })
-      });
-      if (!blobRes.ok) throw new Error('Error al crear blob');
-      const blob = await blobRes.json();
-
-      // 4. Crear árbol
-      const treeRes = await this.api(`/repos/${this.repo}/git/trees`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          base_tree: baseTreeSha,
-          tree: [{ path: path, mode: '100644', type: 'blob', sha: blob.sha }]
-        })
-      });
-      if (!treeRes.ok) throw new Error('Error al crear árbol');
-      const tree = await treeRes.json();
-
-      // 5. Crear commit
-      const newCommitRes = await this.api(`/repos/${this.repo}/git/commits`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: message || `Update ${path}`, tree: tree.sha, parents: [latestCommitSha] })
-      });
-      if (!newCommitRes.ok) throw new Error('Error al crear commit');
-      const newCommit = await newCommitRes.json();
-
-      // 6. Actualizar referencia
-      const updateRes = await this.api(`/repos/${this.repo}/git/refs/heads/${this.branch}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sha: newCommit.sha, force: true })
-      });
-      return updateRes.ok;
-    } catch(e) {
-      console.error('Git Data API save error:', e);
-      throw e;
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || `Error ${res.status} al subir ${path}`);
     }
+    return true;
   },
   async load() {
     if (this.isConfigured()) {
@@ -2875,25 +2840,18 @@ window.migrateBase64Images = async () => {
       try {
         const match = obj.match(base64Regex);
         const ext = match ? match[1] : 'jpg';
-        const base64Data = obj.split(',')[1];
+        let base64Data = obj.split(',')[1];
+        // Limpieza crítica
+        base64Data = base64Data.replace(/\s/g, '');
+        
         const filename = `migrated_${Date.now()}_${Math.random().toString(36).slice(2,6)}.${ext}`;
         const path = `media/${filename}`;
 
-        const res = await GH.api(`/repos/${GH.repo}/contents/${path}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: `Migrate ${filename}`, content: base64Data, branch: GH.branch })
-        });
-
-        if (res.ok) {
-          return `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
-        } else {
-          console.warn('Fallo subiendo imagen', res.status);
-          return obj; 
-        }
+        await GH.putFile(path, base64Data, `Migrate ${filename}`);
+        return `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
       } catch (e) {
         console.warn('Error en migración:', e);
-        return obj;
+        return obj; 
       }
     } else if (Array.isArray(obj)) {
       const newArr = [];
