@@ -109,10 +109,12 @@
       "projects": [
         {
           "id": "9gkxbwesmvrpnjql",
-          "name": "Nuevo Proyecto",
+          "name": "ruta live",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167603835_ct53.jpg"
+          ]
         }
       ]
     },
