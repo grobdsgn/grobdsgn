@@ -90,7 +90,15 @@
       "name": "3D",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "z9u1ohk2mvroi4c1",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     },
     {
       "id": "zecksrpemvrohrbo",
