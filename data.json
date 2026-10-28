@@ -2565,6 +2565,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "vb1xkamcmvsgp3ki",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212958166_kk5s.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
