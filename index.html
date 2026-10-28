@@ -94,7 +94,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .billboard-card:hover{transform:translateY(-6px);border-color:var(--accent)}
 .billboard-card:hover img{transform:scale(1.08)}
 
-/* Estrella pequeña y sutil para destacados */
 .billboard-badge{
   position:absolute;top:8px;right:8px;z-index:2;
   width:22px;height:22px;display:grid;place-items:center;
@@ -795,6 +794,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
       <div class="a-sidebar-footer">
         <div class="a-sync" id="aSyncStatus"><div class="a-sync-dot"></div><span id="aSyncStatusText">Sincronizado</span></div>
         <button class="a-btn a-btn-outline a-btn-sm" id="aBtnViewSite">👁 Ver web</button>
+        <button class="a-btn a-btn-primary a-btn-sm" onclick="migrateBase64Images()" id="aBtnMigrate">🪄 Migrar Imágenes Base64</button>
         <button class="a-btn a-btn-danger a-btn-sm" id="aBtnLogout">Cerrar sesión</button>
       </div>
     </aside>
@@ -819,20 +819,20 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             <div class="a-hero-icon">🎬</div>
             <div class="a-hero-text">
               <h2>Página de Inicio</h2>
-              <p>Las imágenes rotan con zoom y disolución. Se guardan en alta calidad (hasta 4K).</p>
+              <p>Las imágenes rotan con zoom y disolución. Se suben automáticamente a la carpeta `media/` de GitHub.</p>
               <div class="a-hero-stats"><div class="a-stat">Imágenes: <strong id="statHeroImgs">0</strong></div></div>
             </div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🖼️</span>Fondos del Carrusel</h2></div>
             <div class="a-card-body">
-              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes del inicio se guardan en alta calidad (hasta 4K).</div>
+              <div class="a-form-hint" style="margin-bottom:12px;padding:8px 12px;background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.25);border-radius:8px;font-size:11px;line-height:1.5">✨ Las imágenes se guardan en la carpeta <code>media/</code> de tu repositorio para mantener el JSON ligero.</div>
               <div class="upload-zone" id="heroUploadZone">
                 <span class="upload-zone-icon">📤</span>
                 <div class="upload-zone-text"><strong>Arrastra imágenes aquí</strong>o toca para seleccionar</div>
                 <input type="file" id="heroFileInput" accept="image/*" multiple hidden>
               </div>
-              <div class="divider-or"><span>o pega URLs (máxima calidad)</span></div>
+              <div class="divider-or"><span>o pega URLs</span></div>
               <div style="display:flex;gap:8px">
                 <textarea id="aHeroUrlsInput" class="a-form-textarea" rows="2" placeholder="https://ejemplo.com/fondo1.jpg"></textarea>
                 <button class="a-btn a-btn-outline" id="aBtnAddHeroUrls">Añadir</button>
@@ -1360,15 +1360,53 @@ function compressImage(file, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
     reader.readAsDataURL(file);
   });
 }
-async function processImageFiles(files, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
-  const results = [];
+
+// ============================================================
+// NUEVO SISTEMA DE SUBIDA A GITHUB (MEDIA FOLDER)
+// ============================================================
+async function processAndUploadImages(files, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
+  const urls = [];
   for (const file of files) {
     if (!file.type.startsWith('image/')) continue;
-    try { results.push(await compressImage(file, maxDim, quality, thresholdKB)); }
-    catch (e) { console.warn('Error al comprimir', file.name, e); }
+    try {
+      const base64 = await compressImage(file, maxDim, quality, thresholdKB);
+      const base64Data = base64.split(',')[1];
+      if (!base64Data) continue;
+
+      if (!GH.isConfigured()) {
+        urls.push(base64);
+        continue;
+      }
+
+      const ext = file.name.split('.').pop() || 'jpg';
+      const filename = `img_${Date.now()}_${Math.random().toString(36).slice(2, 6)}.${ext}`;
+      const path = `media/${filename}`;
+      
+      try {
+        const res = await GH.api(`/repos/${GH.repo}/contents/${path}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: `Upload ${filename}`, content: base64Data, branch: GH.branch })
+        });
+        
+        if (res.ok) {
+          const rawUrl = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
+          urls.push(rawUrl);
+        } else {
+          console.warn('Fallo subida a GitHub, usando base64 local');
+          urls.push(base64);
+        }
+      } catch (err) {
+        console.warn('Excepción subiendo a GitHub:', err);
+        urls.push(base64);
+      }
+    } catch (e) {
+      console.warn('Error al procesar', file.name, e);
+    }
   }
-  return results;
+  return urls;
 }
+
 function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88, thresholdKB = 300) {
   const zone = document.getElementById(zoneId);
   const input = document.getElementById(inputId);
@@ -1378,8 +1416,9 @@ function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88
     if (!files.length) return;
     const lbl = zone.querySelector('.upload-zone-text strong');
     const orig = lbl ? lbl.textContent : '';
-    if (lbl) lbl.textContent = 'Procesando...';
-    const urls = await processImageFiles(files, maxDim, quality, thresholdKB);
+    if (lbl) lbl.textContent = 'Subiendo a GitHub...';
+    
+    const urls = await processAndUploadImages(files, maxDim, quality, thresholdKB);
     if (urls.length) onFiles(urls);
     if (lbl) lbl.textContent = orig;
   };
@@ -1425,7 +1464,7 @@ function extractDominantColor(url) {
 }
 
 // ============================================================
-// GITHUB API + FIX: Manejo seguro de JSON y archivos vacíos
+// GITHUB API (Git Data API para evitar 409)
 // ============================================================
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -1446,9 +1485,18 @@ const GH = {
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const d = await res.json();
     
-    // Evitar errores de JSON.parse('') si el archivo está vacío
-    if (!d || !d.content) return null;
-    
+    if (!d) return null;
+
+    // Si el archivo es muy grande, descargarlo directo
+    if (d.download_url) {
+      const rawRes = await fetch(d.download_url + '&t=' + Date.now());
+      if (rawRes.ok) {
+        const content = await rawRes.text();
+        return { sha: d.sha, content };
+      }
+    }
+
+    if (!d.content) return null;
     const bin = atob(d.content.replace(/\n/g, ''));
     const bytes = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
@@ -1459,22 +1507,58 @@ const GH = {
     return { sha: d.sha, content };
   },
   async putFile(path, base64Content, message) {
-    let retries = 3;
-    while (retries > 0) {
-      try {
-        const existing = await this.getFile(path);
-        const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
-        if (existing) body.sha = existing.sha;
-        const res = await this.api(`/repos/${this.repo}/contents/${path}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-        if (res.ok) return true;
-        if (res.status === 409) { retries--; await new Promise(r => setTimeout(r, 1000)); continue; }
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.message || `HTTP ${res.status}`);
-      } catch (e) {
-        retries--;
-        if (retries === 0) throw e;
-        await new Promise(r => setTimeout(r, 1000));
-      }
+    try {
+      // 1. Obtener referencia
+      const refRes = await this.api(`/repos/${this.repo}/git/refs/heads/${this.branch}`);
+      if (!refRes.ok) throw new Error('No se pudo obtener la rama');
+      const ref = await refRes.json();
+      const latestCommitSha = ref.object.sha;
+
+      // 2. Obtener árbol base
+      const commitRes = await this.api(`/repos/${this.repo}/git/commits/${latestCommitSha}`);
+      const commit = await commitRes.json();
+      const baseTreeSha = commit.tree.sha;
+
+      // 3. Crear blob
+      const blobRes = await this.api(`/repos/${this.repo}/git/blobs`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: base64Content, encoding: 'base64' })
+      });
+      if (!blobRes.ok) throw new Error('Error al crear blob');
+      const blob = await blobRes.json();
+
+      // 4. Crear árbol
+      const treeRes = await this.api(`/repos/${this.repo}/git/trees`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          base_tree: baseTreeSha,
+          tree: [{ path: path, mode: '100644', type: 'blob', sha: blob.sha }]
+        })
+      });
+      if (!treeRes.ok) throw new Error('Error al crear árbol');
+      const tree = await treeRes.json();
+
+      // 5. Crear commit
+      const newCommitRes = await this.api(`/repos/${this.repo}/git/commits`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message || `Update ${path}`, tree: tree.sha, parents: [latestCommitSha] })
+      });
+      if (!newCommitRes.ok) throw new Error('Error al crear commit');
+      const newCommit = await newCommitRes.json();
+
+      // 6. Actualizar referencia
+      const updateRes = await this.api(`/repos/${this.repo}/git/refs/heads/${this.branch}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sha: newCommit.sha, force: true })
+      });
+      return updateRes.ok;
+    } catch(e) {
+      console.error('Git Data API save error:', e);
+      throw e;
     }
   },
   async load() {
@@ -1485,7 +1569,7 @@ const GH = {
           try {
             return JSON.parse(file.content);
           } catch (parseError) {
-            console.error('data.json en GitHub contiene JSON inválido:', parseError);
+            console.error('data.json contiene JSON inválido:', parseError);
             return null;
           }
         }
@@ -1520,7 +1604,7 @@ function migrateData(data) {
   if (data.settings.youtubeApiKey === undefined) data.settings.youtubeApiKey = '';
   if (data.settings.apifyToken === undefined) data.settings.apifyToken = '';
   if (data.settings.apifyActor === undefined) data.settings.apifyActor = DEFAULT_APIFY_ACTOR;
-  // Elimina campos legacy si existían
+  
   if (data.settings.rapidApiKey !== undefined) delete data.settings.rapidApiKey;
   if (data.settings.rapidApiHost !== undefined) delete data.settings.rapidApiHost;
 
@@ -1869,10 +1953,6 @@ async function fetchYouTubeStats() {
   }
 }
 
-// ============================================================
-// APIFY — beatanalytics/spotify-play-count-scraper
-// Input: { urls: [{ url: "https://open.spotify.com/..." }, ...] }
-// ============================================================
 async function fetchSpotifyStats() {
   const token = DATA.settings?.apifyToken;
   const actor = DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
@@ -1881,11 +1961,9 @@ async function fetchSpotifyStats() {
   const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
   if (!coversWithSpotify.length) return;
 
-  // Deduplicar URLs
   const uniqueUrls = [...new Set(coversWithSpotify.map(c => c.spotifyUrl.trim()))];
   if (!uniqueUrls.length) return;
 
-  // En la API HTTP, el actor usa "~" en vez de "/"
   const actorSlug = actor.replace('/', '~');
 
   try {
@@ -1904,12 +1982,8 @@ async function fetchSpotifyStats() {
     }
 
     const items = await res.json();
-    if (!Array.isArray(items)) {
-      console.warn('Apify: la respuesta no es un array', items);
-      return;
-    }
+    if (!Array.isArray(items)) return;
 
-    // Mapear por URL normalizada
     const playCountMap = new Map();
     items.forEach(item => {
       const rawUrl = item.url || item.spotifyUrl || item.spotify_url || item.trackUrl || item.track_url || item.albumUrl || item.album_url || '';
@@ -1920,7 +1994,6 @@ async function fetchSpotifyStats() {
       if (rawUrl) {
         const key = String(rawUrl).trim();
         const num = parseInt(plays) || 0;
-        // Si el mismo URL aparece varias veces, nos quedamos con el mayor
         if (!playCountMap.has(key) || num > playCountMap.get(key)) {
           playCountMap.set(key, num);
         }
@@ -2573,6 +2646,80 @@ async function saveAdminData() {
     aToast(e.message, 'error');
   }
 }
+
+// ============================================================
+// MIGRACIÓN DE IMÁGENES BASE64 A GITHUB MEDIA
+// ============================================================
+window.migrateBase64Images = async () => {
+  if (!confirm('Esto convertirá todas las imágenes antiguas (Base64) a la carpeta media/ y limpiará el archivo JSON para que pese poco. ¿Continuar?')) return;
+
+  let count = 0;
+  let total = 0;
+  const base64Regex = /^data:image\/([a-zA-Z0-9]+);base64,/;
+
+  function countBase64(obj) {
+    if (typeof obj === 'string' && base64Regex.test(obj)) total++;
+    else if (Array.isArray(obj)) obj.forEach(countBase64);
+    else if (typeof obj === 'object' && obj !== null) Object.values(obj).forEach(countBase64);
+  }
+  countBase64(DATA);
+  
+  if (total === 0) {
+    aToast('No hay imágenes Base64 para migrar.', 'info');
+    return;
+  }
+
+  setASync('saving', `Migrando 0/${total}...`);
+  document.getElementById('aBtnMigrate').disabled = true;
+
+  async function processObj(obj) {
+    if (typeof obj === 'string' && base64Regex.test(obj)) {
+      count++;
+      setASync('saving', `Migrando ${count}/${total}...`);
+      
+      try {
+        const match = obj.match(base64Regex);
+        const ext = match ? match[1] : 'jpg';
+        const base64Data = obj.split(',')[1];
+        const filename = `migrated_${Date.now()}_${Math.random().toString(36).slice(2,6)}.${ext}`;
+        const path = `media/${filename}`;
+
+        const res = await GH.api(`/repos/${GH.repo}/contents/${path}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: `Migrate ${filename}`, content: base64Data, branch: GH.branch })
+        });
+
+        if (res.ok) {
+          return `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
+        } else {
+          console.warn('Fallo subiendo imagen', res.status);
+          return obj; 
+        }
+      } catch (e) {
+        console.warn('Error en migración:', e);
+        return obj;
+      }
+    } else if (Array.isArray(obj)) {
+      const newArr = [];
+      for (const item of obj) newArr.push(await processObj(item));
+      return newArr;
+    } else if (typeof obj === 'object' && obj !== null) {
+      const newObj = {};
+      for (const key in obj) newObj[key] = await processObj(obj[key]);
+      return newObj;
+    }
+    return obj;
+  }
+
+  DATA = await processObj(DATA);
+  setASync('ok', 'Migración completada');
+  aToast('¡Imágenes migradas con éxito!');
+  
+  await saveAdminData();
+  document.getElementById('aBtnMigrate').disabled = false;
+  renderAdmin();
+};
 
 function updateAdminBadges() {
   const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
