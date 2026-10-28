@@ -1440,7 +1440,13 @@
       "artist": "oma 206",
       "year": "2015",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225850819_6mdw.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225852663_lqh8.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225854045_4lqm.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225855509_0kvi.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225857059_9m39.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/6MCsxhSAOaBnPFJHhmzDLQ?si=bcf184d270d446b2",
       "appleMusicUrl": "",
       "youtubeUrl": "",
