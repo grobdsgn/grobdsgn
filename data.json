@@ -2006,12 +2006,20 @@
     {
       "id": "6d4r6ucimvseu081",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209828193_1152.jpg",
-      "category": "sencillo",
+      "category": "albums",
       "name": "",
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209847996_jzq8.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209849804_25ks.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209851599_n887.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209853526_kxz5.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209855781_33ls.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209857869_vh1j.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209859860_qr8m.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
