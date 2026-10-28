@@ -9,7 +9,15 @@
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157682431_1nf3.jpg",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157684372_hof7.jpg"
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": "qnbmvr4fmvrnzcj6",
+      "name": "Nueva Categoría",
+      "description": "",
+      "parallaxImage": "",
+      "projects": []
+    }
+  ],
   "clientes": [
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157354423_tjdi.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157355967_xyet.png",
