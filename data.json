@@ -1562,6 +1562,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "s0y2w1g2mvrqpfft",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169303654_fd7c.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
