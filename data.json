@@ -86,10 +86,18 @@
         },
         {
           "id": "4dlx8dqhmvrp2n1r",
-          "name": "Nuevo Proyecto",
+          "name": "BOMAKAFE",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166583761_ykjh.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166585673_j8xc.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166587571_8um0.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166589399_yzqp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166591194_lqwi.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166593157_z5do.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166595337_ul5w.jpg"
+          ]
         }
       ]
     },
