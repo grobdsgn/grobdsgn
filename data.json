@@ -1968,7 +1968,12 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209729659_pfcq.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209731427_uzjr.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209733358_awxf.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209735046_25ww.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
