@@ -120,10 +120,14 @@
         },
         {
           "id": "bma6q6hqmvrore3l",
-          "name": "Nuevo Proyecto",
+          "name": "Squid games",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166050879_211w.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166052735_ahhn.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793166054469_ojw3.jpg"
+          ]
         }
       ]
     },
