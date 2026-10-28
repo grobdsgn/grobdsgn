@@ -74,7 +74,9 @@
           "name": "Nuevo Proyecto",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165877964_v5ii.jpg"
+          ]
         }
       ]
     },
