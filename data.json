@@ -438,10 +438,15 @@
         },
         {
           "id": "jtii2hwfmvshcxjw",
-          "name": "Nuevo Proyecto",
+          "name": "ainara shop",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214095396_xtw1.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214097163_zfy9.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214099053_5237.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214100936_74nr.jpg"
+          ]
         }
       ]
     },
