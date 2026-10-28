@@ -693,7 +693,7 @@
     {
       "id": "ln791rajmvroh7r2",
       "name": "3D",
-      "description": "",
+      "description": "Modelado 3D",
       "parallaxImage": "",
       "projects": [
         {
@@ -753,6 +753,13 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169205972_dgtp.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169228898_soow.jpg"
           ]
+        },
+        {
+          "id": "ljf53rfvmvsjxbas",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     },
