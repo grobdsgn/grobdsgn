@@ -387,7 +387,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210846138_9pgn.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210850330_l4s5.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210860874_dent.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210863747_iodb.jpg"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210863747_iodb.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210974822_yxnm.jpg"
           ]
         }
       ]
@@ -2162,7 +2163,13 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210910334_n9ee.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210912455_6lvq.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210914248_vms7.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210916383_isqf.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210918453_nyy3.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
