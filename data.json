@@ -1767,6 +1767,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "3r5gmdefmvsds629",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208062406_vwal.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
