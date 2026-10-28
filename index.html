@@ -1474,7 +1474,7 @@ function extractDominantColor(url) {
 }
 
 // ============================================================
-// GITHUB API (API de Contenidos para evitar error 422)
+// GITHUB API (API de Contenidos con SHA automático)
 // ============================================================
 const GH = {
   get token() { return localStorage.getItem('gh_token') || ''; },
@@ -1516,16 +1516,32 @@ const GH = {
     
     return { sha: d.sha, content };
   },
-  // NUEVO MÉTODO SIMPLIFICADO (API de Contenidos)
   async putFile(path, base64Content, message) {
+    // 1. Intentar obtener el SHA si el archivo ya existe (necesario para actualizar)
+    let sha = null;
+    try {
+      const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
+      if (res.ok) {
+        const data = await res.json();
+        sha = data.sha;
+      }
+    } catch (e) {
+      // Ignorar error si el archivo no existe (se creará uno nuevo)
+    }
+
+    // 2. Preparar el cuerpo de la petición
+    const body = {
+      message: message || `Update ${path}`,
+      content: base64Content,
+      branch: this.branch
+    };
+    if (sha) body.sha = sha; // <--- ESTO SOLUCIONA EL ERROR 422
+
+    // 3. Enviar la petición
     const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: message || `Update ${path}`,
-        content: base64Content,
-        branch: this.branch
-      })
+      body: JSON.stringify(body)
     });
 
     if (!res.ok) {
