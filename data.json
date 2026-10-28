@@ -414,10 +414,13 @@
         },
         {
           "id": "tjvrk4i9mvsfoywx",
-          "name": "Nuevo Proyecto",
+          "name": "Justin Quiles",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211287739_jzdi.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211289598_z2ub.jpg"
+          ]
         }
       ]
     },
