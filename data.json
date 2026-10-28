@@ -474,10 +474,12 @@
         },
         {
           "id": "uu1yjryymvse3y9v",
-          "name": "Nuevo Proyecto",
+          "name": "Alex Prezzer",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://drive.google.com/file/d/1xw2aG02Tkns540ZZ6Tph5cpJ1ZSuaDTy/view?usp=drive_link"
+          ]
         }
       ]
     },
