@@ -1275,6 +1275,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "tk7tqkzlmvrpjyet",
+      "url": "https://cdn-images.dzcdn.net/images/cover/1e51864c468aa50a255e18fc3457fe15/1900x1900-000000-80-0-0.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
