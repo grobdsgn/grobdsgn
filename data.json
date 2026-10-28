@@ -260,10 +260,12 @@
         },
         {
           "id": "th12ydkjmvrqmfdw",
-          "name": "Nuevo Proyecto",
+          "name": "JOTADE ART",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169183161_sm2e.jpg"
+          ]
         }
       ]
     },
