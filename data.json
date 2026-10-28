@@ -182,10 +182,18 @@
     },
     {
       "id": "5fclafbdmvrpc7sv",
-      "name": "Nueva Categoría",
+      "name": "Cuadros",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "9dka7twbmvrpcgdk",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "clientes": [
