@@ -197,10 +197,12 @@
         },
         {
           "id": "td1ug5rdmvrpe32x",
-          "name": "Nuevo Proyecto",
+          "name": "Omar Acedo",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167134403_g182.png"
+          ]
         }
       ]
     }
