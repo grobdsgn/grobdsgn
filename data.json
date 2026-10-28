@@ -616,10 +616,14 @@
         },
         {
           "id": "zgoj8a91mvsgyxdr",
-          "name": "Nuevo Proyecto",
+          "name": "venezuela triunfa",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213436424_x0td.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213438621_9unr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213440413_yxpo.jpg"
+          ]
         }
       ]
     },
