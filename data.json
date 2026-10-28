@@ -33,10 +33,18 @@
     },
     {
       "id": "4nj8qiiamvro4br9",
-      "name": "Nueva Categoría",
+      "name": "Marcas",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "1htdk8kbmvro4itt",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "clientes": [
