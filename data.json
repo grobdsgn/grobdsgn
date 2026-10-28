@@ -1983,6 +1983,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "czyvfurjmvset99l",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209792121_kwrq.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
