@@ -866,6 +866,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "9zraz6fzmvrmgb7y",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793162159595_tmxn.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
