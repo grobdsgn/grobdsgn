@@ -219,10 +219,23 @@
         },
         {
           "id": "subyos3bmvsejz66",
-          "name": "Nuevo Proyecto",
+          "name": "NAv aviation academy",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209426895_m1po.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209429056_gbx4.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209430891_7tcs.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209432664_ja5e.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209434706_9m3z.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209436899_1kfc.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209438705_n0gp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209440667_hi8h.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209442580_5rrl.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209444541_iimw.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209446287_cd0m.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209448231_0e04.jpg"
+          ]
         }
       ]
     },
