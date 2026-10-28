@@ -4,7 +4,11 @@
     "title": "Diseño experiencias\nque se recuerdan.",
     "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
   },
-  "heroImages": [],
+  "heroImages": [
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157679451_4dvd.jpg",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157682431_1nf3.jpg",
+    "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157684372_hof7.jpg"
+  ],
   "categories": [],
   "clientes": [
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157354423_tjdi.png",
