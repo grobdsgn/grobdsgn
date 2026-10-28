@@ -883,7 +883,7 @@
       "spotifyUrl": "https://open.spotify.com/intl-es/album/0NrfNobRt7PYCLj5ew2noA?si=598dd30ea2dc4c1d",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/5loYGntwiHI?si=2yyYhE3dqonkk1OG",
-      "featured": false,
+      "featured": true,
       "plays": {
         "spotify": 0,
         "youtube": 0,
