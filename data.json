@@ -113,7 +113,10 @@
           "logo": "",
           "parallaxImage": "",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167603835_ct53.jpg"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167603835_ct53.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167615850_2rc1.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167617597_9e1g.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167619454_slux.jpg"
           ]
         }
       ]
