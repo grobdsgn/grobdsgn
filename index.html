@@ -93,9 +93,27 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .billboard-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
 .billboard-card:hover{transform:translateY(-6px);border-color:var(--accent)}
 .billboard-card:hover img{transform:scale(1.08)}
-.billboard-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;z-index:2}
+
+/* Estrella pequeña y sutil para destacados */
+.billboard-badge{
+  position:absolute;top:8px;right:8px;z-index:2;
+  width:22px;height:22px;display:grid;place-items:center;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  border:1px solid rgba(201,169,97,.35);
+  border-radius:50%;
+  color:var(--accent);
+  transition:transform .3s,background .3s;
+}
+.billboard-card:hover .billboard-badge{transform:scale(1.1);background:rgba(0,0,0,.75)}
+.billboard-badge svg{width:11px;height:11px;fill:currentColor;display:block}
+
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@media(max-width:640px){.billboard-card{flex:0 0 180px}}
+@media(max-width:640px){
+  .billboard-card{flex:0 0 180px}
+  .billboard-badge{width:20px;height:20px;top:6px;right:6px}
+  .billboard-badge svg{width:10px;height:10px}
+}
 
 .plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
 .plays-banner-block{display:flex;align-items:center;gap:12px}
@@ -1092,8 +1110,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
               </div>
               <div class="a-form-group">
                 <label class="a-form-label">Actor de Apify</label>
-                <input type="text" id="aApifyActor" class="a-form-input" value="eduair94/spotify-play-count-scraper" placeholder="eduair94/spotify-play-count-scraper">
-                <span class="a-form-hint">ID del actor de Apify. Por defecto usa <code>eduair94/spotify-play-count-scraper</code>.</span>
+                <input type="text" id="aApifyActor" class="a-form-input" value="beatanalytics/spotify-play-count-scraper" placeholder="beatanalytics/spotify-play-count-scraper">
+                <span class="a-form-hint">ID del actor de Apify. Por defecto usa <code>beatanalytics/spotify-play-count-scraper</code>. En la URL del API se transforma a <code>beatanalytics~spotify-play-count-scraper</code>.</span>
               </div>
             </div>
           </div>
@@ -1464,12 +1482,17 @@ const GH = {
   }
 };
 
+const DEFAULT_APIFY_ACTOR = 'beatanalytics/spotify-play-count-scraper';
+
 function migrateData(data) {
   if (!data) return data;
   if (!data.settings) data.settings = {};
   if (data.settings.youtubeApiKey === undefined) data.settings.youtubeApiKey = '';
   if (data.settings.apifyToken === undefined) data.settings.apifyToken = '';
-  if (data.settings.apifyActor === undefined) data.settings.apifyActor = 'eduair94/spotify-play-count-scraper';
+  if (data.settings.apifyActor === undefined) data.settings.apifyActor = DEFAULT_APIFY_ACTOR;
+  // Elimina campos legacy si existían
+  if (data.settings.rapidApiKey !== undefined) delete data.settings.rapidApiKey;
+  if (data.settings.rapidApiHost !== undefined) delete data.settings.rapidApiHost;
 
   if (data.categories) {
     data.categories.forEach(cat => {
@@ -1547,7 +1570,7 @@ let DATA = {
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
   music: { url: '' },
-  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' },
+  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR },
   texts: {},
   ficha: []
 };
@@ -1816,49 +1839,69 @@ async function fetchYouTubeStats() {
   }
 }
 
+// ============================================================
+// APIFY — beatanalytics/spotify-play-count-scraper
+// Input: { urls: [{ url: "https://open.spotify.com/..." }, ...] }
+// ============================================================
 async function fetchSpotifyStats() {
   const token = DATA.settings?.apifyToken;
-  const actor = DATA.settings?.apifyActor || 'eduair94/spotify-play-count-scraper';
+  const actor = DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
   if (!token) return;
 
-  const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl);
+  const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
   if (!coversWithSpotify.length) return;
 
-  const spotifyUrls = coversWithSpotify
-    .map(c => c.spotifyUrl.trim())
-    .filter(url => url.includes('spotify.com'));
+  // Deduplicar URLs
+  const uniqueUrls = [...new Set(coversWithSpotify.map(c => c.spotifyUrl.trim()))];
+  if (!uniqueUrls.length) return;
 
-  if (!spotifyUrls.length) return;
+  // En la API HTTP, el actor usa "~" en vez de "/"
+  const actorSlug = actor.replace('/', '~');
 
   try {
-    const res = await fetch(`https://api.apify.com/v2/acts/${actor}/run-sync-get-dataset-items?token=${token}`, {
+    const res = await fetch(`https://api.apify.com/v2/acts/${actorSlug}/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ urls: spotifyUrls })
+      body: JSON.stringify({
+        urls: uniqueUrls.map(url => ({ url }))
+      })
     });
 
     if (!res.ok) {
-      console.warn(`Apify error ${res.status}: ${await res.text().catch(() => '')}`);
+      const errText = await res.text().catch(() => '');
+      console.warn(`Apify error ${res.status}: ${errText}`);
       return;
     }
 
     const items = await res.json();
-    if (!Array.isArray(items)) return;
+    if (!Array.isArray(items)) {
+      console.warn('Apify: la respuesta no es un array', items);
+      return;
+    }
 
+    // Mapear por URL normalizada
     const playCountMap = new Map();
     items.forEach(item => {
-      const url = item.url || item.spotifyUrl || item.trackUrl || '';
-      const plays = item.playCount || item.streams || item.plays || item.totalStreams || 0;
-      if (url && plays) {
-        playCountMap.set(url.trim(), parseInt(plays) || 0);
+      const rawUrl = item.url || item.spotifyUrl || item.spotify_url || item.trackUrl || item.track_url || item.albumUrl || item.album_url || '';
+      const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams
+                 ?? item.streamCount ?? item.stream_count ?? item.totalStreams
+                 ?? item.total_streams ?? item.totalPlays ?? item.total_plays
+                 ?? item.totalPlayCount ?? item.total_play_count ?? 0;
+      if (rawUrl) {
+        const key = String(rawUrl).trim();
+        const num = parseInt(plays) || 0;
+        // Si el mismo URL aparece varias veces, nos quedamos con el mayor
+        if (!playCountMap.has(key) || num > playCountMap.get(key)) {
+          playCountMap.set(key, num);
+        }
       }
     });
 
     coversWithSpotify.forEach(c => {
-      const normalizedUrl = c.spotifyUrl.trim();
-      if (playCountMap.has(normalizedUrl)) {
+      const key = c.spotifyUrl.trim();
+      if (playCountMap.has(key)) {
         if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
-        c.plays.spotify = playCountMap.get(normalizedUrl);
+        c.plays.spotify = playCountMap.get(key);
       }
     });
   } catch (e) {
@@ -1872,7 +1915,7 @@ async function loadPublicData() {
     DATA = Object.assign(DATA, remote);
     if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
     if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
-    if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' }, remote.settings);
+    if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, remote.settings);
     migrateData(DATA);
   }
   
@@ -2050,10 +2093,11 @@ function renderFeaturedCovers() {
   if (sec) sec.style.display = 'block';
   if (track) {
     track.innerHTML = '';
+    const starSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.9L22 9.7l-5.5 4.8 1.7 7.1L12 17.8 5.8 21.6l1.7-7.1L2 9.7l7.1-.8z"/></svg>';
     const buildCard = (c) => {
       const el = document.createElement('div');
       el.className = 'billboard-card';
-      el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)"><span class="billboard-badge">Destacado</span>`;
+      el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)"><span class="billboard-badge" aria-label="Destacado">${starSvg}</span>`;
       el.onclick = () => { location.hash = `#cover-${c.id}`; };
       return el;
     };
@@ -2475,7 +2519,7 @@ async function loadAdminData() {
       if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
       else if (!DATA.music) DATA.music = { url: '' };
       if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
-      if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: 'eduair94/spotify-play-count-scraper' }, remote.settings);
+      if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, remote.settings);
       migrateData(DATA);
     }
     await fetchYouTubeStats();
@@ -2605,7 +2649,7 @@ function renderAdmin() {
   $('#aMusicUrl').value = (DATA.music && DATA.music.url) || '';
   $('#aYoutubeApiKey').value = (DATA.settings && DATA.settings.youtubeApiKey) || '';
   $('#aApifyToken').value = (DATA.settings && DATA.settings.apifyToken) || '';
-  $('#aApifyActor').value = (DATA.settings && DATA.settings.apifyActor) || 'eduair94/spotify-play-count-scraper';
+  $('#aApifyActor').value = (DATA.settings && DATA.settings.apifyActor) || DEFAULT_APIFY_ACTOR;
 
   updateAdminBadges();
 }
