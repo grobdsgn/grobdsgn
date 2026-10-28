@@ -407,7 +407,13 @@
           "logo": "",
           "parallaxImage": "",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207647779_3wa2.jpg"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207647779_3wa2.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207661268_dc36.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207665345_75yj.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207669635_9d0l.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207673493_wgpx.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207677065_trb1.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207680683_lzs5.png"
           ]
         }
       ]
