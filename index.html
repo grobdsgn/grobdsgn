@@ -624,6 +624,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="proyecto-cat-label" id="projCatLabel"></div>
         <img class="proyecto-logo" id="projLogo" style="display:none" alt="">
         <h1 class="proyecto-title" id="projNombre"></h1>
+        <p id="projReview" style="color:var(--muted); margin-top:20px; max-width:800px; margin-inline:auto; font-size:1.05rem; line-height:1.6; font-weight:300;"></p>
       </div>
       <div id="projImagesGrid"></div>
     </div>
@@ -1227,6 +1228,9 @@ function formatNumber(num) {
   return num.toString();
 }
 
+// Variable para mantener el orden aleatorio de los proyectos sin que cambie al navegar
+let SHUFFLED_ORDERS = {};
+
 // ============================================================
 // ALMACENAMIENTO LOCAL PARA VISTAS Y LIKES
 // ============================================================
@@ -1628,6 +1632,7 @@ function migrateData(data) {
         if (!proj.images) proj.images = [];
         proj.images = proj.images.map(img => typeof img === 'string' ? img : getItemUrl(img));
         if (proj.parallaxImage === undefined) proj.parallaxImage = '';
+        if (proj.review === undefined) proj.review = ''; // <--- NUEVO CAMPO DE RESEÑA
       });
     });
   }
@@ -2648,7 +2653,30 @@ function renderCategoryDetail(id) {
   $('#catDescripcion').textContent = cat.description || '';
   const container = $('#catProjRows');
   container.innerHTML = '';
-  const projects = cat.projects || [];
+  
+  // --- INICIO LÓGICA DE ORDEN ALEATORIO POR SESIÓN ---
+  let projects = cat.projects || [];
+  if (projects.length > 0) {
+      const projIds = projects.map(p => p.id);
+      if (!SHUFFLED_ORDERS[cat.id]) {
+          // Mezclar si no lo hemos hecho ya en esta sesión
+          for (let i = projIds.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [projIds[i], projIds[j]] = [projIds[j], projIds[i]];
+          }
+          SHUFFLED_ORDERS[cat.id] = projIds;
+      }
+      // Ordenar según el array guardado
+      const orderMap = new Map();
+      SHUFFLED_ORDERS[cat.id].forEach((pid, index) => orderMap.set(pid, index));
+      projects = [...projects].sort((a, b) => {
+          const ai = orderMap.has(a.id) ? orderMap.get(a.id) : 9999;
+          const bi = orderMap.has(b.id) ? orderMap.get(b.id) : 9999;
+          return ai - bi;
+      });
+  }
+  // --- FIN LÓGICA DE ORDEN ALEATORIO ---
+
   if (projects.length === 0) {
     container.innerHTML = '<p style="text-align:center;padding:80px 20px;color:var(--muted);">Aún no hay proyectos en esta categoría.</p>';
     showView('categoria');
@@ -2696,6 +2724,15 @@ function renderProjectDetail(id) {
   const titleEl = $('#projNombre');
   titleEl.textContent = proj.name || 'Sin título';
   titleEl.style.display = proj.logo ? 'none' : 'block';
+
+  const revEl = $('#projReview');
+  if (proj.review) {
+    revEl.textContent = proj.review;
+    revEl.style.display = 'block';
+  } else {
+    revEl.style.display = 'none';
+  }
+
   const container = $('#projImagesGrid');
   container.innerHTML = '';
   if (proj.images && proj.images.length) {
@@ -2906,7 +2943,6 @@ window.cleanupUnusedMedia = async () => {
 
   setASync('saving', 'Escaneando referencias...');
   
-  // 1. Recopilar todas las URLs usadas
   const usedUrls = new Set();
   const mediaPrefix = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/media/`;
 
@@ -2923,7 +2959,6 @@ window.cleanupUnusedMedia = async () => {
   }
   findUrls(DATA);
 
-  // 2. Obtener archivos de la carpeta media/
   try {
     const res = await GH.api(`/repos/${GH.repo}/contents/media?ref=${GH.branch}&t=${Date.now()}`);
     if (!res.ok) {
@@ -2938,7 +2973,6 @@ window.cleanupUnusedMedia = async () => {
     const files = await res.json();
     if (!Array.isArray(files)) throw new Error('Respuesta inválida de GitHub');
 
-    // 3. Identificar huérfanos
     const filesToDelete = files.filter(f => {
       if (f.type !== 'file') return false;
       const fileUrl = `${mediaPrefix}${f.name}`;
@@ -2956,7 +2990,6 @@ window.cleanupUnusedMedia = async () => {
       return;
     }
 
-    // 4. Eliminar
     let deletedCount = 0;
     for (let i = 0; i < filesToDelete.length; i++) {
       const file = filesToDelete[i];
@@ -3194,7 +3227,7 @@ function renderAdminCategoryPage(container) {
           <input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${catIdx}, 'name', this.value)" style="font-family:var(--font-title);font-size:1.1rem;font-weight:700">
         </div>
         <div class="a-form-group">
-          <label class="a-form-label">Descripción</label>
+          <label class="a-form-label">Reseña / Descripción de la Categoría</label>
           <textarea class="a-form-textarea" rows="2" oninput="updateCatField(${catIdx}, 'description', this.value)">${escHtml(cat.description || '')}</textarea>
         </div>
         <div class="a-form-group">
@@ -3254,6 +3287,10 @@ function renderAdminProjectPage(container) {
         <div class="a-form-group">
           <label class="a-form-label">Nombre del proyecto</label>
           <input type="text" class="a-form-input" value="${escHtml(proj.name || '')}" oninput="updateProjectField(${catIdx}, ${projIdx}, 'name', this.value)" style="font-family:var(--font-title);font-size:1.1rem;font-weight:700">
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">📝 Reseña del proyecto</label>
+          <textarea class="a-form-textarea" rows="3" placeholder="Breve descripción del proyecto..." oninput="updateProjectField(${catIdx}, ${projIdx}, 'review', this.value)">${escHtml(proj.review || '')}</textarea>
         </div>
         <div class="a-form-group">
           <label class="a-form-label">🖼️ Logo del proyecto</label>
@@ -3322,7 +3359,7 @@ window.createNewCategory = () => {
 window.addProjectToCategory = (catId) => {
   const cat = DATA.categories.find(c => c.id === catId);
   if (!cat) return;
-  const newProj = { id: uid(), name: 'Nuevo Proyecto', logo: '', parallaxImage: '', images: [] };
+  const newProj = { id: uid(), name: 'Nuevo Proyecto', review: '', logo: '', parallaxImage: '', images: [] };
   if (!cat.projects) cat.projects = [];
   cat.projects.push(newProj);
   updateAdminBadges();
