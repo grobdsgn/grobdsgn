@@ -794,7 +794,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
       <div class="a-sidebar-footer">
         <div class="a-sync" id="aSyncStatus"><div class="a-sync-dot"></div><span id="aSyncStatusText">Sincronizado</span></div>
         <button class="a-btn a-btn-outline a-btn-sm" id="aBtnViewSite">👁 Ver web</button>
-        <button class="a-btn a-btn-primary a-btn-sm" onclick="migrateBase64Images()" id="aBtnMigrate">🪄 Migrar Imágenes Base64</button>
+        <button class="a-btn a-btn-primary a-btn-sm" onclick="migrateBase64Images()" id="aBtnMigrate">🪄 Migrar Base64</button>
+        <button class="a-btn a-btn-outline a-btn-sm" onclick="cleanupUnusedMedia()" id="aBtnCleanMedia">🧹 Limpiar Media</button>
         <button class="a-btn a-btn-danger a-btn-sm" id="aBtnLogout">Cerrar sesión</button>
       </div>
     </aside>
@@ -1394,18 +1395,15 @@ async function processAndUploadImages(files, maxDim = 1800, quality = 0.88, thre
       const path = `media/${filename}`;
       
       try {
-        // Usamos el nuevo método simplificado
         await GH.putFile(path, base64Data, `Upload ${filename}`);
         const rawUrl = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
         urls.push(rawUrl);
       } catch (err) {
         console.error('Error subiendo a GitHub:', err);
-        // LANZAMOS el error para que NO se guarde Base64
         throw new Error(`No se pudo subir la imagen a GitHub: ${err.message}`);
       }
     } catch (e) {
       console.warn('Error procesando imagen:', file.name, e);
-      // Propagamos el error para que el usuario sepa que falló
       throw e;
     }
   }
@@ -1427,7 +1425,6 @@ function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88
       const urls = await processAndUploadImages(files, maxDim, quality, thresholdKB);
       if (urls.length) onFiles(urls);
     } catch (error) {
-      // Mostramos el error al usuario de forma explícita
       alert(`❌ Error al subir la imagen:\n\n${error.message}`);
     } finally {
       if (lbl) lbl.textContent = orig;
@@ -1498,7 +1495,6 @@ const GH = {
     
     if (!d) return null;
 
-    // Si el archivo es muy grande, descargarlo directo
     if (d.download_url) {
       const rawRes = await fetch(d.download_url + '&t=' + Date.now());
       if (rawRes.ok) {
@@ -1518,7 +1514,7 @@ const GH = {
     return { sha: d.sha, content };
   },
   async putFile(path, base64Content, message) {
-    // 1. Intentar obtener el SHA si el archivo ya existe (necesario para actualizar)
+    // 1. Intentar obtener el SHA si el archivo ya existe
     let sha = null;
     try {
       const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
@@ -1526,19 +1522,17 @@ const GH = {
         const data = await res.json();
         sha = data.sha;
       }
-    } catch (e) {
-      // Ignorar error si el archivo no existe (se creará uno nuevo)
-    }
+    } catch (e) {}
 
-    // 2. Preparar el cuerpo de la petición
+    // 2. Preparar el cuerpo
     const body = {
       message: message || `Update ${path}`,
       content: base64Content,
       branch: this.branch
     };
-    if (sha) body.sha = sha; // <--- ESTO SOLUCIONA EL ERROR 422
+    if (sha) body.sha = sha;
 
-    // 3. Enviar la petición
+    // 3. Enviar
     const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -1548,6 +1542,22 @@ const GH = {
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
       throw new Error(errData.message || `Error ${res.status} al subir ${path}`);
+    }
+    return true;
+  },
+  async deleteFile(path, sha, message) {
+    const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: message || `Delete ${path}`,
+        sha: sha,
+        branch: this.branch
+      })
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || `Error ${res.status} al eliminar ${path}`);
     }
     return true;
   },
@@ -2029,7 +2039,6 @@ async function fetchSpotifyHtml(spotifyUrl) {
 async function fetchSpotifyMetadata(spotifyUrl) {
   const result = { name: '', artists: '', year: '' };
 
-  // 1) oEmbed (rápido, CORS permitido)
   try {
     const oeRes = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`);
     if (oeRes.ok) {
@@ -2038,11 +2047,9 @@ async function fetchSpotifyMetadata(spotifyUrl) {
     }
   } catch (e) { console.warn('oEmbed error:', e); }
 
-  // 2) HTML vía proxy CORS para artistas + año
   try {
     const html = await fetchSpotifyHtml(spotifyUrl);
     if (html) {
-      // Método A: JSON-LD
       const ldMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
       if (ldMatch) {
         try {
@@ -2062,7 +2069,6 @@ async function fetchSpotifyMetadata(spotifyUrl) {
         } catch (e) { console.warn('JSON-LD parse error:', e); }
       }
 
-      // Método B: __NEXT_DATA__ (fallback)
       if (!result.artists || !result.year) {
         const nextMatch = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
         if (nextMatch) {
@@ -2473,13 +2479,11 @@ function renderPublicCovers(covers) {
     
     const coverStat = stats[c.id] || { views: 0, likes: 0, liked: false };
 
-    // Contador de vistas — abajo a la izquierda (oculto hasta hover)
     const viewBadge = document.createElement('div');
     viewBadge.className = 'cover-view-badge';
     viewBadge.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg><span>${coverStat.views}</span>`;
     item.appendChild(viewBadge);
 
-    // Botón de like — abajo a la derecha (oculto hasta hover)
     const likeBtn = document.createElement('button');
     likeBtn.className = 'cover-like-btn' + (coverStat.liked ? ' liked' : '');
     likeBtn.setAttribute('aria-label', 'Me gusta');
@@ -2858,7 +2862,6 @@ window.migrateBase64Images = async () => {
         const match = obj.match(base64Regex);
         const ext = match ? match[1] : 'jpg';
         let base64Data = obj.split(',')[1];
-        // Limpieza crítica
         base64Data = base64Data.replace(/\s/g, '');
         
         const filename = `migrated_${Date.now()}_${Math.random().toString(36).slice(2,6)}.${ext}`;
@@ -2889,6 +2892,91 @@ window.migrateBase64Images = async () => {
   await saveAdminData();
   document.getElementById('aBtnMigrate').disabled = false;
   renderAdmin();
+};
+
+// ============================================================
+// LIMPIEZA DE ARCHIVOS HUÉRFANOS EN GITHUB MEDIA
+// ============================================================
+window.cleanupUnusedMedia = async () => {
+  if (!GH.isConfigured()) {
+    aToast('GitHub no está configurado.', 'error');
+    return;
+  }
+  if (!confirm('Esto buscará imágenes en la carpeta media/ de GitHub que ya no estén referenciadas en los datos actuales y las eliminará permanentemente. ¿Continuar?')) return;
+
+  setASync('saving', 'Escaneando referencias...');
+  
+  // 1. Recopilar todas las URLs usadas
+  const usedUrls = new Set();
+  const mediaPrefix = `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/media/`;
+
+  function findUrls(obj) {
+    if (typeof obj === 'string') {
+      if (obj.startsWith(mediaPrefix)) {
+        usedUrls.add(obj);
+      }
+    } else if (Array.isArray(obj)) {
+      obj.forEach(findUrls);
+    } else if (typeof obj === 'object' && obj !== null) {
+      Object.values(obj).forEach(findUrls);
+    }
+  }
+  findUrls(DATA);
+
+  // 2. Obtener archivos de la carpeta media/
+  try {
+    const res = await GH.api(`/repos/${GH.repo}/contents/media?ref=${GH.branch}&t=${Date.now()}`);
+    if (!res.ok) {
+      if (res.status === 404) {
+        aToast('La carpeta media/ no existe o está vacía.', 'info');
+        setASync('ok', 'Sincronizado');
+        return;
+      }
+      throw new Error('Error al leer la carpeta media/');
+    }
+    
+    const files = await res.json();
+    if (!Array.isArray(files)) throw new Error('Respuesta inválida de GitHub');
+
+    // 3. Identificar huérfanos
+    const filesToDelete = files.filter(f => {
+      if (f.type !== 'file') return false;
+      const fileUrl = `${mediaPrefix}${f.name}`;
+      return !usedUrls.has(fileUrl);
+    });
+
+    if (filesToDelete.length === 0) {
+      aToast('No se encontraron imágenes huérfanas. Todo está limpio.');
+      setASync('ok', 'Sincronizado');
+      return;
+    }
+
+    if (!confirm(`Se encontraron ${filesToDelete.length} imágenes huérfanas. ¿Eliminarlas de GitHub?`)) {
+      setASync('ok', 'Cancelado');
+      return;
+    }
+
+    // 4. Eliminar
+    let deletedCount = 0;
+    for (let i = 0; i < filesToDelete.length; i++) {
+      const file = filesToDelete[i];
+      setASync('saving', `Eliminando ${i+1}/${filesToDelete.length}...`);
+      try {
+        await GH.deleteFile(`media/${file.name}`, file.sha, `Delete unused media: ${file.name}`);
+        deletedCount++;
+      } catch (e) {
+        console.warn(`Error al eliminar ${file.name}:`, e);
+      }
+    }
+
+    aToast(`✅ Se eliminaron ${deletedCount} imágenes huérfanas.`);
+    setASync('ok', 'Limpieza completada');
+
+  } catch (e) {
+    console.error(e);
+    aToast(e.message, 'error');
+    setASync('error', 'Error');
+  }
 };
 
 function updateAdminBadges() {
