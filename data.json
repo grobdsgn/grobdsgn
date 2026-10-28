@@ -155,7 +155,17 @@
           "name": "CCS TANNING",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169056908_13g2.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169078825_ibr9.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169080923_piav.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169082755_1q8v.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169084661_ylsp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169086408_zxj4.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169088321_i73r.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169090273_6hev.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169092213_h6wp.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169094155_bn31.jpg"
+          ]
         }
       ]
     },
