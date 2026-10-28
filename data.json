@@ -15,7 +15,15 @@
       "name": "Billboards",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "k1qom6bbmvro1djf",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "clientes": [
