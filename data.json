@@ -444,10 +444,14 @@
         },
         {
           "id": "3en5258xmvsfuvgl",
-          "name": "Nuevo Proyecto",
+          "name": "la manga",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211593340_iqqr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211595481_hunm.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211597458_8ugh.jpg"
+          ]
         }
       ]
     },
