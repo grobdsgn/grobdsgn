@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "eyebrow": "Disponible · 2025",
+    "title": "Diseño experiencias\nque se recuerdan.",
+    "lead": "Soy Grobdesigns, diseñador gráfico y de producto."
+  },
+  "heroImages": [],
+  "categories": [],
+  "clientes": [],
+  "software": [],
+  "covers": [
+    {
+      "id": "04is77aomvrj21st",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793156456306_rxoy.jpg",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
+    }
+  ],
+  "contact": {
+    "email": "hola@grobdesigns.com",
+    "phone": "+34 600 000 000",
+    "instagram": "",
+    "location": "Madrid, España"
+  },
+  "theme": {
+    "accent": "#C9A961",
+    "bg": "#000000",
+    "text": "#F5F3EF"
+  },
+  "music": {
+    "url": ""
+  },
+  "settings": {
+    "youtubeApiKey": "",
+    "apifyToken": "",
+    "apifyActor": "beatanalytics/spotify-play-count-scraper"
+  },
+  "texts": {},
+  "ficha": []
+}
