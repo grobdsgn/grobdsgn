@@ -588,7 +588,7 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false,
+      "featured": true,
       "plays": {
         "spotify": 0,
         "youtube": 0,
