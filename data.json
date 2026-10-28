@@ -39,10 +39,17 @@
       "projects": [
         {
           "id": "1htdk8kbmvro4itt",
-          "name": "Nuevo Proyecto",
+          "name": "Ls Group",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165048615_lna4.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165050649_74eb.png",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165052695_umgo.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165054553_w1a1.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165056399_muvy.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793165058049_j2tw.jpg"
+          ]
         }
       ]
     }
