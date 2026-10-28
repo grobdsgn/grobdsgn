@@ -950,15 +950,14 @@
       "id": "5fclafbdmvrpc7sv",
       "name": "Cuadros",
       "description": "",
-      "parallaxImage": "",
+      "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793215988299_02b8.jpg",
       "projects": [
         {
           "id": "9dka7twbmvrpcgdk",
           "name": "Bolívar Exclusive",
           "logo": "",
-          "parallaxImage": "",
+          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167244236_k313.jpg",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167063772_wq5q.png",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167244236_k313.jpg"
           ]
         },
@@ -968,8 +967,16 @@
           "logo": "",
           "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167151328_9l4r.jpg",
           "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167134403_g182.png",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167151328_9l4r.jpg"
+          ]
+        },
+        {
+          "id": "3ryaggshmvsiigns",
+          "name": "jose gregorio",
+          "logo": "",
+          "parallaxImage": "",
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793216119108_66nj.jpg"
           ]
         }
       ]
@@ -2790,7 +2797,7 @@
   "settings": {
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
     "apifyToken": "",
-    "apifyActor": "beatanalytics/spotify-play-count-scraper"
+    "apifyActor": ""
   },
   "texts": {
     "navHome": "Inicio",
@@ -2837,7 +2844,7 @@
     "metaDescription": "Portafolio de Grobdesigns.",
     "heroEyebrow": "Disponible · 2026",
     "featLabel": "— Destacados",
-    "featTitle": "Proyectos <em>seleccionados</em>.",
+    "featTitle": "Proyectos <em>destacados</em>.",
     "philDesc": "Roberts Guevara es un diseñador gráfico venezolano con más de 14 años de trayectoria especializado en la industria del entretenimiento y musical. A lo largo de su carrera, ha colaborado en proyectos audiovisuales para referentes globales y nacionales como Ozuna, Bad Bunny, Anuel, Chino y Nacho, Omar Acedo, Nicky Jam, Lenny Tavarez  Omega el fuerte, Magic Juan,  entre otros.\n\nEl propósito es transformar tus ideas en piezas de alto impacto visual, combinando creatividad y excelencia técnica para artistas, bandas y marcas que buscan destacar. Su experiencia abarca el diseño de portadas de discos (Covers), identidad visual y branding, estrategias para redes sociales, Video Lyrics, videoclips musicales y líneas gráficas integrales.",
     "toolsLabel": "— Herramientas",
     "toolsTitle": "En las que me <em>especializo</em>.",
