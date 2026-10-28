@@ -255,10 +255,17 @@
         },
         {
           "id": "wiu1ag3pmvsepdbb",
-          "name": "Nuevo Proyecto",
+          "name": "zonautos",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209636112_gymr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209640620_tpt8.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209644818_ctj8.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209647683_b93h.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209649837_c801.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209651700_i05i.jpg"
+          ]
         }
       ]
     },
