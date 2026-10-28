@@ -875,10 +875,14 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793162166124_lln2.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793162169089_t86e.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793162171075_oe1s.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/0NrfNobRt7PYCLj5ew2noA?si=598dd30ea2dc4c1d",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/5loYGntwiHI?si=2yyYhE3dqonkk1OG",
       "featured": false,
       "plays": {
         "spotify": 0,
