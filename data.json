@@ -422,10 +422,13 @@
         },
         {
           "id": "uqsufva0mvsdp1d2",
-          "name": "Nuevo Proyecto",
+          "name": "Los borjas",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207930814_dzv6.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207933038_jgwd.jpg"
+          ]
         }
       ]
     },
