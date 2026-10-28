@@ -650,10 +650,15 @@
         },
         {
           "id": "rl05ntstmvsh2vr8",
-          "name": "Nuevo Proyecto",
+          "name": "urban fest",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213619152_57ag.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213620872_m375.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213622571_l8vx.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213624273_7og4.jpg"
+          ]
         }
       ]
     },
