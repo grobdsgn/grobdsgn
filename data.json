@@ -188,7 +188,9 @@
           "name": "the corner",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169448888_ur3l.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169468688_6t4g.jpg"
+          ]
         }
       ]
     },
