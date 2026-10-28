@@ -1402,7 +1402,14 @@
       "artist": "katie angel",
       "year": "2019",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225873178_imum.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225874581_i7kv.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225876063_575p.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225877655_l4l1.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225879153_f0cg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225880588_ef8l.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/album/5AJTZdKxe3DzLYbpowIaH4?si=fbd5731d02ad4787",
       "appleMusicUrl": "",
       "youtubeUrl": "",
