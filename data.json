@@ -265,10 +265,13 @@
         },
         {
           "id": "y07vbo4pmvseb196",
-          "name": "Nuevo Proyecto",
+          "name": "white party",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208972131_93kt.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793208974015_jyq3.jpg"
+          ]
         }
       ]
     },
