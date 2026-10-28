@@ -146,7 +146,15 @@
       "name": "Músical",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "lglwj0s0mvroxdhx",
+          "name": "Nuevo Proyecto",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "clientes": [
