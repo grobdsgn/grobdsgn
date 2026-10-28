@@ -403,10 +403,12 @@
         },
         {
           "id": "hevv0g5dmvsdiv7q",
-          "name": "Nuevo Proyecto",
+          "name": "kemz",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207647779_3wa2.jpg"
+          ]
         }
       ]
     },
