@@ -493,7 +493,7 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false,
+      "featured": true,
       "plays": {
         "spotify": 0,
         "youtube": 0,
@@ -705,7 +705,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529195839,
+        "youtube": 529198133,
         "apple": 0
       }
     },
@@ -887,7 +887,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 598375,
         "apple": 0
       }
     },
