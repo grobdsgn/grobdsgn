@@ -532,7 +532,7 @@
         },
         {
           "id": "j0539qwqmvsfeoba",
-          "name": "Las locas nigt club",
+          "name": "Las locas night club",
           "logo": "",
           "parallaxImage": "",
           "images": [
@@ -577,7 +577,7 @@
           "id": "9npegydqmvsfqg8j",
           "name": "rap sin groserias",
           "logo": "",
-          "parallaxImage": "",
+          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211363496_3njl.jpg",
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211356903_e2i0.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211359193_9t20.jpg",
