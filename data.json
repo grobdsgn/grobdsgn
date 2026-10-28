@@ -231,7 +231,10 @@
           "name": "Victor & Gabo",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168326595_hr53.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168335777_j9qh.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168337553_hyle.jpg"
+          ]
         }
       ]
     },
