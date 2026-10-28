@@ -56,10 +56,12 @@
         },
         {
           "id": "n11ofum2mvrqez1f",
-          "name": "Nuevo Proyecto",
+          "name": "Lo Tuyo",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168860231_ik8c.png"
+          ]
         }
       ]
     },
