@@ -424,10 +424,17 @@
         },
         {
           "id": "zod2ob52mvsgxk6t",
-          "name": "Nuevo Proyecto",
+          "name": "webonito",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213369237_00q8.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213371294_l0mb.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213373231_wf01.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213375179_e1h3.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213377213_c7ks.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213379048_jvmf.jpg"
+          ]
         }
       ]
     },
