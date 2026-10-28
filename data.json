@@ -808,25 +808,117 @@
       }
     }
   ],
-  "contact": {
-    "email": "hola@grobdesigns.com",
-    "phone": "+34 600 000 000",
-    "instagram": "",
-    "location": "Madrid, España"
+    "contact": {
+    "instagram": "@grobdesigns",
+    "email": "grobdsgnartes@gmail.com",
+    "phone": "+58 4141299366",
+    "location": "Caracas, Venezuela"
   },
   "theme": {
     "accent": "#C9A961",
     "bg": "#000000",
-    "text": "#F5F3EF"
+    "surface": "#0f0f10",
+    "text": "#F5F3EF",
+    "muted": "#8A8A8A",
+    "philBg": "#F5F3EF",
+    "philText": "#0A0A0A",
+    "philEm": "#A88B45",
+    "philMuted": "#4A4A4A"
   },
   "music": {
     "url": ""
   },
   "settings": {
-    "youtubeApiKey": "",
-    "apifyToken": "",
-    "apifyActor": "beatanalytics/spotify-play-count-scraper"
+    "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
+    "rapidApiKey": "",
+    "rapidApiHost": ""
   },
-  "texts": {},
-  "ficha": []
+  "texts": {
+    "navHome": "Inicio",
+    "navPortafolio": "Portafolio",
+    "navCovers": "Covers",
+    "navClientes": "Clientes",
+    "navContacto": "Contacto",
+    "heroBtn1": "Ver portafolio →",
+    "heroBtn2": "Contáctame",
+    "philLabel": "— Filosofía",
+    "philTitle": "Diseño con *Visión*.",
+    "philText": "Más de ocho años traduciendo ideas complejas en sistemas visuales claros.",
+    "softwareLabel": "— Herramientas",
+    "softwareTitle": "Con las que *trabajo*.",
+    "softwareText": "Los programas y herramientas que uso cada día.",
+    "coversLabel": "— Covers",
+    "coversTitle": "Una pared de *covers*.",
+    "coversText": "Portadas, artwork y ediciones.",
+    "cfTodos": "Todos",
+    "cfSencillos": "Sencillos",
+    "cfAlbumes": "Álbumes",
+    "cfEdiciones": "Ediciones",
+    "coverLblResena": "Reseña del proyecto",
+    "coverLblImgs": "Imágenes del proyecto",
+    "clientesLabel": "— Clientes",
+    "clientesTitle": "Confían en *Grobdesigns*.",
+    "clientesText": "Marcas, artistas y proyectos.",
+    "contactoTitle": "¿Trabajamos *juntos*?",
+    "contactoText": "Cuéntame sobre tu proyecto.",
+    "cLabelEmail": "Email",
+    "cLabelPhone": "Teléfono",
+    "cLabelLocation": "Ubicación",
+    "formLbl1": "01 — Nombre",
+    "formLbl2": "02 — Email",
+    "formLbl3": "03 — Mensaje",
+    "formBtn": "Enviar mensaje",
+    "volverPorTxt": "Volver a Portafolio",
+    "proyectoBackTxt": "Volver",
+    "proyectoVerTxt": "Ver proyecto",
+    "coverVerTxt": "Ver proyecto",
+    "footerLeft": "© 2026 Grobdesigns, Caracas, VENEZUELA",
+    "footerRight": "Diseño con Visión",
+    "pageTitle": "Grobdesigns",
+    "metaDescription": "Portafolio de Grobdesigns.",
+    "heroEyebrow": "Disponible · 2026",
+    "featLabel": "— Destacados",
+    "featTitle": "Proyectos <em>seleccionados</em>.",
+    "philDesc": "Roberts Guevara es un diseñador gráfico venezolano con más de 14 años de trayectoria especializado en la industria del entretenimiento y musical. A lo largo de su carrera, ha colaborado en proyectos audiovisuales para referentes globales y nacionales como Ozuna, Bad Bunny, Anuel, Chino y Nacho, Omar Acedo, Nicky Jam, Lenny Tavarez y Omega el fuerte, Magic Juan,  entre otros.\n\nSu propósito es transformar ideas en piezas de alto impacto visual, combinando creatividad y excelencia técnica para artistas, bandas y marcas que buscan destacar. Su experiencia abarca el diseño de portadas de discos (Covers), identidad visual y branding, estrategias para redes sociales, Video Lyrics, videoclips musicales y líneas gráficas integrales.",
+    "toolsLabel": "— Herramientas",
+    "toolsTitle": "Con las que <em>trabajo</em>.",
+    "toolsDesc": "Los programas y herramientas que uso cada día.",
+    "cliLabel": "— Clientes",
+    "cliTitle": "Confían en <em>Grobdesigns</em>.",
+    "cliDesc": "Marcas, artistas y proyectos.",
+    "conTitle": "¿Cómo visualizas <em>Tu próximo Proyecto</em>?",
+    "conDesc": "Cuéntame sobre tu proyecto.",
+    "conBtn": "Enviar mensaje",
+    "techTitle": "★ FICHA TÉCNICA"
+  },
+  "ficha": [
+    {
+      "label": "Nombre",
+      "value": "Roberts Guevara"
+    },
+    {
+      "label": "Origen ",
+      "value": "Caracas, VE"
+    },
+    {
+      "label": "Base",
+      "value": "Caracas, VE"
+    },
+    {
+      "label": "Desde ",
+      "value": "2012"
+    },
+    {
+      "label": "Tesis CMT",
+      "value": "2014"
+    },
+    {
+      "label": "Trabajo",
+      "value": "Global • Remoto"
+    },
+    {
+      "label": "Disciplina",
+      "value": "Músical, Branding, Creativo, IA"
+    }
+  ]
 }
