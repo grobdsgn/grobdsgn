@@ -56,7 +56,7 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
-.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative}
+.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative;padding:0;overflow:hidden;}
 .nav-icon-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .nav-icon-btn svg{width:16px;height:16px;fill:currentColor}
 .cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:#000;font-size:10px;font-weight:800;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;display:none;}
@@ -259,13 +259,20 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 /* VISTA DE LA TIENDA */
 .tienda-view{padding:120px 0 80px;min-height:100vh;background:#000}
 .tienda-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:40px;}
-.tienda-card{background:#0a0a0a;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:transform .3s;}
+.tienda-card{background:#0a0a0a;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:transform .3s; display: flex; flex-direction: column;}
 .tienda-card:hover{transform:translateY(-5px);border-color:var(--accent);}
 .tienda-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
-.tienda-card-info{padding:15px;}
+.tienda-card-info{padding:15px; flex: 1; display: flex; flex-direction: column;}
 .tienda-card-title{font-family:var(--font-title);font-size:1.1rem;font-weight:700;margin-bottom:5px;}
 .tienda-card-price{color:var(--accent);font-weight:800;font-size:1.2rem;margin-bottom:10px;}
-.tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;position:relative;overflow:hidden;}
+
+/* NUEVO TOGGLE DESCRIPCIÓN */
+.tienda-card-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 15px; cursor: pointer; }
+.tienda-card-desc-label { color: var(--text); font-weight: 600; display: block; margin-bottom: 5px; text-decoration: underline; text-decoration-color: var(--line); }
+.tienda-card-desc-text { display: none; text-align: justify; margin-top: 5px; }
+.tienda-card-desc.open .tienda-card-desc-text { display: block; }
+
+.tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;position:relative;overflow:hidden; margin-top: auto;}
 .tienda-btn-add:hover{background:#fff;}
 .tienda-btn-add:active{transform:scale(0.95);}
 
@@ -326,9 +333,19 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .onboarding-field select, .onboarding-field input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); color: var(--text); outline: none; font-size: 1rem; }
 .onboarding-field select:focus, .onboarding-field input:focus { border-color: var(--accent); }
 
-.contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
-.cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
-.cta-btn {display: flex;flex-direction: column;align-items: center;gap: 16px;text-decoration: none;color: var(--phil-text);transition: transform 0.3s;}
+/* CTA GLOBAL */
+.contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+.contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 30px; color: var(--phil-text);}
+.btn-cta-gold { background: var(--accent); color: #000; border: 1px solid var(--accent); padding: 18px 50px; font-size: 1.1rem; border-radius: 50px; font-family: var(--font-title); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(201,169,97,0.3); }
+.btn-cta-gold:hover { background: #e0bd6e; transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,169,97,0.5); }
+
+/* USER DROPDOWN */
+.user-dropdown-wrap { position: relative; }
+.user-dropdown { position: absolute; top: 100%; right: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; width: 180px; z-index: 10000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; }
+.user-dropdown a { display: block; padding: 10px 12px; font-size: 0.85rem; color: var(--text); border-radius: 6px; transition: 0.2s; text-decoration: none; }
+.user-dropdown a:hover { background: rgba(255,255,255,0.05); }
+.user-dropdown a.danger { color: var(--danger); }
+.user-dropdown a.danger:hover { background: rgba(229,72,77,0.1); }
 
 footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;text-align: center;}
 .footer-logo {height: 48px;width: auto;margin: 0 auto 24px;display: block;filter: brightness(0) invert(1);-webkit-filter: brightness(0) invert(1);}
@@ -347,6 +364,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 .public-toast.show{transform:translate(-50%,0);opacity:1}
 .public-toast.error{border-left:3px solid var(--danger)}
 
+/* ESTILOS ADMIN (Simplificados para brevedad, igual que antes) */
 #adminApp{--a-bg:#08080a;--a-surface:#111115;--a-surface-hover:#1a1a20;--a-line:rgba(255,255,255,0.08);--a-text:#F5F3EF;--a-muted:#8A8A8A;--a-accent:#C9A961;--a-accent-hover:#e0bd6e;--a-danger:#E5484D;--a-ok:#30A46C}
 #adminApp *{box-sizing:border-box;margin:0;padding:0}
 #adminApp{background:var(--a-bg);color:var(--a-text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;display:none}
@@ -442,7 +460,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--a-line)}
 .divider-line{height:1px;background:var(--a-line);margin:20px 0}
 
-/* SWITCH TOGGLE MANTENIMIENTO */
 .a-switch { position: relative; display: inline-block; width: 60px; height: 34px; }
 .a-switch input { opacity: 0; width: 0; height: 0; }
 .a-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #E5484D; transition: .4s; border-radius: 34px; }
@@ -450,20 +467,17 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 input:checked + .a-slider { background-color: #30A46C; }
 input:checked + .a-slider:before { transform: translateX(26px); }
 
-/* EDITOR BRIEFING */
 .briefing-editor-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
 .briefing-editor-row input[type="text"] { flex: 1; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--a-line); border-radius: 6px; color: #fff; }
 .briefing-editor-row label { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--a-muted); cursor: pointer; white-space: nowrap; }
 .briefing-editor-row button { background: rgba(229,72,77,0.2); color: var(--a-danger); border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
 
-/* LOGIN SCREEN (COMPACTO) */
 .a-login-screen{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;z-index:99999}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:380px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
 .a-login-title{font-family:var(--font-title);font-size:1.1rem;font-weight:700;text-align:center;margin-bottom:16px; color:var(--a-accent);}
 .a-login-error{color:var(--a-danger);font-size:12px;text-align:center;margin-top:12px;min-height:18px}
 
-/* MODAL ESTILO POPUP (PEQUEÑO Y CENTRADO) */
 .a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:99998;padding:20px}
 .a-modal-overlay.active{display:flex;animation:fadeIn 0.2s ease}
 .a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:14px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.8);display:flex;flex-direction:column;}
@@ -485,6 +499,16 @@ input:checked + .a-slider:before { transform: translateX(26px); }
 @media(max-width:480px){.cover-preview-row{grid-template-columns:1fr}}
 .cover-preview-img{width:100px;height:100px;object-fit:cover;border-radius:10px;border:1px solid var(--a-line);background:#000}
 
+/* CONTACT ICONS */
+.cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
+.cta-btn {display: flex;flex-direction: column;align-items: center;gap: 16px;text-decoration: none;color: var(--phil-text);transition: transform 0.3s;}
+.cta-btn:hover {transform: translateY(-6px);}
+.cta-icon {width: 72px;height: 72px;border-radius: 50%;background: #fff;display: grid;place-items: center;box-shadow: 0 10px 30px rgba(0,0,0,0.08);transition: box-shadow 0.3s;}
+.cta-btn:hover .cta-icon {box-shadow: 0 15px 40px rgba(0,0,0,0.15);}
+.cta-icon svg {width: 32px;height: 32px;}
+.cta-btn.wa .cta-icon svg, .cta-btn.ig .cta-icon svg, .cta-btn.em .cta-icon svg { color: #000; }
+.cta-label {font-size: 0.85rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.15em;color: var(--phil-text);}
+
 </style>
 </head>
 <body>
@@ -505,9 +529,17 @@ input:checked + .a-slider:before { transform: translateX(26px); }
         <button class="tab" data-tab="tienda" id="navTabTie">Tienda</button>
       </div>
       <div class="nav-right">
-        <button class="nav-icon-btn" id="btnUser" title="Iniciar Sesión / Mi Perfil">
-          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        </button>
+        <div class="user-dropdown-wrap">
+            <button class="nav-icon-btn" id="btnUser" title="Mi Cuenta">
+                <img id="userNavAvatar" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
+                <svg id="userNavIcon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+                <a href="#perfil" onclick="document.getElementById('userDropdown').style.display='none'">👤 Ver perfil</a>
+                <a href="#" onclick="openEditProfile(); document.getElementById('userDropdown').style.display='none'; return false;">✏️ Actualizar datos</a>
+                <a href="#" class="danger" onclick="window.handleAuthClick(); document.getElementById('userDropdown').style.display='none'; return false;">🚪 Cerrar sesión</a>
+            </div>
+        </div>
         <button class="nav-icon-btn" id="btnCart" title="Mi Carrito">
           <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
           <span class="cart-count" id="cartCounter">0</span>
@@ -690,7 +722,29 @@ input:checked + .a-slider:before { transform: translateX(26px); }
             <div class="field"><label>03 — Mensaje</label><textarea required maxlength="1500" name="message"></textarea></div>
             <button class="form-btn" type="submit" id="txtConBtn">Enviar mensaje</button>
           </form>
-        </div></div>
+        </div>
+        <!-- ICONOS DE CONTACTO MOVIDOS AQUÍ -->
+        <div class="cta-buttons" style="margin-top: 60px; border-top: 1px solid var(--line); padding-top: 40px;">
+            <a class="cta-btn wa" id="ctaWa" href="#" target="_blank" rel="noopener">
+              <div class="cta-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+              </div>
+              <span class="cta-label">WhatsApp</span>
+            </a>
+            <a class="cta-btn ig" id="ctaInstagram" href="#" target="_blank" rel="noopener">
+              <div class="cta-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              </div>
+              <span class="cta-label">Instagram</span>
+            </a>
+            <a class="cta-btn em" id="ctaEmail" href="#">
+              <div class="cta-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <span class="cta-label">Email</span>
+            </a>
+        </div>
+        </div>
       </section>
     </div>
 
@@ -766,12 +820,8 @@ input:checked + .a-slider:before { transform: translateX(26px); }
   </main>
 
   <section class="contact-cta-section">
-    <div class="wrap">
       <h2>¿Listo para <em>comenzar</em>?</h2>
-      <div style="margin-top: 30px;">
-        <button onclick="startFlow()" class="btn btn-primary" style="font-size: 1.2rem; padding: 20px 40px; border-radius: 50px;">Comencemos →</button>
-      </div>
-    </div>
+      <button onclick="startFlow()" class="btn-cta-gold">Comencemos</button>
   </section>
 
   <footer>
@@ -802,12 +852,23 @@ input:checked + .a-slider:before { transform: translateX(26px); }
   </div>
 </div>
 
-<!-- MODAL ONBOARDING (REGISTRO DE PERFIL) -->
+<!-- MODAL ONBOARDING (REGISTRO / EDICIÓN DE PERFIL) -->
 <div id="onboardingModal">
   <div class="onboarding-content">
-    <h2>¡Bienvenido a Grobdesigns!</h2>
-    <p>Cuéntanos un poco sobre ti para personalizar tu experiencia.</p>
+    <h2 id="obTitle">¡Bienvenido a Grobdesigns!</h2>
+    <p id="obSubtitle">Cuéntanos un poco sobre ti para personalizar tu experiencia.</p>
     <form id="onboardingForm">
+      <div class="onboarding-field">
+        <label>Foto de Perfil</label>
+        <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center;">
+            <img id="obAvatarPreview" src="" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--accent);">
+            <div class="upload-zone compact" id="obAvatarUploadZone" style="flex:1; padding:5px;">
+                <div class="upload-zone-text">Subir imagen</div>
+                <input type="file" id="obAvatarInput" accept="image/*" hidden>
+            </div>
+        </div>
+        <input type="url" id="obAvatarUrl" placeholder="O pega una URL de imagen" style="font-size:0.8rem;">
+      </div>
       <div class="onboarding-field">
         <label>Tipo de Perfil</label>
         <select id="obType" required>
@@ -821,7 +882,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
         <label id="obNameLabel">Alias / Nombre del Artista</label>
         <input type="text" id="obName" placeholder="Ej: Tu nombre o alias" required>
       </div>
-      <button type="submit" class="a-btn a-btn-primary" style="width:100%; padding:14px; font-size:1rem;">Guardar y Continuar</button>
+      <button type="submit" class="a-btn a-btn-primary" style="width:100%; padding:14px; font-size:1rem;">Guardar Datos</button>
     </form>
   </div>
 </div>
@@ -1374,23 +1435,6 @@ window.handleAuthClick = function() {
     alert("El sistema de inicio de sesión está cargando. Por favor, espera un segundo e intenta de nuevo.");
 };
 
-document.getElementById('btnUser').addEventListener('click', () => {
-    if (window.currentUser) {
-        location.hash = '#perfil';
-    } else {
-        window.handleAuthClick();
-    }
-});
-
-document.getElementById('btnCart').addEventListener('click', () => {
-    if (window.currentUser) {
-        location.hash = '#perfil';
-    } else {
-        alert("Debes iniciar sesión para acceder al carrito y a tus compras.");
-        window.handleAuthClick();
-    }
-});
-
 // NUEVO FLUJO "COMENCEMOS"
 window.startFlow = function() {
     if (!window.currentUser) {
@@ -1405,40 +1449,103 @@ window.startFlow = function() {
     }
 };
 
-function openOnboarding() {
-    $('#onboardingModal').classList.add('active');
-    
-    // Prellenar nombre si viene de Google
-    if (window.currentUser && window.currentUser.displayName) {
-        $('#obName').value = window.currentUser.displayName;
+// USER DROPDOWN
+document.getElementById('btnUser').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (window.currentUser) {
+        const dd = document.getElementById('userDropdown');
+        dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+    } else {
+        window.handleAuthClick();
     }
+});
+document.addEventListener('click', () => {
+    document.getElementById('userDropdown').style.display = 'none';
+});
 
-    // Cambiar label dependiendo del tipo
-    $('#obType').onchange = (e) => {
-        const val = e.target.value;
-        if (val === 'artista') $('#obNameLabel').textContent = 'Alias / Nombre del Artista';
-        else if (val === 'marca_personal') $('#obNameLabel').textContent = 'Nombre de Marca Personal';
-        else if (val === 'empresa') $('#obNameLabel').textContent = 'Nombre de la Empresa';
-    };
+// NAV AVATAR
+function updateNavAvatar() {
+    const img = document.getElementById('userNavAvatar');
+    const icon = document.getElementById('userNavIcon');
+    if (window.currentUserProfile && window.currentUserProfile.avatar) {
+        img.src = window.currentUserProfile.avatar;
+        img.style.display = 'block';
+        icon.style.display = 'none';
+    } else {
+        img.style.display = 'none';
+        icon.style.display = 'block';
+    }
 }
+
+// ONBOARDING & EDICIÓN DE PERFIL
+let tempObAvatar = '';
+setupUploadZone('obAvatarUploadZone', 'obAvatarInput', (urls) => {
+    if (urls[0]) {
+        tempObAvatar = urls[0];
+        $('#obAvatarPreview').src = urls[0];
+    }
+}, 500, 0.9, 200);
+
+window.openEditProfile = function() {
+    if (!window.currentUser) return;
+    const profile = JSON.parse(localStorage.getItem('grob_user_profile_' + window.currentUser.uid)) || {};
+    $('#obTitle').textContent = "Actualizar Datos";
+    $('#obSubtitle').textContent = "Edita tu información de perfil.";
+    $('#obType').value = profile.type || 'artista';
+    $('#obName').value = profile.name || window.currentUser.displayName || '';
+    tempObAvatar = profile.avatar || window.currentUser.photoURL || '';
+    $('#obAvatarPreview').src = tempObAvatar;
+    $('#obAvatarUrl').value = (profile.avatar && profile.avatar.startsWith('http')) ? profile.avatar : '';
+    
+    // Cambiar label dependiendo del tipo
+    if (profile.type === 'artista') $('#obNameLabel').textContent = 'Alias / Nombre del Artista';
+    else if (profile.type === 'marca_personal') $('#obNameLabel').textContent = 'Nombre de Marca Personal';
+    else if (profile.type === 'empresa') $('#obNameLabel').textContent = 'Nombre de la Empresa';
+
+    $('#onboardingModal').classList.add('active');
+};
+
+function openOnboarding() {
+    $('#obTitle').textContent = "¡Bienvenido a Grobdesigns!";
+    $('#obSubtitle').textContent = "Cuéntanos un poco sobre ti para personalizar tu experiencia.";
+    $('#obType').value = '';
+    $('#obName').value = window.currentUser.displayName || '';
+    tempObAvatar = window.currentUser.photoURL || '';
+    $('#obAvatarPreview').src = tempObAvatar;
+    $('#obAvatarUrl').value = '';
+    
+    $('#onboardingModal').classList.add('active');
+}
+
+$('#obType').onchange = (e) => {
+    const val = e.target.value;
+    if (val === 'artista') $('#obNameLabel').textContent = 'Alias / Nombre del Artista';
+    else if (val === 'marca_personal') $('#obNameLabel').textContent = 'Nombre de Marca Personal';
+    else if (val === 'empresa') $('#obNameLabel').textContent = 'Nombre de la Empresa';
+};
 
 $('#onboardingForm').onsubmit = (e) => {
     e.preventDefault();
     const type = $('#obType').value;
     const name = $('#obName').value.trim();
-    
+    let avatar = tempObAvatar || $('#obAvatarUrl').value.trim() || window.currentUser.photoURL || '';
+
     if (!type || !name) return;
 
-    const profile = { type, name, email: window.currentUser.email, displayName: window.currentUser.displayName };
+    const profile = { type, name, avatar, email: window.currentUser.email, displayName: window.currentUser.displayName };
     localStorage.setItem('grob_user_profile_' + window.currentUser.uid, JSON.stringify(profile));
     window.currentUserProfile = profile;
 
     $('#onboardingModal').classList.remove('active');
-    showToast("¡Perfil creado con éxito!");
-    location.hash = '#tienda';
+    showToast("Perfil actualizado");
+    updateNavAvatar();
+    
+    // Refrescar tienda si estamos en ella
+    if(location.hash === '#tienda') renderPublicStore();
+    else location.hash = '#tienda';
 };
 
-
+// ------------------------------------------------------------
 let SHUFFLED_ORDERS = {};
 
 function getCoverStats() {
@@ -1941,8 +2048,11 @@ function renderPublicStore() {
         ${isRecommended ? '<span style="font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px; display:block;">⭐ Recomendado para ti</span>' : ''}
         <h3 class="tienda-card-title">${escHtml(p.name)}</h3>
         <p class="tienda-card-price">$${p.price}</p>
-        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 15px;">${escHtml(p.desc || '')}</p>
-        <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir al Carrito</button>
+        <div class="tienda-card-desc" onclick="this.classList.toggle('open')">
+            <div class="tienda-card-desc-label">Descripción</div>
+            <div class="tienda-card-desc-text">${escHtml(p.desc || 'No hay descripción disponible.')}</div>
+        </div>
+        <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir</button>
       </div>
     `;
     grid.appendChild(card);
@@ -1955,9 +2065,11 @@ function renderProfile() {
     return;
   }
 
-  document.getElementById('perfilName').textContent = window.currentUser.displayName || 'Usuario';
+  const profile = window.currentUserProfile || {};
+  
+  document.getElementById('perfilName').textContent = profile.name || window.currentUser.displayName || 'Usuario';
   document.getElementById('perfilEmail').textContent = window.currentUser.email || '';
-  document.getElementById('perfilAvatar').src = window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
+  document.getElementById('perfilAvatar').src = profile.avatar || window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
 
   // Covers Likeados
   const stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
@@ -2667,6 +2779,7 @@ boot();
             actualizarBotonUsuario(null);
             if (location.hash === '#perfil') location.hash = '#home';
             window.currentUserProfile = null; // Limpiar perfil al cerrar sesión
+            updateNavAvatar();
           });
         }
       } else {
@@ -2679,6 +2792,7 @@ boot();
             const savedProfile = localStorage.getItem('grob_user_profile_' + result.user.uid);
             if (savedProfile) {
                 window.currentUserProfile = JSON.parse(savedProfile);
+                updateNavAvatar();
                 if(location.hash === '#tienda') renderPublicStore(); // Refrescar tienda con recomendados
             } else {
                 openOnboarding();
@@ -2702,7 +2816,7 @@ boot();
       } else {
           window.currentUserProfile = null;
       }
-
+      updateNavAvatar();
       actualizarBotonUsuario(user);
       
       // Si estamos en la vista de perfil, la recargamos para mostrar los datos
@@ -2722,36 +2836,15 @@ boot();
     const btn = document.getElementById('btnUser');
     if (!btn) return;
     
-    btn.onclick = () => {
-        if (window.currentUser) {
-            location.hash = '#perfil';
-        } else {
-            window.handleAuthClick();
-        }
-    };
-    
     if (user) {
-      btn.style.background = 'var(--accent)';
-      btn.style.color = '#000';
       btn.title = `Conectado como: ${user.displayName}`;
     } else {
-      btn.style.background = 'rgba(255,255,255,0.06)';
-      btn.style.color = 'var(--text)';
       btn.title = 'Iniciar Sesión';
     }
   }
   
   document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('btnUser');
-      if(btn) {
-          btn.onclick = () => {
-              if (window.currentUser) {
-                  location.hash = '#perfil';
-              } else {
-                  if(window.handleAuthClick) window.handleAuthClick();
-              }
-          };
-      }
+      updateNavAvatar();
   });
 </script>
 
