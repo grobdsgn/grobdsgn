@@ -1305,12 +1305,12 @@
       "price": "150.00",
       "desc": "",
       "category": "artista",
+      "group": "General",
+      "order": 14,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302621570_szsj.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "group": "General",
-      "order": 0
+      "briefingFields": []
     },
     {
       "id": "8uwvsve0mvty4hkm",
