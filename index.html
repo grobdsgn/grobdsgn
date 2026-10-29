@@ -281,11 +281,11 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .software-section{padding:clamp(60px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
 .software-section h2{color:var(--text);font-family:var(--font-title);font-weight:800;font-size:clamp(1.6rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;text-transform:uppercase}
 .software-section p{color:var(--muted);max-width:56ch;font-size:.95rem}
-.software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:20px 24px;margin-top:40px;align-items:center}
+.software-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:20px 24px;margin-top:40px;align-items:center;}
 @media(max-width:640px){.software-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
-.software-logo{display:grid;place-items:center;padding:16px;min-height:80px;cursor:pointer;filter:brightness(0) invert(1);-webkit-filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s}
-.software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;transition:transform .3s;min-height:16px}
-.software-logo:hover{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));-webkit-filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6))}
+.software-logo{display:flex;justify-content:center;align-items:center;padding:16px;min-height:80px;width:100%;cursor:pointer;filter:brightness(0) invert(1);-webkit-filter:brightness(0) invert(1);opacity:.75;transition:filter .3s,opacity .3s,transform .3s;}
+.software-logo img{max-width:100%;max-height:44px;width:auto;height:auto;object-fit:contain;transition:transform .3s;min-height:16px;margin:0 auto;display:block;}
+.software-logo:hover{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));-webkit-filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(255,255,255,0.6));}
 .software-logo:hover img{transform:scale(1.06)}
 
 .clientes-view{padding:120px 0 80px;min-height:100vh;background:#000}
