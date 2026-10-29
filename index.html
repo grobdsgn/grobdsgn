@@ -559,8 +559,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
       </div>
       <div class="nav-right">
-        <!-- ICONO DE USUARIO (Manejado por Firebase) -->
-        <button class="nav-icon-btn" id="btnUser" onclick="handleAuthClick()" title="Iniciar Sesión / Mi Cuenta">
+        <!-- ICONO DE USUARIO (Sin onclick aquí para evitar errores) -->
+        <button class="nav-icon-btn" id="btnUser" title="Iniciar Sesión / Mi Cuenta">
           <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </button>
         <!-- ICONO DE CARRITO -->
@@ -1258,7 +1258,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 
 <script>
 // ============================================================
-// LÓGICA PRINCIPAL DE LA WEB (SIN FIREBASE AQUÍ PARA EVITAR ERRORES)
+// LÓGICA PRINCIPAL DE LA WEB
 // ============================================================
 window.handleImgError = function(img) {
   img.onerror = null;
@@ -1277,10 +1277,10 @@ function formatNumber(num) {
   return num.toString();
 }
 
-// 🔥 FALLBACK PARA EVITAR EL ERROR "handleAuthClick is not defined" 🔥
-// Si el módulo de Firebase falla o tarda en cargar, esta función responde.
+// 🔥 FALLBACK INICIAL PARA EL BOTÓN DE USUARIO 🔥
+// Si Firebase tarda en cargar, esta función responde de inmediato.
 window.handleAuthClick = function() {
-    alert("El sistema de inicio de sesión se está cargando o no se pudo conectar. Revisa la consola (F12) para más detalles.");
+    alert("El sistema de inicio de sesión está cargando. Por favor, espera un segundo e intenta de nuevo.");
 };
 
 let SHUFFLED_ORDERS = {};
@@ -1928,53 +1928,41 @@ boot();
 </script>
 
 <!-- ============================================================ -->
-<!-- INTEGRACIÓN DE FIREBASE (AISLADA PARA EVITAR FALLOS)         -->
+<!-- INTEGRACIÓN DE FIREBASE (AISLADA)                            -->
 <!-- ============================================================ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
   
-  // ============================================================
-  // ⚠️ PEGA AQUÍ TUS CLAVES DE FIREBASE ⚠️
-  // ============================================================
+  // 🔥 TUS CLAVES REALES DE FIREBASE AQUÍ 🔥
   const firebaseConfig = {
-  apiKey: "AIzaSyBAZRVK83onPa_Yto592O-mamhartlSGVE",
-  authDomain: "grobdsgn-e781c.firebaseapp.com",
-  projectId: "grobdsgn-e781c",
-  storageBucket: "grobdsgn-e781c.firebasestorage.app",
-  messagingSenderId: "911755846123",
-  appId: "1:911755846123:web:c33eede7e49f68fe9139ae",
-  measurementId: "G-SHQGZK25DJ"
-};
+    apiKey: "AIzaSyBAZRVK83onPa_Yto592O-mamhartlSGVE",
+    authDomain: "grobdsgn-e781c.firebaseapp.com",
+    projectId: "grobdsgn-e781c",
+    storageBucket: "grobdsgn-e781c.firebasestorage.app",
+    messagingSenderId: "911755846123",
+    appId: "1:911755846123:web:c33eede7e49f68fe9139ae",
+    measurementId: "G-SHQGZK25DJ"
+  };
 
   try {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
     
-    // Sobrescribimos la función fallback con la lógica real
+    // Asignamos la función real al window, sobreescribiendo el fallback
     window.handleAuthClick = () => {
       if (auth.currentUser) {
         if (confirm(`Conectado como ${auth.currentUser.displayName}. ¿Cerrar sesión?`)) {
           signOut(auth).then(() => {
-            const btn = document.getElementById('btnUser');
-            if (btn) {
-              btn.style.background = 'rgba(255,255,255,0.06)';
-              btn.style.color = 'var(--text)';
-              btn.title = 'Iniciar Sesión';
-            }
+            actualizarBotonUsuario(null);
           });
         }
       } else {
         signInWithPopup(auth, provider)
           .then((result) => {
             console.log("✅ Logueado:", result.user.displayName);
-            const btn = document.getElementById('btnUser');
-            if (btn) {
-              btn.style.background = 'var(--accent)';
-              btn.style.color = '#000';
-              btn.title = `Conectado como: ${result.user.displayName}`;
-            }
+            actualizarBotonUsuario(result.user);
           })
           .catch((error) => {
             console.error("❌ Error:", error);
@@ -1983,26 +1971,46 @@ boot();
       }
     };
 
+    // Escuchar cambios de sesión
     onAuthStateChanged(auth, (user) => {
-      const btn = document.getElementById('btnUser');
-      if (btn) {
-        if (user) {
-          btn.style.background = 'var(--accent)';
-          btn.style.color = '#000';
-          btn.title = `Conectado como: ${user.displayName}`;
-        } else {
-          btn.style.background = 'rgba(255,255,255,0.06)';
-          btn.style.color = 'var(--text)';
-          btn.title = 'Iniciar Sesión';
-        }
-      }
+      actualizarBotonUsuario(user);
     });
 
     console.log("🔥 Firebase inicializado correctamente.");
 
   } catch (error) {
-    console.warn("⚠️ Firebase no se pudo inicializar. Revisa tus claves en el código.", error);
+    console.warn("⚠️ Firebase no se pudo inicializar.", error);
+    
+    // Si falla, el fallback del bloque de arriba se queda activo
   }
+
+  // Función auxiliar para actualizar el diseño del botón
+  function actualizarBotonUsuario(user) {
+    const btn = document.getElementById('btnUser');
+    if (!btn) return;
+    
+    // Conectamos el botón a la función real
+    btn.onclick = window.handleAuthClick;
+    
+    if (user) {
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#000';
+      btn.title = `Conectado como: ${user.displayName}`;
+    } else {
+      btn.style.background = 'rgba(255,255,255,0.06)';
+      btn.style.color = 'var(--text)';
+      btn.title = 'Iniciar Sesión';
+    }
+  }
+  
+  // Asegurar que el botón esté listo cuando cargue la página
+  document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('btnUser');
+      if(btn) {
+          // Si la función real ya se cargó, la usa, si no, usa la de alerta
+          btn.onclick = window.handleAuthClick || function(){ alert("Cargando sistema de login..."); };
+      }
+  });
 </script>
 
 </body>
