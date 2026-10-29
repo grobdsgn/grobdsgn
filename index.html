@@ -56,11 +56,9 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
-/* CORRECCIÓN: Eliminado overflow: hidden para que el badge del carrito flote fuera */
 .nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative;padding:0;}
 .nav-icon-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .nav-icon-btn svg{width:16px;height:16px;fill:currentColor}
-/* CORRECCIÓN: pointer-events: none y z-index: 10 para que no bloquee clics y esté por encima */
 .cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:#000;font-size:10px;font-weight:800;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;display:none; pointer-events:none; z-index:10;}
 
 .nav-back{display:none;align-items:center;gap:6px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);transition:.3s;padding:6px 0;white-space:nowrap}
@@ -268,13 +266,17 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tienda-card-title{font-family:var(--font-title);font-size:1.1rem;font-weight:700;margin-bottom:5px;}
 .tienda-card-price{color:var(--accent);font-weight:800;font-size:1.2rem;margin-bottom:10px;}
 
-/* NUEVO TOGGLE DESCRIPCIÓN */
 .tienda-card-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 15px; cursor: pointer; }
 .tienda-card-desc-label { color: var(--text); font-weight: 600; display: block; margin-bottom: 5px; text-decoration: underline; text-decoration-color: var(--line); }
 .tienda-card-desc-text { display: none; text-align: justify; margin-top: 5px; }
 .tienda-card-desc.open .tienda-card-desc-text { display: block; }
 
-.tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;position:relative;overflow:hidden; margin-top: auto;}
+/* CANTIDAD SELECTOR */
+.tienda-qty-wrap { display: flex; gap: 10px; margin-top: auto; }
+.tienda-qty-input { width: 60px; padding: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 4px; color: #fff; text-align: center; font-weight: 700; outline: none; }
+.tienda-qty-input:focus { border-color: var(--accent); }
+
+.tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;position:relative;overflow:hidden;}
 .tienda-btn-add:hover{background:#fff;}
 .tienda-btn-add:active{transform:scale(0.95);}
 
@@ -323,6 +325,19 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .briefing-field input, .briefing-field textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--line); background: rgba(255,255,255,0.05); color: #fff; outline: none; }
 .briefing-field input:focus, .briefing-field textarea:focus { border-color: var(--accent); }
 .briefing-close { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--muted); font-size: 1.2rem; }
+
+/* MODAL CHECKOUT */
+#checkoutModal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
+#checkoutModal.active { display: flex; }
+.checkout-content { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; width: 100%; max-width: 400px; padding: 30px; position: relative; text-align: center; }
+.checkout-content h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 10px; color: var(--text); }
+.checkout-content p { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+.checkout-btn-group { display: flex; flex-direction: column; gap: 12px; }
+.checkout-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.3s; border: none; }
+.checkout-btn.wa { background: #25D366; color: #fff; }
+.checkout-btn.wa:hover { background: #128C7E; }
+.checkout-btn.em { background: var(--accent); color: #000; }
+.checkout-btn.em:hover { background: #e0bd6e; }
 
 /* MODAL ONBOARDING (REGISTRO DE PERFIL) */
 #onboardingModal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -767,8 +782,8 @@ input:checked + .a-slider:before { transform: translateX(26px); }
               </div>
             </div>
             
-            <div class="tienda-grid" id="tiendaProductosGrid">
-              <!-- Se llena dinámicamente -->
+            <div id="tiendaProductosGrid">
+              <!-- Se llena dinámicamente con grupos -->
             </div>
           </div>
         </div>
@@ -800,9 +815,9 @@ input:checked + .a-slider:before { transform: translateX(26px); }
             <div id="perfilCartTotal" style="text-align: right; font-size: 1.5rem; font-family: var(--font-title); font-weight: 800; margin-top: 20px; display: none;">
               Total: <span style="color: var(--accent);">$0</span>
             </div>
-            <button id="btnCheckout" class="cart-checkout" style="display: none;" onclick="checkoutWhatsApp()">
+            <button id="btnCheckout" class="cart-checkout" style="display: none;" onclick="openCheckoutModal()">
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-              Finalizar Compra por WhatsApp
+              Finalizar Compra
             </button>
           </div>
 
@@ -852,6 +867,25 @@ input:checked + .a-slider:before { transform: translateX(26px); }
       <div id="briefingFieldsContainer"></div>
       <button type="submit" id="btnSaveBriefing" class="a-btn" style="width:100%; margin-top:20px; padding:15px; background: #333; color: #888; border: 1px solid #444; transition: all 0.3s;">Guardar Briefing</button>
     </form>
+  </div>
+</div>
+
+<!-- MODAL CHECKOUT -->
+<div id="checkoutModal">
+  <div class="checkout-content">
+    <span class="briefing-close" onclick="document.getElementById('checkoutModal').classList.remove('active')">✕</span>
+    <h3>Finalizar Compra</h3>
+    <p>¿Cómo prefieres enviarnos tu pedido?</p>
+    <div class="checkout-btn-group">
+      <button class="checkout-btn wa" onclick="sendOrderWhatsApp()">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+        Pedir por WhatsApp
+      </button>
+      <button class="checkout-btn em" onclick="sendOrderEmail()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Pedir por Correo
+      </button>
+    </div>
   </div>
 </div>
 
@@ -1308,14 +1342,23 @@ input:checked + .a-slider:before { transform: translateX(26px); }
         </div>
 
         <div class="a-form-group"><label class="a-form-label">Nombre del Producto</label><input type="text" id="aEditProductName" class="a-form-input" placeholder="Ej: Póster Grobdesigns"></div>
-        <div class="a-form-group"><label class="a-form-label">Categoría (Público Objetivo)</label>
-            <select id="aEditProductCategory" class="a-form-input">
-                <option value="artista">Artista</option>
-                <option value="marca_personal">Marca Personal</option>
-                <option value="empresa">Marca / Empresa</option>
-            </select>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="a-form-group"><label class="a-form-label">Categoría (Público)</label>
+                <select id="aEditProductCategory" class="a-form-input">
+                    <option value="artista">Artista</option>
+                    <option value="marca_personal">Marca Personal</option>
+                    <option value="empresa">Marca / Empresa</option>
+                </select>
+            </div>
+            <div class="a-form-group"><label class="a-form-label">Grupo (Visual)</label><input type="text" id="aEditProductGroup" class="a-form-input" placeholder="Ej: Covers, Merch"></div>
         </div>
-        <div class="a-form-group"><label class="a-form-label">Precio Base (USD)</label><input type="number" id="aEditProductPrice" class="a-form-input" placeholder="Ej: 25.00"></div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="a-form-group"><label class="a-form-label">Precio Base (USD)</label><input type="number" id="aEditProductPrice" class="a-form-input" placeholder="Ej: 25.00"></div>
+            <div class="a-form-group"><label class="a-form-label">Orden (Posición)</label><input type="number" id="aEditProductOrder" class="a-form-input" placeholder="Ej: 1"></div>
+        </div>
+
         <div class="a-form-group"><label class="a-form-label">Descripción</label><textarea id="aEditProductDesc" class="a-form-textarea" rows="2" placeholder="Descripción breve..."></textarea></div>
         
         <div class="divider-line"></div>
@@ -1466,7 +1509,7 @@ document.addEventListener('click', () => {
     document.getElementById('userDropdown').classList.remove('open');
 });
 
-// EVENTO DEL CARRITO (RESTABLECIDO)
+// EVENTO DEL CARRITO
 document.getElementById('btnCart').addEventListener('click', () => {
     if (window.currentUser) {
         location.hash = '#perfil';
@@ -1759,7 +1802,9 @@ function migrateData(data) {
   data.products.forEach(p => {
     if (p.hasEditable === undefined) p.hasEditable = false;
     if (p.editablePrice === undefined) p.editablePrice = 0;
-    if (!p.category) p.category = 'artista'; // Default para productos viejos
+    if (!p.category) p.category = 'artista';
+    if (!p.group) p.group = 'General';
+    if (p.order === undefined) p.order = 0;
     if (!p.briefingFields) p.briefingFields = [];
     p.briefingFields.forEach(f => { if (f.required === undefined) f.required = false; });
   });
@@ -1838,21 +1883,31 @@ window.addToCart = function(productId, btnElement) {
   const product = DATA.products.find(p => p.id === productId);
   if (!product) return;
   
+  // Leer cantidad
+  const qtyInput = document.getElementById(`qty_${productId}`);
+  let qty = qtyInput ? parseInt(qtyInput.value) : 1;
+  if (isNaN(qty) || qty < 1) qty = 1;
+  if (qty > 50) qty = 50; // Límite de seguridad
+
   if(btnElement) {
     btnElement.classList.add('pop-anim');
     setTimeout(() => btnElement.classList.remove('pop-anim'), 300);
   }
   
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-  cart.push({ 
-    ...product, 
-    cartItemId: uid(),
-    includeEditable: false, 
-    briefingAnswers: null 
-  });
+  
+  for (let i = 0; i < qty; i++) {
+    cart.push({ 
+      ...product, 
+      cartItemId: uid(),
+      includeEditable: false, 
+      briefingAnswers: null 
+    });
+  }
+  
   localStorage.setItem('grob_cart', JSON.stringify(cart));
   updateCartCounter();
-  showToast(`"${product.name}" añadido al carrito`);
+  showToast(`${qty}x "${product.name}" añadido al carrito`);
 };
 
 window.toggleEditable = function(cartItemId) {
@@ -1902,7 +1957,6 @@ window.openBriefing = function(cartItemId) {
   const form = $('#briefingForm');
   const btn = $('#btnSaveBriefing');
   
-  // Reiniciar botón
   btn.style.background = '#333';
   btn.style.color = '#888';
   btn.style.borderColor = '#444';
@@ -1911,7 +1965,6 @@ window.openBriefing = function(cartItemId) {
   form.onsubmit = (e) => {
     e.preventDefault();
     
-    // Validar requeridos
     let valid = true;
     item.briefingFields.forEach((field, index) => {
       const input = document.getElementById(`briefing_field_${index}`);
@@ -1923,7 +1976,6 @@ window.openBriefing = function(cartItemId) {
       return;
     }
 
-    // Efecto de guardado
     btn.style.background = '#30A46C';
     btn.style.color = '#fff';
     btn.style.borderColor = '#30A46C';
@@ -1942,7 +1994,6 @@ window.openBriefing = function(cartItemId) {
         showToast("Briefing guardado con éxito");
         renderProfile();
         
-        // Resetear botón
         btn.style.background = '#333';
         btn.style.color = '#888';
         btn.style.borderColor = '#444';
@@ -1954,7 +2005,7 @@ window.openBriefing = function(cartItemId) {
   $('#briefingModal').classList.add('active');
 };
 
-window.checkoutWhatsApp = function() {
+window.openCheckoutModal = function() {
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
   if (cart.length === 0) return;
   
@@ -1976,37 +2027,54 @@ window.checkoutWhatsApp = function() {
     return;
   }
 
+  $('#checkoutModal').classList.add('active');
+};
+
+function generateOrderSummary() {
+    const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+    let message = `Hola! Soy ${window.currentUser.displayName}. Me gustaría comprar:\n\n`;
+    let total = 0;
+    
+    cart.forEach(item => {
+      let itemPrice = parseFloat(item.price);
+      let extraText = '';
+      
+      if (item.includeEditable && item.hasEditable) {
+        itemPrice += parseFloat(item.editablePrice || 0);
+        extraText = ` [+ Archivo Editable]`;
+      }
+      
+      total += itemPrice;
+      
+      message += `- 1x ${item.name} ($${item.price})${extraText}\n`;
+      
+      if (item.briefingAnswers) {
+        message += `  *Briefing:*\n`;
+        for (const [key, value] of Object.entries(item.briefingAnswers)) {
+          if(value) message += `  - ${key}: ${value}\n`;
+        }
+      }
+    });
+    
+    message += `\n*Total Estimado: $${total.toFixed(2)}*`;
+    return message;
+}
+
+window.sendOrderWhatsApp = function() {
   const phone = DATA.contact.phone || '';
   const digits = phone.replace(/[^0-9]/g, '');
-  
-  let message = `Hola! Soy ${window.currentUser.displayName}. Me gustaría comprar:\n\n`;
-  let total = 0;
-  
-  cart.forEach(item => {
-    let itemPrice = parseFloat(item.price);
-    let extraText = '';
-    
-    if (item.includeEditable && item.hasEditable) {
-      itemPrice += parseFloat(item.editablePrice || 0);
-      extraText = ` [+ Archivo Editable]`;
-    }
-    
-    total += itemPrice;
-    
-    message += `- 1x ${item.name} ($${item.price})${extraText}\n`;
-    
-    if (item.briefingAnswers) {
-      message += `  *Briefing:*\n`;
-      for (const [key, value] of Object.entries(item.briefingAnswers)) {
-        if(value) message += `  - ${key}: ${value}\n`;
-      }
-    }
-  });
-  
-  message += `\n*Total Estimado: $${total.toFixed(2)}*`;
-  
+  const message = generateOrderSummary();
   const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
+  $('#checkoutModal').classList.remove('active');
+};
+
+window.sendOrderEmail = function() {
+  const email = DATA.contact.email || '';
+  const message = generateOrderSummary();
+  const url = `mailto:${email}?subject=Nuevo Pedido Grobdesigns&body=${encodeURIComponent(message)}`;
+  window.location.href = url;
+  $('#checkoutModal').classList.remove('active');
 };
 
 // ==========================================
@@ -2026,50 +2094,92 @@ function renderPublicStore() {
     content.style.display = 'block';
   }
 
-  const grid = document.getElementById('tiendaProductosGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
+  const container = document.getElementById('tiendaProductosGrid');
+  if (!container) return;
+  container.innerHTML = '';
   
   if (!DATA.products || DATA.products.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line); border-radius: 8px;">
+    container.innerHTML = `<div style="text-align: center; padding: 60px 20px; border: 1px dashed var(--line); border-radius: 8px;">
       <p style="color: var(--muted); font-size: 1.1rem;">Aún no hay productos disponibles.</p>
     </div>`;
     return;
   }
 
-  // Recomendación basada en perfil
+  // Ordenar y agrupar
   let sortedProducts = [...DATA.products];
+  
+  // Ordenar por campo 'order'
+  sortedProducts.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+  // Agrupar
+  const grouped = {};
+  sortedProducts.forEach(p => {
+      const groupName = p.group || 'General';
+      if (!grouped[groupName]) grouped[groupName] = [];
+      grouped[groupName].push(p);
+  });
+
+  // Si el usuario tiene perfil, ordenar cada grupo para poner sus recomendados primero
   if (window.currentUserProfile) {
       const userType = window.currentUserProfile.type;
-      sortedProducts.sort((a, b) => {
-          if (a.category === userType && b.category !== userType) return -1;
-          if (a.category !== userType && b.category === userType) return 1;
-          return 0;
-      });
+      for (const key in grouped) {
+          grouped[key].sort((a, b) => {
+              if (a.category === userType && b.category !== userType) return -1;
+              if (a.category !== userType && b.category === userType) return 1;
+              return 0;
+          });
+      }
   }
 
-  sortedProducts.forEach(p => {
-    const isRecommended = window.currentUserProfile && p.category === window.currentUserProfile.type;
-    
-    const card = document.createElement('div');
-    card.className = 'tienda-card';
-    if (isRecommended) card.style.borderColor = 'var(--accent)';
-    
-    card.innerHTML = `
-      <img src="${resolveImageUrl(p.img)}" alt="${p.name}" onerror="handleImgError(this)">
-      <div class="tienda-card-info">
-        ${isRecommended ? '<span style="font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px; display:block;">⭐ Recomendado para ti</span>' : ''}
-        <h3 class="tienda-card-title">${escHtml(p.name)}</h3>
-        <p class="tienda-card-price">$${p.price}</p>
-        <div class="tienda-card-desc" onclick="this.classList.toggle('open')">
-            <div class="tienda-card-desc-label">Descripción</div>
-            <div class="tienda-card-desc-text">${escHtml(p.desc || 'No hay descripción disponible.')}</div>
-        </div>
-        <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir</button>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
+  // Renderizar grupos
+  for (const groupName in grouped) {
+      const groupDiv = document.createElement('div');
+      groupDiv.style.marginBottom = '50px';
+      
+      const header = document.createElement('h3');
+      header.style.fontFamily = 'var(--font-title)';
+      header.style.fontSize = '1.8rem';
+      header.style.fontWeight = '800';
+      header.style.textTransform = 'uppercase';
+      header.style.borderBottom = '1px solid var(--line)';
+      header.style.paddingBottom = '10px';
+      header.style.marginBottom = '20px';
+      header.textContent = groupName;
+      groupDiv.appendChild(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'tienda-grid';
+      grid.style.marginTop = '0';
+
+      grouped[groupName].forEach(p => {
+        const isRecommended = window.currentUserProfile && p.category === window.currentUserProfile.type;
+        
+        const card = document.createElement('div');
+        card.className = 'tienda-card';
+        if (isRecommended) card.style.borderColor = 'var(--accent)';
+        
+        card.innerHTML = `
+          <img src="${resolveImageUrl(p.img)}" alt="${p.name}" onerror="handleImgError(this)">
+          <div class="tienda-card-info">
+            ${isRecommended ? '<span style="font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px; display:block;">⭐ Recomendado para ti</span>' : ''}
+            <h4 class="tienda-card-title">${escHtml(p.name)}</h4>
+            <p class="tienda-card-price">$${p.price}</p>
+            <div class="tienda-card-desc" onclick="this.classList.toggle('open')">
+                <div class="tienda-card-desc-label">Descripción</div>
+                <div class="tienda-card-desc-text">${escHtml(p.desc || 'No hay descripción disponible.')}</div>
+            </div>
+            <div class="tienda-qty-wrap">
+                <input type="number" id="qty_${p.id}" class="tienda-qty-input" value="1" min="1" max="50">
+                <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      
+      groupDiv.appendChild(grid);
+      container.appendChild(groupDiv);
+  }
 }
 
 function renderProfile() {
@@ -2473,7 +2583,7 @@ function renderAdmin() {
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = ''; (DATA.heroImages || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" onerror="handleImgError(this)"><div class="a-cover-card-info"><div class="a-cover-card-actions"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('heroImages', ${i})">✕</button></div></div>`; hGrid.appendChild(el); });
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = ''; (DATA.covers || []).forEach((c, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">${c.featured ? '<span class="a-badge featured">★</span>' : `<span class="a-badge">${escHtml(c.category || '')}</span>`}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(c.name || 'Sin título')}</div><div class="a-cover-card-meta">${escHtml(c.artist || 'Sin artista')}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openAdminCoverModal(${i})">✏️</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('covers', ${i})">✕</button></div></div>`; cGrid.appendChild(el); });
   
-  const pGrid = $('#aProductsGrid'); pGrid.innerHTML = ''; (DATA.products || []).forEach((p, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(p.img)}" style="object-fit:cover;" onerror="handleImgError(this)"><div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">$${p.price} | ${p.category}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; pGrid.appendChild(el); });
+  const pGrid = $('#aProductsGrid'); pGrid.innerHTML = ''; (DATA.products || []).forEach((p, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(p.img)}" style="object-fit:cover;" onerror="handleImgError(this)"><div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">$${p.price} | ${p.category} | ${p.group || 'General'} | #${p.order || 0}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; pGrid.appendChild(el); });
 
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = ''; (DATA.clientes || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:16px;background:#0a0a0a" onerror="handleImgError(this)"><div class="a-cover-card-actions" style="padding:8px;display:flex;gap:4px;background:var(--a-surface)"><button class="a-btn a-btn-outline a-btn-xs" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>↑</button><button class="a-btn a-btn-outline a-btn-xs" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>↓</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('clientes', ${i})" style="flex:1">✕</button></div>`; clGrid.appendChild(el); });
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = ''; (DATA.software || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:16px;background:#0a0a0a" onerror="handleImgError(this)"><div class="a-cover-card-actions" style="padding:8px;background:var(--a-surface)"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('software', ${i})" style="flex:1">✕</button></div>`; tGrid.appendChild(el); });
@@ -2579,6 +2689,8 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductPrice').value = p.price;
     $('#aEditProductDesc').value = p.desc || '';
     $('#aEditProductCategory').value = p.category || 'artista';
+    $('#aEditProductGroup').value = p.group || 'General';
+    $('#aEditProductOrder').value = p.order || 0;
     tempProductImg = p.img;
     $('#aEditProductPreview').src = resolveImageUrl(p.img);
     
@@ -2594,6 +2706,8 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductPrice').value = '';
     $('#aEditProductDesc').value = '';
     $('#aEditProductCategory').value = 'artista';
+    $('#aEditProductGroup').value = 'General';
+    $('#aEditProductOrder').value = 0;
     tempProductImg = '';
     $('#aEditProductPreview').src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Img</text></svg>`);
     
@@ -2662,6 +2776,8 @@ $('#aBtnSaveProduct').onclick = () => {
   const price = $('#aEditProductPrice').value.trim();
   const desc = $('#aEditProductDesc').value.trim();
   const category = $('#aEditProductCategory').value;
+  const group = $('#aEditProductGroup').value.trim();
+  const order = parseInt($('#aEditProductOrder').value) || 0;
   const hasEditable = $('#aEditProductHasEditable').checked;
   const editablePrice = $('#aEditProductEditablePrice').value.trim();
   
@@ -2673,6 +2789,8 @@ $('#aBtnSaveProduct').onclick = () => {
     price: parseFloat(price).toFixed(2),
     desc,
     category,
+    group,
+    order,
     img: tempProductImg,
     hasEditable,
     editablePrice: parseFloat(editablePrice).toFixed(2),
