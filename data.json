@@ -1249,6 +1249,8 @@
       "price": "50.00",
       "desc": "Creación dirección de Arte.",
       "category": "artista",
+      "group": "General",
+      "order": 4,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793298586227_jj9r.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
@@ -1269,9 +1271,7 @@
           "label": "Información",
           "required": true
         }
-      ],
-      "group": "General",
-      "order": 0
+      ]
     },
     {
       "id": "nh4uzlybmvtxl0ok",
