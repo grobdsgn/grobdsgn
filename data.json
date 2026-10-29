@@ -1173,6 +1173,16 @@
           "label": "Fecha Estimada"
         }
       ]
+    },
+    {
+      "id": "1o8pbzo2mvt6sen3",
+      "name": "Logo Artista",
+      "price": "200.00",
+      "desc": "Creación de Logotipo para Artista.\nEntrega Basica de Logo con sus Formatos",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793256682858_5jr8.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
@@ -1426,7 +1436,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083377,
+        "youtube": 1083378,
         "apple": 0
       }
     },
@@ -1445,7 +1455,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94699,
+        "youtube": 94701,
         "apple": 0
       }
     },
@@ -1785,7 +1795,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126740,
+        "youtube": 1126741,
         "apple": 0
       }
     },
@@ -1825,7 +1835,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509121858,
+        "youtube": 509123241,
         "apple": 0
       }
     },
@@ -1915,7 +1925,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507155,
+        "youtube": 11507157,
         "apple": 0
       }
     },
@@ -1953,7 +1963,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529346622,
+        "youtube": 529347595,
         "apple": 0
       }
     },
@@ -1991,7 +2001,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233753,
+        "youtube": 5233756,
         "apple": 0
       }
     },
@@ -3110,7 +3120,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38083731,
+        "youtube": 38083757,
         "apple": 0
       }
     },
@@ -3172,7 +3182,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5096968,
+        "youtube": 5096976,
         "apple": 0
       }
     },
