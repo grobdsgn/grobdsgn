@@ -2273,7 +2273,10 @@
       "artist": "samy hawk",
       "year": "2022",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239920852_jptr.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239923063_x2pe.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/36tFIqqJsRx6zGnjl1oknW?si=ad5108bdc9fd4c20",
       "appleMusicUrl": "",
       "youtubeUrl": "",
