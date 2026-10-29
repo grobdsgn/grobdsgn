@@ -56,6 +56,23 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
+/* MENÚ MÓVIL */
+.mobile-menu-btn { display: none; font-size: 24px; color: var(--text); cursor: pointer; padding: 5px; z-index: 10000; }
+.mobile-nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9998; display: none; }
+.mobile-nav-overlay.active { display: block; }
+.mobile-nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--surface); z-index: 9999; padding: 80px 20px 20px; transition: right 0.3s ease; display: flex; flex-direction: column; gap: 20px; border-left: 1px solid var(--line); }
+.mobile-nav.active { right: 0; }
+.mobile-nav .tab { font-size: 1.1rem; padding: 15px 0; border-bottom: 1px solid var(--line); width: 100%; text-align: left; }
+.mobile-nav .tab.active::after { display: none; }
+.mobile-nav .tab.active { color: var(--accent); }
+.mobile-close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; color: var(--muted); cursor: pointer; }
+
+@media (max-width: 900px) {
+  .tabs { display: none; }
+  .mobile-menu-btn { display: block; }
+  .logo-img { height: 20px; } /* Logo más pequeño en móvil */
+}
+
 .nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative;padding:0;}
 .nav-icon-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .nav-icon-btn svg{width:16px;height:16px;fill:currentColor}
@@ -271,7 +288,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tienda-card-desc-text { display: none; text-align: justify; margin-top: 5px; }
 .tienda-card-desc.open .tienda-card-desc-text { display: block; }
 
-/* CANTIDAD SELECTOR */
 .tienda-qty-wrap { display: flex; gap: 10px; margin-top: auto; }
 .tienda-qty-input { width: 60px; padding: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 4px; color: #fff; text-align: center; font-weight: 700; outline: none; }
 .tienda-qty-input:focus { border-color: var(--accent); }
@@ -279,6 +295,9 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;position:relative;overflow:hidden;}
 .tienda-btn-add:hover{background:#fff;}
 .tienda-btn-add:active{transform:scale(0.95);}
+
+.tienda-examples-btn { background: none; border: 1px dashed var(--line); color: var(--muted); font-size: 0.75rem; padding: 6px; border-radius: 4px; cursor: pointer; text-align: center; margin-bottom: 10px; transition: 0.2s; width: 100%; }
+.tienda-examples-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* MANTENIMIENTO (BANNER LED) */
 .maintenance-banner { background: #111; border: 2px solid var(--danger); border-radius: 12px; padding: 15px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 0 20px rgba(229,72,77,0.4); }
@@ -313,6 +332,14 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 
 .cart-checkout { width: 100%; padding: 16px; background: #25D366; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; }
 .cart-checkout:hover { background: #128C7E; transform: translateY(-2px); }
+
+/* HISTORIAL COMPRAS */
+.order-history-item { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 15px; }
+.order-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
+.order-date { font-family: var(--font-title); font-weight: 700; color: var(--accent); }
+.order-total { font-weight: 800; }
+.order-products-list { list-style: none; padding-left: 0; }
+.order-products-list li { font-size: 0.9rem; color: var(--muted); margin-bottom: 5px; }
 
 /* MODAL BRIEFING CLIENTE */
 #briefingModal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -555,6 +582,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
             <div class="user-dropdown" id="userDropdown">
                 <a href="#perfil" onclick="document.getElementById('userDropdown').classList.remove('open')">Ver perfil</a>
                 <a href="#" onclick="openEditProfile(); document.getElementById('userDropdown').classList.remove('open'); return false;">Actualizar datos</a>
+                <a href="#" onclick="document.getElementById('userDropdown').classList.remove('open');">Mis Compras</a>
                 <a href="#" class="danger" onclick="window.handleAuthClick(); document.getElementById('userDropdown').classList.remove('open'); return false;">Cerrar sesión</a>
             </div>
         </div>
@@ -563,9 +591,21 @@ input:checked + .a-slider:before { transform: translateX(26px); }
           <span class="cart-count" id="cartCounter">0</span>
         </button>
         <button class="nav-back" id="navBack">← Volver</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
       </div>
     </div>
   </nav>
+
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+      <span class="mobile-close-btn" id="mobileCloseBtn">✕</span>
+      <button class="tab active" data-tab="home">Inicio</button>
+      <button class="tab" data-tab="portafolio">Portafolio</button>
+      <button class="tab" data-tab="covers">Covers</button>
+      <button class="tab" data-tab="clientes">Clientes</button>
+      <button class="tab" data-tab="contacto">Contacto</button>
+      <button class="tab" data-tab="tienda">Tienda</button>
+  </div>
 
   <main>
     <!-- VISTA HOME -->
@@ -821,6 +861,14 @@ input:checked + .a-slider:before { transform: translateX(26px); }
             </button>
           </div>
 
+          <!-- HISTORIAL DE COMPRAS -->
+          <div class="perfil-section">
+            <h3 class="perfil-section-title">📦 Mis Compras</h3>
+            <div id="perfilOrderHistory">
+                <!-- Se llena con JS -->
+            </div>
+          </div>
+
           <!-- ME GUSTA -->
           <div class="perfil-section">
             <h3 class="perfil-section-title">
@@ -952,6 +1000,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
         <div class="a-nav-item" data-target="covers"><span class="a-nav-icon">💿</span><span class="a-nav-label">Covers</span><span class="a-nav-badge" id="aBadgeCovers">0</span></div>
         <div class="a-nav-item" data-target="portfolio"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Portafolio</span><span class="a-nav-badge" id="aBadgePortfolio">0</span></div>
         <div class="a-nav-item" data-target="store"><span class="a-nav-icon">🛍️</span><span class="a-nav-label">Tienda</span><span class="a-nav-badge" id="aBadgeStore">0</span></div>
+        <div class="a-nav-item" data-target="orders"><span class="a-nav-icon">📦</span><span class="a-nav-label">Órdenes</span><span class="a-nav-badge" id="aBadgeOrders">0</span></div>
         <div class="a-nav-item" data-target="clients"><span class="a-nav-icon">🏢</span><span class="a-nav-label">Clientes</span><span class="a-nav-badge" id="aBadgeClients">0</span></div>
         <div class="a-nav-item" data-target="tools"><span class="a-nav-icon">🛠️</span><span class="a-nav-label">Herramientas</span><span class="a-nav-badge" id="aBadgeTools">0</span></div>
         <div class="a-nav-item" data-target="texts"><span class="a-nav-icon">📝</span><span class="a-nav-label">Textos Generales</span></div>
@@ -1096,6 +1145,24 @@ input:checked + .a-slider:before { transform: translateX(26px); }
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📦</span>Productos<span class="a-count" id="aProductsCount">0</span></h2></div>
             <div class="a-card-body"><div class="a-grid" id="aProductsGrid"></div></div>
+          </div>
+        </div>
+
+        <!-- ÓRDENES (ADMIN) -->
+        <div class="a-panel" id="a-panel-orders">
+          <div class="a-hero">
+            <div class="a-hero-icon">📦</div>
+            <div class="a-hero-text">
+              <h2>Historial de Órdenes</h2>
+              <p>Registro de compras de los clientes (Requiere backend para sincronización global).</p>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-body">
+                <div id="adminOrdersList" style="display:flex; flex-direction:column; gap:10px;">
+                    <p style="color:var(--a-muted);">Las órdenes se guardan en el navegador del cliente. Si deseas verlas aquí, debes integrar un backend como Firebase Firestore para que los clientes escriban en tu base de datos.</p>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -1335,7 +1402,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
           <div>
             <div class="upload-zone compact" id="productUploadZone" style="margin-bottom:8px; padding: 15px;">
               <span class="upload-zone-icon" style="font-size: 22px;">📤</span>
-              <div class="upload-zone-text"><strong>Subir Imagen</strong>desde PC</div>
+              <div class="upload-zone-text"><strong>Subir Imagen Principal</strong>desde PC</div>
               <input type="file" id="productFileInput" accept="image/*" hidden>
             </div>
           </div>
@@ -1361,6 +1428,14 @@ input:checked + .a-slider:before { transform: translateX(26px); }
 
         <div class="a-form-group"><label class="a-form-label">Descripción</label><textarea id="aEditProductDesc" class="a-form-textarea" rows="2" placeholder="Descripción breve..."></textarea></div>
         
+        <div class="divider-line"></div>
+        
+        <div class="a-form-group">
+          <label class="a-form-label">Imágenes de Ejemplo (URLs, una por línea)</label>
+          <textarea id="aEditProductExtraImages" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/ejemplo1.jpg&#10;https://ejemplo.com/ejemplo2.jpg"></textarea>
+          <span class="a-form-hint">Estas imágenes se mostrarán en un botón "Ver ejemplos" en la tienda pública.</span>
+        </div>
+
         <div class="divider-line"></div>
         
         <div class="a-form-group">
@@ -1518,6 +1593,30 @@ document.getElementById('btnCart').addEventListener('click', () => {
         window.handleAuthClick();
     }
 });
+
+// MOBILE MENU LOGIC
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+
+mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.add('active');
+    mobileNavOverlay.classList.add('active');
+});
+const closeMobileMenu = () => {
+    mobileNav.classList.remove('active');
+    mobileNavOverlay.classList.remove('active');
+};
+mobileCloseBtn.addEventListener('click', closeMobileMenu);
+mobileNavOverlay.addEventListener('click', closeMobileMenu);
+$$('.mobile-nav .tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        closeMobileMenu();
+        location.hash = '#' + btn.dataset.tab;
+    });
+});
+
 
 // ACTUALIZAR AVATAR DEL NAV
 window.updateNavAvatar = function() {
@@ -1805,6 +1904,7 @@ function migrateData(data) {
     if (!p.category) p.category = 'artista';
     if (!p.group) p.group = 'General';
     if (p.order === undefined) p.order = 0;
+    if (!p.extraImages) p.extraImages = [];
     if (!p.briefingFields) p.briefingFields = [];
     p.briefingFields.forEach(f => { if (f.required === undefined) f.required = false; });
   });
@@ -1848,7 +1948,10 @@ function initHeroRotation() { if (heroInterval) clearInterval(heroInterval); her
 function activateHeroLayer(layer) { layer.classList.add('active'); layer.style.animation = 'none'; void layer.offsetWidth; layer.style.animation = ''; }
 
 function showView(name) { $$('.view').forEach(v => v.classList.remove('active')); const el = $(`[data-view="${name}"]`); if (el) el.classList.add('active'); }
-function syncTabs(name) { $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); }
+function syncTabs(name) { 
+    $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+    $$('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+}
 function updateNavBack(hash) { const back = $('#navBack'); if (!back) return; back.classList.toggle('show', hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin')); }
 function findProject(projId) { for (const cat of (DATA.categories || [])) { for (const proj of (cat.projects || [])) { if (proj.id === projId) return { cat, proj }; } } return null; }
 function goBack() { const h = location.hash || ''; if (h.startsWith('#cover-')) location.hash = '#covers'; else if (h.startsWith('#categoria-')) location.hash = '#portafolio'; else if (h.startsWith('#proyecto-')) { const found = findProject(h.replace('#proyecto-', '')); location.hash = found ? `#categoria-${found.cat.id}` : '#portafolio'; } else if (h === '#perfil') location.hash = '#home'; else location.hash = '#home'; }
@@ -1883,11 +1986,10 @@ window.addToCart = function(productId, btnElement) {
   const product = DATA.products.find(p => p.id === productId);
   if (!product) return;
   
-  // Leer cantidad
   const qtyInput = document.getElementById(`qty_${productId}`);
   let qty = qtyInput ? parseInt(qtyInput.value) : 1;
   if (isNaN(qty) || qty < 1) qty = 1;
-  if (qty > 50) qty = 50; // Límite de seguridad
+  if (qty > 50) qty = 50;
 
   if(btnElement) {
     btnElement.classList.add('pop-anim');
@@ -2009,7 +2111,6 @@ window.openCheckoutModal = function() {
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
   if (cart.length === 0) return;
   
-  // Validar requeridos
   let missing = false;
   cart.forEach(item => {
       if (item.briefingFields && item.briefingFields.length > 0) {
@@ -2030,9 +2131,27 @@ window.openCheckoutModal = function() {
   $('#checkoutModal').classList.add('active');
 };
 
+function saveOrderToHistory(cart, total) {
+    if (!window.currentUser) return;
+    const orderKey = 'grob_user_orders_' + window.currentUser.uid;
+    const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+    
+    const newOrder = {
+        id: uid(),
+        date: new Date().toLocaleString(),
+        items: cart,
+        total: total
+    };
+    
+    orders.unshift(newOrder); // Añadir al principio
+    localStorage.setItem(orderKey, JSON.stringify(orders));
+}
+
 function generateOrderSummary() {
     const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-    let message = `Hola! Soy ${window.currentUser.displayName}. Me gustaría comprar:\n\n`;
+    const alias = window.currentUserProfile?.name || window.currentUser.displayName;
+    
+    let message = `Hola! Soy ${alias}. Me gustaría comprar:\n\n`;
     let total = 0;
     
     cart.forEach(item => {
@@ -2047,6 +2166,7 @@ function generateOrderSummary() {
       total += itemPrice;
       
       message += `- 1x ${item.name} ($${item.price})${extraText}\n`;
+      message += `  Imagen: ${resolveImageUrl(item.img)}\n`;
       
       if (item.briefingAnswers) {
         message += `  *Briefing:*\n`;
@@ -2057,24 +2177,38 @@ function generateOrderSummary() {
     });
     
     message += `\n*Total Estimado: $${total.toFixed(2)}*`;
-    return message;
+    return { message, total };
 }
 
 window.sendOrderWhatsApp = function() {
   const phone = DATA.contact.phone || '';
   const digits = phone.replace(/[^0-9]/g, '');
-  const message = generateOrderSummary();
+  const { message, total } = generateOrderSummary();
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  
+  saveOrderToHistory(cart, total);
+  localStorage.removeItem('grob_cart'); // Limpiar carrito
+  updateCartCounter();
+  
   const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
   $('#checkoutModal').classList.remove('active');
+  renderProfile(); // Refrescar perfil para ver la compra
 };
 
 window.sendOrderEmail = function() {
   const email = DATA.contact.email || '';
-  const message = generateOrderSummary();
+  const { message, total } = generateOrderSummary();
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  
+  saveOrderToHistory(cart, total);
+  localStorage.removeItem('grob_cart'); // Limpiar carrito
+  updateCartCounter();
+  
   const url = `mailto:${email}?subject=Nuevo Pedido Grobdesigns&body=${encodeURIComponent(message)}`;
   window.location.href = url;
   $('#checkoutModal').classList.remove('active');
+  renderProfile();
 };
 
 // ==========================================
@@ -2105,13 +2239,9 @@ function renderPublicStore() {
     return;
   }
 
-  // Ordenar y agrupar
   let sortedProducts = [...DATA.products];
-  
-  // Ordenar por campo 'order'
   sortedProducts.sort((a, b) => (a.order || 0) - (b.order || 0));
 
-  // Agrupar
   const grouped = {};
   sortedProducts.forEach(p => {
       const groupName = p.group || 'General';
@@ -2119,7 +2249,6 @@ function renderPublicStore() {
       grouped[groupName].push(p);
   });
 
-  // Si el usuario tiene perfil, ordenar cada grupo para poner sus recomendados primero
   if (window.currentUserProfile) {
       const userType = window.currentUserProfile.type;
       for (const key in grouped) {
@@ -2131,7 +2260,6 @@ function renderPublicStore() {
       }
   }
 
-  // Renderizar grupos
   for (const groupName in grouped) {
       const groupDiv = document.createElement('div');
       groupDiv.style.marginBottom = '50px';
@@ -2158,6 +2286,13 @@ function renderPublicStore() {
         card.className = 'tienda-card';
         if (isRecommended) card.style.borderColor = 'var(--accent)';
         
+        // Logica de imagenes extra
+        let extraImagesHtml = '';
+        let hasExtras = p.extraImages && p.extraImages.length > 0;
+        if (hasExtras) {
+            extraImagesHtml = `<button class="tienda-examples-btn" onclick="viewExamples('${p.id}')">🖼️ Ver ejemplos</button>`;
+        }
+
         card.innerHTML = `
           <img src="${resolveImageUrl(p.img)}" alt="${p.name}" onerror="handleImgError(this)">
           <div class="tienda-card-info">
@@ -2168,6 +2303,7 @@ function renderPublicStore() {
                 <div class="tienda-card-desc-label">Descripción</div>
                 <div class="tienda-card-desc-text">${escHtml(p.desc || 'No hay descripción disponible.')}</div>
             </div>
+            ${extraImagesHtml}
             <div class="tienda-qty-wrap">
                 <input type="number" id="qty_${p.id}" class="tienda-qty-input" value="1" min="1" max="50">
                 <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir</button>
@@ -2181,6 +2317,68 @@ function renderPublicStore() {
       container.appendChild(groupDiv);
   }
 }
+
+window.viewExamples = function(productId) {
+    const p = DATA.products.find(x => x.id === productId);
+    if (!p || !p.extraImages || p.extraImages.length === 0) return;
+    
+    // Creamos un modal dinámico o reutilizamos el lightbox
+    // Para simplificar, abriremos las imágenes en el lightbox una por una o mostraremos un carrusel simple.
+    // Aquí haremos un mini-carousel en el lightbox usando un contenedor flex.
+    
+    const lb = $('#lightbox');
+    const imgContainer = $('#lightboxImg').parentNode; // El contenedor del lightbox
+    
+    // Si ya hay un carrusel, lo eliminamos
+    const existingCarousel = document.getElementById('lightboxCarousel');
+    if (existingCarousel) existingCarousel.remove();
+    
+    // Ocultamos la img individual del lightbox
+    $('#lightboxImg').style.display = 'none';
+    
+    // Creamos el carrusel
+    const carousel = document.createElement('div');
+    carousel.id = 'lightboxCarousel';
+    carousel.style.cssText = 'display:flex; flex-direction:column; align-items:center; gap:20px; width:100%; max-height:90vh; overflow-y:auto;';
+    
+    const title = document.createElement('h3');
+    title.textContent = `Ejemplos: ${p.name}`;
+    title.style.cssText = 'font-family:var(--font-title); color:#fff; margin-bottom:10px; font-size:1.5rem;';
+    carousel.appendChild(title);
+    
+    p.extraImages.forEach(url => {
+        const im = document.createElement('img');
+        im.src = resolveImageUrl(url);
+        im.style.cssText = 'max-width:100%; max-height:70vh; object-fit:contain; border-radius:8px; background:#000;';
+        carousel.appendChild(im);
+    });
+    
+    imgContainer.appendChild(carousel);
+    lb.classList.add('active');
+    document.body.classList.add('locked');
+    
+    // Modificamos closeLightbox temporalmente para limpiar esto
+    const originalClose = window.closeLightbox;
+    window.closeLightbox = function() {
+        lb.classList.remove('active');
+        document.body.classList.remove('locked');
+        carousel.remove();
+        $('#lightboxImg').style.display = 'block'; // Restaurar
+        window.closeLightbox = originalClose; // Restaurar función original
+    };
+};
+
+// Sobrescribimos closeLightbox global para asegurar que limpie el carrusel si existe
+const originalCloseLightbox = closeLightbox;
+window.closeLightbox = function() {
+    const carousel = document.getElementById('lightboxCarousel');
+    if (carousel) {
+        carousel.remove();
+        $('#lightboxImg').style.display = 'block';
+    }
+    originalCloseLightbox();
+};
+
 
 function renderProfile() {
   if (!window.currentUser) {
@@ -2277,6 +2475,31 @@ function renderProfile() {
     cartTotalEl.innerHTML = `Total: <span style="color: var(--accent);">$${total.toFixed(2)}</span>`;
     cartTotalEl.style.display = 'block';
     btnCheckout.style.display = 'flex';
+  }
+
+  // Historial de Compras
+  const orderHistoryContainer = document.getElementById('perfilOrderHistory');
+  orderHistoryContainer.innerHTML = '';
+  const orderKey = 'grob_user_orders_' + window.currentUser.uid;
+  const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+
+  if (orders.length === 0) {
+      orderHistoryContainer.innerHTML = '<div class="perfil-empty">Aún no has realizado ninguna compra.</div>';
+  } else {
+      orders.forEach(order => {
+          const el = document.createElement('div');
+          el.className = 'order-history-item';
+          el.innerHTML = `
+            <div class="order-header">
+                <span class="order-date">${order.date}</span>
+                <span class="order-total">Total: $${order.total.toFixed(2)}</span>
+            </div>
+            <ul class="order-products-list">
+                ${order.items.map(item => `<li>- ${escHtml(item.name)} ($${item.price})</li>`).join('')}
+            </ul>
+          `;
+          orderHistoryContainer.appendChild(el);
+      });
   }
 }
 
@@ -2691,6 +2914,7 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductCategory').value = p.category || 'artista';
     $('#aEditProductGroup').value = p.group || 'General';
     $('#aEditProductOrder').value = p.order || 0;
+    $('#aEditProductExtraImages').value = (p.extraImages || []).join('\n');
     tempProductImg = p.img;
     $('#aEditProductPreview').src = resolveImageUrl(p.img);
     
@@ -2708,6 +2932,7 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductCategory').value = 'artista';
     $('#aEditProductGroup').value = 'General';
     $('#aEditProductOrder').value = 0;
+    $('#aEditProductExtraImages').value = '';
     tempProductImg = '';
     $('#aEditProductPreview').src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Img</text></svg>`);
     
@@ -2778,6 +3003,7 @@ $('#aBtnSaveProduct').onclick = () => {
   const category = $('#aEditProductCategory').value;
   const group = $('#aEditProductGroup').value.trim();
   const order = parseInt($('#aEditProductOrder').value) || 0;
+  const extraImages = $('#aEditProductExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean);
   const hasEditable = $('#aEditProductHasEditable').checked;
   const editablePrice = $('#aEditProductEditablePrice').value.trim();
   
@@ -2791,6 +3017,7 @@ $('#aBtnSaveProduct').onclick = () => {
     category,
     group,
     order,
+    extraImages,
     img: tempProductImg,
     hasEditable,
     editablePrice: parseFloat(editablePrice).toFixed(2),
