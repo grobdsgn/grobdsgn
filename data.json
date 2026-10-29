@@ -1138,6 +1138,7 @@
       "name": "Cover Pack x5",
       "price": "200.00",
       "desc": "Pack de 5 Imagenes para Tema Promocional.\n+Cover",
+      "category": "artista",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
@@ -1158,8 +1159,7 @@
           "label": "Alguna Fecha limite",
           "required": false
         }
-      ],
-      "category": "artista"
+      ]
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
