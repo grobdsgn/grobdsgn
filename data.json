@@ -1271,6 +1271,17 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": []
+    },
+    {
+      "id": "7lnt492emvtxmw7q",
+      "name": "Flyer animado",
+      "price": "80.00",
+      "desc": "15 Seg. Aprox.",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301874035_yeq3.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
