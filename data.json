@@ -1133,7 +1133,8 @@
           "label": "Fecha estimada",
           "required": false
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "9osj4m3rmvt4kgls",
@@ -1163,7 +1164,8 @@
           "label": "Alguna Fecha limite",
           "required": false
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
@@ -1193,7 +1195,8 @@
           "label": "Fecha Estimada",
           "required": false
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "1o8pbzo2mvt6sen3",
@@ -1215,7 +1218,8 @@
           "label": "Concepto o idea",
           "required": false
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "h4ss1ahcmvtupcma",
@@ -1241,7 +1245,8 @@
           "label": "Color",
           "required": false
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "u5igcyvpmvtvog85",
@@ -1271,7 +1276,8 @@
           "label": "Información",
           "required": true
         }
-      ]
+      ],
+      "extraImages": []
     },
     {
       "id": "nh4uzlybmvtxl0ok",
@@ -1284,7 +1290,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301781718_lhpb.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "7lnt492emvtxmw7q",
@@ -1297,7 +1304,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793307409358_iacu.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "hjpqpx8wmvty3rs9",
@@ -1310,7 +1318,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302621570_szsj.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "8uwvsve0mvty4hkm",
@@ -1323,7 +1332,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302695760_chnx.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "n8ile1cjmvtz9oio",
@@ -1336,7 +1346,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304672585_joqj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "d4jog1hemvtzbrv8",
@@ -1349,7 +1360,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "50sex8ismvtzdwfk",
@@ -1362,7 +1374,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304749461_y555.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     },
     {
       "id": "b5zmn6nsmvtzheh9",
@@ -1375,7 +1388,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304891580_8rpy.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "extraImages": []
     }
   ],
   "clientes": [
@@ -1610,7 +1624,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352391,
+        "youtube": 1352402,
         "apple": 0
       }
     },
@@ -1629,7 +1643,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083481,
+        "youtube": 1083507,
         "apple": 0
       }
     },
@@ -1682,7 +1696,7 @@
       "extraImages": [],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/1S32oqt982qaSQEQfRFcOz?si=11e6c16da43445b1",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/eV3dPQhqE4c?si=zsFJVS3J_vQreFht",
       "featured": false,
       "plays": {
         "spotify": 0,
@@ -2028,7 +2042,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509184882,
+        "youtube": 509196183,
         "apple": 0
       }
     },
@@ -2118,7 +2132,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507459,
+        "youtube": 11507522,
         "apple": 0
       }
     },
@@ -2156,7 +2170,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529417927,
+        "youtube": 529429618,
         "apple": 0
       }
     },
@@ -2235,7 +2249,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138982,
+        "youtube": 138985,
         "apple": 0
       }
     },
@@ -2277,7 +2291,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51828,
+        "youtube": 51831,
         "apple": 0
       }
     },
@@ -3313,7 +3327,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38085507,
+        "youtube": 38085777,
         "apple": 0
       }
     },
@@ -3375,7 +3389,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097495,
+        "youtube": 5097598,
         "apple": 0
       }
     },
@@ -3416,7 +3430,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212844,
+        "youtube": 3212938,
         "apple": 0
       }
     }
