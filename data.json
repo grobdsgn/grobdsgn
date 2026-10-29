@@ -1315,6 +1315,17 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": []
+    },
+    {
+      "id": "d4jog1hemvtzbrv8",
+      "name": "Album Glas+",
+      "price": "150.00",
+      "desc": "",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
