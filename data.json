@@ -1113,6 +1113,9 @@
       "category": "artista",
       "group": "General",
       "order": 1,
+      "extraImages": [
+        "https://i.scdn.co/image/ab67616d0000b273c048c6e63b69c027b172c049"
+      ],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
@@ -1133,8 +1136,7 @@
           "label": "Fecha estimada",
           "required": false
         }
-      ],
-      "extraImages": []
+      ]
     },
     {
       "id": "9osj4m3rmvt4kgls",
