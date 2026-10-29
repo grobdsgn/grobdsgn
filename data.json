@@ -1332,7 +1332,7 @@
       "desc": "Creacion de Album Musical. \nPortada + Contraportada",
       "category": "artista",
       "group": "General",
-      "order": 6,
+      "order": 10,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304672585_joqj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
