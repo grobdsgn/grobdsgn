@@ -1142,11 +1142,24 @@
       "id": "p1lrkcxxmvt4mk4a",
       "name": "Cover Pack x10",
       "price": "300.00",
-      "desc": "Pack de 5 Imagenes para Tema Promocional.",
+      "desc": "Pack de 5 Imagenes para Tema Promocional.\n+Cover",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253145798_3htj.jpg",
-      "hasEditable": false,
-      "editablePrice": 0,
-      "briefingFields": []
+      "hasEditable": true,
+      "editablePrice": "150.00",
+      "briefingFields": [
+        {
+          "label": "Nombre del tema"
+        },
+        {
+          "label": "Nombre de Artista"
+        },
+        {
+          "label": "Concepto o idea"
+        },
+        {
+          "label": "Fecha Estimada"
+        }
+      ]
     }
   ],
   "clientes": [
