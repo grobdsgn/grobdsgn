@@ -1053,11 +1053,15 @@
         },
         {
           "id": "post7e8jmvswhw6l",
-          "name": "Nuevo Proyecto",
+          "name": "Los Cotizados Baby Rasta & Gringo",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239535694_hvon.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239537598_shre.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239539213_19w9.jpg"
+          ]
         }
       ]
     },
