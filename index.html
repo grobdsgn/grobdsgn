@@ -449,39 +449,34 @@ input:checked + .a-slider:before { transform: translateX(26px); }
 .briefing-editor-row button { background: rgba(229,72,77,0.2); color: var(--a-danger); border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
 
 /* LOGIN SCREEN (COMPACTO) */
-.a-login-screen{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
+.a-login-screen{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;z-index:99999}
 .a-login-screen.active{display:flex}
 .a-login-card{width:100%;max-width:380px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
 .a-login-title{font-family:var(--font-title);font-size:1.1rem;font-weight:700;text-align:center;margin-bottom:16px; color:var(--a-accent);}
 .a-login-error{color:var(--a-danger);font-size:12px;text-align:center;margin-top:12px;min-height:18px}
 
-.contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
-.contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
-.cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
-.cta-btn {display: flex;flex-direction: column;align-items: center;gap: 16px;text-decoration: none;color: var(--phil-text);transition: transform 0.3s;}
-.cta-btn:hover {transform: translateY(-6px);}
-.cta-icon {width: 72px;height: 72px;border-radius: 50%;background: #fff;display: grid;place-items: center;box-shadow: 0 10px 30px rgba(0,0,0,0.08);transition: box-shadow 0.3s;}
-.cta-btn:hover .cta-icon {box-shadow: 0 15px 40px rgba(0,0,0,0.15);}
-.cta-icon svg {width: 32px;height: 32px;}
-.cta-btn.wa .cta-icon svg, .cta-btn.ig .cta-icon svg, .cta-btn.em .cta-icon svg { color: #000; }
-.cta-label {font-size: 0.85rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.15em;color: var(--phil-text);}
+/* MODAL ESTILO POPUP (PEQUEÑO Y CENTRADO) */
+.a-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:99998;padding:20px}
+.a-modal-overlay.active{display:flex;animation:fadeIn 0.2s ease}
+.a-modal-content{background:var(--a-surface);border:1px solid var(--a-line);border-radius:14px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.8);display:flex;flex-direction:column;}
+.a-modal-content::-webkit-scrollbar{width:6px}
+.a-modal-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+.a-modal-header{padding:16px 20px;border-bottom:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--a-surface);z-index:10;border-radius:14px 14px 0 0}
+.a-modal-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px;font-family:var(--font-title)}
+.a-modal-close{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.05);color:var(--a-muted);cursor:pointer;display:grid;place-items:center;font-size:14px;border:none;transition:.2s}
+.a-modal-close:hover{background:rgba(229,72,77,0.15);color:var(--a-danger)}
+.a-modal-body{padding:20px;flex:1}
+.a-modal-footer{padding:14px 20px;border-top:1px solid var(--a-line);display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:var(--a-surface);z-index:10;border-radius:0 0 14px 14px;flex-wrap:wrap}
 
-footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;text-align: center;}
-.footer-logo {height: 48px;width: auto;margin: 0 auto 24px;display: block;filter: brightness(0) invert(1);-webkit-filter: brightness(0) invert(1);}
-.footer-inner {display: flex;justify-content: center;gap: 24px;flex-wrap: wrap;align-items: center;font-size: .66rem;letter-spacing: .14em;text-transform: uppercase;color: var(--muted);font-weight: 500;}
+.a-toast-container{position:fixed;bottom:20px;right:16px;z-index:3000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.a-toast{background:var(--a-surface);border:1px solid var(--a-line);padding:10px 16px;border-radius:10px;font-size:13px;font-weight:500;transform:translateY(100px);opacity:0;transition:all 0.3s;display:flex;align-items:center;gap:10px;min-width:200px;box-shadow:0 10px 30px rgba(0,0,0,0.5);pointer-events:auto;max-width:calc(100vw - 32px)}
+.a-toast.show{transform:translateY(0);opacity:1}
+.a-toast.success{border-left:3px solid var(--a-ok)}
+.a-toast.error{border-left:3px solid var(--a-danger)}
+.cover-preview-row{display:grid;grid-template-columns:100px 1fr;gap:14px;margin-bottom:18px;align-items:start}
+@media(max-width:480px){.cover-preview-row{grid-template-columns:1fr}}
+.cover-preview-img{width:100px;height:100px;object-fit:cover;border-radius:10px;border:1px solid var(--a-line);background:#000}
 
-.lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.96);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;backdrop-filter:blur(8px)}
-.lightbox.active{display:flex;animation:lbFade .25s ease}
-@keyframes lbFade{from{opacity:0}to{opacity:1}}
-.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 100px rgba(0,0,0,0.9);cursor:default;animation:lbZoom .35s cubic-bezier(.16,1,.3,1)}
-@keyframes lbZoom{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
-.lightbox-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:20px;display:grid;place-items:center;cursor:pointer;transition:.2s;z-index:2}
-.lightbox-close:hover{background:rgba(255,255,255,0.22);transform:rotate(90deg)}
-@media(max-width:640px){.lightbox{padding:12px}.lightbox-close{top:10px;right:10px;width:38px;height:38px;font-size:16px}}
-
-.public-toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,80px);background:rgba(20,20,22,.98);border:1px solid var(--line);color:var(--text);padding:12px 20px;border-radius:8px;font-size:13px;font-weight:500;z-index:99998;opacity:0;transition:.3s;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.6);max-width:calc(100vw - 32px);text-align:center}
-.public-toast.show{transform:translate(-50%,0);opacity:1}
-.public-toast.error{border-left:3px solid var(--danger)}
 </style>
 </head>
 <body>
@@ -814,7 +809,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 </div>
 
 <div id="adminApp">
-  <!-- LOGIN MODAL (OCULTO POR DEFECTO) -->
+  <!-- LOGIN MODAL -->
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
       <h1 class="a-login-title">Conectar con GitHub</h1>
@@ -947,7 +942,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
           <div id="portfolioPanelContent"></div>
         </div>
 
-        <!-- TIENDA (NUEVO) -->
+        <!-- TIENDA -->
         <div class="a-panel" id="a-panel-store">
           <div class="a-hero">
             <div class="a-hero-icon">🛍️</div>
@@ -1209,9 +1204,9 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
     </main>
   </div>
 
-  <!-- MODAL PRODUCTO (CREAR / EDITAR) -->
+  <!-- MODAL PRODUCTO (CREAR / EDITAR) - ESTILO POPUP -->
   <div class="a-modal-overlay" id="aProductModal">
-    <div class="a-modal-content">
+    <div class="a-modal-content" style="max-width: 480px;">
       <div class="a-modal-header">
         <h2 class="a-modal-title"><span>📦</span>Editar Producto</h2>
         <button class="a-modal-close" onclick="document.getElementById('aProductModal').classList.remove('active')">✕</button>
@@ -1222,8 +1217,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="cover-preview-row">
           <img id="aEditProductPreview" class="cover-preview-img" src="" onerror="handleImgError(this)">
           <div>
-            <div class="upload-zone compact" id="productUploadZone" style="margin-bottom:8px">
-              <span class="upload-zone-icon">📤</span>
+            <div class="upload-zone compact" id="productUploadZone" style="margin-bottom:8px; padding: 15px;">
+              <span class="upload-zone-icon" style="font-size: 22px;">📤</span>
               <div class="upload-zone-text"><strong>Subir Imagen</strong>desde PC</div>
               <input type="file" id="productFileInput" accept="image/*" hidden>
             </div>
@@ -1251,22 +1246,23 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="divider-line"></div>
 
         <div class="a-form-group">
-          <label class="a-form-label" style="display:flex; justify-content:space-between; align-items:center;">
-            Preguntas del Briefing (para el cliente)
-            <button class="a-btn a-btn-outline a-btn-xs" onclick="addBriefingField()" type="button">+ Añadir Pregunta</button>
+          <label class="a-form-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            Preguntas del Briefing
+            <button class="a-btn a-btn-outline a-btn-xs" onclick="addBriefingField()" type="button">+ Añadir</button>
           </label>
           <div id="aProductBriefingList"></div>
         </div>
       </div>
       <div class="a-modal-footer">
         <button class="a-btn a-btn-danger" id="aBtnDeleteProduct">Eliminar</button>
-        <button class="a-btn a-btn-primary" id="aBtnSaveProduct">💾 Guardar Producto</button>
+        <button class="a-btn a-btn-primary" id="aBtnSaveProduct">💾 Guardar</button>
       </div>
     </div>
   </div>
 
+  <!-- MODAL COVER -->
   <div class="a-modal-overlay" id="aCoverModal">
-    <div class="a-modal-content">
+    <div class="a-modal-content" style="max-width: 550px;">
       <div class="a-modal-header">
         <h2 class="a-modal-title"><span>💿</span>Editar Cover</h2>
         <button class="a-modal-close" id="aCloseCoverModal">✕</button>
@@ -1646,7 +1642,6 @@ window.addToCart = function(productId, btnElement) {
   const product = DATA.products.find(p => p.id === productId);
   if (!product) return;
   
-  // Efecto popup
   if(btnElement) {
     btnElement.classList.add('pop-anim');
     setTimeout(() => btnElement.classList.remove('pop-anim'), 300);
@@ -1701,7 +1696,6 @@ window.openBriefing = function(cartItemId) {
     container.appendChild(div);
   });
 
-  // Precargar respuestas si ya existen
   if (item.briefingAnswers) {
     item.briefingFields.forEach((field, index) => {
       const input = document.getElementById(`briefing_field_${index}`);
