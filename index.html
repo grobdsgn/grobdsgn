@@ -40,13 +40,8 @@ input,textarea,select{font:inherit;color:inherit}
 em{font-family:var(--font-title);font-style:normal;font-weight:800;color:var(--accent)}
 
 /* JUSTIFICAR TEXTOS GENERALES */
-p, .lead, .desc, .philosophy p, .tech-value, .categoria-intro p, .cover-extra-resena, .projReview {
-  text-align: justify;
-  text-justify: inter-word;
-}
-h1, h2, h3, h4, .eyebrow, .label, .meta, .btn, .mq-item, .tab, .a-btn, button, input, textarea, select {
-  text-align: left;
-}
+p, .lead, .desc, .philosophy p, .tech-value, .categoria-intro p, .cover-extra-resena, .projReview { text-align: justify; text-justify: inter-word; }
+h1, h2, h3, h4, .eyebrow, .label, .meta, .btn, .mq-item, .tab, .a-btn, button, input, textarea, select { text-align: left; }
 
 nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 0;transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s;border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.75),transparent)}
 nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--line);box-shadow:0 4px 30px rgba(0,0,0,0.5)}
@@ -61,7 +56,6 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
-/* NUEVOS BOTONES DE ICONOS (User & Cart) */
 .nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative}
 .nav-icon-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .nav-icon-btn svg{width:16px;height:16px;fill:currentColor}
@@ -74,6 +68,7 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
+/* HERO Y GENERALES */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;padding:100px 0 80px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a1a1a,#050505)}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 2.2s ease-in-out;image-rendering:-webkit-optimize-contrast;image-rendering:high-quality;animation:heroZoomIn 10s linear forwards;animation-play-state:paused;transform-origin:center center;will-change:transform,opacity}
@@ -89,7 +84,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text);transition:.3s}
 .btn-primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-primary:hover{background:transparent;color:var(--text)}
-
 .marquee{width:100%;overflow:hidden;border-block:1px solid var(--line);padding:18px 0;display:flex;background:#000;position:relative;z-index:5}
 .marquee-inner{display:flex;white-space:nowrap;will-change:transform;animation:marqueeScroll 25s linear infinite;width:max-content}
 .marquee:hover .marquee-inner{animation-play-state:paused}
@@ -134,6 +128,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tech-label{color:var(--muted);font-weight:400}
 .tech-value{color:#fff;font-weight:700;white-space:pre-line;font-family:var(--font-title);line-height:1.3;text-align:right;}
 
+/* PORTAFOLIO */
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:480px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
 .parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
 .parallax-bg.empty{background:linear-gradient(160deg,#111,#050505)}
@@ -168,7 +163,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .video-wrapper{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;border-radius:2px}
 .video-wrapper iframe{display:block;width:100%;height:100%;border:0}
 
-/* COVERS VIEW: CUADRÍCULA */
+/* COVERS VIEW */
 .covers-view{padding:110px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(20px,5vw,56px) 30px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px;max-width:20ch;text-transform:uppercase}
@@ -183,6 +178,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .covers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 70px}
 @media(max-width:900px){.covers-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}}
 @media(max-width:540px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px;padding:0 12px 60px}}
+
 .cover-item{--cover-glow:rgba(201,169,97,.5);--cover-glow-line:rgba(201,169,97,.45);position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer;background:#0a0a0a;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.35);transition:transform .3s ease,box-shadow .5s;perspective:800px;transform-style:preserve-3d;will-change:transform;}
 .cover-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.95);transform:scale(1.06);transition:filter .7s,transform 1s;min-height:80px;pointer-events:none;}
 .cover-shine{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.2) 45%,rgba(255,255,255,.08) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1.1s, opacity 0.3s;border-radius:6px;opacity:0;}
@@ -192,58 +188,17 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-item:hover::after{opacity:1}
 .cover-item:hover .cover-shine{opacity:1;transform:translateX(120%)}
 
-/* LIKE + VISTAS */
-.cover-like-btn,
-.cover-view-badge{
-  opacity:0;
-  transition:opacity .3s ease, transform .25s, background .25s, border-color .25s, color .25s;
-}
-.cover-item:hover .cover-like-btn,
-.cover-item:hover .cover-view-badge{
-  opacity:1;
-}
-@media (hover: none){
-  .cover-like-btn,
-  .cover-view-badge{
-    opacity:1 !important;
-  }
-}
-
-.cover-like-btn{
-  position:absolute;bottom:10px;right:10px;z-index:10;
-  display:flex;align-items:center;gap:5px;
-  background:rgba(0,0,0,.62);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.22);
-  padding:5px 10px;border-radius:100px;
-  color:#fff;cursor:pointer;
-  transition:transform .25s,background .25s,border-color .25s,color .25s;
-}
+.cover-like-btn,.cover-view-badge{opacity:0;transition:opacity .3s ease, transform .25s, background .25s, border-color .25s, color .25s;}
+.cover-item:hover .cover-like-btn,.cover-item:hover .cover-view-badge{opacity:1;}
+@media (hover: none){.cover-like-btn,.cover-view-badge{opacity:1 !important;}}
+.cover-like-btn{position:absolute;bottom:10px;right:10px;z-index:10;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);padding:5px 10px;border-radius:100px;color:#fff;cursor:pointer;transition:transform .25s,background .25s,border-color .25s,color .25s;}
 .cover-like-btn:hover{background:rgba(255,255,255,.18);transform:scale(1.06)}
 .cover-like-btn.liked{color:#E5484D;border-color:#E5484D}
 .cover-like-btn svg{width:13px;height:13px;fill:currentColor;display:block}
 .cover-like-btn span{font-size:.68rem;font-weight:700;line-height:1}
-
-.cover-view-badge{
-  position:absolute;bottom:10px;left:10px;z-index:6;
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:.66rem;font-weight:700;color:rgba(255,255,255,.88);
-  background:rgba(0,0,0,.62);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.16);
-  padding:5px 9px;border-radius:100px;line-height:1;pointer-events:none;
-}
+.cover-view-badge{position:absolute;bottom:10px;left:10px;z-index:6;display:inline-flex;align-items:center;gap:5px;font-size:.66rem;font-weight:700;color:rgba(255,255,255,.88);background:rgba(0,0,0,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);padding:5px 9px;border-radius:100px;line-height:1;pointer-events:none;}
 .cover-view-badge svg{width:11px;height:11px;fill:currentColor;display:block}
-
-@media(max-width:540px){
-  .cover-like-btn{bottom:7px;right:7px;padding:4px 8px;gap:4px}
-  .cover-like-btn svg{width:12px;height:12px}
-  .cover-like-btn span{font-size:.62rem}
-  .cover-view-badge{bottom:7px;left:7px;padding:4px 7px;font-size:.6rem}
-  .cover-view-badge svg{width:10px;height:10px}
-}
-
-.cover-plays-inline{display:none}
+@media(max-width:540px){.cover-like-btn{bottom:7px;right:7px;padding:4px 8px;gap:4px}.cover-like-btn svg{width:12px;height:12px}.cover-like-btn span{font-size:.62rem}.cover-view-badge{bottom:7px;left:7px;padding:4px 7px;font-size:.6rem}.cover-view-badge svg{width:10px;height:10px}}
 .cover-music-icon{position:absolute;top:8px;right:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(201,169,97,.5);display:grid;place-items:center;color:var(--accent);font-size:.8rem;pointer-events:none}
 .cover-yt-icon{position:absolute;top:8px;left:8px;z-index:6;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.75);border:1px solid rgba(255,0,0,.5);display:grid;place-items:center;color:#FF0000;font-size:.65rem;pointer-events:none}
 
@@ -255,14 +210,11 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-hero-badge{display:inline-flex;align-items:center;padding:8px 18px;border:1.5px solid var(--accent);border-radius:100px;font-size:.65rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
 .cover-hero-title{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5.4vw,4.6rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;color:#fff;margin:0 0 20px 0;word-break:break-word}
 .cover-hero-artist{font-size:clamp(.9rem,1.3vw,1.15rem);color:rgba(245,243,239,.85);margin:0 0 24px 0}
-
 .cover-hero-plays { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
 .play-stat { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--accent); background: rgba(201,169,97,0.06); padding: 8px 16px; border-radius: 100px; font-weight: 700; border: 1px solid rgba(201,169,97,0.2); }
 .play-stat svg { width: 16px; height: 16px; fill: var(--accent); }
-
 .cover-hero-music{width:100%;max-width:520px;margin-top:8px;}
 .cover-hero-music iframe{border-radius:4px;background:transparent;}
-
 .cover-extra-section{background:#000;width:100%;padding:60px 0 30px}
 .cover-extra-section.hidden{display:none}
 .cover-extra-block{max-width:1000px;margin:0 auto 40px;padding:0 clamp(20px,5vw,56px)}
@@ -288,7 +240,6 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cliente-logo img{max-width:100%;max-height:70px;width:auto;height:auto;object-fit:contain;transition:transform .3s;min-height:16px}
 .cliente-logo:hover{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65));-webkit-filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65))}
 .cliente-logo:hover img{transform:scale(1.05)}
-
 @media(max-width:900px){.cliente-logo,.software-logo{filter:brightness(0) invert(1) !important;-webkit-filter:brightness(0) invert(1) !important;}}
 
 .contacto-view{padding:120px 0 60px;min-height:100vh}
@@ -334,6 +285,8 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cart-item-price { color: var(--accent); font-weight: 700; }
 .cart-item-remove { margin-left: auto; color: var(--muted); cursor: pointer; padding: 10px; transition: 0.3s; }
 .cart-item-remove:hover { color: var(--danger); }
+.cart-checkout { width: 100%; padding: 16px; background: #25D366; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; }
+.cart-checkout:hover { background: #128C7E; transform: translateY(-2px); }
 
 .contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
 .contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
@@ -553,13 +506,12 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <button class="tab" data-tab="covers" id="navTabCov">Covers</button>
         <button class="tab" data-tab="clientes" id="navTabCli">Clientes</button>
         <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
+        <button class="tab" data-tab="tienda" id="navTabTie">Tienda</button>
       </div>
       <div class="nav-right">
-        <!-- ICONO DE USUARIO -->
         <button class="nav-icon-btn" id="btnUser" title="Iniciar Sesión / Mi Perfil">
           <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </button>
-        <!-- ICONO DE CARRITO -->
         <button class="nav-icon-btn" id="btnCart" title="Mi Carrito">
           <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
           <span class="cart-count" id="cartCounter">0</span>
@@ -759,9 +711,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
           </div>
           
           <div class="tienda-grid" id="tiendaProductosGrid">
-            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line); border-radius: 8px;">
-              <p style="color: var(--muted); font-size: 1.1rem;">Aún no hay productos disponibles.</p>
-            </div>
+            <!-- Se llena dinámicamente -->
           </div>
         </div>
       </section>
@@ -789,6 +739,13 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             <div id="perfilCartList">
               <!-- Se llena con JS -->
             </div>
+            <div id="perfilCartTotal" style="text-align: right; font-size: 1.5rem; font-family: var(--font-title); font-weight: 800; margin-top: 20px; display: none;">
+              Total: <span style="color: var(--accent);">$0</span>
+            </div>
+            <button id="btnCheckout" class="cart-checkout" style="display: none;" onclick="checkoutWhatsApp()">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+              Finalizar Compra por WhatsApp
+            </button>
           </div>
 
           <!-- COVERS FAVORITOS -->
@@ -847,7 +804,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 </div>
 
 <div id="adminApp">
-  <!-- ... (Mismo código de Admin que tenías, sin cambios) ... -->
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
       <img src="logo.svg" alt="Grobdesigns" class="a-login-logo" onerror="this.style.display='none'">
@@ -875,6 +831,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="a-nav-item active" data-target="hero"><span class="a-nav-icon">🎬</span><span class="a-nav-label">Inicio</span><span class="a-nav-badge" id="aBadgeHero">0</span></div>
         <div class="a-nav-item" data-target="covers"><span class="a-nav-icon">💿</span><span class="a-nav-label">Covers</span><span class="a-nav-badge" id="aBadgeCovers">0</span></div>
         <div class="a-nav-item" data-target="portfolio"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Portafolio</span><span class="a-nav-badge" id="aBadgePortfolio">0</span></div>
+        <div class="a-nav-item" data-target="store"><span class="a-nav-icon">🛍️</span><span class="a-nav-label">Tienda</span><span class="a-nav-badge" id="aBadgeStore">0</span></div>
         <div class="a-nav-item" data-target="clients"><span class="a-nav-icon">🏢</span><span class="a-nav-label">Clientes</span><span class="a-nav-badge" id="aBadgeClients">0</span></div>
         <div class="a-nav-item" data-target="tools"><span class="a-nav-icon">🛠️</span><span class="a-nav-label">Herramientas</span><span class="a-nav-badge" id="aBadgeTools">0</span></div>
         <div class="a-nav-item" data-target="texts"><span class="a-nav-icon">📝</span><span class="a-nav-label">Textos Generales</span></div>
@@ -979,6 +936,37 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <!-- PORTFOLIO -->
         <div class="a-panel" id="a-panel-portfolio">
           <div id="portfolioPanelContent"></div>
+        </div>
+
+        <!-- TIENDA (NUEVO) -->
+        <div class="a-panel" id="a-panel-store">
+          <div class="a-hero">
+            <div class="a-hero-icon">🛍️</div>
+            <div class="a-hero-text">
+              <h2>Tienda</h2>
+              <p>Gestiona los productos que aparecen en la tienda pública.</p>
+              <div class="a-hero-stats"><div class="a-stat">Productos: <strong id="statProducts">0</strong></div></div>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">➕</span>Añadir Producto</h2></div>
+            <div class="a-card-body">
+              <div class="upload-zone" id="productUploadZone">
+                <span class="upload-zone-icon">📤</span>
+                <div class="upload-zone-text"><strong>Subir imagen del producto</strong>o toca para seleccionar</div>
+                <input type="file" id="productFileInput" accept="image/*" hidden>
+              </div>
+              <div class="divider-line"></div>
+              <div class="a-form-group"><label class="a-form-label">Nombre del Producto</label><input type="text" id="aProductName" class="a-form-input" placeholder="Ej: Póster Grobdesigns"></div>
+              <div class="a-form-group"><label class="a-form-label">Precio (USD)</label><input type="number" id="aProductPrice" class="a-form-input" placeholder="Ej: 25.00"></div>
+              <div class="a-form-group"><label class="a-form-label">Descripción (opcional)</label><textarea id="aProductDesc" class="a-form-textarea" rows="2" placeholder="Descripción breve..."></textarea></div>
+              <button class="a-btn a-btn-primary" id="aBtnAddProduct" style="width:100%; margin-top:10px;">+ Añadir a la Tienda</button>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📦</span>Productos<span class="a-count" id="aProductsCount">0</span></h2></div>
+            <div class="a-card-body"><div class="a-grid" id="aProductsGrid"></div></div>
+          </div>
         </div>
 
         <!-- CLIENTS -->
@@ -1309,7 +1297,7 @@ function formatNumber(num) {
   return num.toString();
 }
 
-// 🔥 FALLBACK INICIAL PARA EL BOTÓN DE USUARIO Y CARRITO 🔥
+// 🔥 FALLBACK INICIAL 🔥
 window.handleAuthClick = function() {
     alert("El sistema de inicio de sesión está cargando. Por favor, espera un segundo e intenta de nuevo.");
 };
@@ -1326,9 +1314,9 @@ document.getElementById('btnUser').addEventListener('click', () => {
 // Lógica de clic en el botón de Carrito (Loguearse si no hay sesión)
 document.getElementById('btnCart').addEventListener('click', () => {
     if (window.currentUser) {
-        location.hash = '#tienda';
+        location.hash = '#perfil';
     } else {
-        alert("Debes iniciar sesión para acceder al carrito y la tienda.");
+        alert("Debes iniciar sesión para acceder al carrito y a tus compras.");
         window.handleAuthClick();
     }
 });
@@ -1531,6 +1519,7 @@ function migrateData(data) {
   if (data.settings.youtubeApiKey === undefined) data.settings.youtubeApiKey = '';
   if (data.settings.apifyToken === undefined) data.settings.apifyToken = '';
   if (data.settings.apifyActor === undefined) data.settings.apifyActor = DEFAULT_APIFY_ACTOR;
+  if (!data.products) data.products = []; // NUEVO
   if (data.categories) {
     data.categories.forEach(cat => {
       if (cat.items !== undefined) { if (!cat.projects) { const imgs = (cat.items || []).map(item => getItemUrl(item)); cat.projects = imgs.length ? [{ id: uid(), name: cat.name || 'Proyectos', logo: cat.logo || '', parallaxImage: cat.parallaxImage || imgs[0] || '', images: imgs }] : []; } delete cat.items; delete cat.logo; }
@@ -1547,7 +1536,7 @@ function migrateData(data) {
   return data;
 }
 
-let DATA = { hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' }, heroImages: [], categories: [], clientes: [], software: [], covers: [], contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' }, theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }, settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, texts: {}, ficha: [] };
+let DATA = { hero: { eyebrow: 'Disponible · 2025', title: 'Diseño experiencias\nque se recuerdan.', lead: 'Soy Grobdesigns, diseñador gráfico y de producto.' }, heroImages: [], categories: [], products: [], clientes: [], software: [], covers: [], contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' }, theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' }, settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, texts: {}, ficha: [] };
 const ADMIN_NAV = { view: 'categories', catId: null, projId: null };
 let _coversOrder = null, _currentFilter = 'todos', _currentSearch = '', _prevRoute = null;
 
@@ -1584,72 +1573,9 @@ function getCoversList() {
   return list;
 }
 
-function renderProfile() {
-  if (!window.currentUser) {
-    location.hash = '#home';
-    return;
-  }
-
-  // Datos de usuario
-  document.getElementById('perfilName').textContent = window.currentUser.displayName || 'Usuario';
-  document.getElementById('perfilEmail').textContent = window.currentUser.email || '';
-  document.getElementById('perfilAvatar').src = window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
-
-  // Renderizar Covers Likeados
-  const stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
-  const likedIds = Object.keys(stats).filter(id => stats[id].liked);
-  const likedCovers = (DATA.covers || []).filter(c => likedIds.includes(c.id));
-  
-  const likedContainer = document.getElementById('perfilLikedCovers');
-  likedContainer.innerHTML = '';
-  
-  if (likedCovers.length === 0) {
-    likedContainer.innerHTML = '<div class="perfil-empty" style="grid-column: 1/-1;">Aún no te ha gustado ningún cover.</div>';
-  } else {
-    likedCovers.forEach(c => {
-      // Reutilizamos la lógica de renderPublicCovers simplificada
-      const item = document.createElement('div'); item.className = 'cover-item';
-      const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im); item.appendChild(im);
-      item.appendChild(Object.assign(document.createElement('div'), { className: 'cover-shine' }));
-      // Al hacer click en un cover desde el perfil, te lleva a su detalle
-      item.onclick = () => location.hash = `#cover-${c.id}`;
-      likedContainer.appendChild(item);
-    });
-  }
-
-  // Renderizar Carrito
-  const cartContainer = document.getElementById('perfilCartList');
-  cartContainer.innerHTML = '';
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-  
-  if (cart.length === 0) {
-    cartContainer.innerHTML = '<div class="perfil-empty">Tu carrito está vacío.</div>';
-  } else {
-    cart.forEach((item, index) => {
-      const el = document.createElement('div');
-      el.className = 'cart-item';
-      el.innerHTML = `
-        <img src="${resolveImageUrl(item.img)}" alt="${item.name}">
-        <div class="cart-item-info">
-          <h4>${item.name}</h4>
-          <p class="cart-item-price">$${item.price}</p>
-        </div>
-        <button class="cart-item-remove" onclick="removeFromCart(${index})" title="Eliminar">✕</button>
-      `;
-      cartContainer.appendChild(el);
-    });
-  }
-}
-
-// Función dummy para que no de error si no hay lógica de carrito todavía
-window.removeFromCart = function(index) {
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-  cart.splice(index, 1);
-  localStorage.setItem('grob_cart', JSON.stringify(cart));
-  updateCartCounter();
-  renderProfile(); // Recargar la vista
-};
-
+// ==========================================
+// LÓGICA DEL CARRITO Y TIENDA (FRONTEND)
+// ==========================================
 function updateCartCounter() {
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
   const counter = document.getElementById('cartCounter');
@@ -1659,19 +1585,145 @@ function updateCartCounter() {
   }
 }
 
-// Añadimos la lógica del carrito (simulada para que se vea en el perfil)
-window.addToCart = function(id, name, price, img) {
+window.addToCart = function(productId) {
   if (!window.currentUser) {
-     alert("Debes iniciar sesión para añadir al carrito.");
+     alert("Debes iniciar sesión para añadir productos al carrito.");
      window.handleAuthClick();
      return;
   }
+  const product = DATA.products.find(p => p.id === productId);
+  if (!product) return;
+  
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-  cart.push({ id, name, price, img });
+  // Verificamos si ya está en el carrito (opcional, aquí permitimos duplicados)
+  cart.push({ ...product, cartItemId: uid() });
   localStorage.setItem('grob_cart', JSON.stringify(cart));
   updateCartCounter();
-  showToast("Añadido al carrito");
+  showToast(`"${product.name}" añadido al carrito`);
 };
+
+window.removeFromCart = function(cartItemId) {
+  let cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  cart = cart.filter(item => item.cartItemId !== cartItemId);
+  localStorage.setItem('grob_cart', JSON.stringify(cart));
+  updateCartCounter();
+  renderProfile(); // Recargar la vista
+};
+
+window.checkoutWhatsApp = function() {
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  if (cart.length === 0) return;
+  
+  const phone = DATA.contact.phone || '';
+  const digits = phone.replace(/[^0-9]/g, '');
+  
+  let message = `Hola! Soy ${window.currentUser.displayName}. Me gustaría comprar:\n\n`;
+  let total = 0;
+  cart.forEach(item => {
+    message += `- 1x ${item.name} ($${item.price})\n`;
+    total += parseFloat(item.price);
+  });
+  message += `\n*Total: $${total.toFixed(2)}*`;
+  
+  const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};
+
+// ==========================================
+// RENDERIZADO PÚBLICO
+// ==========================================
+
+function renderPublicStore() {
+  const grid = document.getElementById('tiendaProductosGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  
+  if (!DATA.products || DATA.products.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line); border-radius: 8px;">
+      <p style="color: var(--muted); font-size: 1.1rem;">Aún no hay productos disponibles.</p>
+    </div>`;
+    return;
+  }
+
+  DATA.products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'tienda-card';
+    card.innerHTML = `
+      <img src="${resolveImageUrl(p.img)}" alt="${p.name}" onerror="handleImgError(this)">
+      <div class="tienda-card-info">
+        <h3 class="tienda-card-title">${escHtml(p.name)}</h3>
+        <p class="tienda-card-price">$${p.price}</p>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 15px;">${escHtml(p.desc || '')}</p>
+        <button class="tienda-btn-add" onclick="addToCart('${p.id}')">Añadir al Carrito 🛒</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderProfile() {
+  if (!window.currentUser) {
+    location.hash = '#home';
+    return;
+  }
+
+  document.getElementById('perfilName').textContent = window.currentUser.displayName || 'Usuario';
+  document.getElementById('perfilEmail').textContent = window.currentUser.email || '';
+  document.getElementById('perfilAvatar').src = window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
+
+  // Covers Likeados
+  const stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+  const likedIds = Object.keys(stats).filter(id => stats[id].liked);
+  const likedCovers = (DATA.covers || []).filter(c => likedIds.includes(c.id));
+  const likedContainer = document.getElementById('perfilLikedCovers');
+  likedContainer.innerHTML = '';
+  
+  if (likedCovers.length === 0) {
+    likedContainer.innerHTML = '<div class="perfil-empty" style="grid-column: 1/-1;">Aún no te ha gustado ningún cover.</div>';
+  } else {
+    likedCovers.forEach(c => {
+      const item = document.createElement('div'); item.className = 'cover-item';
+      const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im); item.appendChild(im);
+      item.appendChild(Object.assign(document.createElement('div'), { className: 'cover-shine' }));
+      item.onclick = () => location.hash = `#cover-${c.id}`;
+      likedContainer.appendChild(item);
+    });
+  }
+
+  // Carrito
+  const cartContainer = document.getElementById('perfilCartList');
+  const cartTotalEl = document.getElementById('perfilCartTotal');
+  const btnCheckout = document.getElementById('btnCheckout');
+  
+  cartContainer.innerHTML = '';
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  
+  if (cart.length === 0) {
+    cartContainer.innerHTML = '<div class="perfil-empty">Tu carrito está vacío.</div>';
+    cartTotalEl.style.display = 'none';
+    btnCheckout.style.display = 'none';
+  } else {
+    let total = 0;
+    cart.forEach((item) => {
+      total += parseFloat(item.price);
+      const el = document.createElement('div');
+      el.className = 'cart-item';
+      el.innerHTML = `
+        <img src="${resolveImageUrl(item.img)}" alt="${item.name}">
+        <div class="cart-item-info">
+          <h4>${escHtml(item.name)}</h4>
+          <p class="cart-item-price">$${item.price}</p>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart('${item.cartItemId}')" title="Eliminar">✕</button>
+      `;
+      cartContainer.appendChild(el);
+    });
+    
+    cartTotalEl.innerHTML = `Total: <span style="color: var(--accent);">$${total.toFixed(2)}</span>`;
+    cartTotalEl.style.display = 'block';
+    btnCheckout.style.display = 'flex';
+  }
+}
 
 
 function handleRoute() {
@@ -1687,14 +1739,9 @@ function handleRoute() {
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
   else if (h === '#tienda') { 
-      if (!window.currentUser) {
-          alert("Debes iniciar sesión para ver la tienda.");
-          window.handleAuthClick();
-          location.hash = '#home';
-          return;
-      }
+      renderPublicStore();
       showView('tienda'); 
-      syncTabs(''); 
+      syncTabs('tienda'); 
   }
   else if (h === '#perfil') {
       if (!window.currentUser) {
@@ -1798,7 +1845,7 @@ function renderPublicSite() {
   const tech = $('#techSheetRows'); if (tech) { tech.innerHTML = ''; (DATA.ficha || []).forEach(r => { const d = document.createElement('div'); d.className = 'tech-row'; d.innerHTML = `<div class="tech-label">${escHtml(r.label)}</div><div class="tech-value">${escHtml(r.value)}</div>`; tech.appendChild(d); }); }
 
   const bg = $('#heroBg'); if (bg) { bg.innerHTML = ''; (DATA.heroImages || []).forEach(url => { const l = document.createElement('div'); l.className = 'hero-bg-layer'; l.style.backgroundImage = `url("${resolveImageUrl(url)}")`; bg.appendChild(l); }); initHeroRotation(); }
-  renderMarquee(); renderFeaturedCovers(); setupPlaysBanner(); renderPortfolioCategories(); renderPublicCovers(getCoversList()); renderPublicClients(); renderPublicTools(); renderContact();
+  renderMarquee(); renderFeaturedCovers(); setupPlaysBanner(); renderPortfolioCategories(); renderPublicCovers(getCoversList()); renderPublicClients(); renderPublicTools(); renderContact(); renderPublicStore();
 }
 
 function renderContact() {
@@ -1952,8 +1999,8 @@ window.cleanupUnusedMedia = async () => {
 
 function updateAdminBadges() {
   const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
-  set('aBadgeHero', (DATA.heroImages || []).length); set('aBadgeCovers', (DATA.covers || []).length); const tp = (DATA.categories || []).reduce((s, c) => s + (c.projects || []).length, 0); set('aBadgePortfolio', tp); set('aBadgeClients', (DATA.clientes || []).length); set('aBadgeTools', (DATA.software || []).length);
-  set('statHeroImgs', (DATA.heroImages || []).length); set('statCategories', (DATA.categories || []).length); set('statProjects', tp); set('statClients', (DATA.clientes || []).length); set('statTools', (DATA.software || []).length); set('aCoversCount', (DATA.covers || []).length); set('aClientsCount', (DATA.clientes || []).length); set('aToolsCount', (DATA.software || []).length);
+  set('aBadgeHero', (DATA.heroImages || []).length); set('aBadgeCovers', (DATA.covers || []).length); const tp = (DATA.categories || []).reduce((s, c) => s + (c.projects || []).length, 0); set('aBadgePortfolio', tp); set('aBadgeStore', (DATA.products || []).length); set('aBadgeClients', (DATA.clientes || []).length); set('aBadgeTools', (DATA.software || []).length);
+  set('statHeroImgs', (DATA.heroImages || []).length); set('statCategories', (DATA.categories || []).length); set('statProjects', tp); set('statProducts', (DATA.products || []).length); set('statClients', (DATA.clientes || []).length); set('statTools', (DATA.software || []).length); set('aCoversCount', (DATA.covers || []).length); set('aProductsCount', (DATA.products || []).length); set('aClientsCount', (DATA.clientes || []).length); set('aToolsCount', (DATA.software || []).length);
   const c = DATA.covers || []; set('statSencillo', c.filter(x => x.category === 'sencillo').length); set('statAlbums', c.filter(x => x.category === 'albums').length); set('statEdiciones', c.filter(x => x.category === 'ediciones').length); set('statFeatured', c.filter(x => x.featured).length);
 }
 
@@ -1966,6 +2013,9 @@ function renderAdmin() {
 
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = ''; (DATA.heroImages || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" onerror="handleImgError(this)"><div class="a-cover-card-info"><div class="a-cover-card-actions"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('heroImages', ${i})">✕</button></div></div>`; hGrid.appendChild(el); });
   const cGrid = $('#aCoversGrid'); cGrid.innerHTML = ''; (DATA.covers || []).forEach((c, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)">${c.featured ? '<span class="a-badge featured">★</span>' : `<span class="a-badge">${escHtml(c.category || '')}</span>`}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(c.name || 'Sin título')}</div><div class="a-cover-card-meta">${escHtml(c.artist || 'Sin artista')}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openAdminCoverModal(${i})">✏️</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('covers', ${i})">✕</button></div></div>`; cGrid.appendChild(el); });
+  
+  const pGrid = $('#aProductsGrid'); pGrid.innerHTML = ''; (DATA.products || []).forEach((p, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(p.img)}" style="object-fit:cover;" onerror="handleImgError(this)"><div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">$${p.price}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})" style="flex:1">✕ Eliminar</button></div></div>`; pGrid.appendChild(el); });
+
   const clGrid = $('#aClientsGrid'); clGrid.innerHTML = ''; (DATA.clientes || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:16px;background:#0a0a0a" onerror="handleImgError(this)"><div class="a-cover-card-actions" style="padding:8px;display:flex;gap:4px;background:var(--a-surface)"><button class="a-btn a-btn-outline a-btn-xs" onclick="moveClientItem(${i}, -1)" ${i === 0 ? 'disabled' : ''}>↑</button><button class="a-btn a-btn-outline a-btn-xs" onclick="moveClientItem(${i}, 1)" ${i === DATA.clientes.length - 1 ? 'disabled' : ''}>↓</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('clientes', ${i})" style="flex:1">✕</button></div>`; clGrid.appendChild(el); });
   const tGrid = $('#aToolsGrid'); tGrid.innerHTML = ''; (DATA.software || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" style="object-fit:contain;padding:16px;background:#0a0a0a" onerror="handleImgError(this)"><div class="a-cover-card-actions" style="padding:8px;background:var(--a-surface)"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('software', ${i})" style="flex:1">✕</button></div>`; tGrid.appendChild(el); });
 
@@ -2068,6 +2118,42 @@ setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.p
 setupUploadZone('coverMainUploadZone', 'coverMainFileInput', (urls) => { if (urls[0]) { $('#aEditCoverUrl').value = urls[0]; $('#aEditCoverPreview').src = urls[0]; aToast('Imagen cargada'); } }, 2000, 0.9, 500);
 setupUploadZone('coverExtrasUploadZone', 'coverExtrasFileInput', (urls) => { const ta = $('#aEditCoverExtras'); const ex = ta.value.split('\n').map(s => s.trim()).filter(Boolean); ta.value = [...ex, ...urls].join('\n'); aToast('Añadidas'); }, 2000, 0.9, 500);
 
+// Lógica del botón de añadir producto
+let tempProductImg = '';
+setupUploadZone('productUploadZone', 'productFileInput', (urls) => {
+  if (urls[0]) {
+    tempProductImg = urls[0];
+    aToast('Imagen subida correctamente');
+  }
+}, 1000, 0.9, 300);
+
+$('#aBtnAddProduct').onclick = () => {
+  const name = $('#aProductName').value.trim();
+  const price = $('#aProductPrice').value.trim();
+  const desc = $('#aProductDesc').value.trim();
+  
+  if (!name || !price || !tempProductImg) return aToast('Faltan campos o imagen', 'error');
+  
+  if (!DATA.products) DATA.products = [];
+  DATA.products.push({
+    id: uid(),
+    name: name,
+    price: parseFloat(price).toFixed(2),
+    desc: desc,
+    img: tempProductImg
+  });
+  
+  $('#aProductName').value = '';
+  $('#aProductPrice').value = '';
+  $('#aProductDesc').value = '';
+  tempProductImg = '';
+  
+  updateAdminBadges();
+  renderAdmin();
+  saveAdminData();
+  aToast('Producto añadido');
+};
+
 $('#aBtnAddHeroUrls').onclick = () => { const urls = $('#aHeroUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); if (urls.length) { DATA.heroImages.push(...urls); $('#aHeroUrlsInput').value=''; updateAdminBadges(); renderAdmin(); saveAdminData(); } };
 $('#aBtnAddCoverUrls').onclick = () => { const urls = $('#aCoverUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); const cat = $('#aCoverCategorySelect').value; if (urls.length) { urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } })); $('#aCoverUrlsInput').value=''; updateAdminBadges(); renderAdmin(); saveAdminData(); } };
 $('#aBtnAddClientUrls').onclick = () => { const urls = $('#aClientUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); if (urls.length) { DATA.clientes.push(...urls); $('#aClientUrlsInput').value=''; updateAdminBadges(); renderAdmin(); saveAdminData(); } };
@@ -2116,7 +2202,6 @@ boot();
         if (confirm(`Conectado como ${auth.currentUser.displayName}. ¿Cerrar sesión?`)) {
           signOut(auth).then(() => {
             actualizarBotonUsuario(null);
-            // Si estaba en perfil, lo devolvemos al inicio al cerrar sesión
             if (location.hash === '#perfil') location.hash = '#home';
           });
         }
@@ -2155,7 +2240,6 @@ boot();
     const btn = document.getElementById('btnUser');
     if (!btn) return;
     
-    // Conectamos el botón a la función real
     btn.onclick = () => {
         if (window.currentUser) {
             location.hash = '#perfil';
@@ -2175,11 +2259,9 @@ boot();
     }
   }
   
-  // Asegurar que el botón esté listo cuando cargue la página
   document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('btnUser');
       if(btn) {
-          // Si la función real ya se cargó, la usa, si no, usa la de alerta
           btn.onclick = () => {
               if (window.currentUser) {
                   location.hash = '#perfil';
