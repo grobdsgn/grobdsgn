@@ -1110,21 +1110,30 @@
       "name": "Cover",
       "price": "50.00",
       "desc": "Creación de Cover.",
-      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg"
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg",
+      "hasEditable": false,
+      "editablePrice": 0,
+      "briefingFields": []
     },
     {
       "id": "9osj4m3rmvt4kgls",
       "name": "Cover Pack x5",
       "price": "200.00",
       "desc": "PAck de 5 Imagenes para Tema Promocional.",
-      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg"
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
+      "hasEditable": false,
+      "editablePrice": 0,
+      "briefingFields": []
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
       "name": "Cover Pack x10",
       "price": "300.00",
       "desc": "Pack de 5 Imagenes para Tema Promocional.",
-      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253145798_3htj.jpg"
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253145798_3htj.jpg",
+      "hasEditable": false,
+      "editablePrice": 0,
+      "briefingFields": []
     }
   ],
   "clientes": [
@@ -1378,7 +1387,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083377,
+        "youtube": 1083378,
         "apple": 0
       }
     },
@@ -1397,7 +1406,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94699,
+        "youtube": 94701,
         "apple": 0
       }
     },
@@ -1737,7 +1746,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126740,
+        "youtube": 1126741,
         "apple": 0
       }
     },
@@ -1777,7 +1786,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509118046,
+        "youtube": 509120643,
         "apple": 0
       }
     },
@@ -1867,7 +1876,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507137,
+        "youtube": 11507146,
         "apple": 0
       }
     },
@@ -1905,7 +1914,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529343593,
+        "youtube": 529345596,
         "apple": 0
       }
     },
@@ -1943,7 +1952,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233753,
+        "youtube": 5233756,
         "apple": 0
       }
     },
@@ -2894,7 +2903,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1361,
+        "youtube": 1362,
         "apple": 0
       }
     },
@@ -3062,7 +3071,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38083621,
+        "youtube": 38083680,
         "apple": 0
       }
     },
@@ -3124,7 +3133,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5096946,
+        "youtube": 5096963,
         "apple": 0
       }
     },
@@ -3190,7 +3199,8 @@
   "settings": {
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
     "apifyToken": "",
-    "apifyActor": ""
+    "apifyActor": "",
+    "storeMaintenance": true
   },
   "texts": {
     "navHome": "Inicio",
