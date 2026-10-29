@@ -1111,9 +1111,22 @@
       "price": "50.00",
       "desc": "Creación de Cover.",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg",
-      "hasEditable": false,
-      "editablePrice": 0,
-      "briefingFields": []
+      "hasEditable": true,
+      "editablePrice": "150.00",
+      "briefingFields": [
+        {
+          "label": "Nombre del tema"
+        },
+        {
+          "label": "Nombre de Artista"
+        },
+        {
+          "label": "Concepto o Idea"
+        },
+        {
+          "label": "Fecha estimada"
+        }
+      ]
     },
     {
       "id": "9osj4m3rmvt4kgls",
