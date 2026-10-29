@@ -1173,11 +1173,11 @@
       "briefingFields": [
         {
           "label": "Nombre del tema",
-          "required": false
+          "required": true
         },
         {
           "label": "Nombre de Artista",
-          "required": false
+          "required": true
         },
         {
           "label": "Concepto o idea",
