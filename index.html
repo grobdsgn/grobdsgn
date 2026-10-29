@@ -534,7 +534,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
       <div class="nav-right">
         <div class="user-dropdown-wrap">
             <button class="nav-icon-btn" id="btnUser" title="Mi Cuenta">
-                <img id="userNavAvatar" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
+                <img id="userNavAvatar" src="" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:none;">
                 <svg id="userNavIcon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             </button>
             <div class="user-dropdown" id="userDropdown">
@@ -823,7 +823,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
   </main>
 
   <section class="contact-cta-section">
-      <h2>¿Listo para <em>iniciar tu proyexto</em>?</h2>
+      <h2>¿Listo para <em>comenzar</em>?</h2>
       <button onclick="startFlow()" class="btn-cta-gold">Comencemos</button>
   </section>
 
@@ -1464,6 +1464,16 @@ document.getElementById('btnUser').addEventListener('click', (e) => {
 });
 document.addEventListener('click', () => {
     document.getElementById('userDropdown').classList.remove('open');
+});
+
+// EVENTO DEL CARRITO (RESTABLECIDO)
+document.getElementById('btnCart').addEventListener('click', () => {
+    if (window.currentUser) {
+        location.hash = '#perfil';
+    } else {
+        showToast("Inicia sesión para ver tu carrito");
+        window.handleAuthClick();
+    }
 });
 
 // ACTUALIZAR AVATAR DEL NAV
