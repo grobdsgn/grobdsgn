@@ -1198,7 +1198,16 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793256682858_5jr8.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [
+        {
+          "label": "Nombre",
+          "required": true
+        },
+        {
+          "label": "Concepto o idea",
+          "required": false
+        }
+      ]
     }
   ],
   "clientes": [
