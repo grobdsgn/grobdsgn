@@ -1104,6 +1104,15 @@
       ]
     }
   ],
+  "products": [
+    {
+      "id": "pb457i28mvt4ewc3",
+      "name": "Cover",
+      "price": "50.00",
+      "desc": "Creación de Cover.",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg"
+    }
+  ],
   "clientes": [
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157410019_z3o9.png",
     "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793157408902_dhbf.png",
@@ -1315,7 +1324,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278519,
+        "youtube": 278528,
         "apple": 0
       }
     },
@@ -1336,7 +1345,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352358,
+        "youtube": 1352379,
         "apple": 0
       }
     },
@@ -1355,7 +1364,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083322,
+        "youtube": 1083377,
         "apple": 0
       }
     },
@@ -1374,7 +1383,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94679,
+        "youtube": 94699,
         "apple": 0
       }
     },
@@ -1471,7 +1480,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 46326,
+        "youtube": 46328,
         "apple": 0
       }
     },
@@ -1570,7 +1579,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 149,
+        "youtube": 151,
         "apple": 0
       }
     },
@@ -1714,7 +1723,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126732,
+        "youtube": 1126740,
         "apple": 0
       }
     },
@@ -1735,7 +1744,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239075,
+        "youtube": 26239132,
         "apple": 0
       }
     },
@@ -1754,7 +1763,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509084980,
+        "youtube": 509118046,
         "apple": 0
       }
     },
@@ -1844,7 +1853,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11506911,
+        "youtube": 11507137,
         "apple": 0
       }
     },
@@ -1882,7 +1891,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529313528,
+        "youtube": 529343593,
         "apple": 0
       }
     },
@@ -1920,7 +1929,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233662,
+        "youtube": 5233753,
         "apple": 0
       }
     },
@@ -1942,7 +1951,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194637,
+        "youtube": 194640,
         "apple": 0
       }
     },
@@ -1961,7 +1970,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138969,
+        "youtube": 138978,
         "apple": 0
       }
     },
@@ -2003,7 +2012,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51801,
+        "youtube": 51817,
         "apple": 0
       }
     },
@@ -2075,7 +2084,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598526,
+        "youtube": 598541,
         "apple": 0
       }
     },
@@ -2314,7 +2323,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139281,
+        "youtube": 139284,
         "apple": 0
       }
     },
@@ -2408,7 +2417,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3475,
+        "youtube": 3476,
         "apple": 0
       }
     },
@@ -2871,7 +2880,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 1361,
         "apple": 0
       }
     },
@@ -3039,7 +3048,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38082950,
+        "youtube": 38083621,
         "apple": 0
       }
     },
@@ -3101,7 +3110,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 5096946,
         "apple": 0
       }
     },
@@ -3142,7 +3151,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 3212611,
         "apple": 0
       }
     }
@@ -3163,9 +3172,6 @@
     "philText": "#0A0A0A",
     "philEm": "#A88B45",
     "philMuted": "#4A4A4A"
-  },
-  "music": {
-    "url": ""
   },
   "settings": {
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
@@ -3259,5 +3265,8 @@
       "label": "Disciplina",
       "value": "Músical, Branding, Creativo, IA"
     }
-  ]
+  ],
+  "music": {
+    "url": ""
+  }
 }
