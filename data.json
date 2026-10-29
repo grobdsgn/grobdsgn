@@ -1137,7 +1137,7 @@
       "id": "9osj4m3rmvt4kgls",
       "name": "Cover Pack x5",
       "price": "200.00",
-      "desc": "Pack de 4 Asset o imagenes para Tema Promocional.\n+Cover",
+      "desc": "Pack de Cover + 4 Asset o imagenes para Tema Promocional.",
       "category": "artista",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
       "hasEditable": true,
@@ -1421,7 +1421,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278537,
+        "youtube": 278539,
         "apple": 0
       }
     },
@@ -1480,7 +1480,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94706,
+        "youtube": 94707,
         "apple": 0
       }
     },
@@ -1841,7 +1841,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239171,
+        "youtube": 26239205,
         "apple": 0
       }
     },
@@ -1860,7 +1860,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509155355,
+        "youtube": 509156554,
         "apple": 0
       }
     },
@@ -1988,7 +1988,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529383449,
+        "youtube": 529384959,
         "apple": 0
       }
     },
@@ -2048,7 +2048,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194649,
+        "youtube": 194651,
         "apple": 0
       }
     },
@@ -2109,7 +2109,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51824,
+        "youtube": 51822,
         "apple": 0
       }
     },
@@ -2181,7 +2181,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598594,
+        "youtube": 598595,
         "apple": 0
       }
     },
@@ -3145,7 +3145,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38084709,
+        "youtube": 38084734,
         "apple": 0
       }
     },
@@ -3207,7 +3207,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097272,
+        "youtube": 5097281,
         "apple": 0
       }
     },
@@ -3248,7 +3248,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212791,
+        "youtube": 3212797,
         "apple": 0
       }
     }
