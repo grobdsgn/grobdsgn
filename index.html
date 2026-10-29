@@ -130,7 +130,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 @media(max-width:900px){.phil-grid{grid-template-columns:1fr;gap:50px}}
 .philosophy h2{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;color:var(--phil-text)}
 .philosophy h2 em{color:var(--phil-em);font-style:normal;}
-.philosophy p{color:var(--phil-muted);max-width:56ch;font-size:1rem}
+.philosophy p{color:var(--phil-muted);max-width:56ch;font-size:1rem;text-align:justify;}
 .section-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,6vw,90px);align-items:start}
 @media(max-width:640px){.section-head{grid-template-columns:1fr;gap:16px}}
 .label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600;padding-top:.5em;white-space:nowrap}
@@ -1069,7 +1069,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <div class="a-panel" id="a-panel-theme">
           <div class="a-hero">
             <div class="a-hero-icon">🎨</div>
-            <div class="a-hero-text"><h2>Apariencia & API</h2><p>Colores del tema, música y claves de API.</p></div>
+            <div class="a-hero-text"><h2>Apariencia & API</h2><p>Colores del tema y claves de API.</p></div>
           </div>
           <div class="a-card">
             <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎨</span>Colores</h2></div>
@@ -1655,7 +1655,6 @@ let DATA = {
   heroImages: [], categories: [], clientes: [], software: [], covers: [],
   contact: { email: 'hola@grobdesigns.com', phone: '+34 600 000 000', instagram: '', location: 'Madrid, España' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
-  music: { url: '' },
   settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR },
   texts: {},
   ficha: []
@@ -2133,7 +2132,6 @@ async function loadPublicData() {
   const remote = await GH.load();
   if (remote) {
     DATA = Object.assign(DATA, remote);
-    if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
     if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
     if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, remote.settings);
     migrateData(DATA);
@@ -2808,8 +2806,6 @@ async function loadAdminData() {
     const remote = await GH.load();
     if (remote) {
       DATA = Object.assign(DATA, remote);
-      if (remote.music) DATA.music = Object.assign({ url: '' }, remote.music);
-      else if (!DATA.music) DATA.music = { url: '' };
       if (remote.contact) DATA.contact = Object.assign({ instagram: '' }, remote.contact);
       if (remote.settings) DATA.settings = Object.assign({ youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR }, remote.settings);
       migrateData(DATA);
