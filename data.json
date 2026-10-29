@@ -1110,21 +1110,26 @@
       "name": "Cover",
       "price": "50.00",
       "desc": "Creación de Cover.",
+      "category": "artista",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
       "briefingFields": [
         {
-          "label": "Nombre del tema"
+          "label": "Nombre del tema",
+          "required": false
         },
         {
-          "label": "Nombre de Artista"
+          "label": "Nombre de Artista",
+          "required": false
         },
         {
-          "label": "Concepto o Idea"
+          "label": "Concepto o Idea",
+          "required": false
         },
         {
-          "label": "Fecha estimada"
+          "label": "Fecha estimada",
+          "required": false
         }
       ]
     },
@@ -1138,18 +1143,23 @@
       "editablePrice": "150.00",
       "briefingFields": [
         {
-          "label": "Nombre del tema"
+          "label": "Nombre del tema",
+          "required": false
         },
         {
-          "label": "Nombre del Artista"
+          "label": "Nombre del Artista",
+          "required": false
         },
         {
-          "label": "Concepto o idea"
+          "label": "Concepto o idea",
+          "required": false
         },
         {
-          "label": "Alguna Fecha limite"
+          "label": "Alguna Fecha limite",
+          "required": false
         }
-      ]
+      ],
+      "category": "artista"
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
@@ -1161,18 +1171,23 @@
       "editablePrice": "150.00",
       "briefingFields": [
         {
-          "label": "Nombre del tema"
+          "label": "Nombre del tema",
+          "required": false
         },
         {
-          "label": "Nombre de Artista"
+          "label": "Nombre de Artista",
+          "required": false
         },
         {
-          "label": "Concepto o idea"
+          "label": "Concepto o idea",
+          "required": false
         },
         {
-          "label": "Fecha Estimada"
+          "label": "Fecha Estimada",
+          "required": false
         }
-      ]
+      ],
+      "category": "artista"
     },
     {
       "id": "1o8pbzo2mvt6sen3",
@@ -1182,7 +1197,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793256682858_5jr8.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "category": "artista"
     }
   ],
   "clientes": [
@@ -1396,7 +1412,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278528,
+        "youtube": 278534,
         "apple": 0
       }
     },
@@ -1417,7 +1433,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352379,
+        "youtube": 1352385,
         "apple": 0
       }
     },
@@ -1436,7 +1452,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083378,
+        "youtube": 1083433,
         "apple": 0
       }
     },
@@ -1455,7 +1471,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94701,
+        "youtube": 94705,
         "apple": 0
       }
     },
@@ -1651,7 +1667,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 151,
+        "youtube": 152,
         "apple": 0
       }
     },
@@ -1795,7 +1811,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126741,
+        "youtube": 1126747,
         "apple": 0
       }
     },
@@ -1816,7 +1832,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239132,
+        "youtube": 26239171,
         "apple": 0
       }
     },
@@ -1835,7 +1851,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509123241,
+        "youtube": 509145961,
         "apple": 0
       }
     },
@@ -1925,7 +1941,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507157,
+        "youtube": 11507268,
         "apple": 0
       }
     },
@@ -1963,7 +1979,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529347595,
+        "youtube": 529371706,
         "apple": 0
       }
     },
@@ -2001,7 +2017,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233756,
+        "youtube": 5233839,
         "apple": 0
       }
     },
@@ -2023,7 +2039,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194640,
+        "youtube": 194649,
         "apple": 0
       }
     },
@@ -2042,7 +2058,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138979,
+        "youtube": 138980,
         "apple": 0
       }
     },
@@ -2084,7 +2100,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51817,
+        "youtube": 51821,
         "apple": 0
       }
     },
@@ -2156,7 +2172,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598541,
+        "youtube": 598581,
         "apple": 0
       }
     },
@@ -2395,7 +2411,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139284,
+        "youtube": 139295,
         "apple": 0
       }
     },
@@ -3120,7 +3136,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38083757,
+        "youtube": 38084390,
         "apple": 0
       }
     },
@@ -3182,7 +3198,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5096976,
+        "youtube": 5097196,
         "apple": 0
       }
     },
@@ -3223,7 +3239,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212611,
+        "youtube": 3212741,
         "apple": 0
       }
     }
