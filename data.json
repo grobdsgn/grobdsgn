@@ -1762,7 +1762,10 @@
       "artist": "lenny tavarez",
       "year": "2018",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239689061_31jw.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239732803_1h2l.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/0UQCoF3iR72kpFoipPbZcs?si=dcbdfef39aa3437d",
       "appleMusicUrl": "",
       "youtubeUrl": "",
