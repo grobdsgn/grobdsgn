@@ -538,6 +538,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <button class="tab" data-tab="covers" id="navTabCov">Covers</button>
         <button class="tab" data-tab="clientes" id="navTabCli">Clientes</button>
         <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
+        <button onclick="loginWithGoogle()" style="padding: 10px; background: #fff; color: #000; margin: 10px;">Iniciar Sesión (Prueba)</button>
+        <button class="tab" data-tab="tienda" id="navTabTie">Tienda 🛒</button>
       </div>
       <div class="nav-right">
         <button class="nav-back" id="navBack">← Volver</button>
@@ -711,6 +713,27 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             <button class="form-btn" type="submit" id="txtConBtn">Enviar mensaje</button>
           </form>
         </div></div>
+      </section>
+    </div>
+        <!-- VISTA DE LA TIENDA -->
+    <div class="view" data-view="tienda">
+      <section class="covers-view" style="padding-top: 120px; min-height: 100vh; display: block;">
+        <div class="wrap">
+          <div class="section-head" style="margin-bottom: 40px;">
+            <div class="label">— Tienda</div>
+            <div>
+              <h2 style="font-family:var(--font-title); font-size:clamp(2rem,5vw,3.6rem); font-weight:800; text-transform:uppercase;">Catálogo de <em>Productos</em>.</h2>
+              <p style="color:var(--muted); margin-top: 10px;">Próximamente podrás comprar aquí.</p>
+            </div>
+          </div>
+          
+          <!-- Aquí irá la cuadrícula de productos más adelante -->
+          <div id="tienda-productos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: #111; padding: 40px; text-align: center; border-radius: 8px; border: 1px dashed var(--line);">
+              <p style="color: var(--muted);">Los productos se cargarán desde Firebase aquí.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -1849,6 +1872,7 @@ function handleRoute() {
   }
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
+  else if (h === '#tienda') { showView('tienda'); syncTabs('tienda'); }
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
   else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
@@ -3525,6 +3549,62 @@ async function boot() {
   else await loadPublicData();
 }
 boot();
+  <!-- Script para importar Firebase (Usando módulos) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Pega aquí tu configuración de Firebase
+  const firebaseConfig = {
+  apiKey: "AIzaSyBAZRVK83onPa_Yto592O-mamhartlSGVE",
+  authDomain: "grobdsgn-e781c.firebaseapp.com",
+  projectId: "grobdsgn-e781c",
+  storageBucket: "grobdsgn-e781c.firebasestorage.app",
+  messagingSenderId: "911755846123",
+  appId: "1:911755846123:web:c33eede7e49f68fe9139ae",
+  measurementId: "G-SHQGZK25DJ"
+};
+
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app); // Lo guardamos globalmente para usarlo luego
+  window.auth = getAuth(app);
+  
+  console.log("🔥 Firebase conectado con éxito a:", firebaseConfig.projectId);
+
+  // --- LÓGICA DEL LOGIN DE GOOGLE ---
+  const provider = new GoogleAuthProvider();
+
+  window.loginWithGoogle = () => {
+    signInWithPopup(window.auth, provider)
+      .then((result) => {
+        console.log("✅ Usuario logueado:", result.user.displayName);
+        // Aquí actualizaremos la interfaz para mostrar que el usuario entró
+        alert(`¡Bienvenido ${result.user.displayName}!`);
+      })
+      .catch((error) => {
+        console.error("❌ Error al loguear:", error);
+        alert("Error al iniciar sesión: " + error.message);
+      });
+  };
+
+  window.logout = () => {
+    signOut(window.auth).then(() => {
+      console.log("Sesión cerrada");
+      alert("Has cerrado sesión");
+    });
+  };
+
+  // Esto detecta si el usuario ya tenía la sesión iniciada al recargar la página
+  onAuthStateChanged(window.auth, (user) => {
+    if (user) {
+      console.log("Usuario activo:", user.email);
+    } else {
+      console.log("No hay usuario logueado");
+    }
+  });
+</script>
 </script>
 </body>
 </html>
