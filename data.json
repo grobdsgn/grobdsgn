@@ -1304,6 +1304,17 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": []
+    },
+    {
+      "id": "n8ile1cjmvtz9oio",
+      "name": "Album C",
+      "price": "120.00",
+      "desc": "Creacion de Album Musical. \nPortada + Contraportada",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304575266_kr3f.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
