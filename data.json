@@ -2543,7 +2543,11 @@
       "artist": "Gio Fernandez",
       "year": "2024",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793240741739_s7r2.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793240875832_c57z.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793240877896_jr0i.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/0NtnKZPhHKGyeK2zOQMRN1?si=371983ece3034b39",
       "appleMusicUrl": "",
       "youtubeUrl": "",
