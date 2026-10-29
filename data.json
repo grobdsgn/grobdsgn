@@ -3200,7 +3200,7 @@
     "youtubeApiKey": "AIzaSyB3M6RZjnfImaL6uu9bOI-kc-Rd0QzEMf4",
     "apifyToken": "",
     "apifyActor": "",
-    "storeMaintenance": true
+    "storeMaintenance": false
   },
   "texts": {
     "navHome": "Inicio",
