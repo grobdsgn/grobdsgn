@@ -1293,6 +1293,17 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": []
+    },
+    {
+      "id": "8uwvsve0mvty4hkm",
+      "name": "Video Clip IA",
+      "price": "600.00",
+      "desc": "",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302695760_chnx.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
