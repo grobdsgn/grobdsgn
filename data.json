@@ -1194,11 +1194,11 @@
       "name": "Logo Artista",
       "price": "200.00",
       "desc": "Creación de Logotipo para Artista.\nEntrega Basica de Logo con sus Formatos",
+      "category": "artista",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793256682858_5jr8.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "category": "artista"
+      "briefingFields": []
     }
   ],
   "clientes": [
