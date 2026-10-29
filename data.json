@@ -1353,17 +1353,17 @@
     },
     {
       "id": "d4jog1hemvtzbrv8",
-      "name": "Album Glas+",
+      "name": "Album Glass+",
       "price": "150.00",
       "desc": "Creacion de Album Musical. \nPortada + Contraportada + CD",
       "category": "artista",
       "group": "General",
       "order": 9,
+      "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": [],
-      "extraImages": []
+      "briefingFields": []
     },
     {
       "id": "50sex8ismvtzdwfk",
