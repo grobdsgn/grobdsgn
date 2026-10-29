@@ -1292,12 +1292,12 @@
       "price": "80.00",
       "desc": "15 Seg. Aprox.",
       "category": "artista",
+      "group": "General",
+      "order": 6,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301874035_yeq3.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "group": "General",
-      "order": 0
+      "briefingFields": []
     },
     {
       "id": "hjpqpx8wmvty3rs9",
