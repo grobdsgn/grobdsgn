@@ -105,26 +105,11 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .billboard-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s var(--ease)}
 .billboard-card:hover{transform:translateY(-6px);border-color:var(--accent)}
 .billboard-card:hover img{transform:scale(1.08)}
-
-.billboard-badge{
-  position:absolute;top:8px;right:8px;z-index:2;
-  width:22px;height:22px;display:grid;place-items:center;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
-  border:1px solid rgba(201,169,97,.35);
-  border-radius:50%;
-  color:var(--accent);
-  transition:transform .3s,background .3s;
-}
+.billboard-badge{position:absolute;top:8px;right:8px;z-index:2;width:22px;height:22px;display:grid;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid rgba(201,169,97,.35);border-radius:50%;color:var(--accent);transition:transform .3s,background .3s;}
 .billboard-card:hover .billboard-badge{transform:scale(1.1);background:rgba(0,0,0,.75)}
 .billboard-badge svg{width:11px;height:11px;fill:currentColor;display:block}
-
 @keyframes billboardScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@media(max-width:640px){
-  .billboard-card{flex:0 0 180px}
-  .billboard-badge{width:20px;height:20px;top:6px;right:6px}
-  .billboard-badge svg{width:10px;height:10px}
-}
+@media(max-width:640px){.billboard-card{flex:0 0 180px}.billboard-badge{width:20px;height:20px;top:6px;right:6px}.billboard-badge svg{width:10px;height:10px}}
 
 .plays-banner{background:#08080a;border-bottom:1px solid var(--line);padding:24px 20px;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
 .plays-banner-block{display:flex;align-items:center;gap:12px}
@@ -304,12 +289,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cliente-logo:hover{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65));-webkit-filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.65))}
 .cliente-logo:hover img{transform:scale(1.05)}
 
-@media(max-width:900px){
-  .cliente-logo,.software-logo{
-    filter:brightness(0) invert(1) !important;
-    -webkit-filter:brightness(0) invert(1) !important;
-  }
-}
+@media(max-width:900px){.cliente-logo,.software-logo{filter:brightness(0) invert(1) !important;-webkit-filter:brightness(0) invert(1) !important;}}
 
 .contacto-view{padding:120px 0 60px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
@@ -337,6 +317,24 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tienda-btn-add{width:100%;padding:10px;background:var(--accent);color:#000;font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;border:none;cursor:pointer;border-radius:4px;transition:.2s;}
 .tienda-btn-add:hover{background:#fff;}
 
+/* VISTA DE PERFIL */
+.perfil-view { padding: 120px 0 80px; min-height: 100vh; background: #000; }
+.perfil-header { display: flex; align-items: center; gap: 24px; margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.perfil-avatar { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 30px rgba(201,169,97,0.2); }
+.perfil-info h2 { font-family: var(--font-title); font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
+.perfil-info p { color: var(--muted); font-size: 1rem; }
+.perfil-logout { margin-left: auto; background: rgba(229,72,77,0.1); color: var(--danger); border: 1px solid rgba(229,72,77,0.2); padding: 10px 20px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+.perfil-logout:hover { background: var(--danger); color: #fff; }
+.perfil-section { margin-bottom: 60px; }
+.perfil-section-title { font-family: var(--font-title); font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.perfil-empty { text-align: center; padding: 40px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: 1rem; }
+.cart-item { display: flex; align-items: center; gap: 20px; background: var(--surface); border: 1px solid var(--line); padding: 16px; border-radius: 12px; margin-bottom: 12px; }
+.cart-item img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; }
+.cart-item-info h4 { font-family: var(--font-title); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+.cart-item-price { color: var(--accent); font-weight: 700; }
+.cart-item-remove { margin-left: auto; color: var(--muted); cursor: pointer; padding: 10px; transition: 0.3s; }
+.cart-item-remove:hover { color: var(--danger); }
+
 .contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
 .contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
 .cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
@@ -345,9 +343,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cta-icon {width: 72px;height: 72px;border-radius: 50%;background: #fff;display: grid;place-items: center;box-shadow: 0 10px 30px rgba(0,0,0,0.08);transition: box-shadow 0.3s;}
 .cta-btn:hover .cta-icon {box-shadow: 0 15px 40px rgba(0,0,0,0.15);}
 .cta-icon svg {width: 32px;height: 32px;}
-.cta-btn.wa .cta-icon svg,
-.cta-btn.ig .cta-icon svg,
-.cta-btn.em .cta-icon svg { color: #000; }
+.cta-btn.wa .cta-icon svg, .cta-btn.ig .cta-icon svg, .cta-btn.em .cta-icon svg { color: #000; }
 .cta-label {font-size: 0.85rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.15em;color: var(--phil-text);}
 
 footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;text-align: center;}
@@ -559,15 +555,15 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
       </div>
       <div class="nav-right">
-        <!-- ICONO DE USUARIO (Sin onclick aquí para evitar errores) -->
-        <button class="nav-icon-btn" id="btnUser" title="Iniciar Sesión / Mi Cuenta">
+        <!-- ICONO DE USUARIO -->
+        <button class="nav-icon-btn" id="btnUser" title="Iniciar Sesión / Mi Perfil">
           <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </button>
         <!-- ICONO DE CARRITO -->
-        <a href="#tienda" class="nav-icon-btn" title="Tienda / Carrito">
+        <button class="nav-icon-btn" id="btnCart" title="Mi Carrito">
           <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
           <span class="cart-count" id="cartCounter">0</span>
-        </a>
+        </button>
         <button class="nav-back" id="navBack">← Volver</button>
       </div>
     </div>
@@ -750,7 +746,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
       </section>
     </div>
 
-    <!-- VISTA TIENDA (NUEVA) -->
+    <!-- VISTA TIENDA -->
     <div class="view" data-view="tienda">
       <section class="tienda-view">
         <div class="wrap">
@@ -762,11 +758,44 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
             </div>
           </div>
           
-          <!-- Contenedor vacío para los productos -->
           <div class="tienda-grid" id="tiendaProductosGrid">
             <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line); border-radius: 8px;">
               <p style="color: var(--muted); font-size: 1.1rem;">Aún no hay productos disponibles.</p>
-              <p style="color: var(--muted); font-size: 0.9rem; margin-top: 10px;">(Próximamente podrás añadirlos desde el panel de administración).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VISTA PERFIL -->
+    <div class="view" data-view="perfil">
+      <section class="perfil-view">
+        <div class="wrap">
+          <div class="perfil-header">
+            <img id="perfilAvatar" class="perfil-avatar" src="" alt="Avatar">
+            <div class="perfil-info">
+              <h2 id="perfilName">Cargando...</h2>
+              <p id="perfilEmail">...</p>
+            </div>
+            <button class="perfil-logout" onclick="window.handleAuthClick()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Cerrar Sesión
+            </button>
+          </div>
+
+          <!-- CARRITO -->
+          <div class="perfil-section">
+            <h3 class="perfil-section-title">🛒 Mi Carrito</h3>
+            <div id="perfilCartList">
+              <!-- Se llena con JS -->
+            </div>
+          </div>
+
+          <!-- COVERS FAVORITOS -->
+          <div class="perfil-section">
+            <h3 class="perfil-section-title">❤️ Covers que me gustan</h3>
+            <div class="covers-grid" id="perfilLikedCovers">
+              <!-- Se llena con JS -->
             </div>
           </div>
         </div>
@@ -818,6 +847,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 </div>
 
 <div id="adminApp">
+  <!-- ... (Mismo código de Admin que tenías, sin cambios) ... -->
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
       <img src="logo.svg" alt="Grobdesigns" class="a-login-logo" onerror="this.style.display='none'">
@@ -1260,6 +1290,8 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 // ============================================================
 // LÓGICA PRINCIPAL DE LA WEB
 // ============================================================
+window.currentUser = null; // Variable global para el usuario
+
 window.handleImgError = function(img) {
   img.onerror = null;
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle">Error</text></svg>`);
@@ -1277,11 +1309,30 @@ function formatNumber(num) {
   return num.toString();
 }
 
-// 🔥 FALLBACK INICIAL PARA EL BOTÓN DE USUARIO 🔥
-// Si Firebase tarda en cargar, esta función responde de inmediato.
+// 🔥 FALLBACK INICIAL PARA EL BOTÓN DE USUARIO Y CARRITO 🔥
 window.handleAuthClick = function() {
     alert("El sistema de inicio de sesión está cargando. Por favor, espera un segundo e intenta de nuevo.");
 };
+
+// Lógica de clic en el botón de Usuario (Ir a perfil o Loguearse)
+document.getElementById('btnUser').addEventListener('click', () => {
+    if (window.currentUser) {
+        location.hash = '#perfil';
+    } else {
+        window.handleAuthClick();
+    }
+});
+
+// Lógica de clic en el botón de Carrito (Loguearse si no hay sesión)
+document.getElementById('btnCart').addEventListener('click', () => {
+    if (window.currentUser) {
+        location.hash = '#tienda';
+    } else {
+        alert("Debes iniciar sesión para acceder al carrito y la tienda.");
+        window.handleAuthClick();
+    }
+});
+
 
 let SHUFFLED_ORDERS = {};
 
@@ -1522,7 +1573,7 @@ function showView(name) { $$('.view').forEach(v => v.classList.remove('active'))
 function syncTabs(name) { $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); }
 function updateNavBack(hash) { const back = $('#navBack'); if (!back) return; back.classList.toggle('show', hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin')); }
 function findProject(projId) { for (const cat of (DATA.categories || [])) { for (const proj of (cat.projects || [])) { if (proj.id === projId) return { cat, proj }; } } return null; }
-function goBack() { const h = location.hash || ''; if (h.startsWith('#cover-')) location.hash = '#covers'; else if (h.startsWith('#categoria-')) location.hash = '#portafolio'; else if (h.startsWith('#proyecto-')) { const found = findProject(h.replace('#proyecto-', '')); location.hash = found ? `#categoria-${found.cat.id}` : '#portafolio'; } else location.hash = '#home'; }
+function goBack() { const h = location.hash || ''; if (h.startsWith('#cover-')) location.hash = '#covers'; else if (h.startsWith('#categoria-')) location.hash = '#portafolio'; else if (h.startsWith('#proyecto-')) { const found = findProject(h.replace('#proyecto-', '')); location.hash = found ? `#categoria-${found.cat.id}` : '#portafolio'; } else if (h === '#perfil') location.hash = '#home'; else location.hash = '#home'; }
 
 function shuffleCovers() { const all = DATA.covers || []; _coversOrder = all.map(c => c.id); for (let i = _coversOrder.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [_coversOrder[i], _coversOrder[j]] = [_coversOrder[j], _coversOrder[i]]; } }
 function getCoversList() {
@@ -1533,18 +1584,127 @@ function getCoversList() {
   return list;
 }
 
+function renderProfile() {
+  if (!window.currentUser) {
+    location.hash = '#home';
+    return;
+  }
+
+  // Datos de usuario
+  document.getElementById('perfilName').textContent = window.currentUser.displayName || 'Usuario';
+  document.getElementById('perfilEmail').textContent = window.currentUser.email || '';
+  document.getElementById('perfilAvatar').src = window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
+
+  // Renderizar Covers Likeados
+  const stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+  const likedIds = Object.keys(stats).filter(id => stats[id].liked);
+  const likedCovers = (DATA.covers || []).filter(c => likedIds.includes(c.id));
+  
+  const likedContainer = document.getElementById('perfilLikedCovers');
+  likedContainer.innerHTML = '';
+  
+  if (likedCovers.length === 0) {
+    likedContainer.innerHTML = '<div class="perfil-empty" style="grid-column: 1/-1;">Aún no te ha gustado ningún cover.</div>';
+  } else {
+    likedCovers.forEach(c => {
+      // Reutilizamos la lógica de renderPublicCovers simplificada
+      const item = document.createElement('div'); item.className = 'cover-item';
+      const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im); item.appendChild(im);
+      item.appendChild(Object.assign(document.createElement('div'), { className: 'cover-shine' }));
+      // Al hacer click en un cover desde el perfil, te lleva a su detalle
+      item.onclick = () => location.hash = `#cover-${c.id}`;
+      likedContainer.appendChild(item);
+    });
+  }
+
+  // Renderizar Carrito
+  const cartContainer = document.getElementById('perfilCartList');
+  cartContainer.innerHTML = '';
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  
+  if (cart.length === 0) {
+    cartContainer.innerHTML = '<div class="perfil-empty">Tu carrito está vacío.</div>';
+  } else {
+    cart.forEach((item, index) => {
+      const el = document.createElement('div');
+      el.className = 'cart-item';
+      el.innerHTML = `
+        <img src="${resolveImageUrl(item.img)}" alt="${item.name}">
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <p class="cart-item-price">$${item.price}</p>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${index})" title="Eliminar">✕</button>
+      `;
+      cartContainer.appendChild(el);
+    });
+  }
+}
+
+// Función dummy para que no de error si no hay lógica de carrito todavía
+window.removeFromCart = function(index) {
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('grob_cart', JSON.stringify(cart));
+  updateCartCounter();
+  renderProfile(); // Recargar la vista
+};
+
+function updateCartCounter() {
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const counter = document.getElementById('cartCounter');
+  if (counter) {
+    counter.textContent = cart.length;
+    counter.style.display = cart.length > 0 ? 'grid' : 'none';
+  }
+}
+
+// Añadimos la lógica del carrito (simulada para que se vea en el perfil)
+window.addToCart = function(id, name, price, img) {
+  if (!window.currentUser) {
+     alert("Debes iniciar sesión para añadir al carrito.");
+     window.handleAuthClick();
+     return;
+  }
+  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  cart.push({ id, name, price, img });
+  localStorage.setItem('grob_cart', JSON.stringify(cart));
+  updateCartCounter();
+  showToast("Añadido al carrito");
+};
+
+
 function handleRoute() {
   const h = (location.hash || '#home').toLowerCase();
   if (h === '#admin' || h.startsWith('#admin')) { $('#publicApp').style.display = 'none'; $('#adminApp').classList.add('active'); if (GH.isConfigured()) { $('#aLoginScreen').classList.remove('active'); $('#aDashboard').style.display = 'flex'; if (!window._adminDataLoaded) { window._adminDataLoaded = true; loadAdminData(); } } else { $('#aLoginScreen').classList.add('active'); $('#aDashboard').style.display = 'none'; } _prevRoute = h; return; }
   if ($('#adminApp').classList.contains('active') || $('#publicApp').style.display === 'none') { $('#publicApp').style.display = 'block'; $('#adminApp').classList.remove('active'); }
   updateNavBack(h); window.scrollTo({ top: 0, behavior: 'auto' });
   if (!h.startsWith('#cover-')) { const musicWrap = $('#coverHeroMusic'); if (musicWrap) musicWrap.innerHTML = ''; const extraImgs = $('#coverExtraImgs'); if (extraImgs) extraImgs.innerHTML = ''; }
+  
   if (h === '#home' || h === '') { showView('home'); syncTabs('home'); }
   else if (h === '#portafolio') { showView('portafolio'); syncTabs('portafolio'); }
   else if (h === '#covers') { const wasInCovers = _prevRoute === '#covers' || (_prevRoute && _prevRoute.startsWith('#cover-')); if (!wasInCovers) { shuffleCovers(); renderPublicCovers(getCoversList()); } else { renderPublicCovers(getCoversList()); } showView('covers'); syncTabs('covers'); }
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
-  else if (h === '#tienda') { showView('tienda'); syncTabs(''); }
+  else if (h === '#tienda') { 
+      if (!window.currentUser) {
+          alert("Debes iniciar sesión para ver la tienda.");
+          window.handleAuthClick();
+          location.hash = '#home';
+          return;
+      }
+      showView('tienda'); 
+      syncTabs(''); 
+  }
+  else if (h === '#perfil') {
+      if (!window.currentUser) {
+          location.hash = '#home';
+          return;
+      }
+      renderProfile();
+      showView('perfil');
+      syncTabs('');
+  }
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
   else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
@@ -1607,7 +1767,7 @@ window.autofillFromSpotify = async function() {
 async function loadPublicData() {
   const remote = await GH.load(); if (remote) { DATA = Object.assign(DATA, remote); migrateData(DATA); }
   await Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]);
-  renderPublicSite(); handleRoute();
+  renderPublicSite(); handleRoute(); updateCartCounter();
 }
 
 function animateCounter(el, target) { const duration = 2000; const start = performance.now(); function update(t) { const p = Math.min((t - start) / duration, 1); const ease = 1 - Math.pow(1 - p, 4); el.textContent = formatNumber(Math.floor(ease * target)); if (p < 1) requestAnimationFrame(update); else el.textContent = formatNumber(target); } requestAnimationFrame(update); }
@@ -1956,6 +2116,8 @@ boot();
         if (confirm(`Conectado como ${auth.currentUser.displayName}. ¿Cerrar sesión?`)) {
           signOut(auth).then(() => {
             actualizarBotonUsuario(null);
+            // Si estaba en perfil, lo devolvemos al inicio al cerrar sesión
+            if (location.hash === '#perfil') location.hash = '#home';
           });
         }
       } else {
@@ -1973,15 +2135,19 @@ boot();
 
     // Escuchar cambios de sesión
     onAuthStateChanged(auth, (user) => {
+      window.currentUser = user; // Guardamos el usuario en la variable global
       actualizarBotonUsuario(user);
+      
+      // Si estamos en la vista de perfil, la recargamos para mostrar los datos
+      if (location.hash === '#perfil') {
+          renderProfile();
+      }
     });
 
     console.log("🔥 Firebase inicializado correctamente.");
 
   } catch (error) {
     console.warn("⚠️ Firebase no se pudo inicializar.", error);
-    
-    // Si falla, el fallback del bloque de arriba se queda activo
   }
 
   // Función auxiliar para actualizar el diseño del botón
@@ -1990,7 +2156,13 @@ boot();
     if (!btn) return;
     
     // Conectamos el botón a la función real
-    btn.onclick = window.handleAuthClick;
+    btn.onclick = () => {
+        if (window.currentUser) {
+            location.hash = '#perfil';
+        } else {
+            window.handleAuthClick();
+        }
+    };
     
     if (user) {
       btn.style.background = 'var(--accent)';
@@ -2008,7 +2180,13 @@ boot();
       const btn = document.getElementById('btnUser');
       if(btn) {
           // Si la función real ya se cargó, la usa, si no, usa la de alerta
-          btn.onclick = window.handleAuthClick || function(){ alert("Cargando sistema de login..."); };
+          btn.onclick = () => {
+              if (window.currentUser) {
+                  location.hash = '#perfil';
+              } else {
+                  if(window.handleAuthClick) window.handleAuthClick();
+              }
+          };
       }
   });
 </script>
