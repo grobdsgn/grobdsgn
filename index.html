@@ -39,6 +39,15 @@ input,textarea,select{font:inherit;color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 em{font-family:var(--font-title);font-style:normal;font-weight:800;color:var(--accent)}
 
+/* JUSTIFICAR TEXTOS GENERALES */
+p, .lead, .desc, .philosophy p, .tech-value, .categoria-intro p, .cover-extra-resena, .projReview {
+  text-align: justify;
+  text-justify: inter-word;
+}
+h1, h2, h3, h4, .eyebrow, .label, .meta, .btn, .mq-item, .tab, .a-btn, button, input, textarea, select {
+  text-align: left;
+}
+
 nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 0;transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s;border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.75),transparent)}
 nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--line);box-shadow:0 4px 30px rgba(0,0,0,0.5)}
 .nav-inner{max-width:1400px;margin:0 auto;padding:0 clamp(14px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:14px}
@@ -54,11 +63,7 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .nav-back{display:none;align-items:center;gap:6px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);transition:.3s;padding:6px 0;white-space:nowrap}
 .nav-back.show{display:flex}
 .nav-back:hover{color:var(--text)}
-.music-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;flex-shrink:0}
-.music-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
-.music-btn.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
-.music-btn.playing{border-color:var(--accent);color:var(--accent);animation:musicPulse 2s infinite}
-@keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,97,0.4)}50%{box-shadow:0 0 0 8px rgba(201,169,97,0)}}
+
 main{position:relative}
 .view{display:none}.view.active{display:block}
 
@@ -69,7 +74,7 @@ main{position:relative}
 @keyframes heroZoomIn{from{transform:scale(1)}to{transform:scale(1.1)}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.6) 50%,rgba(0,0,0,.95));z-index:1;pointer-events:none}
 .hero .wrap{position:relative;z-index:2;width:100%;max-width:none;margin:0;padding-left:clamp(24px, 8vw, 120px);padding-right:20px;}
-.hero-grid{max-width:820px;margin:0;text-align:left}
+.hero-grid{max-width:820px;margin:0;}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;margin-bottom:20px}
 .eyebrow::before{content:'';width:32px;height:1.5px;background:rgba(255,255,255,.3)}
 h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,7vw,5.5rem);line-height:1;letter-spacing:-.03em;margin-bottom:24px;white-space:pre-line}
@@ -135,7 +140,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .tech-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:0.95rem;gap:20px}
 .tech-row:last-child{border-bottom:none;padding-bottom:0}
 .tech-label{color:var(--muted);font-weight:400}
-.tech-value{color:#fff;font-weight:700;text-align:right;white-space:pre-line;font-family:var(--font-title);line-height:1.3}
+.tech-value{color:#fff;font-weight:700;white-space:pre-line;font-family:var(--font-title);line-height:1.3;text-align:right;}
 
 .parallax-row{position:relative;height:100vh;height:100svh;min-height:480px;width:100%;overflow:hidden;display:grid;place-items:center;cursor:pointer;isolation:isolate;background:#000;border-bottom:1px solid rgba(255,255,255,.05)}
 .parallax-bg{position:absolute;top:-25%;left:0;width:100%;height:150%;background-size:cover;background-position:center;z-index:0;filter:brightness(.65) saturate(1.05);background-color:#111;will-change:transform}
@@ -152,7 +157,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 
 .categoria-intro{padding:110px 0 40px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
 .categoria-intro h2{font-family:var(--font-title);font-weight:800;font-size:clamp(1.8rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;margin-bottom:18px;color:var(--text);text-transform:uppercase}
-.categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.9rem,1.3vw,1.08rem);line-height:1.8}
+.categoria-intro p{color:var(--muted);max-width:56ch;font-size:clamp(.9rem,1.3vw,1.08rem);line-height:1.8;text-align:justify;}
 
 .proyecto-header{padding:110px 0 30px;background:#000;max-width:1240px;margin:0 auto;padding-inline:clamp(20px,5vw,56px);text-align:center}
 .proyecto-header .back-btn{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px}
@@ -271,7 +276,7 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cover-extra-block{max-width:1000px;margin:0 auto 40px;padding:0 clamp(20px,5vw,56px)}
 .cover-extra-label{font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:16px}
 .cover-extra-label::before{content:'';width:32px;height:1px;background:var(--line)}
-.cover-extra-resena{font-size:clamp(.9rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch}
+.cover-extra-resena{font-size:clamp(.9rem,1.3vw,1.12rem);font-weight:300;line-height:1.9;color:rgba(245,243,239,.7);white-space:pre-line;max-width:65ch;text-align:justify;}
 
 .software-section{padding:clamp(60px,10vh,110px) 0;background:#000;border-top:1px solid var(--line)}
 .software-section h2{color:var(--text);font-family:var(--font-title);font-weight:800;font-size:clamp(1.6rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px;text-transform:uppercase}
@@ -535,9 +540,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
         <button class="tab" data-tab="contacto" id="navTabCon">Contacto</button>
       </div>
       <div class="nav-right">
-        <button class="music-btn disabled" id="musicBtn" title="Reproducir / Pausar música" aria-label="Música">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" id="musicIcon"><path d="M8 5v14l11-7z"/></svg>
-        </button>
         <button class="nav-back" id="navBack">← Volver</button>
       </div>
     </div>
@@ -755,8 +757,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
   <img id="lightboxImg" src="" alt="">
 </div>
 
-<audio id="globalAudio" loop preload="none"></audio>
-
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
@@ -795,7 +795,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
       <div class="a-sidebar-footer">
         <div class="a-sync" id="aSyncStatus"><div class="a-sync-dot"></div><span id="aSyncStatusText">Sincronizado</span></div>
         <button class="a-btn a-btn-outline a-btn-sm" id="aBtnViewSite">👁 Ver web</button>
-        <button class="a-btn a-btn-primary a-btn-sm" onclick="migrateBase64Images()" id="aBtnMigrate">🪄 Migrar Base64</button>
         <button class="a-btn a-btn-outline a-btn-sm" onclick="cleanupUnusedMedia()" id="aBtnCleanMedia">🧹 Limpiar Media</button>
         <button class="a-btn a-btn-danger a-btn-sm" id="aBtnLogout">Cerrar sesión</button>
       </div>
@@ -1079,16 +1078,6 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
                 <div class="a-form-group" style="margin:0"><label class="a-form-label">Acento</label><input type="color" id="aThemeAccent" class="a-form-input" style="height:48px;padding:4px;cursor:pointer"></div>
                 <div class="a-form-group" style="margin:0"><label class="a-form-label">Fondo</label><input type="color" id="aThemeBg" class="a-form-input" style="height:48px;padding:4px;cursor:pointer"></div>
                 <div class="a-form-group" style="margin:0"><label class="a-form-label">Texto</label><input type="color" id="aThemeText" class="a-form-input" style="height:48px;padding:4px;cursor:pointer"></div>
-              </div>
-            </div>
-          </div>
-          <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎵</span>Música de Fondo</h2></div>
-            <div class="a-card-body">
-              <div class="a-form-group">
-                <label class="a-form-label">URL del audio</label>
-                <input type="url" id="aMusicUrl" class="a-form-input" placeholder="https://ejemplo.com/musica.mp3">
-                <span class="a-form-hint">Aparecerá un botón Play/Pausa en la cabecera.</span>
               </div>
             </div>
           </div>
@@ -1730,41 +1719,6 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-const PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
-const PAUSE_ICON = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
-function initMusic() {
-  const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
-  if (!audio || !btn) return;
-  const url = DATA.music && DATA.music.url;
-  if (url) {
-    if (audio.src !== url) { audio.src = url; audio.pause(); btn.classList.remove('playing'); if (icon) icon.innerHTML = PLAY_ICON; }
-    btn.classList.remove('disabled');
-  } else {
-    btn.classList.add('disabled');
-    audio.pause();
-  }
-}
-function toggleMusic() {
-  const audio = $('#globalAudio'), btn = $('#musicBtn'), icon = $('#musicIcon');
-  if (!audio || !btn) return;
-
-  const coverMusicWrap = $('#coverHeroMusic');
-  if (coverMusicWrap && coverMusicWrap.innerHTML.trim() !== '') {
-    coverMusicWrap.innerHTML = '';
-    showToast('Audio del cover detenido');
-    return;
-  }
-
-  if (!DATA.music?.url) return;
-  
-  if (audio.paused) {
-    audio.play().then(() => { btn.classList.add('playing'); if (icon) icon.innerHTML = PAUSE_ICON; })
-      .catch(() => showToast('No se pudo reproducir la música', 'error'));
-  } else {
-    audio.pause(); btn.classList.remove('playing'); if (icon) icon.innerHTML = PLAY_ICON;
-  }
-}
-
 let heroInterval = null;
 function initHeroRotation() {
   if (heroInterval) { clearInterval(heroInterval); heroInterval = null; }
@@ -2188,7 +2142,6 @@ async function loadPublicData() {
   await Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]);
   
   renderPublicSite();
-  initMusic();
   handleRoute();
 }
 
@@ -2439,24 +2392,15 @@ function handle3DTilt(e) {
   const centerX = rect.width / 2;
   const centerY = rect.height / 2;
   
-  // Efecto sutil para la cuadrícula (máximo 6 grados)
   const rotateX = ((y - centerY) / centerY) * -6; 
   const rotateY = ((x - centerX) / centerX) * 6;
   
   card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-  
-  const shine = card.querySelector('.cover-shine');
-  if (shine) {
-    const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI) + 90;
-    shine.style.background = `linear-gradient(${angle}deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 70%)`;
-  }
 }
 
 function reset3DTilt(e) {
   const card = e.currentTarget;
   card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-  const shine = card.querySelector('.cover-shine');
-  if (shine) shine.style.background = 'linear-gradient(115deg,transparent 30%,rgba(255,255,255,.2) 45%,rgba(255,255,255,.08) 50%,transparent 60%)';
 }
 
 function renderPublicCovers(covers) {
@@ -2507,7 +2451,6 @@ function renderPublicCovers(covers) {
 
     item.onclick = () => { location.hash = `#cover-${c.id}`; };
     
-    // Aplicar efecto 3D sutil
     item.addEventListener('mousemove', handle3DTilt);
     item.addEventListener('mouseleave', reset3DTilt);
 
@@ -2523,7 +2466,6 @@ function handleDetail3DTilt(e) {
   const centerX = rect.width / 2;
   const centerY = rect.height / 2;
   
-  // Efecto marcado para el detalle (máximo 18 grados y un poco de zoom)
   const rotateX = ((y - centerY) / centerY) * -18; 
   const rotateY = ((x - centerX) / centerX) * 18;
   
@@ -2548,7 +2490,6 @@ function renderCoverDetail(id) {
   $('#coverHeroArtist').textContent = c.artist || '';
   $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
 
-  // Efecto 3D marcado en la imagen principal del detalle
   heroImg.addEventListener('mousemove', handleDetail3DTilt);
   heroImg.addEventListener('mouseleave', resetDetail3DTilt);
 
@@ -2663,7 +2604,6 @@ function renderCoverDetail(id) {
           img.onerror = () => handleImgError(img);
           imgItem.appendChild(img);
           
-          // Efecto 3D en imágenes de la galería
           imgItem.addEventListener('mousemove', handleDetail3DTilt);
           imgItem.addEventListener('mouseleave', resetDetail3DTilt);
         }
@@ -2816,7 +2756,6 @@ function renderProjectDetail(id) {
 $$('.tab').forEach(btn => { btn.onclick = () => { location.hash = '#' + btn.dataset.tab; }; });
 $$('[data-route]').forEach(el => { el.onclick = () => { location.hash = '#' + el.dataset.route; }; });
 $('#navBack').onclick = goBack;
-$('#musicBtn').onclick = toggleMusic;
 $('#volverPortafolio').onclick = () => { location.hash = '#portafolio'; };
 $('#volverCategoria').onclick = () => {
   const h = location.hash || '';
@@ -2890,75 +2829,11 @@ async function saveAdminData() {
     await GH.save(DATA);
     setASync('ok', 'Guardado');
     aToast('Cambios guardados');
-    initMusic();
   } catch (e) {
     setASync('error', 'Error');
     aToast(e.message, 'error');
   }
 }
-
-window.migrateBase64Images = async () => {
-  if (!confirm('Esto convertirá todas las imágenes antiguas (Base64) a la carpeta media/ y limpiará el archivo JSON para que pese poco. ¿Continuar?')) return;
-
-  let count = 0;
-  let total = 0;
-  const base64Regex = /^data:image\/([a-zA-Z0-9]+);base64,/;
-
-  function countBase64(obj) {
-    if (typeof obj === 'string' && base64Regex.test(obj)) total++;
-    else if (Array.isArray(obj)) obj.forEach(countBase64);
-    else if (typeof obj === 'object' && obj !== null) Object.values(obj).forEach(countBase64);
-  }
-  countBase64(DATA);
-  
-  if (total === 0) {
-    aToast('No hay imágenes Base64 para migrar.', 'info');
-    return;
-  }
-
-  setASync('saving', `Migrando 0/${total}...`);
-  document.getElementById('aBtnMigrate').disabled = true;
-
-  async function processObj(obj) {
-    if (typeof obj === 'string' && base64Regex.test(obj)) {
-      count++;
-      setASync('saving', `Migrando ${count}/${total}...`);
-      
-      try {
-        const match = obj.match(base64Regex);
-        const ext = match ? match[1] : 'jpg';
-        let base64Data = obj.split(',')[1];
-        base64Data = base64Data.replace(/\s/g, '');
-        
-        const filename = `migrated_${Date.now()}_${Math.random().toString(36).slice(2,6)}.${ext}`;
-        const path = `media/${filename}`;
-
-        await GH.putFile(path, base64Data, `Migrate ${filename}`);
-        return `https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`;
-      } catch (e) {
-        console.warn('Error en migración:', e);
-        return obj; 
-      }
-    } else if (Array.isArray(obj)) {
-      const newArr = [];
-      for (const item of obj) newArr.push(await processObj(item));
-      return newArr;
-    } else if (typeof obj === 'object' && obj !== null) {
-      const newObj = {};
-      for (const key in obj) newObj[key] = await processObj(obj[key]);
-      return newObj;
-    }
-    return obj;
-  }
-
-  DATA = await processObj(DATA);
-  setASync('ok', 'Migración completada');
-  aToast('¡Imágenes migradas con éxito!');
-  
-  await saveAdminData();
-  document.getElementById('aBtnMigrate').disabled = false;
-  renderAdmin();
-};
 
 window.cleanupUnusedMedia = async () => {
   if (!GH.isConfigured()) {
@@ -3143,7 +3018,6 @@ function renderAdmin() {
   $('#aThemeAccent').value = DATA.theme.accent || '#C9A961';
   $('#aThemeBg').value = DATA.theme.bg || '#000000';
   $('#aThemeText').value = DATA.theme.text || '#F5F3EF';
-  $('#aMusicUrl').value = (DATA.music && DATA.music.url) || '';
   $('#aYoutubeApiKey').value = (DATA.settings && DATA.settings.youtubeApiKey) || '';
   $('#aApifyToken').value = (DATA.settings && DATA.settings.apifyToken) || '';
   $('#aApifyActor').value = (DATA.settings && DATA.settings.apifyActor) || DEFAULT_APIFY_ACTOR;
@@ -3543,7 +3417,6 @@ $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
 $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value;
 $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value;
 $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
-$('#aMusicUrl').oninput = e => { DATA.music = DATA.music || { url: '' }; DATA.music.url = e.target.value; };
 $('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; };
 $('#aApifyToken').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyToken = e.target.value; };
 $('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
