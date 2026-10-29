@@ -448,6 +448,13 @@ input:checked + .a-slider:before { transform: translateX(26px); }
 .briefing-editor-row input { flex: 1; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--a-line); border-radius: 6px; color: #fff; }
 .briefing-editor-row button { background: rgba(229,72,77,0.2); color: var(--a-danger); border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
 
+/* LOGIN SCREEN (COMPACTO) */
+.a-login-screen{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;z-index:2200}
+.a-login-screen.active{display:flex}
+.a-login-card{width:100%;max-width:380px;background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.a-login-title{font-family:var(--font-title);font-size:1.1rem;font-weight:700;text-align:center;margin-bottom:16px; color:var(--a-accent);}
+.a-login-error{color:var(--a-danger);font-size:12px;text-align:center;margin-top:12px;min-height:18px}
+
 .contact-cta-section {background: var(--phil-bg);color: var(--phil-text);padding: clamp(60px, 12vh, 120px) 0;text-align: center;}
 .contact-cta-section h2 {font-family: var(--font-title);font-size: clamp(2.2rem, 6vw, 4.5rem);font-weight: 800;letter-spacing: -0.03em;margin-bottom: 50px;}
 .cta-buttons {display: flex;justify-content: center;gap: 40px;flex-wrap: wrap;}
@@ -807,11 +814,10 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 </div>
 
 <div id="adminApp">
+  <!-- LOGIN MODAL (OCULTO POR DEFECTO) -->
   <div class="a-login-screen" id="aLoginScreen">
     <div class="a-login-card">
-      <img src="logo.svg" alt="Grobdesigns" class="a-login-logo" onerror="this.style.display='none'">
-      <h1 class="a-login-title">Panel de Control</h1>
-      <p class="a-login-subtitle">Conecta con tu repositorio de GitHub</p>
+      <h1 class="a-login-title">Conectar con GitHub</h1>
       <form id="aLoginForm">
         <div class="a-form-group"><label class="a-form-label">Token de Acceso (PAT)</label><input type="password" id="aLoginToken" class="a-form-input" placeholder="ghp_..." required></div>
         <div class="a-form-group"><label class="a-form-label">Repositorio</label><input type="text" id="aLoginRepo" class="a-form-input" placeholder="usuario/repositorio" required></div>
@@ -1724,7 +1730,6 @@ window.checkoutWhatsApp = function() {
   const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
   if (cart.length === 0) return;
   
-  // Validar que todos los productos que requieren briefing lo tengan
   const missingBriefing = cart.filter(item => item.briefingFields && item.briefingFields.length > 0 && !item.briefingAnswers);
   if (missingBriefing.length > 0) {
     alert("Por favor, rellena el Briefing de todos los productos antes de finalizar la compra.");
@@ -1903,7 +1908,22 @@ function renderProfile() {
 
 function handleRoute() {
   const h = (location.hash || '#home').toLowerCase();
-  if (h === '#admin' || h.startsWith('#admin')) { $('#publicApp').style.display = 'none'; $('#adminApp').classList.add('active'); if (GH.isConfigured()) { $('#aLoginScreen').classList.remove('active'); $('#aDashboard').style.display = 'flex'; if (!window._adminDataLoaded) { window._adminDataLoaded = true; loadAdminData(); } } else { $('#aLoginScreen').classList.add('active'); $('#aDashboard').style.display = 'none'; } _prevRoute = h; return; }
+  if (h === '#admin' || h.startsWith('#admin')) { 
+      $('#publicApp').style.display = 'none'; 
+      $('#adminApp').classList.add('active'); 
+      if (GH.isConfigured()) { 
+          $('#aLoginScreen').classList.remove('active'); 
+          $('#aDashboard').style.display = 'flex'; 
+          if (!window._adminDataLoaded) { 
+              window._adminDataLoaded = true; 
+              loadAdminData(); 
+          } 
+      } else { 
+          $('#aLoginScreen').classList.add('active'); 
+          $('#aDashboard').style.display = 'none'; 
+      } 
+      _prevRoute = h; return; 
+  }
   if ($('#adminApp').classList.contains('active') || $('#publicApp').style.display === 'none') { $('#publicApp').style.display = 'block'; $('#adminApp').classList.remove('active'); }
   updateNavBack(h); window.scrollTo({ top: 0, behavior: 'auto' });
   if (!h.startsWith('#cover-')) { const musicWrap = $('#coverHeroMusic'); if (musicWrap) musicWrap.innerHTML = ''; const extraImgs = $('#coverExtraImgs'); if (extraImgs) extraImgs.innerHTML = ''; }
@@ -2199,7 +2219,6 @@ function renderAdmin() {
   setVal('#aThemeAccent', DATA.theme.accent); setVal('#aThemeBg', DATA.theme.bg); setVal('#aThemeText', DATA.theme.text);
   setVal('#aYoutubeApiKey', DATA.settings?.youtubeApiKey); setVal('#aApifyToken', DATA.settings?.apifyToken); setVal('#aApifyActor', DATA.settings?.apifyActor);
   
-  // Estado del switch de mantenimiento
   $('#aStoreMaintenance').checked = DATA.settings.storeMaintenance;
   updateStoreStatusText(DATA.settings.storeMaintenance);
   
