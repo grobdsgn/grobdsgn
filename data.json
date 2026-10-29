@@ -1323,8 +1323,8 @@
       "desc": "Creacion de Album Musical. \nPortada + Contraportada + CD",
       "category": "artista",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
-      "hasEditable": false,
-      "editablePrice": "10.00",
+      "hasEditable": true,
+      "editablePrice": "200.00",
       "briefingFields": []
     },
     {
