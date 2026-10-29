@@ -1357,12 +1357,12 @@
       "price": "200.00",
       "desc": "Creacion de Album Musical. \nPortada + Contraportada + CD + Diseño Interno.",
       "category": "artista",
+      "group": "General",
+      "order": 8,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304749461_y555.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": [],
-      "group": "General",
-      "order": 0
+      "briefingFields": []
     },
     {
       "id": "b5zmn6nsmvtzheh9",
