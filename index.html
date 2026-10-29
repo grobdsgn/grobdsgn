@@ -56,10 +56,12 @@ nav.top.scrolled{padding:10px 0;background:rgba(0,0,0,0.95);backdrop-filter:blur
 .tab.active::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--text)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 
-.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative;padding:0;overflow:hidden;}
+/* CORRECCIÓN: Eliminado overflow: hidden para que el badge del carrito flote fuera */
+.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);cursor:pointer;transition:all .3s;position:relative;padding:0;}
 .nav-icon-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 .nav-icon-btn svg{width:16px;height:16px;fill:currentColor}
-.cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:#000;font-size:10px;font-weight:800;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;display:none;}
+/* CORRECCIÓN: pointer-events: none y z-index: 10 para que no bloquee clics y esté por encima */
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:#000;font-size:10px;font-weight:800;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;display:none; pointer-events:none; z-index:10;}
 
 .nav-back{display:none;align-items:center;gap:6px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);transition:.3s;padding:6px 0;white-space:nowrap}
 .nav-back.show{display:flex}
