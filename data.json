@@ -1111,6 +1111,8 @@
       "price": "50.00",
       "desc": "Creación de Cover.",
       "category": "artista",
+      "group": "General",
+      "order": 1,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793252787035_uewp.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
@@ -1131,9 +1133,7 @@
           "label": "Fecha estimada",
           "required": false
         }
-      ],
-      "group": "General",
-      "order": 0
+      ]
     },
     {
       "id": "9osj4m3rmvt4kgls",
