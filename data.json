@@ -1119,11 +1119,24 @@
       "id": "9osj4m3rmvt4kgls",
       "name": "Cover Pack x5",
       "price": "200.00",
-      "desc": "PAck de 5 Imagenes para Tema Promocional.",
+      "desc": "Pack de 5 Imagenes para Tema Promocional.\n+Cover",
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
-      "hasEditable": false,
-      "editablePrice": 0,
-      "briefingFields": []
+      "hasEditable": true,
+      "editablePrice": "150.00",
+      "briefingFields": [
+        {
+          "label": "Nombre del tema"
+        },
+        {
+          "label": "Nombre del Artista"
+        },
+        {
+          "label": "Concepto o idea"
+        },
+        {
+          "label": "Alguna Fecha limite"
+        }
+      ]
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
@@ -1387,7 +1400,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083378,
+        "youtube": 1083377,
         "apple": 0
       }
     },
@@ -1406,7 +1419,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94701,
+        "youtube": 94699,
         "apple": 0
       }
     },
@@ -1746,7 +1759,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126741,
+        "youtube": 1126740,
         "apple": 0
       }
     },
@@ -1786,7 +1799,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509120643,
+        "youtube": 509121858,
         "apple": 0
       }
     },
@@ -1876,7 +1889,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507146,
+        "youtube": 11507155,
         "apple": 0
       }
     },
@@ -1914,7 +1927,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529345596,
+        "youtube": 529346622,
         "apple": 0
       }
     },
@@ -1952,7 +1965,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233756,
+        "youtube": 5233753,
         "apple": 0
       }
     },
@@ -1993,7 +2006,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138978,
+        "youtube": 138979,
         "apple": 0
       }
     },
@@ -3071,7 +3084,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38083680,
+        "youtube": 38083731,
         "apple": 0
       }
     },
@@ -3133,7 +3146,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5096963,
+        "youtube": 5096968,
         "apple": 0
       }
     },
