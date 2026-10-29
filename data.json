@@ -1282,6 +1282,17 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": []
+    },
+    {
+      "id": "hjpqpx8wmvty3rs9",
+      "name": "Visualizer",
+      "price": "150.00",
+      "desc": "",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302621570_szsj.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
