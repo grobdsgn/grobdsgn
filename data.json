@@ -1996,7 +1996,9 @@
       "artist": "lenny tavarez",
       "year": "2017",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239333394_ifgt.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/intl-es/track/4zY480YtyhU5yViagaedSS?si=93a1c74e74a143f8",
       "appleMusicUrl": "",
       "youtubeUrl": "",
