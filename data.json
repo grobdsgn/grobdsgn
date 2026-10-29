@@ -1318,12 +1318,12 @@
       "price": "600.00",
       "desc": "",
       "category": "artista",
+      "group": "General",
+      "order": 13,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302695760_chnx.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "group": "General",
-      "order": 0
+      "briefingFields": []
     },
     {
       "id": "n8ile1cjmvtz9oio",
