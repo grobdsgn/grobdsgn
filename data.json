@@ -1141,6 +1141,8 @@
       "price": "200.00",
       "desc": "Pack de Cover + 4 Asset o imagenes para Tema Promocional.",
       "category": "artista",
+      "group": "General",
+      "order": 3,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
@@ -1161,9 +1163,7 @@
           "label": "Alguna Fecha limite",
           "required": false
         }
-      ],
-      "group": "General",
-      "order": 0
+      ]
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
