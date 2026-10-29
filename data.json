@@ -1131,7 +1131,9 @@
           "label": "Fecha estimada",
           "required": false
         }
-      ]
+      ],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "9osj4m3rmvt4kgls",
@@ -1159,7 +1161,9 @@
           "label": "Alguna Fecha limite",
           "required": false
         }
-      ]
+      ],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
@@ -1167,6 +1171,8 @@
       "price": "300.00",
       "desc": "Pack de Cover +9 Asset o imagenes para Tema Promocional.",
       "category": "artista",
+      "group": "General",
+      "order": 2,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253145798_3htj.jpg",
       "hasEditable": true,
       "editablePrice": "100.00",
@@ -1207,7 +1213,9 @@
           "label": "Concepto o idea",
           "required": false
         }
-      ]
+      ],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "h4ss1ahcmvtupcma",
@@ -1231,7 +1239,9 @@
           "label": "Color",
           "required": false
         }
-      ]
+      ],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "u5igcyvpmvtvog85",
@@ -1259,7 +1269,9 @@
           "label": "Información",
           "required": true
         }
-      ]
+      ],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "nh4uzlybmvtxl0ok",
@@ -1270,7 +1282,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301781718_lhpb.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "7lnt492emvtxmw7q",
@@ -1281,7 +1295,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301874035_yeq3.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "hjpqpx8wmvty3rs9",
@@ -1292,7 +1308,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302621570_szsj.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "8uwvsve0mvty4hkm",
@@ -1303,7 +1321,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302695760_chnx.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "n8ile1cjmvtz9oio",
@@ -1314,7 +1334,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304672585_joqj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "d4jog1hemvtzbrv8",
@@ -1325,7 +1347,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "50sex8ismvtzdwfk",
@@ -1336,7 +1360,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304749461_y555.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     },
     {
       "id": "b5zmn6nsmvtzheh9",
@@ -1347,7 +1373,9 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304891580_8rpy.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "group": "General",
+      "order": 0
     }
   ],
   "clientes": [
@@ -1561,7 +1589,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278539,
+        "youtube": 278547,
         "apple": 0
       }
     },
@@ -1582,7 +1610,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352386,
+        "youtube": 1352391,
         "apple": 0
       }
     },
@@ -1601,7 +1629,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083449,
+        "youtube": 1083481,
         "apple": 0
       }
     },
@@ -1620,7 +1648,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94706,
+        "youtube": 94713,
         "apple": 0
       }
     },
@@ -1960,7 +1988,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126751,
+        "youtube": 1126756,
         "apple": 0
       }
     },
@@ -1981,7 +2009,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239205,
+        "youtube": 26239235,
         "apple": 0
       }
     },
@@ -2000,7 +2028,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509163034,
+        "youtube": 509184882,
         "apple": 0
       }
     },
@@ -2090,7 +2118,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507358,
+        "youtube": 11507459,
         "apple": 0
       }
     },
@@ -2128,7 +2156,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529392721,
+        "youtube": 529417927,
         "apple": 0
       }
     },
@@ -2166,7 +2194,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233862,
+        "youtube": 5233920,
         "apple": 0
       }
     },
@@ -2188,7 +2216,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194649,
+        "youtube": 194656,
         "apple": 0
       }
     },
@@ -2207,7 +2235,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138980,
+        "youtube": 138982,
         "apple": 0
       }
     },
@@ -2321,7 +2349,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598594,
+        "youtube": 598616,
         "apple": 0
       }
     },
@@ -2560,7 +2588,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139300,
+        "youtube": 139313,
         "apple": 0
       }
     },
@@ -3285,7 +3313,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38084885,
+        "youtube": 38085507,
         "apple": 0
       }
     },
@@ -3347,7 +3375,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097326,
+        "youtube": 5097495,
         "apple": 0
       }
     },
@@ -3388,7 +3416,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212840,
+        "youtube": 3212844,
         "apple": 0
       }
     }
