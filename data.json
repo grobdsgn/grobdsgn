@@ -3121,6 +3121,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "sop1e1vrmvsy31ow",
+      "url": "https://i.scdn.co/image/ab67616d0000b2737f262c390afcfc9c72ce5ebf",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
