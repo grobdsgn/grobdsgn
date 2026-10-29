@@ -1260,6 +1260,17 @@
           "required": true
         }
       ]
+    },
+    {
+      "id": "nh4uzlybmvtxl0ok",
+      "name": "Video Cover",
+      "price": "70.00",
+      "desc": "Creación y Dirección de Video promocional de Cover",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793301781718_lhpb.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
