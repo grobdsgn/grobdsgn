@@ -1201,6 +1201,8 @@
       "price": "200.00",
       "desc": "Creación de Logotipo para Artista.\nEntrega Basica de Logo con sus Formatos",
       "category": "artista",
+      "group": "General",
+      "order": 12,
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302090948_haxd.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
@@ -1213,9 +1215,7 @@
           "label": "Concepto o idea",
           "required": false
         }
-      ],
-      "group": "General",
-      "order": 0
+      ]
     },
     {
       "id": "h4ss1ahcmvtupcma",
