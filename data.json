@@ -1232,6 +1232,34 @@
           "required": false
         }
       ]
+    },
+    {
+      "id": "u5igcyvpmvtvog85",
+      "name": "Diseño o Flyer",
+      "price": "50.00",
+      "desc": "Creación dirección de Arte.",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793298586227_jj9r.jpg",
+      "hasEditable": true,
+      "editablePrice": "150.00",
+      "briefingFields": [
+        {
+          "label": "Motivo",
+          "required": true
+        },
+        {
+          "label": "Tamaño o Formato",
+          "required": true
+        },
+        {
+          "label": "Concepto",
+          "required": true
+        },
+        {
+          "label": "Información",
+          "required": true
+        }
+      ]
     }
   ],
   "clientes": [
