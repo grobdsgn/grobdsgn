@@ -1208,6 +1208,17 @@
           "required": false
         }
       ]
+    },
+    {
+      "id": "h4ss1ahcmvtupcma",
+      "name": "Logo e Identidad Visual Completa",
+      "price": "400.00",
+      "desc": "Creación de un sistema de marca cohesivo que incluya logotipo, tipografías, paleta de colores y pautas de uso. Esto asegura que el artista se vea consistente en todas sus plataformas (redes, portadas, merch).",
+      "category": "artista",
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793296927203_5o26.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "briefingFields": []
     }
   ],
   "clientes": [
@@ -1480,7 +1491,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94707,
+        "youtube": 94706,
         "apple": 0
       }
     },
@@ -1820,7 +1831,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126747,
+        "youtube": 1126751,
         "apple": 0
       }
     },
@@ -1860,7 +1871,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509156554,
+        "youtube": 509163034,
         "apple": 0
       }
     },
@@ -1950,7 +1961,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507337,
+        "youtube": 11507358,
         "apple": 0
       }
     },
@@ -1988,7 +1999,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529384959,
+        "youtube": 529392721,
         "apple": 0
       }
     },
@@ -2048,7 +2059,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194651,
+        "youtube": 194649,
         "apple": 0
       }
     },
@@ -2109,7 +2120,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51822,
+        "youtube": 51828,
         "apple": 0
       }
     },
@@ -2181,7 +2192,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598595,
+        "youtube": 598594,
         "apple": 0
       }
     },
@@ -3145,7 +3156,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38084734,
+        "youtube": 38084885,
         "apple": 0
       }
     },
@@ -3207,7 +3218,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097281,
+        "youtube": 5097326,
         "apple": 0
       }
     },
@@ -3248,7 +3259,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212797,
+        "youtube": 3212840,
         "apple": 0
       }
     }
