@@ -71,11 +71,14 @@
         },
         {
           "id": "edpn68tjmvv5hcjv",
-          "name": "Nuevo Proyecto",
+          "name": "Parri padel",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793375532307_f1m7.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793375534079_2wlq.jpg"
+          ]
         }
       ]
     },
