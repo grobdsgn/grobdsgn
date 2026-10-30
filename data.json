@@ -3603,7 +3603,7 @@
     "philMuted": "#4A4A4A"
   },
   "settings": {
-    "apifyActor": "eduair94/spotify-scraper",
+    "apifyActor": "beatanalytics/spotify-play-count-scraper",
     "storeMaintenance": false
   },
   "texts": {
