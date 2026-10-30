@@ -1324,14 +1324,19 @@
       "price": "80.00",
       "desc": "15 Seg. Aprox.",
       "category": "artista",
+      "categories": [
+        "artista",
+        "marca_personal",
+        "empresa"
+      ],
       "group": "General",
       "order": 6,
+      "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793307409358_iacu.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "extraImages": [],
-      "visible": true
+      "visible": true,
+      "briefingFields": []
     },
     {
       "id": "hjpqpx8wmvty3rs9",
