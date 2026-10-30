@@ -375,6 +375,71 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .cliente-logo:hover img{transform:scale(1.05)}
 @media(max-width:900px){.cliente-logo,.software-logo{filter:brightness(0) invert(1) !important;-webkit-filter:brightness(0) invert(1) !important;}}
 
+/* Contact CTA Social Buttons */
+.cta-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(201, 169, 97, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  color: #fff;
+}
+.cta-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.cta-icon svg {
+  width: 15px;
+  height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+  display: block;
+}
+.cta-btn.wa:hover .cta-icon {
+  color: #25D366;
+  transform: scale(1.1);
+}
+.cta-btn.ig:hover .cta-icon {
+  color: #E1306C;
+  transform: scale(1.1);
+}
+.cta-btn.em:hover .cta-icon {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+.cta-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: inherit;
+}
+
 .contacto-view{padding:120px 0 60px;min-height:100vh}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
 @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:40px}}
@@ -618,7 +683,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
   left: 0;
   z-index: 1000;
   transform: translateX(-100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1), margin 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
 }
 
@@ -632,6 +697,21 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
     position: sticky;
     top: 0;
     height: 100vh;
+    box-shadow: none;
+  }
+  .admin-layout.sidebar-collapsed .a-sidebar {
+    transform: translateX(-100%);
+    width: 0 !important;
+    min-width: 0 !important;
+    margin-right: 0 !important;
+    border-right: none !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden;
+  }
+  .a-menu-btn {
+    display: inline-flex !important;
   }
 }
 
@@ -3504,6 +3584,8 @@ input:checked + .a-slider:before {
                 <div class="a-stat">Sencillos: <strong id="statSencillo">0</strong></div>
                 <div class="a-stat">Álbumes: <strong id="statAlbums">0</strong></div>
                 <div class="a-stat">Ediciones: <strong id="statEdiciones">0</strong></div>
+                <div class="a-stat">Plays Spotify: <strong id="statPlaysSpotify">0</strong></div>
+                <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="syncAllSpotifyPlays()" style="margin-left:auto;">⚡ Sincronizar Plays</button>
               </div>
             </div>
           </div>
@@ -3792,12 +3874,20 @@ input:checked + .a-slider:before {
             </div>
           </div>
           <div class="a-card">
-            <div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">🎵</span>Integración Spotify (Apify)</h2></div>
+            <div class="a-card-header" style="display:flex;justify-content:space-between;align-items:center;">
+              <h2 class="a-card-title"><span class="a-card-title-icon">🎵</span>Integración Spotify & Reproducciones</h2>
+              <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="syncAllSpotifyPlays()">⚡ Sincronizar Todo</button>
+            </div>
             <div class="a-card-body">
               <div class="a-form-group">
-                <label class="a-form-label">Apify API Token</label>
+                <label class="a-form-label">RapidAPI Key (Spotify Statistics & Streams)</label>
+                <input type="password" id="aRapidApiKey" class="a-form-input" placeholder="Ingresa tu clave de RapidAPI...">
+                <span class="a-form-hint">Opción directa y recomendada para conteo automático de reproducciones.</span>
+              </div>
+              <div class="a-form-group">
+                <label class="a-form-label">Apify API Token (Alternativa)</label>
                 <input type="text" id="aApifyToken" class="a-form-input" placeholder="apify_api_...">
-                <span class="a-form-hint">Token de API de Apify para conteo de reproducciones de Spotify.</span>
+                <span class="a-form-hint">Token de API de Apify si utilizas un actor scraper dedicado.</span>
               </div>
               <div class="a-form-group">
                 <label class="a-form-label">Actor de Apify</label>
@@ -3940,6 +4030,14 @@ input:checked + .a-slider:before {
             <button type="button" class="a-btn a-btn-outline a-btn-xs" id="aBtnAutofillSpotify" onclick="autofillFromSpotify()">⚡ Cargar Datos</button>
           </div>
           <span class="a-form-hint">Obtiene título, artista y año automáticamente desde Spotify.</span>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label">Reproducciones en Spotify</label>
+          <div style="display:flex;gap:8px">
+            <input type="number" id="aEditCoverPlaysSpotify" class="a-form-input" style="flex:1" placeholder="0" min="0">
+            <button type="button" class="a-btn a-btn-outline a-btn-xs" id="aBtnFetchTrackPlays" onclick="fetchCoverTrackPlays()">⚡ Obtener Plays</button>
+          </div>
+          <span class="a-form-hint">Conteo automático de streams. También puedes ajustarlo manualmente.</span>
         </div>
         <div class="a-form-group"><label class="a-form-label">Apple Music URL</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">YouTube URL (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
@@ -4416,7 +4514,7 @@ let DATA = {
   heroImages: [], categories: [], products: [], clientes: [], software: [], covers: [],
   contact: { email: 'hola@grobdesigns.com', phone: '+58 400 000 0000', instagram: '', location: 'Caracas, Venezuela' },
   theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
-  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR, storeMaintenance: false },
+  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR, rapidApiKey: '', storeMaintenance: false },
   texts: {}, ficha: []
 };
 const ADMIN_NAV = { view: 'categories', catId: null, projId: null };
@@ -5248,42 +5346,272 @@ async function fetchYouTubeStats() {
   }
 }
 
-async function fetchSpotifyStats() {
-  const token = DATA.settings?.apifyToken; const actor = DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR; if (!token) return;
-  const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl)); if (!coversWithSpotify.length) return;
-  const uniqueUrls = [...new Set(coversWithSpotify.map(c => c.spotifyUrl.trim()))]; if (!uniqueUrls.length) return;
-  try {
-    const res = await fetch(`https://api.apify.com/v2/acts/${actor.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ urls: uniqueUrls.map(url => ({ url })) }) });
-    if (!res.ok) return;
-    const items = await res.json(); if (!Array.isArray(items)) return;
-    const playCountMap = new Map();
-    items.forEach(item => { const rawUrl = item.url || item.spotifyUrl || item.trackUrl || item.track_url || ''; const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? 0; if (rawUrl) { const key = String(rawUrl).trim(); const num = parseInt(plays) || 0; if (!playCountMap.has(key) || num > playCountMap.get(key)) playCountMap.set(key, num); } });
-    coversWithSpotify.forEach(c => { const key = c.spotifyUrl.trim(); if (playCountMap.has(key)) { if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 }; c.plays.spotify = playCountMap.get(key); } });
-  } catch (e) { console.warn(e); }
+function extractSpotifyTrackId(url) {
+  if (!url) return null;
+  const m = url.match(/track[/:]([a-zA-Z0-9]{22})/i) || url.match(/track\/([a-zA-Z0-9]+)/i);
+  return m ? m[1] : null;
 }
 
-const CORS_PROXIES = [url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`, url => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`];
-async function fetchSpotifyHtml(url) { for (const proxy of CORS_PROXIES) { try { const res = await fetch(proxy(url), { cache: 'no-store' }); if (res.ok) { const text = await res.text(); if (text && text.length > 2000) return text; } } catch (e) {} } return null; }
+const CORS_PROXIES = [
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`
+];
+
+async function fetchSpotifyHtml(url) {
+  for (const proxy of CORS_PROXIES) {
+    try {
+      const res = await fetch(proxy(url), { cache: 'no-store' });
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.length > 2000) return text;
+      }
+    } catch (e) {}
+  }
+  return null;
+}
+
 async function fetchSpotifyMetadata(url) {
   const result = { name: '', artists: '', year: '' };
-  try { const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`); if (oe.ok) { const d = await oe.json(); if (d.title) result.name = d.title; } } catch (e) {}
+  try {
+    const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`);
+    if (oe.ok) {
+      const d = await oe.json();
+      if (d.title) result.name = d.title;
+    }
+  } catch (e) {}
   try {
     const html = await fetchSpotifyHtml(url);
     if (html) {
       const ld = html.match(new RegExp('<' + 'script type="application/ld\\+json">([\\s\\S]*?)<\/' + 'script>'));
-      if (ld) { try { const d = JSON.parse(ld[1]); if (d.name) result.name = d.name; if (d.byArtist) result.artists = Array.isArray(d.byArtist) ? d.byArtist.map(a => a.name).join(', ') : d.byArtist.name; if (d.datePublished) result.year = String(d.datePublished).match(/^(\d{4})/)[1]; } catch (e) {} }
+      if (ld) {
+        try {
+          const d = JSON.parse(ld[1]);
+          if (d.name) result.name = d.name;
+          if (d.byArtist) result.artists = Array.isArray(d.byArtist) ? d.byArtist.map(a => a.name).join(', ') : d.byArtist.name;
+          if (d.datePublished) result.year = String(d.datePublished).match(/^(\d{4})/)[1];
+        } catch (e) {}
+      }
     }
   } catch (e) {}
   return result;
 }
+
 async function fetchSpotifyPlaysForUrl(url, token, actor) {
-  if (!token) return 0;
-  try { const res = await fetch(`https://api.apify.com/v2/acts/${(actor || DEFAULT_APIFY_ACTOR).replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ urls: [{ url }] }) }); if (!res.ok) return 0; const items = await res.json(); if (!items.length) return 0; return parseInt(items[0].playCount ?? items[0].play_count ?? items[0].plays ?? 0) || 0; } catch (e) { return 0; }
+  const apifyTok = token || DATA.settings?.apifyToken;
+  const apifyAct = actor || DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
+  const rapidKey = DATA.settings?.rapidApiKey;
+  const trackId = extractSpotifyTrackId(url);
+
+  // 1. Try RapidAPI if configured
+  if (rapidKey) {
+    try {
+      const r1 = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(url)}`, {
+        headers: {
+          'x-rapidapi-key': rapidKey,
+          'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
+        }
+      });
+      if (r1.ok) {
+        const d = await r1.json();
+        const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
+        if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+      }
+    } catch (e) {}
+
+    if (trackId) {
+      try {
+        const r2 = await fetch(`https://spotify23.p.rapidapi.com/track_credits/?id=${trackId}`, {
+          headers: {
+            'x-rapidapi-key': rapidKey,
+            'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+          }
+        });
+        if (r2.ok) {
+          const d = await r2.json();
+          const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
+          if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+        }
+      } catch (e) {}
+    }
+  }
+
+  // 2. Try Apify if configured
+  if (apifyTok) {
+    try {
+      const res = await fetch(`https://api.apify.com/v2/acts/${apifyAct.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(apifyTok)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urls: [{ url }] })
+      });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items) && items.length) {
+          const it = items[0];
+          const p = it.playCount ?? it.play_count ?? it.plays ?? it.streams ?? it.count ?? 0;
+          if (parseInt(p, 10) > 0) return parseInt(p, 10);
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 3. Fallback: Parse public stream meta if accessible
+  if (trackId) {
+    for (const proxy of CORS_PROXIES) {
+      try {
+        const res = await fetch(proxy(`https://open.spotify.com/track/${trackId}`), { cache: 'no-store' });
+        if (res.ok) {
+          const text = await res.text();
+          const match = text.match(/"playcount"\s*:\s*(\d+)/i) || text.match(/"play_count"\s*:\s*(\d+)/i);
+          if (match && parseInt(match[1], 10) > 0) return parseInt(match[1], 10);
+        }
+      } catch (e) {}
+    }
+  }
+
+  return 0;
 }
+
+async function fetchSpotifyStats() {
+  const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
+  if (!coversWithSpotify.length) return;
+
+  const rapidKey = DATA.settings?.rapidApiKey;
+  const token = DATA.settings?.apifyToken;
+  const actor = DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
+
+  if (rapidKey) {
+    for (const c of coversWithSpotify) {
+      try {
+        const plays = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
+        if (plays > 0) {
+          if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+          c.plays.spotify = plays;
+        }
+      } catch (e) {}
+    }
+    return;
+  }
+
+  if (token) {
+    const uniqueUrls = [...new Set(coversWithSpotify.map(c => c.spotifyUrl.trim()))];
+    if (!uniqueUrls.length) return;
+    try {
+      const res = await fetch(`https://api.apify.com/v2/acts/${actor.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urls: uniqueUrls.map(url => ({ url })) })
+      });
+      if (res.ok) {
+        const items = await res.json();
+        if (Array.isArray(items)) {
+          const playCountMap = new Map();
+          items.forEach(item => {
+            const rawUrl = item.url || item.spotifyUrl || item.trackUrl || item.track_url || '';
+            const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
+            if (rawUrl) {
+              const key = String(rawUrl).trim();
+              const num = parseInt(plays, 10) || 0;
+              if (!playCountMap.has(key) || num > playCountMap.get(key)) playCountMap.set(key, num);
+            }
+          });
+          coversWithSpotify.forEach(c => {
+            const key = c.spotifyUrl.trim();
+            if (playCountMap.has(key)) {
+              if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+              c.plays.spotify = playCountMap.get(key);
+            }
+          });
+        }
+      }
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+}
+
 window.autofillFromSpotify = async function() {
-  const url = $('#aEditCoverSpotify').value.trim(); if (!url || !/spotify\.com\/(track|album|episode)\//.test(url)) return aToast('URL inválida', 'error');
-  const btn = $('#aBtnAutofillSpotify'); const orig = btn.textContent; btn.textContent = '⏳...'; btn.disabled = true;
-  try { const [meta, plays] = await Promise.all([fetchSpotifyMetadata(url), fetchSpotifyPlaysForUrl(url, DATA.settings?.apifyToken, DATA.settings?.apifyActor)]); if (meta.name) $('#aEditCoverName').value = meta.name; if (meta.artists) $('#aEditCoverArtist').value = meta.artists; if (meta.year) $('#aEditCoverYear').value = meta.year; if (plays > 0) { const idx = parseInt($('#aEditCoverIndex').value); if (DATA.covers[idx]) { DATA.covers[idx].plays = DATA.covers[idx].plays || { spotify: 0, youtube: 0, apple: 0 }; DATA.covers[idx].plays.spotify = plays; } } aToast('Datos cargados'); } catch (e) { aToast('Error', 'error'); } finally { btn.textContent = orig; btn.disabled = false; }
+  const url = $('#aEditCoverSpotify').value.trim();
+  if (!url || !/spotify\.com\/(track|album|episode)\//.test(url)) return aToast('URL de Spotify inválida', 'error');
+  const btn = $('#aBtnAutofillSpotify');
+  const orig = btn.textContent;
+  btn.textContent = '⏳ Cargando...';
+  btn.disabled = true;
+  try {
+    const [meta, plays] = await Promise.all([
+      fetchSpotifyMetadata(url),
+      fetchSpotifyPlaysForUrl(url)
+    ]);
+    if (meta.name) $('#aEditCoverName').value = meta.name;
+    if (meta.artists) $('#aEditCoverArtist').value = meta.artists;
+    if (meta.year) $('#aEditCoverYear').value = meta.year;
+    if (plays > 0) {
+      $('#aEditCoverPlaysSpotify').value = plays;
+      aToast(`✓ Metadatos y ${plays.toLocaleString()} reproducciones cargadas`, 'success');
+    } else {
+      aToast('✓ Datos de Spotify cargados (Título, Artista, Año)', 'success');
+    }
+  } catch (e) {
+    console.error(e);
+    aToast('Error al conectar con Spotify', 'error');
+  } finally {
+    btn.textContent = orig;
+    btn.disabled = false;
+  }
+};
+
+window.fetchCoverTrackPlays = async function() {
+  const url = $('#aEditCoverSpotify').value.trim();
+  if (!url || !/spotify\.com\/(track|album|episode)\//.test(url)) return aToast('Ingresa una URL válida de Spotify', 'error');
+  const btn = $('#aBtnFetchTrackPlays');
+  const orig = btn.textContent;
+  btn.textContent = '⏳...';
+  btn.disabled = true;
+  try {
+    const plays = await fetchSpotifyPlaysForUrl(url);
+    if (plays > 0) {
+      $('#aEditCoverPlaysSpotify').value = plays;
+      aToast(`✓ ${plays.toLocaleString()} reproducciones encontradas`, 'success');
+    } else {
+      aToast('No se detectaron reproducciones automáticas. Ingresa tu API Key en Ajustes o introduce el número manualmente.', 'error');
+    }
+  } catch (e) {
+    aToast('Error al consultar reproducciones', 'error');
+  } finally {
+    btn.textContent = orig;
+    btn.disabled = false;
+  }
+};
+
+window.syncAllSpotifyPlays = async function() {
+  const covers = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
+  if (!covers.length) return aToast('No hay covers con enlace de Spotify', 'error');
+
+  aToast(`Sincronizando ${covers.length} canciones con Spotify...`, 'info');
+  let updatedCount = 0;
+
+  if (DATA.settings?.apifyToken) {
+    await fetchSpotifyStats();
+    updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
+  } else {
+    for (const c of covers) {
+      try {
+        const plays = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
+        if (plays > 0) {
+          if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+          c.plays.spotify = plays;
+          updatedCount++;
+        }
+      } catch (e) {}
+    }
+  }
+
+  const totalStreams = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
+  updateAdminBadges();
+  renderAdmin();
+  setupPlaysBanner();
+  saveAdminData();
+  aToast(`✓ Sincronización completa: ${updatedCount} actualizadas (${totalStreams.toLocaleString()} plays totales)`, 'success');
 };
 
 async function loadPublicData() {
@@ -5499,6 +5827,8 @@ function updateAdminBadges() {
   set('aBadgeHero', (DATA.heroImages || []).length); set('aBadgeCovers', (DATA.covers || []).length); const tp = (DATA.categories || []).reduce((s, c) => s + (c.projects || []).length, 0); set('aBadgePortfolio', tp); set('aBadgeStore', (DATA.products || []).length); set('aBadgeClients', (DATA.clientes || []).length); set('aBadgeTools', (DATA.software || []).length);
   set('statHeroImgs', (DATA.heroImages || []).length); set('statCategories', (DATA.categories || []).length); set('statProjects', tp); set('statProducts', (DATA.products || []).length); set('statClients', (DATA.clientes || []).length); set('statTools', (DATA.software || []).length); set('aCoversCount', (DATA.covers || []).length); set('aProductsCount', (DATA.products || []).length); set('aClientsCount', (DATA.clientes || []).length); set('aToolsCount', (DATA.software || []).length);
   const c = DATA.covers || []; set('statSencillo', c.filter(x => x.category === 'sencillo').length); set('statAlbums', c.filter(x => x.category === 'albums').length); set('statEdiciones', c.filter(x => x.category === 'ediciones').length); set('statFeatured', c.filter(x => x.featured).length);
+  const totalPlays = c.reduce((sum, item) => sum + (parseInt(item.plays?.spotify, 10) || 0), 0);
+  set('statPlaysSpotify', formatNumber(totalPlays));
 }
 
 function renderAdmin() {
@@ -5509,7 +5839,8 @@ function renderAdmin() {
   renderFichaEditor();
 
   const hGrid = $('#aHeroImagesGrid'); hGrid.innerHTML = ''; (DATA.heroImages || []).forEach((url, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(url)}" onerror="handleImgError(this)" draggable="false"><div class="a-cover-card-info"><div class="a-cover-card-actions"><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('heroImages', ${i})">✕</button></div></div>`; hGrid.appendChild(el); });
-  const cGrid = $('#aCoversGrid'); cGrid.innerHTML = ''; (DATA.covers || []).forEach((c, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)" draggable="false">${c.featured ? '<span class="a-badge featured">★</span>' : `<span class="a-badge">${escHtml(c.category || '')}</span>`}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(c.name || 'Sin título')}</div><div class="a-cover-card-meta">${escHtml(c.artist || 'Sin artista')}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openAdminCoverModal(${i})">✏️</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('covers', ${i})">✕</button></div></div>`; cGrid.appendChild(el); });
+  const cGrid = $('#aCoversGrid'); cGrid.innerHTML = ''; (DATA.covers || []).forEach((c, i) => { const el = document.createElement('div'); el.className = 'a-cover-card'; const spotifyBadge = (c.plays?.spotify > 0) ? `<span class="a-badge" style="background:rgba(30,215,96,0.18);color:#1ed760;border:1px solid rgba(30,215,96,0.3);margin-left:4px;">🟢 ${formatNumber(c.plays.spotify)}</span>` : '';
+    el.innerHTML = `<img src="${resolveImageUrl(c.url)}" onerror="handleImgError(this)" draggable="false">${c.featured ? '<span class="a-badge featured">★</span>' : `<span class="a-badge">${escHtml(c.category || '')}</span>`}${spotifyBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(c.name || 'Sin título')}</div><div class="a-cover-card-meta">${escHtml(c.artist || 'Sin artista')}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openAdminCoverModal(${i})">✏️</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('covers', ${i})">✕</button></div></div>`; cGrid.appendChild(el); });
   
   const pGrid = $('#aProductsGrid'); pGrid.innerHTML = ''; (DATA.products || []).forEach((p, i) => { 
     const el = document.createElement('div'); 
@@ -5529,7 +5860,7 @@ function renderAdmin() {
   renderAdminPortfolio();
   setVal('#aContactEmail', DATA.contact.email); setVal('#aContactPhone', DATA.contact.phone); setVal('#aContactInstagram', DATA.contact.instagram); setVal('#aContactLocation', DATA.contact.location);
   setVal('#aThemeAccent', DATA.theme.accent); setVal('#aThemeBg', DATA.theme.bg); setVal('#aThemeText', DATA.theme.text);
-  setVal('#aYoutubeApiKey', DATA.settings?.youtubeApiKey); setVal('#aApifyToken', DATA.settings?.apifyToken); setVal('#aApifyActor', DATA.settings?.apifyActor);
+  setVal('#aYoutubeApiKey', DATA.settings?.youtubeApiKey); setVal('#aApifyToken', DATA.settings?.apifyToken); setVal('#aApifyActor', DATA.settings?.apifyActor); setVal('#aRapidApiKey', DATA.settings?.rapidApiKey || '');
   
   $('#aStoreMaintenance').checked = DATA.settings.storeMaintenance;
   updateStoreStatusText(DATA.settings.storeMaintenance);
@@ -5770,13 +6101,51 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverName').value = c.name || ''; $('#aEditCoverArtist').value = c.artist || ''; $('#aEditCoverYear').value = c.year || '';
   $('#aEditCoverCategory').value = c.category || 'sencillo'; $('#aEditCoverReview').value = c.review || '';
   $('#aEditCoverSpotify').value = c.spotifyUrl || ''; $('#aEditCoverApple').value = c.appleMusicUrl || ''; $('#aEditCoverYouTube').value = c.youtubeUrl || '';
+  $('#aEditCoverPlaysSpotify').value = (c.plays && c.plays.spotify) ? c.plays.spotify : 0;
   $('#aEditCoverExtras').value = (c.extraImages || []).join('\n'); $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
 };
 
-$('#aMenuBtn').onclick = () => { $('#aSidebar').classList.add('open'); $('#aOverlay').classList.add('active'); };
-$('#aCloseSidebar').onclick = () => { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); };
-$('#aOverlay').onclick = () => { $('#aSidebar').classList.remove('open'); $('#aOverlay').classList.remove('active'); };
+window.toggleAdminSidebar = function() {
+  const isDesktop = window.innerWidth >= 1024;
+  const layout = $('#aDashboard');
+  const sidebar = $('#aSidebar');
+  const overlay = $('#aOverlay');
+  
+  if (isDesktop) {
+    layout.classList.toggle('sidebar-collapsed');
+    const isCollapsed = layout.classList.contains('sidebar-collapsed');
+    if ($('#aMenuBtn')) $('#aMenuBtn').innerHTML = isCollapsed ? '☰ Panel' : '✕ Contraer';
+  } else {
+    const isOpen = sidebar.classList.contains('open');
+    if (isOpen) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    } else {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+    }
+  }
+};
+
+window.closeAdminSidebar = function() {
+  const isDesktop = window.innerWidth >= 1024;
+  if (isDesktop) {
+    $('#aDashboard')?.classList.add('sidebar-collapsed');
+    if ($('#aMenuBtn')) $('#aMenuBtn').innerHTML = '☰ Panel';
+  } else {
+    $('#aSidebar')?.classList.remove('open');
+    $('#aOverlay')?.classList.remove('active');
+  }
+};
+
+$('#aMenuBtn').onclick = window.toggleAdminSidebar;
+$('#aCloseSidebar').onclick = window.closeAdminSidebar;
+$('#aOverlay').onclick = window.closeAdminSidebar;
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') window.closeAdminSidebar();
+});
 $$('.a-nav-item').forEach(it => it.onclick = () => {
   $$('.a-nav-item').forEach(n => n.classList.remove('active')); it.classList.add('active');
   $$('.a-panel').forEach(p => p.classList.remove('active')); const pan = $(`#a-panel-${it.dataset.target}`); if (pan) pan.classList.add('active');
@@ -5791,6 +6160,7 @@ for (const [sel, path] of Object.entries(inputsMap)) { const el = $(sel); if (el
 $('#aContactEmail').oninput = e => DATA.contact.email = e.target.value; $('#aContactPhone').oninput = e => DATA.contact.phone = e.target.value; $('#aContactInstagram').oninput = e => DATA.contact.instagram = e.target.value; $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
 $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value; $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value; $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
 $('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; }; $('#aApifyToken').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyToken = e.target.value; }; $('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
+$('#aRapidApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.rapidApiKey = e.target.value; };
 
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 10000, 1.0, 10240);
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => { const cat = $('#aCoverCategorySelect').value; urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } })); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 2000, 0.9, 500);
@@ -5805,7 +6175,29 @@ $('#aBtnAddClientUrls').onclick = () => { const urls = $('#aClientUrlsInput').va
 $('#aBtnAddToolUrls').onclick = () => { const urls = $('#aToolUrlsInput').value.split('\n').map(s=>s.trim()).filter(Boolean); if (urls.length) { DATA.software.push(...urls); $('#aToolUrlsInput').value=''; updateAdminBadges(); renderAdmin(); saveAdminData(); } };
 
 $('#aCloseCoverModal').onclick = () => $('#aCoverModal').classList.remove('active');
-$('#aBtnSaveCover').onclick = () => { const i = parseInt($('#aEditCoverIndex').value); const c = DATA.covers[i]; if (!c) return; c.url = $('#aEditCoverUrl').value.trim(); c.name = $('#aEditCoverName').value.trim(); c.artist = $('#aEditCoverArtist').value.trim(); c.year = $('#aEditCoverYear').value.trim(); c.category = $('#aEditCoverCategory').value; c.review = $('#aEditCoverReview').value.trim(); c.spotifyUrl = $('#aEditCoverSpotify').value.trim(); c.appleMusicUrl = $('#aEditCoverApple').value.trim(); c.youtubeUrl = $('#aEditCoverYouTube').value.trim(); if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 }; c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean); c.featured = $('#aEditCoverFeatured').checked; $('#aCoverModal').classList.remove('active'); updateAdminBadges(); renderAdmin(); saveAdminData(); };
+$('#aBtnSaveCover').onclick = () => {
+  const i = parseInt($('#aEditCoverIndex').value);
+  const c = DATA.covers[i];
+  if (!c) return;
+  c.url = $('#aEditCoverUrl').value.trim();
+  c.name = $('#aEditCoverName').value.trim();
+  c.artist = $('#aEditCoverArtist').value.trim();
+  c.year = $('#aEditCoverYear').value.trim();
+  c.category = $('#aEditCoverCategory').value;
+  c.review = $('#aEditCoverReview').value.trim();
+  c.spotifyUrl = $('#aEditCoverSpotify').value.trim();
+  c.appleMusicUrl = $('#aEditCoverApple').value.trim();
+  c.youtubeUrl = $('#aEditCoverYouTube').value.trim();
+  if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
+  c.plays.spotify = parseInt($('#aEditCoverPlaysSpotify').value, 10) || 0;
+  c.extraImages = $('#aEditCoverExtras').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  c.featured = $('#aEditCoverFeatured').checked;
+  $('#aCoverModal').classList.remove('active');
+  updateAdminBadges();
+  renderAdmin();
+  setupPlaysBanner();
+  saveAdminData();
+};
 $('#aBtnDeleteCover').onclick = () => { const i = parseInt($('#aEditCoverIndex').value); if (confirm('Eliminar cover?')) { DATA.covers.splice(i, 1); $('#aCoverModal').classList.remove('active'); updateAdminBadges(); renderAdmin(); saveAdminData(); } };
 
 $('#aBtnSaveAll').onclick = saveAdminData;
