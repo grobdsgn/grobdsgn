@@ -1136,7 +1136,8 @@
           "label": "Fecha estimada",
           "required": false
         }
-      ]
+      ],
+      "visible": true
     },
     {
       "id": "9osj4m3rmvt4kgls",
@@ -1167,7 +1168,8 @@
           "required": false
         }
       ],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
@@ -1198,7 +1200,8 @@
           "required": false
         }
       ],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "1o8pbzo2mvt6sen3",
@@ -1221,7 +1224,8 @@
           "required": false
         }
       ],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "h4ss1ahcmvtupcma",
@@ -1248,7 +1252,8 @@
           "required": false
         }
       ],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "u5igcyvpmvtvog85",
@@ -1279,7 +1284,8 @@
           "required": true
         }
       ],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "nh4uzlybmvtxl0ok",
@@ -1293,7 +1299,8 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "7lnt492emvtxmw7q",
@@ -1307,7 +1314,8 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "hjpqpx8wmvty3rs9",
@@ -1321,7 +1329,8 @@
       "hasEditable": false,
       "editablePrice": "10.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "8uwvsve0mvty4hkm",
@@ -1331,11 +1340,12 @@
       "category": "artista",
       "group": "General",
       "order": 13,
+      "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302695760_chnx.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "extraImages": []
+      "visible": false,
+      "briefingFields": []
     },
     {
       "id": "n8ile1cjmvtz9oio",
@@ -1349,7 +1359,8 @@
       "hasEditable": true,
       "editablePrice": "200.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "d4jog1hemvtzbrv8",
@@ -1363,7 +1374,8 @@
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793304712719_s6fj.jpg",
       "hasEditable": true,
       "editablePrice": "200.00",
-      "briefingFields": []
+      "briefingFields": [],
+      "visible": true
     },
     {
       "id": "50sex8ismvtzdwfk",
@@ -1377,7 +1389,8 @@
       "hasEditable": true,
       "editablePrice": "200.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     },
     {
       "id": "b5zmn6nsmvtzheh9",
@@ -1391,7 +1404,8 @@
       "hasEditable": true,
       "editablePrice": "200.00",
       "briefingFields": [],
-      "extraImages": []
+      "extraImages": [],
+      "visible": true
     }
   ],
   "clientes": [
@@ -1605,7 +1619,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278547,
+        "youtube": 278554,
         "apple": 0
       }
     },
@@ -1626,7 +1640,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352402,
+        "youtube": 1352403,
         "apple": 0
       }
     },
@@ -1664,7 +1678,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94713,
+        "youtube": 94714,
         "apple": 0
       }
     },
@@ -1702,7 +1716,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 0,
+        "youtube": 6309165,
         "apple": 0
       }
     },
@@ -1761,7 +1775,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 46328,
+        "youtube": 46329,
         "apple": 0
       }
     },
@@ -2004,7 +2018,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126756,
+        "youtube": 1126758,
         "apple": 0
       }
     },
@@ -2025,7 +2039,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239235,
+        "youtube": 26239282,
         "apple": 0
       }
     },
@@ -2044,7 +2058,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509196183,
+        "youtube": 509222389,
         "apple": 0
       }
     },
@@ -2134,7 +2148,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507522,
+        "youtube": 11507642,
         "apple": 0
       }
     },
@@ -2172,7 +2186,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529429618,
+        "youtube": 529456610,
         "apple": 0
       }
     },
@@ -2210,7 +2224,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233920,
+        "youtube": 5233992,
         "apple": 0
       }
     },
@@ -2232,7 +2246,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194656,
+        "youtube": 194664,
         "apple": 0
       }
     },
@@ -2251,7 +2265,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138985,
+        "youtube": 138987,
         "apple": 0
       }
     },
@@ -2365,7 +2379,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598616,
+        "youtube": 598656,
         "apple": 0
       }
     },
@@ -2604,7 +2618,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139313,
+        "youtube": 139316,
         "apple": 0
       }
     },
@@ -3329,7 +3343,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38085777,
+        "youtube": 38086420,
         "apple": 0
       }
     },
@@ -3391,7 +3405,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097598,
+        "youtube": 5097792,
         "apple": 0
       }
     },
@@ -3432,7 +3446,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3212938,
+        "youtube": 3213038,
         "apple": 0
       }
     }
