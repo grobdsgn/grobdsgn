@@ -4666,31 +4666,126 @@ const GH = {
   isConfigured() { return !!(this.token && this.repo); },
   async api(path, options = {}) { return fetch(`https://api.github.com${path}`, { ...options, headers: { 'Authorization': `Bearer ${this.token}`, 'Accept': 'application/vnd.github+json', ...(options.headers || {}) } }); },
   async getFile(path) {
-    const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
-    if (res.status === 404) return null;
-    if (!res.ok) throw new Error(`Error ${res.status}`);
-    const d = await res.json(); if (!d) return null;
-    if (d.download_url) { const rawRes = await fetch(d.download_url + '&t=' + Date.now()); if (rawRes.ok) return { sha: d.sha, content: await rawRes.text() }; }
-    if (!d.content) return null;
-    const bin = atob(d.content.replace(/\n/g, '')); const bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    const content = new TextDecoder('utf-8').decode(bytes);
-    return (!content || !content.trim()) ? null : { sha: d.sha, content };
+    try {
+      const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`);
+      if (res.status === 404) return null;
+      if (!res.ok) {
+        console.warn(`GitHub API status ${res.status} para ${path}`);
+        return null;
+      }
+      const d = await res.json();
+      if (!d) return null;
+
+      // 1. Content decodificado en Base64 (archivos <= 1MB)
+      if (d.content) {
+        try {
+          const bin = atob(d.content.replace(/\s/g, ''));
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          const content = new TextDecoder('utf-8').decode(bytes);
+          if (content && content.trim()) return { sha: d.sha, content };
+        } catch (e) {
+          console.warn('Error decodificando content de GitHub:', e);
+        }
+      }
+
+      // 2. download_url con separador de query correcto (?t= o &t=)
+      if (d.download_url) {
+        try {
+          const sep = d.download_url.includes('?') ? '&' : '?';
+          const headers = this.token ? { 'Authorization': `Bearer ${this.token}` } : {};
+          const rawRes = await fetch(d.download_url + sep + 't=' + Date.now(), { headers, cache: 'no-store' });
+          if (rawRes.ok) {
+            const content = await rawRes.text();
+            if (content && content.trim()) return { sha: d.sha, content };
+          }
+        } catch (e) {
+          console.warn('Error fetching download_url:', e);
+        }
+      }
+
+      // 3. Fallback directo a endpoint raw de GitHub
+      try {
+        const rawRes2 = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}`, {
+          headers: { 'Accept': 'application/vnd.github.raw' },
+          cache: 'no-store'
+        });
+        if (rawRes2.ok) {
+          const content = await rawRes2.text();
+          if (content && content.trim()) return { sha: d.sha, content };
+        }
+      } catch (e) {}
+
+      return null;
+    } catch (err) {
+      console.warn('Error en GH.getFile:', err);
+      return null;
+    }
   },
   async putFile(path, base64Content, message) {
-    let sha = null; try { const res = await this.api(`/repos/${this.repo}/contents/${path}?ref=${this.branch}&t=${Date.now()}`); if (res.ok) sha = (await res.json()).sha; } catch (e) {}
-    const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch }; if (sha) body.sha = sha;
-    const res = await this.api(`/repos/${this.repo}/contents/${path}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (!res.ok) { const errData = await res.json().catch(() => ({})); throw new Error(errData.message || `Error ${res.status} al subir ${path}`); }
+    let sha = null;
+    try {
+      const existing = await this.getFile(path);
+      if (existing && existing.sha) sha = existing.sha;
+    } catch (e) {}
+    const body = { message: message || `Update ${path}`, content: base64Content, branch: this.branch };
+    if (sha) body.sha = sha;
+    const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || `Error ${res.status} al subir ${path}`);
+    }
     return true;
   },
   async deleteFile(path, sha, message) {
-    const res = await this.api(`/repos/${this.repo}/contents/${path}`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message || `Delete ${path}`, sha: sha, branch: this.branch }) });
-    if (!res.ok) { const errData = await res.json().catch(() => ({})); throw new Error(errData.message || `Error ${res.status} al eliminar ${path}`); }
+    const res = await this.api(`/repos/${this.repo}/contents/${path}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: message || `Delete ${path}`, sha: sha, branch: this.branch })
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || `Error ${res.status} al eliminar ${path}`);
+    }
     return true;
   },
   async load() {
-    if (this.isConfigured()) { try { const file = await this.getFile('data.json'); if (file && file.content) return JSON.parse(file.content); return null; } catch(e) { return null; } }
-    try { const res = await fetch('data.json?t=' + Date.now()); if (!res.ok) return null; return JSON.parse(await res.text()); } catch (e) { return null; }
+    if (this.isConfigured()) {
+      try {
+        const file = await this.getFile('data.json');
+        if (file && file.content) {
+          const parsed = JSON.parse(file.content);
+          if (parsed && typeof parsed === 'object') {
+            try { localStorage.setItem('cached_data_json', file.content); } catch (e) {}
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn('Error en GH.load desde GitHub:', e);
+      }
+    }
+    // Fetch local relativo
+    try {
+      const res = await fetch('data.json?t=' + Date.now());
+      if (res.ok) {
+        const text = await res.text();
+        const parsed = JSON.parse(text);
+        if (parsed && typeof parsed === 'object') {
+          try { localStorage.setItem('cached_data_json', text); } catch (e) {}
+          return parsed;
+        }
+      }
+    } catch (e) {}
+    // Caché en localStorage como salvaguarda
+    try {
+      const cached = localStorage.getItem('cached_data_json');
+      if (cached) return JSON.parse(cached);
+    } catch (e) {}
+    return null;
   },
   async save(data) {
     // Sanitizar data para NUNCA enviar API Keys o tokens a GitHub en data.json (evita violaciones de reglas de GitHub Secret Scanning)
@@ -4701,6 +4796,7 @@ const GH = {
       delete cleanData.settings.youtubeApiKey;
     }
     const json = JSON.stringify(cleanData, null, 2);
+    try { localStorage.setItem('cached_data_json', json); } catch (e) {}
     const base64 = btoa(unescape(encodeURIComponent(json)));
     return await this.putFile('data.json', base64, 'Update data.json via Admin Panel');
   }
@@ -5751,6 +5847,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
           'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
         }
       });
+      if (r1.status === 429) throw new Error('RAPIDAPI_429');
       if (r1.ok) {
         const d = await r1.json();
         const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
@@ -5766,6 +5863,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
             'x-rapidapi-host': 'spotify23.p.rapidapi.com'
           }
         });
+        if (r2.status === 429) throw new Error('RAPIDAPI_429');
         if (r2.ok) {
           const d = await r2.json();
           const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
@@ -5924,7 +6022,7 @@ window.syncAllSpotifyPlays = async function() {
   if (apifyTok) {
     await fetchSpotifyStats();
     updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
-  } else {
+  } else if (rapidKey) {
     for (const c of covers) {
       try {
         const plays = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
@@ -5933,8 +6031,16 @@ window.syncAllSpotifyPlays = async function() {
           c.plays.spotify = plays;
           updatedCount++;
         }
-      } catch (e) {}
+        await new Promise(r => setTimeout(r, 300));
+      } catch (e) {
+        if (e.message === 'RAPIDAPI_429') {
+          aToast('⚠️ Límite de solicitudes de RapidAPI alcanzado (429). Espera 1 minuto antes de volver a sincronizar.', 'error');
+          break;
+        }
+      }
     }
+  } else {
+    return aToast('Ingresa tu RapidAPI Key o Apify Token en Ajustes para sincronizar.', 'error');
   }
 
   const totalStreams = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
@@ -5956,12 +6062,7 @@ async function loadPublicData() {
   renderPublicSite();
   handleRoute();
   updateCartCounter();
-  // Sincronizar estadísticas en segundo plano solo si hay API keys configuradas
-  if (getAdminSecret('youtubeApiKey') || getAdminSecret('apifyToken') || getAdminSecret('rapidApiKey')) {
-    Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]).then(() => {
-      setupPlaysBanner();
-    });
-  }
+  setupPlaysBanner();
 }
 
 function animateCounter(el, target) { const duration = 2000; const start = performance.now(); function update(t) { const p = Math.min((t - start) / duration, 1); const ease = 1 - Math.pow(1 - p, 4); el.textContent = formatNumber(Math.floor(ease * target)); if (p < 1) requestAnimationFrame(update); else el.textContent = formatNumber(target); } requestAnimationFrame(update); }
@@ -6136,7 +6237,27 @@ function aToast(msg, type = 'success') { const c = $('#aToastContainer'); if (!c
 function setASync(status, text) { const el = $('#aSyncStatus'), txt = $('#aSyncStatusText'); if (!el) return; el.className = `a-sync ${status}`; if (txt) txt.textContent = text; }
 async function loadAdminData() {
   setASync('saving', 'Cargando...');
-  try { const remote = await GH.load(); if (remote) { DATA = Object.assign(DATA, remote); migrateData(DATA); } await fetchYouTubeStats(); await fetchSpotifyStats(); setASync('ok', 'Sincronizado'); } catch(e) { setASync('error', 'Error'); } renderAdmin();
+  try {
+    const remote = await GH.load();
+    if (remote) {
+      DATA = Object.assign(DATA, remote);
+      migrateData(DATA);
+      setASync('ok', 'Sincronizado');
+    } else {
+      setASync('error', GH.isConfigured() ? 'Error al cargar' : 'No conectado');
+      if (!GH.isConfigured()) {
+        aToast('Conecta tu repositorio de GitHub para sincronizar', 'info');
+      } else {
+        aToast('No se pudo descargar data.json desde GitHub. Verifica tu token.', 'error');
+      }
+    }
+  } catch (e) {
+    console.error('Error loadAdminData:', e);
+    setASync('error', 'Error');
+    aToast('Error al conectar con GitHub: ' + e.message, 'error');
+  }
+  updateAdminBadges();
+  renderAdmin();
 }
 async function saveAdminData() {
   setASync('saving', 'Guardando...');
