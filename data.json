@@ -1161,9 +1161,13 @@
       "category": "artista",
       "group": "General",
       "order": 3,
+      "extraImages": [
+        "https://drive.google.com/file/d/1mLuVALaLR19VXNkGtkEZJVQVvmNjgF25/view?usp=drive_link"
+      ],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793253051669_0ky8.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
+      "visible": true,
       "briefingFields": [
         {
           "label": "Nombre del tema",
@@ -1181,9 +1185,7 @@
           "label": "Alguna Fecha limite",
           "required": false
         }
-      ],
-      "extraImages": [],
-      "visible": true
+      ]
     },
     {
       "id": "p1lrkcxxmvt4mk4a",
