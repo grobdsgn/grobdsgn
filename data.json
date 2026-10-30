@@ -2180,7 +2180,7 @@
       "youtubeUrl": "https://youtu.be/WaZCYP-qSIA?si=bImeDLS2j8QEa9uZ",
       "featured": true,
       "plays": {
-        "spotify": 0,
+        "spotify": 26425288,
         "youtube": 11508067,
         "apple": 0
       }
@@ -2199,7 +2199,7 @@
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 931954434,
         "youtube": 0,
         "apple": 0
       }
@@ -3413,12 +3413,12 @@
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793242694985_i9nh.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/track/5wMl8XzQkY1qMSQdPMw2R2?si=c73d191616ac474d",
+      "spotifyUrl": "https://open.spotify.com/track/5wMl8XzQkY1qMSQdPMw2R2?si=c73d191616ac474d",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 17616696,
         "youtube": 0,
         "apple": 0
       }
