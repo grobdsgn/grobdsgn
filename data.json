@@ -1652,7 +1652,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278587,
+        "youtube": 278589,
         "apple": 0
       }
     },
@@ -1692,7 +1692,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083614,
+        "youtube": 1083639,
         "apple": 0
       }
     },
@@ -1711,7 +1711,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94736,
+        "youtube": 94742,
         "apple": 0
       }
     },
@@ -2051,7 +2051,7 @@
       "featured": true,
       "plays": {
         "spotify": 7416309,
-        "youtube": 1126775,
+        "youtube": 1126772,
         "apple": 0
       }
     },
@@ -2072,7 +2072,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239382,
+        "youtube": 26239387,
         "apple": 0
       }
     },
@@ -2091,7 +2091,7 @@
       "featured": true,
       "plays": {
         "spotify": 310096638,
-        "youtube": 509298121,
+        "youtube": 509305581,
         "apple": 0
       }
     },
@@ -2181,7 +2181,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507994,
+        "youtube": 11508022,
         "apple": 0
       }
     },
@@ -2219,7 +2219,7 @@
       "featured": true,
       "plays": {
         "spotify": 417078525,
-        "youtube": 529531003,
+        "youtube": 529540915,
         "apple": 0
       }
     },
@@ -2257,7 +2257,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5234169,
+        "youtube": 5234216,
         "apple": 0
       }
     },
@@ -2279,7 +2279,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194679,
+        "youtube": 194680,
         "apple": 0
       }
     },
@@ -2298,7 +2298,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138994,
+        "youtube": 138995,
         "apple": 0
       }
     },
@@ -2340,7 +2340,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51855,
+        "youtube": 51858,
         "apple": 0
       }
     },
@@ -2412,7 +2412,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598731,
+        "youtube": 598759,
         "apple": 0
       }
     },
@@ -2651,7 +2651,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139334,
+        "youtube": 139347,
         "apple": 0
       }
     },
@@ -3376,7 +3376,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38088346,
+        "youtube": 38088604,
         "apple": 0
       }
     },
@@ -3438,7 +3438,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5098449,
+        "youtube": 5098572,
         "apple": 0
       }
     },
@@ -3479,7 +3479,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3213322,
+        "youtube": 3213359,
         "apple": 0
       }
     },
@@ -3510,10 +3510,16 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793383585101_bwd0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793383587550_aold.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793383589292_tndw.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793383591237_5pdb.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793383592870_gn57.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/1b7ehLuY8Ww?si=55iJGLtlfq3J9GtO",
       "featured": false,
       "plays": {
         "spotify": 0,
