@@ -1424,11 +1424,13 @@
       "id": "xv2x470bmvv5a2y9",
       "name": "Presskit",
       "price": "70.00",
-      "desc": "Diseño de Presskit. Digital o Impreso",
+      "desc": "Diseño de Presskit o Broshure, Digital o Impreso",
       "category": "artista",
       "group": "General",
       "order": 15,
-      "extraImages": [],
+      "extraImages": [
+        "https://drive.google.com/file/d/1XpBrmUnMK6c3TZ8Az9di7hQFQK1Jr_wj/view?usp=drive_link"
+      ],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793374828591_bzfc.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
