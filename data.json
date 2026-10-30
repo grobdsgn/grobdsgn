@@ -1971,7 +1971,7 @@
       "youtubeUrl": "",
       "featured": true,
       "plays": {
-        "spotify": 0,
+        "spotify": 521159638,
         "youtube": 0,
         "apple": 0
       }
@@ -2003,7 +2003,7 @@
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 62178,
         "youtube": 0,
         "apple": 0
       }
@@ -3370,12 +3370,12 @@
       "year": "2016",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "https://open.spotify.com/intl-es/track/1c58NqLYSElM2PmcpiW9xx?si=3b9ee858c05d4598",
+      "spotifyUrl": "https://open.spotify.com/track/1c58NqLYSElM2PmcpiW9xx?si=3b9ee858c05d4598",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/nyqOWhYsRb4?si=IsDFd9dc2pnYviXY",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 27347934,
         "youtube": 38088826,
         "apple": 0
       }
