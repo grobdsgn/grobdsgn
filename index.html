@@ -300,6 +300,45 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .covers-view{padding:110px 0 0;min-height:100vh;background:#000}
 .covers-intro{padding:0 clamp(20px,5vw,56px) 30px;max-width:1400px;margin:0 auto}
 .covers-intro h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2rem,7vw,5.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px;max-width:20ch;text-transform:uppercase}
+.covers-intro h1 em {
+  font-style: normal;
+  color: var(--accent);
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Checkerboard transparency grid for example PNGs */
+.lightbox-transparency-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 18px;
+  background-color: #1e1e22;
+  background-image: 
+    linear-gradient(45deg, #151518 25%, transparent 25%), 
+    linear-gradient(-45deg, #151518 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #151518 75%), 
+    linear-gradient(-45deg, transparent 75%, #151518 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+  max-width: 90vw;
+  max-height: 78vh;
+  box-sizing: border-box;
+}
+.lightbox-transparency-card img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+  background: transparent !important;
+  border-radius: 6px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.45));
+}
 .covers-toolbar{max-width:1400px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 20px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 .covers-search-wrap{position:relative;flex:1 1 240px;max-width:440px}
 .covers-search-input{width:100%;padding:11px 16px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;color:var(--text);font-size:.85rem;outline:none}
@@ -3932,12 +3971,23 @@ input:checked + .a-slider:before {
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="a-form-group"><label class="a-form-label">Categoría (Público)</label>
-                <select id="aEditProductCategory" class="a-form-input">
-                    <option value="artista">Artista</option>
-                    <option value="marca_personal">Marca Personal</option>
-                    <option value="empresa">Marca / Empresa</option>
-                </select>
+            <div class="a-form-group">
+                <label class="a-form-label">Categorías (puede pertenecer a varias a la vez)</label>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;">
+                  <label style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:10px;cursor:pointer;font-size:13px;color:var(--a-text);">
+                    <input type="checkbox" name="productCategory" value="artista" id="catCheck_artista" style="accent-color:var(--a-accent);width:16px;height:16px;">
+                    🎵 Artista
+                  </label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:10px;cursor:pointer;font-size:13px;color:var(--a-text);">
+                    <input type="checkbox" name="productCategory" value="marca_personal" id="catCheck_marca" style="accent-color:var(--a-accent);width:16px;height:16px;">
+                    👤 Marca Personal
+                  </label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--a-line);border-radius:10px;cursor:pointer;font-size:13px;color:var(--a-text);">
+                    <input type="checkbox" name="productCategory" value="empresa" id="catCheck_empresa" style="accent-color:var(--a-accent);width:16px;height:16px;">
+                    🏢 Marca / Empresa
+                  </label>
+                </div>
+                <input type="hidden" id="aEditProductCategory" value="artista">
             </div>
             <div class="a-form-group"><label class="a-form-label">Grupo (Visual)</label><input type="text" id="aEditProductGroup" class="a-form-input" placeholder="Ej: Covers, Merch"></div>
         </div>
@@ -4043,7 +4093,12 @@ input:checked + .a-slider:before {
         <div class="a-form-group"><label class="a-form-label">YouTube URL (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
         <div class="a-form-group">
           <label class="a-form-label">Imágenes extra (galería)</label>
-          <textarea id="aEditCoverExtras" class="a-form-textarea" rows="3" placeholder="Una por línea"></textarea>
+          <div class="upload-zone compact" id="coverExtrasUploadZone" style="margin-bottom:8px">
+            <span class="upload-zone-icon">📤</span>
+            <div class="upload-zone-text"><strong>Arrastra imágenes extra aquí</strong>o haz clic para subir</div>
+            <input type="file" id="coverExtrasFileInput" accept="image/*" multiple hidden>
+          </div>
+          <textarea id="aEditCoverExtras" class="a-form-textarea" rows="3" placeholder="Una por línea o sube archivos arriba"></textarea>
         </div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
@@ -4349,15 +4404,37 @@ async function processAndUploadImages(files, maxDim = 1800, quality = 0.88, thre
       let base64Data = base64.split(',')[1];
       if (!base64Data) continue;
       base64Data = base64Data.replace(/\s/g, '');
-      if (!GH.isConfigured()) throw new Error('GitHub no está configurado. No se pueden subir imágenes.');
-      const ext = file.name.split('.').pop() || 'jpg';
-      const filename = `img_${Date.now()}_${Math.random().toString(36).slice(2, 6)}.${ext}`;
-      const path = `media/${filename}`;
+      
+      // Si GitHub está configurado, sube a la rama del repositorio
+      if (typeof GH !== 'undefined' && GH && typeof GH.isConfigured === 'function' && GH.isConfigured()) {
+        const ext = file.name.split('.').pop() || 'jpg';
+        const filename = `img_${Date.now()}_${Math.random().toString(36).slice(2, 6)}.${ext}`;
+        const path = `media/${filename}`;
+        try {
+          await GH.putFile(path, base64Data, `Upload ${filename}`);
+          urls.push(`https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`);
+          continue;
+        } catch (err) {
+          console.warn('No se pudo subir a GitHub, utilizando versión base64:', err);
+        }
+      }
+      
+      // Fallback robusto: utiliza la imagen comprimida directamente en Base64
+      urls.push(base64);
+    } catch (e) {
+      console.warn('Error al procesar imagen, intentando lectura directa:', e);
       try {
-        await GH.putFile(path, base64Data, `Upload ${filename}`);
-        urls.push(`https://raw.githubusercontent.com/${GH.repo}/${GH.branch}/${path}`);
-      } catch (err) { throw new Error(`No se pudo subir la imagen a GitHub: ${err.message}`); }
-    } catch (e) { throw e; }
+        const rawData = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        if (rawData) urls.push(rawData);
+      } catch (err2) {
+        throw new Error('No se pudo procesar la imagen seleccionada.');
+      }
+    }
   }
   return urls;
 }
@@ -4898,9 +4975,29 @@ function renderPublicStore() {
   const countEmpresa = document.getElementById('storeCountEmpresa');
   
   if (countAll) countAll.textContent = allProducts.length;
-  if (countArtista) countArtista.textContent = allProducts.filter(p => p.category === 'artista').length;
-  if (countPersonal) countPersonal.textContent = allProducts.filter(p => p.category === 'marca_personal').length;
-  if (countEmpresa) countEmpresa.textContent = allProducts.filter(p => p.category === 'empresa').length;
+  if (countArtista) countArtista.textContent = allProducts.filter(p => (window.productHasCategory ? window.productHasCategory(p, 'artista') : p.category === 'artista')).length;
+  if (countPersonal) countPersonal.textContent = allProducts.filter(p => (window.productHasCategory ? window.productHasCategory(p, 'marca_personal') : p.category === 'marca_personal')).length;
+  if (countEmpresa) countEmpresa.textContent = allProducts.filter(p => (window.productHasCategory ? window.productHasCategory(p, 'empresa') : p.category === 'empresa')).length;
+
+  // Multi-category helpers
+window.getProductCategories = function(p) {
+  if (!p) return [];
+  if (Array.isArray(p.categories) && p.categories.length) return p.categories.map(s => String(s).trim().toLowerCase());
+  if (Array.isArray(p.category) && p.category.length) return p.category.map(s => String(s).trim().toLowerCase());
+  if (typeof p.category === 'string' && p.category.trim()) {
+    return p.category.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+  }
+  if (typeof p.categories === 'string' && p.categories.trim()) {
+    return p.categories.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+  }
+  return ['artista'];
+};
+
+window.productHasCategory = function(p, cat) {
+  if (!cat || cat === 'all') return true;
+  const cats = window.getProductCategories(p);
+  return cats.includes(String(cat).toLowerCase().trim());
+};
 
   // Listeners de búsqueda y filtrado
   const searchInp = document.getElementById('storeSearchInput');
@@ -4927,7 +5024,7 @@ function renderPublicStore() {
 
   // Filtrado de productos
   let visibleProducts = allProducts.filter(p => {
-    if (_storeFilter !== 'all' && p.category !== _storeFilter) return false;
+    if (_storeFilter !== 'all' && !(window.productHasCategory ? window.productHasCategory(p, _storeFilter) : p.category === _storeFilter)) return false;
     if (_storeSearch) {
       const name = (p.name || '').toLowerCase();
       const desc = (p.desc || '').toLowerCase();
@@ -4950,8 +5047,10 @@ function renderPublicStore() {
   if (window.currentUserProfile) {
     const userType = window.currentUserProfile.type;
     sortedProducts.sort((a, b) => {
-      if (a.category === userType && b.category !== userType) return -1;
-      if (a.category !== userType && b.category === userType) return 1;
+      const aHas = window.productHasCategory ? window.productHasCategory(a, userType) : (a.category === userType);
+      const bHas = window.productHasCategory ? window.productHasCategory(b, userType) : (b.category === userType);
+      if (aHas && !bHas) return -1;
+      if (!aHas && bHas) return 1;
       return 0;
     });
   }
@@ -5032,15 +5131,21 @@ window.viewExamples = function(productId) {
     // Create Carousel
     const carousel = document.createElement('div');
     carousel.id = 'lightboxCarousel';
-    carousel.style.cssText = 'display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:20px; width:100%; max-width:920px; padding:20px; justify-content:center; align-items:center;';
+    carousel.style.cssText = 'display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:24px; width:100%; max-width:960px; padding:20px; justify-content:center; align-items:center;';
 
     extraOnly.forEach(src => {
+        const card = document.createElement('div');
+        card.className = 'lightbox-transparency-card';
+        card.style.scrollSnapAlign = 'center';
+
         const im = document.createElement('img');
         im.src = resolveImageUrl(src);
         im.draggable = false;
+        im.alt = 'Ejemplo del producto';
         im.onerror = () => handleImgError(im);
-        im.style.cssText = 'max-width:100%; max-height:75vh; object-fit:contain; border-radius:14px; background:#000; box-shadow:0 15px 40px rgba(0,0,0,0.8); flex-shrink:0;';
-        carousel.appendChild(im);
+
+        card.appendChild(im);
+        carousel.appendChild(card);
     });
     
     imgContainer.appendChild(carousel);
@@ -5346,9 +5451,29 @@ async function fetchYouTubeStats() {
   }
 }
 
+function normalizeSpotifyUrl(rawUrl) {
+  if (!rawUrl) return '';
+  let url = rawUrl.trim();
+  const uriMatch = url.match(/spotify:(track|album|episode):([a-zA-Z0-9]+)/i);
+  if (uriMatch) {
+    return `https://open.spotify.com/${uriMatch[1]}/${uriMatch[2]}`;
+  }
+  // Elimina prefijos de idioma como /intl-es/, /intl-en/, /intl-pt/, etc.
+  url = url.replace(/open\.spotify\.com\/intl-[a-zA-Z_-]+\//i, 'open.spotify.com/');
+  return url;
+}
+
+function isSpotifyUrl(url) {
+  if (!url) return false;
+  const norm = normalizeSpotifyUrl(url);
+  return /(?:open\.spotify\.com|spotify\.link|spotify:)/i.test(norm) &&
+         (/(?:track|album|episode|playlist)[/:]([a-zA-Z0-9]+)/i.test(norm) || /spotify\.link\//i.test(norm));
+}
+
 function extractSpotifyTrackId(url) {
   if (!url) return null;
-  const m = url.match(/track[/:]([a-zA-Z0-9]{22})/i) || url.match(/track\/([a-zA-Z0-9]+)/i);
+  const norm = normalizeSpotifyUrl(url);
+  const m = norm.match(/(?:track|album|episode)[/:]([a-zA-Z0-9]+)/i);
   return m ? m[1] : null;
 }
 
@@ -5374,7 +5499,8 @@ async function fetchSpotifyHtml(url) {
 async function fetchSpotifyMetadata(url) {
   const result = { name: '', artists: '', year: '' };
   try {
-    const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`);
+    const normUrl = normalizeSpotifyUrl(url);
+    const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(normUrl)}`);
     if (oe.ok) {
       const d = await oe.json();
       if (d.title) result.name = d.title;
@@ -5531,8 +5657,10 @@ async function fetchSpotifyStats() {
 }
 
 window.autofillFromSpotify = async function() {
-  const url = $('#aEditCoverSpotify').value.trim();
-  if (!url || !/spotify\.com\/(track|album|episode)\//.test(url)) return aToast('URL de Spotify inválida', 'error');
+  let url = $('#aEditCoverSpotify').value.trim();
+  if (!url || !isSpotifyUrl(url)) return aToast('URL de Spotify inválida. Asegúrate de incluir el enlace de la canción o álbum.', 'error');
+  url = normalizeSpotifyUrl(url);
+  $('#aEditCoverSpotify').value = url;
   const btn = $('#aBtnAutofillSpotify');
   const orig = btn.textContent;
   btn.textContent = '⏳ Cargando...';
@@ -5561,8 +5689,10 @@ window.autofillFromSpotify = async function() {
 };
 
 window.fetchCoverTrackPlays = async function() {
-  const url = $('#aEditCoverSpotify').value.trim();
-  if (!url || !/spotify\.com\/(track|album|episode)\//.test(url)) return aToast('Ingresa una URL válida de Spotify', 'error');
+  let url = $('#aEditCoverSpotify').value.trim();
+  if (!url || !isSpotifyUrl(url)) return aToast('Ingresa una URL válida de Spotify', 'error');
+  url = normalizeSpotifyUrl(url);
+  $('#aEditCoverSpotify').value = url;
   const btn = $('#aBtnFetchTrackPlays');
   const orig = btn.textContent;
   btn.textContent = '⏳...';
@@ -5847,7 +5977,7 @@ function renderAdmin() {
     el.className = 'a-cover-card'; 
     const hiddenBadge = (p.visible === false) ? '<span class="a-badge hidden-product">OCULTO</span>' : '';
     const safePrice = cleanNumber(p.price, 0).toFixed(2);
-    const safeCategory = escHtml(p.category || 'artista');
+    const safeCategory = escHtml((window.getProductCategories ? window.getProductCategories(p).join(', ') : p.category) || 'artista');
     const safeGroup = escHtml(p.group || 'General');
     const safeOrder = parseInt(p.order, 10) || 0;
     el.innerHTML = `<img src="${escHtml(resolveImageUrl(p.img))}" style="object-fit:cover;${p.visible === false ? 'opacity:0.5;' : ''}" onerror="handleImgError(this)" draggable="false">${hiddenBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">${safePrice} | ${safeCategory} | ${safeGroup} | #${safeOrder}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; 
@@ -5954,7 +6084,11 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductName').value = p.name;
     $('#aEditProductPrice').value = p.price;
     $('#aEditProductDesc').value = p.desc || '';
-    $('#aEditProductCategory').value = p.category || 'artista';
+    const pCats = (window.getProductCategories ? window.getProductCategories(p) : [(p.category || 'artista')]);
+    document.querySelectorAll('input[name="productCategory"]').forEach(cb => {
+      cb.checked = pCats.includes(cb.value);
+    });
+    $('#aEditProductCategory').value = pCats.join(',');
     $('#aEditProductGroup').value = p.group || 'General';
     $('#aEditProductOrder').value = p.order || 0;
     $('#aEditProductExtraImages').value = (p.extraImages || []).join('\n');
@@ -5973,6 +6107,9 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductName').value = '';
     $('#aEditProductPrice').value = '';
     $('#aEditProductDesc').value = '';
+    document.querySelectorAll('input[name="productCategory"]').forEach(cb => {
+      cb.checked = (cb.value === 'artista');
+    });
     $('#aEditProductCategory').value = 'artista';
     $('#aEditProductGroup').value = 'General';
     $('#aEditProductOrder').value = 0;
@@ -6045,7 +6182,9 @@ $('#aBtnSaveProduct').onclick = () => {
   const name = $('#aEditProductName').value.trim();
   const price = $('#aEditProductPrice').value.trim();
   const desc = $('#aEditProductDesc').value.trim();
-  const category = $('#aEditProductCategory').value;
+  const checkedCats = Array.from(document.querySelectorAll('input[name="productCategory"]:checked')).map(cb => cb.value);
+  const categoriesList = checkedCats.length ? checkedCats : ['artista'];
+  const category = categoriesList[0];
   const group = $('#aEditProductGroup').value.trim();
   const order = parseInt($('#aEditProductOrder').value) || 0;
   const extraImages = $('#aEditProductExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean);
@@ -6061,6 +6200,7 @@ $('#aBtnSaveProduct').onclick = () => {
     price: parseFloat(price).toFixed(2),
     desc,
     category,
+    categories: categoriesList,
     group,
     order,
     extraImages,
@@ -6163,7 +6303,39 @@ $('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DA
 $('#aRapidApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.rapidApiKey = e.target.value; };
 
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 10000, 1.0, 10240);
-setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => { const cat = $('#aCoverCategorySelect').value; urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } })); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 2000, 0.9, 500);
+setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => {
+  const cat = $('#aCoverCategorySelect') ? $('#aCoverCategorySelect').value : 'sencillo';
+  urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } }));
+  updateAdminBadges();
+  renderAdmin();
+  saveAdminData();
+  aToast(`✓ ${urls.length} portada(s) añadida(s)`, 'success');
+}, 2000, 0.9, 500);
+
+// Permitir arrastrar imágenes directamente sobre la cuadrícula de covers
+const aCovGrid = document.getElementById('aCoversGrid');
+if (aCovGrid) {
+  aCovGrid.ondragover = (e) => { e.preventDefault(); aCovGrid.style.outline = '2px dashed var(--a-accent)'; aCovGrid.style.borderRadius = '14px'; };
+  aCovGrid.ondragleave = () => { aCovGrid.style.outline = 'none'; };
+  aCovGrid.ondrop = async (e) => {
+    e.preventDefault();
+    aCovGrid.style.outline = 'none';
+    const files = [...e.dataTransfer.files].filter(f => f.type.startsWith('image/'));
+    if (!files.length) return;
+    aToast(`Procesando ${files.length} portada(s)...`, 'info');
+    try {
+      const urls = await processAndUploadImages(files, 2000, 0.9, 500);
+      const cat = $('#aCoverCategorySelect') ? $('#aCoverCategorySelect').value : 'sencillo';
+      urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } }));
+      updateAdminBadges();
+      renderAdmin();
+      saveAdminData();
+      aToast(`✓ ${urls.length} portada(s) añadida(s) con éxito`, 'success');
+    } catch (err) {
+      aToast('Error al subir imagen: ' + err.message, 'error');
+    }
+  };
+}
 setupUploadZone('clientsUploadZone', 'clientsFileInput', (urls) => { DATA.clientes.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 800, 0.9, 300);
 setupUploadZone('toolsUploadZone', 'toolsFileInput', (urls) => { DATA.software.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 600, 0.9, 300);
 setupUploadZone('coverMainUploadZone', 'coverMainFileInput', (urls) => { if (urls[0]) { $('#aEditCoverUrl').value = urls[0]; $('#aEditCoverPreview').src = urls[0]; aToast('Imagen cargada'); } }, 2000, 0.9, 500);
