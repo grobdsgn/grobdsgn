@@ -4551,12 +4551,37 @@ const GH = {
     try { const res = await fetch('data.json?t=' + Date.now()); if (!res.ok) return null; return JSON.parse(await res.text()); } catch (e) { return null; }
   },
   async save(data) {
-    const json = JSON.stringify(data, null, 2); const base64 = btoa(unescape(encodeURIComponent(json)));
+    // Sanitizar data para NUNCA enviar API Keys o tokens a GitHub en data.json
+    // Esto previene violaciones a las reglas de GitHub Secret Scanning (Push Protection) y resguarda la privacidad de las claves.
+    const cleanData = JSON.parse(JSON.stringify(data));
+    if (cleanData.settings) {
+      delete cleanData.settings.rapidApiKey;
+      delete cleanData.settings.apifyToken;
+      delete cleanData.settings.youtubeApiKey;
+    }
+    const json = JSON.stringify(cleanData, null, 2);
+    const base64 = btoa(unescape(encodeURIComponent(json)));
     return await this.putFile('data.json', base64, 'Update data.json via Admin Panel');
   }
 };
 
 const DEFAULT_APIFY_ACTOR = 'beatanalytics/spotify-play-count-scraper';
+
+function getAdminSecret(key, fallback = '') {
+  return localStorage.getItem('sec_' + key) || (typeof DATA !== 'undefined' && DATA.settings && DATA.settings[key]) || fallback;
+}
+function setAdminSecret(key, val) {
+  const v = (val || '').trim();
+  if (v) {
+    localStorage.setItem('sec_' + key, v);
+  } else {
+    localStorage.removeItem('sec_' + key);
+  }
+  if (typeof DATA !== 'undefined') {
+    if (!DATA.settings) DATA.settings = {};
+    DATA.settings[key] = v;
+  }
+}
 
 function migrateData(data) {
   if (!data) return data;
@@ -5488,7 +5513,7 @@ function handleRoute() {
 window.addEventListener('hashchange', handleRoute);
 
 async function fetchYouTubeStats() {
-  const apiKey = DATA.settings?.youtubeApiKey; if (!apiKey) return;
+  const apiKey = getAdminSecret('youtubeApiKey'); if (!apiKey) return;
   const coversWithYt = (DATA.covers || []).filter(c => c.youtubeUrl && getYouTubeId(c.youtubeUrl)); const videoIds = [...new Set(coversWithYt.map(c => getYouTubeId(c.youtubeUrl)))]; if (!videoIds.length) return;
   for (let i = 0; i < videoIds.length; i += 50) {
     const chunk = videoIds.slice(i, i + 50);
@@ -5572,9 +5597,9 @@ async function fetchSpotifyMetadata(url) {
 }
 
 async function fetchSpotifyPlaysForUrl(url, token, actor) {
-  const apifyTok = token || DATA.settings?.apifyToken;
+  const apifyTok = token || getAdminSecret('apifyToken');
   const apifyAct = actor || DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
-  const rapidKey = DATA.settings?.rapidApiKey;
+  const rapidKey = getAdminSecret('rapidApiKey');
   const trackId = extractSpotifyTrackId(url);
 
   if (rapidKey) {
@@ -5634,8 +5659,8 @@ async function fetchSpotifyStats() {
   const coversWithSpotify = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
   if (!coversWithSpotify.length) return;
 
-  const rapidKey = DATA.settings?.rapidApiKey;
-  const token = DATA.settings?.apifyToken;
+  const rapidKey = getAdminSecret('rapidApiKey');
+  const token = getAdminSecret('apifyToken');
   const actor = DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
 
   if (rapidKey) {
@@ -5752,7 +5777,8 @@ window.syncAllSpotifyPlays = async function() {
   aToast(`Sincronizando ${covers.length} canciones con Spotify...`, 'info');
   let updatedCount = 0;
 
-  if (DATA.settings?.apifyToken) {
+  const apifyTok = getAdminSecret('apifyToken');
+  if (apifyTok) {
     await fetchSpotifyStats();
     updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
   } else {
@@ -5788,7 +5814,7 @@ async function loadPublicData() {
   handleRoute();
   updateCartCounter();
   // Sincronizar estadísticas en segundo plano solo si hay API keys configuradas
-  if (DATA.settings?.youtubeApiKey || DATA.settings?.apifyToken) {
+  if (getAdminSecret('youtubeApiKey') || getAdminSecret('apifyToken') || getAdminSecret('rapidApiKey')) {
     Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]).then(() => {
       setupPlaysBanner();
     });
@@ -6033,7 +6059,7 @@ function renderAdmin() {
   renderAdminPortfolio();
   setVal('#aContactEmail', DATA.contact.email); setVal('#aContactPhone', DATA.contact.phone); setVal('#aContactInstagram', DATA.contact.instagram); setVal('#aContactLocation', DATA.contact.location);
   setVal('#aThemeAccent', DATA.theme.accent); setVal('#aThemeBg', DATA.theme.bg); setVal('#aThemeText', DATA.theme.text);
-  setVal('#aYoutubeApiKey', DATA.settings?.youtubeApiKey); setVal('#aApifyToken', DATA.settings?.apifyToken); setVal('#aApifyActor', DATA.settings?.apifyActor); setVal('#aRapidApiKey', DATA.settings?.rapidApiKey || '');
+  setVal('#aYoutubeApiKey', getAdminSecret('youtubeApiKey')); setVal('#aApifyToken', getAdminSecret('apifyToken')); setVal('#aApifyActor', DATA.settings?.apifyActor); setVal('#aRapidApiKey', getAdminSecret('rapidApiKey'));
   
   $('#aStoreMaintenance').checked = DATA.settings.storeMaintenance;
   updateStoreStatusText(DATA.settings.storeMaintenance);
@@ -6342,8 +6368,10 @@ for (const [sel, path] of Object.entries(inputsMap)) { const el = $(sel); if (el
 
 $('#aContactEmail').oninput = e => DATA.contact.email = e.target.value; $('#aContactPhone').oninput = e => DATA.contact.phone = e.target.value; $('#aContactInstagram').oninput = e => DATA.contact.instagram = e.target.value; $('#aContactLocation').oninput = e => DATA.contact.location = e.target.value;
 $('#aThemeAccent').oninput = e => DATA.theme.accent = e.target.value; $('#aThemeBg').oninput = e => DATA.theme.bg = e.target.value; $('#aThemeText').oninput = e => DATA.theme.text = e.target.value;
-$('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; }; $('#aApifyToken').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyToken = e.target.value; }; $('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
-$('#aRapidApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.rapidApiKey = e.target.value; };
+$('#aYoutubeApiKey').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.youtubeApiKey = e.target.value; }; $('#aYoutubeApiKey').oninput = e => setAdminSecret('youtubeApiKey', e.target.value);
+$('#aApifyToken').oninput = e => setAdminSecret('apifyToken', e.target.value);
+$('#aApifyActor').oninput = e => { if (!DATA.settings) DATA.settings = {}; DATA.settings.apifyActor = e.target.value; };
+$('#aRapidApiKey').oninput = e => setAdminSecret('rapidApiKey', e.target.value);
 
 setupUploadZone('heroUploadZone', 'heroFileInput', (urls) => { DATA.heroImages.push(...urls); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 10000, 1.0, 10240);
 setupUploadZone('coversUploadZone', 'coversFileInput', (urls) => { const cat = $('#aCoverCategorySelect').value; urls.forEach(u => DATA.covers.push({ id: uid(), url: u, category: cat, name: '', artist: '', year: '', review: '', extraImages: [], spotifyUrl: '', appleMusicUrl: '', youtubeUrl: '', featured: false, plays: { spotify: 0, youtube: 0, apple: 0 } })); updateAdminBadges(); renderAdmin(); saveAdminData(); }, 2000, 0.9, 500);
