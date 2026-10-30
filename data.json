@@ -1406,6 +1406,21 @@
       "briefingFields": [],
       "extraImages": [],
       "visible": true
+    },
+    {
+      "id": "xv2x470bmvv5a2y9",
+      "name": "Presskit",
+      "price": "70.00",
+      "desc": "Diseño de Presskit. Digital o Impreso",
+      "category": "artista",
+      "group": "General",
+      "order": 0,
+      "extraImages": [],
+      "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793374828591_bzfc.jpg",
+      "hasEditable": false,
+      "editablePrice": "10.00",
+      "visible": true,
+      "briefingFields": []
     }
   ],
   "clientes": [
@@ -1619,7 +1634,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278554,
+        "youtube": 278585,
         "apple": 0
       }
     },
@@ -1640,7 +1655,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1352403,
+        "youtube": 1352439,
         "apple": 0
       }
     },
@@ -1659,7 +1674,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 1083507,
+        "youtube": 1083614,
         "apple": 0
       }
     },
@@ -1678,7 +1693,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 94714,
+        "youtube": 94736,
         "apple": 0
       }
     },
@@ -1716,7 +1731,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 6309165,
+        "youtube": 6309427,
         "apple": 0
       }
     },
@@ -1775,7 +1790,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 46329,
+        "youtube": 46330,
         "apple": 0
       }
     },
@@ -2018,7 +2033,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 1126758,
+        "youtube": 1126772,
         "apple": 0
       }
     },
@@ -2039,7 +2054,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239282,
+        "youtube": 26239352,
         "apple": 0
       }
     },
@@ -2058,7 +2073,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509222389,
+        "youtube": 509290093,
         "apple": 0
       }
     },
@@ -2148,7 +2163,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507642,
+        "youtube": 11507980,
         "apple": 0
       }
     },
@@ -2186,7 +2201,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529456610,
+        "youtube": 529520203,
         "apple": 0
       }
     },
@@ -2224,7 +2239,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5233992,
+        "youtube": 5234169,
         "apple": 0
       }
     },
@@ -2246,7 +2261,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194664,
+        "youtube": 194680,
         "apple": 0
       }
     },
@@ -2265,7 +2280,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 138987,
+        "youtube": 138994,
         "apple": 0
       }
     },
@@ -2307,7 +2322,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51831,
+        "youtube": 51853,
         "apple": 0
       }
     },
@@ -2379,7 +2394,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598656,
+        "youtube": 598730,
         "apple": 0
       }
     },
@@ -2618,7 +2633,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139316,
+        "youtube": 139337,
         "apple": 0
       }
     },
@@ -2712,7 +2727,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3476,
+        "youtube": 3477,
         "apple": 0
       }
     },
@@ -3343,7 +3358,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38086420,
+        "youtube": 38088070,
         "apple": 0
       }
     },
@@ -3405,7 +3420,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5097792,
+        "youtube": 5098344,
         "apple": 0
       }
     },
@@ -3446,7 +3461,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3213038,
+        "youtube": 3213271,
         "apple": 0
       }
     }
