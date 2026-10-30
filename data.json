@@ -1651,7 +1651,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 278585,
+        "youtube": 278587,
         "apple": 0
       }
     },
@@ -1748,7 +1748,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 6309427,
+        "youtube": 6309461,
         "apple": 0
       }
     },
@@ -2044,13 +2044,13 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793163910093_mmsa.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793163912132_vuh5.jpg"
       ],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/intl-es/album/7cMVpWRrAvGwEMlGPmJkx2?si=T_Za2IC5RbKmqd5rZGJYhA",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/rx4oW-HbP6o?si=WFzn5scyI8o121wv",
       "featured": true,
       "plays": {
-        "spotify": 0,
-        "youtube": 1126772,
+        "spotify": 7416309,
+        "youtube": 1126775,
         "apple": 0
       }
     },
@@ -2071,7 +2071,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 26239352,
+        "youtube": 26239350,
         "apple": 0
       }
     },
@@ -2090,7 +2090,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 509290093,
+        "youtube": 509295328,
         "apple": 0
       }
     },
@@ -2180,7 +2180,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 11507980,
+        "youtube": 11507994,
         "apple": 0
       }
     },
@@ -2218,7 +2218,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 529520203,
+        "youtube": 529527277,
         "apple": 0
       }
     },
@@ -2278,7 +2278,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 194680,
+        "youtube": 194679,
         "apple": 0
       }
     },
@@ -2339,7 +2339,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 51853,
+        "youtube": 51855,
         "apple": 0
       }
     },
@@ -2411,7 +2411,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 598730,
+        "youtube": 598731,
         "apple": 0
       }
     },
@@ -2650,7 +2650,7 @@
       "featured": true,
       "plays": {
         "spotify": 0,
-        "youtube": 139337,
+        "youtube": 139334,
         "apple": 0
       }
     },
@@ -3375,7 +3375,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 38088070,
+        "youtube": 38088259,
         "apple": 0
       }
     },
@@ -3437,7 +3437,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 5098344,
+        "youtube": 5098419,
         "apple": 0
       }
     },
@@ -3478,7 +3478,7 @@
       "featured": false,
       "plays": {
         "spotify": 0,
-        "youtube": 3213271,
+        "youtube": 3213303,
         "apple": 0
       }
     }
