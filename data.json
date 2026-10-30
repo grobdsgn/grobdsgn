@@ -1425,10 +1425,15 @@
     },
     {
       "id": "xv2x470bmvv5a2y9",
-      "name": "Presskit",
+      "name": "Presskit • Broshure",
       "price": "70.00",
       "desc": "Diseño de Presskit o Broshure, Digital o Impreso",
       "category": "artista",
+      "categories": [
+        "artista",
+        "marca_personal",
+        "empresa"
+      ],
       "group": "General",
       "order": 15,
       "extraImages": [
