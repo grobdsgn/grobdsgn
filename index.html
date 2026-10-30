@@ -708,7 +708,7 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 /* SIDEBAR: FROSTED GLASS STUDIO PANEL */
 .a-sidebar {
   width: 290px;
-  background: rgba(12, 12, 16, 0.82);
+  background: rgba(12, 12, 16, 0.78);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border-right: 1px solid var(--a-line);
@@ -1280,6 +1280,20 @@ footer {border-top: 1px solid var(--line);padding: 50px 0 40px;background: #000;
 }
 .upload-zone.compact .upload-zone-text {
   font-size: 11px;
+}
+.upload-zone * {
+  pointer-events: none;
+}
+.cover-preview-img {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.cover-preview-img.dragover {
+  outline: 3px dashed var(--a-accent) !important;
+  outline-offset: 4px;
+  transform: scale(1.04);
+  filter: brightness(1.25);
+  box-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
 }
 
 /* DIVIDERS */
@@ -3975,16 +3989,17 @@ input:checked + .a-slider:before {
               <div class="a-form-group">
                 <label class="a-form-label">RapidAPI Key (Spotify Statistics & Streams)</label>
                 <input type="password" id="aRapidApiKey" class="a-form-input" placeholder="Ingresa tu clave de RapidAPI...">
-                <span class="a-form-hint">Opción directa y recomendada para conteo automático de reproducciones.</span>
+                <span class="a-form-hint">Opción recomendada. Se guarda de forma segura en tu navegador local (no se sube a GitHub para evitar violaciones de reglas).</span>
               </div>
               <div class="a-form-group">
                 <label class="a-form-label">Apify API Token (Alternativa)</label>
-                <input type="text" id="aApifyToken" class="a-form-input" placeholder="apify_api_...">
-                <span class="a-form-hint">Token de API de Apify si utilizas un actor scraper dedicado.</span>
+                <input type="password" id="aApifyToken" class="a-form-input" placeholder="apify_api_...">
+                <span class="a-form-hint">Token de API de Apify. Se guarda de forma segura en tu navegador local.</span>
               </div>
               <div class="a-form-group">
                 <label class="a-form-label">Actor de Apify</label>
                 <input type="text" id="aApifyActor" class="a-form-input" value="beatanalytics/spotify-play-count-scraper">
+                <span class="a-form-hint">Scraper de Apify (por defecto: beatanalytics/spotify-play-count-scraper).</span>
               </div>
             </div>
           </div>
@@ -4056,9 +4071,15 @@ input:checked + .a-slider:before {
         <div class="divider-line"></div>
         
         <div class="a-form-group">
-          <label class="a-form-label">Imágenes de Ejemplo (URLs, una por línea)</label>
-          <textarea id="aEditProductExtraImages" class="a-form-textarea" rows="3" placeholder="https://ejemplo.com/ejemplo1.jpg&#10;https://ejemplo.com/ejemplo2.jpg"></textarea>
-          <span class="a-form-hint">Se mostrarán al pulsar el botón "+" sobre la imagen del producto.</span>
+          <label class="a-form-label">Imágenes de Ejemplo / Muestras</label>
+          <div class="upload-zone compact" id="productExtrasUploadZone" style="margin-bottom:10px; padding:14px;">
+            <span class="upload-zone-icon" style="font-size:22px;">🖼️</span>
+            <div class="upload-zone-text"><strong>Arrastra imágenes de ejemplo aquí</strong>o toca para subir (admite varias)</div>
+            <input type="file" id="productExtrasFileInput" accept="image/*" multiple hidden>
+          </div>
+          <div id="productExtrasThumbnails" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;"></div>
+          <textarea id="aEditProductExtraImages" class="a-form-textarea" rows="2" placeholder="URLs de imágenes (una por línea)"></textarea>
+          <span class="a-form-hint">Imágenes de ejemplo que se muestran en el visor al tocar el punto flotante en la tienda.</span>
         </div>
 
         <div class="divider-line"></div>
@@ -4146,8 +4167,14 @@ input:checked + .a-slider:before {
         <div class="a-form-group"><label class="a-form-label">Apple Music URL</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">YouTube URL (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
         <div class="a-form-group">
-          <label class="a-form-label">Imágenes extra (galería)</label>
-          <textarea id="aEditCoverExtras" class="a-form-textarea" rows="3" placeholder="Una por línea"></textarea>
+          <label class="a-form-label">Imágenes extra / Galería</label>
+          <div class="upload-zone compact" id="coverExtrasUploadZone" style="margin-bottom:10px; padding:14px;">
+            <span class="upload-zone-icon" style="font-size:20px;">🖼️</span>
+            <div class="upload-zone-text"><strong>Arrastra imágenes extra aquí</strong>o toca para subir (admite varias)</div>
+            <input type="file" id="coverExtrasFileInput" accept="image/*" multiple hidden>
+          </div>
+          <div id="coverExtrasThumbnails" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;"></div>
+          <textarea id="aEditCoverExtras" class="a-form-textarea" rows="2" placeholder="Una por línea"></textarea>
         </div>
         <div class="a-form-group">
           <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
@@ -4474,23 +4501,138 @@ function setupUploadZone(zoneId, inputId, onFiles, maxDim = 1800, quality = 0.88
   const zone = document.getElementById(zoneId);
   const input = document.getElementById(inputId);
   if (!zone || !input) return;
-  zone.onclick = (e) => { if (e.target === input) return; input.click(); };
+
+  zone.onclick = (e) => {
+    if (e.target === input) return;
+    input.click();
+  };
+
   const handler = async (files) => {
-    if (!files.length) return;
+    if (!files || !files.length) return;
     const lbl = zone.querySelector('.upload-zone-text strong');
     const orig = lbl ? lbl.textContent : '';
-    if (lbl) lbl.textContent = 'Subiendo a GitHub...';
+    if (lbl) lbl.textContent = `Subiendo ${files.length > 1 ? files.length + ' imágenes' : 'imagen'} a GitHub...`;
     try {
       const urls = await processAndUploadImages(files, maxDim, quality, thresholdKB);
-      if (urls.length) onFiles(urls);
-    } catch (error) { alert(`❌ Error al subir la imagen:\n\n${error.message}`); }
-    finally { if (lbl) lbl.textContent = orig; }
+      if (urls && urls.length) onFiles(urls);
+    } catch (error) {
+      alert(`❌ Error al subir la imagen:\n\n${error.message}`);
+    } finally {
+      if (lbl) lbl.textContent = orig;
+    }
   };
-  input.onchange = async (e) => { const files = [...e.target.files]; input.value = ''; await handler(files); };
-  zone.ondragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
-  zone.ondragleave = () => zone.classList.remove('dragover');
-  zone.ondrop = async (e) => { e.preventDefault(); zone.classList.remove('dragover'); await handler([...e.dataTransfer.files]); };
+
+  input.onchange = async (e) => {
+    const files = [...e.target.files];
+    input.value = '';
+    await handler(files);
+  };
+
+  zone.ondragenter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    zone.classList.add('dragover');
+  };
+
+  zone.ondragover = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+    zone.classList.add('dragover');
+  };
+
+  zone.ondragleave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    zone.classList.remove('dragover');
+  };
+
+  zone.ondrop = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    zone.classList.remove('dragover');
+    const dt = e.dataTransfer;
+    if (dt && dt.files && dt.files.length) {
+      await handler([...dt.files]);
+    } else if (dt) {
+      const text = dt.getData('text/uri-list') || dt.getData('text/plain');
+      if (text && /^https?:\/\/.+/i.test(text.trim())) {
+        onFiles([text.trim()]);
+      }
+    }
+  };
 }
+
+function makePreviewDropTarget(imgId, uploadCallback) {
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  img.ondragenter = (e) => { e.preventDefault(); e.stopPropagation(); img.classList.add('dragover'); };
+  img.ondragover = (e) => { e.preventDefault(); e.stopPropagation(); if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy'; img.classList.add('dragover'); };
+  img.ondragleave = (e) => { e.preventDefault(); e.stopPropagation(); img.classList.remove('dragover'); };
+  img.ondrop = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    img.classList.remove('dragover');
+    const dt = e.dataTransfer;
+    if (dt && dt.files && dt.files.length) {
+      try {
+        aToast('Subiendo imagen arrastrada...', 'info');
+        const urls = await processAndUploadImages([...dt.files], 2000, 0.9, 500);
+        if (urls && urls[0]) uploadCallback(urls[0]);
+      } catch (err) { aToast(err.message, 'error'); }
+    } else if (dt) {
+      const text = dt.getData('text/uri-list') || dt.getData('text/plain');
+      if (text && /^https?:\/\/.+/i.test(text.trim())) {
+        uploadCallback(text.trim());
+      }
+    }
+  };
+}
+
+window.addEventListener('dragover', (e) => e.preventDefault(), false);
+window.addEventListener('drop', (e) => e.preventDefault(), false);
+
+function renderProductExtrasThumbs() {
+  const container = document.getElementById('productExtrasThumbnails');
+  const ta = document.getElementById('aEditProductExtraImages');
+  if (!container || !ta) return;
+  const urls = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  container.innerHTML = urls.map((u, i) => `
+    <div style="position:relative; width:52px; height:52px; border-radius:8px; overflow:hidden; border:1px solid var(--a-line); background:#111; flex-shrink:0;">
+      <img src="${resolveImageUrl(u)}" style="width:100%; height:100%; object-fit:cover;">
+      <button type="button" onclick="removeProductExtra(${i})" style="position:absolute; top:2px; right:2px; width:18px; height:18px; border-radius:50%; background:rgba(0,0,0,0.75); color:#fff; border:none; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; line-height:1;" title="Eliminar">✕</button>
+    </div>
+  `).join('');
+}
+window.removeProductExtra = function(idx) {
+  const ta = document.getElementById('aEditProductExtraImages');
+  if (!ta) return;
+  const urls = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  urls.splice(idx, 1);
+  ta.value = urls.join('\n');
+  renderProductExtrasThumbs();
+};
+
+function renderCoverExtrasThumbs() {
+  const container = document.getElementById('coverExtrasThumbnails');
+  const ta = document.getElementById('aEditCoverExtras');
+  if (!container || !ta) return;
+  const urls = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  container.innerHTML = urls.map((u, i) => `
+    <div style="position:relative; width:48px; height:48px; border-radius:8px; overflow:hidden; border:1px solid var(--a-line); background:#111; flex-shrink:0;">
+      <img src="${resolveImageUrl(u)}" style="width:100%; height:100%; object-fit:cover;">
+      <button type="button" onclick="removeCoverExtra(${i})" style="position:absolute; top:2px; right:2px; width:16px; height:16px; border-radius:50%; background:rgba(0,0,0,0.75); color:#fff; border:none; cursor:pointer; font-size:9px; display:flex; align-items:center; justify-content:center; line-height:1;" title="Eliminar">✕</button>
+    </div>
+  `).join('');
+}
+window.removeCoverExtra = function(idx) {
+  const ta = document.getElementById('aEditCoverExtras');
+  if (!ta) return;
+  const urls = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  urls.splice(idx, 1);
+  ta.value = urls.join('\n');
+  renderCoverExtrasThumbs();
+};
 
 const colorCache = new Map();
 function rgbToHsl(r, g, b) { r /= 255; g /= 255; b /= 255; const max = Math.max(r, g, b), min = Math.min(r, g, b); let h = 0, s = 0, l = (max + min) / 2; if (max !== min) { const d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min); switch (max) { case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break; case g: h = ((b - r) / d + 2) / 6; break; case b: h = ((r - g) / d + 4) / 6; break; } } return { h: h * 360, s, l }; }
@@ -4551,8 +4693,7 @@ const GH = {
     try { const res = await fetch('data.json?t=' + Date.now()); if (!res.ok) return null; return JSON.parse(await res.text()); } catch (e) { return null; }
   },
   async save(data) {
-    // Sanitizar data para NUNCA enviar API Keys o tokens a GitHub en data.json
-    // Esto previene violaciones a las reglas de GitHub Secret Scanning (Push Protection) y resguarda la privacidad de las claves.
+    // Sanitizar data para NUNCA enviar API Keys o tokens a GitHub en data.json (evita violaciones de reglas de GitHub Secret Scanning)
     const cleanData = JSON.parse(JSON.stringify(data));
     if (cleanData.settings) {
       delete cleanData.settings.rapidApiKey;
@@ -5778,6 +5919,8 @@ window.syncAllSpotifyPlays = async function() {
   let updatedCount = 0;
 
   const apifyTok = getAdminSecret('apifyToken');
+  const rapidKey = getAdminSecret('rapidApiKey');
+
   if (apifyTok) {
     await fetchSpotifyStats();
     updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
@@ -5798,7 +5941,7 @@ window.syncAllSpotifyPlays = async function() {
   updateAdminBadges();
   renderAdmin();
   setupPlaysBanner();
-  saveAdminData();
+  await saveAdminData();
   aToast(`✓ Sincronización completa: ${updatedCount} actualizadas (${totalStreams.toLocaleString()} plays totales)`, 'success');
 };
 
@@ -6158,6 +6301,7 @@ window.openProductModal = (index = -1) => {
       cb.checked = pCats.includes(cb.value);
     });
     $('#aEditProductCategory').value = pCats.join(',');
+    if (window.renderProductExtrasThumbs) window.renderProductExtrasThumbs();
     $('#aEditProductGroup').value = p.group || 'General';
     $('#aEditProductOrder').value = p.order || 0;
     $('#aEditProductExtraImages').value = (p.extraImages || []).join('\n');
@@ -6180,6 +6324,7 @@ window.openProductModal = (index = -1) => {
       cb.checked = (cb.value === 'artista');
     });
     $('#aEditProductCategory').value = 'artista';
+    if (window.renderProductExtrasThumbs) window.renderProductExtrasThumbs();
     $('#aEditProductGroup').value = 'General';
     $('#aEditProductOrder').value = 0;
     $('#aEditProductExtraImages').value = '';
@@ -6207,10 +6352,46 @@ $('#aEditProductHasEditable').addEventListener('change', (e) => {
 setupUploadZone('productUploadZone', 'productFileInput', (urls) => {
   if (urls[0]) {
     tempProductImg = urls[0];
-    $('#aEditProductPreview').src = urls[0];
-    aToast('Imagen subida correctamente');
+    $('#aEditProductPreview').src = resolveImageUrl(urls[0]);
+    aToast('✓ Imagen principal subida');
   }
-}, 1000, 0.9, 300);
+}, 1800, 0.9, 300);
+
+setupUploadZone('productExtrasUploadZone', 'productExtrasFileInput', (urls) => {
+  const ta = $('#aEditProductExtraImages');
+  const ex = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  ex.push(...urls);
+  ta.value = ex.join('\n');
+  renderProductExtrasThumbs();
+  aToast(`✓ ${urls.length} ${urls.length > 1 ? 'imágenes agregadas' : 'imagen agregada'} a ejemplos`);
+}, 2000, 0.9, 500);
+
+setupUploadZone('coverExtrasUploadZone', 'coverExtrasFileInput', (urls) => {
+  const ta = $('#aEditCoverExtras');
+  const ex = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+  ex.push(...urls);
+  ta.value = ex.join('\n');
+  renderCoverExtrasThumbs();
+  aToast(`✓ ${urls.length} ${urls.length > 1 ? 'imágenes agregadas' : 'imagen agregada'} a extras`);
+}, 2000, 0.9, 500);
+
+makePreviewDropTarget('aEditProductPreview', (url) => {
+  tempProductImg = url;
+  $('#aEditProductPreview').src = resolveImageUrl(url);
+  aToast('✓ Imagen principal actualizada');
+});
+
+makePreviewDropTarget('aEditCoverPreview', (url) => {
+  $('#aEditCoverUrl').value = url;
+  $('#aEditCoverPreview').src = resolveImageUrl(url);
+  aToast('✓ Portada actualizada');
+});
+
+const prodExTa = document.getElementById('aEditProductExtraImages');
+if (prodExTa) prodExTa.oninput = renderProductExtrasThumbs;
+
+const covExTa = document.getElementById('aEditCoverExtras');
+if (covExTa) covExTa.oninput = renderCoverExtrasThumbs;
 
 function renderAdminBriefingList() {
   const container = $('#aProductBriefingList');
@@ -6311,7 +6492,9 @@ window.openAdminCoverModal = (i) => {
   $('#aEditCoverCategory').value = c.category || 'sencillo'; $('#aEditCoverReview').value = c.review || '';
   $('#aEditCoverSpotify').value = c.spotifyUrl || ''; $('#aEditCoverApple').value = c.appleMusicUrl || ''; $('#aEditCoverYouTube').value = c.youtubeUrl || '';
   $('#aEditCoverPlaysSpotify').value = (c.plays && c.plays.spotify) ? c.plays.spotify : 0;
-  $('#aEditCoverExtras').value = (c.extraImages || []).join('\n'); $('#aEditCoverFeatured').checked = !!c.featured;
+  $('#aEditCoverExtras').value = (c.extraImages || []).join('\n');
+  if (window.renderCoverExtrasThumbs) window.renderCoverExtrasThumbs();
+  $('#aEditCoverFeatured').checked = !!c.featured;
   $('#aCoverModal').classList.add('active');
 };
 
