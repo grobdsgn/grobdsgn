@@ -696,6 +696,73 @@ input:checked + .a-slider:before { transform: translateX(26px); }
 .cta-btn.wa .cta-icon svg, .cta-btn.ig .cta-icon svg, .cta-btn.em .cta-icon svg { color: #000; }
 .cta-label {font-size: 0.85rem;font-weight: 700;text-transform: uppercase;letter-spacing: 0.15em;color: var(--phil-text);}
 
+
+/* ========================================================
+   CSS AÑADIDO: ESTILOS FALTANTES PARA ADMIN Y COMPONENTES
+   ======================================================== */
+.cover-extra-imgs-wrap { width: 100%; }
+
+/* Estados de plataformas en play-stat */
+.play-stat.spotify { color: #1DB954; border-color: rgba(29, 185, 84, 0.35); background: rgba(29, 185, 84, 0.08); }
+.play-stat.spotify svg { fill: #1DB954; }
+.play-stat.youtube { color: #FF0000; border-color: rgba(255, 0, 0, 0.35); background: rgba(255, 0, 0, 0.08); }
+.play-stat.youtube svg { fill: #FF0000; }
+.play-stat.apple { color: #FA243C; border-color: rgba(250, 36, 60, 0.35); background: rgba(250, 36, 60, 0.08); }
+.play-stat.apple svg { fill: #FA243C; }
+
+/* Feedback animado al añadir al carrito */
+@keyframes popButton { 0% { transform: scale(1); } 50% { transform: scale(0.92); } 100% { transform: scale(1); } }
+.pop-anim { animation: popButton 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important; }
+
+/* Admin: Portafolio - Categorías */
+.admin-page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.admin-page-header h2 { font-family: var(--font-title); font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+.admin-back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--a-muted); cursor: pointer; padding: 6px 0; margin-bottom: 14px; background: none; border: none; transition: color .2s; font-family: var(--font-title); text-transform: uppercase; letter-spacing: 0.05em; }
+.admin-back-btn:hover { color: var(--a-text); }
+
+.cat-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+.cat-card { background: var(--a-surface); border: 1px solid var(--a-line); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform .2s, border-color .2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.cat-card:hover { transform: translateY(-3px); border-color: var(--a-accent); }
+.cat-card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: #0a0a0c; }
+.cat-card-img.empty { display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--a-muted); background: rgba(255,255,255,0.02); height: 160px; }
+.cat-card-body { padding: 14px 16px; }
+.cat-card-title { font-family: var(--font-title); font-size: 1.05rem; font-weight: 700; color: var(--a-text); margin-bottom: 4px; }
+.cat-card-meta { font-size: 11px; color: var(--a-muted); }
+.cat-card-count { color: var(--a-accent); font-weight: 700; }
+
+/* Admin: Portafolio - Proyectos */
+.project-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 10px; }
+.project-card { background: #000; border: 1px solid var(--a-line); border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform .2s, border-color .2s; position: relative; }
+.project-card:hover { transform: translateY(-3px); border-color: var(--a-accent); }
+.project-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: #0a0a0c; }
+.project-card-img.empty { display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--a-muted); aspect-ratio: 1; background: rgba(255,255,255,0.02); }
+.project-card-logo { position: absolute; top: 10px; right: 10px; max-width: 70px; max-height: 30px; object-fit: contain; filter: brightness(0) invert(1); background: rgba(0,0,0,0.65); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px); }
+.project-card-body { padding: 10px 12px; background: var(--a-surface); }
+.project-card-title { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+.project-card-meta { font-size: 10px; color: var(--a-muted); }
+
+/* Admin: Imágenes de Proyecto & Selección Parallax */
+.project-image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 14px; }
+.project-image-item { position: relative; aspect-ratio: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--a-line); cursor: pointer; background: #000; }
+.project-image-item.parallax-selected { border: 2px solid var(--a-accent); box-shadow: 0 0 12px rgba(201,169,97,0.45); }
+.project-image-item.parallax-selected::after { content: '★ Parallax'; position: absolute; bottom: 4px; left: 4px; background: var(--a-accent); color: #000; font-size: 8px; font-weight: 800; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; z-index: 2; }
+.project-image-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-image-del { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.75); color: #fff; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; font-size: 10px; display: grid; place-items: center; transition: .2s; z-index: 3; }
+.project-image-del:hover { background: var(--a-danger); border-color: var(--a-danger); }
+
+/* Admin: Ficha Técnica Editor */
+.ficha-row-editor { display: grid; grid-template-columns: 160px 1fr 40px; gap: 10px; align-items: start; margin-bottom: 12px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 8px; border: 1px solid var(--a-line); }
+@media(max-width: 640px) { .ficha-row-editor { grid-template-columns: 1fr; } }
+.ficha-row-editor input[type="text"] { width: 100%; padding: 8px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--a-line); border-radius: 6px; color: var(--a-text); font-size: 13px; outline: none; }
+.ficha-row-editor textarea { width: 100%; min-height: 48px; padding: 8px 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--a-line); border-radius: 6px; color: var(--a-text); font-size: 13px; outline: none; resize: vertical; font-family: inherit; }
+.ficha-row-editor input:focus, .ficha-row-editor textarea:focus { border-color: var(--a-accent); }
+
+/* Estados Vacíos */
+.empty-state { text-align: center; padding: 50px 20px; background: var(--a-surface); border: 1px dashed var(--a-line); border-radius: 12px; grid-column: 1 / -1; }
+.empty-icon { font-size: 40px; margin-bottom: 12px; }
+.empty-state h3 { font-family: var(--font-title); font-size: 1.15rem; margin-bottom: 6px; color: var(--a-text); }
+.empty-state p { font-size: 12px; color: var(--a-muted); margin-bottom: 16px; }
+
 </style>
 </head>
 <body>
@@ -724,7 +791,7 @@ input:checked + .a-slider:before { transform: translateX(26px); }
             <div class="user-dropdown" id="userDropdown">
                 <a href="#perfil" onclick="document.getElementById('userDropdown').classList.remove('open')">Ver perfil</a>
                 <a href="#" onclick="openEditProfile(); document.getElementById('userDropdown').classList.remove('open'); return false;">Actualizar datos</a>
-                <a href="#" onclick="document.getElementById('userDropdown').classList.remove('open');">Mis Compras</a>
+                <a href="#perfil" onclick="document.getElementById('userDropdown').classList.remove('open');">Mis Compras</a>
                 <a href="#" class="danger" onclick="window.handleAuthClick(); document.getElementById('userDropdown').classList.remove('open'); return false;">Cerrar sesión</a>
             </div>
         </div>
@@ -1614,7 +1681,14 @@ input:checked + .a-slider:before { transform: translateX(26px); }
           </div>
         </div>
         <div class="a-form-group"><label class="a-form-label">Reseña</label><textarea id="aEditCoverReview" class="a-form-textarea" rows="3"></textarea></div>
-        <div class="a-form-group"><label class="a-form-label">Spotify URL</label><input type="url" id="aEditCoverSpotify" class="a-form-input"></div>
+        <div class="a-form-group">
+          <label class="a-form-label">Spotify URL</label>
+          <div style="display:flex;gap:8px">
+            <input type="url" id="aEditCoverSpotify" class="a-form-input" style="flex:1" placeholder="https://open.spotify.com/track/...">
+            <button type="button" class="a-btn a-btn-outline a-btn-xs" id="aBtnAutofillSpotify" onclick="autofillFromSpotify()">⚡ Cargar Datos</button>
+          </div>
+          <span class="a-form-hint">Obtiene título, artista y año automáticamente desde Spotify.</span>
+        </div>
         <div class="a-form-group"><label class="a-form-label">Apple Music URL</label><input type="url" id="aEditCoverApple" class="a-form-input"></div>
         <div class="a-form-group"><label class="a-form-label">YouTube URL (Video)</label><input type="url" id="aEditCoverYouTube" class="a-form-input"></div>
         <div class="a-form-group">
@@ -1652,6 +1726,25 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36); }
 function getItemUrl(item) { if (!item) return ''; return typeof item === 'string' ? item : (item.url || ''); }
 function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+function safeGetStorage(key, fallback = null) {
+  try {
+    const val = localStorage.getItem(key);
+    return val ? JSON.parse(val) : fallback;
+  } catch (e) {
+    console.warn('Error leyendo localStorage [' + key + ']:', e);
+    return fallback;
+  }
+}
+function cleanNumber(val, defaultVal = 0) {
+  if (typeof val === 'number') return isNaN(val) ? defaultVal : val;
+  const num = parseFloat(String(val || '').replace(/[^0-9.-]/g, ''));
+  return isNaN(num) ? defaultVal : num;
+}
+function isSafeUrl(url) {
+  if (!url || typeof url !== 'string') return false;
+  const trimmed = url.trim().toLowerCase();
+  return !trimmed.startsWith('javascript:') && !trimmed.startsWith('vbscript:') && !trimmed.startsWith('data:text/html');
+}
 function formatNumber(num) {
   if (num >= 1000000000) return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
   if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -1792,29 +1885,37 @@ $('#onboardingForm').onsubmit = (e) => {
     e.preventDefault();
     const type = $('#obType').value;
     const name = $('#obName').value.trim();
-    let avatar = tempObAvatar || $('#obAvatarUrl').value.trim() || window.currentUser.photoURL || '';
+    let avatar = tempObAvatar || $('#obAvatarUrl').value.trim() || (window.currentUser && window.currentUser.photoURL) || '';
 
     if (!type || !name) return;
 
-    const profile = { type, name, avatar, email: window.currentUser.email, displayName: window.currentUser.displayName };
-    localStorage.setItem('grob_user_profile_' + window.currentUser.uid, JSON.stringify(profile));
+    const profile = { type, name, avatar, email: window.currentUser ? window.currentUser.email : '', displayName: window.currentUser ? window.currentUser.displayName : '' };
+    if (window.currentUser) {
+      localStorage.setItem('grob_user_profile_' + window.currentUser.uid, JSON.stringify(profile));
+    }
     window.currentUserProfile = profile;
 
     $('#onboardingModal').classList.remove('active');
     showToast("Perfil actualizado");
     window.updateNavAvatar();
     
-    if(location.hash === '#tienda') renderPublicStore();
-    else location.hash = '#tienda';
+    if (location.hash === '#perfil') {
+      renderProfile();
+    } else if (location.hash === '#tienda') {
+      renderPublicStore();
+    } else {
+      location.hash = '#tienda';
+    }
 };
 
 let SHUFFLED_ORDERS = {};
 
 function getCoverStats() {
-  let stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
+  let stats = safeGetStorage('grob_cover_stats', {});
+  if (!stats || typeof stats !== 'object' || Array.isArray(stats)) stats = {};
   let changed = false;
   (DATA.covers || []).forEach(c => {
-    if (!stats[c.id]) {
+    if (c && c.id && !stats[c.id]) {
       stats[c.id] = { views: Math.floor(Math.random() * 6), likes: Math.floor(Math.random() * 6), liked: false };
       changed = true;
     }
@@ -1853,7 +1954,7 @@ function getEmbedUrl(url) {
   return null;
 }
 function getDirectImageUrl(url) {
-  if (!url) return '';
+  if (!url || !isSafeUrl(url)) return '';
   url = url.trim();
   const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (driveMatch && driveMatch[1]) return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
@@ -2078,10 +2179,43 @@ function updateParallax() {
 window.addEventListener('scroll', () => { const nav = document.getElementById('nav'); if (nav) nav.classList.toggle('scrolled', window.scrollY > 50); if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } });
 
 function showToast(msg, type) { const existing = document.querySelector('.public-toast'); if (existing) existing.remove(); const t = document.createElement('div'); t.className = 'public-toast' + (type ? ' ' + type : ''); t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.classList.add('show'), 10); setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2500); }
-function openLightbox(url) { if (!url) return; const lb = $('#lightbox'), img = $('#lightboxImg'); img.src = resolveImageUrl(url); lb.classList.add('active'); document.body.classList.add('locked'); }
-function closeLightbox() { $('#lightbox').classList.remove('active'); $('#lightboxImg').src = ''; document.body.classList.remove('locked'); }
-document.addEventListener('click', e => { if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') closeLightbox(); const zoom = e.target.closest('[data-zoom]'); if (zoom && zoom.dataset.zoom) { e.stopPropagation(); openLightbox(zoom.dataset.zoom); } });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+function openLightbox(url) {
+  if (!url) return;
+  const lb = $('#lightbox'), img = $('#lightboxImg');
+  const existingCarousel = document.getElementById('lightboxCarousel');
+  if (existingCarousel) existingCarousel.remove();
+  img.style.display = 'block';
+  img.src = resolveImageUrl(url);
+  lb.classList.add('active');
+  document.body.classList.add('locked');
+}
+function closeLightbox() {
+  const lb = $('#lightbox');
+  if (lb) lb.classList.remove('active');
+  const img = $('#lightboxImg');
+  if (img) {
+    img.src = '';
+    img.style.display = 'block';
+  }
+  const existingCarousel = document.getElementById('lightboxCarousel');
+  if (existingCarousel) existingCarousel.remove();
+  document.body.classList.remove('locked');
+}
+window.closeLightbox = closeLightbox;
+document.addEventListener('click', e => {
+  if (e.target.id === 'lightbox' || e.target.id === 'lightboxClose') closeLightbox();
+  const zoom = e.target.closest('[data-zoom]');
+  if (zoom && zoom.dataset.zoom) {
+    e.stopPropagation();
+    openLightbox(zoom.dataset.zoom);
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeLightbox();
+    closeMobileMenu();
+  }
+});
 
 let heroInterval = null;
 function initHeroRotation() { if (heroInterval) clearInterval(heroInterval); heroInterval = null; const layers = $$('.hero-bg-layer'); if (layers.length === 0) return; layers.forEach(l => { l.classList.remove('active'); l.style.animation = ''; }); activateHeroLayer(layers[0]); if (layers.length > 1) { let current = 0; heroInterval = setInterval(() => { layers[current].classList.remove('active'); current = (current + 1) % layers.length; activateHeroLayer(layers[current]); }, 8000); } }
@@ -2106,37 +2240,39 @@ function getCoversList() {
 }
 
 function updateCartCounter() {
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
   const counter = document.getElementById('cartCounter');
   if (counter) {
-    counter.textContent = cart.length;
-    counter.style.display = cart.length > 0 ? 'grid' : 'none';
+    const count = Array.isArray(cart) ? cart.length : 0;
+    counter.textContent = count;
+    counter.style.display = count > 0 ? 'grid' : 'none';
   }
 }
 
 window.addToCart = function(productId, btnElement) {
   if (!window.currentUser) {
-     alert("Debes iniciar sesión para añadir productos al carrito.");
+     showToast("Inicia sesión para añadir al carrito", "error");
      window.handleAuthClick();
      return;
   }
-  const product = DATA.products.find(p => p.id === productId);
+  const product = (DATA.products || []).find(p => p.id === productId);
   if (!product) return;
   
   const qtyInput = document.getElementById(`qty_${productId}`);
-  let qty = qtyInput ? parseInt(qtyInput.value) : 1;
+  let qty = qtyInput ? parseInt(qtyInput.value, 10) : 1;
   if (isNaN(qty) || qty < 1) qty = 1;
   if (qty > 50) qty = 50;
 
-  if(btnElement) {
+  if (btnElement) {
     btnElement.classList.add('pop-anim');
     setTimeout(() => btnElement.classList.remove('pop-anim'), 300);
   }
   
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
+  const safeCart = Array.isArray(cart) ? cart : [];
   
   for (let i = 0; i < qty; i++) {
-    cart.push({ 
+    safeCart.push({ 
       ...product, 
       cartItemId: uid(),
       includeEditable: false, 
@@ -2144,13 +2280,14 @@ window.addToCart = function(productId, btnElement) {
     });
   }
   
-  localStorage.setItem('grob_cart', JSON.stringify(cart));
+  localStorage.setItem('grob_cart', JSON.stringify(safeCart));
   updateCartCounter();
-  showToast(`${qty}x "${product.name}" añadido al carrito`);
+  showToast(`${qty}x "${product.name || 'Producto'}" añadido al carrito`);
 };
 
 window.toggleEditable = function(cartItemId) {
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
+  if (!Array.isArray(cart)) return;
   const item = cart.find(i => i.cartItemId === cartItemId);
   if (item) {
     item.includeEditable = !item.includeEditable;
@@ -2160,7 +2297,8 @@ window.toggleEditable = function(cartItemId) {
 };
 
 window.removeFromCart = function(cartItemId) {
-  let cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  let cart = safeGetStorage('grob_cart', []);
+  if (!Array.isArray(cart)) cart = [];
   cart = cart.filter(item => item.cartItemId !== cartItemId);
   localStorage.setItem('grob_cart', JSON.stringify(cart));
   updateCartCounter();
@@ -2168,11 +2306,12 @@ window.removeFromCart = function(cartItemId) {
 };
 
 window.openBriefing = function(cartItemId) {
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
+  if (!Array.isArray(cart)) return;
   const item = cart.find(i => i.cartItemId === cartItemId);
   if (!item || !item.briefingFields || item.briefingFields.length === 0) return;
 
-  $('#briefingTitle').textContent = `Briefing: ${item.name}`;
+  $('#briefingTitle').textContent = `Briefing: ${item.name || 'Proyecto'}`;
   const container = $('#briefingFieldsContainer');
   container.innerHTML = '';
   
@@ -2186,10 +2325,10 @@ window.openBriefing = function(cartItemId) {
     container.appendChild(div);
   });
 
-  if (item.briefingAnswers) {
+  if (item.briefingAnswers && typeof item.briefingAnswers === 'object') {
     item.briefingFields.forEach((field, index) => {
       const input = document.getElementById(`briefing_field_${index}`);
-      if(input) input.value = item.briefingAnswers[field.label] || '';
+      if (input) input.value = item.briefingAnswers[field.label] || '';
     });
   }
 
@@ -2207,7 +2346,7 @@ window.openBriefing = function(cartItemId) {
     let valid = true;
     item.briefingFields.forEach((field, index) => {
       const input = document.getElementById(`briefing_field_${index}`);
-      if (field.required && !input.value.trim()) valid = false;
+      if (field.required && (!input || !input.value.trim())) valid = false;
     });
     
     if (!valid) {
@@ -2224,7 +2363,8 @@ window.openBriefing = function(cartItemId) {
     setTimeout(() => {
         const answers = {};
         item.briefingFields.forEach((field, index) => {
-          answers[field.label] = document.getElementById(`briefing_field_${index}`).value;
+          const inp = document.getElementById(`briefing_field_${index}`);
+          answers[field.label] = inp ? inp.value.trim() : '';
         });
         item.briefingAnswers = answers;
         localStorage.setItem('grob_cart', JSON.stringify(cart));
@@ -2238,15 +2378,15 @@ window.openBriefing = function(cartItemId) {
         btn.style.borderColor = '#444';
         btn.textContent = 'Guardar Briefing';
         btn.disabled = false;
-    }, 1000);
+    }, 400);
   };
 
   $('#briefingModal').classList.add('active');
 };
 
 window.openCheckoutModal = function() {
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-  if (cart.length === 0) return;
+  const cart = safeGetStorage('grob_cart', []);
+  if (!Array.isArray(cart) || cart.length === 0) return;
   
   let missing = false;
   cart.forEach(item => {
@@ -2271,56 +2411,65 @@ window.openCheckoutModal = function() {
 function saveOrderToHistory(cart, total) {
     if (!window.currentUser) return;
     const orderKey = 'grob_user_orders_' + window.currentUser.uid;
-    const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+    const orders = safeGetStorage(orderKey, []);
+    const safeOrders = Array.isArray(orders) ? orders : [];
     
     const newOrder = {
         id: uid(),
         date: new Date().toLocaleString(),
         items: cart,
-        total: total
+        total: cleanNumber(total, 0)
     };
     
-    orders.unshift(newOrder);
-    localStorage.setItem(orderKey, JSON.stringify(orders));
+    safeOrders.unshift(newOrder);
+    localStorage.setItem(orderKey, JSON.stringify(safeOrders));
 }
 
 function generateOrderSummary() {
-    const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
-    const alias = window.currentUserProfile?.name || window.currentUser.displayName;
+    const cart = safeGetStorage('grob_cart', []);
+    const safeCart = Array.isArray(cart) ? cart : [];
+    const alias = (window.currentUserProfile && window.currentUserProfile.name) || (window.currentUser && window.currentUser.displayName) || 'Cliente';
     
     let message = `Hola! Soy ${alias}. Me gustaría comprar:\n\n`;
     let total = 0;
     
-    cart.forEach(item => {
-      let itemPrice = parseFloat(item.price);
+    safeCart.forEach(item => {
+      let itemPrice = cleanNumber(item.price, 0);
       let extraText = '';
       
       if (item.includeEditable && item.hasEditable) {
-        itemPrice += parseFloat(item.editablePrice || 0);
+        itemPrice += cleanNumber(item.editablePrice, 0);
         extraText = ` [+ Archivo Editable]`;
       }
       
       total += itemPrice;
       
-      message += `- 1x ${item.name} ($${item.price})${extraText}\n`;
+      message += `- 1x ${item.name || 'Producto'} (${cleanNumber(item.price, 0).toFixed(2)})${extraText}\n`;
       
-      if (item.briefingAnswers) {
-        message += `  *Briefing:*\n`;
-        for (const [key, value] of Object.entries(item.briefingAnswers)) {
-          if(value) message += `  - ${key}: ${value}\n`;
+      if (item.briefingAnswers && typeof item.briefingAnswers === 'object') {
+        const answersList = Object.entries(item.briefingAnswers).filter(([_, v]) => String(v).trim());
+        if (answersList.length > 0) {
+          message += `  *Briefing:*\n`;
+          for (const [key, value] of answersList) {
+            message += `  - ${key}: ${value}\n`;
+          }
         }
       }
     });
     
-    message += `\n*Total Estimado: $${total.toFixed(2)}*`;
+    message += `\n*Total Estimado: ${total.toFixed(2)}*`;
     return { message, total };
 }
 
 window.sendOrderWhatsApp = function() {
   const phone = DATA.contact.phone || '';
   const digits = phone.replace(/[^0-9]/g, '');
+  if (!digits) {
+    alert("El número de WhatsApp no está configurado en el sistema.");
+    return;
+  }
   const { message, total } = generateOrderSummary();
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
   
   saveOrderToHistory(cart, total);
   localStorage.removeItem('grob_cart');
@@ -2334,8 +2483,12 @@ window.sendOrderWhatsApp = function() {
 
 window.sendOrderEmail = function() {
   const email = DATA.contact.email || '';
+  if (!email) {
+    alert("El correo electrónico no está configurado en el sistema.");
+    return;
+  }
   const { message, total } = generateOrderSummary();
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
   
   saveOrderToHistory(cart, total);
   localStorage.removeItem('grob_cart');
@@ -2417,6 +2570,8 @@ function renderPublicStore() {
       grouped[groupName].forEach(p => {
         const isRecommended = window.currentUserProfile && p.category === window.currentUserProfile.type;
         const hasExtras = p.extraImages && p.extraImages.length > 0;
+        const safeId = escHtml(p.id);
+        const safePrice = cleanNumber(p.price, 0).toFixed(2);
         
         const card = document.createElement('div');
         card.className = 'tienda-card';
@@ -2424,20 +2579,20 @@ function renderPublicStore() {
         
         card.innerHTML = `
           <div class="tienda-card-img-wrap">
-            <img src="${resolveImageUrl(p.img)}" alt="${escHtml(p.name)}" onerror="handleImgError(this)" draggable="false">
-            ${hasExtras ? `<button class="tienda-examples-dot" onclick="event.stopPropagation(); viewExamples('${p.id}')" title="Ver imágenes de ejemplo" aria-label="Ver ejemplos">+</button>` : ''}
+            <img src="${escHtml(resolveImageUrl(p.img))}" alt="${escHtml(p.name || 'Producto')}" onerror="handleImgError(this)" draggable="false">
+            ${hasExtras ? `<button class="tienda-examples-dot" onclick="event.stopPropagation(); viewExamples('${safeId}')" title="Ver imágenes de ejemplo" aria-label="Ver ejemplos">+</button>` : ''}
           </div>
           <div class="tienda-card-info">
             ${isRecommended ? '<span style="font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px; display:block;">⭐ Recomendado</span>' : ''}
-            <h4 class="tienda-card-title">${escHtml(p.name)}</h4>
-            <p class="tienda-card-price">$${p.price}</p>
+            <h4 class="tienda-card-title">${escHtml(p.name || 'Sin título')}</h4>
+            <p class="tienda-card-price">${safePrice}</p>
             <div class="tienda-card-desc" onclick="this.classList.toggle('open')">
                 <div class="tienda-card-desc-label">Descripción</div>
                 <div class="tienda-card-desc-text">${escHtml(p.desc || 'No hay descripción disponible.')}</div>
             </div>
             <div class="tienda-qty-wrap">
-                <input type="number" id="qty_${p.id}" class="tienda-qty-input" value="1" min="1" max="50">
-                <button class="tienda-btn-add" onclick="addToCart('${p.id}', this)">Añadir</button>
+                <input type="number" id="qty_${safeId}" class="tienda-qty-input" value="1" min="1" max="50">
+                <button class="tienda-btn-add" onclick="addToCart('${safeId}', this)">Añadir</button>
             </div>
           </div>
         `;
@@ -2450,7 +2605,7 @@ function renderPublicStore() {
 }
 
 window.viewExamples = function(productId) {
-    const p = DATA.products.find(x => x.id === productId);
+    const p = (DATA.products || []).find(x => x.id === productId);
     if (!p || !p.extraImages || p.extraImages.length === 0) return;
     
     const lb = $('#lightbox');
@@ -2463,44 +2618,26 @@ window.viewExamples = function(productId) {
     
     const carousel = document.createElement('div');
     carousel.id = 'lightboxCarousel';
-    carousel.style.cssText = 'display:flex; flex-direction:column; align-items:center; gap:20px; width:100%; max-height:90vh; overflow-y:auto;';
+    carousel.style.cssText = 'display:flex; flex-direction:column; align-items:center; gap:20px; width:100%; max-height:90vh; overflow-y:auto; padding:10px;';
     
     const title = document.createElement('h3');
-    title.textContent = `Ejemplos: ${p.name}`;
-    title.style.cssText = 'font-family:var(--font-title); color:#fff; margin-bottom:10px; font-size:1.5rem;';
+    title.textContent = `Ejemplos: ${p.name || 'Producto'}`;
+    title.style.cssText = 'font-family:var(--font-title); color:#fff; margin-bottom:10px; font-size:1.4rem; text-align:center;';
     carousel.appendChild(title);
     
     p.extraImages.forEach(url => {
+        if (!url) return;
         const im = document.createElement('img');
         im.src = resolveImageUrl(url);
         im.draggable = false;
         im.onerror = () => handleImgError(im);
-        im.style.cssText = 'max-width:100%; max-height:70vh; object-fit:contain; border-radius:8px; background:#000;';
+        im.style.cssText = 'max-width:100%; max-height:70vh; object-fit:contain; border-radius:8px; background:#000; box-shadow:0 10px 30px rgba(0,0,0,0.8);';
         carousel.appendChild(im);
     });
     
     imgContainer.appendChild(carousel);
     lb.classList.add('active');
     document.body.classList.add('locked');
-    
-    const originalClose = window.closeLightbox;
-    window.closeLightbox = function() {
-        lb.classList.remove('active');
-        document.body.classList.remove('locked');
-        carousel.remove();
-        $('#lightboxImg').style.display = 'block';
-        window.closeLightbox = originalClose;
-    };
-};
-
-const originalCloseLightbox = closeLightbox;
-window.closeLightbox = function() {
-    const carousel = document.getElementById('lightboxCarousel');
-    if (carousel) {
-        carousel.remove();
-        $('#lightboxImg').style.display = 'block';
-    }
-    originalCloseLightbox();
 };
 
 function renderProfile() {
@@ -2515,8 +2652,8 @@ function renderProfile() {
   document.getElementById('perfilEmail').textContent = window.currentUser.email || '';
   document.getElementById('perfilAvatar').src = profile.avatar || window.currentUser.photoURL || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a20"/><text x="50" y="50" font-family="sans-serif" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle">User</text></svg>';
 
-  const stats = JSON.parse(localStorage.getItem('grob_cover_stats')) || {};
-  const likedIds = Object.keys(stats).filter(id => stats[id].liked);
+  const stats = safeGetStorage('grob_cover_stats', {});
+  const likedIds = Object.keys(stats).filter(id => stats[id] && stats[id].liked);
   const likedCovers = (DATA.covers || []).filter(c => likedIds.includes(c.id));
   const likedContainer = document.getElementById('perfilLikedCovers');
   likedContainer.innerHTML = '';
@@ -2528,7 +2665,7 @@ function renderProfile() {
       const item = document.createElement('div'); item.className = 'cover-item';
       const im = document.createElement('img'); im.src = resolveImageUrl(c.url); im.onerror = () => handleImgError(im); item.appendChild(im);
       item.appendChild(Object.assign(document.createElement('div'), { className: 'cover-shine' }));
-      item.onclick = () => location.hash = `#cover-${c.id}`;
+      item.onclick = () => location.hash = `#cover-${escHtml(c.id)}`;
       likedContainer.appendChild(item);
     });
   }
@@ -2538,28 +2675,31 @@ function renderProfile() {
   const btnCheckout = document.getElementById('btnCheckout');
   
   cartContainer.innerHTML = '';
-  const cart = JSON.parse(localStorage.getItem('grob_cart')) || [];
+  const cart = safeGetStorage('grob_cart', []);
+  const safeCart = Array.isArray(cart) ? cart : [];
   
-  if (cart.length === 0) {
+  if (safeCart.length === 0) {
     cartContainer.innerHTML = '<div class="perfil-empty">Tu carrito está vacío.</div>';
     cartTotalEl.style.display = 'none';
     btnCheckout.style.display = 'none';
   } else {
     let total = 0;
-    cart.forEach((item) => {
-      let itemPrice = parseFloat(item.price);
+    safeCart.forEach((item) => {
+      let itemPrice = cleanNumber(item.price, 0);
+      const safeEditablePrice = cleanNumber(item.editablePrice, 0);
       if (item.includeEditable && item.hasEditable) {
-        itemPrice += parseFloat(item.editablePrice || 0);
+        itemPrice += safeEditablePrice;
       }
       total += itemPrice;
       
+      const safeCartItemId = escHtml(item.cartItemId);
       let editableHtml = '';
       if (item.hasEditable) {
         editableHtml = `
           <label class="cart-editable-toggle">
-            <input type="checkbox" onchange="toggleEditable('${item.cartItemId}')" ${item.includeEditable ? 'checked' : ''}>
+            <input type="checkbox" onchange="toggleEditable('${safeCartItemId}')" ${item.includeEditable ? 'checked' : ''}>
             <div>
-              <div>Incluir Archivo Editable (+$${item.editablePrice})</div>
+              <div>Incluir Archivo Editable (+${safeEditablePrice.toFixed(2)})</div>
               <div style="font-size:0.7rem; color:var(--muted); margin-top:4px;">"Este Pack no incluye el archivo editable"</div>
             </div>
           </label>
@@ -2572,7 +2712,7 @@ function renderProfile() {
         const btnClass = isFilled ? 'filled' : 'pending';
         const btnText = isFilled ? '✅ Briefing Completado' : '📝 Rellenar Briefing';
         briefingHtml = `
-          <button class="cart-briefing-btn ${btnClass}" onclick="openBriefing('${item.cartItemId}')">
+          <button class="cart-briefing-btn ${btnClass}" onclick="openBriefing('${safeCartItemId}')">
             ${btnText}
           </button>
         `;
@@ -2581,19 +2721,19 @@ function renderProfile() {
       const el = document.createElement('div');
       el.className = 'cart-item';
       el.innerHTML = `
-        <img src="${resolveImageUrl(item.img)}" alt="${escHtml(item.name)}" draggable="false">
+        <img src="${escHtml(resolveImageUrl(item.img))}" alt="${escHtml(item.name || 'Producto')}" draggable="false">
         <div class="cart-item-info">
-          <h4>${escHtml(item.name)}</h4>
-          <p class="cart-item-price">$${item.price}</p>
+          <h4>${escHtml(item.name || 'Sin nombre')}</h4>
+          <p class="cart-item-price">${cleanNumber(item.price, 0).toFixed(2)}</p>
         </div>
-        <button class="cart-item-remove" onclick="removeFromCart('${item.cartItemId}')" title="Eliminar">✕</button>
+        <button class="cart-item-remove" onclick="removeFromCart('${safeCartItemId}')" title="Eliminar">✕</button>
         ${editableHtml}
         ${briefingHtml}
       `;
       cartContainer.appendChild(el);
     });
     
-    cartTotalEl.innerHTML = `Total: <span style="color: var(--accent);">$${total.toFixed(2)}</span>`;
+    cartTotalEl.innerHTML = `Total: <span style="color: var(--accent);">${total.toFixed(2)}</span>`;
     cartTotalEl.style.display = 'block';
     btnCheckout.style.display = 'flex';
   }
@@ -2601,21 +2741,23 @@ function renderProfile() {
   const orderHistoryContainer = document.getElementById('perfilOrderHistory');
   orderHistoryContainer.innerHTML = '';
   const orderKey = 'grob_user_orders_' + window.currentUser.uid;
-  const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+  const orders = safeGetStorage(orderKey, []);
+  const safeOrders = Array.isArray(orders) ? orders : [];
 
-  if (orders.length === 0) {
+  if (safeOrders.length === 0) {
       orderHistoryContainer.innerHTML = '<div class="perfil-empty">Aún no has realizado ninguna compra.</div>';
   } else {
-      orders.forEach(order => {
+      safeOrders.forEach(order => {
           const el = document.createElement('div');
           el.className = 'order-history-item';
+          const orderItems = Array.isArray(order.items) ? order.items : [];
           el.innerHTML = `
             <div class="order-header">
-                <span class="order-date">${order.date}</span>
-                <span class="order-total">Total: $${order.total.toFixed(2)}</span>
+                <span class="order-date">${escHtml(order.date || '')}</span>
+                <span class="order-total">Total: ${cleanNumber(order.total, 0).toFixed(2)}</span>
             </div>
             <ul class="order-products-list">
-                ${order.items.map(item => `<li>- ${escHtml(item.name)} ($${item.price})</li>`).join('')}
+                ${orderItems.map(item => `<li>- ${escHtml(item.name || 'Producto')} (${cleanNumber(item.price, 0).toFixed(2)})</li>`).join('')}
             </ul>
           `;
           orderHistoryContainer.appendChild(el);
@@ -2724,9 +2866,22 @@ window.autofillFromSpotify = async function() {
 };
 
 async function loadPublicData() {
-  const remote = await GH.load(); if (remote) { DATA = Object.assign(DATA, remote); migrateData(DATA); }
-  await Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]);
-  renderPublicSite(); handleRoute(); updateCartCounter();
+  try {
+    const remote = await GH.load();
+    if (remote) { DATA = Object.assign(DATA, remote); migrateData(DATA); }
+  } catch (e) {
+    console.warn('Error cargando data.json:', e);
+  }
+  // Renderizar de inmediato para máxima velocidad y fiabilidad
+  renderPublicSite();
+  handleRoute();
+  updateCartCounter();
+  // Sincronizar estadísticas en segundo plano solo si hay API keys configuradas
+  if (DATA.settings?.youtubeApiKey || DATA.settings?.apifyToken) {
+    Promise.allSettled([fetchYouTubeStats(), fetchSpotifyStats()]).then(() => {
+      setupPlaysBanner();
+    });
+  }
 }
 
 function animateCounter(el, target) { const duration = 2000; const start = performance.now(); function update(t) { const p = Math.min((t - start) / duration, 1); const ease = 1 - Math.pow(1 - p, 4); el.textContent = formatNumber(Math.floor(ease * target)); if (p < 1) requestAnimationFrame(update); else el.textContent = formatNumber(target); } requestAnimationFrame(update); }
@@ -2734,7 +2889,7 @@ let playsAnimated = false;
 function setupPlaysBanner() {
   const banner = $('#homePlaysBanner'); const cS = $('#totalPlaysSpotify'); const cY = $('#totalPlaysYouTube');
   if (!banner || !cS || !cY) return;
-  const tS = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0); const tY = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.youtube || 0), 0);
+  const tS = (DATA.covers || []).reduce((sum, c) => sum + (parseInt(c.plays?.spotify, 10) || 0), 0); const tY = (DATA.covers || []).reduce((sum, c) => sum + (parseInt(c.plays?.youtube, 10) || 0), 0);
   if ((DATA.covers || []).length === 0) { banner.style.display = 'none'; return; }
   banner.style.display = 'flex'; cS.textContent = '0'; cY.textContent = '0'; playsAnimated = false;
   const obs = new IntersectionObserver(e => { if (e[0].isIntersecting && !playsAnimated) { playsAnimated = true; animateCounter(cS, tS); animateCounter(cY, tY); obs.disconnect(); } }, { threshold: 0.5 }); obs.observe(banner);
@@ -2885,7 +3040,17 @@ $('#volverPortafolio').onclick = () => location.hash = '#portafolio';
 $('#volverCategoria').onclick = () => { const h = location.hash || ''; if (h.startsWith('#proyecto-')) { const f = findProject(h.replace('#proyecto-', '')); if (f) { location.hash = `#categoria-${f.cat.id}`; return; } } location.hash = '#portafolio'; };
 $$('.covers-filter-btn').forEach(btn => btn.onclick = () => { $$('.covers-filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); _currentFilter = btn.dataset.filter; renderPublicCovers(getCoversList()); });
 $('#coversSearchInput').oninput = e => { _currentSearch = e.target.value.trim(); renderPublicCovers(getCoversList()); };
-$('#contactForm').onsubmit = e => { e.preventDefault(); showToast('Preparando email...'); const email = DATA.contact.email || ''; const name = e.target.name.value, msg = e.target.message.value; window.location.href = `mailto:${email}?subject=Contacto de ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`; };
+$('#contactForm').onsubmit = e => {
+  e.preventDefault();
+  showToast('Preparando email...');
+  const targetEmail = DATA.contact.email || '';
+  const form = e.target;
+  const name = form.elements['name'] ? form.elements['name'].value.trim() : '';
+  const senderEmail = form.elements['email'] ? form.elements['email'].value.trim() : '';
+  const msg = form.elements['message'] ? form.elements['message'].value.trim() : '';
+  const bodyText = `Nombre: ${name}\nEmail: ${senderEmail}\n\nMensaje:\n${msg}`;
+  window.location.href = `mailto:${encodeURIComponent(targetEmail)}?subject=${encodeURIComponent('Contacto de ' + name)}&body=${encodeURIComponent(bodyText)}`;
+};
 
 function aToast(msg, type = 'success') { const c = $('#aToastContainer'); if (!c) return; const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg; c.appendChild(el); setTimeout(() => el.classList.add('show'), 10); setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000); }
 function setASync(status, text) { const el = $('#aSyncStatus'), txt = $('#aSyncStatusText'); if (!el) return; el.className = `a-sync ${status}`; if (txt) txt.textContent = text; }
@@ -2929,7 +3094,11 @@ function renderAdmin() {
     const el = document.createElement('div'); 
     el.className = 'a-cover-card'; 
     const hiddenBadge = (p.visible === false) ? '<span class="a-badge hidden-product">OCULTO</span>' : '';
-    el.innerHTML = `<img src="${resolveImageUrl(p.img)}" style="object-fit:cover;${p.visible === false ? 'opacity:0.5;' : ''}" onerror="handleImgError(this)" draggable="false">${hiddenBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">$${p.price} | ${p.category} | ${p.group || 'General'} | #${p.order || 0}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; 
+    const safePrice = cleanNumber(p.price, 0).toFixed(2);
+    const safeCategory = escHtml(p.category || 'artista');
+    const safeGroup = escHtml(p.group || 'General');
+    const safeOrder = parseInt(p.order, 10) || 0;
+    el.innerHTML = `<img src="${escHtml(resolveImageUrl(p.img))}" style="object-fit:cover;${p.visible === false ? 'opacity:0.5;' : ''}" onerror="handleImgError(this)" draggable="false">${hiddenBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">${safePrice} | ${safeCategory} | ${safeGroup} | #${safeOrder}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; 
     pGrid.appendChild(el); 
   });
 
