@@ -1414,7 +1414,7 @@
       "desc": "Diseño de Presskit. Digital o Impreso",
       "category": "artista",
       "group": "General",
-      "order": 0,
+      "order": 15,
       "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793374828591_bzfc.jpg",
       "hasEditable": false,
