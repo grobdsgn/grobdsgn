@@ -1144,11 +1144,16 @@
         },
         {
           "id": "nw9ehs76mvzrc0c2",
-          "name": "Nuevo Proyecto",
+          "name": "Hyderk",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793654455445_3bfr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793654457246_mjhm.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793654458796_a032.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793654460280_jpch.jpg"
+          ]
         }
       ]
     }
