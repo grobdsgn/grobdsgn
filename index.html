@@ -3477,6 +3477,108 @@ body.theme-oled .apple-product-card {
   user-select: none;
 }
 
+
+/* ==========================================================================
+   UNIVERSAL MEDIA GALLERY & MINIMALIST VIDEO PLAYER (VERTICAL/HORIZONTAL)
+   ========================================================================== */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(18, 18, 24, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100001;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.22s ease;
+  user-select: none;
+}
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-nav:hover {
+    background: rgba(212, 160, 23, 0.25);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+.lightbox-counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 18, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  z-index: 100001;
+  backdrop-filter: blur(12px);
+  letter-spacing: 0.08em;
+  user-select: none;
+}
+.lightbox-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 92vw;
+  max-height: 88vh;
+  position: relative;
+}
+.lightbox-video-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+  background: #000;
+  transition: width 0.3s ease, height 0.3s ease, aspect-ratio 0.3s ease;
+}
+.lightbox-video-wrap.is-horizontal {
+  width: min(90vw, 1050px);
+  aspect-ratio: 16 / 9;
+}
+.lightbox-video-wrap.is-vertical {
+  height: min(84vh, 760px);
+  aspect-ratio: 9 / 16;
+}
+.lightbox-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+.lightbox-video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+@media (max-width: 768px) {
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 1.8rem;
+  }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+  .lightbox-counter { bottom: 16px; }
+}
+
 </style>
 </head>
 <body>
@@ -3917,11 +4019,7 @@ body.theme-oled .apple-product-card {
       <h2 class="repeated-cta-title" data-i18n="cta_title">Transformemos tu visión en un diseño icónico</h2>
       <p class="repeated-cta-desc" data-i18n="cta_desc">Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.</p>
       <div class="repeated-cta-actions">
-        <a id="btnCtaWa" href="https://wa.me/584129999999?text=Hola%20Grobdesigns,%20quisiera%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" class="btn-cta-gold btn-sheen" data-i18n="cta_btn_wa">
-          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-          <span data-i18n="cta_wa_label">Cotizar por WhatsApp</span>
-        </a>
-        <a href="#contacto" class="btn-apple-outline" data-i18n="cta_contact_label">Enviar Mensaje / Briefing</a>
+        <button type="button" id="btnCtaComencemos" onclick="window.startFlow && window.startFlow()" class="btn-cta-gold btn-sheen" style="padding:14px 44px; font-size:1.05rem;" data-i18n="cta_btn_start">Comencemos</button>
       </div>
     </div>
   </section>
@@ -3940,7 +4038,13 @@ body.theme-oled .apple-product-card {
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
-  <img id="lightboxImg" src="" alt="Vista ampliada de la imagen">
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+  <div class="lightbox-counter" id="lightboxCounter" style="display:none;">1 / 1</div>
+  <div class="lightbox-content" id="lightboxContent">
+    <img id="lightboxImg" src="" alt="Vista ampliada de la imagen">
+    <div id="lightboxVideoWrap" class="lightbox-video-wrap" style="display:none;"></div>
+  </div>
 </div>
 
 <div id="briefingModal">
@@ -5385,9 +5489,23 @@ function activateHeroLayer(layer) { layer.classList.add('active'); layer.style.a
 
 function showView(name) { $$('.view').forEach(v => v.classList.remove('active')); const el = $(`[data-view="${name}"]`); if (el) el.classList.add('active'); }
 function syncTabs(name) { 
-    $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
-    $$('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+    $('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+    $('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
 }
+document.addEventListener('DOMContentLoaded', () => {
+  ['navTabTie'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        if (!window.currentUser) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.startFlow();
+        }
+      });
+    }
+  });
+});
 function updateNavBack(hash) { const back = $('#navBack'); if (!back) return; back.classList.toggle('show', hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin')); }
 function findProject(projId) { for (const cat of (DATA.categories || [])) { for (const proj of (cat.projects || [])) { if (proj.id === projId) return { cat, proj }; } } return null; }
 function goBack() { const h = location.hash || ''; if (h.startsWith('#cover-')) location.hash = '#covers'; else if (h.startsWith('#categoria-')) location.hash = '#portafolio'; else if (h.startsWith('#proyecto-')) { const found = findProject(h.replace('#proyecto-', '')); location.hash = found ? `#categoria-${found.cat.id}` : '#portafolio'; } else if (h === '#perfil') location.hash = '#home'; else location.hash = '#home'; }
@@ -5848,59 +5966,11 @@ window.productHasCategory = function(p, cat) {
 window.viewExamples = function(productId) {
   const product = (DATA.products || []).find(p => p.id === productId);
   if (!product || !product.extraImages || product.extraImages.length === 0) return;
+  const extras = (product.extraImages || []).filter(Boolean);
+  if (!extras.length) return;
 
-  const extraOnly = (product.extraImages || []).filter(Boolean);
-  if (extraOnly.length === 0) return;
-
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  if (!lb || !lbImg) return;
-
-  // Limpiar cualquier carrusel o contador previo
-  const oldCarousel = document.getElementById('lightboxCarousel');
-  if (oldCarousel) oldCarousel.remove();
-  const oldCounter = document.getElementById('lightboxCounter');
-  if (oldCounter) oldCounter.remove();
-
-  let currentIndex = 0;
-
-  function showSingleImage(idx) {
-    currentIndex = (idx + extraOnly.length) % extraOnly.length;
-    lbImg.src = resolveImageUrl(extraOnly[currentIndex]);
-    lbImg.alt = product.name ? `Ejemplo de ${product.name}` : 'Ejemplo del producto';
-    lbImg.style.display = 'block';
-    lbImg.style.background = 'transparent';
-    lbImg.style.boxShadow = 'none';
-    lbImg.style.border = 'none';
-    lbImg.style.borderRadius = '0';
-    lbImg.style.filter = 'drop-shadow(0 20px 45px rgba(0, 0, 0, 0.75))';
-    lbImg.style.cursor = extraOnly.length > 1 ? 'pointer' : 'default';
-
-    const counter = document.getElementById('lightboxCounter');
-    if (counter) {
-      counter.textContent = extraOnly.length > 1 ? `${currentIndex + 1} / ${extraOnly.length}` : '';
-    }
-  }
-
-  showSingleImage(0);
-
-  if (extraOnly.length > 1) {
-    lbImg.onclick = (e) => {
-      e.stopPropagation();
-      showSingleImage(currentIndex + 1);
-    };
-
-    const counterEl = document.createElement('div');
-    counterEl.id = 'lightboxCounter';
-    counterEl.style.cssText = 'position:absolute; bottom:28px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.08); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); color:#fff; font-size:12px; font-weight:600; letter-spacing:0.04em; padding:6px 16px; border-radius:999px; pointer-events:none; z-index:10; white-space:nowrap;';
-    counterEl.textContent = `1 / ${extraOnly.length}`;
-    lb.appendChild(counterEl);
-  } else {
-    lbImg.onclick = (e) => e.stopPropagation();
-  }
-
-  lb.classList.add('active');
-  document.body.classList.add('locked');
+  // Abre la galería universal con soporte completo para imágenes y videos
+  window.openMediaGallery(extras, 0);
 };
 
 function renderProfile() {
@@ -6176,6 +6246,7 @@ window.applyThemeOled = function() {
   }
 };
 
+
 // Internationalization Dictionary (ES / EN)
 const I18N = {
   es: {
@@ -6185,16 +6256,35 @@ const I18N = {
     nav_cli: 'Clientes',
     nav_con: 'Contacto',
     nav_tie: 'Tienda',
+    btn_user: 'Mi Cuenta',
+    btn_cart: 'Mi Carrito',
     cta_badge: '✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS',
     cta_title: 'Transformemos tu visión en un diseño icónico',
     cta_desc: 'Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.',
-    cta_btn_wa: 'Cotizar por WhatsApp',
-    cta_contact_label: 'Enviar Mensaje / Briefing',
+    cta_btn_start: 'Comencemos',
     not_found_title: 'Página no encontrada',
     not_found_desc: 'El enlace que seguiste no existe o ha sido reubicado en nuestro nuevo catálogo.',
     not_found_btn: 'Volver al Inicio',
+    store_title: 'Tienda de Recursos y Diseños',
+    store_search_ph: 'Buscar productos y servicios...',
+    store_cat_all: 'Todos',
+    store_cat_artista: 'Para Artistas',
+    store_cat_personal: 'Marca Personal',
+    store_cat_empresa: 'Empresas',
     store_no_results: 'No encontramos productos que coincidan',
     store_clear_filters: 'Ver todos los productos',
+    cart_title: 'Mi Bolsa de Compras',
+    cart_empty_title: 'Tu bolsa está vacía',
+    cart_empty_sub: 'Explora la tienda y añade productos exclusivos a tu orden.',
+    cart_btn_explore: 'Explorar Tienda',
+    cart_btn_checkout: 'Proceder al Pago',
+    contact_title: 'Hablemos de tu próximo proyecto',
+    contact_desc: 'Cuéntanos tu visión y creemos algo extraordinario juntos.',
+    contact_name_label: '01 — Nombre',
+    contact_email_label: '02 — Email',
+    contact_msg_label: '03 — Mensaje',
+    contact_btn: 'Enviar mensaje',
+    footer_loc: 'Caracas, Venezuela · Trabajando con toda Latinoamérica',
     offline_msg: '⚠️ Conexión perdida. Estás en modo sin conexión.',
     online_msg: '✓ Conexión restablecida.'
   },
@@ -6205,16 +6295,35 @@ const I18N = {
     nav_cli: 'Clients',
     nav_con: 'Contact',
     nav_tie: 'Store',
+    btn_user: 'My Account',
+    btn_cart: 'My Cart',
     cta_badge: '✦ OPEN FOR NEW COMMISSIONS',
     cta_title: 'Let\'s turn your vision into an iconic artwork',
     cta_desc: 'Boutique studio specializing in cover artwork, high-impact brand identities and creative direction for artists and labels.',
-    cta_btn_wa: 'Quote via WhatsApp',
-    cta_contact_label: 'Send Message / Briefing',
+    cta_btn_start: 'Let\'s Begin',
     not_found_title: 'Page Not Found',
     not_found_desc: 'The link you followed does not exist or has been moved in our new catalogue.',
     not_found_btn: 'Back to Home',
+    store_title: 'Design Resources & Store',
+    store_search_ph: 'Search products and services...',
+    store_cat_all: 'All',
+    store_cat_artista: 'For Artists',
+    store_cat_personal: 'Personal Brand',
+    store_cat_empresa: 'Corporate',
     store_no_results: 'No matching products found',
     store_clear_filters: 'View all products',
+    cart_title: 'Shopping Bag',
+    cart_empty_title: 'Your bag is empty',
+    cart_empty_sub: 'Explore the store and add exclusive products to your order.',
+    cart_btn_explore: 'Explore Store',
+    cart_btn_checkout: 'Proceed to Checkout',
+    contact_title: 'Let\'s talk about your next project',
+    contact_desc: 'Tell us your vision and let\'s create something extraordinary together.',
+    contact_name_label: '01 — Name',
+    contact_email_label: '02 — Email',
+    contact_msg_label: '03 — Message',
+    contact_btn: 'Send message',
+    footer_loc: 'Caracas, Venezuela · Working with artists worldwide',
     offline_msg: '⚠️ Connection lost. You are browsing offline.',
     online_msg: '✓ Connection restored.'
   }
@@ -6284,6 +6393,157 @@ window.refreshScrollReveal = function() {
 };
 
 // Back to Top Listener
+
+/* ==========================================================================
+   UNIVERSAL MEDIA GALLERY & MINIMALIST VIDEO PLAYER CONTROLLER
+   ========================================================================== */
+let _lightboxGallery = [];
+let _lightboxIndex = 0;
+
+window.isVideoUrl = function(url) {
+  if (!url || typeof url !== 'string') return false;
+  const clean = url.toLowerCase().split('?')[0];
+  return /\.(mp4|webm|mov|ogg|m4v)$/i.test(clean) ||
+         /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(url) ||
+         /^data:video\//i.test(url);
+};
+
+window.isVerticalVideo = function(url) {
+  if (!url || typeof url !== 'string') return false;
+  return /\/shorts\//i.test(url) || /tiktok\.com/i.test(url) || /[?&]aspect=vertical/i.test(url) || /[?&]vertical=1/i.test(url);
+};
+
+window.openMediaGallery = function(items, startIndex = 0) {
+  if (!items || !items.length) return;
+  _lightboxGallery = items.filter(Boolean);
+  if (!_lightboxGallery.length) return;
+  _lightboxIndex = Math.max(0, Math.min(startIndex, _lightboxGallery.length - 1));
+
+  const lb = document.getElementById('lightbox');
+  if (!lb) return;
+  lb.classList.add('active');
+  document.body.classList.add('locked');
+
+  renderLightboxCurrentItem();
+};
+
+window.renderLightboxCurrentItem = function() {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const videoWrap = document.getElementById('lightboxVideoWrap');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const counter = document.getElementById('lightboxCounter');
+
+  if (!_lightboxGallery.length) return;
+  const item = _lightboxGallery[_lightboxIndex];
+  const isMultiple = _lightboxGallery.length > 1;
+
+  if (prevBtn) prevBtn.style.display = isMultiple ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = isMultiple ? 'flex' : 'none';
+  if (counter) {
+    counter.style.display = isMultiple ? 'block' : 'none';
+    counter.textContent = `${_lightboxIndex + 1} / ${_lightboxGallery.length}`;
+  }
+
+  // Clear previous video
+  if (videoWrap) {
+    videoWrap.innerHTML = '';
+    videoWrap.style.display = 'none';
+    videoWrap.className = 'lightbox-video-wrap';
+  }
+
+  if (window.isVideoUrl(item)) {
+    // RENDER VIDEO (Req 4 & 5)
+    if (img) img.style.display = 'none';
+    if (!videoWrap) return;
+    videoWrap.style.display = 'flex';
+
+    const isVert = window.isVerticalVideo(item);
+    videoWrap.classList.add(isVert ? 'is-vertical' : 'is-horizontal');
+
+    const emb = typeof getEmbedUrl === 'function' ? getEmbedUrl(item) : null;
+    const isDirectVideo = /\.(mp4|webm|mov|ogg|m4v)$/i.test(item.split('?')[0]) || /^data:video\//i.test(item);
+
+    if (isDirectVideo || (emb && emb.platform === 'video')) {
+      const v = document.createElement('video');
+      v.src = (emb && emb.url) ? emb.url : resolveImageUrl(item);
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      // Auto-detect aspect ratio from video dimensions
+      v.onloadedmetadata = () => {
+        if (v.videoHeight > v.videoWidth) {
+          videoWrap.className = 'lightbox-video-wrap is-vertical';
+        } else {
+          videoWrap.className = 'lightbox-video-wrap is-horizontal';
+        }
+      };
+      videoWrap.appendChild(v);
+    } else if (emb && emb.platform === 'youtube') {
+      const ifr = document.createElement('iframe');
+      const ytId = getYouTubeId(item);
+      ifr.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&modestbranding=1&rel=0`;
+      ifr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      ifr.setAttribute('allowfullscreen', '');
+      videoWrap.appendChild(ifr);
+    } else {
+      const ifr = document.createElement('iframe');
+      ifr.src = (emb && emb.url) ? emb.url : item;
+      ifr.setAttribute('allow', 'autoplay; fullscreen');
+      ifr.setAttribute('allowfullscreen', '');
+      videoWrap.appendChild(ifr);
+    }
+  } else {
+    // RENDER IMAGE
+    if (img) {
+      img.style.display = 'block';
+      img.src = resolveImageUrl(item);
+      img.alt = 'Vista de galería';
+    }
+  }
+};
+
+window.lightboxNavigate = function(direction) {
+  if (!_lightboxGallery.length) return;
+  _lightboxIndex = (_lightboxIndex + direction + _lightboxGallery.length) % _lightboxGallery.length;
+  renderLightboxCurrentItem();
+};
+
+function setupGalleryEvents() {
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const closeBtn = document.getElementById('lightboxClose');
+
+  if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); window.lightboxNavigate(-1); };
+  if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); window.lightboxNavigate(1); };
+  if (closeBtn) closeBtn.onclick = (e) => { e.stopPropagation(); closeLightbox(); };
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if (!lb || !lb.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') window.lightboxNavigate(-1);
+    else if (e.key === 'ArrowRight') window.lightboxNavigate(1);
+    else if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Touch Swipe for Mobile Navigation
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    lb.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) window.lightboxNavigate(1); // Swipe Left -> Next
+      if (touchEndX - touchStartX > 50) window.lightboxNavigate(-1); // Swipe Right -> Prev
+    }, { passive: true });
+  }
+}
+
 function setupBackToTop() {
   const btn = document.getElementById('btnScrollTop');
   if (!btn) return;
@@ -6342,6 +6602,15 @@ function handleRoute() {
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
   else if (h === '#tienda') { 
+      // Requerimiento 1: La única manera de acceder a la tienda es ingresando su usuario
+      if (!window.currentUser) {
+        showToast(window.currentLang === 'en' ? 'Please sign in with your account to access the store.' : 'Por favor ingresa con tu usuario para acceder a la tienda.', 3500);
+        if (typeof window.handleAuthClick === 'function') {
+          window.handleAuthClick();
+        }
+        location.hash = _prevRoute && _prevRoute !== '#tienda' ? _prevRoute : '#home';
+        return;
+      }
       renderPublicStore();
       showView('tienda'); 
       syncTabs('tienda'); 
@@ -6456,45 +6725,72 @@ async function fetchSpotifyMetadata(url) {
 }
 
 async function fetchSpotifyPlaysForUrl(url, token, actor) {
+  if (!url) return 0;
   const apifyTok = token || getAdminSecret('apifyToken');
   const apifyAct = actor || DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
   const rapidKey = getAdminSecret('rapidApiKey');
+  const isAlbum = /\/album\//i.test(url);
   const trackId = extractSpotifyTrackId(url);
 
+  // 1. RAPIDAPI ALBUM OR TRACK EXTRACTION
   if (rapidKey) {
-    try {
-      const r1 = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(url)}`, {
-        headers: {
-          'x-rapidapi-key': rapidKey,
-          'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
-        }
-      });
-      if (r1.status === 429) throw new Error('RAPIDAPI_429');
-      if (r1.ok) {
-        const d = await r1.json();
-        const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
-        if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
-      }
-    } catch (e) {}
-
-    if (trackId) {
+    if (isAlbum) {
       try {
-        const r2 = await fetch(`https://spotify23.p.rapidapi.com/track_credits/?id=${trackId}`, {
+        const rAlbum = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/album?url=${encodeURIComponent(url)}`, {
           headers: {
             'x-rapidapi-key': rapidKey,
-            'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+            'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
           }
         });
-        if (r2.status === 429) throw new Error('RAPIDAPI_429');
-        if (r2.ok) {
-          const d = await r2.json();
-          const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
+        if (rAlbum.status === 429) throw new Error('RAPIDAPI_429');
+        if (rAlbum.ok) {
+          const d = await rAlbum.json();
+          const total = d.totalPlayCount ?? d.totalStreams ?? d.playCount ?? (Array.isArray(d.tracks) ? d.tracks.reduce((sum, t) => sum + (parseInt(t.playCount || t.streams, 10) || 0), 0) : 0);
+          if (total && parseInt(total, 10) > 0) return parseInt(total, 10);
+        }
+      } catch (e) {
+        if (e.message === 'RAPIDAPI_429') throw e;
+      }
+    } else {
+      try {
+        const r1 = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(url)}`, {
+          headers: {
+            'x-rapidapi-key': rapidKey,
+            'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
+          }
+        });
+        if (r1.status === 429) throw new Error('RAPIDAPI_429');
+        if (r1.ok) {
+          const d = await r1.json();
+          const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
           if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
         }
-      } catch (e) {}
+      } catch (e) {
+        if (e.message === 'RAPIDAPI_429') throw e;
+      }
+
+      if (trackId) {
+        try {
+          const r2 = await fetch(`https://spotify23.p.rapidapi.com/track_credits/?id=${trackId}`, {
+            headers: {
+              'x-rapidapi-key': rapidKey,
+              'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+            }
+          });
+          if (r2.status === 429) throw new Error('RAPIDAPI_429');
+          if (r2.ok) {
+            const d = await r2.json();
+            const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
+            if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+          }
+        } catch (e) {
+          if (e.message === 'RAPIDAPI_429') throw e;
+        }
+      }
     }
   }
 
+  // 2. APIFY ACTOR EXTRACTION (SUMS ALL TRACKS OF ALBUM)
   if (apifyTok) {
     try {
       const res = await fetch(`https://api.apify.com/v2/acts/${apifyAct.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(apifyTok)}`, {
@@ -6505,9 +6801,16 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
       if (res.ok) {
         const items = await res.json();
         if (Array.isArray(items) && items.length) {
-          const it = items[0];
-          const p = it.playCount ?? it.play_count ?? it.plays ?? it.streams ?? it.count ?? 0;
-          if (parseInt(p, 10) > 0) return parseInt(p, 10);
+          if (isAlbum || items.length > 1) {
+            // Requerimiento 2: Extraer y sumar las reproducciones completas del álbum
+            const totalSum = items.reduce((sum, item) => {
+              const p = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
+              return sum + (parseInt(p, 10) || 0);
+            }, 0);
+            if (totalSum > 0) return totalSum;
+          }
+          const p = items[0].playCount ?? items[0].play_count ?? items[0].plays ?? items[0].streams ?? items[0].count;
+          if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
         }
       }
     } catch (e) {}
@@ -6779,7 +7082,9 @@ function resetDetail3DTilt(e) { e.currentTarget.style.transform = 'perspective(8
 
 function renderCoverDetail(id) {
   const c = (DATA.covers || []).find(x => x.id === id); if (!c) { location.hash = '#covers'; return; }
-  recordView(id); const img = $('#coverHeroImg'); img.src = resolveImageUrl(c.url); img.dataset.zoom = c.url; img.alt = `Portada ${c.name} por ${c.artist}`;
+  recordView(id); const img = $('#coverHeroImg'); img.src = resolveImageUrl(c.url); img.alt = `Portada ${c.name} por ${c.artist}`;
+  const allCoverMedia = [c.url, ...(c.extraImages || [])].filter(Boolean);
+  img.onclick = () => window.openMediaGallery(allCoverMedia, 0);
   $('#coverHeroTitle').textContent = c.name || 'Sin título'; $('#coverHeroArtist').textContent = c.artist || ''; $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
   img.addEventListener('mousemove', handleDetail3DTilt); img.addEventListener('mouseleave', resetDetail3DTilt);
   const pw = $('#coverHeroPlays'); pw.innerHTML = ''; const p = c.plays || {}; let hp = false, html = '';
@@ -6794,7 +7099,9 @@ function renderCoverDetail(id) {
   if (hg) {
     const gal = document.createElement('div'); gal.className = 'masonry-gallery';
     if (hv) { const vi = document.createElement('div'); vi.className = 'masonry-item video-item'; vi.style.setProperty('--entry-delay', '0s'); const wrap = document.createElement('div'); wrap.className = 'video-wrapper'; const ifr = document.createElement('iframe'); ifr.src = `https://www.youtube-nocookie.com/embed/${ytId}?modestbranding=1&rel=0&iv_load_policy=3&color=white`; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'); ifr.setAttribute('allowfullscreen', ''); ifr.setAttribute('loading', 'lazy'); wrap.appendChild(ifr); vi.appendChild(wrap); gal.appendChild(vi); }
-    if (he) { c.extraImages.forEach((url, idx) => { const isV = isVideoUrl(url); const emb = getEmbedUrl(url); const ii = document.createElement('div'); ii.className = 'masonry-item' + (isV ? ' video-item' : ''); ii.style.setProperty('--entry-delay', ((idx + (hv ? 1 : 0)) * 0.05) + 's'); if (isV && emb) { if (emb.platform === 'video') { const v = document.createElement('video'); v.src = emb.url; v.controls = true; v.style.width = '100%'; v.style.borderRadius = '4px'; ii.appendChild(v); } else { const w = document.createElement('div'); w.className = 'video-wrapper'; const ifr = document.createElement('iframe'); ifr.src = emb.url; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'); ifr.setAttribute('allowfullscreen', ''); ifr.setAttribute('loading', 'lazy'); w.appendChild(ifr); ii.appendChild(w); } } else { const im = document.createElement('img'); im.src = resolveImageUrl(url); im.dataset.zoom = url; im.alt = `Detalle del cover ${c.name}`; im.draggable = false; im.onerror = () => handleImgError(im); ii.appendChild(im); ii.addEventListener('mousemove', handleDetail3DTilt); ii.addEventListener('mouseleave', resetDetail3DTilt); } gal.appendChild(ii); }); }
+    if (he) { c.extraImages.forEach((url, idx) => { const isV = isVideoUrl(url); const emb = getEmbedUrl(url); const ii = document.createElement('div'); ii.className = 'masonry-item' + (isV ? ' video-item' : ''); ii.style.setProperty('--entry-delay', ((idx + (hv ? 1 : 0)) * 0.05) + 's'); if (isV && emb) { if (emb.platform === 'video') { const v = document.createElement('video'); v.src = emb.url; v.controls = true; v.style.width = '100%'; v.style.borderRadius = '4px'; ii.appendChild(v); } else { const w = document.createElement('div'); w.className = 'video-wrapper'; const ifr = document.createElement('iframe'); ifr.src = emb.url; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'); ifr.setAttribute('allowfullscreen', ''); ifr.setAttribute('loading', 'lazy'); w.appendChild(ifr); ii.appendChild(w); } } else { const im = document.createElement('img'); im.src = resolveImageUrl(url);
+const allCoverMedia = [c.url, ...(c.extraImages || [])].filter(Boolean);
+im.onclick = () => window.openMediaGallery(allCoverMedia, idx + 1); im.alt = `Detalle del cover ${c.name}`; im.draggable = false; im.onerror = () => handleImgError(im); ii.appendChild(im); ii.addEventListener('mousemove', handleDetail3DTilt); ii.addEventListener('mouseleave', resetDetail3DTilt); } gal.appendChild(ii); }); }
     ei.appendChild(gal); if (gl) gl.style.display = 'block';
   } else if (gl) gl.style.display = 'none';
   if (hr || hg) ex.classList.remove('hidden'); else ex.classList.add('hidden'); showView('coverDetalle');
@@ -6826,9 +7133,10 @@ function renderProjectDetail(id) {
   const cont = $('#projImagesGrid'); cont.innerHTML = '';
   if (proj.images && proj.images.length) {
     const gal = document.createElement('div'); gal.className = 'masonry-gallery';
+    const allProjMedia = proj.images.filter(Boolean);
     proj.images.forEach((url, i) => {
       const isV = isVideoUrl(url); const emb = getEmbedUrl(url); const item = document.createElement('div'); item.className = 'masonry-item' + (isV ? ' video-item' : ''); item.style.setProperty('--entry-delay', (i * 0.04) + 's');
-      if (isV && emb) { if (emb.platform === 'video') { const v = document.createElement('video'); v.src = emb.url; v.controls = true; v.style.width = '100%'; v.style.borderRadius = '4px'; item.appendChild(v); } else { const w = document.createElement('div'); w.className = 'video-wrapper'; const ifr = document.createElement('iframe'); ifr.src = emb.url; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'); ifr.setAttribute('allowfullscreen', ''); ifr.setAttribute('loading', 'lazy'); w.appendChild(ifr); item.appendChild(w); } } else { const im = document.createElement('img'); im.src = resolveImageUrl(url); im.dataset.zoom = url; im.alt = `Imagen del proyecto ${proj.name}`; im.loading = 'lazy'; im.draggable = false; im.onerror = () => handleImgError(im); item.appendChild(im); }
+      if (isV && emb) { if (emb.platform === 'video') { const v = document.createElement('video'); v.src = emb.url; v.controls = true; v.style.width = '100%'; v.style.borderRadius = '4px'; item.appendChild(v); } else { const w = document.createElement('div'); w.className = 'video-wrapper'; const ifr = document.createElement('iframe'); ifr.src = emb.url; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'); ifr.setAttribute('allowfullscreen', ''); ifr.setAttribute('loading', 'lazy'); w.appendChild(ifr); item.appendChild(w); } } else { const im = document.createElement('img'); im.src = resolveImageUrl(url); im.onclick = () => window.openMediaGallery(allProjMedia, i); im.alt = `Imagen del proyecto ${proj.name}`; im.loading = 'lazy'; im.draggable = false; im.onerror = () => handleImgError(im); item.appendChild(im); }
       gal.appendChild(item);
     });
     cont.appendChild(gal);
@@ -7458,6 +7766,7 @@ boot();
       if (window.applyThemeOled) window.applyThemeOled();
       if (window.setAppLanguage && window.currentLang) window.setAppLanguage(window.currentLang);
       if (typeof setupBackToTop === 'function') setupBackToTop();
+      if (typeof setupGalleryEvents === 'function') setupGalleryEvents();
       if (window.refreshScrollReveal) window.refreshScrollReveal();
       if (window.updateNavAvatar) window.updateNavAvatar();
   });
