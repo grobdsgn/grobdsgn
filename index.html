@@ -37,7 +37,8 @@
 <meta name="geo.position" content="10.4806;-66.9036">
 <meta name="ICBM" content="10.4806, -66.9036">
 
-<link rel="icon" type="image/svg+xml" href="icono.svg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='gold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23FDF4D4'/%3E%3Cstop offset='50%25' stop-color='%23D4AF37'/%3E%3Cstop offset='100%25' stop-color='%23997A15'/%3E%3C/linearGradient%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23181820'/%3E%3Cstop offset='100%25' stop-color='%23050507'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23bg)' stroke='%23D4AF37' stroke-opacity='0.3' stroke-width='1.5'/%3E%3Cpath d='M38 20 C27 20 20 26 20 34 C20 42 27 48 38 48 C44 48 48 45 48 45 L48 35 L34 35 L34 31 L52 31 L52 47 C52 47 45 52 37 52 C23 52 15 43 15 34 C15 23 24 16 38 16 C45 16 50 18 50 18 L47 22 C47 22 43 20 38 20 Z' fill='url(%23gold)'/%3E%3Ccircle cx='48' cy='18' r='2' fill='%23FFF2B2'/%3E%3C/svg%3E">
+<link rel="alternate icon" type="image/svg+xml" href="icono.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
@@ -3102,9 +3103,384 @@ input:checked + .a-slider:before {
   line-height: 1.5;
 }
 
+
+/* ==========================================================================
+   ENHANCEMENTS: SMOOTH SCROLL, MICRO-INTERACTIONS, SKELETONS, I18N, OLED, CTA
+   ========================================================================== */
+
+/* 1. Smooth Scroll & Scroll Reveal */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .reveal-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* 3. Button Micro-interactions & Tactile States */
+button, .btn, .btn-apple, .btn-apple-outline, .btn-primary, .form-btn, .cta-btn, .btn-cta-gold, .tab, .mob-tab, .store-filter-btn {
+  transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-primary:active, .form-btn:active, .cta-btn:active, .btn-cta-gold:active, .tab:active, .mob-tab:active, .store-filter-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* Shimmer Light-Sweep Sheen on Hover */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-sheen:hover::after {
+    left: 170%;
+    transition: left 0.75s ease-in-out;
+  }
+  .btn-cta-gold:hover, .btn-apple:hover {
+    box-shadow: 0 0 25px rgba(212, 160, 23, 0.45);
+  }
+}
+
+/* 4. Touch Targets & Responsive Hover Isolation */
+@media (hover: none) {
+  /* Prevent sticky hover on mobile touch devices */
+  .tienda-card:hover, .cover-item:hover, .btn:hover, button:hover {
+    transform: none !important;
+  }
+}
+.nav-icon-btn, .tab, .mob-tab, .store-filter-btn, .scroll-top-btn, .lightbox-close {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* 5. Mobile Navigation Polish */
+.mobile-nav {
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  background: rgba(10, 10, 14, 0.88) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+.mobile-nav .mob-tab {
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+.mobile-nav .mob-tab.active {
+  color: var(--accent) !important;
+  text-shadow: 0 0 12px rgba(212, 160, 23, 0.4);
+}
+
+/* 6-bis. Floating Back to Top Button */
+.scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(18, 18, 24, 0.82);
+  border: 1px solid rgba(212, 160, 23, 0.35);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9998;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 160, 23, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.92);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, box-shadow 0.2s;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .scroll-top-btn:hover {
+    background: rgba(212, 160, 23, 0.18);
+    border-color: var(--accent);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 22px rgba(212, 160, 23, 0.4);
+    transform: translateY(-3px) scale(1.05);
+  }
+}
+.scroll-top-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    bottom: 84px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* 7. Loading Screen & Shimmer Skeletons */
+.top-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #D4AF37, #FFF2B2, #D4AF37);
+  background-size: 200% 100%;
+  z-index: 100000;
+  transition: width 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(212, 160, 23, 0.8);
+}
+.top-loading-bar.active {
+  opacity: 1;
+}
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.07) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: skeletonWave 1.6s infinite ease-in-out;
+}
+@keyframes skeletonWave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 10. Repeated Conversion CTA Banner */
+.repeated-cta-section {
+  position: relative;
+  padding: clamp(60px, 9vw, 110px) 20px;
+  max-width: 1200px;
+  margin: 40px auto 30px;
+  text-align: center;
+}
+.repeated-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.12) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.repeated-cta-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(22, 22, 28, 0.7) 0%, rgba(12, 12, 16, 0.85) 100%);
+  border: 1px solid rgba(212, 160, 23, 0.28);
+  border-radius: 28px;
+  padding: clamp(36px, 6vw, 64px) clamp(24px, 5vw, 60px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.repeated-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.73rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(212, 160, 23, 0.1);
+  border: 1px solid rgba(212, 160, 23, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.repeated-cta-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.repeated-cta-desc {
+  font-size: clamp(0.92rem, 1.5vw, 1.12rem);
+  color: var(--muted);
+  max-width: 650px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.repeated-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* 11. Interactive Form Validation & Error Shake */
+.field-error {
+  border-color: #ff4d4d !important;
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.38) !important;
+  animation: fieldShake 0.4s ease;
+}
+@keyframes fieldShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.field-error-msg {
+  color: #ff6b6b;
+  font-size: 0.76rem;
+  margin-top: 5px;
+  display: block;
+}
+
+/* 12. 404 View & Empty Search States */
+.not-found-wrap {
+  text-align: center;
+  padding: clamp(80px, 14vh, 160px) 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.not-found-code {
+  font-family: var(--font-title);
+  font-size: clamp(4.5rem, 12vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #D4AF37 0%, rgba(255, 255, 255, 0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.not-found-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.not-found-desc {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.store-empty-search {
+  text-align: center;
+  padding: 70px 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(18, 18, 24, 0.3);
+  backdrop-filter: blur(12px);
+  margin-top: 20px;
+}
+.store-empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+/* 13. OLED Pure Black Contrast Mode */
+html.theme-oled, body.theme-oled {
+  --bg: #000000 !important;
+  background: #000000 !important;
+}
+body.theme-oled #publicApp,
+body.theme-oled main,
+body.theme-oled .view,
+body.theme-oled .store-hero,
+body.theme-oled .store-body {
+  background: #000000 !important;
+}
+body.theme-oled .top,
+body.theme-oled .nav,
+body.theme-oled .mobile-nav {
+  background: rgba(0, 0, 0, 0.94) !important;
+}
+body.theme-oled .tienda-card,
+body.theme-oled .cover-item,
+body.theme-oled .repeated-cta-card,
+body.theme-oled .briefing-content,
+body.theme-oled .checkout-content,
+body.theme-oled .apple-product-card {
+  background: #060608 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* 14. Language Switcher UI */
+.lang-switch-wrap {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 2px 6px;
+  margin-right: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 999px;
+  min-width: auto !important;
+  min-height: auto !important;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: color 0.2s, background 0.2s;
+}
+.lang-btn.active {
+  color: #fff;
+  background: rgba(212, 160, 23, 0.25);
+  color: var(--accent);
+}
+.lang-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.7rem;
+  user-select: none;
+}
+
 </style>
 </head>
 <body>
+<div id="topLoadingBar" class="top-loading-bar"></div>
 
 <div id="publicApp">
   <nav class="top" id="nav">
@@ -3122,6 +3498,16 @@ input:checked + .a-slider:before {
         <button class="tab" data-tab="tienda" id="navTabTie">Tienda</button>
       </div>
       <div class="nav-right">
+        <!-- Language Switcher ES / EN -->
+        <div class="lang-switch-wrap">
+          <button type="button" class="lang-btn active" id="btnLangEs" onclick="window.setAppLanguage && window.setAppLanguage('es')">ES</button>
+          <span class="lang-divider">/</span>
+          <button type="button" class="lang-btn" id="btnLangEn" onclick="window.setAppLanguage && window.setAppLanguage('en')">EN</button>
+        </div>
+        <!-- OLED Contrast Toggle -->
+        <button class="nav-icon-btn" id="btnThemeOled" type="button" title="Modo OLED Puro" aria-label="Alternar Modo OLED" onclick="window.toggleThemeOled && window.toggleThemeOled()">
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
         <div class="user-dropdown-wrap">
             <button class="nav-icon-btn" id="btnUser" title="Mi Cuenta">
                 <img id="userNavAvatar" src="" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:none;">
@@ -3511,11 +3897,33 @@ input:checked + .a-slider:before {
       </section>
     </div>
 
+    
+      <!-- 404 NOT FOUND VIEW -->
+      <div class="view" data-view="404" id="viewNotFound" style="display:none;">
+        <div class="not-found-wrap reveal-on-scroll">
+          <div class="not-found-code">404</div>
+          <h1 class="not-found-title" data-i18n="not_found_title">Página no encontrada</h1>
+          <p class="not-found-desc" data-i18n="not_found_desc">El enlace que seguiste no existe o ha sido reubicado en nuestro nuevo catálogo.</p>
+          <a href="#home" class="btn-cta-gold btn-sheen" data-i18n="not_found_btn">Volver al Inicio</a>
+        </div>
+      </div>
     </main>
 
-  <section class="contact-cta-section">
-      <h2>¿Listo para <em>comenzar</em>?</h2>
-      <button onclick="startFlow()" class="btn-cta-gold">Comencemos</button>
+  <!-- REPEATED HIGH-IMPACT CONVERSION CTA -->
+  <section class="repeated-cta-section reveal-on-scroll" id="repeatedCta">
+    <div class="repeated-cta-glow"></div>
+    <div class="repeated-cta-card">
+      <div class="repeated-cta-badge" data-i18n="cta_badge">✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS</div>
+      <h2 class="repeated-cta-title" data-i18n="cta_title">Transformemos tu visión en un diseño icónico</h2>
+      <p class="repeated-cta-desc" data-i18n="cta_desc">Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.</p>
+      <div class="repeated-cta-actions">
+        <a id="btnCtaWa" href="https://wa.me/584129999999?text=Hola%20Grobdesigns,%20quisiera%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" class="btn-cta-gold btn-sheen" data-i18n="cta_btn_wa">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span data-i18n="cta_wa_label">Cotizar por WhatsApp</span>
+        </a>
+        <a href="#contacto" class="btn-apple-outline" data-i18n="cta_contact_label">Enviar Mensaje / Briefing</a>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -4223,8 +4631,39 @@ function cleanNumber(val, defaultVal = 0) {
 }
 function isSafeUrl(url) {
   if (!url || typeof url !== 'string') return false;
-  const trimmed = url.trim().toLowerCase();
-  return !trimmed.startsWith('javascript:') && !trimmed.startsWith('vbscript:') && !trimmed.startsWith('data:text/html');
+  const trimmed = url.trim();
+  // Reject control characters or null bytes
+  if (/[\x00-\x1f\x7f]/.test(trimmed)) return false;
+  // Reject dangerous protocols: javascript, vbscript, or unauthorized data: types
+  if (/^(?:javascript|vbscript):/i.test(trimmed)) return false;
+  if (/^data:(?!image\/(?:png|jpeg|jpg|webp|gif|svg\+xml);base64,)/i.test(trimmed)) return false;
+  // Strict allowlist: relative URLs, http/https, mailto, tel, anchors, and base64 images
+  return /^(?:https?:\/\/|mailto:|tel:|\/|\.\/|#|data:image\/(?:png|jpeg|jpg|webp|gif|svg\+xml);base64,[a-zA-Z0-9+/=]+$)/i.test(trimmed);
+}
+// Safe JSON Parser & Object Sanitizer preventing Prototype Pollution
+function safeJsonParse(jsonString, fallback = null) {
+  if (typeof jsonString !== 'string') return jsonString || fallback;
+  try {
+    return JSON.parse(jsonString, (key, value) => {
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        return undefined; // Strips prototype pollution during parse
+      }
+      return value;
+    });
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function safeSanitizeObject(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(safeSanitizeObject);
+  const clean = {};
+  for (const key of Object.keys(obj)) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
+    clean[key] = safeSanitizeObject(obj[key]);
+  }
+  return clean;
 }
 function formatNumber(num) {
   if (num >= 1000000000) return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
@@ -5199,7 +5638,7 @@ window.sendOrderWhatsApp = function() {
   updateCartCounter();
   
   const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
+  window.open(url, '_blank', 'noopener,noreferrer');
   $('#checkoutModal').classList.remove('active');
   renderProfile();
 };
@@ -5219,7 +5658,7 @@ window.sendOrderEmail = function() {
   
   const subject = 'Nuevo Pedido Grobdesigns';
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-  window.open(gmailUrl, '_blank');
+  window.open(gmailUrl, '_blank', 'noopener,noreferrer');
   $('#checkoutModal').classList.remove('active');
   renderProfile();
 };
@@ -5700,6 +6139,181 @@ function renderProfile() {
   }
 }
 
+
+/* ==========================================================================
+   APP SUITE: I18N, OLED CONTRAST, SCROLL REVEAL, TOP BAR, 404 ROUTING, CACHE
+   ========================================================================== */
+
+// Top Loading Progress Bar
+window.triggerTopBar = function() {
+  const bar = document.getElementById('topLoadingBar');
+  if (!bar) return;
+  bar.style.width = '30%';
+  bar.classList.add('active');
+  setTimeout(() => { bar.style.width = '75%'; }, 150);
+  setTimeout(() => {
+    bar.style.width = '100%';
+    setTimeout(() => {
+      bar.classList.remove('active');
+      setTimeout(() => { bar.style.width = '0%'; }, 250);
+    }, 200);
+  }, 350);
+};
+
+// OLED Pure Black Mode
+window.toggleThemeOled = function() {
+  const isOled = document.documentElement.classList.toggle('theme-oled');
+  document.body.classList.toggle('theme-oled', isOled);
+  localStorage.setItem('grob_theme_oled', isOled ? 'true' : 'false');
+  showToast(isOled ? '🌙 Modo OLED Puro Activado' : '☀️ Modo Studio Activado', 2000);
+};
+
+window.applyThemeOled = function() {
+  const saved = localStorage.getItem('grob_theme_oled') === 'true';
+  if (saved) {
+    document.documentElement.classList.add('theme-oled');
+    document.body.classList.add('theme-oled');
+  }
+};
+
+// Internationalization Dictionary (ES / EN)
+const I18N = {
+  es: {
+    nav_home: 'Inicio',
+    nav_port: 'Portafolio',
+    nav_cov: 'Covers',
+    nav_cli: 'Clientes',
+    nav_con: 'Contacto',
+    nav_tie: 'Tienda',
+    cta_badge: '✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS',
+    cta_title: 'Transformemos tu visión en un diseño icónico',
+    cta_desc: 'Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.',
+    cta_btn_wa: 'Cotizar por WhatsApp',
+    cta_contact_label: 'Enviar Mensaje / Briefing',
+    not_found_title: 'Página no encontrada',
+    not_found_desc: 'El enlace que seguiste no existe o ha sido reubicado en nuestro nuevo catálogo.',
+    not_found_btn: 'Volver al Inicio',
+    store_no_results: 'No encontramos productos que coincidan',
+    store_clear_filters: 'Ver todos los productos',
+    offline_msg: '⚠️ Conexión perdida. Estás en modo sin conexión.',
+    online_msg: '✓ Conexión restablecida.'
+  },
+  en: {
+    nav_home: 'Home',
+    nav_port: 'Portfolio',
+    nav_cov: 'Covers',
+    nav_cli: 'Clients',
+    nav_con: 'Contact',
+    nav_tie: 'Store',
+    cta_badge: '✦ OPEN FOR NEW COMMISSIONS',
+    cta_title: 'Let\'s turn your vision into an iconic artwork',
+    cta_desc: 'Boutique studio specializing in cover artwork, high-impact brand identities and creative direction for artists and labels.',
+    cta_btn_wa: 'Quote via WhatsApp',
+    cta_contact_label: 'Send Message / Briefing',
+    not_found_title: 'Page Not Found',
+    not_found_desc: 'The link you followed does not exist or has been moved in our new catalogue.',
+    not_found_btn: 'Back to Home',
+    store_no_results: 'No matching products found',
+    store_clear_filters: 'View all products',
+    offline_msg: '⚠️ Connection lost. You are browsing offline.',
+    online_msg: '✓ Connection restored.'
+  }
+};
+
+window.currentLang = localStorage.getItem('grob_lang') || 'es';
+
+window.setAppLanguage = function(lang) {
+  if (!I18N[lang]) lang = 'es';
+  window.currentLang = lang;
+  localStorage.setItem('grob_lang', lang);
+
+  // Update Buttons
+  const btnEs = document.getElementById('btnLangEs');
+  const btnEn = document.getElementById('btnLangEn');
+  if (btnEs) btnEs.classList.toggle('active', lang === 'es');
+  if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+
+  // Update Nav tabs
+  const tabHome = document.getElementById('navTabHome');
+  const tabPort = document.getElementById('navTabPort');
+  const tabCov = document.getElementById('navTabCov');
+  const tabCli = document.getElementById('navTabCli');
+  const tabCon = document.getElementById('navTabCon');
+  const tabTie = document.getElementById('navTabTie');
+
+  if (tabHome) tabHome.textContent = I18N[lang].nav_home;
+  if (tabPort) tabPort.textContent = I18N[lang].nav_port;
+  if (tabCov) tabCov.textContent = I18N[lang].nav_cov;
+  if (tabCli) tabCli.textContent = I18N[lang].nav_cli;
+  if (tabCon) tabCon.textContent = I18N[lang].nav_con;
+  if (tabTie) tabTie.textContent = I18N[lang].nav_tie;
+
+  // Update all [data-i18n] tags
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (I18N[lang][key]) {
+      el.textContent = I18N[lang][key];
+    }
+  });
+
+  document.documentElement.lang = lang;
+};
+
+// Scroll Reveal with IntersectionObserver
+let _revealObserver = null;
+window.refreshScrollReveal = function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+    return;
+  }
+  if (!_revealObserver) {
+    _revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          _revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }
+
+  // Observe existing reveal elements
+  document.querySelectorAll('.reveal-on-scroll:not(.is-revealed)').forEach(el => {
+    _revealObserver.observe(el);
+  });
+};
+
+// Back to Top Listener
+function setupBackToTop() {
+  const btn = document.getElementById('btnScrollTop');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 380) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Network Online/Offline Toasts
+window.addEventListener('offline', () => {
+  const msg = I18N[window.currentLang] ? I18N[window.currentLang].offline_msg : 'Modo sin conexión';
+  showToast(msg, 4000);
+});
+window.addEventListener('online', () => {
+  const msg = I18N[window.currentLang] ? I18N[window.currentLang].online_msg : 'Conexión restablecida';
+  showToast(msg, 3000);
+});
+
+// Fallback for startFlow
+window.startFlow = function() {
+  location.hash = '#contacto';
+};
+
 function handleRoute() {
   const h = (location.hash || '#home').toLowerCase();
   if (h === '#admin' || h.startsWith('#admin')) { 
@@ -5744,8 +6358,16 @@ function handleRoute() {
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
   else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
-  else { showView('home'); syncTabs('home'); }
+  else { 
+    // High-End 404 Route Fallback
+    showView('404');
+    syncTabs('');
+    document.title = '404 — Página no encontrada | Grobdesigns';
+  }
   _prevRoute = h;
+  if (window.triggerTopBar) window.triggerTopBar();
+  if (window.refreshScrollReveal) setTimeout(window.refreshScrollReveal, 100);
+  if (window.setAppLanguage && window.currentLang) window.setAppLanguage(window.currentLang);
 }
 window.addEventListener('hashchange', handleRoute);
 
@@ -6223,15 +6845,49 @@ $$('.covers-filter-btn').forEach(btn => btn.onclick = () => { $$('.covers-filter
 $('#coversSearchInput').oninput = e => { _currentSearch = e.target.value.trim(); renderPublicCovers(getCoversList()); };
 $('#contactForm').onsubmit = e => {
   e.preventDefault();
-  showToast('Preparando email...');
-  const targetEmail = DATA.contact.email || '';
   const form = e.target;
-  const name = form.elements['name'] ? form.elements['name'].value.trim() : '';
-  const senderEmail = form.elements['email'] ? form.elements['email'].value.trim() : '';
-  const msg = form.elements['message'] ? form.elements['message'].value.trim() : '';
+  const nameEl = form.elements['name'];
+  const emailEl = form.elements['email'];
+  const msgEl = form.elements['message'];
+
+  // Clear previous errors
+  [nameEl, emailEl, msgEl].forEach(el => el && el.classList.remove('field-error'));
+
+  const name = nameEl ? nameEl.value.trim() : '';
+  const senderEmail = emailEl ? emailEl.value.trim() : '';
+  const msg = msgEl ? msgEl.value.trim() : '';
+
+  let hasError = false;
+  if (!name || name.length < 2) {
+    if (nameEl) nameEl.classList.add('field-error');
+    hasError = true;
+  }
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!senderEmail || !emailRegex.test(senderEmail)) {
+    if (emailEl) emailEl.classList.add('field-error');
+    hasError = true;
+  }
+  if (!msg || msg.length < 5) {
+    if (msgEl) msgEl.classList.add('field-error');
+    hasError = true;
+  }
+
+  if (hasError) {
+    showToast('⚠️ Por favor completa los campos marcados en rojo con datos válidos.');
+    return;
+  }
+
+  showToast('✓ Preparando tu mensaje...');
+  const targetEmail = (DATA.contact && DATA.contact.email) || 'grobdesigns@gmail.com';
   const bodyText = `Nombre: ${name}\nEmail: ${senderEmail}\n\nMensaje:\n${msg}`;
   window.location.href = `mailto:${encodeURIComponent(targetEmail)}?subject=${encodeURIComponent('Contacto de ' + name)}&body=${encodeURIComponent(bodyText)}`;
 };
+
+// Auto clear errors on input
+['name', 'email', 'message'].forEach(fieldName => {
+  const el = document.querySelector(`#contactForm [name="${fieldName}"]`);
+  if (el) el.addEventListener('input', () => el.classList.remove('field-error'));
+});
 
 function aToast(msg, type = 'success') { const c = $('#aToastContainer'); if (!c) return; const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg; c.appendChild(el); setTimeout(() => el.classList.add('show'), 10); setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000); }
 function setASync(status, text) { const el = $('#aSyncStatus'), txt = $('#aSyncStatusText'); if (!el) return; el.className = `a-sync ${status}`; if (txt) txt.textContent = text; }
@@ -6799,9 +7455,17 @@ boot();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+      if (window.applyThemeOled) window.applyThemeOled();
+      if (window.setAppLanguage && window.currentLang) window.setAppLanguage(window.currentLang);
+      if (typeof setupBackToTop === 'function') setupBackToTop();
+      if (window.refreshScrollReveal) window.refreshScrollReveal();
       if (window.updateNavAvatar) window.updateNavAvatar();
   });
 </script>
 
+<!-- BACK TO TOP FLOATING BUTTON -->
+<button id="btnScrollTop" class="scroll-top-btn" title="Volver arriba" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
 </body>
 </html>
