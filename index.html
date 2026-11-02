@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>
+window.handleImgError = function(img) {
+  if (!img) return;
+  img.onerror = null;
+  img.classList.add('img-error');
+  if (img.classList.contains('perfil-id-avatar')) {
+    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888"%3E%3Cpath d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/%3E%3C/svg%3E';
+    return;
+  }
+  img.style.display = 'none';
+};
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Diseño de portadas musicales, branding e identidad visual | Grobdesigns — Caracas, Venezuela</title>
@@ -5722,21 +5734,21 @@ function initHeroRotation() { if (heroInterval) clearInterval(heroInterval); her
 function activateHeroLayer(layer) { layer.classList.add('active'); layer.style.animation = 'none'; void layer.offsetWidth; layer.style.animation = ''; }
 
 function showView(name) {
-  $('.view').forEach(v => v.classList.remove('active'));
-  const el = $(`[data-view="${name}"]`);
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const el = document.querySelector(`[data-view="${name}"]`);
   if (el) el.classList.add('active');
   if (name !== 'coverDetalle') {
-    const cd = $(`[data-view="coverDetalle"]`);
+    const cd = document.querySelector('[data-view="coverDetalle"]');
     if (cd) cd.style.background = '';
   }
   if (name !== 'proyecto') {
-    const pj = $(`[data-view="proyecto"]`);
+    const pj = document.querySelector('[data-view="proyecto"]');
     if (pj) pj.style.background = '';
   }
 }
 function syncTabs(name) { 
-    $('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
-    $('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
+    document.querySelectorAll('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
 }
 document.addEventListener('DOMContentLoaded', () => {
   ['navTabTie'].forEach(id => {
