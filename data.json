@@ -1119,10 +1119,19 @@
     },
     {
       "id": "gv3n00jzmvzr6h6y",
-      "name": "Nueva Categoría",
+      "name": "Streamers",
       "description": "",
       "parallaxImage": "",
-      "projects": []
+      "projects": [
+        {
+          "id": "hbu24w7hmvzr6u6o",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
+        }
+      ]
     }
   ],
   "products": [
