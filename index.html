@@ -3658,19 +3658,84 @@ body.theme-oled .apple-product-card {
   fill: currentColor;
 }
 
-/* Dynamic Immersion Backgrounds for Project & Cover Detail */
+/* ==========================================================================
+   ELEGANT AMBIENT ARTWORK BACKDROP (APPLE MUSIC / SPOTIFY BLURRED IMMERSION)
+   ========================================================================== */
+.ambient-blur-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ambient-blur-backdrop.active {
+  opacity: 1;
+}
+.ambient-blur-img {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: clamp(650px, 85vh, 950px);
+  object-fit: cover;
+  object-position: center 25%;
+  filter: blur(85px) saturate(1.35) brightness(0.26);
+  -webkit-filter: blur(85px) saturate(1.35) brightness(0.26);
+  transform: scale(1.15);
+  transform-origin: center top;
+  will-change: transform, opacity, filter;
+  transition: opacity 0.7s ease;
+}
+.ambient-blur-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.52) 320px,
+    rgba(0, 0, 0, 0.88) 620px,
+    #000000 850px,
+    #000000 100%
+  );
+  pointer-events: none;
+}
+
 [data-view="coverDetalle"],
 [data-view="proyecto"] {
   position: relative;
   min-height: 100vh;
-  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #000 !important;
+  overflow: hidden;
   isolation: isolate;
 }
+.cover-detail-page {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+.proyecto-header {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+#projImagesGrid {
+  position: relative;
+  z-index: 1;
+}
 .cover-hero-image img {
-  transition: box-shadow 0.6s ease;
+  border-radius: 4px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
 }
 .cover-hero-image.immersive-glow img {
-  box-shadow: 0 30px 80px -15px var(--glow-shadow, rgba(0,0,0,0.85));
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7) !important;
 }
 .masonry-item {
   position: relative;
@@ -3838,6 +3903,9 @@ body.theme-oled .apple-product-card {
     </div>
 
     <div class="view" data-view="proyecto">
+      <div class="ambient-blur-backdrop" id="projAmbientBackdrop">
+        <img class="ambient-blur-img" id="projAmbientImg" src="" alt="" aria-hidden="true">
+      </div>
       <div class="proyecto-header">
         <button id="volverCategoria" class="back-btn">← Volver a la categoría</button>
         <div class="proyecto-cat-label" id="projCatLabel"></div>
@@ -3871,6 +3939,9 @@ body.theme-oled .apple-product-card {
     </div>
 
     <div class="view" data-view="coverDetalle">
+      <div class="ambient-blur-backdrop" id="coverAmbientBackdrop">
+        <img class="ambient-blur-img" id="coverAmbientImg" src="" alt="" aria-hidden="true">
+      </div>
       <section class="cover-detail-page">
         <div class="cover-hero">
           <div class="cover-hero-image"><img id="coverHeroImg" src="" alt="" data-zoom=""></div>
@@ -5737,13 +5808,14 @@ function showView(name) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   const el = document.querySelector(`[data-view="${name}"]`);
   if (el) el.classList.add('active');
+  
   if (name !== 'coverDetalle') {
-    const cd = document.querySelector('[data-view="coverDetalle"]');
-    if (cd) cd.style.background = '';
+    const cd = document.getElementById('coverAmbientBackdrop');
+    if (cd) cd.classList.remove('active');
   }
   if (name !== 'proyecto') {
-    const pj = document.querySelector('[data-view="proyecto"]');
-    if (pj) pj.style.background = '';
+    const pj = document.getElementById('projAmbientBackdrop');
+    if (pj) pj.classList.remove('active');
   }
 }
 function syncTabs(name) { 
@@ -7394,21 +7466,12 @@ function renderCoverDetail(id) {
   $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
   img.addEventListener('mousemove', handleDetail3DTilt); img.addEventListener('mouseleave', resetDetail3DTilt);
   
-  // HARMONIZE BACKGROUND IMMERSION (Req 4)
-  const coverView = document.querySelector('[data-view="coverDetalle"]');
-  const heroImageWrap = document.querySelector('.cover-hero-image');
-  if (coverView) {
-    extractDominantColor(c.url).then(hex => {
-      const col = hex || '#C9A961';
-      const rgbaGlow = hexToRgba(col, 0.40);
-      const rgbaDeep = hexToRgba(col, 0.12);
-      const rgbaShadow = hexToRgba(col, 0.55);
-      coverView.style.background = `radial-gradient(ellipse 110% 70% at 50% -10%, ${rgbaGlow} 0%, ${rgbaDeep} 42%, rgba(0,0,0,0.08) 75%, #000000 96%)`;
-      if (heroImageWrap) {
-        heroImageWrap.style.setProperty('--glow-shadow', rgbaShadow);
-        heroImageWrap.classList.add('immersive-glow');
-      }
-    });
+  // ELEGANT AMBIENT ARTWORK BACKDROP (Artwork deeply blurred, no artificial resplandor)
+  const ambImg = document.getElementById('coverAmbientImg');
+  const ambBackdrop = document.getElementById('coverAmbientBackdrop');
+  if (ambImg && ambBackdrop) {
+    ambImg.src = resolveImageUrl(c.url);
+    ambBackdrop.classList.add('active');
   }
 
   const pw = $('#coverHeroPlays'); pw.innerHTML = ''; const p = c.plays || {}; let hp = false, html = '';
@@ -7498,18 +7561,17 @@ function renderProjectDetail(id) {
   const title = $('#projNombre'); title.textContent = proj.name || 'Sin título'; title.style.display = proj.logo ? 'none' : 'block';
   const rev = $('#projReview'); if (proj.review) { rev.textContent = proj.review; rev.style.display = 'block'; } else rev.style.display = 'none';
 
-  // HARMONIZE BACKGROUND IMMERSION (Req 4)
-  const projView = document.querySelector('[data-view="proyecto"]');
+  // ELEGANT AMBIENT ARTWORK BACKDROP (Project artwork deeply blurred, no artificial resplandor)
+  const ambImg = document.getElementById('projAmbientImg');
+  const ambBackdrop = document.getElementById('projAmbientBackdrop');
   const mainImg = proj.parallaxImage || (proj.images && proj.images[0]) || '';
-  if (projView && mainImg) {
-    extractDominantColor(mainImg).then(hex => {
-      const col = hex || '#C9A961';
-      const rgbaGlow = hexToRgba(col, 0.36);
-      const rgbaDeep = hexToRgba(col, 0.11);
-      projView.style.background = `radial-gradient(ellipse 110% 65% at 50% -10%, ${rgbaGlow} 0%, ${rgbaDeep} 40%, rgba(0,0,0,0.06) 75%, #000000 95%)`;
-      const header = projView.querySelector('.proyecto-header');
-      if (header) header.style.background = 'transparent';
-    });
+  if (ambImg && ambBackdrop) {
+    if (mainImg) {
+      ambImg.src = resolveImageUrl(mainImg);
+      ambBackdrop.classList.add('active');
+    } else {
+      ambBackdrop.classList.remove('active');
+    }
   }
 
   const cont = $('#projImagesGrid'); cont.innerHTML = '';
