@@ -491,11 +491,20 @@
         },
         {
           "id": "oemnyo3vmvzxvkku",
-          "name": "JD Charme",
+          "name": "Rowller",
           "review": "",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665344089_uhw6.png",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665367506_g28a.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665369113_425h.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665370637_r963.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665372287_9ftz.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665373833_dtyx.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665375421_lhxr.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665376948_107o.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793665378415_fttl.jpg"
+          ]
         }
       ]
     },
