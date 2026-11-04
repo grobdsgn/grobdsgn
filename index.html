@@ -3425,31 +3425,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   opacity: 0.8;
 }
 
-/* 13. OLED Pure Black Contrast Mode */
-html.theme-oled, body.theme-oled {
-  --bg: #000000 !important;
-  background: #000000 !important;
-}
-body.theme-oled #publicApp,
-body.theme-oled main,
-body.theme-oled .view,
-body.theme-oled .store-hero,
-body.theme-oled .store-body {
-  background: #000000 !important;
-}
-body.theme-oled .top,
-body.theme-oled .nav,
-body.theme-oled .mobile-nav {
-  background: rgba(0, 0, 0, 0.94) !important;
-}
-body.theme-oled .tienda-card,
-body.theme-oled .cover-item,
-body.theme-oled .briefing-content,
-body.theme-oled .checkout-content,
-body.theme-oled .apple-product-card {
-  background: #060608 !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
-}
+
 
 /* 14. Language Switcher UI */
 .lang-switch-wrap {
@@ -3763,6 +3739,65 @@ body.theme-oled .apple-product-card {
   .lightbox-counter { bottom: 16px; }
 }
 
+
+/* ==========================================================================
+   PERFECT CENTERING FOR TOOLS LOGOS (Requirement 3)
+   ========================================================================== */
+#softwareSection .wrap {
+  text-align: center;
+}
+#softwareSection .section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto 36px;
+}
+#softwareSection .section-head .label {
+  margin: 0 auto 12px;
+}
+#softwareSection .section-head p {
+  margin: 8px auto 0;
+  text-align: center;
+}
+.software-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 28px 36px !important;
+  margin: 40px auto 0 !important;
+  max-width: 960px !important;
+  padding: 0 16px !important;
+}
+.software-logo {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 110px !important;
+  height: 76px !important;
+  padding: 12px !important;
+  margin: 0 !important;
+  filter: brightness(0) invert(1) !important;
+  -webkit-filter: brightness(0) invert(1) !important;
+  opacity: 0.8 !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease !important;
+}
+.software-logo:hover {
+  opacity: 1 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+}
+.software-logo img {
+  max-width: 100% !important;
+  max-height: 48px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: auto !important;
+}
+
 </style>
 </head>
 <body>
@@ -3790,10 +3825,7 @@ body.theme-oled .apple-product-card {
           <span class="lang-divider">/</span>
           <button type="button" class="lang-btn" id="btnLangEn" onclick="window.setAppLanguage && window.setAppLanguage('en')">EN</button>
         </div>
-        <!-- OLED Contrast Toggle -->
-        <button class="nav-icon-btn" id="btnThemeOled" type="button" title="Modo OLED Puro" aria-label="Alternar Modo OLED" onclick="window.toggleThemeOled && window.toggleThemeOled()">
-          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-        </button>
+        
         <div class="user-dropdown-wrap">
             <button class="nav-icon-btn" id="btnUser" title="Mi Cuenta">
                 <img id="userNavAvatar" src="" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:none;">
@@ -5275,7 +5307,7 @@ function getEmbedUrl(url) {
   if (url.includes('music.apple.com')) { const isAlbum = url.includes('/album/') && !url.includes('?i='); return { platform: 'apple', height: isAlbum ? 450 : 175, url: url.replace('music.apple.com/', 'embed.music.apple.com/') }; }
   const ytId = getYouTubeId(url);
   if (ytId) return { platform: 'youtube', height: 315, url: `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3&color=white` };
-  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/i);
   if (driveMatch && driveMatch[1]) return { platform: 'drive', height: 315, url: `https://drive.google.com/file/d/${driveMatch[1]}/preview` };
   const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
   if (vimeoMatch && vimeoMatch[1]) return { platform: 'vimeo', height: 315, url: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1` };
@@ -5823,17 +5855,17 @@ function syncTabs(name) {
     document.querySelectorAll('.mobile-nav .tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name)); 
 }
 document.addEventListener('DOMContentLoaded', () => {
-  ['navTabTie'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('click', (e) => {
-        if (!window.currentUser) {
-          e.preventDefault();
-          e.stopPropagation();
-          window.startFlow();
+  document.querySelectorAll('[data-tab="tienda"], #navTabTie').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (!window.currentUser) {
+        e.preventDefault();
+        e.stopPropagation();
+        showToast(window.currentLang === 'en' ? 'Please sign in to access the store.' : 'Por favor inicia sesión para acceder a la tienda.');
+        if (typeof window.handleAuthClick === 'function') {
+          window.handleAuthClick();
         }
-      });
-    }
+      }
+    }, true);
   });
 });
 function updateNavBack(hash) { const back = $('#navBack'); if (!back) return; back.classList.toggle('show', hash && hash !== '#home' && hash !== '' && !hash.startsWith('#admin')); }
@@ -6262,7 +6294,7 @@ window.productHasCategory = function(p, cat) {
 
     let descHtml = '';
     if (p.desc && p.desc.trim()) {
-      descHtml = '<div class="tienda-card-desc" onclick="this.classList.toggle(\'open\')"><div class="tienda-card-desc-label">Detalles del servicio</div><div class="tienda-card-desc-text">' + escHtml(p.desc) + '</div></div>';
+      descHtml = '<div class="tienda-card-desc" onclick="this.classList.toggle(\'open\')"><div class="tienda-card-desc-label">' + (window.currentLang === 'en' ? 'Service details' : 'Detalles del servicio') + '</div><div class="tienda-card-desc-text">' + escHtml(p.desc) + '</div></div>';
     }
 
     card.innerHTML = '<div class="tienda-card-img-wrap">' +
@@ -6270,7 +6302,7 @@ window.productHasCategory = function(p, cat) {
       exampleBtnHtml +
     '</div>' +
     '<div class="tienda-card-info">' +
-      (isRecommended ? '<span class="tienda-card-badge-rec">⭐ RECOMENDADO PARA TI</span>' : '') +
+      (isRecommended ? '<span class="tienda-card-badge-rec">' + (window.currentLang === 'en' ? '⭐ RECOMMENDED FOR YOU' : '⭐ RECOMENDADO PARA TI') + '</span>' : '') +
       '<h4 class="tienda-card-title">' + escHtml(p.name || 'Sin título') + '</h4>' +
       '<div class="tienda-card-price"><span class="currency">$</span>' + itemPrice.toFixed(2) + '</div>' +
       descHtml +
@@ -6282,7 +6314,7 @@ window.productHasCategory = function(p, cat) {
         '</div>' +
         '<button type="button" class="btn-tienda-add" onclick="addToCart(\'' + safeId + '\', this)">' +
           '<svg viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-8.9-5h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4l-3.87 7H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2z"/></svg>' +
-          '<span>Añadir</span>' +
+          '<span>' + (window.currentLang === 'en' ? 'Add' : 'Añadir') + '</span>' +
         '</button>' +
       '</div>' +
     '</div>';
@@ -6566,24 +6598,13 @@ window.triggerTopBar = function() {
   }, 350);
 };
 
-// OLED Pure Black Mode
-window.toggleThemeOled = function() {
-  const isOled = document.documentElement.classList.toggle('theme-oled');
-  document.body.classList.toggle('theme-oled', isOled);
-  localStorage.setItem('grob_theme_oled', isOled ? 'true' : 'false');
-  showToast(isOled ? '🌙 Modo OLED Puro Activado' : '☀️ Modo Studio Activado', 2000);
-};
-
-window.applyThemeOled = function() {
-  const saved = localStorage.getItem('grob_theme_oled') === 'true';
-  if (saved) {
-    document.documentElement.classList.add('theme-oled');
-    document.body.classList.add('theme-oled');
-  }
-};
 
 
-// Internationalization Dictionary (ES / EN)
+
+
+/* ==========================================================================
+   EXHAUSTIVE INTERNATIONALIZATION (ES / EN) ENGINE
+   ========================================================================== */
 const I18N = {
   es: {
     nav_home: 'Inicio',
@@ -6594,33 +6615,91 @@ const I18N = {
     nav_tie: 'Tienda',
     btn_user: 'Mi Cuenta',
     btn_cart: 'Mi Carrito',
-    cta_badge: '✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS',
-    cta_title: 'Transformemos tu visión en un diseño icónico',
-    cta_desc: 'Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.',
-    cta_btn_start: 'Comencemos',
-    not_found_title: 'Página no encontrada',
-    not_found_desc: 'El enlace que seguiste no existe o ha sido reubicado en nuestro nuevo catálogo.',
-    not_found_btn: 'Volver al Inicio',
+    nav_back: '← Volver',
+    user_dd_cart: 'Mi Bolsa de Compras',
+    user_dd_profile: 'Actualizar datos',
+    user_dd_orders: 'Mis Pedidos',
+    user_dd_logout: 'Cerrar sesión',
+
+    hero_eyebrow: 'Diseño gráfico · Caracas → Latinoamérica',
+    hero_title: 'Diseño experiencias\nque se recuerdan.',
+    hero_lead: 'Estudio de diseño gráfico, dirección de arte y portadas discográficas.',
+    hero_btn1: 'Ver portafolio →',
+    hero_btn2: 'Contáctame',
+
+    featured_label: '— Trabajos Destacados',
+    featured_title: 'Obras que definen la cultura visual.',
+
+    phil_label: '— Filosofía',
+    phil_title: 'No hacemos portadas, creamos <em>identidad</em>.',
+    phil_desc: 'Cada diseño es una pieza de arte conceptual construida para perdurar en la cultura musical y amplificar el impacto del artista.',
+
+    tools_label: '— Herramientas',
+    tools_title: 'Con las que <em>trabajo</em>.',
+    tools_desc: 'Los programas y herramientas de estándar industrial que uso cada día.',
+
+    cli_label: '— Clientes & Reseñas',
+    cli_title: 'Artistas y sellos que <em>confían</em>.',
+    cli_desc: 'Trabajando con talento independiente y sellos discográficos en toda Latinoamérica y el mundo.',
+
+    con_title: 'Hablemos de tu próximo <em>proyecto</em>.',
+    con_desc: 'Cuéntanos tu visión o solicita una propuesta personalizada para tu próximo lanzamiento.',
+    con_label_name: '01 — Nombre',
+    con_label_email: '02 — Email',
+    con_label_msg: '03 — Mensaje',
+    con_btn: 'Enviar mensaje',
+
+    cov_eyebrow: '— Portadas Musicales',
+    cov_title: 'Una pared de <em>covers</em>.',
+    cov_desc: 'Portadas, artwork y ediciones para artistas de toda Latinoamérica.',
+    cov_search_ph: 'Buscar artista o canción...',
+    cov_filter_todos: 'Todos',
+    cov_filter_sencillo: 'Sencillos',
+    cov_filter_albums: 'Álbumes',
+    cov_filter_ediciones: 'Ediciones Especiales',
+    cov_galeria_label: 'Galería del proyecto',
+
+    store_eyebrow: '— Catálogo Exclusivo',
     store_title: 'Tienda de Recursos y Diseños',
+    store_desc: 'Recursos profesionales, mockups y dirección de arte lista para producción.',
     store_search_ph: 'Buscar productos y servicios...',
     store_cat_all: 'Todos',
     store_cat_artista: 'Para Artistas',
     store_cat_personal: 'Marca Personal',
     store_cat_empresa: 'Empresas',
+    store_btn_add: 'Añadir',
+    store_btn_view_sample: 'Ver ejemplo',
+    store_details_label: 'Detalles del servicio',
+    store_recommended_badge: '⭐ RECOMENDADO PARA TI',
     store_no_results: 'No encontramos productos que coincidan',
     store_clear_filters: 'Ver todos los productos',
+
     cart_title: 'Mi Bolsa de Compras',
     cart_empty_title: 'Tu bolsa está vacía',
     cart_empty_sub: 'Explora la tienda y añade productos exclusivos a tu orden.',
     cart_btn_explore: 'Explorar Tienda',
-    cart_btn_checkout: 'Proceder al Pago',
-    contact_title: 'Hablemos de tu próximo proyecto',
-    contact_desc: 'Cuéntanos tu visión y creemos algo extraordinario juntos.',
-    contact_name_label: '01 — Nombre',
-    contact_email_label: '02 — Email',
-    contact_msg_label: '03 — Mensaje',
-    contact_btn: 'Enviar mensaje',
+    cart_btn_checkout: 'Finalizar Compra',
+    cart_subtotal: 'Subtotal',
+    cart_delivery: 'Entrega digital inmediata',
+    cart_total: 'Total',
+    cart_briefing_required: '⚠️ Briefing Requerido',
+    cart_briefing_completed: '✅ Briefing Completado',
+    cart_fill_briefing: 'Llenar Briefing',
+    cart_guarantee_1: 'Entrega digital inmediata',
+    cart_guarantee_2: 'Archivos editables listos para producción',
+    cart_guarantee_3: 'Soporte y atención creativa directa',
+
+    cta_badge: '✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS',
+    cta_title: 'Transformemos tu visión en un diseño icónico',
+    cta_desc: 'Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.',
+    cta_btn_start: 'Comencemos',
+
+    not_found_title: 'Página no encontrada',
+    not_found_desc: 'El enlace que seguiste no existe o ha sido reubicado en nuestro nuevo catálogo.',
+    not_found_btn: 'Volver al Inicio',
+
     footer_loc: 'Caracas, Venezuela · Trabajando con toda Latinoamérica',
+    footer_copy: '© 2026 Grobdesigns. Todos los derechos reservados.',
     offline_msg: '⚠️ Conexión perdida. Estás en modo sin conexión.',
     online_msg: '✓ Conexión restablecida.'
   },
@@ -6633,33 +6712,91 @@ const I18N = {
     nav_tie: 'Store',
     btn_user: 'My Account',
     btn_cart: 'My Cart',
-    cta_badge: '✦ OPEN FOR NEW COMMISSIONS',
-    cta_title: 'Let\'s turn your vision into an iconic artwork',
-    cta_desc: 'Boutique studio specializing in cover artwork, high-impact brand identities and creative direction for artists and labels.',
-    cta_btn_start: 'Let\'s Begin',
-    not_found_title: 'Page Not Found',
-    not_found_desc: 'The link you followed does not exist or has been moved in our new catalogue.',
-    not_found_btn: 'Back to Home',
+    nav_back: '← Back',
+    user_dd_cart: 'My Shopping Bag',
+    user_dd_profile: 'Update Profile',
+    user_dd_orders: 'My Orders',
+    user_dd_logout: 'Sign Out',
+
+    hero_eyebrow: 'Graphic Design · Worldwide Art Direction',
+    hero_title: 'Crafting experiences\nthat endure.',
+    hero_lead: 'Creative studio specializing in album covers, art direction and brand identity.',
+    hero_btn1: 'View portfolio →',
+    hero_btn2: 'Contact me',
+
+    featured_label: '— Selected Works',
+    featured_title: 'Works that define visual culture.',
+
+    phil_label: '— Philosophy',
+    phil_title: 'We don\'t just design covers, we craft <em>identity</em>.',
+    phil_desc: 'Each artwork is a conceptual piece built to endure in music culture and amplify the artist\'s legacy.',
+
+    tools_label: '— Tools & Stack',
+    tools_title: 'The tools I <em>work with</em>.',
+    tools_desc: 'Industry-standard creative software and professional tools I use daily.',
+
+    cli_label: '— Clients & Reviews',
+    cli_title: 'Artists and labels who <em>trust the craft</em>.',
+    cli_desc: 'Collaborating with independent artists and record labels worldwide.',
+
+    con_title: 'Let\'s talk about your next <em>project</em>.',
+    con_desc: 'Tell us your vision or request a tailored creative proposal for your next release.',
+    con_label_name: '01 — Name',
+    con_label_email: '02 — Email',
+    con_label_msg: '03 — Message',
+    con_btn: 'Send message',
+
+    cov_eyebrow: '— Album Artwork',
+    cov_title: 'A wall of <em>covers</em>.',
+    cov_desc: 'Album art, packaging and creative direction for artists worldwide.',
+    cov_search_ph: 'Search artist or track...',
+    cov_filter_todos: 'All',
+    cov_filter_sencillo: 'Singles',
+    cov_filter_albums: 'Albums',
+    cov_filter_ediciones: 'Special Editions',
+    cov_galeria_label: 'Project Gallery',
+
+    store_eyebrow: '— Exclusive Catalogue',
     store_title: 'Design Resources & Store',
+    store_desc: 'Professional templates, mockups and production-ready art direction.',
     store_search_ph: 'Search products and services...',
     store_cat_all: 'All',
     store_cat_artista: 'For Artists',
     store_cat_personal: 'Personal Brand',
     store_cat_empresa: 'Corporate',
+    store_btn_add: 'Add to Bag',
+    store_btn_view_sample: 'View sample',
+    store_details_label: 'Service details',
+    store_recommended_badge: '⭐ RECOMMENDED FOR YOU',
     store_no_results: 'No matching products found',
     store_clear_filters: 'View all products',
+
     cart_title: 'Shopping Bag',
     cart_empty_title: 'Your bag is empty',
     cart_empty_sub: 'Explore the store and add exclusive products to your order.',
     cart_btn_explore: 'Explore Store',
     cart_btn_checkout: 'Proceed to Checkout',
-    contact_title: 'Let\'s talk about your next project',
-    contact_desc: 'Tell us your vision and let\'s create something extraordinary together.',
-    contact_name_label: '01 — Name',
-    contact_email_label: '02 — Email',
-    contact_msg_label: '03 — Message',
-    contact_btn: 'Send message',
+    cart_subtotal: 'Subtotal',
+    cart_delivery: 'Instant digital delivery',
+    cart_total: 'Total',
+    cart_briefing_required: '⚠️ Briefing Required',
+    cart_briefing_completed: '✅ Briefing Completed',
+    cart_fill_briefing: 'Fill Briefing',
+    cart_guarantee_1: 'Instant digital delivery',
+    cart_guarantee_2: 'Production-ready editable files',
+    cart_guarantee_3: 'Direct 1-on-1 creative support',
+
+    cta_badge: '✦ OPEN FOR NEW COMMISSIONS',
+    cta_title: 'Let\'s turn your vision into an iconic artwork',
+    cta_desc: 'Boutique studio specializing in cover artwork, high-impact brand identities and creative direction for artists and labels.',
+    cta_btn_start: 'Let\'s Begin',
+
+    not_found_title: 'Page Not Found',
+    not_found_desc: 'The link you followed does not exist or has been moved in our new catalogue.',
+    not_found_btn: 'Back to Home',
+
     footer_loc: 'Caracas, Venezuela · Working with artists worldwide',
+    footer_copy: '© 2026 Grobdesigns. All rights reserved.',
     offline_msg: '⚠️ Connection lost. You are browsing offline.',
     online_msg: '✓ Connection restored.'
   }
@@ -6672,37 +6809,165 @@ window.setAppLanguage = function(lang) {
   window.currentLang = lang;
   localStorage.setItem('grob_lang', lang);
 
-  // Update Buttons
+  const t = I18N[lang];
+
+  // 1. Language Toggle Buttons
   const btnEs = document.getElementById('btnLangEs');
   const btnEn = document.getElementById('btnLangEn');
   if (btnEs) btnEs.classList.toggle('active', lang === 'es');
   if (btnEn) btnEn.classList.toggle('active', lang === 'en');
 
-  // Update Nav tabs
-  const tabHome = document.getElementById('navTabHome');
-  const tabPort = document.getElementById('navTabPort');
-  const tabCov = document.getElementById('navTabCov');
-  const tabCli = document.getElementById('navTabCli');
-  const tabCon = document.getElementById('navTabCon');
-  const tabTie = document.getElementById('navTabTie');
+  // 2. Navigation Tabs (Desktop & Mobile)
+  document.querySelectorAll('[data-tab="home"]').forEach(el => el.textContent = t.nav_home);
+  document.querySelectorAll('[data-tab="portafolio"]').forEach(el => el.textContent = t.nav_port);
+  document.querySelectorAll('[data-tab="covers"]').forEach(el => el.textContent = t.nav_cov);
+  document.querySelectorAll('[data-tab="clientes"]').forEach(el => el.textContent = t.nav_cli);
+  document.querySelectorAll('[data-tab="contacto"]').forEach(el => el.textContent = t.nav_con);
+  document.querySelectorAll('[data-tab="tienda"]').forEach(el => el.textContent = t.nav_tie);
 
-  if (tabHome) tabHome.textContent = I18N[lang].nav_home;
-  if (tabPort) tabPort.textContent = I18N[lang].nav_port;
-  if (tabCov) tabCov.textContent = I18N[lang].nav_cov;
-  if (tabCli) tabCli.textContent = I18N[lang].nav_cli;
-  if (tabCon) tabCon.textContent = I18N[lang].nav_con;
-  if (tabTie) tabTie.textContent = I18N[lang].nav_tie;
+  const btnUser = document.getElementById('btnUser');
+  if (btnUser) btnUser.setAttribute('title', t.btn_user);
+  const btnCart = document.getElementById('btnCart');
+  if (btnCart) btnCart.setAttribute('title', t.btn_cart);
+  const navBack = document.getElementById('navBack');
+  if (navBack) navBack.textContent = t.nav_back;
 
-  // Update all [data-i18n] tags
+  // 3. User Dropdown
+  const userDd = document.getElementById('userDropdown');
+  if (userDd) {
+    const links = userDd.querySelectorAll('a');
+    if (links[0]) links[0].textContent = t.user_dd_cart;
+    if (links[1]) links[1].textContent = t.user_dd_profile;
+    if (links[2]) links[2].textContent = t.user_dd_orders;
+    if (links[3]) links[3].textContent = t.user_dd_logout;
+  }
+
+  // 4. Hero Section
+  const heroEyebrow = document.getElementById('txtHeroEyebrow');
+  if (heroEyebrow) heroEyebrow.textContent = t.hero_eyebrow;
+  const heroBtn1 = document.getElementById('txtHeroBtn1');
+  if (heroBtn1) heroBtn1.textContent = t.hero_btn1;
+  const heroBtn2 = document.getElementById('txtHeroBtn2');
+  if (heroBtn2) heroBtn2.textContent = t.hero_btn2;
+
+  // 5. Section Headers
+  const featLabel = document.getElementById('txtFeaturedLabel');
+  if (featLabel) featLabel.textContent = t.featured_label;
+  const featTitle = document.getElementById('txtFeaturedTitle');
+  if (featTitle) featTitle.textContent = t.featured_title;
+
+  const philLabel = document.getElementById('txtPhilLabel');
+  if (philLabel) philLabel.textContent = t.phil_label;
+  const philTitle = document.getElementById('txtPhilTitle');
+  if (philTitle) philTitle.innerHTML = t.phil_title;
+  const philDesc = document.getElementById('txtPhilDesc');
+  if (philDesc) philDesc.textContent = t.phil_desc;
+
+  const toolsLabel = document.getElementById('txtToolsLabel');
+  if (toolsLabel) toolsLabel.textContent = t.tools_label;
+  const toolsTitle = document.getElementById('txtToolsTitle');
+  if (toolsTitle) toolsTitle.innerHTML = t.tools_title;
+  const toolsDesc = document.getElementById('txtToolsDesc');
+  if (toolsDesc) toolsDesc.textContent = t.tools_desc;
+
+  const cliLabel = document.getElementById('txtCliLabel');
+  if (cliLabel) cliLabel.textContent = t.cli_label;
+  const cliTitle = document.getElementById('txtCliTitle');
+  if (cliTitle) cliTitle.innerHTML = t.cli_title;
+  const cliDesc = document.getElementById('txtCliDesc');
+  if (cliDesc) cliDesc.textContent = t.cli_desc;
+
+  const conTitle = document.getElementById('txtConTitle');
+  if (conTitle) conTitle.innerHTML = t.con_title;
+  const conDesc = document.getElementById('txtConDesc');
+  if (conDesc) conDesc.textContent = t.con_desc;
+  const conBtn = document.getElementById('txtConBtn');
+  if (conBtn) conBtn.textContent = t.con_btn;
+
+  // Contact form labels
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const labels = contactForm.querySelectorAll('.field label');
+    if (labels[0]) labels[0].textContent = t.con_label_name;
+    if (labels[1]) labels[1].textContent = t.con_label_email;
+    if (labels[2]) labels[2].textContent = t.con_label_msg;
+  }
+
+  // 6. Covers Section
+  const covEyebrow = document.getElementById('txtCovEyebrow');
+  if (covEyebrow) covEyebrow.textContent = t.cov_eyebrow;
+  const covTitle = document.getElementById('txtCovTitle');
+  if (covTitle) covTitle.innerHTML = t.cov_title;
+  const covDesc = document.getElementById('txtCovDesc');
+  if (covDesc) covDesc.textContent = t.cov_desc;
+  const covSearch = document.getElementById('coversSearchInput');
+  if (covSearch) covSearch.setAttribute('placeholder', t.cov_search_ph);
+
+  const tabTodos = document.querySelector('[data-filter="todos"]');
+  if (tabTodos) tabTodos.childNodes[0].textContent = t.cov_filter_todos + ' ';
+  const tabSencillo = document.querySelector('[data-filter="sencillo"]');
+  if (tabSencillo) tabSencillo.childNodes[0].textContent = t.cov_filter_sencillo + ' ';
+  const tabAlbums = document.querySelector('[data-filter="albums"]');
+  if (tabAlbums) tabAlbums.childNodes[0].textContent = t.cov_filter_albums + ' ';
+  const tabEdiciones = document.querySelector('[data-filter="ediciones"]');
+  if (tabEdiciones) tabEdiciones.childNodes[0].textContent = t.cov_filter_ediciones + ' ';
+
+  const covGalLabel = document.getElementById('coverGaleriaLabel');
+  if (covGalLabel) covGalLabel.textContent = t.cov_galeria_label;
+
+  // 7. Store Section Search & Filters
+  const storeSearch = document.getElementById('storeSearchInput');
+  if (storeSearch) storeSearch.setAttribute('placeholder', t.store_search_ph);
+
+  const pillAll = document.querySelector('[data-store-filter="all"]');
+  if (pillAll) pillAll.childNodes[0].textContent = t.store_cat_all + ' ';
+  const pillArt = document.querySelector('[data-store-filter="artista"]');
+  if (pillArt) pillArt.childNodes[0].textContent = t.store_cat_artista + ' ';
+  const pillPer = document.querySelector('[data-store-filter="marca_personal"]');
+  if (pillPer) pillPer.childNodes[0].textContent = t.store_cat_personal + ' ';
+  const pillEmp = document.querySelector('[data-store-filter="empresa"]');
+  if (pillEmp) pillEmp.childNodes[0].textContent = t.store_cat_empresa + ' ';
+
+  // 8. Repeated CTA
+  const ctaBadge = document.querySelector('.repeated-cta-badge');
+  if (ctaBadge) ctaBadge.textContent = t.cta_badge;
+  const ctaTitle = document.querySelector('.repeated-cta-title');
+  if (ctaTitle) ctaTitle.textContent = t.cta_title;
+  const ctaDesc = document.querySelector('.repeated-cta-desc');
+  if (ctaDesc) ctaDesc.textContent = t.cta_desc;
+  const ctaBtn = document.getElementById('btnCtaComencemos');
+  if (ctaBtn) ctaBtn.textContent = t.cta_btn_start;
+
+  // 9. 404 View
+  const nfTitle = document.querySelector('.not-found-title');
+  if (nfTitle) nfTitle.textContent = t.not_found_title;
+  const nfDesc = document.querySelector('.not-found-desc');
+  if (nfDesc) nfDesc.textContent = t.not_found_desc;
+  const nfBtn = document.querySelector('.not-found-wrap a');
+  if (nfBtn) nfBtn.textContent = t.not_found_btn;
+
+  // 10. Footer
+  const footerLoc = document.querySelector('.footer-location');
+  if (footerLoc) footerLoc.textContent = t.footer_loc;
+
+  // 11. Generic [data-i18n] tags
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (I18N[lang][key]) {
-      el.textContent = I18N[lang][key];
-    }
+    if (t[key]) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key]) el.innerHTML = t[key];
   });
 
   document.documentElement.lang = lang;
+
+  // If in store, refresh card buttons to match language
+  if (location.hash === '#tienda' && typeof renderPublicStore === 'function') {
+    renderPublicStore();
+  }
 };
+
 
 // Scroll Reveal with IntersectionObserver
 let _revealObserver = null;
@@ -6736,12 +7001,21 @@ window.refreshScrollReveal = function() {
 let _lightboxGallery = [];
 let _lightboxIndex = 0;
 
+function getGoogleDriveId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const m = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/i);
+  return m ? m[1] : null;
+}
+window.getGoogleDriveId = getGoogleDriveId;
+
 window.isVideoUrl = function(url) {
   if (!url || typeof url !== 'string') return false;
   const clean = url.toLowerCase().split('?')[0];
   return /\.(mp4|webm|mov|ogg|m4v)$/i.test(clean) ||
          /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(url) ||
-         /^data:video\//i.test(url);
+         /drive\.google\.com/i.test(url) ||
+         /^data:video\//i.test(url) ||
+         /^blob:/i.test(url);
 };
 
 window.isVerticalVideo = function(url) {
@@ -6835,6 +7109,15 @@ window.renderLightboxCurrentItem = function() {
       };
       videoWrap.appendChild(v);
       v.play().catch(() => {});
+    } else if (emb && (emb.platform === 'drive' || emb.platform === 'google_drive')) {
+      const ifr = document.createElement('iframe');
+      ifr.src = emb.url;
+      ifr.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      ifr.setAttribute('allowfullscreen', '');
+      ifr.style.width = '100%';
+      ifr.style.height = '100%';
+      ifr.style.border = 'none';
+      videoWrap.appendChild(ifr);
     } else if (emb && emb.platform === 'youtube') {
       const ifr = document.createElement('iframe');
       const ytId = getYouTubeId(item);
@@ -6963,9 +7246,9 @@ function handleRoute() {
   else if (h === '#clientes') { showView('clientes'); syncTabs('clientes'); }
   else if (h === '#contacto') { showView('contacto'); syncTabs('contacto'); }
   else if (h === '#tienda') { 
-      // Requerimiento 1: La única manera de acceder a la tienda es ingresando su usuario
+      // Si no ha iniciado sesión, abrir inmediatamente la ventana de login
       if (!window.currentUser) {
-        showToast(window.currentLang === 'en' ? 'Please sign in with your account to access the store.' : 'Por favor ingresa con tu usuario para acceder a la tienda.', 3500);
+        showToast(window.currentLang === 'en' ? 'Please sign in with your account to access the store.' : 'Por favor inicia sesión con tu cuenta para acceder a la tienda.', 3000);
         if (typeof window.handleAuthClick === 'function') {
           window.handleAuthClick();
         }
@@ -7626,7 +7909,20 @@ function renderProjectDetail(id) {
   showView('proyecto');
 }
 
-$$('.tab').forEach(btn => btn.onclick = () => location.hash = '#' + btn.dataset.tab);
+$('.tab').forEach(btn => {
+  btn.onclick = (e) => {
+    if (btn.dataset.tab === 'tienda' && !window.currentUser) {
+      e.preventDefault();
+      e.stopPropagation();
+      showToast(window.currentLang === 'en' ? 'Please sign in to access the store.' : 'Por favor inicia sesión para acceder a la tienda.');
+      if (typeof window.handleAuthClick === 'function') {
+        window.handleAuthClick();
+      }
+      return false;
+    }
+    location.hash = '#' + btn.dataset.tab;
+  };
+});
 $$('[data-route]').forEach(el => el.onclick = () => location.hash = '#' + el.dataset.route);
 $('#navBack').onclick = goBack;
 $('#volverPortafolio').onclick = () => location.hash = '#portafolio';
@@ -8245,7 +8541,7 @@ boot();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-      if (window.applyThemeOled) window.applyThemeOled();
+      
       if (window.setAppLanguage && window.currentLang) window.setAppLanguage(window.currentLang);
       if (typeof setupBackToTop === 'function') setupBackToTop();
       if (typeof setupGalleryEvents === 'function') setupGalleryEvents();
