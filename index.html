@@ -329,6 +329,295 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
 .covers-filter-btn{padding:8px 16px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:100px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
 .covers-filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
 .covers-filter-btn .count{font-size:.7em;opacity:.6;font-weight:500}
+
+/* ==========================================================================
+   TOP 3 COVERS DESTACADOS (Requirement 1)
+   ========================================================================== */
+.covers-top3-section {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto 36px;
+  padding: 0 clamp(20px, 5vw, 56px);
+}
+.covers-top3-header {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.covers-top3-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  padding: 5px 14px;
+  border-radius: 999px;
+  box-shadow: 0 0 15px rgba(201, 169, 97, 0.08);
+}
+.covers-top3-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.15;
+}
+.covers-top3-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+.covers-top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+.covers-top3-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(24, 24, 32, 0.95), rgba(10, 10, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.35s;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.covers-top3-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201, 169, 97, 0.65);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 169, 97, 0.2);
+}
+.covers-top3-card.rank-1 {
+  border-color: rgba(201, 169, 97, 0.4);
+}
+.covers-top3-card.rank-1:hover {
+  border-color: #D4AF37;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.3);
+}
+.top3-rank-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+.top3-rank-pill.rank-1 {
+  background: linear-gradient(135deg, #FFE885, #D4AF37, #9B7A16);
+  color: #0b0b0d;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+}
+.top3-rank-pill.rank-2 {
+  background: linear-gradient(135deg, #FFFFFF, #D6D6E2, #8E8EA0);
+  color: #0a0a0c;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.3);
+}
+.top3-rank-pill.rank-3 {
+  background: linear-gradient(135deg, #F8CDA0, #CD7F32, #8C4E1A);
+  color: #0b0b0d;
+  box-shadow: 0 4px 18px rgba(205, 127, 50, 0.35);
+}
+.top3-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #08080a;
+  overflow: hidden;
+}
+.top3-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.covers-top3-card:hover .top3-card-img-wrap img {
+  transform: scale(1.05);
+}
+.top3-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(10, 10, 14, 0.85) 100%);
+  pointer-events: none;
+}
+.top3-video-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.top3-video-badge:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+.top3-card-body {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: rgba(14, 14, 18, 0.85);
+}
+.top3-card-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.top3-pill-date,
+.top3-pill-plays {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.top3-pill-date {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--muted);
+}
+.top3-pill-plays {
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  color: var(--accent);
+}
+.top3-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0 0 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top3-card-artist {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.covers-all-header {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto 16px;
+  padding: 0 clamp(20px, 5vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.covers-all-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 900px) {
+  .covers-top3-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .top3-card-body {
+    padding: 12px 14px 16px;
+  }
+  .top3-card-title {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 640px) {
+  .covers-top3-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .covers-top3-card {
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   RELEASE DATE DISPLAY IN COVER DETAIL (Requirement 2)
+   ========================================================================== */
+.cover-hero-release {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 14px;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 8px;
+  width: fit-content;
+}
+.cover-release-label {
+  color: var(--muted);
+  font-weight: 500;
+}
+.cover-release-value {
+  color: var(--accent);
+  font-weight: 700;
+}
+.cover-release-info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201, 169, 97, 0.1);
+  border: 1px solid rgba(201, 169, 97, 0.28);
+  color: var(--accent);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.cover-release-info-pill strong {
+  color: #fff;
+  font-weight: 700;
+}
+
 .covers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 70px}
 @media(max-width:900px){.covers-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}}
 @media(max-width:540px){.covers-grid{grid-template-columns:repeat(2,1fr);gap:6px;padding:0 12px 60px}}
@@ -4141,6 +4430,20 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
           <button class="covers-filter-btn" data-filter="albums">Álbumes <span class="count" id="countAlbums">0</span></button>
           <button class="covers-filter-btn" data-filter="ediciones">Ediciones <span class="count" id="countEdiciones">0</span></button>
         </div>
+
+        <!-- TOP 3 DESTACADOS (Requirement 1) -->
+        <div class="covers-top3-section" id="coversTop3Section">
+          <div class="covers-top3-header">
+            <div class="covers-top3-badge" id="txtTop3Badge">🔥 TOP 3 LANZAMIENTOS</div>
+            <h3 class="covers-top3-title" id="txtTop3Title">Últimos Covers Más Destacados</h3>
+            <p class="covers-top3-sub" id="txtTop3Sub">Rankeados por fecha de lanzamiento y mayor cantidad de reproducciones acumuladas.</p>
+          </div>
+          <div class="covers-top3-grid" id="coversTop3Grid"></div>
+        </div>
+
+        <div class="covers-all-header" id="coversAllHeader">
+          <h3 class="covers-all-title" id="txtAllCoversTitle">Todos los Covers</h3>
+        </div>
         <div class="covers-grid" id="coversGrid"></div>
       </section>
     </div>
@@ -4156,13 +4459,15 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
             <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO</div>
             <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
             <div class="cover-hero-artist" id="coverHeroArtist"></div>
+            <div class="cover-hero-release" id="coverHeroRelease" style="display:none;"></div>
             <div class="cover-hero-plays" id="coverHeroPlays" style="display:none;"></div>
             <div class="cover-hero-music" id="coverHeroMusic"></div>
           </div>
         </div>
         <div class="cover-extra-section hidden" id="coverExtraSection">
           <div class="cover-extra-block" id="coverResenaBlock">
-            <div class="cover-extra-label">Reseña</div>
+            <div class="cover-extra-label" id="coverResenaLabel">Descripción & Lanzamiento</div>
+            <div class="cover-release-info-pill" id="coverReleaseInfoPill" style="display:none;"></div>
             <p class="cover-extra-resena" id="coverHeroResena"></p>
           </div>
           <div class="cover-extra-block" style="margin-bottom:16px" id="coverGaleriaLabel">
@@ -6859,8 +7164,13 @@ const I18N = {
     cov_filter_albums: 'Álbumes',
     cov_filter_ediciones: 'Ediciones Especiales',
     cov_galeria_label: 'Galería del proyecto',
-    cov_resena_label: 'Reseña del lanzamiento',
+    cov_resena_label: 'Descripción & Lanzamiento',
     cov_btn_watch_video: 'Ver Video',
+    top3_badge: '🔥 TOP 3 LANZAMIENTOS',
+    top3_title: 'Últimos Covers Más Destacados',
+    top3_sub: 'Rankeados por fecha de lanzamiento y mayor cantidad de reproducciones acumuladas.',
+    top3_all_title: 'Todos los Covers',
+    cover_release_label: 'Fecha de lanzamiento:',
 
     store_eyebrow: '— Catálogo Exclusivo',
     store_title: 'Catálogo de <em>Diseño</em> & Packs.',
@@ -6968,8 +7278,13 @@ const I18N = {
     cov_filter_albums: 'Albums',
     cov_filter_ediciones: 'Special Editions',
     cov_galeria_label: 'Project Gallery',
-    cov_resena_label: 'Release Review',
+    cov_resena_label: 'Description & Release',
     cov_btn_watch_video: 'Watch Video',
+    top3_badge: '🔥 TOP 3 RELEASES',
+    top3_title: 'Latest Top-Performing Covers',
+    top3_sub: 'Ranked by release date and cumulative streaming volume.',
+    top3_all_title: 'All Covers',
+    cover_release_label: 'Release Date:',
 
     store_eyebrow: '— Exclusive Catalog',
     store_title: 'Design Catalog & <em>Packs</em>.',
@@ -7139,6 +7454,15 @@ window.setAppLanguage = function(lang) {
   if (tabAlbums && tabAlbums.childNodes[0]) tabAlbums.childNodes[0].textContent = t.cov_filter_albums + ' ';
   const tabEdiciones = document.querySelector('[data-filter="ediciones"]');
   if (tabEdiciones && tabEdiciones.childNodes[0]) tabEdiciones.childNodes[0].textContent = t.cov_filter_ediciones + ' ';
+
+  const top3Badge = document.getElementById('txtTop3Badge');
+  if (top3Badge && t.top3_badge) top3Badge.textContent = t.top3_badge;
+  const top3Title = document.getElementById('txtTop3Title');
+  if (top3Title && t.top3_title) top3Title.textContent = t.top3_title;
+  const top3Sub = document.getElementById('txtTop3Sub');
+  if (top3Sub && t.top3_sub) top3Sub.textContent = t.top3_sub;
+  const allCovTitle = document.getElementById('txtAllCoversTitle');
+  if (allCovTitle && t.top3_all_title) allCovTitle.textContent = t.top3_all_title;
 
   const covGalLabel = document.getElementById('coverGaleriaLabel');
   if (covGalLabel) covGalLabel.textContent = t.cov_galeria_label;
@@ -7995,7 +8319,124 @@ function renderPublicTools() {
 function handle3DTilt(e) { const card = e.currentTarget; const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top; const cX = rect.width / 2, cY = rect.height / 2; card.style.transform = `perspective(1000px) rotateX(${((y - cY) / cY) * -6}deg) rotateY(${((x - cX) / cX) * 6}deg) scale(1.02)`; }
 function reset3DTilt(e) { e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'; }
 
+/* ==========================================================================
+   TOP 3 COVERS DESTACADOS LOGIC (Requirement 1)
+   ========================================================================== */
+function getTop3Destacados() {
+  const allCovers = DATA.covers || [];
+  if (!allCovers.length) return [];
+
+  const valid = allCovers.filter(c => c && c.url).map(c => {
+    const p = c.plays || {};
+    const spotify = Number(p.spotify) || 0;
+    const youtube = Number(p.youtube) || 0;
+    const apple = Number(p.apple) || 0;
+    const totalPlays = spotify + youtube + apple;
+    const year = parseInt(c.year || (c.date ? c.date.slice(0, 4) : 0), 10) || 0;
+    const releaseDate = c.releaseDate || c.date || (c.year ? String(c.year) : '');
+    return { cover: c, year, releaseDate, totalPlays };
+  });
+
+  if (!valid.length) return [];
+
+  const maxYear = Math.max(...valid.map(x => x.year));
+  // Filter recent pool (within the last 2 years, e.g. 2025-2026)
+  const recentPool = valid.filter(x => x.year >= maxYear - 1 && x.totalPlays > 0);
+  const pool = recentPool.length >= 3 ? recentPool : valid.filter(x => x.totalPlays > 0);
+  const finalPool = pool.length >= 3 ? pool : valid;
+
+  // Rank formula balancing recency + total accumulated plays:
+  finalPool.sort((a, b) => {
+    const scoreA = ((a.year - (maxYear - 1)) * 1000000) + a.totalPlays;
+    const scoreB = ((b.year - (maxYear - 1)) * 1000000) + b.totalPlays;
+    return scoreB - scoreA;
+  });
+
+  return finalPool.slice(0, 3);
+}
+
+function renderTop3Covers() {
+  const container = document.getElementById('coversTop3Grid');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const top3 = getTop3Destacados();
+  const sec = document.getElementById('coversTop3Section');
+  if (!top3.length) {
+    if (sec) sec.style.display = 'none';
+    return;
+  }
+  if (sec) sec.style.display = 'block';
+
+  const rankMeta = [
+    { rank: '1', label: 'TOP 1', trophy: '👑', cls: 'rank-1' },
+    { rank: '2', label: 'TOP 2', trophy: '🥈', cls: 'rank-2' },
+    { rank: '3', label: 'TOP 3', trophy: '🥉', cls: 'rank-3' }
+  ];
+
+  top3.forEach((item, idx) => {
+    const c = item.cover;
+    const m = rankMeta[idx] || { rank: String(idx + 1), label: `TOP ${idx + 1}`, trophy: '★', cls: 'rank-other' };
+    const playsFormatted = formatNumber(item.totalPlays);
+    const releaseText = item.releaseDate || c.year || '2025';
+
+    const card = document.createElement('div');
+    card.className = `covers-top3-card ${m.cls}`;
+    card.onclick = () => location.hash = `#cover-${c.id}`;
+
+    const hasVid = !!((c.youtubeUrl && getYouTubeId(c.youtubeUrl)) || c.videoUrl);
+
+    card.innerHTML = `
+      <div class="top3-rank-pill ${m.cls}">
+        <span class="top3-rank-trophy">${m.trophy}</span>
+        <span class="top3-rank-title">${m.label}</span>
+      </div>
+      <div class="top3-card-img-wrap">
+        <img src="${resolveImageUrl(c.url)}" alt="Portada de ${escHtml(c.name || 'obra')} por ${escHtml(c.artist || 'Grobdesigns')}" onerror="handleImgError(this)" draggable="false">
+        <div class="top3-card-shine"></div>
+        ${hasVid ? `
+          <button type="button" class="top3-video-badge" title="Reproducir Video" onclick="event.stopPropagation(); window.openVideoPlayer('${c.youtubeUrl || c.videoUrl}', '${escHtml(c.name)}');">
+            ▶
+          </button>
+        ` : ''}
+      </div>
+      <div class="top3-card-body">
+        <div class="top3-card-meta-row">
+          <span class="top3-pill-date">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            ${escHtml(releaseText)}
+          </span>
+          ${item.totalPlays > 0 ? `
+            <span class="top3-pill-plays">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02z"/></svg>
+              ${playsFormatted} ${window.currentLang === 'en' ? 'plays' : 'reproducciones'}
+            </span>
+          ` : ''}
+        </div>
+        <h4 class="top3-card-title">${escHtml(c.name || 'Sin título')}</h4>
+        <div class="top3-card-artist">${escHtml(c.artist || 'Grobdesigns')}</div>
+      </div>
+    `;
+
+    card.addEventListener('mousemove', handleDetail3DTilt);
+    card.addEventListener('mouseleave', resetDetail3DTilt);
+    container.appendChild(card);
+  });
+}
+
 function renderPublicCovers(covers) {
+  renderTop3Covers();
+
+  const top3Sec = document.getElementById('coversTop3Section');
+  const allHeader = document.getElementById('coversAllHeader');
+  if (_currentSearch && _currentSearch.length > 0) {
+    if (top3Sec) top3Sec.style.display = 'none';
+    if (allHeader) allHeader.style.display = 'none';
+  } else {
+    if (top3Sec) top3Sec.style.display = 'block';
+    if (allHeader) allHeader.style.display = 'flex';
+  }
+
   const grid = $('#coversGrid'); if (!grid) return; grid.innerHTML = '';
   const all = DATA.covers || []; $('#countTodos').textContent = all.length; $('#countSencillo').textContent = all.filter(c => c.category === 'sencillo').length; $('#countAlbums').textContent = all.filter(c => c.category === 'albums').length; $('#countEdiciones').textContent = all.filter(c => c.category === 'ediciones').length;
   const stats = getCoverStats();
@@ -8042,6 +8483,18 @@ function renderCoverDetail(id) {
   $('#coverHeroArtist').textContent = c.artist || ''; 
   $('#coverHeroBadge').textContent = (c.category || 'SENCILLO').toUpperCase();
   img.addEventListener('mousemove', handleDetail3DTilt); img.addEventListener('mouseleave', resetDetail3DTilt);
+
+  // Requirement 2: Show release date in hero and in description for ALL covers
+  const releaseDate = c.releaseDate || c.date || (c.year ? String(c.year) : '');
+  const heroRel = $('#coverHeroRelease');
+  if (heroRel) {
+    if (releaseDate) {
+      heroRel.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 4H7v2h2v-2zm4-4h-2v2h2v-2z"/></svg> <span class="cover-release-label">${window.currentLang === 'en' ? 'Release date:' : 'Fecha de lanzamiento:'}</span> <strong class="cover-release-value">${escHtml(releaseDate)}</strong>`;
+      heroRel.style.display = 'flex';
+    } else {
+      heroRel.style.display = 'none';
+    }
+  }
   
   // ELEGANT AMBIENT ARTWORK BACKDROP (Artwork deeply blurred, no artificial resplandor)
   const ambImg = document.getElementById('coverAmbientImg');
@@ -8065,7 +8518,33 @@ function renderCoverDetail(id) {
   if (hp) { pw.innerHTML = html; pw.style.display = 'flex'; } else pw.style.display = 'none';
   const mw = $('#coverHeroMusic'); mw.innerHTML = ''; const embed = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl);
   if (embed) { const ifr = document.createElement('iframe'); ifr.src = embed.url; ifr.style.cssText = 'width:100%;border:0;border-radius:4px;background:transparent;display:block'; ifr.height = embed.height; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen'); mw.appendChild(ifr); mw.style.display = 'block'; } else mw.style.display = 'none';
-  const ex = $('#coverExtraSection'), rb = $('#coverResenaBlock'), gl = $('#coverGaleriaLabel'); const hr = !!c.review; if (hr) { $('#coverHeroResena').textContent = c.review; rb.style.display = 'block'; } else rb.style.display = 'none';
+  const ex = $('#coverExtraSection'), rb = $('#coverResenaBlock'), gl = $('#coverGaleriaLabel');
+  
+  const relPill = $('#coverReleaseInfoPill');
+  if (relPill) {
+    if (releaseDate) {
+      relPill.innerHTML = `<span style="font-size:1.1rem;margin-right:4px;">📅</span> <span>${window.currentLang === 'en' ? 'Release Date:' : 'Fecha de lanzamiento:'}</span> <strong>${escHtml(releaseDate)}</strong>`;
+      relPill.style.display = 'inline-flex';
+    } else {
+      relPill.style.display = 'none';
+    }
+  }
+
+  const resenaLabel = $('#coverResenaLabel');
+  if (resenaLabel) {
+    resenaLabel.textContent = window.currentLang === 'en' ? 'Description & Release' : 'Descripción & Lanzamiento';
+  }
+
+  if (c.review && c.review.trim()) {
+    $('#coverHeroResena').textContent = c.review;
+    $('#coverHeroResena').style.display = 'block';
+  } else {
+    $('#coverHeroResena').textContent = '';
+    $('#coverHeroResena').style.display = 'none';
+  }
+  
+  // Always display description block for all covers!
+  rb.style.display = 'block';
   
   const ei = $('#coverExtraImgs'); ei.innerHTML = '';
   const coverVideoUrl = c.youtubeUrl || c.videoUrl || '';
@@ -8124,7 +8603,7 @@ function renderCoverDetail(id) {
     }
     ei.appendChild(gal); if (gl) gl.style.display = 'block';
   } else if (gl) gl.style.display = 'none';
-  if (hr || hg) ex.classList.remove('hidden'); else ex.classList.add('hidden'); showView('coverDetalle');
+  ex.classList.remove('hidden'); showView('coverDetalle');
 }
 
 function renderCategoryDetail(id) {
