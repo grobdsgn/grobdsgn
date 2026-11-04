@@ -5130,20 +5130,7 @@ window.triggerGoogleLogin = function() {
   }
 };
 
-window.triggerGuestAccess = function() {
-  window.currentUser = {
-    uid: 'guest_' + Math.random().toString(36).substring(2, 9),
-    displayName: (window.currentLang === 'en' ? 'Guest User' : 'Usuario Invitado'),
-    email: 'guest@grobdesigns.com',
-    isGuest: true
-  };
-  window.closeAuthModal();
-  if (window.updateNavAvatar) window.updateNavAvatar();
-  if (typeof showToast === 'function') {
-    showToast(window.currentLang === 'en' ? 'Welcome! Guest session active.' : '¡Bienvenido! Sesión de invitado activa.');
-  }
-  location.hash = '#tienda';
-};
+
 
 window.currentUserProfile = null;
 
@@ -5974,18 +5961,455 @@ function migrateData(data) {
   return data;
 }
 
-let DATA = {
-  hero: {
-    eyebrow: 'Diseño gráfico · Caracas → Latinoamérica',
-    title: 'Portadas e identidad\nque se recuerdan.',
-    lead: 'Estudio de diseño en Caracas, Venezuela. Creamos portadas musicales, identidad visual y branding para artistas y empresas en toda Latinoamérica y el mundo hispano.'
+const DEFAULT_DATA = {
+  "hero": {
+    "eyebrow": "Diseño gráfico · Caracas → Latinoamérica",
+    "title": "Diseño experiencias\nque se recuerdan.",
+    "lead": "Soy Grobdesigns, diseñador gráfico y director de arte especializado en portadas musicales, identidades visuales y marcas de alto impacto."
   },
-  heroImages: [], categories: [], products: [], clientes: [], software: [], covers: [],
-  contact: { email: 'hola@grobdesigns.com', phone: '+58 400 000 0000', instagram: '', location: 'Caracas, Venezuela' },
-  theme: { accent: '#C9A961', bg: '#000000', text: '#F5F3EF' },
-  settings: { youtubeApiKey: '', apifyToken: '', apifyActor: DEFAULT_APIFY_ACTOR, storeMaintenance: false },
-  texts: {}, ficha: []
+  "heroImages": [
+    "media/odisea.jpg",
+    "media/the-world.jpg",
+    "media/Captura de pantalla 2026-10-13 234015.png"
+  ],
+  "categories": [
+    {
+      "id": "musical",
+      "name": "Musical",
+      "slug": "musical",
+      "cover": "media/odisea.jpg",
+      "description": "Portadas de discos icónicos, identidades sonoras y dirección de arte para artistas multiplatino y sellos discográficos.",
+      "projects": [
+        {
+          "id": "ozuna-odisea",
+          "title": "Ozuna — Era \"Odisea\" & Sencillos",
+          "description": "Dirección de arte y portadas para el álbum debut \"Odisea\" (28x Platino RIAA) y sencillos globales como \"Dile Que Tú Me Quieres\", \"Si Tu Cama Hablara\", \"Bebé\" y \"La Diabla\".",
+          "year": "2017",
+          "images": [
+            "media/odisea.jpg",
+            "media/dile-que-tu-me-quieres.jpg",
+            "media/dile-que-tu-me-quieres-remix.jpg",
+            "media/si-tu-cama.jpg",
+            "media/bebe.jpg",
+            "media/la-diabla.jpg"
+          ]
+        },
+        {
+          "id": "katie-malu",
+          "title": "Katie Angel & Malu Trevejo — Portadas Oficiales",
+          "description": "Diseño de portadas y estética visual para lanzamientos de pop urbano de alto impacto digital como \"Un Ratito\" y \"Otra Noche\".",
+          "year": "2021",
+          "images": [
+            "media/un-ratito.jpg",
+            "media/otra-noche.jpg"
+          ]
+        },
+        {
+          "id": "neutro-shorty",
+          "title": "Neutro Shorty — Traicioneros & Gang Shit",
+          "description": "Arte y estética visual callejera para sencillos de trap latino.",
+          "year": "2020",
+          "images": [
+            "media/traicioneros.jpg",
+            "media/gang-shit.jpg"
+          ]
+        },
+        {
+          "id": "jambene-danny-ocean",
+          "title": "Jambene ft. Danny Ocean — Por Ti",
+          "description": "Portada y dirección gráfica para la colaboración acústico-urbana entre Jambene y Danny Ocean.",
+          "year": "2021",
+          "images": [
+            "media/por-ti.jpg"
+          ]
+        },
+        {
+          "id": "omega-pinocho",
+          "title": "Omega El Fuerte — Pinocho",
+          "description": "Ilustración surrealista y arte conceptual de portada para Omega El Fuerte.",
+          "year": "2020",
+          "images": [
+            "media/omega-el-fuerte-pinocho.png",
+            "media/son-pinocho.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marcas",
+      "name": "Marcas",
+      "slug": "marcas",
+      "cover": "media/logo-rimas.png",
+      "description": "Identidad visual, sistemas gráficos y branding para sellos discográficos, artistas y empresas.",
+      "projects": [
+        {
+          "id": "sellos-discograficos",
+          "title": "Sellos & Distribuidoras — Rimas, Codiscos & LS Records",
+          "description": "Identidad y aplicaciones visuales para firmas discográficas líderes de la industria musical latina.",
+          "year": "2024",
+          "images": [
+            "media/logo-rimas.png",
+            "media/logo-codiscos.png",
+            "media/logo-ls-records.png",
+            "media/logo-park-east.png"
+          ]
+        },
+        {
+          "id": "artistas-creadores",
+          "title": "Marcas Personales — Ozuna, Malu Trevejo & Katie Angel",
+          "description": "Logotipos oficiales, firmas gráficas y manuales de identidad para artistas internacionales.",
+          "year": "2023",
+          "images": [
+            "media/logo-ozuna.png",
+            "media/logo-katie-angel.png",
+            "media/logo-malu-trevejo.png",
+            "media/logo-moly.png",
+            "media/logo-jambene.png"
+          ]
+        },
+        {
+          "id": "corporativo",
+          "title": "Corporativo & Startups — Bepal, Alma, Ikon & El Triunfo",
+          "description": "Branding corporativo, diseño de logotipos y material institucional.",
+          "year": "2024",
+          "images": [
+            "media/logo-bepal.png",
+            "media/logo-alma.png",
+            "media/logo-ikon.png",
+            "media/logo-agro-inversiones.png",
+            "media/logo-centro-de-la-zona.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eventos",
+      "name": "Eventos",
+      "slug": "eventos",
+      "cover": "media/Captura de pantalla 2026-10-13 234015.png",
+      "description": "Diseño integral para conciertos, giras musicales, festivales y escenografía.",
+      "projects": [
+        {
+          "id": "giras-festivales",
+          "title": "Cartelería de Giras & Festivales",
+          "description": "Sistemas gráficos y afiches para conciertos masivos y presentaciones en vivo.",
+          "year": "2024",
+          "images": [
+            "media/Captura de pantalla 2026-10-13 234015.png",
+            "media/el-rumbon.jpg",
+            "media/thank-you-los-wizzards.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ia",
+      "name": "IA & Concept Art",
+      "slug": "ia",
+      "cover": "media/the-world.jpg",
+      "description": "Exploración de técnicas generativas avanzadas combinadas con dirección de arte tradicional.",
+      "projects": [
+        {
+          "id": "universos-3d",
+          "title": "Universos Visuales & Síntesis 3D",
+          "description": "Composiciones abstractas y exploración de texturas futuristas.",
+          "year": "2025",
+          "images": [
+            "media/the-world.jpg",
+            "media/cuantos-son.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otros",
+      "name": "Otros",
+      "slug": "otros",
+      "cover": "media/spanglish.jpg",
+      "description": "Ediciones especiales en vinilo, merchandising y proyectos experimentales.",
+      "projects": [
+        {
+          "id": "ediciones-especiales",
+          "title": "Ediciones Físicas & Empaques de Colección",
+          "description": "Diseño para vinilos, empaques físicos especiales y modelado 3D.",
+          "year": "2024",
+          "images": [
+            "media/spanglish.jpg",
+            "media/mientes.png",
+            "media/otra-botella.jpg"
+          ]
+        }
+      ]
+    }
+  ],
+  "covers": [
+    {
+      "id": "cov_odisea",
+      "url": "media/odisea.jpg",
+      "category": "albums",
+      "name": "Odisea",
+      "artist": "Ozuna",
+      "year": "2017",
+      "review": "Álbum debut multiplatino (28x Platino RIAA). Dirección de arte y portada icónica que definió una era en el género urbano.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=VqEbCxg2bNI",
+      "spotifyUrl": "https://open.spotify.com/album/4vS34kG6nZp2Y8k21q595b",
+      "plays": {
+        "spotify": 3450000000,
+        "youtube": 2100000000
+      },
+      "featured": true,
+      "extraImages": [
+        "media/dile-que-tu-me-quieres.jpg",
+        "media/si-tu-cama.jpg",
+        "media/bebe.jpg"
+      ]
+    },
+    {
+      "id": "cov_dile",
+      "url": "media/dile-que-tu-me-quieres.jpg",
+      "category": "sencillo",
+      "name": "Dile Que Tú Me Quieres",
+      "artist": "Ozuna",
+      "year": "2016",
+      "review": "Sencillo global con más de 900 millones de streams. Portada conceptual con alta carga emotiva.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=WA8p2Nl5FpI",
+      "plays": {
+        "spotify": 820000000,
+        "youtube": 950000000
+      },
+      "featured": true,
+      "extraImages": [
+        "media/dile-que-tu-me-quieres-remix.jpg"
+      ]
+    },
+    {
+      "id": "cov_bebe",
+      "url": "media/bebe.jpg",
+      "category": "sencillo",
+      "name": "Bebé",
+      "artist": "Ozuna ft. Anuel AA",
+      "year": "2017",
+      "review": "Portada oficial para el hit colaborativo entre Ozuna y Anuel AA.",
+      "plays": {
+        "spotify": 540000000,
+        "youtube": 620000000
+      },
+      "featured": true,
+      "extraImages": []
+    },
+    {
+      "id": "cov_traicioneros",
+      "url": "media/traicioneros.jpg",
+      "category": "sencillo",
+      "name": "Traicioneros",
+      "artist": "Neutro Shorty",
+      "year": "2020",
+      "review": "Arte y estética visual callejera para sencillo de trap latino.",
+      "plays": {
+        "spotify": 45000000,
+        "youtube": 68000000
+      },
+      "featured": false,
+      "extraImages": [
+        "media/gang-shit.jpg"
+      ]
+    },
+    {
+      "id": "cov_porti",
+      "url": "media/por-ti.jpg",
+      "category": "sencillo",
+      "name": "Por Ti",
+      "artist": "Jambene ft. Danny Ocean",
+      "year": "2021",
+      "review": "Portada y dirección gráfica para la colaboración acústico-urbana entre Jambene y Danny Ocean.",
+      "plays": {
+        "spotify": 78000000,
+        "youtube": 52000000
+      },
+      "featured": true,
+      "extraImages": []
+    },
+    {
+      "id": "cov_unratito",
+      "url": "media/un-ratito.jpg",
+      "category": "sencillo",
+      "name": "Un Ratito",
+      "artist": "Katie Angel",
+      "year": "2021",
+      "review": "Diseño de portada y estética visual para pop urbano de alto impacto digital.",
+      "plays": {
+        "spotify": 32000000,
+        "youtube": 41000000
+      },
+      "featured": false,
+      "extraImages": []
+    },
+    {
+      "id": "cov_otranoche",
+      "url": "media/otra-noche.jpg",
+      "category": "sencillo",
+      "name": "Otra Noche",
+      "artist": "Malu Trevejo",
+      "year": "2021",
+      "review": "Dirección de arte vibrante y moderna para lanzamiento internacional.",
+      "plays": {
+        "spotify": 29000000,
+        "youtube": 38000000
+      },
+      "featured": false,
+      "extraImages": []
+    },
+    {
+      "id": "cov_pinocho",
+      "url": "media/omega-el-fuerte-pinocho.png",
+      "category": "ediciones",
+      "name": "Pinocho",
+      "artist": "Omega El Fuerte",
+      "year": "2020",
+      "review": "Ilustración surrealista y arte conceptual de portada para Omega El Fuerte.",
+      "plays": {
+        "spotify": 18000000,
+        "youtube": 25000000
+      },
+      "featured": false,
+      "extraImages": [
+        "media/son-pinocho.png"
+      ]
+    },
+    {
+      "id": "cov_spanglish",
+      "url": "media/spanglish.jpg",
+      "category": "ediciones",
+      "name": "Spanglish",
+      "artist": "Colectivo Spanglish",
+      "year": "2024",
+      "review": "Edición física y digital con concepto tipográfico moderno.",
+      "plays": {
+        "spotify": 15000000,
+        "youtube": 19000000
+      },
+      "featured": false,
+      "extraImages": [
+        "media/mientes.png"
+      ]
+    },
+    {
+      "id": "cov_world",
+      "url": "media/the-world.jpg",
+      "category": "ediciones",
+      "name": "The World is Mine",
+      "artist": "Grobdesigns Studio",
+      "year": "2025",
+      "review": "Exploración conceptual y visual 3D para arte de exhibición.",
+      "plays": {
+        "spotify": 12000000,
+        "youtube": 14000000
+      },
+      "featured": false,
+      "extraImages": [
+        "media/cuantos-son.png"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_cover_single",
+      "name": "Diseño de Portada para Sencillo",
+      "price": 150,
+      "category": "artista",
+      "img": "media/odisea.jpg",
+      "desc": "Diseño de portada digital en ultra alta resolución (3000x3000px, 300 DPI), optimizado para Spotify, Apple Music, YouTube Music y todas las plataformas de streaming. Incluye versión para redes sociales (Stories y Feed) y 2 rondas de revisiones.",
+      "hasEditable": true,
+      "editablePrice": 45,
+      "extraImages": [
+        "media/dile-que-tu-me-quieres.jpg",
+        "media/si-tu-cama.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prod_album_ep",
+      "name": "Dirección de Arte: Álbum / EP Completo",
+      "price": 380,
+      "category": "artista",
+      "img": "media/dile-que-tu-me-quieres.jpg",
+      "desc": "Paquete completo para tu lanzamiento discográfico: portada frontal, contraportada con tracklist, lomo de caja, galleta para CD/Vinilo, booklet digital de 4 páginas y visualizer animado para Spotify Canvas.",
+      "hasEditable": true,
+      "editablePrice": 75,
+      "extraImages": [
+        "media/odisea.jpg",
+        "media/bebe.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prod_logo_artist",
+      "name": "Identidad Visual & Logotipo para Artista",
+      "price": 280,
+      "category": "marca_personal",
+      "img": "media/ozuna logo.png",
+      "desc": "Desarrollo de marca personal y firma artística icónica. Incluye imagotipo principal en vectores, variantes cromáticas (monocromático, dorado y neón), guía de tipografías oficiales y kit de avatares para todas las plataformas digitales.",
+      "hasEditable": true,
+      "editablePrice": 50,
+      "extraImages": [
+        "media/malu trevejo.png",
+        "media/aran one.png"
+      ],
+      "visible": true
+    },
+    {
+      "id": "prod_branding_corp",
+      "name": "Branding Corporativo & Sello Discográfico",
+      "price": 550,
+      "category": "empresa",
+      "img": "media/rimas white.png",
+      "desc": "Sistema de identidad corporativa de alto nivel para sellos discográficos, distribuidoras y empresas creativas. Incluye diseño de logotipo vectorial, manual de normas de marca, papelería institucional, plantillas para redes sociales y archivos maestros listos para producción.",
+      "hasEditable": true,
+      "editablePrice": 90,
+      "extraImages": [
+        "media/codiscos.png",
+        "media/ls records.png"
+      ],
+      "visible": true
+    }
+  ],
+  "clientes": [
+    "media/rimas white.png",
+    "media/codiscos.png",
+    "media/ls records.png",
+    "media/parke east music.png",
+    "media/BEPAL LOGO BLANCO.png",
+    "media/alma logo white@2x.png"
+  ],
+  "software": [
+    "https://cdn.simpleicons.org/adobephotoshop",
+    "https://cdn.simpleicons.org/adobeillustrator",
+    "https://cdn.simpleicons.org/adobeaftereffects",
+    "https://cdn.simpleicons.org/adobepremierepro",
+    "https://cdn.simpleicons.org/blender",
+    "https://cdn.simpleicons.org/figma"
+  ],
+  "contact": {
+    "email": "hola@grobdesigns.com",
+    "phone": "+58 400 000 0000",
+    "instagram": "@grobdesigns",
+    "location": "Caracas, Venezuela"
+  },
+  "theme": {
+    "accent": "#C9A961",
+    "bg": "#000000",
+    "text": "#F5F3EF"
+  },
+  "settings": {
+    "youtubeApiKey": "",
+    "apifyToken": "",
+    "apifyActor": "iSBI7FkiTKmEtgImW",
+    "storeMaintenance": false
+  },
+  "texts": {},
+  "ficha": []
 };
+let DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
 const ADMIN_NAV = { view: 'categories', catId: null, projId: null };
 let _coversOrder = null, _currentFilter = 'todos', _currentSearch = '', _prevRoute = null;
 
@@ -6914,8 +7338,6 @@ const I18N = {
     auth_modal_title: 'Inicia Sesión en Grobdesigns',
     auth_modal_desc: 'Para explorar el catálogo exclusivo, adquirir productos y gestionar tus pedidos, por favor inicia sesión con tu cuenta.',
     auth_modal_google: 'Continuar con Google',
-    auth_modal_guest: 'Acceso Rápido / Continuar como Invitado',
-    auth_modal_footer: '🔒 Autenticación rápida y 100% segura.',
 
     cta_badge: '✦ DISPONIBILIDAD PARA NUEVOS PROYECTOS',
     cta_title: 'Transformemos tu visión en un diseño icónico',
@@ -7025,8 +7447,6 @@ const I18N = {
     auth_modal_title: 'Sign in to Grobdesigns',
     auth_modal_desc: 'To browse the exclusive catalog, purchase products, and track orders, please sign in with your account.',
     auth_modal_google: 'Continue with Google',
-    auth_modal_guest: 'Quick Access / Continue as Guest',
-    auth_modal_footer: '🔒 Fast, 100% secure authentication.',
 
     cta_badge: '✦ AVAILABILITY FOR NEW PROJECTS',
     cta_title: 'Let’s turn your vision into an iconic design',
@@ -7197,9 +7617,7 @@ window.setAppLanguage = function(lang) {
   if (txtGoogle) txtGoogle.textContent = t.auth_modal_google;
   const txtGuest = document.getElementById('txtAuthGuest');
   if (txtGuest) txtGuest.textContent = t.auth_modal_guest;
-  const txtAuthFoot = document.getElementById('authModalFooterText');
-  if (txtAuthFoot) txtAuthFoot.textContent = t.auth_modal_footer;
-
+  
   // 9. Repeated CTA
   const ctaBadge = document.querySelector('.repeated-cta-badge');
   if (ctaBadge) ctaBadge.textContent = t.cta_badge;
@@ -7900,6 +8318,14 @@ async function loadPublicData() {
   } catch (e) {
     console.warn('Error cargando data.json:', e);
   }
+  // Salvaguarda: Si remote trajo arrays vacíos o indefinidos, restaurar con DEFAULT_DATA
+  if (!DATA.categories || !DATA.categories.length) DATA.categories = JSON.parse(JSON.stringify(DEFAULT_DATA.categories));
+  if (!DATA.covers || !DATA.covers.length) DATA.covers = JSON.parse(JSON.stringify(DEFAULT_DATA.covers));
+  if (!DATA.products || !DATA.products.length) DATA.products = JSON.parse(JSON.stringify(DEFAULT_DATA.products));
+  if (!DATA.software || !DATA.software.length) DATA.software = JSON.parse(JSON.stringify(DEFAULT_DATA.software));
+  if (!DATA.clientes || !DATA.clientes.length) DATA.clientes = JSON.parse(JSON.stringify(DEFAULT_DATA.clientes));
+  if (!DATA.heroImages || !DATA.heroImages.length) DATA.heroImages = JSON.parse(JSON.stringify(DEFAULT_DATA.heroImages));
+
   // Renderizar de inmediato para máxima velocidad y fiabilidad
   renderPublicSite();
   handleRoute();
@@ -8893,12 +9319,6 @@ boot();
         <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15s.7 5.3 1.9 7.7l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z"/></svg>
         <span id="txtAuthGoogle">Continuar con Google</span>
       </button>
-      <button type="button" class="btn-auth-demo" id="authBtnGuest" onclick="window.triggerGuestAccess();">
-        <span id="txtAuthGuest">Acceso Rápido / Continuar como Invitado</span>
-      </button>
-    </div>
-    <div class="auth-modal-footer">
-      <span id="authModalFooterText">🔒 Autenticación rápida y 100% segura.</span>
     </div>
   </div>
 </div>
