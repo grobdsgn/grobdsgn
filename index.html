@@ -173,7 +173,7 @@ input,textarea,select{font:inherit;color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 em{font-family:var(--font-title);font-style:normal;font-weight:800;color:var(--accent)}
 
-p, .lead, .desc, .philosophy p, .tech-value, .categoria-intro p, .cover-extra-resena, .projReview { text-align: justify; text-justify: inter-word; }
+p, .lead, .philosophy p, .tech-value, .cover-extra-resena { text-align: justify; text-justify: inter-word; }
 h1, h2, h3, h4, .eyebrow, .label, .meta, .btn, .mq-item, .tab, .a-btn, button, input, textarea, select { text-align: left; }
 
 nav.top{position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 0;transition:padding .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s;border-bottom:1px solid transparent;background:linear-gradient(to bottom,rgba(0,0,0,.75),transparent)}
@@ -379,23 +379,31 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
   padding: 0 clamp(20px, 5vw, 56px);
 }
 .covers-top3-editorial-header {
-  margin-bottom: 26px;
-  padding-bottom: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 10px;
 }
 .top3-editorial-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
+  padding: 5px 16px;
+  border-radius: 999px !important;
+  background: rgba(201, 169, 97, 0.08);
+  border: 1px solid rgba(201, 169, 97, 0.25);
+  text-align: center;
 }
 .top3-indicator-dot {
   width: 6px;
@@ -404,52 +412,98 @@ h1.hero-h1{font-family:var(--font-title);font-weight:800;font-size:clamp(2.2rem,
   background: var(--accent);
   box-shadow: 0 0 10px var(--accent);
 }
-.top3-editorial-counter {
-  color: var(--muted);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-}
 .top3-editorial-title {
   font-family: var(--font-title);
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  color: #fff;
-  margin: 0;
+  letter-spacing: -0.015em;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  margin: 0 auto;
   line-height: 1.15;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF3C4 20%, #F5D77F 45%, #D4AF37 70%, #AA7C11 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 14px rgba(212, 175, 55, 0.4)) !important;
 }
-.top3-rank-stamp {
+
+/* MARCO DORADO PARA LOS COVERS TOP 3 */
+.covers-top3-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(24, 24, 32, 0.95), rgba(10, 10, 14, 0.98));
+  border: 2px solid rgba(212, 175, 55, 0.65) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.35s;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.65), 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 0 1px rgba(255, 242, 178, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+.covers-top3-card:hover {
+  transform: translateY(-8px);
+  border-color: #FFF2B2 !important;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85), 0 0 40px rgba(212, 175, 55, 0.45), inset 0 0 0 1px rgba(255, 242, 178, 0.45);
+}
+.covers-top3-card.rank-1 {
+  border: 2px solid #D4AF37 !important;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.75), 0 0 35px rgba(212, 175, 55, 0.35), inset 0 0 0 1px rgba(255, 244, 190, 0.4);
+}
+.covers-top3-card.rank-1:hover {
+  border-color: #FFFFFF !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(212, 175, 55, 0.6), inset 0 0 0 1px #FFFFFF;
+}
+
+/* ETIQUETA EXCLUSIVA TOP 1, TOP 2, TOP 3 */
+.top3-exclusive-badge {
   position: absolute;
   top: 14px;
   left: 14px;
   z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px !important;
   font-family: var(--font-title);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: rgba(10, 10, 14, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  text-transform: uppercase;
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
+  color: #FFF2B2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 18px rgba(212, 175, 55, 0.25);
+  transition: transform 0.3s ease;
 }
-.top3-rank-stamp.rank-1 {
-  border-color: rgba(212, 175, 55, 0.55);
-  color: #F5D77F;
-  background: rgba(18, 16, 12, 0.9);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 16px rgba(212, 175, 55, 0.2);
+.top3-exclusive-badge.rank-1 {
+  border-color: #D4AF37;
+  color: #FFF9D9;
+  background: linear-gradient(135deg, rgba(28, 22, 10, 0.92), rgba(12, 10, 6, 0.96));
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 175, 55, 0.5);
 }
-.top3-rank-stamp.rank-2 {
-  border-color: rgba(220, 220, 230, 0.4);
-  color: #E2E2EA;
+.top3-exclusive-badge.rank-2 {
+  border-color: rgba(220, 220, 235, 0.75);
+  color: #F0F0F8;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 255, 255, 0.25);
 }
-.top3-rank-stamp.rank-3 {
-  border-color: rgba(205, 127, 50, 0.4);
-  color: #E5A875;
+.top3-exclusive-badge.rank-3 {
+  border-color: rgba(215, 140, 70, 0.75);
+  color: #FFE0C2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(215, 140, 70, 0.25);
+}
+.exclusive-medal-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
+}
+.exclusive-badge-text {
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 .covers-top3-grid {
   display: grid;
@@ -4358,9 +4412,113 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   color: var(--muted);
 }
 
+
+/* ==========================================================================
+   USER REQ: CENTERING OF CATEGORIES, PROJECTS & COVERS + CIRCULAR CORNERS
+   ========================================================================== */
+.categoria-intro,
+.proyecto-header,
+.covers-intro {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+}
+
+.categoria-intro h2,
+#catNombre,
+.categoria-intro p,
+#catDescripcion,
+.proyecto-title,
+#projNombre,
+#projReview,
+.proyecto-cat-label,
+#projCatLabel,
+.covers-intro h1,
+#txtCovTitle,
+.covers-intro p,
+#txtCovDesc,
+.covers-intro .eyebrow,
+#txtCovEyebrow,
+.parallax-content h2,
+.parallax-content .desc,
+.parallax-content .meta {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.categoria-intro h2,
+.proyecto-title,
+.covers-intro h1 {
+  width: 100% !important;
+  max-width: 960px !important;
+  line-height: 1.05 !important;
+}
+
+.categoria-intro p,
+#projReview,
+.covers-intro p,
+.parallax-content .desc {
+  text-align: center !important;
+  text-justify: auto !important;
+  max-width: 680px !important;
+  width: 100% !important;
+  margin: 0 auto 16px !important;
+}
+
+.covers-toolbar {
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+.covers-filters {
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+
+/* CIRCULAR CORNERS ON ALL TEXT CONTAINERS, PILLS, BADGES, AND INPUTS */
+.covers-filter-btn,
+.covers-search-input,
+.top3-editorial-label,
+.top3-exclusive-badge,
+.top3-pill-date,
+.top3-pill-plays,
+.cover-hero-badge,
+.cover-hero-release,
+.cover-release-info-pill,
+.repeated-cta-badge,
+.tienda-card-badge-rec,
+.apple-briefing-badge,
+.briefing-badge,
+.lang-switch-wrap,
+.btn,
+.btn-primary,
+.cta-btn,
+.form-btn,
+.btn-cta-gold {
+  border-radius: 999px !important;
+}
+
+.top3-card-body {
+  border-radius: 0 0 20px 20px !important;
+}
+
+.cat-card,
+.project-card,
+.store-card,
+.briefing-card,
+.tech-row {
+  border-radius: 20px !important;
+}
+
 </style>
 </head>
 <body>
+<svg style="display:none;" aria-hidden="true"><defs><linearGradient id="goldGradientShared" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF2B2"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#997A15"/></linearGradient></defs></svg>
 <div id="topLoadingBar" class="top-loading-bar"></div>
 
 <div id="publicApp">
@@ -4523,7 +4681,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
       <section class="covers-view">
         <div class="covers-intro">
           <p class="eyebrow" id="txtCovEyebrow">— Covers</p>
-          <h1 id="txtCovTitle">Una pared de <em>covers</em>.</h1>
+          <h1 id="txtCovTitle">Muro de Covers</h1>
           <p id="txtCovDesc">Portadas, artwork y ediciones para artistas de toda Latinoamérica.</p>
         </div>
         <div class="covers-toolbar">
@@ -4544,9 +4702,8 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
             <div class="top3-editorial-label">
               <span class="top3-indicator-dot"></span>
               <span id="txtTop3Category">LANZAMIENTOS DESTACADOS</span>
-              <span class="top3-editorial-counter">01 — 03</span>
             </div>
-            <h2 class="top3-editorial-title" id="txtTop3Title">Top 3 Covers Más Destacados</h2>
+            <h2 class="top3-editorial-title" id="txtTop3Title">TOP 3 DE COVERS MÁS DESTACADOS</h2>
           </div>
           <div class="covers-top3-grid" id="coversTop3Grid"></div>
         </div>
@@ -7336,7 +7493,7 @@ const I18N = {
     cov_btn_watch_video: 'Ver Video',
     top3_badge: 'TOP 3 LANZAMIENTOS',
     top3_category: 'LANZAMIENTOS DESTACADOS',
-    top3_title: 'Top 3 Covers Más Destacados',
+    top3_title: 'TOP 3 DE COVERS MÁS DESTACADOS',
     top3_sub: 'Rankeados por fecha de lanzamiento y mayor cantidad de reproducciones acumuladas.',
     top3_medal_title: 'Top 3 de Covers Más Destacados',
     top3_all_title: 'Todos los Covers',
@@ -7452,7 +7609,7 @@ const I18N = {
     cov_btn_watch_video: 'Watch Video',
     top3_badge: 'TOP 3 RELEASES',
     top3_category: 'FEATURED RELEASES',
-    top3_title: 'Top 3 Most Outstanding Covers',
+    top3_title: 'TOP 3 MOST OUTSTANDING COVERS',
     top3_sub: 'Ranked by release date and cumulative streaming volume.',
     top3_medal_title: 'Top 3 Most Outstanding Covers',
     top3_all_title: 'All Covers',
@@ -8452,7 +8609,7 @@ function renderPortfolioCategories() {
     const row = document.createElement('div'); row.className = 'parallax-row'; row.onclick = () => location.hash = `#categoria-${cat.id || i}`;
     const bgUrl = cat.parallaxImage || ''; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty'); if (bgUrl) bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`; row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
-    const content = document.createElement('div'); content.className = 'parallax-content'; content.innerHTML = `<span class="num">0${i+1} / 0${DATA.categories.length}</span><h2>${escHtml(cat.name || '')}</h2><p class="desc">${escHtml(cat.description || '')}</p><span class="meta">Ver categoría</span>`; row.appendChild(content);
+    const content = document.createElement('div'); content.className = 'parallax-content'; content.innerHTML = `<h2>${escHtml(cat.name || '')}</h2><p class="desc">${escHtml(cat.description || '')}</p><span class="meta">Ver categoría</span>`; row.appendChild(content);
     c.appendChild(row);
   });
   updateParallax();
@@ -8546,9 +8703,9 @@ function renderTop3Covers() {
   if (sec) sec.style.display = 'block';
 
   const rankMeta = [
-    { rank: '01', label: 'Nº 01', cls: 'rank-1' },
-    { rank: '02', label: 'Nº 02', cls: 'rank-2' },
-    { rank: '03', label: 'Nº 03', cls: 'rank-3' }
+    { rank: '1', label: 'TOP 1', cls: 'rank-1' },
+    { rank: '2', label: 'TOP 2', cls: 'rank-2' },
+    { rank: '3', label: 'TOP 3', cls: 'rank-3' }
   ];
 
   top3.forEach((item, idx) => {
@@ -8564,8 +8721,13 @@ function renderTop3Covers() {
     const hasVid = !!((c.youtubeUrl && getYouTubeId(c.youtubeUrl)) || c.videoUrl);
 
     card.innerHTML = `
-      <div class="top3-rank-stamp ${m.cls}">
-        <span class="top3-rank-title">${m.label}</span>
+      <div class="top3-exclusive-badge ${m.cls}">
+        <svg class="exclusive-medal-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="10" cy="10" r="8" fill="url(#goldGradientShared)" stroke="#FFF2B2" stroke-width="1"/>
+          <circle cx="10" cy="10" r="5.8" fill="none" stroke="#684E06" stroke-width="0.75" stroke-dasharray="1.5 1.5"/>
+          <path d="M10 5.8 L11.3 8.4 L14.1 8.8 L12.1 10.8 L12.6 13.6 L10 12.2 L7.4 13.6 L7.9 10.8 L5.9 8.8 L8.7 8.4 Z" fill="#FFFBE6"/>
+        </svg>
+        <span class="exclusive-badge-text">${m.label}</span>
       </div>
       <div class="top3-card-img-wrap">
         <img src="${resolveImageUrl(c.url)}" alt="Portada de ${escHtml(c.name || 'obra')} por ${escHtml(c.artist || 'Grobdesigns')}" onerror="handleImgError(this)" draggable="false">
@@ -8578,10 +8740,7 @@ function renderTop3Covers() {
       </div>
       <div class="top3-card-body">
         <div class="top3-card-meta-row">
-          <span class="top3-pill-date">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
-            ${escHtml(releaseText)}
-          </span>
+          <span class="top3-pill-date">${escHtml(releaseText)}</span>
           ${item.totalPlays > 0 ? `
             <span class="top3-pill-plays">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02z"/></svg>
@@ -8793,8 +8952,8 @@ function renderCategoryDetail(id) {
     let bgU = p.parallaxImage || ''; if (!bgU && p.images && p.images.length) bgU = p.images[0]; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgU ? '' : ' empty'); if (bgU) bg.style.backgroundImage = `url("${resolveImageUrl(bgU)}")`; row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const c = document.createElement('div'); c.className = 'parallax-content';
-    if (p.logo) c.innerHTML = `<span class="num">0${i+1} / 0${projs.length}</span><img class="cat-logo-img" src="${resolveImageUrl(p.logo)}" alt="Logo del proyecto ${escHtml(p.name)}" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><h2 style="display:none">${escHtml(p.name)}</h2><span class="meta">Ver proyecto</span>`;
-    else c.innerHTML = `<span class="num">0${i+1} / 0${projs.length}</span><h2>${escHtml(p.name || 'Sin título')}</h2><span class="meta">Ver proyecto</span>`;
+    if (p.logo) c.innerHTML = `<img class="cat-logo-img" src="${resolveImageUrl(p.logo)}" alt="Logo del proyecto ${escHtml(p.name)}" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><h2 style="display:none">${escHtml(p.name)}</h2><span class="meta">Ver proyecto</span>`;
+    else c.innerHTML = `<h2>${escHtml(p.name || 'Sin título')}</h2><span class="meta">Ver proyecto</span>`;
     row.appendChild(c); cont.appendChild(row);
   });
   updateParallax(); showView('categoria');
