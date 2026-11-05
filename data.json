@@ -17,20 +17,6 @@
       "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793219252724_s1en.jpg",
       "projects": [
         {
-          "id": "k1qom6bbmvro1djf",
-          "name": "Casita negra ",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164836432_8qkx.png",
-          "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164828543_muou.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164830523_nd9v.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164832379_8csy.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164834477_r6eh.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793164836432_8qkx.png"
-          ],
-          "review": ""
-        },
-        {
           "id": "7d0hoprhmvrpr34f",
           "name": "Lotho ",
           "logo": "",
