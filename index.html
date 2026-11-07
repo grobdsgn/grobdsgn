@@ -4873,46 +4873,81 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
 }
 
 
+
 /* ========================================================
-   BILLBOARD / PREMIOS HEAT CHARTS STYLE TOP 3 (Item 1)
+   FIBONACCI HARMONIC SYSTEM (Req 4)
+   Scale: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610
    ======================================================== */
+:root {
+  --fib-1: 1px;
+  --fib-2: 2px;
+  --fib-3: 3px;
+  --fib-5: 5px;
+  --fib-8: 8px;
+  --fib-13: 13px;
+  --fib-21: 21px;
+  --fib-34: 34px;
+  --fib-55: 55px;
+  --fib-89: 89px;
+  --fib-144: 144px;
+  --fib-233: 233px;
+  --fib-377: 377px;
+  --fib-610: 610px;
+
+  /* Fibonacci Typography Scale */
+  --font-fib-micro: 13px;
+  --font-fib-body: 16px;
+  --font-fib-sub: 21px;
+  --font-fib-h3: 34px;
+  --font-fib-h2: 55px;
+  --font-fib-h1: clamp(48px, 6vw, 89px);
+}
+
+/* Fibonacci Layout Spacing across the Web */
+.wrap {
+  padding-left: clamp(var(--fib-13), 3vw, var(--fib-34));
+  padding-right: clamp(var(--fib-13), 3vw, var(--fib-34));
+}
+section {
+  padding-top: clamp(var(--fib-34), 6vw, var(--fib-89));
+  padding-bottom: clamp(var(--fib-34), 6vw, var(--fib-89));
+}
+.section-head {
+  margin-bottom: var(--fib-34);
+}
+.section-head h2 {
+  font-size: clamp(var(--fib-21), 4vw, var(--fib-55));
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.section-head p {
+  margin-top: var(--fib-13);
+  font-size: var(--font-fib-body);
+  line-height: 26px; /* Golden ratio: 16 * 1.618 */
+  max-width: var(--fib-610);
+}
+
+/* TOP 3 BILLBOARD (Req 1 & 2): Single prominent TOP 1 / TOP 2 / TOP 3 badge */
+.top3-chart-badge {
+  display: none !important;
+}
 .covers-top3-section {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 50px;
-  padding: 0 clamp(20px, 4vw, 48px);
+  max-width: 1380px;
+  margin: 0 auto var(--fib-55);
+  padding: 0 clamp(var(--fib-13), 3vw, var(--fib-34));
 }
 .covers-top3-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: var(--fib-34);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-}
-.top3-chart-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.1);
-}
-.top3-badge-flame {
-  font-size: 0.95rem;
-}
-.top3-badge-text {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #F5D77F;
+  gap: var(--fib-13);
 }
 .top3-chart-title {
   font-family: var(--font-title);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(var(--fib-34), 5vw, var(--fib-55));
   font-weight: 800;
   color: #FFFFFF;
   margin: 0;
@@ -4920,31 +4955,32 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   line-height: 1.15;
 }
 .top3-chart-subtitle {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: var(--font-fib-body);
   font-weight: 400;
-  max-width: 600px;
+  max-width: var(--fib-610);
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 26px;
 }
 .covers-top3-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 10px;
+  gap: var(--fib-34);
+  margin-top: var(--fib-13);
 }
 @media (max-width: 900px) {
   .covers-top3-grid {
     grid-template-columns: 1fr;
     max-width: 480px;
-    margin: 10px auto 0;
+    margin: var(--fib-13) auto 0;
+    gap: var(--fib-21);
   }
 }
 .billboard-top-card {
   position: relative;
   background: #0E0E12;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border-radius: var(--fib-21);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -4954,11 +4990,11 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
 .billboard-top-card:hover {
   transform: translateY(-6px);
   border-color: rgba(212, 175, 55, 0.45);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 var(--fib-21) var(--fib-55) -15px rgba(0, 0, 0, 0.8), 0 0 var(--fib-34) rgba(212, 175, 55, 0.15);
 }
 .billboard-top-card.rank-1 {
   border-color: rgba(212, 175, 55, 0.35);
-  box-shadow: 0 16px 36px -12px rgba(212, 175, 55, 0.12);
+  box-shadow: 0 var(--fib-13) var(--fib-34) -10px rgba(212, 175, 55, 0.15);
 }
 .billboard-card-artwork {
   position: relative;
@@ -4977,55 +5013,48 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
 .billboard-top-card:hover .billboard-card-artwork img {
   transform: scale(1.04);
 }
+/* SINGLE PROMINENT TOP 1 / TOP 2 / TOP 3 BADGE (Req 1) */
 .billboard-chart-rank {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: var(--fib-13);
+  left: var(--fib-13);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 8px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(10, 10, 14, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  justify-content: center;
+  padding: 6px var(--fib-13);
+  border-radius: var(--fib-8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 10, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   z-index: 3;
 }
 .billboard-chart-rank.rank-1 {
-  border-color: rgba(212, 175, 55, 0.6);
-  background: rgba(18, 15, 6, 0.85);
+  border-color: rgba(212, 175, 55, 0.7);
+  background: rgba(18, 15, 6, 0.9);
+  box-shadow: 0 4px var(--fib-13) rgba(212, 175, 55, 0.25);
 }
-.billboard-chart-rank .rank-num {
+.billboard-chart-rank .rank-title {
   font-family: var(--font-title);
-  font-size: 0.92rem;
+  font-size: var(--font-fib-micro);
   font-weight: 900;
+  letter-spacing: 0.12em;
   color: #FFFFFF;
-  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
-.billboard-chart-rank.rank-1 .rank-num {
+.billboard-chart-rank.rank-1 .rank-title {
   color: #F5D77F;
 }
-.billboard-chart-rank .rank-tag {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-}
-.billboard-chart-rank.rank-1 .rank-tag {
-  color: #D4AF37;
-}
 .billboard-card-body {
-  padding: 18px 20px 22px;
+  padding: var(--fib-21);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--fib-8);
   flex: 1;
 }
 .billboard-card-title {
   font-family: var(--font-title);
-  font-size: 1.18rem;
+  font-size: var(--font-fib-sub);
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
@@ -5035,187 +5064,126 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   text-overflow: ellipsis;
 }
 .billboard-card-artist {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .billboard-card-meta {
-  margin-top: 8px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: var(--fib-8);
+  padding-top: var(--fib-13);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: var(--font-fib-micro);
   color: rgba(255, 255, 255, 0.65);
 }
 .billboard-meta-year {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
 }
 .billboard-meta-plays {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--fib-5);
   color: #D4AF37;
   font-weight: 600;
 }
 
-/* ========================================================
-   FAQ ACCORDION - MATCHING USER SCREENSHOT (Item 3)
-   ======================================================== */
-.faq-section {
-  width: 100%;
-  max-width: 980px;
-  margin: 80px auto 40px;
-  padding: 0 clamp(16px, 3vw, 32px);
-}
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
-}
-.faq-item {
-  display: flex;
-  flex-direction: column;
-  transition: all 0.25s ease;
-}
-.faq-question-box {
-  background: #141416;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  gap: 16px;
-}
-.faq-question-box:hover {
-  background: #18181c;
-  border-color: rgba(212, 175, 55, 0.35);
-}
-.faq-item.open .faq-question-box {
-  border-color: rgba(212, 175, 55, 0.5);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-.faq-question-title {
-  color: #FFFFFF;
-  font-family: var(--font-title);
-  font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.4;
-  margin: 0;
-  flex: 1;
-}
-.faq-toggle-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888892;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-  flex-shrink: 0;
-}
-.faq-item.open .faq-toggle-arrow {
-  transform: rotate(180deg);
-  color: var(--accent);
-}
-.faq-answer-box {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.25s ease;
-  opacity: 0;
-  background: #EFF3E6;
-  border-radius: 10px;
-  margin-top: 0;
-}
-.faq-item.open .faq-answer-box {
-  max-height: 600px;
-  opacity: 1;
-  margin-top: 8px;
-}
-.faq-answer-inner {
-  padding: 22px 26px;
-  color: #1A1C16;
-  font-size: 0.94rem;
-  line-height: 1.75;
-  font-weight: 400;
-}
-.faq-answer-inner p {
-  margin: 0;
-  color: #1A1C16;
-}
-
-/* ========================================================
-   HIDE ALL SMALL UPPERCASE EYEBROW HEADERS (Item 2)
-   ======================================================== */
-.label,
-.eyebrow,
-.top3-editorial-label,
-.section-head > .label,
-.categoria-intro > .label,
-#txtFaqLabel,
-#txtCliLabel,
-#txtFeaturedLabel,
-#txtPhilLabel,
-#txtToolsLabel,
-#catLabelNum,
-#projCatLabel,
-#txtCovEyebrow,
-#txtHeroEyebrow {
+/* AGENDA DISPONIBLE (Req 3): Pure typography, uppercase, no golden container, larger than text below */
+.repeated-cta-badge {
   display: none !important;
 }
+.repeated-cta-agenda-title {
+  font-family: var(--font-title);
+  font-size: clamp(var(--fib-34), 5.5vw, var(--fib-55));
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  margin: 0 0 var(--fib-13) 0;
+  line-height: 1.1;
+  text-align: center;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.repeated-cta-title {
+  font-size: clamp(var(--fib-21), 3vw, var(--fib-34));
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 auto var(--fib-21) auto;
+  max-width: var(--fib-610);
+  line-height: 1.38;
+  text-align: center;
+}
+.repeated-cta-desc {
+  font-size: var(--font-fib-body);
+  line-height: 26px;
+  color: var(--muted);
+  max-width: var(--fib-610);
+  margin: 0 auto var(--fib-34) auto;
+  text-align: center;
+}
 
-/* ========================================================
-   PARALLAX NO-GAP BLEED & SEAMLESS FIT (Item 4)
-   ======================================================== */
-.parallax-row {
-  position: relative;
-  height: 36vh !important;
-  min-height: 240px !important;
-  max-height: 360px !important;
-  width: 100%;
-  overflow: hidden;
+/* COVERS & PORTFOLIO GRID: Fibonacci gaps */
+.covers-grid {
   display: grid;
-  place-items: center;
-  cursor: pointer;
-  isolation: isolate;
-  background: #000;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: var(--fib-21) !important;
+  margin-top: var(--fib-34);
+}
+@media (max-width: 900px) {
+  .covers-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--fib-13) !important;
+  }
+}
+.cover-item {
+  border-radius: var(--fib-13);
+  overflow: hidden;
+}
+
+/* FAQ: Fibonacci spacing & harmonic layout */
+.faq-section {
+  margin-top: var(--fib-89) !important;
+  margin-bottom: var(--fib-55) !important;
+}
+.faq-list {
+  gap: var(--fib-13);
+}
+.faq-question-box {
+  padding: var(--fib-13) var(--fib-21);
+  border-radius: var(--fib-13);
+}
+.faq-answer-inner {
+  padding: var(--fib-21) var(--fib-34);
+  font-size: var(--font-fib-body);
+  line-height: 26px;
+}
+
+/* PARALLAX: Fibonacci heights & clean stack */
+.parallax-row {
+  height: 38vh !important;
+  min-height: var(--fib-233) !important;
+  max-height: var(--fib-377) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin: 0;
-  padding: 0;
 }
-.parallax-bg {
-  position: absolute;
-  top: -80px !important;
-  bottom: -80px !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  height: calc(100% + 160px) !important;
-  background-size: cover !important;
-  background-position: center;
-  z-index: 0;
-  filter: brightness(0.55) saturate(1.1);
-  background-color: #111;
-  will-change: transform;
-  transition: filter 0.3s ease; /* REMOVED transform transition to eliminate scroll lag */
+.parallax-content {
+  padding: var(--fib-21) var(--fib-34);
+  max-width: var(--fib-610);
 }
-#catRows, #catProjRows {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  background: #000;
+.parallax-content h2 {
+  font-size: clamp(var(--fib-34), 4.5vw, var(--fib-55));
+  margin-bottom: var(--fib-8);
+}
+.parallax-content .desc {
+  font-size: var(--font-fib-body);
+  margin-bottom: var(--fib-13);
 }
 
 </style>
@@ -5382,10 +5350,6 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
         <!-- TOP 3 BILLBOARD / PREMIOS HEAT CHARTS SECTION -->
         <div class="covers-top3-section" id="coversTop3Section">
           <div class="covers-top3-header">
-            <div class="top3-chart-badge">
-              <span class="top3-badge-flame">🔥</span>
-              <span class="top3-badge-text">TOP 3 LANZAMIENTOS</span>
-            </div>
             <h2 class="top3-chart-title">Últimos Covers Más Destacados</h2>
             <p class="top3-chart-subtitle">Rankeados por fecha de lanzamiento y mayor cantidad de reproducciones acumuladas.</p>
           </div>
@@ -5686,10 +5650,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   <section class="repeated-cta-section reveal-on-scroll" id="repeatedCta">
     <div class="repeated-cta-glow"></div>
     <div class="repeated-cta-card">
-      <div class="repeated-cta-badge" data-i18n="cta_badge">
-        <span class="cta-status-pulse"></span>
-        <span class="cta-badge-text">AGENDA DISPONIBLE · NUEVOS PROYECTOS 2026</span>
-      </div>
+      <div class="repeated-cta-agenda-title">AGENDA DISPONIBLE</div>
       <h2 class="repeated-cta-title" data-i18n="cta_title">Transformemos tu visión en un diseño icónico</h2>
       <p class="repeated-cta-desc" data-i18n="cta_desc">Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.</p>
       <div class="repeated-cta-actions">
@@ -6831,11 +6792,26 @@ function getEmbedUrl(url) {
   return null;
 }
 function getDirectImageUrl(url) {
-  if (!url || !isSafeUrl(url)) return '';
+  if (!url || typeof url !== 'string' || !isSafeUrl(url)) return '';
   url = url.trim();
-  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-  if (driveMatch && driveMatch[1]) return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
-  if (url.includes('dropbox.com')) return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '').replace('&dl=0', '');
+
+  // 1. High-Performance jsDelivr CDN for GitHub Raw (Eliminates 429 Too Many Requests)
+  if (url.includes('raw.githubusercontent.com/')) {
+    url = url.replace('https://raw.githubusercontent.com/', 'https://cdn.jsdelivr.net/gh/');
+    url = url.replace(/(\/gh\/[^\/]+\/[^\/]+)\/(main|master)\//, '$1@$2/');
+  }
+
+  // 2. High-Res Google Drive Direct / Thumbnail (Eliminates 403 Forbidden)
+  const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return 'https://drive.google.com/thumbnail?id=' + driveMatch[1] + '&sz=w1200';
+  }
+
+  // 3. Dropbox Direct Link
+  if (url.includes('dropbox.com')) {
+    return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace(/[?&]dl=0/, '');
+  }
+
   return url;
 }
 function resolveImageUrl(url) { return getDirectImageUrl(url); }
@@ -10720,7 +10696,7 @@ boot();
 </div>
 
 <script>
-// RE-IMPLEMENTED BILLBOARD / HEAT TOP 3 COVERS (Item 1)
+// RE-IMPLEMENTED BILLBOARD / HEAT TOP 3 COVERS (Req 1: Single TOP 1 / TOP 2 / TOP 3 badge)
 function renderTop3Covers() {
   const container = document.getElementById('coversTop3Grid');
   const sec = document.getElementById('coversTop3Section');
@@ -10735,14 +10711,14 @@ function renderTop3Covers() {
   if (sec) sec.style.display = 'block';
 
   const rankMeta = [
-    { num: '01', tag: 'CHART #1', cls: 'rank-1' },
-    { num: '02', tag: '#2', cls: 'rank-2' },
-    { num: '03', tag: '#3', cls: 'rank-3' }
+    { label: 'TOP 1', cls: 'rank-1' },
+    { label: 'TOP 2', cls: 'rank-2' },
+    { label: 'TOP 3', cls: 'rank-3' }
   ];
 
   top3.forEach((item, idx) => {
     const c = item.cover;
-    const m = rankMeta[idx] || { num: '0' + (idx + 1), tag: '#' + (idx + 1), cls: 'rank-other' };
+    const m = rankMeta[idx] || { label: 'TOP ' + (idx + 1), cls: 'rank-other' };
     const playsFormatted = formatNumber(item.totalPlays);
     const releaseYear = item.year || c.year || '2025';
 
@@ -10755,10 +10731,9 @@ function renderTop3Covers() {
     card.innerHTML = 
       '<div class="billboard-card-artwork">' +
         '<div class="billboard-chart-rank ' + m.cls + '">' +
-          '<span class="rank-num">' + m.num + '</span>' +
-          '<span class="rank-tag">' + m.tag + '</span>' +
+          '<span class="rank-title">' + m.label + '</span>' +
         '</div>' +
-        '<img src="' + resolveImageUrl(c.url) + '" alt="' + escHtml(c.name || 'Cover') + ' - ' + escHtml(c.artist || '') + '" onerror="handleImgError(this)" draggable="false">' +
+        '<img src="' + resolveImageUrl(c.url) + '" loading="lazy" decoding="async" alt="' + escHtml(c.name || 'Cover') + ' - ' + escHtml(c.artist || '') + '" onerror="handleImgError(this)" draggable="false">' +
         (hasVid ? 
           '<button type="button" class="top3-video-badge" title="Reproducir Video" onclick="event.stopPropagation(); window.openVideoPlayer(&quot;' + (c.youtubeUrl || c.videoUrl) + '&quot;, &quot;' + escHtml(c.name) + '&quot;);" style="position:absolute;bottom:12px;right:12px;z-index:4;background:rgba(0,0,0,0.75);border:1px solid rgba(255,255,255,0.2);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer">' +
             '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
@@ -10780,7 +10755,7 @@ function renderTop3Covers() {
   });
 }
 
-// RE-IMPLEMENTED FAQ ACCORDION (Item 3)
+// RE-IMPLEMENTED FAQ ACCORDION (Req 3)
 function renderPublicFaq() {
   const list = document.getElementById('publicFaqList');
   const section = document.getElementById('faqSection');
@@ -10810,7 +10785,7 @@ function renderPublicFaq() {
   });
 }
 
-// RE-IMPLEMENTED UPDATE PARALLAX (Item 4)
+// RE-IMPLEMENTED UPDATE PARALLAX (Req 4: Seamless scroll, zero gap)
 function updateParallax() {
   const rows = document.querySelectorAll('.parallax-bg');
   const winHeight = window.innerHeight;
@@ -10826,7 +10801,6 @@ function updateParallax() {
       const rowCenter = rect.top + rect.height / 2;
       const distFromCenter = rowCenter - winCenter;
       
-      // With 80px bleed on each side, clamping shift to 45px guarantees at least 35px bleed remains outside!
       const maxShift = 45;
       const shift = Math.max(-maxShift, Math.min(maxShift, distFromCenter * -0.08));
       bg.style.transform = 'translate3d(0, ' + shift.toFixed(1) + 'px, 0)';
@@ -10834,6 +10808,15 @@ function updateParallax() {
   });
   ticking = false;
 }
+
+// IMAGE ERROR HANDLER (Req 5: Silent, elegant fallback, no console spam)
+window.handleImgError = function(img) {
+  if (!img) return;
+  img.onerror = null;
+  img.classList.add('img-error');
+  // Fallback to minimal dark SVG icon
+  img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23111316"/><text x="50%" y="50%" fill="%23444" font-family="sans-serif" font-size="14" text-anchor="middle" dominant-baseline="middle">Grobdesigns</text></svg>';
+};
 </script>
 </body>
 </html>
