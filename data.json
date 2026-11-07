@@ -350,7 +350,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212086531_207n.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212088184_mmp1.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212090020_qfgo.jpg",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212098618_r6r1.jpg"
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212098618_r6r1.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794063771620_21mz.jpg"
           ],
           "review": ""
         },
@@ -3867,5 +3868,31 @@
   ],
   "music": {
     "url": ""
-  }
+  },
+  "faq": [
+    {
+      "question": "¿En qué consisten sus servicios de diseño para artistas?",
+      "answer": "Somos un equipo de profesionales apasionados por la música y el diseño gráfico, aquí ponemos a disposición nuestros conocimientos y servicios para impulsar tus campañas de lanzamiento de tu música, trabajamos desde piezas gráficas individuales como portadas, visuales para show y paquetes de campañas profesionales muy completas."
+    },
+    {
+      "question": "¿Todos sus servicios los manejan por internet?",
+      "answer": "Sí, Grobdesigns se ha caracterizado por trabajar digitalmente, aquí la comunicación con el cliente, entregas de proyectos y propuestas se realizan por los diferentes canales digitales, ya sea vía WhatsApp, correo electrónico, Google Meet, etc. Hasta el momento no hemos tenido inconvenientes con nuestra forma de trabajar y entregar proyectos."
+    },
+    {
+      "question": "¿Qué archivos recibiré de mi proyecto final?",
+      "answer": "Entregamos archivos de alta calidad en cada proyecto, ya sean para la web o para impresión, todos los archivos serán compatibles con todos los programas de impresión y de edición de ser necesarios. Ten presente que NO se entregan archivos editables en todos los proyectos, sólo en los que son netamente necesarios."
+    },
+    {
+      "question": "¿Qué tipos de portadas me ofrecen para mi canción?",
+      "answer": "Para tu canción existen 3 tipos de portadas, la conceptual, la ilustrada y con fotografía, la principal diferencia de cada una de ellas radica en la forma en que se abordan los elementos visuales que representan la esencia de la canción y por supuesto del presupuesto con el que cuentes, ya que cada una de ellas tienen un valor y trabajo diferente."
+    },
+    {
+      "question": "¿Precio del logo?",
+      "answer": "En Grobdesigns, no desarrollamos solo un logo, trabajamos la identidad de tu marca, pues cuando creas una identidad, estás aplicando los valores y posicionamiento de tu marca a cualquier elemento visual que se utilizará para promocionar tu negocio, esto significa que una identidad de marca es más que un simple logotipo, y consiste en una variedad de elementos."
+    },
+    {
+      "question": "¿No tengo identidad visual de mi marca, ustedes pueden ayudarme con eso?",
+      "answer": "Claro que sí, somos expertos en plasmar la identidad visual de tu marca, crear tu logotipo, y darle una visión a tu imagen, pues una identidad visual sólida es fundamental para construir una marca fuerte, coherente y memorable, capaz de conectar con su audiencia y diferenciarse en el mercado."
+    }
+  ]
 }
