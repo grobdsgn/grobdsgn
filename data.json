@@ -67,7 +67,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793375534079_2wlq.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793375548741_d85p.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793375550524_0rb1.jpg"
-          ]
+          ],
+          "parallaxPosition": "center 44%"
         }
       ],
       "parallaxPosition": "center 27%"
