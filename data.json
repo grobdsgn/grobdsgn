@@ -1000,7 +1000,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793168741704_0i6u.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793207884367_bpk4.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 25%"
         },
         {
           "id": "zxofw7vimvrqnyh6",
