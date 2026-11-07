@@ -434,7 +434,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213158786_3209.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213160824_tyve.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 20%"
         },
         {
           "id": "dqvwks7smvsgtnjy",
