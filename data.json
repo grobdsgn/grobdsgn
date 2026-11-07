@@ -1119,7 +1119,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210547198_s6er.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793210569744_yo2u.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 12%"
         },
         {
           "id": "8nnz41jxmvsgjtzx",
