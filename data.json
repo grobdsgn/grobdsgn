@@ -1133,7 +1133,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209182986_es12.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793209184897_4385.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 35%"
         },
         {
           "id": "tpir1ocamvsf8kbq",
