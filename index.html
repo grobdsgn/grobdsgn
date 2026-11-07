@@ -5186,6 +5186,259 @@ section {
   margin-bottom: var(--fib-13);
 }
 
+
+/* ========================================================
+   IMMERSIVE AMBIENT BACKDROP (Point 1)
+   Extracts and projects blurred ambient colors from projects & covers
+   ======================================================== */
+.ambient-backdrop {
+  position: fixed;
+  inset: -60px;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+.ambient-backdrop.active {
+  opacity: 1;
+}
+.ambient-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(85px) saturate(2.2) brightness(0.38);
+  transform: scale(1.35);
+  opacity: 0.85;
+}
+.ambient-backdrop-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 25%, rgba(0, 0, 0, 0.05) 0%, rgba(8, 8, 10, 0.75) 60%, #08080A 100%);
+}
+[data-view="coverDetalle"],
+[data-view="proyecto"] {
+  position: relative;
+  min-height: 100vh;
+  background: #08080A !important;
+  overflow: hidden;
+}
+.cover-detail-page,
+.proyecto-header,
+#projImagesGrid {
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================================================
+   FAQ NO WHITE BACKGROUND (Point 3)
+   Clean dark styling matching site aesthetic
+   ======================================================== */
+.faq-answer-box {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin-top: -4px;
+}
+.faq-item.open .faq-answer-box {
+  max-height: 600px;
+  opacity: 1;
+}
+.faq-answer-inner {
+  padding: 21px 26px 26px;
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.faq-answer-inner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+/* ========================================================
+   TOP 3 COVERS: ZERO GAP + HOVER/TOUCH OVERLAY (Point 4)
+   ======================================================== */
+.covers-top3-section {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto var(--fib-55);
+  padding: 0 clamp(var(--fib-13), 3vw, var(--fib-34));
+}
+.covers-top3-header {
+  text-align: center;
+  margin-bottom: var(--fib-34);
+}
+.covers-top3-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0 !important; /* ZERO GAP between covers */
+  border-radius: var(--fib-21) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: #0A0A0C !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8) !important;
+  margin-top: var(--fib-13);
+}
+@media (max-width: 900px) {
+  .covers-top3-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 440px !important;
+    margin: var(--fib-13) auto 0 !important;
+  }
+}
+.billboard-top-card {
+  position: relative !important;
+  background: #0E0E12 !important;
+  border: none !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  aspect-ratio: 1 / 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  touch-action: manipulation;
+}
+.billboard-top-card:last-child {
+  border-right: none !important;
+}
+@media (max-width: 900px) {
+  .billboard-top-card {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .billboard-top-card:last-child {
+    border-bottom: none !important;
+  }
+}
+.billboard-card-artwork {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #141418 !important;
+  overflow: hidden !important;
+}
+.billboard-card-artwork img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease !important;
+}
+.billboard-top-card:hover .billboard-card-artwork img,
+.billboard-top-card.show-info .billboard-card-artwork img {
+  transform: scale(1.06) !important;
+  filter: brightness(1.05) !important;
+}
+/* BADGE TOP 1 / TOP 2 / TOP 3 */
+.billboard-chart-rank {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px var(--fib-13);
+  border-radius: var(--fib-8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 10, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  z-index: 4;
+}
+.billboard-chart-rank.rank-1 {
+  border-color: rgba(212, 175, 55, 0.7);
+  background: rgba(18, 15, 6, 0.9);
+  box-shadow: 0 4px var(--fib-13) rgba(212, 175, 55, 0.25);
+}
+.billboard-chart-rank .rank-title {
+  font-family: var(--font-title);
+  font-size: var(--font-fib-micro);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+.billboard-chart-rank.rank-1 .rank-title {
+  color: #F5D77F;
+}
+
+/* COMPACT OVERLAY: Hidden by default, revealed on hover or touch */
+.billboard-card-body {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5 !important;
+  padding: 34px 21px 21px !important;
+  background: linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.8) 60%, transparent 100%) !important;
+  opacity: 0 !important;
+  transform: translateY(14px) !important;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+.billboard-top-card:hover .billboard-card-body,
+.billboard-top-card:active .billboard-card-body,
+.billboard-top-card.show-info .billboard-card-body {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+.billboard-card-title {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.billboard-card-artist {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.billboard-card-meta {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.billboard-meta-year {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+.billboard-meta-plays {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #F5D77F;
+  font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -5335,6 +5588,10 @@ section {
     </div>
 
     <div class="view" data-view="proyecto">
+      <div class="ambient-backdrop" id="projAmbientBackdrop">
+        <img id="projAmbientImg" src="" alt="" draggable="false">
+        <div class="ambient-backdrop-gradient"></div>
+      </div>
       <div class="proyecto-header">
         <button id="volverCategoria" class="back-btn">← Volver a la categoría</button>
         <div class="proyecto-cat-label" id="projCatLabel" style="display:none"></div>
@@ -5377,6 +5634,10 @@ section {
     </div>
 
     <div class="view" data-view="coverDetalle">
+      <div class="ambient-backdrop" id="coverAmbientBackdrop">
+        <img id="coverAmbientImg" src="" alt="" draggable="false">
+        <div class="ambient-backdrop-gradient"></div>
+      </div>
       <section class="cover-detail-page">
         <div class="cover-hero">
           <div class="cover-hero-image"><img id="coverHeroImg" src="" alt="" data-zoom=""></div>
@@ -6795,23 +7056,18 @@ function getDirectImageUrl(url) {
   if (!url || typeof url !== 'string' || !isSafeUrl(url)) return '';
   url = url.trim();
 
-  // 1. High-Performance jsDelivr CDN for GitHub Raw (Eliminates 429 Too Many Requests)
-  if (url.includes('raw.githubusercontent.com/')) {
-    url = url.replace('https://raw.githubusercontent.com/', 'https://cdn.jsdelivr.net/gh/');
-    url = url.replace(/(\/gh\/[^\/]+\/[^\/]+)\/(main|master)\//, '$1@$2/');
-  }
-
-  // 2. High-Res Google Drive Direct / Thumbnail (Eliminates 403 Forbidden)
+  // Google Drive Direct Thumbnail Link (Eliminates 403 Forbidden)
   const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
   if (driveMatch && driveMatch[1]) {
     return 'https://drive.google.com/thumbnail?id=' + driveMatch[1] + '&sz=w1200';
   }
 
-  // 3. Dropbox Direct Link
+  // Dropbox Direct Link
   if (url.includes('dropbox.com')) {
     return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace(/[?&]dl=0/, '');
   }
 
+  // Direct fast cached loading
   return url;
 }
 function resolveImageUrl(url) { return getDirectImageUrl(url); }
@@ -10696,7 +10952,7 @@ boot();
 </div>
 
 <script>
-// RE-IMPLEMENTED BILLBOARD / HEAT TOP 3 COVERS (Req 1: Single TOP 1 / TOP 2 / TOP 3 badge)
+// RE-IMPLEMENTED BILLBOARD / HEAT TOP 3 COVERS (Point 4: Zero gap, hover/touch overlay, fast loading)
 function renderTop3Covers() {
   const container = document.getElementById('coversTop3Grid');
   const sec = document.getElementById('coversTop3Section');
@@ -10724,7 +10980,27 @@ function renderTop3Covers() {
 
     const card = document.createElement('div');
     card.className = 'billboard-top-card ' + m.cls;
-    card.onclick = () => location.hash = '#cover-' + c.id;
+    
+    // Support touch press to show info on mobile, and click to open cover
+    let touchMoved = false;
+    card.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+    card.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
+    card.addEventListener('touchend', (e) => {
+      if (touchMoved) return;
+      if (!card.classList.contains('show-info')) {
+        e.preventDefault();
+        document.querySelectorAll('.billboard-top-card').forEach(tc => tc.classList.remove('show-info'));
+        card.classList.add('show-info');
+      } else {
+        location.hash = '#cover-' + c.id;
+      }
+    });
+
+    card.onclick = (e) => {
+      // Desktop click opens directly
+      if (e.pointerType === 'touch') return;
+      location.hash = '#cover-' + c.id;
+    };
 
     const hasVid = !!((c.youtubeUrl && getYouTubeId(c.youtubeUrl)) || c.videoUrl);
 
@@ -10733,9 +11009,9 @@ function renderTop3Covers() {
         '<div class="billboard-chart-rank ' + m.cls + '">' +
           '<span class="rank-title">' + m.label + '</span>' +
         '</div>' +
-        '<img src="' + resolveImageUrl(c.url) + '" loading="lazy" decoding="async" alt="' + escHtml(c.name || 'Cover') + ' - ' + escHtml(c.artist || '') + '" onerror="handleImgError(this)" draggable="false">' +
+        '<img src="' + resolveImageUrl(c.url) + '" decoding="async" alt="' + escHtml(c.name || 'Cover') + ' - ' + escHtml(c.artist || '') + '" onerror="handleImgError(this)" draggable="false">' +
         (hasVid ? 
-          '<button type="button" class="top3-video-badge" title="Reproducir Video" onclick="event.stopPropagation(); window.openVideoPlayer(&quot;' + (c.youtubeUrl || c.videoUrl) + '&quot;, &quot;' + escHtml(c.name) + '&quot;);" style="position:absolute;bottom:12px;right:12px;z-index:4;background:rgba(0,0,0,0.75);border:1px solid rgba(255,255,255,0.2);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer">' +
+          '<button type="button" class="top3-video-badge" title="Reproducir Video" onclick="event.stopPropagation(); window.openVideoPlayer(&quot;' + (c.youtubeUrl || c.videoUrl) + '&quot;, &quot;' + escHtml(c.name) + '&quot;);" style="position:absolute;top:14px;right:14px;z-index:6;background:rgba(0,0,0,0.75);border:1px solid rgba(255,255,255,0.2);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer">' +
             '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
           '</button>' : '') +
       '</div>' +
@@ -10755,7 +11031,7 @@ function renderTop3Covers() {
   });
 }
 
-// RE-IMPLEMENTED FAQ ACCORDION (Req 3)
+// RE-IMPLEMENTED FAQ ACCORDION (Point 3: No white background)
 function renderPublicFaq() {
   const list = document.getElementById('publicFaqList');
   const section = document.getElementById('faqSection');
@@ -10785,7 +11061,7 @@ function renderPublicFaq() {
   });
 }
 
-// RE-IMPLEMENTED UPDATE PARALLAX (Req 4: Seamless scroll, zero gap)
+// RE-IMPLEMENTED UPDATE PARALLAX
 function updateParallax() {
   const rows = document.querySelectorAll('.parallax-bg');
   const winHeight = window.innerHeight;
@@ -10809,12 +11085,11 @@ function updateParallax() {
   ticking = false;
 }
 
-// IMAGE ERROR HANDLER (Req 5: Silent, elegant fallback, no console spam)
+// IMAGE ERROR HANDLER
 window.handleImgError = function(img) {
   if (!img) return;
   img.onerror = null;
   img.classList.add('img-error');
-  // Fallback to minimal dark SVG icon
   img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23111316"/><text x="50%" y="50%" fill="%23444" font-family="sans-serif" font-size="14" text-anchor="middle" dominant-baseline="middle">Grobdesigns</text></svg>';
 };
 </script>
