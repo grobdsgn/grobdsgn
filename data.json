@@ -628,7 +628,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213595380_dw84.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793213597260_vzbt.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 55%"
         },
         {
           "id": "2bvuofzlmvse048e",
