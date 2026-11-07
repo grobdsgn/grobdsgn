@@ -3790,17 +3790,17 @@
       "id": "04495rohmw6lmma5",
       "url": "https://cdn-images.dzcdn.net/images/cover/568ee9b752ee4366385f2aff61c355ec/0x1900-000000-80-0-0.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "No Me Dejes Solo",
+      "artist": "Gustavo Elis",
+      "year": "2018",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/track/69oLDIFCCLWHObEIo8wOVX?si=563576689e2d44c0",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 9406192,
         "youtube": 0,
         "apple": 0
       }
