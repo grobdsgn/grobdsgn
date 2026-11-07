@@ -482,7 +482,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214099053_5237.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793214100936_74nr.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 4%"
         },
         {
           "id": "oemnyo3vmvzxvkku",
