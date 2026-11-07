@@ -4769,6 +4769,455 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
   }
 }
 
+
+
+/* HIDE ALL SMALL UPPERCASE EYEBROW HEADERS (Requirement 2) */
+.label,
+.top3-editorial-label,
+.eyebrow,
+#txtFaqLabel,
+#txtCliLabel,
+#txtFeaturedLabel,
+#txtPhilLabel,
+#txtToolsLabel,
+#catLabelNum,
+#txtCovEyebrow,
+#projCatLabel,
+.section-head > .label {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+
+
+/* ULTRA-MODERN MINIMALIST AGENDA BADGE (Requirement 3) */
+.repeated-cta-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-family: var(--font-title) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.24em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #ECECEE !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  padding: 8px 22px !important;
+  border-radius: 999px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+.repeated-cta-badge:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  color: #FFFFFF !important;
+}
+.cta-status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #D4AF37;
+  box-shadow: 0 0 8px #D4AF37, 0 0 16px rgba(212, 175, 55, 0.5);
+  display: inline-block;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+
+
+/* SEAMLESS PARALLAX NO-GAP FIX (Requirement 4) */
+.parallax-row {
+  position: relative;
+  height: 38vh !important;
+  min-height: 250px !important;
+  max-height: 380px !important;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  isolation: isolate;
+  background: #0A0A0A;
+  margin: 0 !important;
+  border: none !important;
+}
+.parallax-bg {
+  position: absolute;
+  top: -65px !important;
+  bottom: -65px !important;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100% + 130px) !important;
+  background-size: cover;
+  background-position: center center;
+  z-index: 0;
+  filter: brightness(0.55) saturate(1.1);
+  background-color: #111;
+  will-change: transform;
+  transition: filter 0.4s ease;
+}
+.parallax-row:hover .parallax-bg {
+  filter: brightness(0.7) saturate(1.2);
+}
+
+
+/* ========================================================
+   BILLBOARD / PREMIOS HEAT CHARTS STYLE TOP 3 (Item 1)
+   ======================================================== */
+.covers-top3-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 50px;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.covers-top3-header {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.top3-chart-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.1);
+}
+.top3-badge-flame {
+  font-size: 0.95rem;
+}
+.top3-badge-text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5D77F;
+}
+.top3-chart-title {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.top3-chart-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.covers-top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 10px;
+}
+@media (max-width: 900px) {
+  .covers-top3-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 10px auto 0;
+  }
+}
+.billboard-top-card {
+  position: relative;
+  background: #0E0E12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+.billboard-top-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.15);
+}
+.billboard-top-card.rank-1 {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 16px 36px -12px rgba(212, 175, 55, 0.12);
+}
+.billboard-card-artwork {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #141418;
+  overflow: hidden;
+}
+.billboard-card-artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.billboard-top-card:hover .billboard-card-artwork img {
+  transform: scale(1.04);
+}
+.billboard-chart-rank {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 10, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  z-index: 3;
+}
+.billboard-chart-rank.rank-1 {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(18, 15, 6, 0.85);
+}
+.billboard-chart-rank .rank-num {
+  font-family: var(--font-title);
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+}
+.billboard-chart-rank.rank-1 .rank-num {
+  color: #F5D77F;
+}
+.billboard-chart-rank .rank-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.billboard-chart-rank.rank-1 .rank-tag {
+  color: #D4AF37;
+}
+.billboard-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.billboard-card-title {
+  font-family: var(--font-title);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.billboard-card-artist {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.billboard-card-meta {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+.billboard-meta-year {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+}
+.billboard-meta-plays {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+/* ========================================================
+   FAQ ACCORDION - MATCHING USER SCREENSHOT (Item 3)
+   ======================================================== */
+.faq-section {
+  width: 100%;
+  max-width: 980px;
+  margin: 80px auto 40px;
+  padding: 0 clamp(16px, 3vw, 32px);
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+.faq-question-box {
+  background: #141416;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  gap: 16px;
+}
+.faq-question-box:hover {
+  background: #18181c;
+  border-color: rgba(212, 175, 55, 0.35);
+}
+.faq-item.open .faq-question-box {
+  border-color: rgba(212, 175, 55, 0.5);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.faq-question-title {
+  color: #FFFFFF;
+  font-family: var(--font-title);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+.faq-toggle-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888892;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-toggle-arrow {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+.faq-answer-box {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.25s ease;
+  opacity: 0;
+  background: #EFF3E6;
+  border-radius: 10px;
+  margin-top: 0;
+}
+.faq-item.open .faq-answer-box {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 8px;
+}
+.faq-answer-inner {
+  padding: 22px 26px;
+  color: #1A1C16;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  font-weight: 400;
+}
+.faq-answer-inner p {
+  margin: 0;
+  color: #1A1C16;
+}
+
+/* ========================================================
+   HIDE ALL SMALL UPPERCASE EYEBROW HEADERS (Item 2)
+   ======================================================== */
+.label,
+.eyebrow,
+.top3-editorial-label,
+.section-head > .label,
+.categoria-intro > .label,
+#txtFaqLabel,
+#txtCliLabel,
+#txtFeaturedLabel,
+#txtPhilLabel,
+#txtToolsLabel,
+#catLabelNum,
+#projCatLabel,
+#txtCovEyebrow,
+#txtHeroEyebrow {
+  display: none !important;
+}
+
+/* ========================================================
+   PARALLAX NO-GAP BLEED & SEAMLESS FIT (Item 4)
+   ======================================================== */
+.parallax-row {
+  position: relative;
+  height: 36vh !important;
+  min-height: 240px !important;
+  max-height: 360px !important;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  isolation: isolate;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0;
+  padding: 0;
+}
+.parallax-bg {
+  position: absolute;
+  top: -80px !important;
+  bottom: -80px !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: calc(100% + 160px) !important;
+  background-size: cover !important;
+  background-position: center;
+  z-index: 0;
+  filter: brightness(0.55) saturate(1.1);
+  background-color: #111;
+  will-change: transform;
+  transition: filter 0.3s ease; /* REMOVED transform transition to eliminate scroll lag */
+}
+#catRows, #catProjRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
 </style>
 </head>
 <body>
@@ -4860,7 +5309,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
       <div class="marquee"><div class="marquee-inner" id="marquee"></div></div>
       <section class="featured-section" id="homeFeaturedSection" style="display:none">
         <div class="wrap"><div class="section-head" style="margin-bottom:16px">
-          <div class="label" id="txtFeaturedLabel">— Destacados</div>
+          <div class="label" id="txtFeaturedLabel" style="display:none"></div>
           <div><h2 id="txtFeaturedTitle">Proyectos <em>seleccionados</em>.</h2></div>
         </div></div>
         <div class="billboard-scroll"><div class="billboard-inner" id="featuredCoversTrack"></div></div>
@@ -4883,7 +5332,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
         <div class="wrap">
           <div class="phil-grid">
             <div>
-              <div class="label" id="txtPhilLabel" style="color:#8A8A8A;margin-bottom:16px;display:block">— Filosofía</div>
+              <div class="label" id="txtPhilLabel" style="display:none"></div>
               <h2 id="txtPhilTitle">Diseño con <em>intención</em>.</h2>
               <p id="txtPhilDesc">Estudio de diseño desde Caracas para toda Latinoamérica. Trabajamos portadas musicales, identidad visual, branding corporativo y dirección de arte — con la misma obsesión por el detalle para un artista independiente que para una empresa.</p>
             </div>
@@ -4897,7 +5346,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
       <section class="software-section" id="softwareSection" style="display:none">
         <div class="wrap">
           <div class="section-head">
-            <div class="label" id="txtToolsLabel">— Herramientas</div>
+            <div class="label" id="txtToolsLabel" style="display:none">— Herramientas</div>
             <div><h2 id="txtToolsTitle">Con las que <em>trabajo</em>.</h2><p id="txtToolsDesc">Los programas y herramientas que uso cada día.</p></div>
           </div>
           <div class="software-grid" id="publicSoftwareGrid"></div>
@@ -4910,7 +5359,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
     <div class="view" data-view="categoria">
       <div class="categoria-intro">
         <button id="volverPortafolio" style="display:inline-flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);padding:10px 0;margin-bottom:24px">← Volver a Portafolio</button>
-        <span class="label" id="catLabelNum">— Categoría</span>
+        <span class="label" id="catLabelNum" style="display:none">— Categoría</span>
         <h2 id="catNombre"></h2>
         <p id="catDescripcion"></p>
       </div>
@@ -4918,12 +5367,9 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
     </div>
 
     <div class="view" data-view="proyecto">
-      <div class="ambient-blur-backdrop" id="projAmbientBackdrop">
-        <img class="ambient-blur-img" id="projAmbientImg" src="" alt="" aria-hidden="true">
-      </div>
       <div class="proyecto-header">
         <button id="volverCategoria" class="back-btn">← Volver a la categoría</button>
-        <div class="proyecto-cat-label" id="projCatLabel"></div>
+        <div class="proyecto-cat-label" id="projCatLabel" style="display:none"></div>
         <img class="proyecto-logo" id="projLogo" style="display:none" alt="">
         <h1 class="proyecto-title" id="projNombre"></h1>
         <p id="projReview" style="color:var(--muted); margin-top:20px; max-width:800px; margin-inline:auto; font-size:1.05rem; line-height:1.6; font-weight:300;"></p>
@@ -4933,9 +5379,22 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
 
     <div class="view" data-view="covers">
       <section class="covers-view">
-        <div class="covers-intro">
-          <p class="eyebrow" id="txtCovEyebrow">— Covers</p>
-          <h1 id="txtCovTitle">Muro de Covers</h1>
+        <!-- TOP 3 BILLBOARD / PREMIOS HEAT CHARTS SECTION -->
+        <div class="covers-top3-section" id="coversTop3Section">
+          <div class="covers-top3-header">
+            <div class="top3-chart-badge">
+              <span class="top3-badge-flame">🔥</span>
+              <span class="top3-badge-text">TOP 3 LANZAMIENTOS</span>
+            </div>
+            <h2 class="top3-chart-title">Últimos Covers Más Destacados</h2>
+            <p class="top3-chart-subtitle">Rankeados por fecha de lanzamiento y mayor cantidad de reproducciones acumuladas.</p>
+          </div>
+          <div class="covers-top3-grid" id="coversTop3Grid"></div>
+        </div>
+
+        <div class="covers-intro" style="margin-top:56px">
+          <p class="eyebrow" id="txtCovEyebrow" style="display:none">— Covers</p>
+          <h1 id="txtCovTitle">Muro de <em>Covers</em></h1>
           <p id="txtCovDesc">Portadas, artwork y ediciones para artistas de toda Latinoamérica.</p>
         </div>
         <div class="covers-toolbar">
@@ -4949,30 +5408,11 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
           <button class="covers-filter-btn" data-filter="albums">Álbumes <span class="count" id="countAlbums">0</span></button>
           <button class="covers-filter-btn" data-filter="ediciones">Ediciones <span class="count" id="countEdiciones">0</span></button>
         </div>
-
-        <!-- TOP 3 DESTACADOS (Requirement 1) -->
-        <div class="covers-top3-section" id="coversTop3Section">
-          <div class="covers-top3-editorial-header" id="coversTop3EditorialHeader">
-            <div class="top3-editorial-label">
-              <span class="top3-indicator-dot"></span>
-              <span id="txtTop3Category">LANZAMIENTOS DESTACADOS</span>
-            </div>
-            <h2 class="top3-editorial-title" id="txtTop3Title">TOP 3 DE ÚLTIMOS LANZAMIENTOS MÁS DESTACADOS</h2>
-          </div>
-          <div class="covers-top3-grid" id="coversTop3Grid"></div>
-        </div>
-
-        <div class="covers-all-header" id="coversAllHeader">
-          <h3 class="covers-all-title" id="txtAllCoversTitle">Todos los Covers</h3>
-        </div>
         <div class="covers-grid" id="coversGrid"></div>
       </section>
     </div>
 
     <div class="view" data-view="coverDetalle">
-      <div class="ambient-blur-backdrop" id="coverAmbientBackdrop">
-        <img class="ambient-blur-img" id="coverAmbientImg" src="" alt="" aria-hidden="true">
-      </div>
       <section class="cover-detail-page">
         <div class="cover-hero">
           <div class="cover-hero-image"><img id="coverHeroImg" src="" alt="" data-zoom=""></div>
@@ -4980,15 +5420,13 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
             <div class="cover-hero-badge" id="coverHeroBadge">SENCILLO</div>
             <h1 class="cover-hero-title" id="coverHeroTitle">Sin título</h1>
             <div class="cover-hero-artist" id="coverHeroArtist"></div>
-            <div class="cover-hero-release" id="coverHeroRelease" style="display:none;"></div>
             <div class="cover-hero-plays" id="coverHeroPlays" style="display:none;"></div>
             <div class="cover-hero-music" id="coverHeroMusic"></div>
           </div>
         </div>
         <div class="cover-extra-section hidden" id="coverExtraSection">
           <div class="cover-extra-block" id="coverResenaBlock">
-            <div class="cover-extra-label" id="coverResenaLabel">Descripción & Lanzamiento</div>
-            <div class="cover-release-info-pill" id="coverReleaseInfoPill" style="display:none;"></div>
+            <div class="cover-extra-label">Reseña</div>
             <p class="cover-extra-resena" id="coverHeroResena"></p>
           </div>
           <div class="cover-extra-block" style="margin-bottom:16px" id="coverGaleriaLabel">
@@ -5003,24 +5441,20 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
       <section class="clientes-view">
         <div class="wrap">
           <div class="section-head">
-            <div class="label" id="txtCliLabel">— Clientes</div>
+            <div class="label" id="txtCliLabel" style="display:none">— Clientes</div>
             <div><h2 id="txtCliTitle">Confían en <em>Grobdesigns</em>.</h2><p id="txtCliDesc">Marcas, artistas, sellos y empresas de toda Latinoamérica.</p></div>
           </div>
           <div class="clientes-grid" id="publicClientesGrid"></div>
-        </div>
-      </section>
 
-      <!-- SECCION DE PREGUNTAS FRECUENTES (Requirement 4) -->
-      <section class="faq-section" id="faqSection">
-        <div class="wrap">
-          <div class="section-head">
-            <div class="label" id="txtFaqLabel">— Preguntas Frecuentes</div>
-            <div>
-              <h2 id="txtFaqTitle">Preguntas <em>Frecuentes</em></h2>
-              <p id="txtFaqDesc">Resolvemos tus dudas más comunes sobre servicios, metodología y entregas.</p>
+          <!-- FAQ ACCORDION SECTION DIRECTLY UNDER CLIENTS -->
+          <div class="faq-section" id="faqSection" style="margin-top:80px">
+            <div class="section-head" style="text-align:center;margin-bottom:32px">
+              <div class="label" id="txtFaqLabel" style="display:none">— Preguntas Frecuentes</div>
+              <h2 id="txtFaqTitle" style="font-size:2.2rem;font-weight:700">Preguntas <em>Frecuentes</em></h2>
+              <p id="txtFaqDesc" style="color:var(--muted);max-width:560px;margin:12px auto 0">Resolvemos tus dudas más comunes sobre servicios, metodología y entregas.</p>
             </div>
+            <div class="faq-list" id="publicFaqList"></div>
           </div>
-          <div class="faq-list" id="publicFaqList"></div>
         </div>
       </section>
     </div>
@@ -5253,8 +5687,8 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
     <div class="repeated-cta-glow"></div>
     <div class="repeated-cta-card">
       <div class="repeated-cta-badge" data-i18n="cta_badge">
-        <span class="cta-status-dot"></span>
-        <span class="cta-badge-text">Agenda abierta · Proyectos 2026</span>
+        <span class="cta-status-pulse"></span>
+        <span class="cta-badge-text">AGENDA DISPONIBLE · NUEVOS PROYECTOS 2026</span>
       </div>
       <h2 class="repeated-cta-title" data-i18n="cta_title">Transformemos tu visión en un diseño icónico</h2>
       <p class="repeated-cta-desc" data-i18n="cta_desc">Estudio boutique especializado en portadas discográficas, identidad visual de alto impacto y dirección de arte para artistas y marcas.</p>
@@ -5388,7 +5822,7 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
         <div class="a-nav-item" data-target="texts"><span class="a-nav-label">Textos Generales</span></div>
         <div class="a-nav-item" data-target="ficha"><span class="a-nav-label">Ficha Técnica</span></div>
         <div class="a-nav-item" data-target="contact"><span class="a-nav-label">Contacto</span></div>
-<div class="a-nav-item" data-target="faq"><span class="a-nav-label">FAQ</span><span class="a-nav-badge" id="aBadgeFaq">0</span></div>
+<div class="a-nav-item" data-target="faq"><span class="a-nav-label">Preguntas Frecuentes</span><span class="a-nav-badge" id="aBadgeFaq">0</span></div>
         <div class="a-nav-item" data-target="theme"><span class="a-nav-icon">🎨</span><span class="a-nav-label">Apariencia & API</span></div>
       </div>
       <div class="a-sidebar-footer">
@@ -5698,19 +6132,22 @@ button:active, .btn:active, .btn-apple:active, .btn-apple-outline:active, .btn-p
         </div>
 
         
-        <div class="a-panel" id="a-panel-faq">
+                <div class="a-panel" id="a-panel-faq">
           <div class="a-hero">
             <div class="a-hero-text">
-              <h2>Preguntas Frecuentes</h2>
-              <p>Edita, agrega o elimina las preguntas frecuentes que se muestran debajo de los logos de clientes.</p>
+              <h2>Preguntas Frecuentes (FAQ)</h2>
+              <p>Edita, agrega o elimina las preguntas y respuestas frecuentes que aparecen en la web.</p>
             </div>
           </div>
           <div class="a-card">
             <div class="a-card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-              <h2 class="a-card-title">Preguntas Frecuentes (<span id="aFaqCounter">0</span>)</h2>
-              <button class="a-btn a-btn-accent a-btn-sm" type="button" onclick="window.addFaq()">+ Nueva Pregunta</button>
+              <h2 class="a-card-title">Listado de Preguntas (<span id="aFaqCounter">0</span>)</h2>
+              <div style="display:flex;gap:10px">
+                <button class="a-btn a-btn-accent a-btn-sm" type="button" onclick="window.addFaq()">+ Nueva Pregunta</button>
+                <button class="a-btn a-btn-primary a-btn-sm" type="button" onclick="window.saveFaqManual()">💾 Guardar Cambios</button>
+              </div>
             </div>
-            <div class="a-card-body" id="aFaqListContainer" style="display:flex;flex-direction:column;gap:14px;padding:20px"></div>
+            <div class="a-card-body" id="aFaqListContainer" style="display:flex;flex-direction:column;gap:16px;padding:20px"></div>
           </div>
         </div>
 
@@ -6841,8 +7278,27 @@ let _coversOrder = null, _currentFilter = 'todos', _currentSearch = '', _prevRou
 
 let ticking = false;
 function updateParallax() {
-  const rows = document.querySelectorAll('.parallax-bg'); const winHeight = window.innerHeight;
-  rows.forEach(bg => { const row = bg.parentElement; if (!row) return; const rect = row.getBoundingClientRect(); if (rect.top < winHeight && rect.bottom > 0) bg.style.transform = `translate3d(0, ${rect.top * 0.18}px, 0)`; });
+  const rows = document.querySelectorAll('.parallax-bg');
+  const winHeight = window.innerHeight;
+  const winCenter = winHeight / 2;
+  
+  rows.forEach(bg => {
+    const row = bg.parentElement;
+    if (!row) return;
+    const rect = row.getBoundingClientRect();
+    
+    // Only animate when visible on screen
+    if (rect.top < winHeight && rect.bottom > 0) {
+      const rowCenter = rect.top + rect.height / 2;
+      const distFromCenter = rowCenter - winCenter;
+      
+      // With 65px top and bottom bleed, max safe translation is 50px.
+      // Clamping ensures the image edge NEVER pulls inside the container.
+      const maxShift = 48;
+      const shift = Math.max(-maxShift, Math.min(maxShift, distFromCenter * -0.09));
+      bg.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
+    }
+  });
   ticking = false;
 }
 window.addEventListener('scroll', () => { const nav = document.getElementById('nav'); if (nav) nav.classList.toggle('scrolled', window.scrollY > 50); if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } });
@@ -8011,26 +8467,26 @@ window.setAppLanguage = function(lang) {
 
   // 5. Section Headers
   const featLabel = document.getElementById('txtFeaturedLabel');
-  if (featLabel) featLabel.textContent = t.featured_label;
+  if (featLabel) featLabel.style.display = "none";
   const featTitle = document.getElementById('txtFeaturedTitle');
   if (featTitle) featTitle.textContent = t.featured_title;
 
   const philLabel = document.getElementById('txtPhilLabel');
-  if (philLabel) philLabel.textContent = t.phil_label;
+  if (philLabel) philLabel.style.display = "none";
   const philTitle = document.getElementById('txtPhilTitle');
   if (philTitle) philTitle.innerHTML = t.phil_title;
   const philDesc = document.getElementById('txtPhilDesc');
   if (philDesc) philDesc.textContent = t.phil_desc;
 
   const toolsLabel = document.getElementById('txtToolsLabel');
-  if (toolsLabel) toolsLabel.textContent = t.tools_label;
+  if (toolsLabel) toolsLabel.style.display = "none";
   const toolsTitle = document.getElementById('txtToolsTitle');
   if (toolsTitle) toolsTitle.innerHTML = t.tools_title;
   const toolsDesc = document.getElementById('txtToolsDesc');
   if (toolsDesc) toolsDesc.textContent = t.tools_desc;
 
   const cliLabel = document.getElementById('txtCliLabel');
-  if (cliLabel) cliLabel.textContent = t.cli_label;
+  if (cliLabel) cliLabel.style.display = "none";
   const cliTitle = document.getElementById('txtCliTitle');
   if (cliTitle) cliTitle.innerHTML = t.cli_title;
   const cliDesc = document.getElementById('txtCliDesc');
@@ -8062,7 +8518,7 @@ window.setAppLanguage = function(lang) {
 
   // 6. Covers Section
   const covEyebrow = document.getElementById('txtCovEyebrow');
-  if (covEyebrow) covEyebrow.textContent = t.cov_eyebrow;
+  if (covEyebrow) covEyebrow.style.display = "none";
   const covTitle = document.getElementById('txtCovTitle');
   if (covTitle) covTitle.innerHTML = t.cov_title;
   const covDesc = document.getElementById('txtCovDesc');
@@ -8095,7 +8551,7 @@ window.setAppLanguage = function(lang) {
 
   // FAQ section localization
   const faqLabel = document.getElementById('txtFaqLabel');
-  if (faqLabel && t.faq_label) faqLabel.textContent = t.faq_label;
+  if (faqLabel) faqLabel.style.display = "none";
   const faqTitle = document.getElementById('txtFaqTitle');
   if (faqTitle && t.faq_title) faqTitle.innerHTML = t.faq_title;
   const faqDesc = document.getElementById('txtFaqDesc');
@@ -8911,7 +9367,7 @@ function renderPortfolioCategories() {
   const c = $('#catRows'); if (!c) return; c.innerHTML = '';
   (DATA.categories || []).forEach((cat, i) => {
     const row = document.createElement('div'); row.className = 'parallax-row'; row.onclick = () => location.hash = `#categoria-${cat.id || i}`;
-    const bgUrl = cat.parallaxImage || ''; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty'); if (bgUrl) bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`; row.appendChild(bg);
+    const bgUrl = cat.parallaxImage || ''; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgUrl ? '' : ' empty'); if (bgUrl) { bg.style.backgroundImage = `url("${resolveImageUrl(bgUrl)}")`; if (cat.parallaxPosition) bg.style.backgroundPosition = cat.parallaxPosition; } row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const content = document.createElement('div'); content.className = 'parallax-content'; content.innerHTML = `<h2>${escHtml(cat.name || '')}</h2><p class="desc">${escHtml(cat.description || '')}</p><span class="meta">Ver categoría</span>`; row.appendChild(content);
     c.appendChild(row);
@@ -9272,7 +9728,7 @@ function renderCategoryDetail(id) {
   if (projs.length === 0) { cont.innerHTML = '<p style="text-align:center;padding:80px 20px;color:var(--muted);">Aún no hay proyectos.</p>'; showView('categoria'); return; }
   projs.forEach((p, i) => {
     const row = document.createElement('div'); row.className = 'parallax-row'; row.onclick = () => location.hash = `#proyecto-${p.id}`;
-    let bgU = p.parallaxImage || ''; if (!bgU && p.images && p.images.length) bgU = p.images[0]; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgU ? '' : ' empty'); if (bgU) bg.style.backgroundImage = `url("${resolveImageUrl(bgU)}")`; row.appendChild(bg);
+    let bgU = p.parallaxImage || ''; if (!bgU && p.images && p.images.length) bgU = p.images[0]; const bg = document.createElement('div'); bg.className = 'parallax-bg' + (bgU ? '' : ' empty'); if (bgU) { bg.style.backgroundImage = `url("${resolveImageUrl(bgU)}")`; if (p.parallaxPosition) bg.style.backgroundPosition = p.parallaxPosition; } row.appendChild(bg);
     const ov = document.createElement('div'); ov.className = 'parallax-overlay'; row.appendChild(ov);
     const c = document.createElement('div'); c.className = 'parallax-content';
     if (p.logo) c.innerHTML = `<img class="cat-logo-img" src="${resolveImageUrl(p.logo)}" alt="Logo del proyecto ${escHtml(p.name)}" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><h2 style="display:none">${escHtml(p.name)}</h2><span class="meta">Ver proyecto</span>`;
@@ -9673,12 +10129,131 @@ function renderAdminCategoriesPage(cont) {
   cont.innerHTML = `<div class="a-hero"><div class="a-hero-text"><h2>Portafolio</h2><p>Categorías y proyectos.</p><div class="a-hero-stats"><div class="a-stat">Categorías: <strong>${cats.length}</strong></div><div class="a-stat">Proyectos: <strong>${cats.reduce((s,c) => s + (c.projects||[]).length, 0)}</strong></div></div></div></div><div class="admin-page-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><div><h2>Categorías</h2></div><button class="a-btn a-btn-primary" onclick="createNewCategory()">+ Nueva Categoría</button></div><div class="cat-cards-grid">${html}</div>`;
 }
 
+
+// ==========================================================================
+// VISUAL PARALLAX FOCAL AREA SELECTOR (Requirement 5)
+// ==========================================================================
+function renderParallaxFocalSelector(type, id1, id2, imgUrl, currentPos, titleText) {
+  if (!imgUrl) return '';
+  
+  // Extract Y percentage from currentPos (e.g. 'center 35%' -> 35, or default 50)
+  let posY = 50;
+  if (currentPos) {
+    const m = String(currentPos).match(/(\d+)%/);
+    if (m) posY = parseInt(m[1], 10);
+  }
+  
+  const widgetId = `pxFocal_${type}_${id1}_${id2 || '0'}`;
+  // The frame height is approx 38% of image height to represent the 38vh window
+  const frameHeight = 36;
+  const frameTop = Math.max(0, Math.min(100 - frameHeight, posY - (frameHeight / 2)));
+
+  return `
+    <div class="parallax-focal-selector" id="${widgetId}" style="margin-top:16px;background:var(--a-surface);border:1px solid var(--a-border);border-radius:12px;padding:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <label class="a-form-label" style="margin:0;font-weight:700;font-size:0.85rem">
+          🎯 Área que se muestra en Parallax (Haz clic o arrastra)
+        </label>
+        <span class="a-badge" id="lblFocal_${widgetId}" style="background:var(--a-accent);color:#000;font-weight:800;font-size:0.75rem">${posY}%</span>
+      </div>
+      
+      <!-- Interactive canvas with framing box -->
+      <div class="focal-canvas-wrap" id="canvasWrap_${widgetId}" style="position:relative;width:100%;max-width:520px;margin:0 auto;background:#050505;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);user-select:none;cursor:crosshair" onclick="window.onFocalCanvasClick(event, '${type}', '${id1}', '${id2 || ''}')">
+        <img src="${resolveImageUrl(imgUrl)}" style="width:100%;display:block;opacity:0.85;pointer-events:none" draggable="false" onerror="handleImgError(this)">
+        <div class="focal-frame-box" id="frameBox_${widgetId}" style="position:absolute;left:0;right:0;top:${frameTop}%;height:${frameHeight}%;border:2px dashed #D4AF37;background:rgba(212,175,55,0.15);box-shadow:0 0 0 9999px rgba(0,0,0,0.55);pointer-events:none;transition:top 0.12s cubic-bezier(0.16,1,0.3,1)">
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,10,14,0.9);border:1px solid #D4AF37;color:#FFF;padding:2px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:0.06em;white-space:nowrap">
+            ÁREA VISIBLE
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick position presets & slider -->
+      <div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+        <span style="font-size:0.75rem;color:var(--a-muted)">Ajuste fino:</span>
+        <input type="range" min="0" max="100" value="${posY}" class="a-form-range" style="flex:1;min-width:140px" oninput="window.setParallaxFocal('${type}', '${id1}', '${id2 || ''}', this.value)">
+        <div style="display:flex;gap:4px">
+          <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="window.setParallaxFocal('${type}', '${id1}', '${id2 || ''}', 15)">Arriba</button>
+          <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="window.setParallaxFocal('${type}', '${id1}', '${id2 || ''}', 50)">Centro</button>
+          <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="window.setParallaxFocal('${type}', '${id1}', '${id2 || ''}', 85)">Abajo</button>
+        </div>
+      </div>
+
+      <!-- Live Window Preview -->
+      <div style="margin-top:14px">
+        <div style="font-size:0.72rem;color:var(--a-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">
+          Vista previa exacta de la ventana:
+        </div>
+        <div style="position:relative;height:110px;border-radius:8px;overflow:hidden;border:1px solid rgba(212,175,55,0.45);background:#000">
+          <div id="livePrev_${widgetId}" style="position:absolute;inset:0;background-image:url('${resolveImageUrl(imgUrl)}');background-size:cover;background-position:center ${posY}%;filter:brightness(0.65) saturate(1.1)"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2)">
+            <span style="font-family:var(--font-title);font-size:15px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.85);text-transform:uppercase">${escHtml(titleText || '')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+window.onFocalCanvasClick = function(e, type, id1, id2) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const y = e.clientY - rect.top;
+  const pct = Math.max(0, Math.min(100, Math.round((y / rect.height) * 100)));
+  window.setParallaxFocal(type, id1, id2, pct);
+};
+
+window.setParallaxFocal = function(type, id1, id2, val) {
+  val = parseInt(val, 10);
+  if (isNaN(val)) val = 50;
+  val = Math.max(0, Math.min(100, val));
+  
+  const posStr = `center ${val}%`;
+  const widgetId = `pxFocal_${type}_${id1}_${id2 || '0'}`;
+  
+  // Update badge and slider
+  const lbl = document.getElementById(`lblFocal_${widgetId}`);
+  if (lbl) lbl.textContent = `${val}%`;
+  
+  // Update framing box position
+  const frameHeight = 36;
+  const frameTop = Math.max(0, Math.min(100 - frameHeight, val - (frameHeight / 2)));
+  const box = document.getElementById(`frameBox_${widgetId}`);
+  if (box) box.style.top = `${frameTop}%`;
+
+  // Update live preview window
+  const prev = document.getElementById(`livePrev_${widgetId}`);
+  if (prev) prev.style.backgroundPosition = posStr;
+
+  // Persist into data model
+  if (type === 'category') {
+    const idx = parseInt(id1, 10);
+    if (DATA.categories && DATA.categories[idx]) {
+      DATA.categories[idx].parallaxPosition = posStr;
+      renderPortfolioCategories();
+    }
+  } else if (type === 'project') {
+    const ci = parseInt(id1, 10);
+    const pi = parseInt(id2, 10);
+    if (DATA.categories && DATA.categories[ci]?.projects?.[pi]) {
+      DATA.categories[ci].projects[pi].parallaxPosition = posStr;
+    }
+  }
+
+  // Debounced save
+  if (window._focalSaveTimeout) clearTimeout(window._focalSaveTimeout);
+  window._focalSaveTimeout = setTimeout(() => saveAdminData(), 600);
+};
+
 function renderAdminCategoryPage(cont) {
   const idx = (DATA.categories || []).findIndex(c => c.id === ADMIN_NAV.catId); if (idx < 0) { ADMIN_NAV.view = 'categories'; return renderAdminPortfolio(); }
   const cat = DATA.categories[idx]; const projs = cat.projects || []; let html = '';
   if (!projs.length) html = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🎨</div><h3>Sin proyectos</h3><button class="a-btn a-btn-primary" onclick="addProjectToCategory('${cat.id}')">+ Crear proyecto</button></div>`;
   else html = projs.map(p => { const ic = (p.images || []).length; const cv = p.parallaxImage || (p.images && p.images[0]) || ''; const im = cv ? `<img class="project-card-img" src="${resolveImageUrl(cv)}" onerror="handleImgError(this)" draggable="false">` : `<div class="project-card-img empty">🎨</div>`; const lg = p.logo ? `<img class="project-card-logo" src="${resolveImageUrl(p.logo)}" onerror="this.style.display='none'" draggable="false">` : ''; return `<div class="project-card" onclick="openProject('${p.id}')">${im}${lg}<div class="project-card-body"><div class="project-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="project-card-meta">📸 ${ic}</div></div></div>`; }).join('');
-  cont.innerHTML = `<button class="admin-back-btn" onclick="goBackToCategories()">← Volver</button><div class="admin-page-header"><h2>${escHtml(cat.name)}</h2></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📁</span>Configuración</h2></div><div class="a-card-body"><div class="a-form-group"><label class="a-form-label">Nombre</label><input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${idx}, 'name', this.value)"></div><div class="a-form-group"><label class="a-form-label">Descripción</label><textarea class="a-form-textarea" rows="2" oninput="updateCatField(${idx}, 'description', this.value)">${escHtml(cat.description || '')}</textarea></div><div class="a-form-group"><label class="a-form-label">🌟 Imagen Parallax</label><div class="upload-zone compact" id="catPxZone_${idx}"><div class="upload-zone-text">Subir</div><input type="file" id="catPxInput_${idx}" accept="image/*" hidden></div><input type="text" class="a-form-input" style="margin-top:8px" value="${escHtml(cat.parallaxImage || '')}" onchange="updateCatField(${idx}, 'parallaxImage', this.value)"></div><div style="display:flex;justify-content:flex-end"><button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${idx})">🗑️ Eliminar categoría</button></div></div></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title">Proyectos</h2><button class="a-btn a-btn-primary a-btn-sm" onclick="addProjectToCategory('${cat.id}')">+ Nuevo</button></div><div class="a-card-body"><div class="project-cards-grid">${html}</div></div></div>`;
+  cont.innerHTML = `<button class="admin-back-btn" onclick="goBackToCategories()">← Volver</button><div class="admin-page-header"><h2>${escHtml(cat.name)}</h2></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📁</span>Configuración</h2></div><div class="a-card-body"><div class="a-form-group"><label class="a-form-label">Nombre</label><input type="text" class="a-form-input" value="${escHtml(cat.name || '')}" oninput="updateCatField(${idx}, 'name', this.value)"></div><div class="a-form-group"><label class="a-form-label">Descripción</label><textarea class="a-form-textarea" rows="2" oninput="updateCatField(${idx}, 'description', this.value)">${escHtml(cat.description || '')}</textarea></div><div class="a-form-group">
+  <label class="a-form-label">🌟 Imagen Parallax</label>
+  <div class="upload-zone compact" id="catPxZone_${idx}"><div class="upload-zone-text">Subir</div><input type="file" id="catPxInput_${idx}" accept="image/*" hidden></div>
+  <input type="text" class="a-form-input" style="margin-top:8px" value="${escHtml(cat.parallaxImage || '')}" onchange="updateCatField(${idx}, 'parallaxImage', this.value); renderAdminPortfolio();">
+  ${cat.parallaxImage ? renderParallaxFocalSelector('category', idx, '', cat.parallaxImage, cat.parallaxPosition, cat.name) : ''}
+</div><div style="display:flex;justify-content:flex-end"><button class="a-btn a-btn-danger a-btn-sm" onclick="delCategory(${idx})">🗑️ Eliminar categoría</button></div></div></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title">Proyectos</h2><button class="a-btn a-btn-primary a-btn-sm" onclick="addProjectToCategory('${cat.id}')">+ Nuevo</button></div><div class="a-card-body"><div class="project-cards-grid">${html}</div></div></div>`;
   setupUploadZone(`catPxZone_${idx}`, `catPxInput_${idx}`, (urls) => { if (urls[0]) { DATA.categories[idx].parallaxImage = urls[0]; renderAdminPortfolio(); saveAdminData(); } });
 }
 
@@ -9688,7 +10263,8 @@ function renderAdminProjectPage(cont) {
   const p = cat.projects[pi]; const key = `${ci}_${pi}`; let ih = '';
   (p.images || []).forEach((url, i) => { const isPx = p.parallaxImage === url; ih += `<div class="project-image-item${isPx ? ' parallax-selected' : ''}" onclick="toggleProjectParallax(${ci}, ${pi}, ${i})"><img src="${resolveImageUrl(url)}" onerror="handleImgError(this)" draggable="false"><button class="project-image-del" onclick="event.stopPropagation(); delProjectImage(${ci}, ${pi}, ${i})">✕</button></div>`; });
   if (!(p.images || []).length) ih = '<p style="color:var(--a-muted);font-size:12px;padding:20px;text-align:center;grid-column:1/-1">Sin imágenes.</p>';
-  cont.innerHTML = `<button class="admin-back-btn" onclick="goBackToCategory()">← Volver</button><div class="admin-page-header"><h2>${escHtml(p.name)}</h2></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">✏️</span>Datos</h2></div><div class="a-card-body"><div class="a-form-group"><label class="a-form-label">Nombre</label><input type="text" class="a-form-input" value="${escHtml(p.name || '')}" oninput="updateProjectField(${ci}, ${pi}, 'name', this.value)"></div><div class="a-form-group"><label class="a-form-label">Reseña</label><textarea class="a-form-textarea" rows="3" oninput="updateProjectField(${ci}, ${pi}, 'review', this.value)">${escHtml(p.review || '')}</textarea></div><div class="a-form-group"><label class="a-form-label">Logo</label><div class="upload-zone compact" id="projLogoZone_${key}"><div class="upload-zone-text">Subir</div><input type="file" id="projLogoInput_${key}" accept="image/*" hidden></div><input type="text" class="a-form-input" style="margin-top:8px" value="${escHtml(p.logo || '')}" onchange="updateProjectField(${ci}, ${pi}, 'logo', this.value); renderAdminPortfolio()"></div><div style="display:flex;justify-content:flex-end"><button class="a-btn a-btn-danger a-btn-sm" onclick="delProject(${ci}, ${pi})">🗑️ Eliminar</button></div></div></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📸</span>Imágenes</h2></div><div class="a-card-body"><div class="upload-zone" id="projImgsZone_${key}"><div class="upload-zone-text">Arrastra</div><input type="file" id="projImgsInput_${key}" accept="image/*" multiple hidden></div><div class="project-image-grid" id="projGrid_${key}">${ih}</div></div></div>`;
+  cont.innerHTML = `<button class="admin-back-btn" onclick="goBackToCategory()">← Volver</button><div class="admin-page-header"><h2>${escHtml(p.name)}</h2></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">✏️</span>Datos</h2></div><div class="a-card-body"><div class="a-form-group"><label class="a-form-label">Nombre</label><input type="text" class="a-form-input" value="${escHtml(p.name || '')}" oninput="updateProjectField(${ci}, ${pi}, 'name', this.value)"></div><div class="a-form-group"><label class="a-form-label">Reseña</label><textarea class="a-form-textarea" rows="3" oninput="updateProjectField(${ci}, ${pi}, 'review', this.value)">${escHtml(p.review || '')}</textarea></div><div class="a-form-group"><label class="a-form-label">Logo</label><div class="upload-zone compact" id="projLogoZone_${key}"><div class="upload-zone-text">Subir</div><input type="file" id="projLogoInput_${key}" accept="image/*" hidden></div><input type="text" class="a-form-input" style="margin-top:8px" value="${escHtml(p.logo || '')}" onchange="updateProjectField(${ci}, ${pi}, 'logo', this.value); renderAdminPortfolio()"></div>
+${(p.parallaxImage || (p.images && p.images[0])) ? renderParallaxFocalSelector('project', ci, pi, (p.parallaxImage || p.images[0]), p.parallaxPosition, p.name) : ''}<div style="display:flex;justify-content:flex-end"><button class="a-btn a-btn-danger a-btn-sm" onclick="delProject(${ci}, ${pi})">🗑️ Eliminar</button></div></div></div><div class="a-card"><div class="a-card-header"><h2 class="a-card-title"><span class="a-card-title-icon">📸</span>Imágenes</h2></div><div class="a-card-body"><div class="upload-zone" id="projImgsZone_${key}"><div class="upload-zone-text">Arrastra</div><input type="file" id="projImgsInput_${key}" accept="image/*" multiple hidden></div><div class="project-image-grid" id="projGrid_${key}">${ih}</div></div></div>`;
   setupUploadZone(`projLogoZone_${key}`, `projLogoInput_${key}`, (urls) => { if (urls[0]) { DATA.categories[ci].projects[pi].logo = urls[0]; renderAdminPortfolio(); saveAdminData(); } }, 1000, 0.9, 300);
   setupUploadZone(`projImgsZone_${key}`, `projImgsInput_${key}`, (urls) => { if (!DATA.categories[ci].projects[pi].images) DATA.categories[ci].projects[pi].images = []; DATA.categories[ci].projects[pi].images.push(...urls); renderAdminPortfolio(); saveAdminData(); });
 }
@@ -10143,5 +10719,121 @@ boot();
   </div>
 </div>
 
+<script>
+// RE-IMPLEMENTED BILLBOARD / HEAT TOP 3 COVERS (Item 1)
+function renderTop3Covers() {
+  const container = document.getElementById('coversTop3Grid');
+  const sec = document.getElementById('coversTop3Section');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const top3 = getTop3Destacados();
+  if (!top3.length) {
+    if (sec) sec.style.display = 'none';
+    return;
+  }
+  if (sec) sec.style.display = 'block';
+
+  const rankMeta = [
+    { num: '01', tag: 'CHART #1', cls: 'rank-1' },
+    { num: '02', tag: '#2', cls: 'rank-2' },
+    { num: '03', tag: '#3', cls: 'rank-3' }
+  ];
+
+  top3.forEach((item, idx) => {
+    const c = item.cover;
+    const m = rankMeta[idx] || { num: '0' + (idx + 1), tag: '#' + (idx + 1), cls: 'rank-other' };
+    const playsFormatted = formatNumber(item.totalPlays);
+    const releaseYear = item.year || c.year || '2025';
+
+    const card = document.createElement('div');
+    card.className = 'billboard-top-card ' + m.cls;
+    card.onclick = () => location.hash = '#cover-' + c.id;
+
+    const hasVid = !!((c.youtubeUrl && getYouTubeId(c.youtubeUrl)) || c.videoUrl);
+
+    card.innerHTML = 
+      '<div class="billboard-card-artwork">' +
+        '<div class="billboard-chart-rank ' + m.cls + '">' +
+          '<span class="rank-num">' + m.num + '</span>' +
+          '<span class="rank-tag">' + m.tag + '</span>' +
+        '</div>' +
+        '<img src="' + resolveImageUrl(c.url) + '" alt="' + escHtml(c.name || 'Cover') + ' - ' + escHtml(c.artist || '') + '" onerror="handleImgError(this)" draggable="false">' +
+        (hasVid ? 
+          '<button type="button" class="top3-video-badge" title="Reproducir Video" onclick="event.stopPropagation(); window.openVideoPlayer(&quot;' + (c.youtubeUrl || c.videoUrl) + '&quot;, &quot;' + escHtml(c.name) + '&quot;);" style="position:absolute;bottom:12px;right:12px;z-index:4;background:rgba(0,0,0,0.75);border:1px solid rgba(255,255,255,0.2);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
+          '</button>' : '') +
+      '</div>' +
+      '<div class="billboard-card-body">' +
+        '<h3 class="billboard-card-title">' + escHtml(c.name || 'Sin título') + '</h3>' +
+        '<p class="billboard-card-artist">' + escHtml(c.artist || 'Grobdesigns') + '</p>' +
+        '<div class="billboard-card-meta">' +
+          '<span class="billboard-meta-year">' + escHtml(releaseYear) + '</span>' +
+          (item.totalPlays > 0 ? 
+            '<span class="billboard-meta-plays">' +
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' +
+              playsFormatted +
+            '</span>' : '<span>Lanzamiento Oficial</span>') +
+        '</div>' +
+      '</div>';
+    container.appendChild(card);
+  });
+}
+
+// RE-IMPLEMENTED FAQ ACCORDION (Item 3)
+function renderPublicFaq() {
+  const list = document.getElementById('publicFaqList');
+  const section = document.getElementById('faqSection');
+  if (!list || !section) return;
+  list.innerHTML = '';
+  const faqs = DATA.faq || [];
+  if (!faqs.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  faqs.forEach(function(faq) {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = 
+      '<div class="faq-question-box" onclick="this.parentElement.classList.toggle(&quot;open&quot;)">' +
+        '<h3 class="faq-question-title">' + escHtml(faq.question || '') + '</h3>' +
+        '<div class="faq-toggle-arrow">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="6 9 12 15 18 9"></polyline>' +
+          '</svg>' +
+        '</div>' +
+      '</div>' +
+      '<div class="faq-answer-box">' +
+        '<div class="faq-answer-inner">' +
+          '<p>' + escHtml(faq.answer || '') + '</p>' +
+        '</div>' +
+      '</div>';
+    list.appendChild(item);
+  });
+}
+
+// RE-IMPLEMENTED UPDATE PARALLAX (Item 4)
+function updateParallax() {
+  const rows = document.querySelectorAll('.parallax-bg');
+  const winHeight = window.innerHeight;
+  const winCenter = winHeight / 2;
+  
+  rows.forEach(bg => {
+    const row = bg.parentElement;
+    if (!row) return;
+    const rect = row.getBoundingClientRect();
+    
+    // Animate smoothly within viewport
+    if (rect.top < winHeight + 100 && rect.bottom > -100) {
+      const rowCenter = rect.top + rect.height / 2;
+      const distFromCenter = rowCenter - winCenter;
+      
+      // With 80px bleed on each side, clamping shift to 45px guarantees at least 35px bleed remains outside!
+      const maxShift = 45;
+      const shift = Math.max(-maxShift, Math.min(maxShift, distFromCenter * -0.08));
+      bg.style.transform = 'translate3d(0, ' + shift.toFixed(1) + 'px, 0)';
+    }
+  });
+  ticking = false;
+}
+</script>
 </body>
 </html>
