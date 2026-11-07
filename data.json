@@ -541,7 +541,7 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793666221930_3eq5.png",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793666223652_ftxa.jpg"
           ],
-          "parallaxPosition": "center 23%"
+          "parallaxPosition": "center 21%"
         },
         {
           "id": "w2gwirkemvzyw0i0",
@@ -560,7 +560,7 @@
           "name": "pa'que papi",
           "review": "",
           "logo": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793666973486_xkgg.png",
-          "parallaxImage": "",
+          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793667451020_zqku.jpg",
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793666981917_rwm2.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793667039533_aygq.jpg",
