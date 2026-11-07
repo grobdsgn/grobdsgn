@@ -1143,13 +1143,13 @@
           "name": "Los Cotizados Baby Rasta & Gringo",
           "review": "",
           "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239537598_shre.jpg",
+          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239535694_hvon.jpg",
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239535694_hvon.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239537598_shre.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793239539213_19w9.jpg"
           ],
-          "parallaxPosition": "center 6%"
+          "parallaxPosition": "center 4%"
         }
       ],
       "parallaxPosition": "center 37%"
