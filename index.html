@@ -5439,6 +5439,312 @@ section {
   font-weight: 700;
 }
 
+
+/* ========================================================
+   TURN 13 ENHANCEMENTS: COOKIES, PRIVACY, COVER EXTRAS, FOOTER
+   ======================================================== */
+.footer-location {
+  display: none !important;
+}
+.footer-legal-link {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.footer-legal-link:hover {
+  color: var(--accent);
+}
+
+/* Cover Detalle: Eliminación del cuadro negro en imágenes extra */
+.cover-extra-section {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 10px clamp(20px, 5vw, 80px) 80px !important;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+.cover-extra-section.hidden {
+  display: none !important;
+}
+.cover-extra-imgs-wrap {
+  width: 100%;
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+.cover-extra-block {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+#coverGaleriaLabel,
+.cover-extra-label {
+  display: none !important;
+}
+.cover-resena-under-music {
+  margin-top: 24px;
+  width: 100%;
+  max-width: 520px;
+}
+.cover-resena-under-music .cover-extra-resena {
+  font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(245, 243, 239, 0.85);
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Floating Cookie Consent Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  z-index: 99999;
+  max-width: min(92vw, 760px);
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(14, 14, 18, 0.94);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  border-radius: 9999px;
+  padding: 12px 20px 12px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 215, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+.cookie-banner.cookie-banner-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(40px);
+  pointer-events: none;
+}
+.cookie-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.cookie-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.cookie-banner-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.cookie-banner-text {
+  font-size: 0.82rem;
+  color: rgba(245, 243, 239, 0.85);
+  line-height: 1.45;
+}
+.cookie-banner-text a {
+  color: var(--accent);
+  text-decoration: underline;
+  margin-left: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cookie-btn-accept {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+.cookie-btn-accept:hover {
+  background: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+}
+@media (max-width: 768px) {
+  .cookie-banner {
+    border-radius: 20px;
+    padding: 16px;
+    bottom: 16px;
+  }
+  .cookie-banner-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .cookie-btn-accept {
+    width: 100%;
+    text-align: center;
+    padding: 10px 16px;
+  }
+}
+
+/* Privacy Modal */
+.privacy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.privacy-modal.active {
+  display: flex;
+}
+.privacy-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.privacy-modal-card {
+  position: relative;
+  z-index: 2;
+  background: #0D0D11;
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 215, 0, 0.08);
+  max-width: 680px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: privacyFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes privacyFadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.privacy-modal-header {
+  padding: 28px 32px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+.privacy-modal-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.privacy-modal-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.02em;
+}
+.privacy-modal-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+.privacy-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.privacy-modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+.privacy-modal-body {
+  padding: 24px 32px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(245, 243, 239, 0.85);
+}
+.privacy-modal-body h3 {
+  font-size: 1rem;
+  color: #fff;
+  margin: 20px 0 8px;
+  font-weight: 700;
+}
+.privacy-modal-body h3:first-child {
+  margin-top: 0;
+}
+.privacy-modal-body p {
+  margin: 0 0 12px;
+  color: rgba(245, 243, 239, 0.8);
+  text-align: justify;
+}
+.privacy-modal-body ul {
+  margin: 0 0 16px 20px;
+  padding: 0;
+}
+.privacy-modal-body li {
+  margin-bottom: 8px;
+}
+.privacy-modal-body li strong {
+  color: #fff;
+}
+.privacy-modal-footer {
+  padding: 18px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.3);
+}
+.privacy-modal-btn-primary {
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 26px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.privacy-modal-btn-primary:hover {
+  background: #fff;
+  transform: scale(1.02);
+}
+
 </style>
 </head>
 <body>
@@ -5647,16 +5953,14 @@ section {
             <div class="cover-hero-artist" id="coverHeroArtist"></div>
             <div class="cover-hero-plays" id="coverHeroPlays" style="display:none;"></div>
             <div class="cover-hero-music" id="coverHeroMusic"></div>
+            <!-- Reseña ubicada directamente debajo del reproductor de Spotify / Música -->
+            <div class="cover-resena-under-music" id="coverResenaBlock" style="display:none;">
+              <p class="cover-extra-resena" id="coverHeroResena"></p>
+            </div>
           </div>
         </div>
+        <!-- Galería de imágenes extra: Transparente sin cuadro negro, superpuesta al fondo ambiental -->
         <div class="cover-extra-section hidden" id="coverExtraSection">
-          <div class="cover-extra-block" id="coverResenaBlock">
-            <div class="cover-extra-label">Reseña</div>
-            <p class="cover-extra-resena" id="coverHeroResena"></p>
-          </div>
-          <div class="cover-extra-block" style="margin-bottom:16px" id="coverGaleriaLabel">
-            <div class="cover-extra-label">Galería</div>
-          </div>
           <div class="cover-extra-imgs-wrap" id="coverExtraImgs"></div>
         </div>
       </section>
@@ -5923,9 +6227,10 @@ section {
   <footer>
     <div class="wrap">
       <img src="logo.svg" alt="Grobdesigns — Estudio de diseño gráfico" class="footer-logo" onerror="this.style.display='none'">
-      <div class="footer-location">Caracas, Venezuela · Trabajando con toda Latinoamérica</div>
+      
       <div class="footer-inner">
-        <span id="txtFooterLeft">© 2025 Grobdesigns</span>
+        <span id="txtFooterLeft">© 2026 Grobdesigns, Caracas, VENEZUELA</span>
+        <a href="javascript:void(0)" onclick="openPrivacyModal()" class="footer-legal-link">Políticas de Privacidad</a>
         <span id="txtFooterRight">Diseñado con intención</span>
       </div>
     </div>
@@ -6010,6 +6315,82 @@ section {
     </form>
   </div>
 </div>
+
+<!-- ========================================================
+     MODAL DE POLÍTICAS DE PRIVACIDAD Y COOKIES
+     ======================================================== -->
+<div id="privacyModal" class="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+  <div class="privacy-modal-overlay" onclick="closePrivacyModal()"></div>
+  <div class="privacy-modal-card">
+    <div class="privacy-modal-header">
+      <div class="privacy-modal-badge">LEGAL & TRANSPARENCIA</div>
+      <h2 id="privacyModalTitle" class="privacy-modal-title">Políticas de Privacidad & Cookies</h2>
+      <p class="privacy-modal-sub">Grobdesigns · Estudio de Diseño y Dirección de Arte</p>
+      <button class="privacy-modal-close" onclick="closePrivacyModal()" aria-label="Cerrar modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="privacy-modal-body">
+      <section class="privacy-section">
+        <h3>1. Responsable del Tratamiento</h3>
+        <p>Grobdesigns, con base en Caracas, Venezuela y operaciones creativas para toda Latinoamérica, es responsable del tratamiento de los datos suministrados por los clientes y visitantes en este sitio web.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h3>2. Datos Recopilados y Perfil de Cliente</h3>
+        <p>Recopilamos únicamente la información necesaria para gestionar tus proyectos creativos, pedidos y personalización de experiencia:</p>
+        <ul>
+          <li><strong>Autenticación Segura (Google / Firebase):</strong> Nombre público, correo electrónico y fotografía de perfil autorizada. No recopilamos ni almacenamos contraseñas.</li>
+          <li><strong>Tipo de Cliente y Preferencias:</strong> Al registrarte o abrir tu perfil seleccionas tu tipología (Artista, Marca Personal o Empresa). Este dato se almacena de forma persistente en tu perfil para que no debas reingresarlo en futuras visitas.</li>
+          <li><strong>Bolsa de Compras y Pedidos:</strong> Datos de proyectos solicitados, especificaciones de briefing y enlaces de referencia.</li>
+        </ul>
+      </section>
+
+      <section class="privacy-section">
+        <h3>3. Uso de Cookies y Almacenamiento Local</h3>
+        <p>Este sitio web utiliza cookies estrictamente técnicas y almacenamiento local (<code>localStorage</code>) con las siguientes finalidades:</p>
+        <ul>
+          <li>Mantener tu sesión de usuario activa de manera fluida y protegida.</li>
+          <li>Recordar permanentemente tu tipo de cliente y proyectos favoritos sin requerir configuraciones repetidas.</li>
+          <li>Preservar los artículos en tu bolsa de compras durante tu navegación.</li>
+        </ul>
+        <p>No empleamos cookies publicitarias invasivas ni transferimos ni comercializamos tu información personal a terceros bajo ninguna circunstancia.</p>
+      </section>
+
+      <section class="privacy-section">
+        <h3>4. Derechos y Control de tus Datos</h3>
+        <p>Como usuario tienes total control sobre tus datos. Puedes actualizar tu información de perfil, modificar tu alias o eliminar permanentemente tu cuenta y datos asociados en cualquier momento desde tu panel de perfil («Eliminar cuenta»).</p>
+      </section>
+
+      <section class="privacy-section">
+        <h3>5. Contacto</h3>
+        <p>Para cualquier inquietud sobre nuestra política de privacidad o tus derechos, comunícate directamente con nuestro equipo a través de los canales de contacto de Grobdesigns.</p>
+      </section>
+    </div>
+    <div class="privacy-modal-footer">
+      <button type="button" class="privacy-modal-btn-primary" onclick="closePrivacyModal()">Entendido y Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     AVISO FLOTANTE DE COOKIES
+     ======================================================== -->
+<div id="cookieConsentBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="display:none;">
+  <div class="cookie-banner-content">
+    <div class="cookie-banner-left">
+      <span class="cookie-banner-icon">🍪</span>
+      <div class="cookie-banner-text">
+        <span>Utilizamos cookies técnicas y de sesión para optimizar tu experiencia y recordar tus preferencias.</span>
+        <a href="javascript:void(0)" onclick="openPrivacyModal()">Políticas de Privacidad</a>
+      </div>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="cookie-btn-accept" onclick="acceptCookies()">Aceptar todas</button>
+    </div>
+  </div>
+</div>
+
 
 <div id="adminApp">
   <div class="a-login-screen" id="aLoginScreen">
@@ -6741,6 +7122,96 @@ document.addEventListener('dragstart', (e) => {
   if (e.target && e.target.tagName === 'IMG') { e.preventDefault(); return false; }
 });
 
+
+// ========================================================
+// PERSISTENT USER PROFILE & CLIENT TYPE HELPERS (REQ 1)
+// ========================================================
+window.getSavedUserProfile = function(user) {
+  let profile = null;
+  const targetUser = user || window.currentUser;
+  if (targetUser && targetUser.uid) {
+    try {
+      const p = localStorage.getItem('grob_user_profile_' + targetUser.uid);
+      if (p) profile = JSON.parse(p);
+    } catch(e){}
+  }
+  if (!profile && targetUser && targetUser.email) {
+    try {
+      const p = localStorage.getItem('grob_user_profile_' + targetUser.email);
+      if (p) profile = JSON.parse(p);
+    } catch(e){}
+  }
+  if (!profile) {
+    try {
+      const p = localStorage.getItem('grob_user_profile_last');
+      if (p) profile = JSON.parse(p);
+    } catch(e){}
+  }
+  const clientType = localStorage.getItem('grob_client_type');
+  if (clientType) {
+    if (!profile) {
+      profile = {
+        type: clientType,
+        name: (targetUser && targetUser.displayName) || 'Cliente',
+        avatar: (targetUser && targetUser.photoURL) || '',
+        email: (targetUser && targetUser.email) || ''
+      };
+    } else if (!profile.type) {
+      profile.type = clientType;
+    }
+  }
+  return profile;
+};
+
+window.saveUserProfile = function(profile, user) {
+  if (!profile) return;
+  const targetUser = user || window.currentUser;
+  if (profile.type) {
+    localStorage.setItem('grob_client_type', profile.type);
+  }
+  localStorage.setItem('grob_user_profile_last', JSON.stringify(profile));
+  if (targetUser) {
+    if (targetUser.uid) localStorage.setItem('grob_user_profile_' + targetUser.uid, JSON.stringify(profile));
+    if (targetUser.email) localStorage.setItem('grob_user_profile_' + targetUser.email, JSON.stringify(profile));
+  }
+  window.currentUserProfile = profile;
+};
+
+// ========================================================
+// PRIVACY MODAL & COOKIE CONSENT FUNCTIONS (REQ 2)
+// ========================================================
+window.openPrivacyModal = function() {
+  const modal = document.getElementById('privacyModal');
+  if (modal) modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closePrivacyModal = function() {
+  const modal = document.getElementById('privacyModal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+window.acceptCookies = function() {
+  localStorage.setItem('grob_cookies_accepted', 'true');
+  const banner = document.getElementById('cookieConsentBanner');
+  if (banner) {
+    banner.classList.add('cookie-banner-hidden');
+    setTimeout(() => { banner.style.display = 'none'; }, 400);
+  }
+};
+
+window.initCookieConsent = function() {
+  const accepted = localStorage.getItem('grob_cookies_accepted');
+  const banner = document.getElementById('cookieConsentBanner');
+  if (!banner) return;
+  if (accepted === 'true') {
+    banner.style.display = 'none';
+  } else {
+    banner.style.display = 'block';
+  }
+};
+
 window.handleAuthClick = function() {
     alert("El sistema de inicio de sesión está cargando. Por favor, espera un segundo e intenta de nuevo.");
 };
@@ -6749,10 +7220,11 @@ window.startFlow = function() {
     if (!window.currentUser) {
         window.handleAuthClick();
     } else {
-        const profile = localStorage.getItem('grob_user_profile_' + window.currentUser.uid);
-        if (!profile) {
+        const profile = window.getSavedUserProfile(window.currentUser);
+        if (!profile || !profile.type) {
             openOnboarding();
         } else {
+            window.saveUserProfile(profile, window.currentUser);
             location.hash = '#tienda';
         }
     }
@@ -6826,11 +7298,14 @@ setupUploadZone('obAvatarUploadZone', 'obAvatarInput', (urls) => {
 }, 500, 0.9, 200);
 
 window.openEditProfile = function() {
-    if (!window.currentUser) return;
-    const profile = JSON.parse(localStorage.getItem('grob_user_profile_' + window.currentUser.uid)) || {};
-    $('#obTitle').textContent = "Actualizar Datos";
-    $('#obSubtitle').textContent = "Edita tu información de perfil.";
-    $('#obType').value = profile.type || 'artista';
+    if (!window.currentUser) {
+        window.handleAuthClick();
+        return;
+    }
+    const profile = window.getSavedUserProfile(window.currentUser) || {};
+    $('#obTitle').textContent = "Actualizar Datos de Perfil";
+    $('#obSubtitle').textContent = "Edita tu información y tipo de cliente.";
+    $('#obType').value = profile.type || localStorage.getItem('grob_client_type') || 'artista';
     $('#obName').value = profile.name || window.currentUser.displayName || '';
     tempObAvatar = profile.avatar || window.currentUser.photoURL || '';
     $('#obAvatarPreview').src = tempObAvatar;
@@ -6842,13 +7317,22 @@ window.openEditProfile = function() {
 
     $('#onboardingModal').classList.add('active');
 };
+window.openEditAliasModal = window.openEditProfile;
 
 function openOnboarding() {
+    // If client type was already chosen before, do not re-prompt unnecessarily
+    const existing = window.getSavedUserProfile(window.currentUser);
+    if (existing && existing.type) {
+        window.saveUserProfile(existing, window.currentUser);
+        if (location.hash === '#perfil') renderProfile();
+        return;
+    }
+
     $('#obTitle').textContent = "¡Bienvenido a Grobdesigns!";
-    $('#obSubtitle').textContent = "Cuéntanos un poco sobre ti para personalizar tu experiencia.";
-    $('#obType').value = '';
-    $('#obName').value = window.currentUser.displayName || '';
-    tempObAvatar = window.currentUser.photoURL || '';
+    $('#obSubtitle').textContent = "Selecciona tu tipo de cliente para personalizar tu experiencia.";
+    $('#obType').value = localStorage.getItem('grob_client_type') || '';
+    $('#obName').value = (window.currentUser && window.currentUser.displayName) || '';
+    tempObAvatar = (window.currentUser && window.currentUser.photoURL) || '';
     $('#obAvatarPreview').src = tempObAvatar;
     $('#obAvatarUrl').value = '';
     
@@ -6860,6 +7344,8 @@ $('#obType').onchange = (e) => {
     if (val === 'artista') $('#obNameLabel').textContent = 'Alias / Nombre del Artista';
     else if (val === 'marca_personal') $('#obNameLabel').textContent = 'Nombre de Marca Personal';
     else if (val === 'empresa') $('#obNameLabel').textContent = 'Nombre de la Empresa';
+    // Persist immediately on change
+    localStorage.setItem('grob_client_type', val);
 };
 
 $('#onboardingForm').onsubmit = (e) => {
@@ -6870,14 +7356,19 @@ $('#onboardingForm').onsubmit = (e) => {
 
     if (!type || !name) return;
 
-    const profile = { type, name, avatar, email: window.currentUser ? window.currentUser.email : '', displayName: window.currentUser ? window.currentUser.displayName : '' };
-    if (window.currentUser) {
-      localStorage.setItem('grob_user_profile_' + window.currentUser.uid, JSON.stringify(profile));
-    }
-    window.currentUserProfile = profile;
+    const profile = { 
+      type, 
+      name, 
+      avatar, 
+      email: window.currentUser ? window.currentUser.email : '', 
+      displayName: window.currentUser ? window.currentUser.displayName : '' 
+    };
+
+    // Permanently save across all keys
+    window.saveUserProfile(profile, window.currentUser);
 
     $('#onboardingModal').classList.remove('active');
-    showToast("Perfil actualizado");
+    showToast("Perfil registrado correctamente");
     window.updateNavAvatar();
     
     if (location.hash === '#perfil') {
@@ -8145,10 +8636,11 @@ function renderProfile() {
     return;
   }
 
-  const profile = window.currentUserProfile || {
+  const profile = window.getSavedUserProfile(window.currentUser) || {
     name: window.currentUser.displayName || 'Cliente',
-    type: 'empresa'
+    type: localStorage.getItem('grob_client_type') || 'artista'
   };
+  window.currentUserProfile = profile;
 
   // Header user info
   const aliasEl = document.getElementById('perfilAlias');
@@ -9864,9 +10356,9 @@ function renderCoverDetail(id) {
   if (hp) { pw.innerHTML = html; pw.style.display = 'flex'; } else pw.style.display = 'none';
   const mw = $('#coverHeroMusic'); mw.innerHTML = ''; const embed = getEmbedUrl(c.spotifyUrl) || getEmbedUrl(c.appleMusicUrl);
   if (embed) { const ifr = document.createElement('iframe'); ifr.src = embed.url; ifr.style.cssText = 'width:100%;border:0;border-radius:4px;background:transparent;display:block'; ifr.height = embed.height; ifr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen'); mw.appendChild(ifr); mw.style.display = 'block'; } else mw.style.display = 'none';
-  const ex = $('#coverExtraSection'), rb = $('#coverResenaBlock'), gl = $('#coverGaleriaLabel');
+  const ex = $('#coverExtraSection'), rb = $('#coverResenaBlock');
   
-    const relPill = $('#coverReleaseInfoPill');
+  const relPill = $('#coverReleaseInfoPill');
   if (relPill) {
     if (yearOnly) {
       relPill.innerHTML = '<strong style="color:var(--accent);font-size:0.95rem;font-weight:800;letter-spacing:0.04em">' + escHtml(yearOnly) + '</strong>';
@@ -9876,21 +10368,16 @@ function renderCoverDetail(id) {
     }
   }
 
-  const resenaLabel = $('#coverResenaLabel');
-  if (resenaLabel) {
-    resenaLabel.textContent = window.currentLang === 'en' ? 'Description & Release' : 'Descripción & Lanzamiento';
-  }
-
+  // Reseña del cover ubicada directamente debajo del reproductor de Spotify
   if (c.review && c.review.trim()) {
     $('#coverHeroResena').textContent = c.review;
     $('#coverHeroResena').style.display = 'block';
+    if (rb) rb.style.display = 'block';
   } else {
     $('#coverHeroResena').textContent = '';
     $('#coverHeroResena').style.display = 'none';
+    if (rb) rb.style.display = 'none';
   }
-  
-  // Always display description block for all covers!
-  rb.style.display = 'block';
   
   const ei = $('#coverExtraImgs'); ei.innerHTML = '';
   const coverVideoUrl = c.youtubeUrl || c.videoUrl || '';
@@ -9947,9 +10434,18 @@ function renderCoverDetail(id) {
         gal.appendChild(ii);
       });
     }
-    ei.appendChild(gal); if (gl) gl.style.display = 'block';
-  } else if (gl) gl.style.display = 'none';
-  ex.classList.remove('hidden'); showView('coverDetalle');
+    ei.appendChild(gal);
+    if (ex) {
+      ex.classList.remove('hidden');
+      ex.style.display = 'block';
+    }
+  } else {
+    if (ex) {
+      ex.classList.add('hidden');
+      ex.style.display = 'none';
+    }
+  }
+  showView('coverDetalle');
 }
 
 function renderCategoryDetail(id) {
@@ -10870,10 +11366,10 @@ boot();
           .then((result) => {
             console.log("✅ Logueado:", result.user.displayName);
             
-            const savedProfile = localStorage.getItem('grob_user_profile_' + result.user.uid);
             window.closeAuthModal();
-            if (savedProfile) {
-                window.currentUserProfile = JSON.parse(savedProfile);
+            const savedProfile = window.getSavedUserProfile(result.user);
+            if (savedProfile && savedProfile.type) {
+                window.saveUserProfile(savedProfile, result.user);
                 if (window.updateNavAvatar) window.updateNavAvatar();
                 location.hash = '#tienda';
                 renderPublicStore();
@@ -10893,10 +11389,14 @@ boot();
       window.currentUser = user;
       
       if (user) {
-          const savedProfile = localStorage.getItem('grob_user_profile_' + user.uid);
-          if (savedProfile) window.currentUserProfile = JSON.parse(savedProfile);
+          const savedProfile = window.getSavedUserProfile(user);
+          if (savedProfile) {
+              window.saveUserProfile(savedProfile, user);
+          }
       } else {
-          window.currentUserProfile = null;
+          // If logged out, preserve client type so guest recommendations work
+          const savedProfile = window.getSavedUserProfile(null);
+          window.currentUserProfile = savedProfile || null;
       }
       
       if (window.updateNavAvatar) window.updateNavAvatar();
@@ -10913,7 +11413,7 @@ boot();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-      
+      if (typeof window.initCookieConsent === 'function') window.initCookieConsent();
       if (window.setAppLanguage && window.currentLang) window.setAppLanguage(window.currentLang);
       if (typeof setupBackToTop === 'function') setupBackToTop();
       if (typeof setupGalleryEvents === 'function') setupGalleryEvents();
