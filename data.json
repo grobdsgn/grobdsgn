@@ -839,7 +839,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793218650486_tfmj.jpg",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793218652348_1937.jpg"
           ],
-          "review": ""
+          "review": "",
+          "parallaxPosition": "center 23%"
         }
       ],
       "parallaxPosition": "center 67%"
