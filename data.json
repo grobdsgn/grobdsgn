@@ -846,7 +846,8 @@
       "name": "IA",
       "description": "IA Generativa",
       "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793839991510_msdl.jpg",
-      "projects": []
+      "projects": [],
+      "parallaxPosition": "center 29%"
     },
     {
       "id": "ln791rajmvroh7r2",
