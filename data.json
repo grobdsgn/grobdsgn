@@ -1246,7 +1246,8 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793654460280_jpch.jpg"
           ]
         }
-      ]
+      ],
+      "parallaxPosition": "center 35%"
     }
   ],
   "products": [
