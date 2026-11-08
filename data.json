@@ -577,11 +577,18 @@
         },
         {
           "id": "tknp2bznmw85pdo4",
-          "name": "Nuevo Proyecto",
+          "name": "Pim Pum Party",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162023166_lnmc.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162025628_qu2u.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162027485_sn2o.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162029372_jvod.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162031331_e7bb.jpg",
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794162033223_48f0.jpg"
+          ]
         }
       ]
     },
