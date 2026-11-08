@@ -6395,6 +6395,75 @@ section {
   line-height: 1.4;
 }
 
+
+/* ========================================================
+   DELIVERY ACCOUNT BRIDGE & LOGIN RECOMMENDATION STYLES
+   ======================================================== */
+.delivery-account-bridge {
+  width: 100%;
+  margin-bottom: 22px;
+}
+.delivery-rec-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.delivery-rec-card.logged-in {
+  background: rgba(46, 213, 115, 0.06);
+  border-color: rgba(46, 213, 115, 0.35);
+}
+.delivery-rec-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.delivery-rec-content {
+  flex: 1;
+  min-width: 0;
+}
+.delivery-rec-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.delivery-rec-desc {
+  font-size: 0.82rem;
+  color: rgba(245, 243, 239, 0.82);
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+}
+.delivery-rec-card.logged-in .delivery-rec-desc {
+  margin-bottom: 0;
+}
+.btn-delivery-rec-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid var(--accent);
+  color: #fff;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-delivery-rec-login:hover {
+  background: var(--accent);
+  color: #000;
+  transform: translateY(-1px);
+}
+
 </style>
 </head>
 <body>
@@ -6433,7 +6502,7 @@ section {
             <div class="user-dropdown" id="userDropdown">
                 <a href="#perfil" onclick="if(window.switchPerfilTab)window.switchPerfilTab('cart');document.getElementById('userDropdown').classList.remove('open')">Mi Bolsa de Compras</a>
                 <a href="#" onclick="openEditProfile(); document.getElementById('userDropdown').classList.remove('open'); return false;">Actualizar datos</a>
-                <a href="#perfil" onclick="if(window.switchPerfilTab)window.switchPerfilTab('orders');document.getElementById('userDropdown').classList.remove('open')">Mis Pedidos</a>
+                <a href="#perfil" onclick="if(window.switchPerfilTab)window.switchPerfilTab('orders');document.getElementById('userDropdown').classList.remove('open')">Entregas Realizadas</a>
                 <a href="#" class="danger" onclick="window.handleAuthClick(); document.getElementById('userDropdown').classList.remove('open'); return false;">Cerrar sesión</a>
             </div>
         </div>
@@ -6670,6 +6739,9 @@ section {
               </div>
             </div>
 
+            <!-- Recomendación de Inicio de Sesión (No obligatorio para descargar) -->
+            <div id="deliveryAccountBridge" class="delivery-account-bridge"></div>
+
             <!-- Sección Didáctica de Descarga con Barra Dinámica de Progreso -->
             <div class="delivery-download-section" id="deliveryDownloadSection">
               <!-- Botón Inicial de Descarga -->
@@ -6867,8 +6939,8 @@ section {
                 <span class="perfil-tab-pill-badge" id="perfilCartCountBadge">0</span>
               </button>
               <button class="perfil-tab-pill" id="tabBtnOrders" onclick="switchPerfilTab('orders')">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-                Mis Entregas & Proyectos
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                Entregas Realizadas
               </button>
               <button class="perfil-tab-pill" id="tabBtnLikes" onclick="switchPerfilTab('likes')">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -6949,8 +7021,8 @@ section {
           <div class="perfil-tab-pane" id="pane-orders">
             <div class="client-deliveries-header">
               <div class="client-deliveries-meta">
-                <h3 class="client-deliveries-title">Bóveda de Entregas & Archivos Master</h3>
-                <p class="client-deliveries-sub">Accede a tus proyectos en producción, descargas de portadas a 300 DPI (3000px), formatos para Spotify Canvas y carpetas de editables.</p>
+                <h3 class="client-deliveries-title">Entregas Realizadas</h3>
+                <p class="client-deliveries-sub">Historial de proyectos y lanzamientos entregados vinculados a tu cuenta. Accede a la sala de entrega de cada proyecto para descargar tus archivos Master en alta definición y recursos digitales.</p>
               </div>
             </div>
             <div id="perfilOrderHistory"></div>
@@ -7382,8 +7454,24 @@ section {
                   <span class="a-form-hint">Con un solo enlace basta. El cliente descargará todo su paquete desde aquí.</span>
                 </div>
                 <div class="a-form-group">
-                  <label class="a-form-label">Correo del Cliente (Opcional, para su perfil)</label>
-                  <input type="text" id="admDelivEmail" class="a-form-input" placeholder="ej: artista@gmail.com o * (dejar vacío si es link libre)">
+                  <label class="a-form-label">Correo del Cliente / Artista</label>
+                  <div style="position:relative;">
+                    <input type="text" id="admDelivEmail" class="a-form-input" list="registeredClientsDatalist" placeholder="artista@gmail.com o * (dejar * para libre acceso)" oninput="checkClientEmailMatch(this.value)">
+                    <datalist id="registeredClientsDatalist"></datalist>
+                  </div>
+                  <!-- Preview del cliente registrado cuando se detecta coincidencia -->
+                  <div id="admDelivClientFoundCard" style="display:none; align-items:center; gap:12px; padding:10px 14px; background:rgba(46,213,115,0.08); border:1px solid rgba(46,213,115,0.28); border-radius:8px; margin-top:8px;">
+                    <img id="admDelivClientFoundAvatar" src="" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:1.5px solid #2ed573;">
+                    <div style="flex:1; min-width:0;">
+                      <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:#2ed573; font-weight:700; font-size:0.85rem;" id="admDelivClientFoundName">Cliente Registrado</span>
+                        <span style="font-size:0.65rem; background:#2ed573; color:#000; font-weight:800; padding:1px 6px; border-radius:4px;">VERIFICADO</span>
+                      </div>
+                      <div style="font-size:0.75rem; color:var(--a-muted);" id="admDelivClientFoundEmail">correo@ejemplo.com</div>
+                    </div>
+                    <button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="useClientProfileData()" style="white-space:nowrap;">Usar datos</button>
+                  </div>
+                  <span class="a-form-hint">Si el cliente ya tiene perfil registrado en la web, se detectará automáticamente su avatar y nombre para vincular la entrega a su perfil en «Entregas Realizadas».</span>
                 </div>
                 <div class="a-form-group">
                   <label class="a-form-label">Estado del Proyecto</label>
@@ -8000,6 +8088,7 @@ window.saveUserProfile = function(profile, user) {
     if (targetUser.email) localStorage.setItem('grob_user_profile_' + targetUser.email, JSON.stringify(profile));
   }
   window.currentUserProfile = profile;
+  if (typeof window.registerKnownUser === "function") window.registerKnownUser(targetUser, profile);
 };
 
 // ========================================================
@@ -8072,8 +8161,8 @@ function renderClientDeliveries() {
         <div class="apple-empty-cart-icon">
           <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
         </div>
-        <div class="apple-empty-cart-title">No hay entregas activas en este momento</div>
-        <p class="apple-empty-cart-sub">Tus proyectos aprobados, portadas Master a 300 DPI y formatos de Spotify Canvas aparecerán aquí con enlaces de descarga directa.</p>
+        <div class="apple-empty-cart-title">No hay entregas realizadas registradas</div>
+        <p class="apple-empty-cart-sub">Tus proyectos y lanzamientos entregados aparecerán aquí vinculados a tu correo con acceso directo a tu sala de descarga y archivos Master.</p>
         <a href="#tienda" class="btn-apple-outline" style="padding:12px 28px; background:var(--text); color:#000; font-weight:700;">Configurar Nuevo Proyecto</a>
       </div>
     `;
@@ -8418,6 +8507,7 @@ function renderDeliveryDetail(id) {
     if (notesBlock) notesBlock.style.display = 'none';
   }
 
+  window.renderDeliveryAccountBridge(deliv);
   showView('entrega');
   document.title = `${deliv.projectName} — Entrega Oficial | Grobdesigns`;
 }
@@ -8515,6 +8605,300 @@ window.copyCurrentDeliveryLink = function() {
   } else {
     window.copyDeliveryLink(location.hash.replace('#entrega-', ''));
   }
+};
+
+
+// ========================================================
+// REGISTERED CLIENTS TRACKER & AUTOCOMPLETE HELPERS
+// ========================================================
+window.registerKnownUser = function(user, profile) {
+  if (!user && !profile) return;
+  const email = (user?.email || profile?.email || '').trim().toLowerCase();
+  const name = profile?.name || user?.displayName || 'Cliente';
+  const avatar = profile?.avatar || user?.photoURL || '';
+  if (!email) return;
+  
+  let list = [];
+  try {
+    const raw = localStorage.getItem('grob_registered_users');
+    if (raw) list = JSON.parse(raw);
+  } catch(e){}
+  if (!Array.isArray(list)) list = [];
+  
+  const existingIdx = list.findIndex(u => u.email === email);
+  const entry = { email, name, avatar, updatedAt: Date.now() };
+  if (existingIdx >= 0) {
+    list[existingIdx] = Object.assign(list[existingIdx], entry);
+  } else {
+    list.push(entry);
+  }
+  try { localStorage.setItem('grob_registered_users', JSON.stringify(list)); } catch(e){}
+};
+
+window.getRegisteredUsersList = function() {
+  let list = [];
+  try {
+    const raw = localStorage.getItem('grob_registered_users');
+    if (raw) list = JSON.parse(raw);
+  } catch(e){}
+  if (!Array.isArray(list)) list = [];
+
+  // Seed default known client Omega El Fuerte for seamless testing
+  if (!list.some(u => u.email === 'omega@fuerte.com')) {
+    list.unshift({
+      email: 'omega@fuerte.com',
+      name: 'Omega El Fuerte',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+      updatedAt: Date.now()
+    });
+  }
+  
+  if (window.currentUser && window.currentUser.email) {
+    const curEmail = window.currentUser.email.toLowerCase().trim();
+    if (!list.some(u => u.email === curEmail)) {
+      list.unshift({
+        email: curEmail,
+        name: window.currentUser.displayName || (window.currentUserProfile && window.currentUserProfile.name) || 'Cliente',
+        avatar: window.currentUser.photoURL || (window.currentUserProfile && window.currentUserProfile.avatar) || '',
+        updatedAt: Date.now()
+      });
+    }
+  }
+  return list;
+};
+
+let _detectedClientMatch = null;
+window.checkClientEmailMatch = function(val) {
+  if (!val) {
+    const card = document.getElementById('admDelivClientFoundCard');
+    if (card) card.style.display = 'none';
+    _detectedClientMatch = null;
+    return;
+  }
+  const q = val.trim().toLowerCase();
+  const list = window.getRegisteredUsersList();
+  const match = list.find(u => u.email === q || u.email.includes(q) || (u.name && u.name.toLowerCase().includes(q)));
+  
+  const card = document.getElementById('admDelivClientFoundCard');
+  if (match) {
+    _detectedClientMatch = match;
+    if (card) {
+      document.getElementById('admDelivClientFoundName').textContent = match.name;
+      document.getElementById('admDelivClientFoundEmail').textContent = match.email;
+      const av = document.getElementById('admDelivClientFoundAvatar');
+      if (av) av.src = resolveImageUrl(match.avatar || 'logo.svg');
+      card.style.display = 'flex';
+    }
+  } else {
+    _detectedClientMatch = null;
+    if (card) card.style.display = 'none';
+  }
+};
+
+window.useClientProfileData = function() {
+  if (!_detectedClientMatch) return;
+  const nameInput = document.getElementById('admDelivClientName');
+  const emailInput = document.getElementById('admDelivEmail');
+  const previewInput = document.getElementById('admDelivPreview');
+  
+  if (nameInput) nameInput.value = _detectedClientMatch.name;
+  if (emailInput) emailInput.value = _detectedClientMatch.email;
+  if (previewInput && !previewInput.value) {
+    previewInput.value = _detectedClientMatch.avatar || '';
+  }
+  showToast("Datos de " + _detectedClientMatch.name + " cargados.");
+};
+
+window.populateRegisteredClientsDatalist = function() {
+  const dl = document.getElementById('registeredClientsDatalist');
+  if (!dl) return;
+  dl.innerHTML = '';
+  const list = window.getRegisteredUsersList();
+  list.forEach(u => {
+    const opt = document.createElement('option');
+    opt.value = u.email;
+    opt.textContent = `${u.name} (${u.email})`;
+    dl.appendChild(opt);
+  });
+};
+
+// ========================================================
+// RENDER DELIVERY DETAIL WITH ACCOUNT BRIDGE
+// ========================================================
+window.renderDeliveryAccountBridge = function(deliv) {
+  const bridge = document.getElementById('deliveryAccountBridge');
+  if (!bridge) return;
+  
+  const user = window.currentUser;
+  if (!user) {
+    bridge.innerHTML = `
+      <div class="delivery-rec-card">
+        <div class="delivery-rec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="delivery-rec-content">
+          <div class="delivery-rec-title">Descarga libre sin registro previo</div>
+          <p class="delivery-rec-desc">
+            No requieres iniciar sesión para descargar tus archivos ahora. Sin embargo, te <strong>recomendamos iniciar sesión con Google</strong> para registrar esta entrega en tu perfil bajo <em>«Entregas Realizadas»</em> y mantener el historial y respaldo de tus lanzamientos.
+          </p>
+          <button type="button" class="btn-delivery-rec-login" onclick="window.handleAuthClick()">
+            <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/></svg>
+            <span>Iniciar Sesión para Vincular a tu Perfil</span>
+          </button>
+        </div>
+      </div>
+    `;
+  } else {
+    // If user is logged in, link this delivery automatically if matching or unclaimed
+    const userEmail = (user.email || '').toLowerCase().trim();
+    if (deliv && deliv.clientEmail === '*') {
+      deliv.clientEmail = userEmail;
+      window.persistDeliveriesData();
+    }
+    
+    bridge.innerHTML = `
+      <div class="delivery-rec-card logged-in">
+        <div class="delivery-rec-icon" style="color:#2ed573; font-weight:800;">✓</div>
+        <div class="delivery-rec-content">
+          <div class="delivery-rec-title" style="color:#2ed573;">Proyecto vinculado a tu perfil</div>
+          <p class="delivery-rec-desc">
+            Esta entrega está registrada en tu cuenta como <strong>${escHtml(user.displayName || user.email)}</strong>. Puedes acceder a ella y a todos tus demás lanzamientos cuando lo desees desde tu perfil en <strong>«Entregas Realizadas»</strong>.
+          </p>
+        </div>
+      </div>
+    `;
+  }
+};
+
+// ========================================================
+// PERSISTENCE ENGINE FOR DELIVERIES (LOCALSTORAGE + GITHUB)
+// ========================================================
+window.persistDeliveriesData = function() {
+  if (!DATA) return;
+  if (!Array.isArray(DATA.entregas)) DATA.entregas = [];
+  
+  // 1. Write to grob_entregas in localStorage
+  try {
+    localStorage.setItem('grob_entregas', JSON.stringify(DATA.entregas));
+    localStorage.setItem('cached_data_json', JSON.stringify(DATA));
+  } catch(e) {
+    console.warn("Could not save to localStorage:", e);
+  }
+  
+  // 2. If GitHub is connected, save to GitHub repository
+  if (typeof GH !== 'undefined' && GH.isConfigured && GH.isConfigured()) {
+    if (typeof saveAdminData === 'function') {
+      saveAdminData();
+    }
+  }
+};
+
+// ========================================================
+// ROBUST ADMIN DELIVERIES SAVE & LOAD
+// ========================================================
+window.openCreateDeliveryModal = function() {
+  document.getElementById('admDelivModalTitle').textContent = 'Nueva Entrega a Cliente';
+  document.getElementById('admDelivId').value = '';
+  document.getElementById('admDelivEmail').value = '';
+  document.getElementById('admDelivClientName').value = '';
+  document.getElementById('admDelivProjectName').value = '';
+  document.getElementById('admDelivStatus').value = 'listo';
+  document.getElementById('admDelivPreview').value = '';
+  document.getElementById('admDelivDownloadUrl').value = '';
+  document.getElementById('admDelivNotes').value = '';
+  
+  const foundCard = document.getElementById('admDelivClientFoundCard');
+  if (foundCard) foundCard.style.display = 'none';
+  
+  window.populateRegisteredClientsDatalist();
+  
+  const m = document.getElementById('adminDeliveryModal');
+  if (m) m.style.display = 'flex';
+};
+
+window.editAdminDelivery = function(idx) {
+  const d = (DATA.entregas || [])[idx];
+  if (!d) return;
+  
+  document.getElementById('admDelivModalTitle').textContent = 'Editar Entrega';
+  document.getElementById('admDelivId').value = idx;
+  document.getElementById('admDelivEmail').value = d.clientEmail || '';
+  document.getElementById('admDelivClientName').value = d.clientName || '';
+  document.getElementById('admDelivProjectName').value = d.projectName || '';
+  document.getElementById('admDelivStatus').value = d.status || 'listo';
+  document.getElementById('admDelivPreview').value = d.previewImg || '';
+  document.getElementById('admDelivDownloadUrl').value = d.downloadUrl || d.masterUrl || '';
+  document.getElementById('admDelivNotes').value = d.notes || '';
+  
+  window.populateRegisteredClientsDatalist();
+  window.checkClientEmailMatch(d.clientEmail || '');
+  
+  const m = document.getElementById('adminDeliveryModal');
+  if (m) m.style.display = 'flex';
+};
+
+window.saveAdminDelivery = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  
+  if (!Array.isArray(DATA.entregas)) DATA.entregas = [];
+  
+  const idx = document.getElementById('admDelivId').value;
+  const existingId = (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]) ? DATA.entregas[parseInt(idx, 10)].id : null;
+  const newId = existingId || ('deliv_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 6));
+  
+  const singleDownloadUrl = (document.getElementById('admDelivDownloadUrl').value || '').trim();
+  const clientEmail = (document.getElementById('admDelivEmail').value || '').trim().toLowerCase() || '*';
+  const clientName = (document.getElementById('admDelivClientName').value || '').trim();
+  const projectName = (document.getElementById('admDelivProjectName').value || '').trim();
+  const status = document.getElementById('admDelivStatus').value;
+  const previewImg = (document.getElementById('admDelivPreview').value || '').trim() || 'logo.svg';
+  const notes = (document.getElementById('admDelivNotes').value || '').trim();
+  
+  if (!clientName || !projectName || !singleDownloadUrl) {
+    alert("Por favor completa el nombre del cliente, título del proyecto y el enlace de descarga.");
+    return;
+  }
+  
+  const deliveryData = {
+    id: newId,
+    clientEmail: clientEmail,
+    clientName: clientName,
+    projectName: projectName,
+    status: status,
+    previewImg: previewImg,
+    downloadUrl: singleDownloadUrl,
+    masterUrl: singleDownloadUrl,
+    notes: notes,
+    date: (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]?.date) ? DATA.entregas[parseInt(idx, 10)].date : new Date().toISOString().slice(0, 10)
+  };
+  
+  if (idx !== '' && !isNaN(idx)) {
+    DATA.entregas[parseInt(idx, 10)] = deliveryData;
+  } else {
+    DATA.entregas.unshift(deliveryData);
+  }
+  
+  // Persist locally & to GitHub
+  window.persistDeliveriesData();
+  
+  // Register known user if email provided
+  if (clientEmail && clientEmail !== '*') {
+    window.registerKnownUser({ email: clientEmail, displayName: clientName, photoURL: previewImg });
+  }
+  
+  if (typeof updateAdminBadges === 'function') updateAdminBadges();
+  if (typeof renderAdminDeliveries === 'function') renderAdminDeliveries();
+  closeAdminDeliveryModal();
+  showToast("¡Entrega guardada con éxito! Enlace generado: #entrega-" + newId);
+};
+
+window.deleteAdminDelivery = function(idx) {
+  if (!confirm("¿Eliminar esta entrega de cliente?")) return;
+  if (!Array.isArray(DATA.entregas)) DATA.entregas = [];
+  DATA.entregas.splice(idx, 1);
+  window.persistDeliveriesData();
+  renderAdminDeliveries();
+  showToast("Entrega eliminada");
 };
 
 window.handleAuthClick = function() {
@@ -12633,7 +13017,26 @@ $('#aBtnViewSite').onclick = () => location.hash = '#home';
 $('#aBtnLogout').onclick = () => { GH.clear(); location.reload(); };
 $('#aLoginForm').onsubmit = async e => { e.preventDefault(); const t = $('#aLoginToken').value.trim(), r = $('#aLoginRepo').value.trim(), b = $('#aLoginBranch').value.trim(); const err = $('#aLoginError'); err.textContent = 'Conectando...'; GH.save(t, r, b); try { const res = await GH.api('/user'); if (!res.ok) throw new Error('Token inválido'); $('#aLoginScreen').classList.remove('active'); $('#aDashboard').style.display = 'flex'; window._adminDataLoaded = true; await loadAdminData(); } catch (er) { GH.clear(); err.textContent = 'Error. Verifica el token y repositorio.'; } };
 
-async function boot() { const h = (location.hash || '#home').toLowerCase(); if (h === '#admin' || h.startsWith('#admin')) handleRoute(); else await loadPublicData(); }
+async function boot() {
+  // Synchronize local saved entregas from localStorage if present
+  try {
+    const localSaved = localStorage.getItem('grob_entregas');
+    if (localSaved) {
+      const parsed = JSON.parse(localSaved);
+      if (Array.isArray(parsed) && parsed.length) {
+        if (!Array.isArray(DATA.entregas)) DATA.entregas = [];
+        parsed.forEach(p => {
+          const idx = DATA.entregas.findIndex(d => d.id === p.id);
+          if (idx >= 0) DATA.entregas[idx] = p;
+          else DATA.entregas.unshift(p);
+        });
+      }
+    }
+  } catch(e){}
+  const h = (location.hash || '#home').toLowerCase();
+  if (h === '#admin' || h.startsWith('#admin')) handleRoute();
+  else await loadPublicData();
+}
 boot();
 </script>
 
@@ -12697,6 +13100,7 @@ boot();
           if (savedProfile) {
               window.saveUserProfile(savedProfile, user);
           }
+          if (typeof window.registerKnownUser === "function") window.registerKnownUser(user, savedProfile);
       } else {
           // If logged out, preserve client type so guest recommendations work
           const savedProfile = window.getSavedUserProfile(null);
