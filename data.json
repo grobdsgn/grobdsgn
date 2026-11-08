@@ -1429,15 +1429,20 @@
     },
     {
       "id": "u5igcyvpmvtvog85",
-      "name": "Diseño • Flyer • History",
+      "name": "Diseño o Flyer",
       "price": "50.00",
       "desc": "Creación dirección de Arte.",
       "category": "artista",
+      "categories": [
+        "artista"
+      ],
       "group": "General",
       "order": 5,
+      "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793298586227_jj9r.jpg",
       "hasEditable": true,
       "editablePrice": "150.00",
+      "visible": true,
       "briefingFields": [
         {
           "label": "Motivo",
@@ -1455,9 +1460,7 @@
           "label": "Información",
           "required": true
         }
-      ],
-      "extraImages": [],
-      "visible": true
+      ]
     },
     {
       "id": "nh4uzlybmvtxl0ok",
