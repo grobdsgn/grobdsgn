@@ -4130,6 +4130,15 @@
       "lng": -118.2437,
       "projects": 4,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7foa9a",
+      "city": "San Jose",
+      "country": "Costa Rica",
+      "lat": 9.9347,
+      "lng": -84.0875,
+      "projects": 5,
+      "isHQ": false
     }
   ]
 }
