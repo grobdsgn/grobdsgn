@@ -6507,6 +6507,377 @@ section {
   text-align: right;
 }
 
+
+
+/* ========================================================
+   TURN 19: HOLOGRAPHIC WORLD MAP, CARTS TRACKING & CLEAN DELIVERIES
+   ======================================================== */
+
+/* Status indicators (clean, no emojis) */
+.delivery-status-indicator {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.delivery-status-indicator.active {
+  background: #2ed573;
+  box-shadow: 0 0 8px #2ed573;
+}
+.delivery-status-indicator.expired {
+  background: #ff4757;
+  box-shadow: 0 0 8px #ff4757;
+}
+.delivery-status-indicator.dev {
+  background: #ffb142;
+  box-shadow: 0 0 8px #ffb142;
+}
+.delivery-status-indicator.rev {
+  background: #1e90ff;
+  box-shadow: 0 0 8px #1e90ff;
+}
+
+/* User profile country & phone badges */
+.perfil-user-submeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.perfil-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  color: #fff;
+  font-size: 0.78rem;
+}
+.perfil-meta-pill svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--accent);
+}
+
+/* Admin Carts Tracking Section */
+.admin-cart-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--a-line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.admin-cart-card:hover {
+  border-color: rgba(255, 215, 0, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+}
+.admin-cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.admin-cart-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.admin-cart-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--accent);
+}
+.admin-cart-user-name {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+}
+.admin-cart-user-meta {
+  font-size: 0.78rem;
+  color: var(--a-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.admin-cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.admin-cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: rgba(245, 243, 239, 0.85);
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+.admin-cart-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.admin-cart-total-badge {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.admin-cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn-cart-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #25D366;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.btn-cart-whatsapp:hover {
+  background: #1eb956;
+  transform: translateY(-1px);
+}
+.btn-cart-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid var(--a-line);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.btn-cart-email:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================================
+   HOLOGRAPHIC DIGITAL WORLD MAP (HERO SECTION)
+   ======================================================== */
+.sec-world-map {
+  position: relative;
+  width: 100%;
+  padding: 89px 0 55px; /* Fibonacci */
+  background: #08080a;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.world-map-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 34px; /* Fibonacci */
+}
+.world-map-tag {
+  font-family: var(--font-title);
+  font-size: 13px; /* Fibonacci */
+  font-weight: 700;
+  letter-spacing: 0.21em; /* Fibonacci */
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.world-map-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 13px 0;
+  line-height: 1.15;
+}
+.world-map-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.world-map-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 auto;
+}
+.world-map-canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  border-radius: 21px; /* Fibonacci */
+  background: radial-gradient(circle at 35% 45%, rgba(212, 175, 55, 0.07) 0%, rgba(8, 8, 10, 0.95) 70%), #08080a;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 21px 55px rgba(0, 0, 0, 0.8), inset 0 0 45px rgba(212, 175, 55, 0.03);
+  overflow: hidden;
+  padding: 13px;
+  box-sizing: border-box;
+}
+.world-map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 280px;
+}
+
+/* Continents stylized vectors */
+.continent-path {
+  fill: rgba(212, 175, 55, 0.08);
+  stroke: rgba(212, 175, 55, 0.25);
+  stroke-width: 1.2px;
+  stroke-linejoin: round;
+  transition: fill 0.3s ease;
+}
+.continent-path:hover {
+  fill: rgba(212, 175, 55, 0.16);
+}
+.island-dot {
+  fill: rgba(212, 175, 55, 0.4);
+}
+
+/* Arc lines from Caracas to destinations */
+.map-arc-line {
+  stroke: url(#arcGrad);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-dasharray: 4, 4;
+  animation: arcDashFlow 25s linear infinite;
+  opacity: 0.7;
+}
+@keyframes arcDashFlow {
+  to { stroke-dashoffset: -200; }
+}
+
+/* Radar pulse animation */
+.radar-pulse-core {
+  fill: #ffd700;
+  cursor: pointer;
+}
+.radar-pulse-wave {
+  fill: none;
+  stroke: #ffd700;
+  stroke-width: 1.5;
+  animation: radarWaveGold 2.4s ease-out infinite;
+  pointer-events: none;
+}
+.radar-pulse-wave-delayed {
+  fill: none;
+  stroke: #e5a93c;
+  stroke-width: 1.2;
+  animation: radarWaveGold 2.4s ease-out infinite;
+  animation-delay: 1.2s;
+  pointer-events: none;
+}
+@keyframes radarWaveGold {
+  0% { r: 3px; opacity: 1; stroke-width: 2px; }
+  100% { r: 24px; opacity: 0; stroke-width: 0.5px; }
+}
+
+/* HQ Beacon Caracas */
+.hq-pulse-wave {
+  fill: none;
+  stroke: #ffd700;
+  stroke-width: 2;
+  animation: hqBeaconWave 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes hqBeaconWave {
+  0% { r: 5px; opacity: 1; stroke-width: 2.5px; }
+  100% { r: 34px; opacity: 0; stroke-width: 0.5px; }
+}
+
+/* Map Tooltip */
+.world-map-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(14, 14, 18, 0.95);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: #fff;
+  z-index: 100;
+  box-shadow: 0 8px 21px rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -120%);
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+.world-map-tooltip-title {
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.world-map-tooltip-sub {
+  color: rgba(245, 243, 239, 0.75);
+  font-size: 0.72rem;
+}
+
+/* Stats bar below map */
+.world-map-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px; /* Fibonacci */
+  max-width: 900px;
+  margin: 34px auto 0; /* Fibonacci */
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .world-map-stats {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+}
+.map-stat-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 13px; /* Fibonacci */
+  padding: 16px 21px;
+}
+.map-stat-num {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.map-stat-lbl {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 </style>
 </head>
 <body>
@@ -6646,6 +7017,106 @@ section {
           <div class="software-grid" id="publicSoftwareGrid"></div>
         </div>
       </section>
+
+      <!-- ========================================================
+           MAPA MUNDI HOLOGRÁFICO DIGITAL TECNOLÓGICO DORADO (REQ 6)
+           ======================================================== -->
+      <section class="sec-world-map" id="worldMapSection">
+        <div class="wrap">
+          <div class="world-map-header">
+            <div class="world-map-tag">— ALCANCE GLOBAL</div>
+            <h2 class="world-map-title">Presencia Internacional & <em>Proyectos en el Mundo</em>.</h2>
+            <p class="world-map-desc">Dirección de arte, portadas musicales e identidad visual producidas para artistas, sellos y marcas en toda Latinoamérica, Estados Unidos y Europa con base en Caracas, Venezuela.</p>
+          </div>
+
+          <div class="world-map-canvas-container" id="worldMapContainer">
+            <svg id="worldMapSvg" viewBox="0 0 1000 500" class="world-map-svg" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="hqGlowGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffd700" stop-opacity="1"/>
+                  <stop offset="50%" stop-color="#d4af37" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ffd700" stop-opacity="0.9"/>
+                  <stop offset="50%" stop-color="#e5a93c" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#d4af37" stop-opacity="0.2"/>
+                </linearGradient>
+                <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+
+              <!-- Coordenadas & Rejilla Tecnológica -->
+              <g class="map-grid-lines" opacity="0.12">
+                <line x1="0" y1="125" x2="1000" y2="125" stroke="#d4af37" stroke-dasharray="3,8"/>
+                <line x1="0" y1="250" x2="1000" y2="250" stroke="#d4af37" stroke-dasharray="3,8"/>
+                <line x1="0" y1="375" x2="1000" y2="375" stroke="#d4af37" stroke-dasharray="3,8"/>
+                <line x1="250" y1="0" x2="250" y2="500" stroke="#d4af37" stroke-dasharray="3,8"/>
+                <line x1="500" y1="0" x2="500" y2="500" stroke="#d4af37" stroke-dasharray="3,8"/>
+                <line x1="750" y1="0" x2="750" y2="500" stroke="#d4af37" stroke-dasharray="3,8"/>
+              </g>
+
+              <!-- Siluetas Geométricas de Continentes en Dorado Tecnológico -->
+              <g id="worldContinentsGroup" class="world-continents">
+                <!-- Norteamérica -->
+                <path class="continent-path" d="M120,60 L180,50 L240,65 L270,100 L230,130 L200,160 L160,200 L130,180 L90,140 L70,90 Z" />
+                <path class="continent-path" d="M160,200 L210,195 L250,210 L220,250 L190,260 L180,240 Z" />
+                <!-- Centroamérica & Caribe -->
+                <path class="continent-path" d="M190,260 L230,280 L250,300 L240,310 L210,290 Z" />
+                <circle cx="280" cy="275" r="4" class="island-dot"/>
+                <circle cx="295" cy="285" r="3" class="island-dot"/>
+                <circle cx="310" cy="290" r="3" class="island-dot"/>
+                <!-- Sudamérica -->
+                <path class="continent-path" d="M250,300 L320,305 L370,330 L400,370 L380,420 L350,470 L320,490 L300,450 L280,390 L260,340 Z" />
+                <!-- Europa -->
+                <path class="continent-path" d="M460,90 L520,80 L550,110 L540,150 L500,170 L460,180 L440,150 L450,110 Z" />
+                <path class="continent-path" d="M430,120 L450,110 L445,145 L425,140 Z" />
+                <path class="continent-path" d="M440,160 L480,165 L470,200 L440,205 Z" />
+                <path class="continent-path" d="M490,175 L510,180 L505,210 L495,215 Z" />
+                <!-- África -->
+                <path class="continent-path" d="M440,215 L520,210 L560,250 L570,300 L540,370 L510,430 L470,410 L440,330 L420,270 L430,230 Z" />
+                <path class="continent-path" d="M565,370 L585,380 L575,420 L555,410 Z" />
+                <!-- Asia -->
+                <path class="continent-path" d="M550,100 L650,80 L780,90 L850,120 L870,170 L820,220 L750,230 L700,280 L650,270 L600,240 L560,180 Z" />
+                <path class="continent-path" d="M680,250 L730,260 L720,320 L680,300 Z" />
+                <path class="continent-path" d="M800,260 L850,280 L830,340 L790,320 Z" />
+                <path class="continent-path" d="M860,160 L890,170 L870,220 L850,200 Z" />
+                <!-- Australia & Oceanía -->
+                <path class="continent-path" d="M780,360 L880,350 L910,400 L880,450 L810,450 L770,410 Z" />
+                <path class="continent-path" d="M920,430 L945,440 L935,475 L915,465 Z" />
+              </g>
+
+              <!-- Rayos / Arcos de Conexión Holográfica desde Caracas -->
+              <g id="worldArcsGroup" class="world-arcs"></g>
+
+              <!-- Marcadores con Puntos en Intermitencia de Radar -->
+              <g id="worldMarkersGroup" class="world-markers"></g>
+            </svg>
+
+            <!-- Tooltip Interactivo -->
+            <div id="worldMapTooltip" class="world-map-tooltip" style="display:none;"></div>
+          </div>
+
+          <!-- Métricas del Alcance Global (Fibonacci) -->
+          <div class="world-map-stats">
+            <div class="map-stat-item">
+              <span class="map-stat-num" id="mapStatCountries">8+</span>
+              <span class="map-stat-lbl">Países con Proyectos</span>
+            </div>
+            <div class="map-stat-item">
+              <span class="map-stat-num" id="mapStatProjects">120+</span>
+              <span class="map-stat-lbl">Lanzamientos Globales</span>
+            </div>
+            <div class="map-stat-item">
+              <span class="map-stat-num">Caracas, VE</span>
+              <span class="map-stat-lbl">Sede Creativa Central</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
 
     <div class="view" data-view="portafolio"><div id="catRows"></div></div>
@@ -7181,6 +7652,32 @@ section {
         <label id="obNameLabel">Alias / Nombre del Artista</label>
         <input type="text" id="obName" placeholder="Ej: Tu nombre o alias" required>
       </div>
+      <div class="onboarding-field" id="obCountryGroup">
+        <label>País de Residencia</label>
+        <select id="obCountry" required>
+          <option value="" disabled selected>Selecciona tu país...</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="España">España</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Chile">Chile</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Argentina">Argentina</option>
+          <option value="México">México</option>
+          <option value="Puerto Rico">Puerto Rico</option>
+          <option value="Perú">Perú</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Otro">Otro país...</option>
+        </select>
+      </div>
+      <div class="onboarding-field" id="obPhoneGroup">
+        <label>Número de Teléfono / WhatsApp</label>
+        <input type="tel" id="obPhone" placeholder="Ej: +58 412 1234567 o +1 (555) 123-4567" required>
+        <span class="a-form-hint" style="font-size:0.75rem; color:var(--muted); margin-top:4px; display:block;">Para seguimiento directo de tus entregas y pedidos de diseño.</span>
+      </div>
       <button type="submit" id="btnSaveOnboarding" class="a-btn" style="width:100%; padding:14px; font-size:1rem; background: #fff; color: #000; border: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; transition: all 0.2s;">Guardar Datos</button>
     </form>
   </div>
@@ -7290,6 +7787,8 @@ section {
         <div class="a-nav-item" data-target="portfolio"><span class="a-nav-label">Portafolio</span><span class="a-nav-badge" id="aBadgePortfolio">0</span></div>
         <div class="a-nav-item" data-target="store"><span class="a-nav-label">Tienda</span><span class="a-nav-badge" id="aBadgeStore">0</span></div>
         <div class="a-nav-item" data-target="orders"><span class="a-nav-label">Entregas a Clientes</span><span class="a-nav-badge" id="aBadgeOrders">0</span></div>
+        <div class="a-nav-item" data-target="carts"><span class="a-nav-label">Carritos en Vivo</span><span class="a-nav-badge" id="aBadgeCarts" style="background:#25D366; color:#000;">0</span></div>
+        <div class="a-nav-item" data-target="map"><span class="a-nav-label">Mapa Global</span><span class="a-nav-badge" id="aBadgeMap">0</span></div>
         <div class="a-nav-item" data-target="clients"><span class="a-nav-label">Clientes</span><span class="a-nav-badge" id="aBadgeClients">0</span></div>
         <div class="a-nav-item" data-target="tools"><span class="a-nav-label">Herramientas</span><span class="a-nav-badge" id="aBadgeTools">0</span></div>
         <div class="a-nav-item" data-target="texts"><span class="a-nav-label">Textos Generales</span></div>
@@ -7522,6 +8021,96 @@ section {
               <div class="privacy-modal-footer">
                 <button type="button" class="a-btn a-btn-outline" onclick="closeAdminDeliveryModal()" style="margin-right:10px;">Cancelar</button>
                 <button type="submit" class="privacy-modal-btn-primary">Guardar Entrega</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        
+        <!-- ========================================================
+             PANEL ADMIN: SEGUIMIENTO DE CARRITOS EN VIVO (REQ 2)
+             ======================================================== -->
+        <div class="a-panel" id="a-panel-carts">
+          <div class="a-hero">
+            <div class="a-hero-text">
+              <h2>Seguimiento de Carritos en Vivo & Clientes</h2>
+              <p>Monitorea en tiempo real los productos que los clientes agregan a su bolsa de compras. Haz seguimiento y contacta directamente a su número de WhatsApp registrado.</p>
+              <div class="a-hero-stats"><div class="a-stat">Carritos con productos: <strong id="statActiveCartsCount">0</strong></div></div>
+            </div>
+            <div class="a-hero-actions">
+              <button class="a-btn a-btn-outline" onclick="renderAdminCarts()">🔄 Actualizar Carritos</button>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header">
+              <h2 class="a-card-title">Listado de Carritos Activos</h2>
+            </div>
+            <div class="a-card-body">
+              <div id="aAdminCartsList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             PANEL ADMIN: GESTIÓN DE UBICACIONES DEL MAPA MUNDIAL (REQ 6)
+             ======================================================== -->
+        <div class="a-panel" id="a-panel-map">
+          <div class="a-hero">
+            <div class="a-hero-text">
+              <h2>Gestión del Mapa Mundial Holográfico</h2>
+              <p>Agrega, edita y administra las ciudades y países con los que has trabajado. Aparecen con pulso intermitente dorado y arcos holográficos en la página de inicio.</p>
+              <div class="a-hero-stats"><div class="a-stat">Ubicaciones activas: <strong id="statMapLocationsCount">0</strong></div></div>
+            </div>
+            <div class="a-hero-actions">
+              <button class="a-btn a-btn-primary" onclick="openAddLocationModal()">+ Nueva Ubicación</button>
+            </div>
+          </div>
+          <div class="a-card">
+            <div class="a-card-header">
+              <h2 class="a-card-title">Ciudades y Países Registrados</h2>
+            </div>
+            <div class="a-card-body">
+              <div class="a-grid" id="aMapLocationsGrid"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODAL AGREGAR / EDITAR UBICACIÓN -->
+        <div id="aMapLocationModal" class="a-modal" style="display:none;">
+          <div class="a-modal-content" style="max-width:540px;">
+            <div class="a-modal-header">
+              <h3 id="aMapModalTitle">Agregar Ubicación al Mapa</h3>
+              <button type="button" class="a-modal-close" onclick="closeMapLocationModal()">✕</button>
+            </div>
+            <form id="aMapLocationForm" onsubmit="saveMapLocation(event)">
+              <div class="a-modal-body" style="display:flex; flex-direction:column; gap:12px;">
+                <input type="hidden" id="aMapLocIndex" value="-1">
+                <div class="a-form-group">
+                  <label class="a-form-label">Ciudad</label>
+                  <input type="text" id="aMapLocCity" class="a-form-input" placeholder="Ej: Miami, Medellín, Madrid" required oninput="autoDetectCityCoords(this.value)">
+                </div>
+                <div class="a-form-group">
+                  <label class="a-form-label">País</label>
+                  <input type="text" id="aMapLocCountry" class="a-form-input" placeholder="Ej: Estados Unidos, Colombia, España" required>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div class="a-form-group">
+                    <label class="a-form-label">Latitud</label>
+                    <input type="number" step="any" id="aMapLocLat" class="a-form-input" placeholder="Ej: 25.7617" required>
+                  </div>
+                  <div class="a-form-group">
+                    <label class="a-form-label">Longitud</label>
+                    <input type="number" step="any" id="aMapLocLng" class="a-form-input" placeholder="Ej: -80.1918" required>
+                  </div>
+                </div>
+                <div class="a-form-group">
+                  <label class="a-form-label">Proyectos Realizados</label>
+                  <input type="number" id="aMapLocProjects" class="a-form-input" value="5" min="1">
+                </div>
+              </div>
+              <div class="a-modal-footer">
+                <button type="button" class="a-btn a-btn-outline" onclick="closeMapLocationModal()">Cancelar</button>
+                <button type="submit" class="a-btn a-btn-primary">Guardar Ubicación</button>
               </div>
             </form>
           </div>
@@ -8310,18 +8899,30 @@ function renderClientDeliveries() {
 
       const dateTimeStr = expiryInfo.formattedDate + ' · ' + expiryInfo.formattedTime;
 
+      const thumbSrc = deliv.previewImgThumb || deliv.previewImg || 'logo.svg';
+      const indicatorClass = isAvail ? 'active' : 'expired';
+      const cleanAvailBadge = isAvail
+        ? '<span class="deliv-badge-avail-green"><span class="delivery-status-indicator active"></span>DISPONIBLE · Quedan ' + expiryInfo.daysLeft + ' días</span>'
+        : '<span class="deliv-badge-avail-red"><span class="delivery-status-indicator expired"></span>PLAZO FINALIZADO</span>';
+
+      let cleanStatusLabel = 'EN PRODUCCIÓN';
+      let cleanStatusDot = 'dev';
+      if (deliv.status === 'revision') { cleanStatusLabel = 'EN REVISIÓN'; cleanStatusDot = 'rev'; }
+      else if (deliv.status === 'listo') { cleanStatusLabel = 'LISTO'; cleanStatusDot = 'active'; }
+
       card.innerHTML = 
         '<div class="delivery-card-header">' +
-          '<span class="delivery-status-tag ' + statusClass + '">' + statusLabel + '</span>' +
-          availBadge +
+          '<span class="delivery-status-tag ' + statusClass + '"><span class="delivery-status-indicator ' + cleanStatusDot + '"></span>' + cleanStatusLabel + '</span>' +
+          cleanAvailBadge +
         '</div>' +
         '<div class="delivery-card-body">' +
-          '<img class="delivery-card-thumb" src="' + escHtml(resolveImageUrl(deliv.previewImg || 'logo.svg')) + '" alt="' + escHtml(deliv.projectName || 'Entrega') + '" onerror="this.src=\'logo.svg\'">' +
+          '<img class="delivery-card-thumb" src="' + escHtml(resolveImageUrl(thumbSrc)) + '" alt="' + escHtml(deliv.projectName || 'Entrega') + '" onerror="this.src=\'logo.svg\'">' +
           '<div class="delivery-card-details">' +
             '<div class="delivery-card-title">' + escHtml(deliv.projectName || 'Proyecto Master') + '</div>' +
             '<div class="delivery-card-type">' + escHtml(deliv.projectType || 'Entrega Oficial Grobdesigns') + '</div>' +
             '<div class="delivery-card-meta-line">' +
-              '<span>📅 ' + dateTimeStr + '</span>' +
+              '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.6;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>' +
+              '<span>' + dateTimeStr + '</span>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -8408,20 +9009,21 @@ window.renderAdminDeliveries = function() {
       const expiryInfo = window.getDeliveryExpiryInfo(d);
       const isAvail = !expiryInfo.isExpired;
       const availBadge = isAvail 
-        ? '<span class="deliv-badge-avail-green">🟢 DISPONIBLE (' + expiryInfo.daysLeft + ' días)</span>'
-        : '<span class="deliv-badge-avail-red">🔴 CADUCADO</span>';
+        ? '<span class="deliv-badge-avail-green"><span class="delivery-status-indicator active"></span>DISPONIBLE (' + expiryInfo.daysLeft + ' días)</span>'
+        : '<span class="deliv-badge-avail-red"><span class="delivery-status-indicator expired"></span>PLAZO FINALIZADO</span>';
 
       const dateTimeStr = expiryInfo.formattedDate + ' · ' + expiryInfo.formattedTime;
       
-      let stTag = '<span style="color:#ffb142;">🟡 Producción</span>';
-      if (d.status === 'revision') stTag = '<span style="color:#1e90ff;">🔵 Revisión</span>';
-      else if (d.status === 'listo') stTag = '<span style="color:#2ed573;">🟢 Listo</span>';
+      let stTag = '<span style="color:#ffb142;"><span class="delivery-status-indicator dev"></span>Producción</span>';
+      if (d.status === 'revision') stTag = '<span style="color:#1e90ff;"><span class="delivery-status-indicator rev"></span>Revisión</span>';
+      else if (d.status === 'listo') stTag = '<span style="color:#2ed573;"><span class="delivery-status-indicator active"></span>Listo</span>';
       
       const targetId = d.id || ('deliv_' + idx);
+      const thumbSrc = d.previewImgThumb || d.previewImg || 'logo.svg';
       
       item.innerHTML = 
         '<div class="admin-delivery-item-left">' +
-          '<img class="admin-delivery-thumb" src="' + escHtml(resolveImageUrl(d.previewImg || 'logo.svg')) + '" onerror="this.src=\'logo.svg\'">' +
+          '<img class="admin-delivery-thumb" src="' + escHtml(resolveImageUrl(thumbSrc)) + '" onerror="this.src=\'logo.svg\'">' +
           '<div>' +
             '<div style="font-weight:700; color:#fff; font-size:0.95rem;">' + escHtml(d.projectName || 'Proyecto') + '</div>' +
             '<div style="font-size:0.8rem; color:var(--a-muted); margin-top:3px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">' +
@@ -8431,14 +9033,17 @@ window.renderAdminDeliveries = function() {
               '<span>·</span>' +
               availBadge +
             '</div>' +
-            '<div style="font-size:0.75rem; color:rgba(245,243,239,0.55); margin-top:2px;">' +
-              '📅 ' + dateTimeStr + ' · <span style="color:var(--accent); font-family:monospace;">#entrega-' + escHtml(targetId) + '</span>' +
+            '<div style="font-size:0.75rem; color:rgba(245,243,239,0.55); margin-top:3px; display:flex; align-items:center; gap:5px;">' +
+              '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.6;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>' +
+              '<span>' + dateTimeStr + '</span>' +
+              '<span>·</span>' +
+              '<span style="color:var(--accent); font-family:monospace;">#entrega-' + escHtml(targetId) + '</span>' +
             '</div>' +
           '</div>' +
         '</div>' +
         '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">' +
-          '<button class="a-btn a-btn-primary a-btn-xs" onclick="copyDeliveryLink(\'' + targetId + '\')" title="Copiar enlace para el cliente">🔗 Copiar Enlace</button>' +
-          '<button class="a-btn a-btn-outline a-btn-xs" onclick="location.hash=\'#entrega-' + targetId + '\'" title="Ver sala de entrega">👁️ Ver Preview</button>' +
+          '<button class="a-btn a-btn-primary a-btn-xs" onclick="copyDeliveryLink(\'' + targetId + '\')" title="Copiar enlace para el cliente">Copiar Enlace</button>' +
+          '<button class="a-btn a-btn-outline a-btn-xs" onclick="location.hash=\'#entrega-' + targetId + '\'" title="Ver sala de entrega">Ver Preview</button>' +
           '<button class="a-btn a-btn-outline a-btn-xs" onclick="editAdminDelivery(' + idx + ')">Editar</button>' +
           '<button class="a-btn a-btn-danger a-btn-xs" onclick="deleteAdminDelivery(' + idx + ')">Eliminar</button>' +
         '</div>';
@@ -8494,6 +9099,52 @@ window.deleteAdminDelivery = function(idx) {
   saveDataLocal();
   renderAdminDeliveries();
   showToast("Entrega eliminada");
+};
+
+
+// ========================================================
+// HELPER: COMPRESIÓN Y PERSISTENCIA DE IMAGEN DE ENTREGA
+// ========================================================
+window.compressDeliveryImage = function(imgSrc, maxDim = 320, quality = 0.75) {
+  return new Promise((resolve) => {
+    if (!imgSrc || imgSrc === 'logo.svg') return resolve('');
+    // If already compressed small base64, return it
+    if (imgSrc.startsWith('data:image') && imgSrc.length < 50000) return resolve(imgSrc);
+
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      try {
+        let width = img.naturalWidth || img.width;
+        let height = img.naturalHeight || img.height;
+        if (width > height) {
+          if (width > maxDim) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          }
+        } else {
+          if (height > maxDim) {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        resolve(dataUrl);
+      } catch(e) {
+        console.warn('Could not compress image via canvas:', e);
+        resolve(imgSrc); // Fallback to original
+      }
+    };
+    img.onerror = () => {
+      resolve(imgSrc);
+    };
+    img.src = resolveImageUrl(imgSrc);
+  });
 };
 
 window.saveAdminDelivery = function(e) {
@@ -9049,6 +9700,12 @@ window.saveAdminDelivery = function(e) {
     return;
   }
   
+  const existingDeliv = (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]) ? DATA.entregas[parseInt(idx, 10)] : null;
+  const now = new Date();
+  const dateVal = existingDeliv?.date || now.toISOString().slice(0, 10);
+  const createdAtVal = existingDeliv?.createdAt || now.toISOString();
+  const timeVal = existingDeliv?.time || now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
   const deliveryData = {
     id: newId,
     clientEmail: clientEmail,
@@ -9056,11 +9713,24 @@ window.saveAdminDelivery = function(e) {
     projectName: projectName,
     status: status,
     previewImg: previewImg,
+    previewImgThumb: existingDeliv?.previewImgThumb || '',
     downloadUrl: singleDownloadUrl,
     masterUrl: singleDownloadUrl,
     notes: notes,
-    date: (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]?.date) ? DATA.entregas[parseInt(idx, 10)].date : new Date().toISOString().slice(0, 10)
+    createdAt: createdAtVal,
+    date: dateVal,
+    time: timeVal
   };
+
+  // Compress thumbnail asynchronously in background to ensure permanent preservation
+  if (typeof window.compressDeliveryImage === 'function' && previewImg && previewImg !== 'logo.svg') {
+    window.compressDeliveryImage(previewImg).then(thumbBase64 => {
+      if (thumbBase64) {
+        deliveryData.previewImgThumb = thumbBase64;
+        window.persistDeliveriesData();
+      }
+    }).catch(e => console.warn(e));
+  }
   
   if (idx !== '' && !isNaN(idx)) {
     DATA.entregas[parseInt(idx, 10)] = deliveryData;
@@ -9183,9 +9853,11 @@ window.openEditProfile = function() {
     }
     const profile = window.getSavedUserProfile(window.currentUser) || {};
     $('#obTitle').textContent = "Actualizar Datos de Perfil";
-    $('#obSubtitle').textContent = "Edita tu información y tipo de cliente.";
+    $('#obSubtitle').textContent = "Edita tu información, país, teléfono y tipo de cliente.";
     $('#obType').value = profile.type || localStorage.getItem('grob_client_type') || 'artista';
     $('#obName').value = profile.name || window.currentUser.displayName || '';
+    if (document.getElementById('obCountry')) document.getElementById('obCountry').value = profile.country || 'Venezuela';
+    if (document.getElementById('obPhone')) document.getElementById('obPhone').value = profile.phone || '';
     tempObAvatar = profile.avatar || window.currentUser.photoURL || '';
     $('#obAvatarPreview').src = tempObAvatar;
     $('#obAvatarUrl').value = (profile.avatar && profile.avatar.startsWith('http')) ? profile.avatar : '';
@@ -9235,10 +9907,15 @@ $('#onboardingForm').onsubmit = (e) => {
 
     if (!type || !name) return;
 
+    const country = ($('#obCountry') && $('#obCountry').value) ? $('#obCountry').value.trim() : 'Venezuela';
+    const phone = ($('#obPhone') && $('#obPhone').value) ? $('#obPhone').value.trim() : '';
+
     const profile = { 
       type, 
       name, 
       avatar, 
+      country,
+      phone,
       email: window.currentUser ? window.currentUser.email : '', 
       displayName: window.currentUser ? window.currentUser.displayName : '' 
     };
@@ -10069,6 +10746,164 @@ function updateCartCounter() {
   }
 }
 
+
+// ========================================================
+// CARTS TRACKING ENGINE & ADMIN NOTIFICATIONS (REQ 2)
+// ========================================================
+window.syncCartToAdminRegistry = function() {
+  const user = window.currentUser;
+  const cart = safeGetStorage('grob_cart', []);
+  const profile = (window.getSavedUserProfile && window.getSavedUserProfile(user)) || window.currentUserProfile || {};
+  
+  let adminCarts = safeGetStorage('grob_admin_active_carts', []);
+  if (!Array.isArray(adminCarts)) adminCarts = [];
+  
+  const userKey = user ? (user.uid || user.email) : 'guest_cart';
+  
+  // Filter out existing record for this user
+  adminCarts = adminCarts.filter(c => c.userId !== userKey);
+  
+  if (Array.isArray(cart) && cart.length > 0) {
+    let subtotal = 0;
+    const items = cart.map(item => {
+      let p = cleanNumber(item.price, 0);
+      let extrasText = [];
+      if (item.includeEditable && item.hasEditable) {
+        p += cleanNumber(item.editablePrice, 0);
+        extrasText.push('Archivo Editable');
+      }
+      if (item.customExtras && item.selectedExtras) {
+        item.customExtras.forEach(ex => {
+          if (item.selectedExtras[ex.id]) {
+            p += cleanNumber(ex.price, 0);
+            extrasText.push(ex.name || 'Extra');
+          }
+        });
+      }
+      if (!item.consultPrice) subtotal += p;
+      return {
+        name: item.name || 'Producto',
+        price: item.price,
+        consultPrice: Boolean(item.consultPrice),
+        hasEditable: Boolean(item.includeEditable),
+        extras: extrasText,
+        img: item.img || 'logo.svg'
+      };
+    });
+    
+    const cartRecord = {
+      id: 'cart_' + Date.now().toString(36),
+      userId: userKey,
+      userName: profile.name || (user && user.displayName) || 'Cliente en Tienda',
+      userEmail: (user && user.email) || 'Sin correo',
+      userPhone: profile.phone || '',
+      userCountry: profile.country || 'Venezuela',
+      userAvatar: profile.avatar || (user && user.photoURL) || 'logo.svg',
+      items: items,
+      total: subtotal,
+      hasConsultPrice: items.some(i => i.consultPrice),
+      updatedAt: new Date().toISOString()
+    };
+    
+    adminCarts.unshift(cartRecord);
+  }
+  
+  localStorage.setItem('grob_admin_active_carts', JSON.stringify(adminCarts));
+  if (typeof DATA !== 'undefined') {
+    DATA.activeCarts = adminCarts;
+  }
+  
+  if (typeof updateAdminBadges === 'function') updateAdminBadges();
+  if (typeof renderAdminCarts === 'function') renderAdminCarts();
+};
+
+window.renderAdminCarts = function() {
+  const container = document.getElementById('aAdminCartsList');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  const carts = (DATA.activeCarts && Array.isArray(DATA.activeCarts)) ? DATA.activeCarts : (safeGetStorage('grob_admin_active_carts', []));
+  
+  if (!carts || carts.length === 0) {
+    container.innerHTML = '<div style="color:var(--a-muted); text-align:center; padding:34px; font-size:0.9rem;">No hay carritos activos con productos en este momento.</div>';
+    return;
+  }
+  
+  carts.forEach((cart, idx) => {
+    const card = document.createElement('div');
+    card.className = 'admin-cart-card';
+    
+    const dateStr = cart.updatedAt ? new Date(cart.updatedAt).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' }) : 'Reciente';
+    const totalDisplay = cart.hasConsultPrice ? 'Precio a consultar' : ('$' + cleanNumber(cart.total, 0).toFixed(2) + ' USD');
+    
+    let itemsHtml = '';
+    cart.items.forEach(item => {
+      const extrasStr = item.extras && item.extras.length ? ' (' + item.extras.join(', ') + ')' : '';
+      itemsHtml += '<div class="admin-cart-item-row">' +
+        '<span><strong>1x</strong> ' + escHtml(item.name) + '<span style="color:var(--a-accent); font-size:0.75rem;">' + escHtml(extrasStr) + '</span></span>' +
+        '<span>' + (item.consultPrice ? 'A consultar' : '$' + cleanNumber(item.price, 0).toFixed(2)) + '</span>' +
+      '</div>';
+    });
+    
+    const hasPhone = Boolean(cart.userPhone && cart.userPhone.trim());
+    let whatsappBtn = '';
+    if (hasPhone) {
+      const cleanPhone = cart.userPhone.replace(/[^0-9]/g, '');
+      const firstItem = (cart.items[0] && cart.items[0].name) || 'diseño musical';
+      const msg = 'Hola ' + cart.userName + '! Te escribe Grobdesigns en referencia a tu proyecto "' + firstItem + '" en tu bolsa de compras. ¿Tienes alguna consulta sobre los entregables o la personalización para apoyarte a procesarlo?';
+      whatsappBtn = '<a href="https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(msg) + '" target="_blank" class="btn-cart-whatsapp">' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.94 5.86L2.87 22l4.28-1.05C8.74 21.6 10.33 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.46 14.37c-.23.64-1.34 1.25-1.87 1.33-.49.07-1.12.1-3.26-.79-2.73-1.14-4.48-3.92-4.62-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.55-.34.73-.34.18 0 .37 0 .53.01.17.01.4.06.61.57.23.55.78 1.9.85 2.04.07.14.11.3.02.48-.09.18-.14.3-.28.46-.14.16-.3.35-.43.47-.14.14-.29.29-.12.58.17.29.74 1.22 1.6 1.98 1.1 1 2.03 1.3 2.32 1.45.29.14.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.38-.24.64-.14.26.1 1.64.77 1.92.91.28.14.47.21.53.33.07.11.07.67-.16 1.31z"/></svg>' +
+        'Contactar por WhatsApp' +
+      '</a>';
+    } else {
+      whatsappBtn = '<span style="font-size:0.75rem; color:var(--a-muted);">Sin WhatsApp registrado</span>';
+    }
+    
+    card.innerHTML = 
+      '<div class="admin-cart-header">' +
+        '<div class="admin-cart-user-info">' +
+          '<img class="admin-cart-user-avatar" src="' + escHtml(resolveImageUrl(cart.userAvatar)) + '" onerror="this.src=\'logo.svg\'">' +
+          '<div>' +
+            '<div class="admin-cart-user-name">' + escHtml(cart.userName) + '</div>' +
+            '<div class="admin-cart-user-meta">' +
+              '<span>' + escHtml(cart.userEmail) + '</span>' +
+              '<span>·</span>' +
+              '<span>📍 ' + escHtml(cart.userCountry || 'Venezuela') + '</span>' +
+              (cart.userPhone ? '<span>·</span><span>📱 ' + escHtml(cart.userPhone) + '</span>' : '') +
+              '<span>·</span>' +
+              '<span style="color:var(--a-muted);">🕒 ' + escHtml(dateStr) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<span style="font-size:0.75rem; background:rgba(46,213,115,0.15); color:#2ed573; border:1px solid rgba(46,213,115,0.3); padding:4px 10px; border-radius:9999px; font-weight:700;">' +
+          cart.items.length + (cart.items.length === 1 ? ' producto activo' : ' productos activos') +
+        '</span>' +
+      '</div>' +
+      '<div class="admin-cart-items-list">' + itemsHtml + '</div>' +
+      '<div class="admin-cart-footer">' +
+        '<div class="admin-cart-total-badge">Total Estimado: ' + totalDisplay + '</div>' +
+        '<div class="admin-cart-actions">' +
+          whatsappBtn +
+          (cart.userEmail && cart.userEmail.includes('@') ? '<a href="mailto:' + escHtml(cart.userEmail) + '?subject=Tu%20proyecto%20en%20Grobdesigns" class="btn-cart-email">✉️ Correo</a>' : '') +
+          '<button type="button" class="a-btn a-btn-danger a-btn-xs" onclick="deleteAdminCart(' + idx + ')">✕ Descartar</button>' +
+        '</div>' +
+      '</div>';
+    
+    container.appendChild(card);
+  });
+};
+
+window.deleteAdminCart = function(idx) {
+  let carts = safeGetStorage('grob_admin_active_carts', []);
+  if (Array.isArray(carts) && carts[idx]) {
+    carts.splice(idx, 1);
+    localStorage.setItem('grob_admin_active_carts', JSON.stringify(carts));
+    if (typeof DATA !== 'undefined') DATA.activeCarts = carts;
+    renderAdminCarts();
+    if (typeof updateAdminBadges === 'function') updateAdminBadges();
+  }
+};
+
 window.addToCart = function(productId, btnElement) {
   if (!window.currentUser) {
      showToast("Inicia sesión para añadir al carrito", "error");
@@ -10105,6 +10940,9 @@ window.addToCart = function(productId, btnElement) {
   
   localStorage.setItem('grob_cart', JSON.stringify(safeCart));
   updateCartCounter();
+  if (typeof window.syncCartToAdminRegistry === 'function') {
+    window.syncCartToAdminRegistry();
+  }
   showToast(`${qty}x "${product.name || 'Producto'}" añadido al carrito`);
 };
 
@@ -10138,6 +10976,9 @@ window.removeFromCart = function(cartItemId) {
   cart = cart.filter(item => item.cartItemId !== cartItemId);
   localStorage.setItem('grob_cart', JSON.stringify(cart));
   updateCartCounter();
+  if (typeof window.syncCartToAdminRegistry === 'function') {
+    window.syncCartToAdminRegistry();
+  }
   renderProfile(); 
 };
 
@@ -10369,6 +11210,167 @@ window.switchPerfilTab = function(tabName) {
   });
 };
 
+
+// ========================================================
+// HOLOGRAPHIC DIGITAL WORLD MAP ENGINE (REQ 6)
+// ========================================================
+window.WORLD_COORDINATES = {
+  // Caracas (Sede Central)
+  'caracas': { lat: 10.4806, lng: -66.9036, city: 'Caracas', country: 'Venezuela' },
+  'venezuela': { lat: 10.4806, lng: -66.9036, city: 'Caracas', country: 'Venezuela' },
+  // Norteamérica
+  'miami': { lat: 25.7617, lng: -80.1918, city: 'Miami', country: 'Estados Unidos' },
+  'estados unidos': { lat: 25.7617, lng: -80.1918, city: 'Miami', country: 'Estados Unidos' },
+  'usa': { lat: 25.7617, lng: -80.1918, city: 'Miami', country: 'Estados Unidos' },
+  'los angeles': { lat: 34.0522, lng: -118.2437, city: 'Los Ángeles', country: 'Estados Unidos' },
+  'nueva york': { lat: 40.7128, lng: -74.0060, city: 'Nueva York', country: 'Estados Unidos' },
+  'mexico': { lat: 19.4326, lng: -99.1332, city: 'Ciudad de México', country: 'México' },
+  'ciudad de mexico': { lat: 19.4326, lng: -99.1332, city: 'Ciudad de México', country: 'México' },
+  'puerto rico': { lat: 18.4655, lng: -66.1057, city: 'San Juan', country: 'Puerto Rico' },
+  'san juan': { lat: 18.4655, lng: -66.1057, city: 'San Juan', country: 'Puerto Rico' },
+  // Europa
+  'madrid': { lat: 40.4168, lng: -3.7038, city: 'Madrid', country: 'España' },
+  'españa': { lat: 40.4168, lng: -3.7038, city: 'Madrid', country: 'España' },
+  'barcelona': { lat: 41.3851, lng: 2.1734, city: 'Barcelona', country: 'España' },
+  // Sudamérica
+  'medellin': { lat: 6.2442, lng: -75.5812, city: 'Medellín', country: 'Colombia' },
+  'colombia': { lat: 6.2442, lng: -75.5812, city: 'Medellín', country: 'Colombia' },
+  'bogota': { lat: 4.7110, lng: -74.0721, city: 'Bogotá', country: 'Colombia' },
+  'santiago': { lat: -33.4489, lng: -70.6693, city: 'Santiago', country: 'Chile' },
+  'chile': { lat: -33.4489, lng: -70.6693, city: 'Santiago', country: 'Chile' },
+  'republica dominicana': { lat: 18.4861, lng: -69.9312, city: 'Santo Domingo', country: 'República Dominicana' },
+  'santo domingo': { lat: 18.4861, lng: -69.9312, city: 'Santo Domingo', country: 'República Dominicana' },
+  'buenos aires': { lat: -34.6037, lng: -58.3816, city: 'Buenos Aires', country: 'Argentina' },
+  'argentina': { lat: -34.6037, lng: -58.3816, city: 'Buenos Aires', country: 'Argentina' },
+  'lima': { lat: -12.0464, lng: -77.0428, city: 'Lima', country: 'Perú' },
+  'peru': { lat: -12.0464, lng: -77.0428, city: 'Lima', country: 'Perú' },
+  'quito': { lat: -0.1807, lng: -78.4678, city: 'Quito', country: 'Ecuador' },
+  'ecuador': { lat: -0.1807, lng: -78.4678, city: 'Quito', country: 'Ecuador' },
+  'panama': { lat: 8.9824, lng: -79.5199, city: 'Ciudad de Panamá', country: 'Panamá' },
+  'costa rica': { lat: 9.9281, lng: -84.0907, city: 'San José', country: 'Costa Rica' },
+  'uruguay': { lat: -34.9011, lng: -56.1645, city: 'Montevideo', country: 'Uruguay' }
+};
+
+window.projectGeoToMap = function(lat, lng) {
+  // Equirectangular projection for SVG viewBox 0 0 1000 500
+  const x = ((lng + 180) / 360) * 1000;
+  const y = ((90 - lat) / 180) * 500;
+  return { x: Math.max(10, Math.min(990, x)), y: Math.max(10, Math.min(490, y)) };
+};
+
+window.renderHolographicWorldMap = function() {
+  const arcsGroup = document.getElementById('worldArcsGroup');
+  const markersGroup = document.getElementById('worldMarkersGroup');
+  const tooltip = document.getElementById('worldMapTooltip');
+  const container = document.getElementById('worldMapContainer');
+  if (!arcsGroup || !markersGroup) return;
+
+  arcsGroup.innerHTML = '';
+  markersGroup.innerHTML = '';
+
+  const locations = (DATA.workedLocations && Array.isArray(DATA.workedLocations) && DATA.workedLocations.length > 0)
+    ? DATA.workedLocations
+    : [
+        { id: 'loc_caracas', city: 'Caracas', country: 'Venezuela', lat: 10.4806, lng: -66.9036, projects: 52, isHQ: true },
+        { id: 'loc_miami', city: 'Miami', country: 'Estados Unidos', lat: 25.7617, lng: -80.1918, projects: 16 },
+        { id: 'loc_medellin', city: 'Medellín', country: 'Colombia', lat: 6.2442, lng: -75.5812, projects: 14 },
+        { id: 'loc_madrid', city: 'Madrid', country: 'España', lat: 40.4168, lng: -3.7038, projects: 11 },
+        { id: 'loc_santiago', city: 'Santiago', country: 'Chile', lat: -33.4489, lng: -70.6693, projects: 8 },
+        { id: 'loc_santodomingo', city: 'Santo Domingo', country: 'República Dominicana', lat: 18.4861, lng: -69.9312, projects: 9 },
+        { id: 'loc_buenosaires', city: 'Buenos Aires', country: 'Argentina', lat: -34.6037, lng: -58.3816, projects: 7 },
+        { id: 'loc_cdmx', city: 'Ciudad de México', country: 'México', lat: 19.4326, lng: -99.1332, projects: 6 }
+      ];
+
+  // Also include countries from registered known users
+  const knownUsers = safeGetStorage('grob_known_users', []);
+  if (Array.isArray(knownUsers)) {
+    knownUsers.forEach(u => {
+      const uCountry = (u.country || '').toLowerCase().trim();
+      if (uCountry && window.WORLD_COORDINATES[uCountry]) {
+        const found = locations.find(l => (l.country || '').toLowerCase().trim() === uCountry);
+        if (!found) {
+          const coord = window.WORLD_COORDINATES[uCountry];
+          locations.push({
+            id: 'loc_user_' + Math.random().toString(36).slice(2, 6),
+            city: coord.city,
+            country: coord.country,
+            lat: coord.lat,
+            lng: coord.lng,
+            projects: 1,
+            isUserCreated: true
+          });
+        }
+      }
+    });
+  }
+
+  // Caracas HQ coords
+  const hqPos = window.projectGeoToMap(10.4806, -66.9036);
+
+  // Update counters
+  const uniqueCountries = new Set(locations.map(l => l.country)).size;
+  const totalProjects = locations.reduce((acc, l) => acc + (parseInt(l.projects, 10) || 1), 0);
+  const countEl = document.getElementById('mapStatCountries');
+  const projEl = document.getElementById('mapStatProjects');
+  if (countEl) countEl.textContent = uniqueCountries + '+';
+  if (projEl) projEl.textContent = totalProjects + '+';
+
+  locations.forEach(loc => {
+    const pos = window.projectGeoToMap(loc.lat, loc.lng);
+    const isHQ = Boolean(loc.isHQ);
+
+    // If not HQ, draw curved holographic arc beam from Caracas
+    if (!isHQ) {
+      const midX = (hqPos.x + pos.x) / 2;
+      const midY = Math.min(hqPos.y, pos.y) - 35;
+      const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      pathEl.setAttribute('d', 'M ' + hqPos.x + ' ' + hqPos.y + ' Q ' + midX + ' ' + midY + ' ' + pos.x + ' ' + pos.y);
+      pathEl.setAttribute('class', 'map-arc-line');
+      arcsGroup.appendChild(pathEl);
+    }
+
+    // Radar marker group
+    const markerG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    markerG.setAttribute('class', 'map-marker-node');
+    markerG.style.cursor = 'pointer';
+
+    if (isHQ) {
+      markerG.innerHTML = 
+        '<circle class="hq-pulse-wave" cx="' + pos.x + '" cy="' + pos.y + '" r="5"/>' +
+        '<circle class="hq-pulse-wave" cx="' + pos.x + '" cy="' + pos.y + '" r="5" style="animation-delay:1s;"/>' +
+        '<circle cx="' + pos.x + '" cy="' + pos.y + '" r="6" fill="#ffd700" filter="url(#goldGlow)"/>' +
+        '<text x="' + (pos.x + 9) + '" y="' + (pos.y + 4) + '" fill="#ffd700" font-family="var(--font-title)" font-size="9" font-weight="800" letter-spacing="0.1em">CARACAS (HQ)</text>';
+    } else {
+      markerG.innerHTML = 
+        '<circle class="radar-pulse-wave" cx="' + pos.x + '" cy="' + pos.y + '" r="4"/>' +
+        '<circle class="radar-pulse-wave-delayed" cx="' + pos.x + '" cy="' + pos.y + '" r="4"/>' +
+        '<circle class="radar-pulse-core" cx="' + pos.x + '" cy="' + pos.y + '" r="4" filter="url(#goldGlow)"/>';
+    }
+
+    // Tooltip interactions
+    markerG.addEventListener('mouseenter', (e) => {
+      if (!tooltip || !container) return;
+      const rect = container.getBoundingClientRect();
+      const svgRect = markerG.getBoundingClientRect();
+      const left = svgRect.left - rect.left + (svgRect.width / 2);
+      const top = svgRect.top - rect.top;
+
+      tooltip.innerHTML = 
+        '<div class="world-map-tooltip-title">📍 ' + escHtml(loc.city) + ', ' + escHtml(loc.country) + '</div>' +
+        '<div class="world-map-tooltip-sub">' + (isHQ ? 'Sede Creativa Central · Grobdesigns' : (loc.projects || 1) + ' proyectos realizados') + '</div>';
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+      tooltip.style.display = 'block';
+    });
+
+    markerG.addEventListener('mouseleave', () => {
+      if (tooltip) tooltip.style.display = 'none';
+    });
+
+    markersGroup.appendChild(markerG);
+  });
+};
+
 function renderPublicStore() {
   const banner = document.getElementById('storeMaintenanceBanner');
   const content = document.getElementById('storeContent');
@@ -10563,6 +11565,22 @@ function renderProfile() {
   if (emailEl) emailEl.textContent = window.currentUser.email || '';
   if (avatarEl) {
     avatarEl.src = resolveImageUrl(window.currentUser.photoURL || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80');
+  }
+
+  // Render Country & Phone in profile meta
+  let submetaWrap = document.getElementById('perfilUserSubmeta');
+  if (!submetaWrap && emailEl && emailEl.parentNode) {
+    submetaWrap = document.createElement('div');
+    submetaWrap.id = 'perfilUserSubmeta';
+    submetaWrap.className = 'perfil-user-submeta';
+    emailEl.parentNode.appendChild(submetaWrap);
+  }
+  if (submetaWrap) {
+    const userCountry = profile.country || 'No especificado';
+    const userPhone = profile.phone || 'No especificado';
+    submetaWrap.innerHTML = 
+      '<span class="perfil-meta-pill"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' + escHtml(userCountry) + '</span>' +
+      '<span class="perfil-meta-pill"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>' + escHtml(userPhone) + '</span>';
   }
 
   // 1. RENDER APPLE CART TAB
@@ -11996,7 +13014,7 @@ function renderPublicSite() {
   const tech = $('#techSheetRows'); if (tech) { tech.innerHTML = ''; (DATA.ficha || []).forEach(r => { const d = document.createElement('div'); d.className = 'tech-row'; d.innerHTML = `<div class="tech-label">${escHtml(r.label)}</div><div class="tech-value">${escHtml(r.value)}</div>`; tech.appendChild(d); }); }
 
   const bg = $('#heroBg'); if (bg) { bg.innerHTML = ''; (DATA.heroImages || []).forEach(url => { const l = document.createElement('div'); l.className = 'hero-bg-layer'; l.style.backgroundImage = `url("${resolveImageUrl(url)}")`; bg.appendChild(l); }); initHeroRotation(); }
-  renderMarquee(); renderFeaturedCovers(); setupPlaysBanner(); renderPortfolioCategories(); renderPublicCovers(getCoversList()); renderPublicClients(); renderPublicFaq(); renderPublicTools(); renderContact(); renderPublicStore();
+  renderMarquee(); renderFeaturedCovers(); setupPlaysBanner(); if(typeof renderHolographicWorldMap==="function")renderHolographicWorldMap(); renderPortfolioCategories(); renderPublicCovers(getCoversList()); renderPublicClients(); renderPublicFaq(); renderPublicTools(); renderContact(); renderPublicStore();
   if (typeof window.setAppLanguage === 'function' && window.currentLang) {
     window.setAppLanguage(window.currentLang);
   }
@@ -12593,7 +13611,13 @@ window.cleanupUnusedMedia = async () => {
 
 function updateAdminBadges() {
   const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
-  set('aBadgeHero', (DATA.heroImages || []).length); set('aBadgeCovers', (DATA.covers || []).length); const tp = (DATA.categories || []).reduce((s, c) => s + (c.projects || []).length, 0); set('aBadgePortfolio', tp); set('aBadgeStore', (DATA.products || []).length); set('aBadgeClients', (DATA.clientes || []).length); set('aBadgeTools', (DATA.software || []).length); set('aBadgeFaq', (DATA.faq || []).length);
+  set('aBadgeHero', (DATA.heroImages || []).length); set('aBadgeCovers', (DATA.covers || []).length); const tp = (DATA.categories || []).reduce((s, c) => s + (c.projects || []).length, 0); set('aBadgePortfolio', tp); set('aBadgeStore', (DATA.products || []).length); set('aBadgeClients', (DATA.clientes || []).length); set('aBadgeTools', (DATA.software || []).length);
+  const activeCartsCount = (DATA.activeCarts && Array.isArray(DATA.activeCarts)) ? DATA.activeCarts.length : (safeGetStorage('grob_admin_active_carts', []).length);
+  set('aBadgeCarts', activeCartsCount);
+  set('statActiveCartsCount', activeCartsCount);
+  const mapLocationsCount = (DATA.workedLocations && Array.isArray(DATA.workedLocations)) ? DATA.workedLocations.length : 0;
+  set('aBadgeMap', mapLocationsCount);
+  set('statMapLocationsCount', mapLocationsCount); set('aBadgeFaq', (DATA.faq || []).length);
   set('statHeroImgs', (DATA.heroImages || []).length); set('statCategories', (DATA.categories || []).length); set('statProjects', tp); set('statProducts', (DATA.products || []).length); set('statClients', (DATA.clientes || []).length); set('statTools', (DATA.software || []).length); set('aCoversCount', (DATA.covers || []).length); set('aProductsCount', (DATA.products || []).length); set('aClientsCount', (DATA.clientes || []).length); set('aToolsCount', (DATA.software || []).length);
   const c = DATA.covers || []; set('statSencillo', c.filter(x => x.category === 'sencillo').length); set('statAlbums', c.filter(x => x.category === 'albums').length); set('statEdiciones', c.filter(x => x.category === 'ediciones').length); set('statFeatured', c.filter(x => x.featured).length);
 }
@@ -12714,6 +13738,150 @@ window.delFaq = function(i) {
   }
 };
 
+
+// ========================================================
+// ADMIN LOCATION MANAGEMENT FUNCTIONS (MAPA GLOBAL)
+// ========================================================
+window.renderAdminMapLocations = function() {
+  const grid = document.getElementById('aMapLocationsGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const locs = (DATA.workedLocations && Array.isArray(DATA.workedLocations)) ? DATA.workedLocations : [];
+  const statEl = document.getElementById('statMapLocationsCount');
+  if (statEl) statEl.textContent = locs.length;
+
+  if (locs.length === 0) {
+    grid.innerHTML = '<div style="color:var(--a-muted); padding:20px;">No hay ubicaciones registradas en el mapa.</div>';
+    return;
+  }
+
+  locs.forEach((loc, idx) => {
+    const card = document.createElement('div');
+    card.className = 'a-cover-card';
+    card.style.padding = '14px';
+    card.style.background = 'rgba(255,255,255,0.02)';
+    card.style.border = '1px solid var(--a-line)';
+    card.style.borderRadius = '10px';
+    
+    card.innerHTML = 
+      '<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">' +
+        '<div>' +
+          '<div style="font-weight:700; color:#fff; font-size:1rem;">' + escHtml(loc.city) + ', ' + escHtml(loc.country) + '</div>' +
+          '<div style="font-size:0.75rem; color:var(--accent); font-family:monospace; margin-top:3px;">Lat: ' + loc.lat + ' · Lng: ' + loc.lng + '</div>' +
+        '</div>' +
+        (loc.isHQ ? '<span class="a-badge" style="background:var(--accent); color:#000; font-weight:800;">HQ</span>' : '') +
+      '</div>' +
+      '<div style="font-size:0.8rem; color:var(--a-muted); margin-bottom:12px;">' +
+        'Proyectos desarrollados: <strong style="color:#fff;">' + (loc.projects || 1) + '</strong>' +
+      '</div>' +
+      '<div style="display:flex; gap:8px;">' +
+        '<button type="button" class="a-btn a-btn-outline a-btn-xs" onclick="editMapLocation(' + idx + ')">Editar</button>' +
+        (!loc.isHQ ? '<button type="button" class="a-btn a-btn-danger a-btn-xs" onclick="deleteMapLocation(' + idx + ')">Eliminar</button>' : '') +
+      '</div>';
+      
+    grid.appendChild(card);
+  });
+};
+
+window.openAddLocationModal = function() {
+  document.getElementById('aMapLocIndex').value = '-1';
+  document.getElementById('aMapLocCity').value = '';
+  document.getElementById('aMapLocCountry').value = '';
+  document.getElementById('aMapLocLat').value = '';
+  document.getElementById('aMapLocLng').value = '';
+  document.getElementById('aMapLocProjects').value = '5';
+  document.getElementById('aMapModalTitle').textContent = 'Agregar Ubicación al Mapa';
+  
+  const m = document.getElementById('aMapLocationModal');
+  if (m) m.style.display = 'flex';
+};
+
+window.closeMapLocationModal = function() {
+  const m = document.getElementById('aMapLocationModal');
+  if (m) m.style.display = 'none';
+};
+
+window.editMapLocation = function(idx) {
+  const loc = DATA.workedLocations[idx];
+  if (!loc) return;
+  document.getElementById('aMapLocIndex').value = idx;
+  document.getElementById('aMapLocCity').value = loc.city || '';
+  document.getElementById('aMapLocCountry').value = loc.country || '';
+  document.getElementById('aMapLocLat').value = loc.lat || '';
+  document.getElementById('aMapLocLng').value = loc.lng || '';
+  document.getElementById('aMapLocProjects').value = loc.projects || 5;
+  document.getElementById('aMapModalTitle').textContent = 'Editar Ubicación';
+  
+  const m = document.getElementById('aMapLocationModal');
+  if (m) m.style.display = 'flex';
+};
+
+window.deleteMapLocation = function(idx) {
+  if (!confirm('¿Eliminar esta ubicación del mapa?')) return;
+  if (Array.isArray(DATA.workedLocations)) {
+    DATA.workedLocations.splice(idx, 1);
+    saveAdminData();
+    renderAdminMapLocations();
+    if (typeof renderHolographicWorldMap === 'function') renderHolographicWorldMap();
+    if (typeof updateAdminBadges === 'function') updateAdminBadges();
+  }
+};
+
+window.autoDetectCityCoords = function(val) {
+  if (!val) return;
+  const k = val.toLowerCase().trim();
+  if (window.WORLD_COORDINATES && window.WORLD_COORDINATES[k]) {
+    const c = window.WORLD_COORDINATES[k];
+    const countryEl = document.getElementById('aMapLocCountry');
+    const latEl = document.getElementById('aMapLocLat');
+    const lngEl = document.getElementById('aMapLocLng');
+    if (countryEl && !countryEl.value) countryEl.value = c.country;
+    if (latEl && !latEl.value) latEl.value = c.lat;
+    if (lngEl && !lngEl.value) lngEl.value = c.lng;
+  }
+};
+
+window.saveMapLocation = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const idx = parseInt(document.getElementById('aMapLocIndex').value, 10);
+  const city = document.getElementById('aMapLocCity').value.trim();
+  const country = document.getElementById('aMapLocCountry').value.trim();
+  const lat = parseFloat(document.getElementById('aMapLocLat').value);
+  const lng = parseFloat(document.getElementById('aMapLocLng').value);
+  const projects = parseInt(document.getElementById('aMapLocProjects').value, 10) || 5;
+
+  if (!city || !country || isNaN(lat) || isNaN(lng)) {
+    alert('Por favor completa todos los campos con valores válidos.');
+    return;
+  }
+
+  if (!Array.isArray(DATA.workedLocations)) DATA.workedLocations = [];
+
+  const locData = {
+    id: (idx >= 0 && DATA.workedLocations[idx]) ? DATA.workedLocations[idx].id : ('loc_' + Date.now().toString(36)),
+    city,
+    country,
+    lat,
+    lng,
+    projects,
+    isHQ: (idx >= 0 && DATA.workedLocations[idx]) ? DATA.workedLocations[idx].isHQ : false
+  };
+
+  if (idx >= 0) {
+    DATA.workedLocations[idx] = locData;
+  } else {
+    DATA.workedLocations.push(locData);
+  }
+
+  closeMapLocationModal();
+  saveAdminData();
+  renderAdminMapLocations();
+  if (typeof renderHolographicWorldMap === 'function') renderHolographicWorldMap();
+  if (typeof updateAdminBadges === 'function') updateAdminBadges();
+  showToast('Ubicación guardada en el mapa.');
+};
+
 function renderAdmin() {
   if (!$('#aHeroEyebrow')) return;
   const setVal = (id, val) => { const el = $(id); if (el) el.value = val; };
@@ -12747,6 +13915,9 @@ function renderAdmin() {
   
   $('#aStoreMaintenance').checked = DATA.settings.storeMaintenance;
   updateStoreStatusText(DATA.settings.storeMaintenance);
+  if (typeof renderAdminMapLocations === 'function') renderAdminMapLocations();
+  if (typeof renderAdminCarts === 'function') renderAdminCarts();
+  if (typeof renderAdminDeliveries === 'function') renderAdminDeliveries();
   
   updateAdminBadges();
 }
