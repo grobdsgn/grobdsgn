@@ -4094,6 +4094,15 @@
       "lng": -77.0428,
       "projects": 5,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7f9c0g",
+      "city": "Helsinki",
+      "country": "Finlandia",
+      "lat": 60.1695,
+      "lng": 24.9355,
+      "projects": 6,
+      "isHQ": false
     }
   ]
 }
