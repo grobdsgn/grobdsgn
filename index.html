@@ -5993,6 +5993,408 @@ section {
   background: #000;
 }
 
+
+/* ========================================================
+   VISTA DE ENTREGA DE PROYECTO & PREVIEW INMERSIVO
+   ======================================================== */
+[data-view="entrega"] {
+  position: relative;
+  min-height: 100vh;
+  background: #08080A !important;
+  overflow: hidden;
+  isolation: isolate;
+}
+.delivery-preview-page {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.delivery-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 6vw, 100px);
+  align-items: center;
+  padding: 110px clamp(20px, 5vw, 80px) 90px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+@media (max-width: 960px) {
+  .delivery-hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 100px 20px 60px;
+    min-height: auto;
+  }
+}
+.delivery-hero-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delivery-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  background: #0a0a0d;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.delivery-image-frame:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 215, 0, 0.22);
+}
+.delivery-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: zoom-in;
+}
+.delivery-frame-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent);
+  border-style: solid;
+  pointer-events: none;
+}
+.corner-tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+.corner-tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+.corner-bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+.corner-br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+.delivery-hero-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 620px;
+}
+.delivery-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.06);
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.delivery-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.delivery-hero-title {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 10px 0;
+  word-break: break-word;
+}
+.delivery-hero-artist {
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  color: rgba(245, 243, 239, 0.85);
+  margin: 0 0 20px 0;
+}
+
+/* Status Box */
+.delivery-status-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid rgba(46, 213, 115, 0.35);
+  border-radius: 9999px;
+  margin-bottom: 22px;
+}
+.delivery-status-box.status-revision {
+  background: rgba(30, 144, 255, 0.1);
+  border-color: rgba(30, 144, 255, 0.35);
+}
+.delivery-status-box.status-produccion {
+  background: rgba(255, 177, 66, 0.1);
+  border-color: rgba(255, 177, 66, 0.35);
+}
+.delivery-status-box.status-expired {
+  background: rgba(255, 71, 87, 0.1);
+  border-color: rgba(255, 71, 87, 0.35);
+}
+.delivery-status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ed573;
+  box-shadow: 0 0 10px #2ed573;
+}
+.status-revision .delivery-status-indicator { background: #1e90ff; box-shadow: 0 0 10px #1e90ff; }
+.status-produccion .delivery-status-indicator { background: #ffb142; box-shadow: 0 0 10px #ffb142; }
+.status-expired .delivery-status-indicator { background: #ff4757; box-shadow: 0 0 10px #ff4757; }
+.delivery-status-text {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2ed573;
+}
+.status-revision .delivery-status-text { color: #1e90ff; }
+.status-produccion .delivery-status-text { color: #ffb142; }
+.status-expired .delivery-status-text { color: #ff4757; }
+
+/* 7-Day Expiry Notice Card */
+.delivery-expiry-card {
+  width: 100%;
+  background: rgba(255, 177, 66, 0.05);
+  border: 1px solid rgba(255, 177, 66, 0.25);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.delivery-expiry-card.expired {
+  background: rgba(255, 71, 87, 0.08);
+  border-color: rgba(255, 71, 87, 0.4);
+}
+.delivery-expiry-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.delivery-expiry-content {
+  flex: 1;
+  min-width: 0;
+}
+.delivery-expiry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.delivery-expiry-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.delivery-expiry-days-left {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffb142;
+  background: rgba(255, 177, 66, 0.12);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 177, 66, 0.3);
+}
+.delivery-expiry-card.expired .delivery-expiry-days-left {
+  color: #ff4757;
+  background: rgba(255, 71, 87, 0.12);
+  border-color: rgba(255, 71, 87, 0.3);
+}
+.delivery-expiry-desc {
+  font-size: 0.82rem;
+  color: rgba(245, 243, 239, 0.82);
+  line-height: 1.55;
+  margin: 0 0 6px 0;
+}
+.delivery-expiry-date-tag {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Download Action Section */
+.delivery-download-section {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.btn-delivery-download {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #FFF2B2 0%, #D4AF37 50%, #997A15 100%);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 18px 28px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.btn-delivery-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(212, 175, 55, 0.55);
+  filter: brightness(1.06);
+}
+.btn-delivery-download.btn-expired {
+  background: #2a2a32;
+  color: #ff6b81;
+  box-shadow: none;
+  cursor: pointer;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}
+.btn-delivery-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Didactic Dynamic Progress Bar */
+.delivery-progress-wrap {
+  width: 100%;
+  background: rgba(18, 18, 24, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  animation: fadeInProgress 0.3s ease;
+}
+@keyframes fadeInProgress {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.delivery-progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.delivery-progress-step {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.delivery-progress-percent {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.delivery-progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+.delivery-progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #FFF2B2, #D4AF37, #2ed573);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  transition: width 0.08s linear;
+}
+.delivery-link-fallback {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: underline;
+  text-align: center;
+  display: block;
+}
+
+/* Share Row */
+.delivery-share-row {
+  width: 100%;
+  margin-bottom: 18px;
+}
+.btn-delivery-share {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(245, 243, 239, 0.85);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-delivery-share:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Notes & License */
+.delivery-notes-block {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--accent);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.delivery-notes-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.delivery-notes-text {
+  font-size: 0.85rem;
+  color: rgba(245, 243, 239, 0.85);
+  line-height: 1.55;
+  margin: 0;
+}
+.delivery-license-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
 </style>
 </head>
 <body>
@@ -6218,6 +6620,111 @@ section {
         </div>
       </section>
     </div>
+
+    <!-- ========================================================
+         VISTA DE ENTREGA DE PROYECTO (PREVIEW INMERSIVO Y DESCARGA)
+         ======================================================== -->
+    <div class="view" data-view="entrega">
+      <div class="ambient-backdrop" id="deliveryAmbientBackdrop">
+        <img id="deliveryAmbientImg" src="" alt="" draggable="false">
+        <div class="ambient-backdrop-gradient"></div>
+      </div>
+      <section class="delivery-preview-page">
+        <div class="delivery-hero">
+          <div class="delivery-hero-image-wrap">
+            <div class="delivery-image-frame" id="deliveryFrame">
+              <img id="deliveryHeroImg" src="" alt="Artwork de entrega" data-zoom="">
+              <div class="delivery-frame-corner corner-tl"></div>
+              <div class="delivery-frame-corner corner-tr"></div>
+              <div class="delivery-frame-corner corner-bl"></div>
+              <div class="delivery-frame-corner corner-br"></div>
+            </div>
+          </div>
+          <div class="delivery-hero-info">
+            <div class="delivery-header-badge">
+              <span class="delivery-live-dot"></span>
+              <span id="deliveryBadgeText">ENTREGA OFICIAL · GROBDESIGNS</span>
+            </div>
+            
+            <h1 class="delivery-hero-title" id="deliveryHeroTitle">Título del Proyecto</h1>
+            <div class="delivery-hero-artist" id="deliveryHeroArtist">Artista / Cliente</div>
+            
+            <!-- Estado del Proyecto -->
+            <div class="delivery-status-box" id="deliveryStatusBox">
+              <span class="delivery-status-indicator" id="deliveryStatusIndicator"></span>
+              <span class="delivery-status-text" id="deliveryStatusText">PROYECTO LISTO PARA DESCARGA</span>
+            </div>
+
+            <!-- Aviso de Caducidad de 7 Días -->
+            <div class="delivery-expiry-card" id="deliveryExpiryCard">
+              <div class="delivery-expiry-icon">⏳</div>
+              <div class="delivery-expiry-content">
+                <div class="delivery-expiry-header">
+                  <span class="delivery-expiry-title">Disponibilidad del Archivo: 7 Días</span>
+                  <span class="delivery-expiry-days-left" id="deliveryDaysLeft">Quedan 7 días</span>
+                </div>
+                <p class="delivery-expiry-desc">
+                  Este enlace y paquete de descarga estarán activos durante <strong>7 días continuos</strong> a partir de su emisión. Al cumplirse los 7 días, el enlace caducará automáticamente por políticas de respaldo y seguridad. Por favor descarga y almacena tus archivos antes de la fecha límite.
+                </p>
+                <div class="delivery-expiry-date-tag" id="deliveryExpiryDateTag">Fecha de caducidad: Calculando...</div>
+              </div>
+            </div>
+
+            <!-- Sección Didáctica de Descarga con Barra Dinámica de Progreso -->
+            <div class="delivery-download-section" id="deliveryDownloadSection">
+              <!-- Botón Inicial de Descarga -->
+              <button type="button" class="btn-delivery-download" id="btnStartDeliveryDownload" onclick="triggerDeliveryDownload()">
+                <svg class="btn-delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span id="btnDeliveryText">Descargar Paquete de Entrega</span>
+              </button>
+
+              <!-- Barra de Progreso Didáctica y Dinámica -->
+              <div class="delivery-progress-wrap" id="deliveryProgressWrap" style="display:none;">
+                <div class="delivery-progress-labels">
+                  <span class="delivery-progress-step" id="deliveryProgressStep">Iniciando conexión segura...</span>
+                  <span class="delivery-progress-percent" id="deliveryProgressPercent">0%</span>
+                </div>
+                <div class="delivery-progress-bar-bg">
+                  <div class="delivery-progress-bar-fill" id="deliveryProgressFill"></div>
+                </div>
+              </div>
+
+              <!-- Enlace alternativo si el navegador bloquea ventanas emergentes -->
+              <div class="delivery-direct-link-wrap" id="deliveryDirectLinkWrap" style="display:none;">
+                <a id="deliveryDirectLink" href="#" target="_blank" rel="noopener" class="delivery-link-fallback">
+                  ¿No inició la descarga automáticamente? Haz clic aquí para descargar directo
+                </a>
+              </div>
+            </div>
+
+            <!-- Botón de compartir enlace -->
+            <div class="delivery-share-row">
+              <button type="button" class="btn-delivery-share" onclick="copyCurrentDeliveryLink()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                <span>Copiar Enlace de esta Entrega</span>
+              </button>
+            </div>
+
+            <!-- Especificaciones del paquete -->
+            <div class="delivery-notes-block" id="deliveryNotesBlock" style="display:none;">
+              <div class="delivery-notes-label">Especificaciones de Entrega:</div>
+              <p class="delivery-notes-text" id="deliveryNotesText"></p>
+            </div>
+
+            <!-- Licencia de Derechos -->
+            <div class="delivery-license-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <span>Licencia de Explotación Comercial Aprobada para Streaming y Medios Físicos</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
 
     <div class="view" data-view="clientes">
       <section class="clientes-view">
@@ -6848,19 +7355,14 @@ section {
           <div class="privacy-modal-overlay" onclick="closeAdminDeliveryModal()"></div>
           <div class="privacy-modal-card" style="max-width:620px;">
             <div class="privacy-modal-header">
-              <div class="privacy-modal-badge">ENTREGA DE PROYECTO</div>
+              <div class="privacy-modal-badge">ENTREGA DE PROYECTO · ENLACE ÚNICO</div>
               <h2 id="admDelivModalTitle" class="privacy-modal-title">Nueva Entrega a Cliente</h2>
-              <p class="privacy-modal-sub">Asigna archivos y estado que verá el cliente al iniciar sesión.</p>
+              <p class="privacy-modal-sub">Genera una página exclusiva de preview y descarga para compartir con el cliente.</p>
               <button class="privacy-modal-close" onclick="closeAdminDeliveryModal()">✕</button>
             </div>
             <form id="adminDeliveryForm" onsubmit="saveAdminDelivery(event)">
               <div class="privacy-modal-body" style="display:flex; flex-direction:column; gap:14px;">
                 <input type="hidden" id="admDelivId">
-                <div class="a-form-group">
-                  <label class="a-form-label">Correo del Cliente (o alias)</label>
-                  <input type="text" id="admDelivEmail" class="a-form-input" placeholder="ej: artista@gmail.com o *" required>
-                  <span class="a-form-hint">Usa el correo con el que se registra en Google, o * para mostrarlo a todos como demo.</span>
-                </div>
                 <div class="a-form-group">
                   <label class="a-form-label">Nombre del Artista / Cliente</label>
                   <input type="text" id="admDelivClientName" class="a-form-input" placeholder="ej: Omega El Fuerte" required>
@@ -6870,32 +7372,30 @@ section {
                   <input type="text" id="admDelivProjectName" class="a-form-input" placeholder="ej: Single Oficial 'Pinocchio Remix'" required>
                 </div>
                 <div class="a-form-group">
-                  <label class="a-form-label">Estado de la Entrega</label>
+                  <label class="a-form-label">Miniatura / Artwork del Proyecto (URL)</label>
+                  <input type="url" id="admDelivPreview" class="a-form-input" placeholder="https://..." required>
+                  <span class="a-form-hint">Esta imagen se mostrará en grande con fondo desenfocado e inmersivo en la página del cliente.</span>
+                </div>
+                <div class="a-form-group">
+                  <label class="a-form-label" style="color:var(--accent); font-weight:700;">Enlace Único de Descarga (Drive, WeTransfer, Dropbox o ZIP directo)</label>
+                  <input type="url" id="admDelivDownloadUrl" class="a-form-input" style="border-color:var(--accent); background:rgba(255,215,0,0.05);" placeholder="https://drive.google.com/... o https://we.tl/..." required>
+                  <span class="a-form-hint">Con un solo enlace basta. El cliente descargará todo su paquete desde aquí.</span>
+                </div>
+                <div class="a-form-group">
+                  <label class="a-form-label">Correo del Cliente (Opcional, para su perfil)</label>
+                  <input type="text" id="admDelivEmail" class="a-form-input" placeholder="ej: artista@gmail.com o * (dejar vacío si es link libre)">
+                </div>
+                <div class="a-form-group">
+                  <label class="a-form-label">Estado del Proyecto</label>
                   <select id="admDelivStatus" class="a-form-input" required>
-                    <option value="produccion">🟡 En Producción (Bocetos en desarrollo)</option>
-                    <option value="revision">🔵 En Revisión (Ronda de ajustes)</option>
-                    <option value="listo" selected>🟢 Listo para Entrega (Archivos HD listos)</option>
+                    <option value="listo" selected>🟢 Listo (Listo para descarga con aviso de 7 días)</option>
+                    <option value="revision">🔵 En Revisión (Ajustes en proceso)</option>
+                    <option value="produccion">🟡 En Producción (Bocetos y arte en desarrollo)</option>
                   </select>
                 </div>
                 <div class="a-form-group">
-                  <label class="a-form-label">URL Miniatura de Portada / Preview</label>
-                  <input type="url" id="admDelivPreview" class="a-form-input" placeholder="https://..." required>
-                </div>
-                <div class="a-form-group">
-                  <label class="a-form-label">Enlace Descarga: Master HD (3000x3000px 300DPI)</label>
-                  <input type="url" id="admDelivMasterUrl" class="a-form-input" placeholder="https://drive.google.com/... o link directo" required>
-                </div>
-                <div class="a-form-group">
-                  <label class="a-form-label">Enlace Descarga: Spotify Canvas / Reel (9:16)</label>
-                  <input type="url" id="admDelivCanvasUrl" class="a-form-input" placeholder="https://drive.google.com/... (opcional)">
-                </div>
-                <div class="a-form-group">
-                  <label class="a-form-label">Enlace Carpeta Editables / PSD</label>
-                  <input type="url" id="admDelivEditablesUrl" class="a-form-input" placeholder="https://drive.google.com/... (opcional)">
-                </div>
-                <div class="a-form-group">
-                  <label class="a-form-label">Notas / Instrucciones para el cliente</label>
-                  <textarea id="admDelivNotes" class="a-form-textarea" rows="2" placeholder="Archivos master exportados a 300 DPI aprobados para distribución digital y física."></textarea>
+                  <label class="a-form-label">Especificaciones / Notas de Entrega</label>
+                  <textarea id="admDelivNotes" class="a-form-textarea" rows="2" placeholder="Master final a 3000x3000px 300 DPI aprobado para distribución en Spotify, Apple Music y YouTube."></textarea>
                 </div>
               </div>
               <div class="privacy-modal-footer">
@@ -7597,38 +8097,35 @@ function renderClientDeliveries() {
       statusLabel = '🟢 LISTO PARA DESCARGA';
     }
     
-    let downloadsHtml = '';
-    if (deliv.masterUrl) {
-      downloadsHtml += `<a href="${escHtml(deliv.masterUrl)}" target="_blank" rel="noopener" class="delivery-btn-download">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        Master HD (3000px · 300 DPI)
-      </a>`;
-    }
-    if (deliv.canvasUrl) {
-      downloadsHtml += `<a href="${escHtml(deliv.canvasUrl)}" target="_blank" rel="noopener" class="delivery-btn-download delivery-btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-        Spotify Canvas (9:16)
-      </a>`;
-    }
-    if (deliv.editablesUrl) {
-      downloadsHtml += `<a href="${escHtml(deliv.editablesUrl)}" target="_blank" rel="noopener" class="delivery-btn-download delivery-btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        Carpeta Editables / Drive
-      </a>`;
-    }
+    const expiryInfo = window.getDeliveryExpiryInfo(deliv);
+    const targetId = deliv.id || ('deliv_' + Math.random().toString(36).slice(2, 7));
     
+    let expiryNotice = expiryInfo.isExpired 
+      ? '<span style="color:#ff4757; font-weight:700;">⚠️ Caducado (7 Días vencidos)</span>' 
+      : `<span style="color:var(--accent);">⏳ Disponible por 7 días · Quedan ${expiryInfo.daysLeft} días</span>`;
+
     card.innerHTML = `
-      <div class="delivery-thumb-wrap">
+      <div class="delivery-thumb-wrap" style="cursor:pointer;" onclick="location.hash='#entrega-${targetId}'">
         <img class="delivery-thumb-img" src="${escHtml(resolveImageUrl(deliv.previewImg || 'logo.svg'))}" alt="${escHtml(deliv.projectName)}" onerror="handleImgError(this)" draggable="false">
       </div>
       <div class="delivery-info">
-        <span class="delivery-status-badge ${statusClass}">${statusLabel}</span>
-        <h4 class="delivery-project-name">${escHtml(deliv.projectName || 'Proyecto')}</h4>
-        <p class="delivery-client-meta">${escHtml(deliv.clientName || 'Cliente')} · ${escHtml(deliv.date || '')}</p>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span class="delivery-status-badge ${statusClass}">${statusLabel}</span>
+          <span style="font-size:0.75rem;">${expiryNotice}</span>
+        </div>
+        <h4 class="delivery-project-name" style="cursor:pointer;" onclick="location.hash='#entrega-${targetId}'">${escHtml(deliv.projectName || 'Proyecto')}</h4>
+        <p class="delivery-client-meta">${escHtml(deliv.clientName || 'Cliente')} · Fecha: ${escHtml(deliv.date || '')}</p>
         ${deliv.notes ? `<div class="delivery-notes">${escHtml(deliv.notes)}</div>` : ''}
         <div class="delivery-license-tag">✓ Licencia de explotación comercial autorizada para plataformas digitales y medios físicos</div>
         <div class="delivery-downloads-row">
-          ${downloadsHtml}
+          <a href="#entrega-${targetId}" class="delivery-btn-download">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Abrir Sala de Entrega & Descarga
+          </a>
+          <button type="button" class="delivery-btn-download delivery-btn-secondary" onclick="copyDeliveryLink('${targetId}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            Copiar Enlace
+          </button>
         </div>
       </div>
     `;
@@ -7674,7 +8171,7 @@ window.renderAdminDeliveries = function() {
   
   listEl.innerHTML = '';
   if (deliveries.length === 0) {
-    listEl.innerHTML = '<p style="color:var(--a-muted); padding:20px 0;">No hay entregas creadas aún. Haz clic en "+ Nueva Entrega" para asignar archivos a un cliente.</p>';
+    listEl.innerHTML = '<p style="color:var(--a-muted); padding:20px 0;">No hay entregas creadas aún. Haz clic en "+ Nueva Entrega" para generar una sala de entrega para un cliente.</p>';
     return;
   }
   
@@ -7682,19 +8179,29 @@ window.renderAdminDeliveries = function() {
     const item = document.createElement('div');
     item.className = 'admin-delivery-item';
     
+    const expiryInfo = window.getDeliveryExpiryInfo(d);
     let stTag = '<span style="color:#ffb142;">🟡 En Producción</span>';
     if (d.status === 'revision') stTag = '<span style="color:#1e90ff;">🔵 En Revisión</span>';
     else if (d.status === 'listo') stTag = '<span style="color:#2ed573;">🟢 Listo</span>';
+    
+    let expiryTag = expiryInfo.isExpired 
+      ? '<span style="color:#ff4757; font-weight:700;">⚠️ Caducado (7 Días)</span>'
+      : `<span style="color:var(--accent);">⏳ Quedan ${expiryInfo.daysLeft} días</span>`;
+    
+    const targetId = d.id || ('deliv_' + idx);
     
     item.innerHTML = `
       <div class="admin-delivery-item-left">
         <img class="admin-delivery-thumb" src="${escHtml(resolveImageUrl(d.previewImg || 'logo.svg'))}" onerror="this.src='logo.svg'">
         <div>
-          <div style="font-weight:700; color:#fff;">${escHtml(d.projectName || 'Proyecto')}</div>
-          <div style="font-size:0.8rem; color:var(--a-muted);">${escHtml(d.clientName || '')} (${escHtml(d.clientEmail || '*')}) · ${stTag}</div>
+          <div style="font-weight:700; color:#fff; font-size:0.95rem;">${escHtml(d.projectName || 'Proyecto')}</div>
+          <div style="font-size:0.8rem; color:var(--a-muted); margin-top:2px;">${escHtml(d.clientName || '')} · ${stTag} · ${expiryTag}</div>
+          <div style="font-size:0.75rem; color:var(--accent); font-family:monospace; margin-top:2px;">#entrega-${escHtml(targetId)}</div>
         </div>
       </div>
-      <div style="display:flex; gap:8px;">
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <button class="a-btn a-btn-primary a-btn-xs" onclick="copyDeliveryLink('${targetId}')" title="Copiar enlace para el cliente">🔗 Copiar Enlace</button>
+        <button class="a-btn a-btn-outline a-btn-xs" onclick="location.hash='#entrega-${targetId}'" title="Ver sala de entrega">👁️ Ver Preview</button>
         <button class="a-btn a-btn-outline a-btn-xs" onclick="editAdminDelivery(${idx})">Editar</button>
         <button class="a-btn a-btn-danger a-btn-xs" onclick="deleteAdminDelivery(${idx})">Eliminar</button>
       </div>
@@ -7711,9 +8218,7 @@ window.openCreateDeliveryModal = function() {
   document.getElementById('admDelivProjectName').value = '';
   document.getElementById('admDelivStatus').value = 'listo';
   document.getElementById('admDelivPreview').value = '';
-  document.getElementById('admDelivMasterUrl').value = '';
-  document.getElementById('admDelivCanvasUrl').value = '';
-  document.getElementById('admDelivEditablesUrl').value = '';
+  document.getElementById('admDelivDownloadUrl').value = '';
   document.getElementById('admDelivNotes').value = '';
   
   const m = document.getElementById('adminDeliveryModal');
@@ -7736,9 +8241,7 @@ window.editAdminDelivery = function(idx) {
   document.getElementById('admDelivProjectName').value = d.projectName || '';
   document.getElementById('admDelivStatus').value = d.status || 'listo';
   document.getElementById('admDelivPreview').value = d.previewImg || '';
-  document.getElementById('admDelivMasterUrl').value = d.masterUrl || '';
-  document.getElementById('admDelivCanvasUrl').value = d.canvasUrl || '';
-  document.getElementById('admDelivEditablesUrl').value = d.editablesUrl || '';
+  document.getElementById('admDelivDownloadUrl').value = d.downloadUrl || d.masterUrl || '';
   document.getElementById('admDelivNotes').value = d.notes || '';
   
   const m = document.getElementById('adminDeliveryModal');
@@ -7759,17 +8262,22 @@ window.saveAdminDelivery = function(e) {
   if (!Array.isArray(DATA.entregas)) DATA.entregas = [];
   
   const idx = document.getElementById('admDelivId').value;
+  const existingId = (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]) ? DATA.entregas[parseInt(idx, 10)].id : null;
+  const newId = existingId || ('deliv_' + Date.now().toString(36));
+  
+  const singleDownloadUrl = document.getElementById('admDelivDownloadUrl').value.trim();
+  
   const deliveryData = {
-    clientEmail: document.getElementById('admDelivEmail').value.trim(),
+    id: newId,
+    clientEmail: document.getElementById('admDelivEmail').value.trim() || '*',
     clientName: document.getElementById('admDelivClientName').value.trim(),
     projectName: document.getElementById('admDelivProjectName').value.trim(),
     status: document.getElementById('admDelivStatus').value,
     previewImg: document.getElementById('admDelivPreview').value.trim(),
-    masterUrl: document.getElementById('admDelivMasterUrl').value.trim(),
-    canvasUrl: document.getElementById('admDelivCanvasUrl').value.trim(),
-    editablesUrl: document.getElementById('admDelivEditablesUrl').value.trim(),
+    downloadUrl: singleDownloadUrl,
+    masterUrl: singleDownloadUrl, // Backward compatibility
     notes: document.getElementById('admDelivNotes').value.trim(),
-    date: new Date().toISOString().slice(0, 10)
+    date: (idx !== '' && !isNaN(idx) && DATA.entregas[parseInt(idx, 10)]?.date) ? DATA.entregas[parseInt(idx, 10)].date : new Date().toISOString().slice(0, 10)
   };
   
   if (idx !== '' && !isNaN(idx)) {
@@ -7781,7 +8289,232 @@ window.saveAdminDelivery = function(e) {
   saveDataLocal();
   closeAdminDeliveryModal();
   renderAdminDeliveries();
-  showToast("Entrega guardada con éxito");
+  showToast("¡Entrega guardada con éxito! Enlace generado.");
+};
+
+
+// ========================================================
+// DELIVERY PREVIEW PAGE LOGIC (DATA-VIEW="ENTREGA")
+// ========================================================
+let _currentDelivery = null;
+let _isDownloadingDelivery = false;
+
+window.getDeliveryExpiryInfo = function(deliv) {
+  if (!deliv) return { isExpired: false, daysLeft: 7, expiryDate: '' };
+  
+  // Parse created date (supports ISO date string, YYYY-MM-DD or timestamp)
+  let createdTime = Date.now();
+  if (deliv.date) {
+    const parsed = new Date(deliv.date).getTime();
+    if (!isNaN(parsed)) createdTime = parsed;
+  }
+  
+  const expiryTime = createdTime + (7 * 24 * 60 * 60 * 1000);
+  const now = Date.now();
+  const diffMs = expiryTime - now;
+  const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  const isExpired = diffMs <= 0;
+  
+  const expiryDate = new Date(expiryTime).toLocaleDateString(window.currentLang === 'en' ? 'en-US' : 'es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  
+  return {
+    isExpired,
+    daysLeft: Math.max(0, daysLeft),
+    expiryDate
+  };
+};
+
+function renderDeliveryDetail(id) {
+  const deliveries = (DATA && Array.isArray(DATA.entregas)) ? DATA.entregas : [];
+  const deliv = deliveries.find(d => d.id === id) || deliveries[0];
+  
+  if (!deliv) {
+    showView('404');
+    return;
+  }
+  
+  _currentDelivery = deliv;
+  _isDownloadingDelivery = false;
+
+  // 1. Inmersión ambiental con los colores desenfocados de la imagen de entrega
+  const ambImg = document.getElementById('deliveryAmbientImg');
+  const ambBackdrop = document.getElementById('deliveryAmbientBackdrop');
+  const previewSrc = resolveImageUrl(deliv.previewImg || 'logo.svg');
+  if (ambImg && ambBackdrop) {
+    ambImg.src = previewSrc;
+    ambBackdrop.classList.add('active');
+  }
+
+  // 2. Imagen principal del hero
+  const heroImg = document.getElementById('deliveryHeroImg');
+  if (heroImg) heroImg.src = previewSrc;
+
+  // 3. Título y artista
+  const titleEl = document.getElementById('deliveryHeroTitle');
+  const artistEl = document.getElementById('deliveryHeroArtist');
+  if (titleEl) titleEl.textContent = deliv.projectName || 'Proyecto Final';
+  if (artistEl) artistEl.textContent = deliv.clientName || 'Cliente Grobdesigns';
+
+  // 4. Estado y Expiración de 7 Días
+  const expiryInfo = window.getDeliveryExpiryInfo(deliv);
+  const statusBox = document.getElementById('deliveryStatusBox');
+  const statusText = document.getElementById('deliveryStatusText');
+  const expiryCard = document.getElementById('deliveryExpiryCard');
+  const daysLeftEl = document.getElementById('deliveryDaysLeft');
+  const expiryDateTag = document.getElementById('deliveryExpiryDateTag');
+  const btnDownload = document.getElementById('btnStartDeliveryDownload');
+  const btnText = document.getElementById('btnDeliveryText');
+  const progressWrap = document.getElementById('deliveryProgressWrap');
+  const directLinkWrap = document.getElementById('deliveryDirectLinkWrap');
+  const directLink = document.getElementById('deliveryDirectLink');
+
+  if (progressWrap) progressWrap.style.display = 'none';
+  if (directLinkWrap) directLinkWrap.style.display = 'none';
+  if (btnDownload) btnDownload.style.display = 'flex';
+
+  const downloadTarget = deliv.downloadUrl || deliv.masterUrl || '#';
+  if (directLink) directLink.href = downloadTarget;
+
+  if (expiryInfo.isExpired) {
+    if (statusBox) statusBox.className = 'delivery-status-box status-expired';
+    if (statusText) statusText.textContent = '⚠️ ENLACE CADUCADO (7 DÍAS SUPERADOS)';
+    if (expiryCard) expiryCard.className = 'delivery-expiry-card expired';
+    if (daysLeftEl) daysLeftEl.textContent = 'Caducado';
+    if (expiryDateTag) expiryDateTag.textContent = `Caducó el: ${expiryInfo.expiryDate} · Almacenamiento archivado`;
+    
+    if (btnDownload) {
+      btnDownload.className = 'btn-delivery-download btn-expired';
+      if (btnText) btnText.textContent = 'Enlace Caducado · Solicitar Reactivación';
+    }
+  } else {
+    let stClass = 'status-listo';
+    let stText = 'PROYECTO LISTO PARA DESCARGA';
+    if (deliv.status === 'revision') { stClass = 'status-revision'; stText = 'PROYECTO EN REVISIÓN'; }
+    else if (deliv.status === 'produccion') { stClass = 'status-produccion'; stText = 'PROYECTO EN PRODUCCIÓN'; }
+    
+    if (statusBox) statusBox.className = `delivery-status-box ${stClass}`;
+    if (statusText) statusText.textContent = stText;
+    if (expiryCard) expiryCard.className = 'delivery-expiry-card';
+    if (daysLeftEl) daysLeftEl.textContent = `Quedan ${expiryInfo.daysLeft} ${expiryInfo.daysLeft === 1 ? 'día' : 'días'}`;
+    if (expiryDateTag) expiryDateTag.textContent = `Disponible hasta el: ${expiryInfo.expiryDate} (Descarga recomendada hoy)`;
+    
+    if (btnDownload) {
+      btnDownload.className = 'btn-delivery-download';
+      if (btnText) btnText.textContent = 'Descargar Paquete de Entrega';
+    }
+  }
+
+  // 5. Notas de entrega
+  const notesBlock = document.getElementById('deliveryNotesBlock');
+  const notesText = document.getElementById('deliveryNotesText');
+  if (deliv.notes && deliv.notes.trim()) {
+    if (notesText) notesText.textContent = deliv.notes;
+    if (notesBlock) notesBlock.style.display = 'block';
+  } else {
+    if (notesBlock) notesBlock.style.display = 'none';
+  }
+
+  showView('entrega');
+  document.title = `${deliv.projectName} — Entrega Oficial | Grobdesigns`;
+}
+
+// Interactive Didactic Download Progress Animation
+window.triggerDeliveryDownload = function() {
+  if (!_currentDelivery) return;
+  const expiryInfo = window.getDeliveryExpiryInfo(_currentDelivery);
+  
+  // If expired, open WhatsApp to request reactivation
+  if (expiryInfo.isExpired) {
+    const msg = encodeURIComponent(`Hola Luis / Grobdesigns, mi enlace de entrega del proyecto "${_currentDelivery.projectName}" ha caducado. ¿Podrían reactivarlo para descargar mis archivos?`);
+    window.open(`https://wa.me/584142751508?text=${msg}`, '_blank');
+    return;
+  }
+
+  if (_isDownloadingDelivery) return;
+  _isDownloadingDelivery = true;
+
+  const btn = document.getElementById('btnStartDeliveryDownload');
+  const progressWrap = document.getElementById('deliveryProgressWrap');
+  const fill = document.getElementById('deliveryProgressFill');
+  const percentEl = document.getElementById('deliveryProgressPercent');
+  const stepEl = document.getElementById('deliveryProgressStep');
+  const directLinkWrap = document.getElementById('deliveryDirectLinkWrap');
+
+  if (btn) btn.style.display = 'none';
+  if (progressWrap) progressWrap.style.display = 'block';
+  if (fill) fill.style.width = '0%';
+  if (percentEl) percentEl.textContent = '0%';
+
+  const targetUrl = _currentDelivery.downloadUrl || _currentDelivery.masterUrl || '#';
+
+  const steps = [
+    { p: 15, label: "Verificando enlace seguro y credenciales del cliente..." },
+    { p: 38, label: "Desempaquetando archivos Master HD (3000px · 300 DPI)..." },
+    { p: 68, label: "Comprobando formatos Spotify, Apple Music & Recursos..." },
+    { p: 92, label: "Generando túnel de descarga directa de alta velocidad..." },
+    { p: 100, label: "¡Paquete verificado con éxito! Iniciando descarga..." }
+  ];
+
+  let currentPercent = 0;
+  const startTime = performance.now();
+  const totalDuration = 2200; // 2.2 seconds smooth didactic experience
+
+  function updateProgress(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / totalDuration, 1);
+    
+    // Ease-out curve
+    const ease = 1 - Math.pow(1 - progress, 3);
+    currentPercent = Math.min(Math.round(ease * 100), 100);
+
+    if (fill) fill.style.width = currentPercent + '%';
+    if (percentEl) percentEl.textContent = currentPercent + '%';
+
+    // Update didactic step label
+    const activeStep = steps.find(s => currentPercent <= s.p) || steps[steps.length - 1];
+    if (stepEl && activeStep) stepEl.textContent = activeStep.label;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateProgress);
+    } else {
+      // Completed!
+      setTimeout(() => {
+        if (directLinkWrap) directLinkWrap.style.display = 'block';
+        showToast("¡Descarga de archivos iniciada! Revisa tus descargas o la ventana abierta.");
+        if (targetUrl && targetUrl !== '#') {
+          window.open(targetUrl, '_blank');
+        }
+        _isDownloadingDelivery = false;
+      }, 350);
+    }
+  }
+
+  requestAnimationFrame(updateProgress);
+};
+
+window.copyDeliveryLink = function(delivId) {
+  const url = window.location.origin + window.location.pathname + '#entrega-' + delivId;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast("¡Enlace copiado! Listo para compartir con el cliente por WhatsApp.");
+    }).catch(() => {
+      prompt("Copia este enlace de entrega:", url);
+    });
+  } else {
+    prompt("Copia este enlace de entrega:", url);
+  }
+};
+
+window.copyCurrentDeliveryLink = function() {
+  if (_currentDelivery && _currentDelivery.id) {
+    window.copyDeliveryLink(_currentDelivery.id);
+  } else {
+    window.copyDeliveryLink(location.hash.replace('#entrega-', ''));
+  }
 };
 
 window.handleAuthClick = function() {
@@ -8665,6 +9398,10 @@ function showView(name) {
   if (name !== 'proyecto') {
     const pj = document.getElementById('projAmbientBackdrop');
     if (pj) pj.classList.remove('active');
+  }
+  if (name !== 'entrega') {
+    const de = document.getElementById('deliveryAmbientBackdrop');
+    if (de) de.classList.remove('active');
   }
 }
 function syncTabs(name) { 
@@ -10205,6 +10942,7 @@ function handleRoute() {
       showView('perfil');
       syncTabs('');
   }
+  else if (h.startsWith('#entrega-')) { renderDeliveryDetail(h.replace('#entrega-', '')); }
   else if (h.startsWith('#cover-')) { renderCoverDetail(h.replace('#cover-', '')); }
   else if (h.startsWith('#categoria-')) { renderCategoryDetail(h.replace('#categoria-', '')); }
   else if (h.startsWith('#proyecto-')) { renderProjectDetail(h.replace('#proyecto-', '')); }
