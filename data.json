@@ -4085,6 +4085,15 @@
       "lng": -78.4678,
       "projects": 2,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7f6swq",
+      "city": "Lima",
+      "country": "Perú",
+      "lat": -12.0464,
+      "lng": -77.0428,
+      "projects": 5,
+      "isHQ": false
     }
   ]
 }
