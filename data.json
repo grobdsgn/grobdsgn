@@ -4076,6 +4076,15 @@
       "lng": -3.7038,
       "projects": 2,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7f5e0r",
+      "city": "quito",
+      "country": "Ecuador",
+      "lat": -0.1807,
+      "lng": -78.4678,
+      "projects": 2,
+      "isHQ": false
     }
   ]
 }
