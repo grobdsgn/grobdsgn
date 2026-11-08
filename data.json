@@ -3898,17 +3898,21 @@
       "id": "tea654tsmw8385fq",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794157791569_2g5i.jpg",
       "category": "sencillo",
-      "name": "",
+      "name": "Khe?",
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794158161725_vz49.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794158164279_nkwn.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794158166141_8kyl.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/3ytnm3w78tFDvPAD1UspCa?si=be1737e8539b4f9b",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 65089,
         "youtube": 0,
         "apple": 0
       }
