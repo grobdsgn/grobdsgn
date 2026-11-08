@@ -843,6 +843,14 @@
           ],
           "review": "",
           "parallaxPosition": "center 23%"
+        },
+        {
+          "id": "wcrmmsgbmw831zz6",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ],
       "parallaxPosition": "center 67%"
