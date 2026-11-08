@@ -4013,6 +4013,15 @@
       "lng": 9426,
       "projects": 4,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7ehu7g",
+      "city": "Medellin",
+      "country": "Colombia",
+      "lat": 6.2442,
+      "lng": -75.5812,
+      "projects": 6,
+      "isHQ": false
     }
   ]
 }
