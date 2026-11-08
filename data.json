@@ -4004,6 +4004,15 @@
       "lng": -80.1918,
       "projects": 10,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7eg9r9",
+      "city": "Oklahoma",
+      "country": "Estados Unidos",
+      "lat": 3337,
+      "lng": 9426,
+      "projects": 4,
+      "isHQ": false
     }
   ]
 }
