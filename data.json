@@ -3995,6 +3995,15 @@
       "lng": -99.1332,
       "projects": 10,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7ed7xs",
+      "city": "miami",
+      "country": "Estados Unidos",
+      "lat": 25.7617,
+      "lng": -80.1918,
+      "projects": 10,
+      "isHQ": false
     }
   ]
 }
