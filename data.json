@@ -3986,6 +3986,15 @@
       "lng": -66.9036,
       "projects": 100,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7eczb9",
+      "city": "ciudad de mexico",
+      "country": "México",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "projects": 10,
+      "isHQ": false
     }
   ]
 }
