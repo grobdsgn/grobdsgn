@@ -4067,6 +4067,15 @@
       "lng": -68.9335,
       "projects": 2,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7f4i8z",
+      "city": "Madrid",
+      "country": "España",
+      "lat": 40.4168,
+      "lng": -3.7038,
+      "projects": 2,
+      "isHQ": false
     }
   ]
 }
