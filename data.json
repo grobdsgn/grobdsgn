@@ -4045,17 +4045,23 @@
       "id": "qu5ebcj2mw859b2a",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161204178_hi2l.jpg",
       "category": "sencillo",
-      "name": "",
+      "name": "Tócale",
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161212144_kop0.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161217701_tndd.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161219462_3jwl.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161221077_or6c.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161223256_bg0d.png"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/7ktXZizGsxZ2qpQ2HnIfs9?si=a0d74c69efcb439c",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 430395,
         "youtube": 0,
         "apple": 0
       }
