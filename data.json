@@ -4112,6 +4112,15 @@
       "lng": -72.2358,
       "projects": 3,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7fdz0m",
+      "city": "Barquisimeto",
+      "country": "Venezuela",
+      "lat": 10.0636,
+      "lng": -69.3347,
+      "projects": 2,
+      "isHQ": false
     }
   ]
 }
