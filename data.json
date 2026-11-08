@@ -4058,6 +4058,15 @@
       "lng": -74.0721,
       "projects": 2,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7ezaqb",
+      "city": "Willemstad",
+      "country": "Curazao",
+      "lat": 12.1084,
+      "lng": -68.9335,
+      "projects": 2,
+      "isHQ": false
     }
   ]
 }
