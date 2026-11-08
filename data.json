@@ -4049,6 +4049,15 @@
       "lng": -79.5199,
       "projects": 3,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7en8t4",
+      "city": "bogota",
+      "country": "Colombia",
+      "lat": 4.711,
+      "lng": -74.0721,
+      "projects": 2,
+      "isHQ": false
     }
   ]
 }
