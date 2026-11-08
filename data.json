@@ -4040,6 +4040,15 @@
       "lng": -66.1057,
       "projects": 6,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7en08j",
+      "city": "ciudad de panama",
+      "country": "Panamá",
+      "lat": 8.9824,
+      "lng": -79.5199,
+      "projects": 3,
+      "isHQ": false
     }
   ]
 }
