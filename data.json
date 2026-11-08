@@ -4022,6 +4022,15 @@
       "lng": -75.5812,
       "projects": 6,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7ejx72",
+      "city": "Santo Domingo",
+      "country": "República Dominicana",
+      "lat": 18.4861,
+      "lng": -69.9312,
+      "projects": 6,
+      "isHQ": false
     }
   ]
 }
