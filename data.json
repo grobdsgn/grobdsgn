@@ -4031,6 +4031,15 @@
       "lng": -69.9312,
       "projects": 6,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7el3kc",
+      "city": "san juan",
+      "country": "Puerto Rico",
+      "lat": 18.4655,
+      "lng": -66.1057,
+      "projects": 6,
+      "isHQ": false
     }
   ]
 }
