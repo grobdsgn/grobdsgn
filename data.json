@@ -3976,5 +3976,16 @@
       "notes": "",
       "date": "2026-11-08"
     }
+  ],
+  "workedLocations": [
+    {
+      "id": "loc_mw7ec8mn",
+      "city": "Caracas",
+      "country": "Venezuela",
+      "lat": 10.4806,
+      "lng": -66.9036,
+      "projects": 100,
+      "isHQ": false
+    }
   ]
 }
