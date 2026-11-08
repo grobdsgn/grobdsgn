@@ -3968,7 +3968,9 @@
       "artist": "",
       "year": "",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794160200135_h75x.jpg"
+      ],
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
