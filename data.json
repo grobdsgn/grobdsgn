@@ -846,11 +846,13 @@
         },
         {
           "id": "wcrmmsgbmw831zz6",
-          "name": "Nuevo Proyecto",
+          "name": "Release party",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794157541013_j0dg.jpg"
+          ]
         }
       ],
       "parallaxPosition": "center 67%"
