@@ -4121,6 +4121,15 @@
       "lng": -69.3347,
       "projects": 2,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7fg9ik",
+      "city": "Los Angeles",
+      "country": "Estados Unidos",
+      "lat": 34.0522,
+      "lng": -118.2437,
+      "projects": 4,
+      "isHQ": false
     }
   ]
 }
