@@ -4139,6 +4139,15 @@
       "lng": -84.0875,
       "projects": 5,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7frmno",
+      "city": "Houston, TX",
+      "country": "Estados Unidos",
+      "lat": 29.7604,
+      "lng": -95.3698,
+      "projects": 5,
+      "isHQ": false
     }
   ]
 }
