@@ -4103,6 +4103,15 @@
       "lng": 24.9355,
       "projects": 6,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw7fdaib",
+      "city": "San Cristobal",
+      "country": "Venezuela",
+      "lat": 7.7659,
+      "lng": -72.2358,
+      "projects": 3,
+      "isHQ": false
     }
   ]
 }
