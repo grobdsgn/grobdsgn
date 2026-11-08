@@ -6119,17 +6119,17 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #140f0a;
-  border: 1px solid rgba(229, 160, 60, 0.45);
+  background: #180f07;
+  border: 1.5px solid #d48227;
   border-radius: 9999px;
-  padding: 6px 18px;
+  padding: 5px 18px;
   font-family: var(--font-title);
   font-size: 13px; /* Fibonacci */
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #f5a623;
-  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(229, 160, 60, 0.06);
+  color: #f5a738;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 .delivery-days-pill.expired {
   background: #180a0c;
@@ -6369,6 +6369,142 @@ section {
   color: #ff4757;
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+
+
+/* ========================================================
+   TURN 18: MONTH ACCORDIONS, CONSULT PRICE & CUSTOM EXTRAS
+   ======================================================== */
+.delivery-month-accordion {
+  width: 100%;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.delivery-month-accordion:hover {
+  border-color: rgba(255, 215, 0, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+}
+.delivery-month-accordion[open] {
+  border-color: rgba(255, 215, 0, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+}
+.delivery-month-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease;
+}
+.delivery-month-summary:hover {
+  background: rgba(255, 215, 0, 0.05);
+}
+.delivery-month-summary::-webkit-details-marker {
+  display: none;
+}
+.delivery-month-summary-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.delivery-month-title {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.delivery-month-summary-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.delivery-month-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  color: var(--accent);
+}
+.delivery-month-chevron {
+  transition: transform 0.25s ease;
+  color: var(--muted);
+}
+.delivery-month-accordion[open] .delivery-month-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+.delivery-month-content {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.delivery-month-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  padding: 14px 16px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+@media (max-width: 640px) {
+  .delivery-month-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilo para "Precio a consultar" en Tienda */
+.tienda-price-consult {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Editor de Checks Personalizados en Admin */
+.admin-custom-extra-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--a-line);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.admin-custom-extra-row input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--a-text);
+  font-size: 13px;
+  outline: none;
+}
+.admin-custom-extra-row .extra-price-input {
+  width: 90px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--a-line);
+  border-radius: 6px;
+  color: var(--a-accent);
+  padding: 4px 8px;
+  font-size: 13px;
+  text-align: right;
 }
 
 </style>
@@ -7691,6 +7827,13 @@ section {
             <div class="a-form-group"><label class="a-form-label">Orden (Posición)</label><input type="number" id="aEditProductOrder" class="a-form-input" placeholder="Ej: 1"></div>
         </div>
 
+        <div class="a-form-group" style="margin-top:-4px; margin-bottom:12px;">
+          <label class="a-form-label" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox" id="aEditProductConsultPrice" style="width:16px; height:16px; accent-color:var(--a-accent);">
+            Mostrar como «Precio a consultar» en la tienda
+          </label>
+          <span class="a-form-hint">Si está marcado, la tienda mostrará «Precio a consultar» en lugar del monto numérico.</span>
+        </div>
         <div class="a-form-group"><label class="a-form-label">Descripción</label><textarea id="aEditProductDesc" class="a-form-textarea" rows="2" placeholder="Descripción breve..."></textarea></div>
         
         <div class="divider-line"></div>
@@ -7722,6 +7865,17 @@ section {
         </div>
 
         <div class="divider-line"></div>
+
+        <div class="divider-line"></div>
+        
+        <div class="a-form-group" id="aProductCustomExtrasContainer">
+          <label class="a-form-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span>Checks Personalizados (Opciones Adicionales Editables)</span>
+            <button class="a-btn a-btn-outline a-btn-xs" onclick="addCustomExtraOption()" type="button">+ Añadir Check Extra</button>
+          </label>
+          <span class="a-form-hint" style="display:block; margin-bottom:10px;">Añade opciones seleccionables para el cliente con nombre y costo editable (ej: Animación Spotify Canvas, Mockup 3D, Entrega Express).</span>
+          <div id="aProductCustomExtrasList"></div>
+        </div>
 
         <div class="a-form-group">
           <label class="a-form-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -8045,6 +8199,47 @@ window.getClientDeliveries = function(user) {
   });
 };
 
+
+// ========================================================
+// HELPER: AGRUPAR ENTREGAS POR AÑO Y MES (DESPLEGABLE)
+// ========================================================
+window.groupDeliveriesByMonthAndYear = function(deliveries) {
+  const groups = {};
+  if (!Array.isArray(deliveries)) return [];
+
+  deliveries.forEach((deliv, originalIdx) => {
+    let dTime = Date.now();
+    if (deliv.createdAt) {
+      const p = new Date(deliv.createdAt).getTime();
+      if (!isNaN(p)) dTime = p;
+    } else if (deliv.date) {
+      const p = new Date(deliv.date).getTime();
+      if (!isNaN(p)) dTime = p;
+    }
+    
+    const dObj = new Date(dTime);
+    const year = dObj.getFullYear() || new Date().getFullYear();
+    const monthNum = String(dObj.getMonth() + 1).padStart(2, '0');
+    const groupKey = year + '-' + monthNum;
+    const rawMonth = dObj.toLocaleDateString('es-ES', { month: 'long' });
+    const monthTitle = rawMonth.charAt(0).toUpperCase() + rawMonth.slice(1) + ' ' + year;
+
+    if (!groups[groupKey]) {
+      groups[groupKey] = {
+        key: groupKey,
+        title: monthTitle,
+        year: year,
+        items: []
+      };
+    }
+    groups[groupKey].items.push({ delivery: deliv, originalIdx: originalIdx });
+  });
+
+  // Ordenar los meses de más reciente a más antiguo
+  const sortedKeys = Object.keys(groups).sort((a, b) => b.localeCompare(a));
+  return sortedKeys.map(k => groups[k]);
+};
+
 function renderClientDeliveries() {
   const container = document.getElementById('perfilOrderHistory');
   if (!container) return;
@@ -8053,79 +8248,95 @@ function renderClientDeliveries() {
   const deliveries = window.getClientDeliveries(window.currentUser);
   
   if (deliveries.length === 0) {
-    container.innerHTML = `
-      <div class="apple-empty-cart">
-        <div class="apple-empty-cart-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-        </div>
-        <div class="apple-empty-cart-title">No hay entregas realizadas registradas</div>
-        <p class="apple-empty-cart-sub">Tus proyectos y lanzamientos entregados aparecerán aquí vinculados a tu correo con acceso directo a tu sala de descarga y archivos Master.</p>
-        <a href="#tienda" class="btn-apple-outline" style="padding:12px 28px; background:var(--text); color:#000; font-weight:700;">Configurar Nuevo Proyecto</a>
-      </div>
-    `;
+    container.innerHTML = 
+      '<div class="apple-empty-cart">' +
+        '<div class="apple-empty-cart-icon">' +
+          '<svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>' +
+        '</div>' +
+        '<div class="apple-empty-cart-title">No hay entregas realizadas registradas</div>' +
+        '<p class="apple-empty-cart-sub">Tus proyectos y lanzamientos entregados aparecerán aquí vinculados a tu correo con acceso directo a tu sala de descarga y archivos Master.</p>' +
+        '<a href="#tienda" class="btn-apple-outline" style="padding:12px 28px; background:var(--text); color:#000; font-weight:700;">Configurar Nuevo Proyecto</a>' +
+      '</div>';
     return;
   }
-  
-  const vaultGrid = document.createElement('div');
-  vaultGrid.className = 'client-deliveries-grid';
-  
-  deliveries.forEach(deliv => {
-    const card = document.createElement('div');
-    card.className = 'delivery-card';
-    
-    let statusClass = 'status-produccion';
-    let statusLabel = '🟡 EN PRODUCCIÓN';
-    if (deliv.status === 'revision') {
-      statusClass = 'status-revision';
-      statusLabel = '🔵 EN REVISIÓN';
-    } else if (deliv.status === 'listo') {
-      statusClass = 'status-listo';
-      statusLabel = '🟢 LISTO';
-    }
-    
-    const expiryInfo = window.getDeliveryExpiryInfo(deliv);
-    const targetId = deliv.id || ('deliv_' + Math.random().toString(36).slice(2, 7));
-    
-    // Marca clara si la descarga está disponible o caducó
-    const isAvail = !expiryInfo.isExpired;
-    const availBadge = isAvail
-      ? `<span class="deliv-badge-avail-green">🟢 DESCARGA DISPONIBLE · Quedan ${expiryInfo.daysLeft} días</span>`
-      : `<span class="deliv-badge-avail-red">🔴 DESCARGA CADUCADA</span>`;
 
-    const dateTimeStr = `${expiryInfo.formattedDate} · ${expiryInfo.formattedTime}`;
+  // Agrupar todas las entregas del cliente (activas y caducadas) por Mes y Año
+  const monthGroups = window.groupDeliveriesByMonthAndYear ? window.groupDeliveriesByMonthAndYear(deliveries) : [{ title: 'Entregas', key: 'all', items: deliveries.map((d, i) => ({ delivery: d, originalIdx: i })) }];
 
-    card.innerHTML = `
-      <div class="delivery-thumb-wrap" style="cursor:pointer;" onclick="location.hash='#entrega-${targetId}'">
-        <img class="delivery-thumb-img" src="${escHtml(resolveImageUrl(deliv.previewImg || 'logo.svg'))}" alt="${escHtml(deliv.projectName)}" onerror="handleImgError(this)" draggable="false">
-      </div>
-      <div class="delivery-info">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span class="delivery-status-badge ${statusClass}">${statusLabel}</span>
-            ${availBadge}
-          </div>
-          <span style="font-size:0.75rem; color:var(--muted);">📅 ${dateTimeStr}</span>
-        </div>
-        <h4 class="delivery-project-name" style="cursor:pointer;" onclick="location.hash='#entrega-${targetId}'">${escHtml(deliv.projectName || 'Proyecto')}</h4>
-        <p class="delivery-client-meta">${escHtml(deliv.clientName || 'Cliente')} · Registrado: ${dateTimeStr}</p>
-        ${deliv.notes ? `<div class="delivery-notes">${escHtml(deliv.notes)}</div>` : ''}
-        <div class="delivery-license-tag">✓ Licencia de explotación comercial autorizada para plataformas digitales y medios físicos</div>
-        <div class="delivery-downloads-row">
-          <a href="#entrega-${targetId}" class="delivery-btn-download">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Abrir Sala de Entrega & Descarga
-          </a>
-          <button type="button" class="delivery-btn-download delivery-btn-secondary" onclick="copyDeliveryLink('${targetId}')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            Copiar Enlace
-          </button>
-        </div>
-      </div>
-    `;
-    vaultGrid.appendChild(card);
+  monthGroups.forEach((group, gIdx) => {
+    const details = document.createElement('details');
+    details.className = 'delivery-month-accordion';
+    if (gIdx === 0) details.setAttribute('open', '');
+
+    const activeCount = group.items.filter(it => !window.getDeliveryExpiryInfo(it.delivery).isExpired).length;
+    const expiredCount = group.items.length - activeCount;
+
+    details.innerHTML = 
+      '<summary class="delivery-month-summary">' +
+        '<div class="delivery-month-summary-left">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>' +
+          '<span class="delivery-month-title">' + escHtml(group.title) + '</span>' +
+        '</div>' +
+        '<div class="delivery-month-summary-right">' +
+          '<span class="delivery-month-badge">' + group.items.length + (group.items.length === 1 ? ' entrega' : ' entregas') + ' (' + activeCount + ' activas, ' + expiredCount + ' caducadas)</span>' +
+          '<svg class="delivery-month-chevron" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>' +
+        '</div>' +
+      '</summary>' +
+      '<div class="delivery-month-grid" id="cliGroupGrid_' + escHtml(group.key) + '"></div>';
+
+    const gridDiv = details.querySelector('#cliGroupGrid_' + group.key);
+
+    group.items.forEach(({ delivery: deliv }) => {
+      const card = document.createElement('div');
+      card.className = 'delivery-card';
+      
+      let statusClass = 'status-produccion';
+      let statusLabel = '🟡 EN PRODUCCIÓN';
+      if (deliv.status === 'revision') {
+        statusClass = 'status-revision';
+        statusLabel = '🔵 EN REVISIÓN';
+      } else if (deliv.status === 'listo') {
+        statusClass = 'status-listo';
+        statusLabel = '🟢 LISTO';
+      }
+      
+      const expiryInfo = window.getDeliveryExpiryInfo(deliv);
+      const targetId = deliv.id || ('deliv_' + Math.random().toString(36).slice(2, 7));
+      
+      const isAvail = !expiryInfo.isExpired;
+      const availBadge = isAvail
+        ? '<span class="deliv-badge-avail-green">🟢 DISPONIBLE · Quedan ' + expiryInfo.daysLeft + ' días</span>'
+        : '<span class="deliv-badge-avail-red">🔴 DESCARGA CADUCADA</span>';
+
+      const dateTimeStr = expiryInfo.formattedDate + ' · ' + expiryInfo.formattedTime;
+
+      card.innerHTML = 
+        '<div class="delivery-card-header">' +
+          '<span class="delivery-status-tag ' + statusClass + '">' + statusLabel + '</span>' +
+          availBadge +
+        '</div>' +
+        '<div class="delivery-card-body">' +
+          '<img class="delivery-card-thumb" src="' + escHtml(resolveImageUrl(deliv.previewImg || 'logo.svg')) + '" alt="' + escHtml(deliv.projectName || 'Entrega') + '" onerror="this.src=\'logo.svg\'">' +
+          '<div class="delivery-card-details">' +
+            '<div class="delivery-card-title">' + escHtml(deliv.projectName || 'Proyecto Master') + '</div>' +
+            '<div class="delivery-card-type">' + escHtml(deliv.projectType || 'Entrega Oficial Grobdesigns') + '</div>' +
+            '<div class="delivery-card-meta-line">' +
+              '<span>📅 ' + dateTimeStr + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="delivery-card-footer">' +
+          '<a href="#entrega-' + encodeURIComponent(targetId) + '" class="btn-delivery-preview">' +
+            '<span>Abrir Sala de Descarga</span>' +
+            '<svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42L16.86 11H5v2z"/></svg>' +
+          '</a>' +
+        '</div>';
+      
+      gridDiv.appendChild(card);
+    });
+
+    container.appendChild(details);
   });
-  
-  container.appendChild(vaultGrid);
 }
 
 // Service Configuration Action (Replaces generic shopping cart add)
@@ -8153,67 +8364,88 @@ window.configureService = function(productId, btnEl) {
 // ADMIN DELIVERIES MANAGEMENT
 // ========================================================
 window.renderAdminDeliveries = function() {
-  const listEl = document.getElementById('adminDeliveriesList');
-  const countEl = document.getElementById('statDeliveriesCount');
-  const badgeEl = document.getElementById('aBadgeOrders');
+  const listEl = document.getElementById('adminDeliveriesList') || document.getElementById('aDeliveriesList');
   if (!listEl) return;
-  
-  const deliveries = (DATA && Array.isArray(DATA.entregas)) ? DATA.entregas : [];
-  if (countEl) countEl.textContent = deliveries.length;
-  if (badgeEl) badgeEl.textContent = deliveries.length;
-  
   listEl.innerHTML = '';
+
+  const deliveries = (DATA.entregas && Array.isArray(DATA.entregas)) ? DATA.entregas : ((DATA.clientDeliveries && Array.isArray(DATA.clientDeliveries)) ? DATA.clientDeliveries : []);
+
   if (deliveries.length === 0) {
-    listEl.innerHTML = '<p style="color:var(--a-muted); padding:20px 0;">No hay entregas creadas aún. Haz clic en "+ Nueva Entrega" para generar una sala de entrega para un cliente.</p>';
+    listEl.innerHTML = '<div style="color:var(--a-muted); text-align:center; padding:30px; font-size:0.9rem;">No hay entregas registradas en la boveda.</div>';
     return;
   }
-  
-  deliveries.forEach((d, idx) => {
-    const item = document.createElement('div');
-    item.className = 'admin-delivery-item';
-    
-    const expiryInfo = window.getDeliveryExpiryInfo(d);
-    
-    // Marca de disponibilidad clara
-    const isAvail = !expiryInfo.isExpired;
-    const availBadge = isAvail 
-      ? `<span class="deliv-badge-avail-green">🟢 DISPONIBLE (${expiryInfo.daysLeft} días)</span>`
-      : `<span class="deliv-badge-avail-red">🔴 CADUCADO</span>`;
 
-    // Fecha y hora de registro
-    const dateTimeStr = `${expiryInfo.formattedDate} · ${expiryInfo.formattedTime}`;
-    
-    let stTag = '<span style="color:#ffb142;">🟡 Producción</span>';
-    if (d.status === 'revision') stTag = '<span style="color:#1e90ff;">🔵 Revisión</span>';
-    else if (d.status === 'listo') stTag = '<span style="color:#2ed573;">🟢 Listo</span>';
-    
-    const targetId = d.id || ('deliv_' + idx);
-    
-    item.innerHTML = `
-      <div class="admin-delivery-item-left">
-        <img class="admin-delivery-thumb" src="${escHtml(resolveImageUrl(d.previewImg || 'logo.svg'))}" onerror="this.src='logo.svg'">
-        <div>
-          <div style="font-weight:700; color:#fff; font-size:0.95rem;">${escHtml(d.projectName || 'Proyecto')}</div>
-          <div style="font-size:0.8rem; color:var(--a-muted); margin-top:3px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span>${escHtml(d.clientName || 'Cliente')}</span>
-            <span>·</span>
-            ${stTag}
-            <span>·</span>
-            ${availBadge}
-          </div>
-          <div style="font-size:0.75rem; color:rgba(245,243,239,0.55); margin-top:2px;">
-            📅 ${dateTimeStr} · <span style="color:var(--accent); font-family:monospace;">#entrega-${escHtml(targetId)}</span>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-        <button class="a-btn a-btn-primary a-btn-xs" onclick="copyDeliveryLink('${targetId}')" title="Copiar enlace para el cliente">🔗 Copiar Enlace</button>
-        <button class="a-btn a-btn-outline a-btn-xs" onclick="location.hash='#entrega-${targetId}'" title="Ver sala de entrega">👁️ Ver Preview</button>
-        <button class="a-btn a-btn-outline a-btn-xs" onclick="editAdminDelivery(${idx})">Editar</button>
-        <button class="a-btn a-btn-danger a-btn-xs" onclick="deleteAdminDelivery(${idx})">Eliminar</button>
-      </div>
-    `;
-    listEl.appendChild(item);
+  // Agrupar todas las entregas (activas y caducadas) por Mes y Año
+  const monthGroups = window.groupDeliveriesByMonthAndYear ? window.groupDeliveriesByMonthAndYear(deliveries) : [{ title: 'Entregas', key: 'all', items: deliveries.map((d, i) => ({ delivery: d, originalIdx: i })) }];
+
+  monthGroups.forEach((group, gIdx) => {
+    const details = document.createElement('details');
+    details.className = 'delivery-month-accordion';
+    if (gIdx === 0) details.setAttribute('open', '');
+
+    const activeCount = group.items.filter(it => !window.getDeliveryExpiryInfo(it.delivery).isExpired).length;
+    const expiredCount = group.items.length - activeCount;
+
+    details.innerHTML = 
+      '<summary class="delivery-month-summary">' +
+        '<div class="delivery-month-summary-left">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>' +
+          '<span class="delivery-month-title">' + escHtml(group.title) + '</span>' +
+        '</div>' +
+        '<div class="delivery-month-summary-right">' +
+          '<span class="delivery-month-badge">' + group.items.length + (group.items.length === 1 ? ' entrega' : ' entregas') + ' (' + activeCount + ' activas, ' + expiredCount + ' caducadas)</span>' +
+          '<svg class="delivery-month-chevron" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>' +
+        '</div>' +
+      '</summary>' +
+      '<div class="delivery-month-content" id="admGroupContent_' + escHtml(group.key) + '"></div>';
+
+    const contentDiv = details.querySelector('#admGroupContent_' + group.key);
+
+    group.items.forEach(({ delivery: d, originalIdx: idx }) => {
+      const item = document.createElement('div');
+      item.className = 'admin-delivery-item';
+      
+      const expiryInfo = window.getDeliveryExpiryInfo(d);
+      const isAvail = !expiryInfo.isExpired;
+      const availBadge = isAvail 
+        ? '<span class="deliv-badge-avail-green">🟢 DISPONIBLE (' + expiryInfo.daysLeft + ' días)</span>'
+        : '<span class="deliv-badge-avail-red">🔴 CADUCADO</span>';
+
+      const dateTimeStr = expiryInfo.formattedDate + ' · ' + expiryInfo.formattedTime;
+      
+      let stTag = '<span style="color:#ffb142;">🟡 Producción</span>';
+      if (d.status === 'revision') stTag = '<span style="color:#1e90ff;">🔵 Revisión</span>';
+      else if (d.status === 'listo') stTag = '<span style="color:#2ed573;">🟢 Listo</span>';
+      
+      const targetId = d.id || ('deliv_' + idx);
+      
+      item.innerHTML = 
+        '<div class="admin-delivery-item-left">' +
+          '<img class="admin-delivery-thumb" src="' + escHtml(resolveImageUrl(d.previewImg || 'logo.svg')) + '" onerror="this.src=\'logo.svg\'">' +
+          '<div>' +
+            '<div style="font-weight:700; color:#fff; font-size:0.95rem;">' + escHtml(d.projectName || 'Proyecto') + '</div>' +
+            '<div style="font-size:0.8rem; color:var(--a-muted); margin-top:3px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">' +
+              '<span>' + escHtml(d.clientName || 'Cliente') + '</span>' +
+              '<span>·</span>' +
+              stTag +
+              '<span>·</span>' +
+              availBadge +
+            '</div>' +
+            '<div style="font-size:0.75rem; color:rgba(245,243,239,0.55); margin-top:2px;">' +
+              '📅 ' + dateTimeStr + ' · <span style="color:var(--accent); font-family:monospace;">#entrega-' + escHtml(targetId) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">' +
+          '<button class="a-btn a-btn-primary a-btn-xs" onclick="copyDeliveryLink(\'' + targetId + '\')" title="Copiar enlace para el cliente">🔗 Copiar Enlace</button>' +
+          '<button class="a-btn a-btn-outline a-btn-xs" onclick="location.hash=\'#entrega-' + targetId + '\'" title="Ver sala de entrega">👁️ Ver Preview</button>' +
+          '<button class="a-btn a-btn-outline a-btn-xs" onclick="editAdminDelivery(' + idx + ')">Editar</button>' +
+          '<button class="a-btn a-btn-danger a-btn-xs" onclick="deleteAdminDelivery(' + idx + ')">Eliminar</button>' +
+        '</div>';
+      contentDiv.appendChild(item);
+    });
+
+    listEl.appendChild(details);
   });
 };
 
@@ -9864,6 +10096,9 @@ window.addToCart = function(productId, btnElement) {
       ...product, 
       cartItemId: uid(),
       includeEditable: false, 
+      selectedExtras: {},
+      customExtras: Array.isArray(product.customExtras) ? JSON.parse(JSON.stringify(product.customExtras)) : [],
+      consultPrice: Boolean(product.consultPrice),
       briefingAnswers: null 
     });
   }
@@ -9871,6 +10106,19 @@ window.addToCart = function(productId, btnElement) {
   localStorage.setItem('grob_cart', JSON.stringify(safeCart));
   updateCartCounter();
   showToast(`${qty}x "${product.name || 'Producto'}" añadido al carrito`);
+};
+
+
+window.toggleCustomExtra = function(cartItemId, extraId) {
+  const cart = safeGetStorage('grob_cart', []);
+  if (!Array.isArray(cart)) return;
+  const item = cart.find(i => i.cartItemId === cartItemId);
+  if (item) {
+    item.selectedExtras = item.selectedExtras || {};
+    item.selectedExtras[extraId] = !item.selectedExtras[extraId];
+    localStorage.setItem('grob_cart', JSON.stringify(cart));
+    renderProfile();
+  }
 };
 
 window.toggleEditable = function(cartItemId) {
@@ -10025,14 +10273,25 @@ function generateOrderSummary() {
       let itemPrice = cleanNumber(item.price, 0);
       let extraText = '';
       
+      const isConsult = Boolean(item.consultPrice);
       if (item.includeEditable && item.hasEditable) {
         itemPrice += cleanNumber(item.editablePrice, 0);
-        extraText = ` [+ Archivo Editable]`;
+        extraText += ' [+ Archivo Editable (+$' + cleanNumber(item.editablePrice, 0).toFixed(2) + ')]';
+      }
+      
+      if (item.customExtras && Array.isArray(item.customExtras) && item.selectedExtras) {
+        item.customExtras.forEach(ext => {
+          if (item.selectedExtras[ext.id]) {
+            const extPrice = cleanNumber(ext.price, 0);
+            itemPrice += extPrice;
+            extraText += ' [+ ' + (ext.name || 'Extra') + ' (+$' + extPrice.toFixed(2) + ')]';
+          }
+        });
       }
       
       total += itemPrice;
-      
-      message += `- 1x ${item.name || 'Producto'} (${cleanNumber(item.price, 0).toFixed(2)})${extraText}\n`;
+      const priceDisplay = isConsult ? 'Precio a consultar' : ('$' + cleanNumber(item.price, 0).toFixed(2));
+      message += '- 1x ' + (item.name || 'Producto') + ' (' + priceDisplay + ')' + extraText + '\n';
       
       if (item.briefingAnswers && typeof item.briefingAnswers === 'object') {
         const answersList = Object.entries(item.briefingAnswers).filter(([_, v]) => String(v).trim());
@@ -10250,7 +10509,9 @@ window.productHasCategory = function(p, cat) {
     '<div class="tienda-card-info">' +
       (isRecommended ? '<span class="tienda-card-badge-rec">' + (window.currentLang === 'en' ? 'RECOMMENDED FOR YOU' : 'RECOMENDADO PARA TI') + '</span>' : '') +
       '<h4 class="tienda-card-title">' + escHtml(p.name || 'Sin título') + '</h4>' +
-      '<div class="tienda-card-price"><span class="tienda-price-prefix">' + (window.currentLang === 'en' ? 'Starting from' : 'Inversión desde') + '</span> <span class="currency">$</span>' + itemPrice.toFixed(0) + ' <span class="tienda-price-suffix">USD</span></div>' +
+      (p.consultPrice 
+            ? '<div class="tienda-card-price"><span class="tienda-price-consult">Precio a consultar</span></div>' 
+            : '<div class="tienda-card-price"><span class="tienda-price-prefix">' + (window.currentLang === 'en' ? 'Starting from' : 'Inversión desde') + '</span> <span class="currency">$</span>' + itemPrice.toFixed(0) + ' <span class="tienda-price-suffix">USD</span></div>') +
       descHtml +
       '<div class="tienda-actions-row" style="margin-top:14px;">' +
         '<button type="button" class="btn-tienda-configure" onclick="configureService(\'' + safeId + '\', this)">' +
@@ -10338,8 +10599,11 @@ function renderProfile() {
       let briefingDoneCount = 0;
 
       cart.forEach((item) => {
+        const isConsult = Boolean(item.consultPrice);
         const itemPrice = cleanNumber(item.price, 0);
-        subtotal += itemPrice;
+        if (!isConsult) {
+          subtotal += itemPrice;
+        }
 
         const safeCartItemId = escHtml(item.cartItemId || '');
         const hasEditable = Boolean(item.hasEditable);
@@ -10379,6 +10643,28 @@ function renderProfile() {
           '</div>';
         }
 
+        let customExtrasHtml = '';
+        if (Array.isArray(item.customExtras) && item.customExtras.length > 0) {
+          item.selectedExtras = item.selectedExtras || {};
+          item.customExtras.forEach(extra => {
+            const extraPrice = cleanNumber(extra.price, 0);
+            const isChecked = Boolean(item.selectedExtras[extra.id]);
+            if (isChecked) {
+              editableTotal += extraPrice; // Suma a los adicionales seleccionados
+            }
+            customExtrasHtml += '<div class="apple-editable-row" style="margin-top:6px;">' +
+              '<div class="apple-editable-left">' +
+                '<span class="apple-editable-title">' + escHtml(extra.name || 'Extra') + '</span>' +
+                '<span class="apple-editable-desc">Añadir opción por +$' + extraPrice.toFixed(2) + '</span>' +
+              '</div>' +
+              '<label class="apple-switch" onclick="event.stopPropagation();">' +
+                '<input type="checkbox" onchange="toggleCustomExtra(\'' + safeCartItemId + '\', \'' + escHtml(extra.id) + '\')" ' + (isChecked ? 'checked' : '') + '>' +
+                '<span class="apple-slider"></span>' +
+              '</label>' +
+            '</div>';
+          });
+        }
+
         let briefingHtml = '';
         if (hasBriefing) {
           briefingHtml = '<div class="apple-briefing-box ' + (isFilled ? 'completed' : 'required') + '" onclick="openBriefing(\'' + safeCartItemId + '\')">' +
@@ -10407,13 +10693,14 @@ function renderProfile() {
               '<h4 class="apple-cart-item-title">' + escHtml(item.name || 'Sin título') + '</h4>' +
             '</div>' +
             '<div class="apple-cart-item-price-wrap">' +
-              '<span class="apple-cart-item-price">$' + itemPrice.toFixed(2) + '</span>' +
+              '<span class="apple-cart-item-price">' + (isConsult ? '<span style="color:var(--accent); font-size:0.85rem;">A consultar</span>' : '$' + itemPrice.toFixed(2)) + '</span>' +
             '</div>' +
             '<button class="apple-cart-del-btn" onclick="removeFromCart(\'' + safeCartItemId + '\')" title="Eliminar de la bolsa" aria-label="Eliminar">' +
               '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>' +
             '</button>' +
           '</div>' +
           editableHtml +
+          customExtrasHtml +
           briefingHtml +
         '</div>';
         cartContainer.appendChild(card);
@@ -12446,7 +12733,7 @@ function renderAdmin() {
     const safeCategory = escHtml((window.getProductCategories ? window.getProductCategories(p).join(', ') : p.category) || 'artista');
     const safeGroup = escHtml(p.group || 'General');
     const safeOrder = parseInt(p.order, 10) || 0;
-    el.innerHTML = `<img src="${escHtml(resolveImageUrl(p.img))}" style="object-fit:cover;${p.visible === false ? 'opacity:0.5;' : ''}" onerror="handleImgError(this)" draggable="false">${hiddenBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">${safePrice} | ${safeCategory} | ${safeGroup} | #${safeOrder}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; 
+    el.innerHTML = `<img src="${escHtml(resolveImageUrl(p.img))}" style="object-fit:cover;${p.visible === false ? 'opacity:0.5;' : ''}" onerror="handleImgError(this)" draggable="false">${hiddenBadge}<div class="a-cover-card-info"><div class="a-cover-card-title">${escHtml(p.name || 'Sin nombre')}</div><div class="a-cover-card-meta">${p.consultPrice ? '<span style="color:var(--a-accent); font-weight:700;">A consultar</span>' : '$' + safePrice} | ${safeCategory} | ${safeGroup} | #${safeOrder}</div><div class="a-cover-card-actions"><button class="a-btn a-btn-outline a-btn-xs" onclick="openProductModal(${i})">✏️ Editar</button><button class="a-btn a-btn-danger a-btn-xs" onclick="delAdminItem('products', ${i})">✕</button></div></div>`; 
     pGrid.appendChild(el); 
   });
 
@@ -12661,6 +12948,59 @@ window.moveClientItem = (i, d) => { const ni = i + d; if (ni < 0 || ni >= DATA.c
 let tempProductImg = '';
 let tempBriefingFields = [];
 
+
+// ========================================================
+// GESTOR DE CHECKS PERSONALIZADOS EDITABLES (ADMIN)
+// ========================================================
+let tempCustomExtras = [];
+
+window.renderAdminCustomExtrasList = function() {
+  const container = document.getElementById('aProductCustomExtrasList');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  if (!tempCustomExtras || tempCustomExtras.length === 0) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--a-muted); padding:6px 0;">No hay checks personalizados añadidos. Toca "+ Añadir Check Extra" para crear uno.</div>';
+    return;
+  }
+  
+  tempCustomExtras.forEach((extra, idx) => {
+    const row = document.createElement('div');
+    row.className = 'admin-custom-extra-row';
+    row.innerHTML = 
+      '<input type="text" placeholder="Nombre de la opción (ej: Animación Spotify Canvas)" value="' + escHtml(extra.name || '') + '" oninput="updateCustomExtraOption(' + idx + ', \'name\', this.value)">' +
+      '<input type="number" step="0.5" class="extra-price-input" placeholder="+$USD" value="' + (extra.price !== undefined ? extra.price : 10) + '" oninput="updateCustomExtraOption(' + idx + ', \'price\', this.value)">' +
+      '<button type="button" onclick="removeCustomExtraOption(' + idx + ')" title="Eliminar opción" style="color:var(--a-danger); background:none; border:none; cursor:pointer; font-weight:bold; padding:4px 8px; font-size:14px;">✕</button>';
+    container.appendChild(row);
+  });
+};
+
+window.addCustomExtraOption = function() {
+  if (!Array.isArray(tempCustomExtras)) tempCustomExtras = [];
+  tempCustomExtras.push({
+    id: 'extra_' + Math.random().toString(36).slice(2, 8),
+    name: '',
+    price: 15
+  });
+  renderAdminCustomExtrasList();
+};
+
+window.removeCustomExtraOption = function(idx) {
+  if (Array.isArray(tempCustomExtras)) {
+    tempCustomExtras.splice(idx, 1);
+    renderAdminCustomExtrasList();
+  }
+};
+
+window.updateCustomExtraOption = function(idx, field, value) {
+  if (!tempCustomExtras || !tempCustomExtras[idx]) return;
+  if (field === 'price') {
+    tempCustomExtras[idx].price = parseFloat(value) || 0;
+  } else {
+    tempCustomExtras[idx].name = value;
+  }
+};
+
 window.openProductModal = (index = -1) => {
   const isEdit = index >= 0;
   $('#aEditProductIndex').value = index;
@@ -12687,6 +13027,10 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductEditablePrice').value = p.editablePrice || 10;
     $('#editablePriceGroup').style.display = p.hasEditable ? 'block' : 'none';
     
+    $('#aEditProductConsultPrice').checked = Boolean(p.consultPrice);
+    tempCustomExtras = Array.isArray(p.customExtras) ? JSON.parse(JSON.stringify(p.customExtras)) : [];
+    renderAdminCustomExtrasList();
+    
     tempBriefingFields = JSON.parse(JSON.stringify(p.briefingFields || []));
     
     $('#aBtnDeleteProduct').style.display = 'inline-flex';
@@ -12709,6 +13053,10 @@ window.openProductModal = (index = -1) => {
     $('#aEditProductHasEditable').checked = false;
     $('#aEditProductEditablePrice').value = 10;
     $('#editablePriceGroup').style.display = 'none';
+    
+    $('#aEditProductConsultPrice').checked = false;
+    tempCustomExtras = [];
+    renderAdminCustomExtrasList();
     
     tempBriefingFields = [];
     
@@ -12815,6 +13163,8 @@ $('#aBtnSaveProduct').onclick = () => {
   const hasEditable = $('#aEditProductHasEditable').checked;
   const editablePrice = $('#aEditProductEditablePrice').value.trim();
   const visible = $('#aEditProductVisible').checked;
+  const consultPrice = $('#aEditProductConsultPrice').checked;
+  const customExtras = (tempCustomExtras || []).filter(e => e.name && e.name.trim() !== '');
   
   if (!name || !price || !tempProductImg) return aToast('Faltan campos obligatorios o la imagen', 'error');
   
@@ -12832,6 +13182,8 @@ $('#aBtnSaveProduct').onclick = () => {
     hasEditable,
     editablePrice: parseFloat(editablePrice).toFixed(2),
     visible,
+    consultPrice,
+    customExtras,
     briefingFields: tempBriefingFields.filter(f => f.label.trim() !== '')
   };
 
