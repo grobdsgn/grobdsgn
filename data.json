@@ -1508,14 +1508,19 @@
       "price": "150.00",
       "desc": "",
       "category": "artista",
+      "categories": [
+        "artista"
+      ],
       "group": "General",
       "order": 14,
+      "extraImages": [],
       "img": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793302621570_szsj.jpg",
       "hasEditable": false,
       "editablePrice": "10.00",
-      "briefingFields": [],
-      "extraImages": [],
-      "visible": true
+      "visible": true,
+      "consultPrice": true,
+      "customExtras": [],
+      "briefingFields": []
     },
     {
       "id": "8uwvsve0mvty4hkm",
