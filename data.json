@@ -4070,17 +4070,20 @@
       "id": "kb0tnzimmw85futl",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794161510121_nna6.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Psiquiatra",
+      "artist": "Omar Acedo & Buena Fe",
+      "year": "2025",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://drive.google.com/file/d/1N157UaNK8oRzvaGggV97sIihoo_Tzcx-/view?usp=drive_link",
+        "https://drive.google.com/file/d/1VCONKPu4Ezh_zq5Zr628Tv1dMwc2kXVC/view?usp=drive_link"
+      ],
+      "spotifyUrl": "https://open.spotify.com/intl-es/track/7GQiBDmYnMUUxYFY3AVic9?si=c9e378f69c6044fd",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 447842,
         "youtube": 0,
         "apple": 0
       }
