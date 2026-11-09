@@ -2907,7 +2907,7 @@
       "id": "0zjvajtkmvrqp7qn",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169293554_mh9u.jpg",
       "category": "sencillo",
-      "name": "vinos & cigarros",
+      "name": "Vinos & Cigarros",
       "artist": "Isra ft Danco",
       "year": "2023",
       "review": "",
@@ -2915,12 +2915,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169395227_fbpc.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793169397017_owxt.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/0FfqZe2OD5mRrJNVLrKNAU?si=8138c299d6994999",
+      "spotifyUrl": "https://open.spotify.com/album/0FfqZe2OD5mRrJNVLrKNAU",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 125028,
         "youtube": 0,
         "apple": 0
       }
