@@ -1319,90 +1319,7 @@
       "projects": [
         {
           "id": "7u5z4w17mw9egkhc",
-          "name": "Bad Boy -  Jowell y Randy ft Alexis & Fido",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237283459_o3p9.jpg",
-          "images": [
-            "https://youtu.be/Qqg5DVoUezA?si=Woc-cjjHS59AEv7r",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237283459_o3p9.jpg"
-          ]
-        },
-        {
-          "id": "7cjd25lqmw9eo6en",
-          "name": "Tronky - Jowell & Randy ft De La Guetto",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "",
-          "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237555972_ulbg.jpg",
-            "https://youtu.be/VsRLbBm9ffk?si=FeuoxC_DkzWuUOvB"
-          ],
-          "parallaxPosition": "center 35%"
-        },
-        {
-          "id": "uqfivd3smw9esr7u",
-          "name": "Dile Que Tu me Quieres - Ozuna",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237792781_2nym.jpg",
-          "images": [
-            "https://youtu.be/WaZCYP-qSIA?si=bImeDLS2j8QEa9uZ",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237792781_2nym.jpg"
-          ],
-          "parallaxPosition": "center 42%"
-        },
-        {
-          "id": "p21szb85mw9ewv67",
-          "name": "Bebe - Ozuna ft Anuel AA",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "",
-          "images": [
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237906583_f8du.jpg",
-            "https://youtu.be/rKeT3qA6Zao?si=fuPKFNuryEkrkYPN"
-          ],
-          "parallaxPosition": "center 30%"
-        },
-        {
-          "id": "qhobo2ifmw9eza9p",
-          "name": "Guadalupe - Jowell & Randy",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238042318_uf69.png",
-          "images": [
-            "https://www.youtube.com/watch?v=i1yBBM8x-hM",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238042318_uf69.png"
-          ],
-          "parallaxPosition": "center 13%"
-        },
-        {
-          "id": "nr5uuj3dmw9f1aa3",
-          "name": "Mañana - Lenny Tavarez ft Almighty",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238152891_3j9a.jpg",
-          "images": [
-            "https://youtu.be/bF5cfzdOVCY?si=pK9NXUpI69hD7fTf",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238152891_3j9a.jpg"
-          ],
-          "parallaxPosition": "center 36%"
-        },
-        {
-          "id": "uhiis3kxmw9f51j6",
-          "name": "Mi Amiguita - Messiah ft Jory Boy",
-          "review": "",
-          "logo": "",
-          "parallaxImage": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238314414_tgsj.jpg",
-          "images": [
-            "https://youtu.be/xDyXYqQTHRM?si=JPioK8ZcdW48Rm01",
-            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238314414_tgsj.jpg"
-          ],
-          "parallaxPosition": "center 20%"
-        },
-        {
-          "id": "4mhy87t6mw9f7iph",
-          "name": "Tu Tiene Un No Se QUe",
+          "name": "Nuevo Proyecto",
           "review": "",
           "logo": "",
           "parallaxImage": "",
@@ -2652,12 +2569,12 @@
       "id": "m38wxlq6mvrj5eeo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793156611297_myx1.jpg",
       "category": "sencillo",
-      "name": "tu tiene un no se que remix",
-      "artist": "kent y toy ft Dyland, lenny tavarez, Gustavo elis, sixto rein,",
+      "name": "Tu Tiene un No Se Que - Remix",
+      "artist": "Kent y toy ft Dyland, lenny tavarez, Gustavo elis, sixto rein,",
       "year": "2015",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "https://open.spotify.com/intl-es/track/7tNywhILLlALUZZt4vqrRO?si=77b7fc2d747a4c5f",
+      "spotifyUrl": "https://open.spotify.com/track/7tNywhILLlALUZZt4vqrRO",
       "appleMusicUrl": "",
       "youtubeUrl": "https://www.youtube.com/watch?v=ezC3Gl-vvP0&list=RDezC3Gl-vvP0&start_radio=1",
       "featured": false,
