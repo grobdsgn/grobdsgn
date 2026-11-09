@@ -13223,10 +13223,10 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
   let lastError = null;
 
   // 1. RAPIDAPI ALBUM OR TRACK EXTRACTION (Exclusively via Spotify Statistics and Stream Count)
-  if (rapidKey) {
+  if (rapidKey && trackId) {
     if (isAlbum) {
       try {
-        const rAlbum = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/album?url=${encodeURIComponent(cleanUrl)}`, {
+        const rAlbum = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/album/${encodeURIComponent(trackId)}`, {
           headers: {
             'x-rapidapi-key': rapidKey,
             'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
@@ -13251,18 +13251,18 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         } else if (rAlbum.status === 404) {
           const errData = await rAlbum.json().catch(() => ({}));
           lastCode = 'NOT_FOUND';
-          lastError = errData.message || 'Álbum no encontrado en el índice de Spotify';
+          lastError = errData.message || 'Álbum no encontrado en Spotify';
         } else if (rAlbum.ok) {
           const d = await rAlbum.json();
-          const total = d.totalPlayCount ?? d.totalStreams ?? d.playCount ?? (Array.isArray(d.tracks) ? d.tracks.reduce((sum, t) => sum + (parseInt(t.playCount || t.streams, 10) || 0), 0) : 0);
+          const total = d.totalPlayCount ?? d.totalStreams ?? d.streamCount ?? d.playCount ?? (Array.isArray(d.tracks) ? d.tracks.reduce((sum, t) => sum + (parseInt(t.streamCount || t.playCount || t.streams, 10) || 0), 0) : 0);
           let meta = null;
-          if (d.title || d.name || d.artist || d.artists || d.releaseDate || d.year) {
+          if (d.name || d.title || d.artists || d.releaseDate) {
             meta = {
-              title: d.title || d.name || '',
-              artist: Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || ''),
+              title: d.name || d.title || '',
+              artist: Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : '',
               year: ''
             };
-            const ym = String(d.releaseDate || d.year || '').match(/(\d{4})/);
+            const ym = String(d.releaseDate || '').match(/(\d{4})/);
             if (ym) meta.year = ym[1];
           }
           if (total && parseInt(total, 10) > 0) return makeSpotifyResult(total, 'OK', null, meta);
@@ -13272,25 +13272,12 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
       }
     } else {
       try {
-        let r1 = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(cleanUrl)}`, {
+        const r1 = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track/${encodeURIComponent(trackId)}`, {
           headers: {
             'x-rapidapi-key': rapidKey,
             'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
           }
         });
-
-        // Si devuelve 404 con URL completa y tenemos trackId, probamos por query id
-        if (r1.status === 404 && trackId) {
-          try {
-            const rId = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?id=${encodeURIComponent(trackId)}`, {
-              headers: {
-                'x-rapidapi-key': rapidKey,
-                'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
-              }
-            });
-            if (rId.ok) r1 = rId;
-          } catch(e) {}
-        }
 
         if (r1.status === 429) {
           lastCode = 'RATE_LIMIT';
@@ -13314,15 +13301,16 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
           lastError = errData.message || 'Pista no encontrada en el catálogo de Spotify';
         } else if (r1.ok) {
           const d = await r1.json();
-          const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
+          const p = d.streamCount ?? d.playCount ?? d.play_count ?? d.streams ?? d.count;
           let meta = null;
-          if (d.title || d.name || d.artist || d.artists || d.releaseDate || d.year) {
+          if (d.name || d.title || d.album || d.artists) {
+            const artistNames = Array.isArray(d.album?.artists) ? d.album.artists.map(a => a.name).join(', ') : (Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || ''));
             meta = {
-              title: d.title || d.name || '',
-              artist: Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || ''),
+              title: d.name || d.title || '',
+              artist: artistNames,
               year: ''
             };
-            const ym = String(d.releaseDate || d.year || '').match(/(\d{4})/);
+            const ym = String(d.album?.releaseDate || d.releaseDate || d.year || '').match(/(\d{4})/);
             if (ym) meta.year = ym[1];
           }
           if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p, 'OK', null, meta);
@@ -13331,7 +13319,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         lastError = e.message;
       }
     }
-  } else if (!apifyTok) {
+  } else if (!apifyTok && !rapidKey) {
     lastCode = 'NO_KEY';
     lastError = 'No has configurado RapidAPI Key ni Apify Token en Ajustes';
   }
@@ -13349,12 +13337,12 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         if (Array.isArray(items) && items.length) {
           if (isAlbum || items.length > 1) {
             const totalSum = items.reduce((sum, item) => {
-              const p = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
+              const p = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? item.streamCount ?? 0;
               return sum + (parseInt(p, 10) || 0);
             }, 0);
             if (totalSum > 0) return makeSpotifyResult(totalSum, 'OK');
           }
-          const p = items[0].playCount ?? items[0].play_count ?? items[0].plays ?? items[0].streams ?? items[0].count;
+          const p = items[0].playCount ?? items[0].play_count ?? items[0].plays ?? items[0].streams ?? items[0].count ?? items[0].streamCount;
           if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p, 'OK');
         }
       } else {
@@ -13411,7 +13399,7 @@ async function fetchSpotifyStats() {
           const playCountMap = new Map();
           items.forEach(item => {
             const rawUrl = item.url || item.spotifyUrl || item.trackUrl || item.track_url || '';
-            const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
+            const plays = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? item.streamCount ?? 0;
             if (rawUrl) {
               const key = String(rawUrl).trim();
               const num = parseInt(plays, 10) || 0;
@@ -13547,8 +13535,9 @@ window.testRapidApiKey = async function() {
   }
 
   try {
-    const testTrackUrl = 'https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT';
-    let res = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(testTrackUrl)}`, {
+    // ID de prueba mundial (Never Gonna Give You Up - Rick Astley, 1.6B streams)
+    const testTrackId = '4cOdK2wGLETKBW3PvgPWqT';
+    let res = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track/${testTrackId}`, {
       headers: {
         'x-rapidapi-key': key,
         'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
@@ -13559,10 +13548,11 @@ window.testRapidApiKey = async function() {
     try { data = await res.json(); } catch(e) {}
 
     if (res.ok) {
-      const p = data?.playCount ?? data?.play_count ?? data?.streams ?? data?.track?.playcount;
+      const p = data?.streamCount ?? data?.playCount ?? data?.play_count ?? data?.streams ?? data?.count;
+      const title = data?.name || data?.title || 'Never Gonna Give You Up';
       if (statusEl) {
         statusEl.style.color = '#30a46c';
-        statusEl.innerHTML = `✓ <strong>Clave válida y activa.</strong> API respondiendo correctamente${p ? ' (' + parseInt(p, 10).toLocaleString() + ' streams verificados en prueba)' : ''}.`;
+        statusEl.innerHTML = `✓ <strong>Clave conectada y funcionando al 100%.</strong><br><span style="opacity:0.85">API respondiendo correctamente: "${title}" (${p ? parseInt(p, 10).toLocaleString() + ' streams verificados' : 'OK'}).</span>`;
       }
       aToast('✓ RapidAPI Key verificada y funcionando', 'success');
       setAdminSecret('rapidApiKey', key);
@@ -13589,13 +13579,12 @@ window.testRapidApiKey = async function() {
         aToast('❌ Clave rechazada por RapidAPI (403)', 'error', 5000);
       }
     } else if (res.status === 404) {
-      const msg = data?.message || data?.error || 'Canción de prueba no encontrada en el índice del proveedor';
+      const msg = data?.message || data?.error || 'Pista de prueba no encontrada';
       if (statusEl) {
-        statusEl.style.color = '#30a46c';
-        statusEl.innerHTML = `✓ <strong>Clave autorizada y conectada.</strong><br><span style="opacity:0.85">RapidAPI validó tu clave correctamente. (El proveedor reportó 404 en la pista de prueba: ${msg}). La clave ha quedado guardada.</span>`;
+        statusEl.style.color = '#e5484d';
+        statusEl.innerHTML = `❌ Error 404: ${msg}`;
       }
-      aToast('✓ Clave conectada con RapidAPI', 'success', 5000);
-      setAdminSecret('rapidApiKey', key);
+      aToast('Error 404: ' + msg, 'error');
     } else if (res.status === 429) {
       if (statusEl) {
         statusEl.style.color = '#f5a623';
