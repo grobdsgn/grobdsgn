@@ -4284,17 +4284,20 @@
       "id": "22af7kezmw8ra9a5",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198200275_31ub.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Voy a Beber",
+      "artist": "Jacob Forever",
+      "year": "2021",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198211517_1gwy.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198213076_886j.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/1vbcCRtGLAyZzUP15ywSV2",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 2891403,
         "youtube": 0,
         "apple": 0
       }
