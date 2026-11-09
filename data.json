@@ -1349,7 +1349,8 @@
           "images": [
             "https://youtu.be/WaZCYP-qSIA?si=bImeDLS2j8QEa9uZ",
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237792781_2nym.jpg"
-          ]
+          ],
+          "parallaxPosition": "center 48%"
         }
       ]
     }
