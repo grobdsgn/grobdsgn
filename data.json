@@ -4388,6 +4388,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "6hynf7qjmw8rpv24",
+      "url": "https://www.cmtv.com.ar/tapas-cd/0417050001598042221.webp",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
