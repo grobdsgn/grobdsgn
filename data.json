@@ -1354,11 +1354,13 @@
         },
         {
           "id": "p21szb85mw9ewv67",
-          "name": "Nuevo Proyecto",
+          "name": "Bebe - Ozuna ft Anuel AA",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237906583_f8du.jpg"
+          ]
         }
       ]
     }
