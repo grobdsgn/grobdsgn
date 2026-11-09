@@ -4552,6 +4552,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "jorsgerdmw9e1jtr",
+      "url": "https://i.scdn.co/image/ab67616d0000b273df5f80de43de5caa41b0b616",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
