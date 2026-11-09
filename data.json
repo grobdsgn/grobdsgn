@@ -4366,17 +4366,25 @@
       "id": "y00c4064mw8rjra0",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198642802_bjgy.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Tu Cuerpo",
+      "artist": "Victor & Gabo",
+      "year": "2020",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198704991_7dsm.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198707262_r44r.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198708960_cjgz.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198710607_z3kj.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198712255_byaf.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198713902_ocup.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198715461_3f49.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/48ZvBHQqnlGHWJtUdJ3R81",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 293887,
         "youtube": 0,
         "apple": 0
       }
