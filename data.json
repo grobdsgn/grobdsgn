@@ -4430,7 +4430,7 @@
       "spotifyUrl": "https://open.spotify.com/album/3zIIHUg9e8LO7DlxcDTwqS",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false,
+      "featured": true,
       "plays": {
         "spotify": 4725836,
         "youtube": 0,
