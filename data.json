@@ -3238,12 +3238,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211403360_dkn1.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793211405388_q4cr.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/2K41UHPju1j3EWmoePHt4S?si=85f4d3bdf7ae4933",
+      "spotifyUrl": "https://open.spotify.com/album/2K41UHPju1j3EWmoePHt4S",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 2949064,
         "youtube": 0,
         "apple": 0
       }
