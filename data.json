@@ -4517,17 +4517,17 @@
       "id": "kpya6e7fmw8s8p1h",
       "url": "https://cdn-images.dzcdn.net/images/cover/12a11b84d4c4225bdd3e415d2c9440de/0x1900-000000-80-0-0.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "En Mi Mente",
+      "artist": "Malu Trevejo",
+      "year": "2019",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/track/6lfvFVwEUynBgI8ujfFLLJ",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 3425355,
         "youtube": 0,
         "apple": 0
       }
