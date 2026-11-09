@@ -4521,7 +4521,9 @@
       "artist": "Malu Trevejo",
       "year": "2017",
       "review": "",
-      "extraImages": [],
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199902913_bplf.jpg"
+      ],
       "spotifyUrl": "https://open.spotify.com/track/6lfvFVwEUynBgI8ujfFLLJ",
       "appleMusicUrl": "",
       "youtubeUrl": "",
