@@ -1310,6 +1310,13 @@
         }
       ],
       "parallaxPosition": "center 35%"
+    },
+    {
+      "id": "vvc36fsdmw9e4ike",
+      "name": "Nueva Categoría",
+      "description": "",
+      "parallaxImage": "",
+      "projects": []
     }
   ],
   "products": [
