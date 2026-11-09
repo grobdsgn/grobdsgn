@@ -13161,12 +13161,13 @@ function extractSpotifyTrackId(url) {
   return m ? m[1] : null;
 }
 
-function makeSpotifyResult(num, code = null, error = null) {
+function makeSpotifyResult(num, code = null, error = null, metadata = null) {
   const n = parseInt(num, 10) || 0;
   return {
     plays: n,
     code: code,
     error: error,
+    metadata: metadata,
     success: n > 0,
     valueOf() { return n; },
     toString() { return String(n); },
@@ -13175,11 +13176,11 @@ function makeSpotifyResult(num, code = null, error = null) {
 }
 
 async function fetchSpotifyMetadata(url) {
-  const result = { name: '', artists: '', year: '' };
+  const result = { name: '', artists: '', year: '', thumbnail: '' };
   if (!url) return result;
   const normUrl = normalizeSpotifyUrl(url);
 
-  // 1. Official Spotify oEmbed (CORS enabled, no API key needed, zero console errors)
+  // 1. Official Spotify oEmbed (CORS enabled, no API key needed, zero console errors, zero quota usage)
   try {
     const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(normUrl)}`);
     if (oe.ok) {
@@ -13206,30 +13207,6 @@ async function fetchSpotifyMetadata(url) {
     console.warn('[Spotify oEmbed]', e.message);
   }
 
-  // 2. RapidAPI rich metadata fallback if key is active
-  const rapidKey = getAdminSecret('rapidApiKey');
-  if (rapidKey && (!result.name || !result.artists || !result.year)) {
-    try {
-      const r = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(normUrl)}`, {
-        headers: {
-          'x-rapidapi-key': rapidKey,
-          'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
-        }
-      });
-      if (r.ok) {
-        const d = await r.json();
-        if (d.name) result.name = d.name;
-        if (d.artist || d.artists) {
-          result.artists = Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || '');
-        }
-        if (d.releaseDate || d.year) {
-          const m = String(d.releaseDate || d.year).match(/(\d{4})/);
-          if (m) result.year = m[1];
-        }
-      }
-    } catch (e) {}
-  }
-
   return result;
 }
 
@@ -13245,7 +13222,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
   let lastCode = null;
   let lastError = null;
 
-  // 1. RAPIDAPI ALBUM OR TRACK EXTRACTION
+  // 1. RAPIDAPI ALBUM OR TRACK EXTRACTION (Exclusively via Spotify Statistics and Stream Count)
   if (rapidKey) {
     if (isAlbum) {
       try {
@@ -13257,18 +13234,18 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         });
         if (rAlbum.status === 429) {
           lastCode = 'RATE_LIMIT';
-          lastError = 'RapidAPI: Límite de consultas por minuto alcanzado';
+          lastError = 'RapidAPI: Límite de consultas por minuto alcanzado (429)';
         } else if (rAlbum.status === 403) {
           const errData = await rAlbum.json().catch(() => ({}));
           const m = errData.message || '';
-          if (/quota/i.test(m)) {
+          if (/quota|limit|exceeded/i.test(m)) {
             lastCode = 'QUOTA_EXCEEDED';
-            lastError = 'Cuota mensual de RapidAPI agotada en tu cuenta';
+            lastError = 'Límite diario de RapidAPI alcanzado (50 peticiones/día)';
           } else if (/subscribed/i.test(m)) {
             lastCode = 'NOT_SUBSCRIBED';
             lastError = 'Tu clave no está suscrita a esta API en RapidAPI';
           } else {
-            lastCode = 'INVALID_KEY';
+            lastCode = 'AUTH_ERROR';
             lastError = m || 'Acceso denegado en RapidAPI (403)';
           }
         } else if (rAlbum.status === 404) {
@@ -13278,7 +13255,17 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         } else if (rAlbum.ok) {
           const d = await rAlbum.json();
           const total = d.totalPlayCount ?? d.totalStreams ?? d.playCount ?? (Array.isArray(d.tracks) ? d.tracks.reduce((sum, t) => sum + (parseInt(t.playCount || t.streams, 10) || 0), 0) : 0);
-          if (total && parseInt(total, 10) > 0) return makeSpotifyResult(total);
+          let meta = null;
+          if (d.title || d.name || d.artist || d.artists || d.releaseDate || d.year) {
+            meta = {
+              title: d.title || d.name || '',
+              artist: Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || ''),
+              year: ''
+            };
+            const ym = String(d.releaseDate || d.year || '').match(/(\d{4})/);
+            if (ym) meta.year = ym[1];
+          }
+          if (total && parseInt(total, 10) > 0) return makeSpotifyResult(total, 'OK', null, meta);
         }
       } catch (e) {
         lastError = e.message;
@@ -13292,7 +13279,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
           }
         });
 
-        // Si devuelve 404 con URL completa, probamos por ID
+        // Si devuelve 404 con URL completa y tenemos trackId, probamos por query id
         if (r1.status === 404 && trackId) {
           try {
             const rId = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?id=${encodeURIComponent(trackId)}`, {
@@ -13307,18 +13294,18 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
 
         if (r1.status === 429) {
           lastCode = 'RATE_LIMIT';
-          lastError = 'RapidAPI: Límite por minuto alcanzado';
+          lastError = 'RapidAPI: Límite por minuto alcanzado (429)';
         } else if (r1.status === 403) {
           const errData = await r1.json().catch(() => ({}));
           const m = errData.message || '';
-          if (/quota/i.test(m)) {
+          if (/quota|limit|exceeded/i.test(m)) {
             lastCode = 'QUOTA_EXCEEDED';
-            lastError = 'Cuota mensual de RapidAPI agotada en tu cuenta';
+            lastError = 'Límite diario de RapidAPI alcanzado (50 peticiones/día)';
           } else if (/subscribed/i.test(m)) {
             lastCode = 'NOT_SUBSCRIBED';
-            lastError = 'Clave no suscrita a spotify-statistics-and-stream-count en RapidAPI';
+            lastError = 'Tu clave no está suscrita a esta API en RapidAPI';
           } else {
-            lastCode = 'INVALID_KEY';
+            lastCode = 'AUTH_ERROR';
             lastError = m || 'Acceso denegado en RapidAPI (403)';
           }
         } else if (r1.status === 404) {
@@ -13328,26 +13315,20 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         } else if (r1.ok) {
           const d = await r1.json();
           const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
-          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
+          let meta = null;
+          if (d.title || d.name || d.artist || d.artists || d.releaseDate || d.year) {
+            meta = {
+              title: d.title || d.name || '',
+              artist: Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || ''),
+              year: ''
+            };
+            const ym = String(d.releaseDate || d.year || '').match(/(\d{4})/);
+            if (ym) meta.year = ym[1];
+          }
+          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p, 'OK', null, meta);
         }
       } catch (e) {
         lastError = e.message;
-      }
-
-      if (trackId && lastCode !== 'QUOTA_EXCEEDED' && lastCode !== 'NOT_SUBSCRIBED') {
-        try {
-          const r2 = await fetch(`https://spotify23.p.rapidapi.com/track_credits/?id=${trackId}`, {
-            headers: {
-              'x-rapidapi-key': rapidKey,
-              'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-            }
-          });
-          if (r2.ok) {
-            const d = await r2.json();
-            const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
-            if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
-          }
-        } catch (e) {}
       }
     }
   } else if (!apifyTok) {
@@ -13355,7 +13336,7 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
     lastError = 'No has configurado RapidAPI Key ni Apify Token en Ajustes';
   }
 
-  // 2. APIFY ACTOR FALLBACK (SUMS ALL TRACKS OF ALBUM)
+  // 2. APIFY ACTOR FALLBACK (SUMS ALL TRACKS OF ALBUM / MULTI-TRACK BATCH)
   if (apifyTok) {
     try {
       const res = await fetch(`https://api.apify.com/v2/acts/${apifyAct.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(apifyTok)}`, {
@@ -13371,10 +13352,10 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
               const p = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
               return sum + (parseInt(p, 10) || 0);
             }, 0);
-            if (totalSum > 0) return makeSpotifyResult(totalSum);
+            if (totalSum > 0) return makeSpotifyResult(totalSum, 'OK');
           }
           const p = items[0].playCount ?? items[0].play_count ?? items[0].plays ?? items[0].streams ?? items[0].count;
-          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
+          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p, 'OK');
         }
       } else {
         lastCode = 'APIFY_ERROR';
@@ -13405,8 +13386,12 @@ async function fetchSpotifyStats() {
         if (plays > 0) {
           if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
           c.plays.spotify = plays;
+        } else if (playsRes.code === 'QUOTA_EXCEEDED' || playsRes.code === 'NOT_SUBSCRIBED' || playsRes.code === 'AUTH_ERROR') {
+          break;
         }
-      } catch (e) {}
+      } catch (e) {
+        break;
+      }
     }
     return;
   }
@@ -13449,69 +13434,80 @@ async function fetchSpotifyStats() {
 }
 
 window.autofillFromSpotify = async function() {
-  let url = $('#aEditCoverSpotify').value.trim();
+  let url = ($('#aEditCoverSpotify') ? $('#aEditCoverSpotify').value : '').trim();
   if (!url || !isSpotifyUrl(url)) return aToast('URL de Spotify inválida. Asegúrate de incluir el enlace de la canción o álbum.', 'error');
   url = normalizeSpotifyUrl(url);
-  $('#aEditCoverSpotify').value = url;
+  if ($('#aEditCoverSpotify')) $('#aEditCoverSpotify').value = url;
   const btn = $('#aBtnAutofillSpotify');
-  const orig = btn.textContent;
-  btn.textContent = '⏳ Cargando...';
-  btn.disabled = true;
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '⏳ Cargando...'; btn.disabled = true; }
   try {
     const [meta, playsRes] = await Promise.all([
       fetchSpotifyMetadata(url),
       fetchSpotifyPlaysForUrl(url)
     ]);
-    if (meta.name) $('#aEditCoverName').value = meta.name;
-    if (meta.artists) $('#aEditCoverArtist').value = meta.artists;
-    if (meta.year) $('#aEditCoverYear').value = meta.year;
+    if (meta.name && $('#aEditCoverName')) $('#aEditCoverName').value = meta.name;
+    else if (playsRes?.metadata?.title && $('#aEditCoverName') && !$('#aEditCoverName').value.trim()) $('#aEditCoverName').value = playsRes.metadata.title;
+
+    if (meta.artists && $('#aEditCoverArtist')) $('#aEditCoverArtist').value = meta.artists;
+    else if (playsRes?.metadata?.artist && $('#aEditCoverArtist') && !$('#aEditCoverArtist').value.trim()) $('#aEditCoverArtist').value = playsRes.metadata.artist;
+
+    if (meta.year && $('#aEditCoverYear')) $('#aEditCoverYear').value = meta.year;
+    else if (playsRes?.metadata?.year && $('#aEditCoverYear') && !$('#aEditCoverYear').value.trim()) $('#aEditCoverYear').value = playsRes.metadata.year;
+
     if (meta.thumbnail && $('#aEditCoverUrl') && !$('#aEditCoverUrl').value.trim()) {
       $('#aEditCoverUrl').value = meta.thumbnail;
       const preview = $('#aEditCoverPreview');
       if (preview) preview.src = meta.thumbnail;
     }
     
-    const plays = playsRes.plays || 0;
+    const plays = playsRes?.plays || 0;
     if (plays > 0) {
-      $('#aEditCoverPlaysSpotify').value = plays;
+      if ($('#aEditCoverPlaysSpotify')) $('#aEditCoverPlaysSpotify').value = plays;
       aToast(`✓ Metadatos y ${plays.toLocaleString()} reproducciones cargadas`, 'success');
     } else {
       let toastMsg = '✓ Metadatos cargados desde Spotify';
-      if (playsRes.code === 'QUOTA_EXCEEDED') {
-        toastMsg += ' (Cuota de RapidAPI agotada para streams)';
+      let toastType = 'success';
+      if (playsRes?.code === 'QUOTA_EXCEEDED') {
+        toastMsg = '✓ Metadatos cargados (límite diario de RapidAPI alcanzado: 50/día)';
+        toastType = 'warning';
+      } else if (playsRes?.code === 'NOT_SUBSCRIBED') {
+        toastMsg = '✓ Metadatos cargados (clave de RapidAPI no suscrita a esta API)';
+        toastType = 'warning';
       }
-      aToast(toastMsg, playsRes.code === 'QUOTA_EXCEEDED' ? 'warning' : 'success', 4000);
+      aToast(toastMsg, toastType, 4000);
     }
   } catch (e) {
     console.error(e);
-    aToast('Error al conectar con Spotify', 'error');
+    aToast('Error al conectar con Spotify: ' + (e.message || ''), 'error');
   } finally {
-    btn.textContent = orig;
-    btn.disabled = false;
+    if (btn) {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }
   }
 };
 
 window.fetchCoverTrackPlays = async function() {
-  let url = $('#aEditCoverSpotify').value.trim();
+  let url = ($('#aEditCoverSpotify') ? $('#aEditCoverSpotify').value : '').trim();
   if (!url || !isSpotifyUrl(url)) return aToast('Ingresa una URL válida de Spotify', 'error');
   url = normalizeSpotifyUrl(url);
-  $('#aEditCoverSpotify').value = url;
+  if ($('#aEditCoverSpotify')) $('#aEditCoverSpotify').value = url;
   const btn = $('#aBtnFetchTrackPlays');
-  const orig = btn.textContent;
-  btn.textContent = '⏳...';
-  btn.disabled = true;
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '⏳...'; btn.disabled = true; }
   try {
     const res = await fetchSpotifyPlaysForUrl(url);
     const plays = res.plays || 0;
     if (plays > 0) {
-      $('#aEditCoverPlaysSpotify').value = plays;
+      if ($('#aEditCoverPlaysSpotify')) $('#aEditCoverPlaysSpotify').value = plays;
       aToast(`✓ ${plays.toLocaleString()} reproducciones encontradas`, 'success');
     } else if (res.code === 'QUOTA_EXCEEDED') {
-      aToast('⚠️ Tu cuota mensual de RapidAPI se agotó. Renueva tu plan en RapidAPI o ingresa el número manualmente.', 'warning', 6000);
+      aToast('⚠️ Límite diario de RapidAPI alcanzado (50 peticiones/día). Se reinicia a medianoche UTC.', 'warning', 6000);
     } else if (res.code === 'NOT_SUBSCRIBED') {
-      aToast('⚠️ Tu clave de RapidAPI no está suscrita a esta API. Suscríbete gratis en RapidAPI o usa Apify.', 'warning', 6000);
+      aToast('⚠️ Tu clave de RapidAPI no está suscrita a esta API. Suscríbete gratis ($0) en RapidAPI o usa Apify.', 'warning', 6000);
     } else if (res.code === 'RATE_LIMIT') {
-      aToast('⚠️ Límite por minuto alcanzado en RapidAPI. Espera un momento.', 'warning');
+      aToast('⚠️ Límite por minuto alcanzado en RapidAPI (429). Espera un momento.', 'warning');
     } else if (res.code === 'NO_KEY') {
       aToast('ℹ️ No hay API Key configurada. Ingresa tu RapidAPI Key en Ajustes o escribe las reproducciones manualmente.', 'info', 5000);
     } else {
@@ -13520,8 +13516,10 @@ window.fetchCoverTrackPlays = async function() {
   } catch (e) {
     aToast('Error al consultar reproducciones: ' + (e.message || ''), 'error');
   } finally {
-    btn.textContent = orig;
-    btn.disabled = false;
+    if (btn) {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }
   }
 };
 
@@ -13549,7 +13547,6 @@ window.testRapidApiKey = async function() {
   }
 
   try {
-    // Canción de prueba estándar mundial (Never Gonna Give You Up - Rick Astley, 1.6B streams)
     const testTrackUrl = 'https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT';
     let res = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(testTrackUrl)}`, {
       headers: {
@@ -13561,23 +13558,6 @@ window.testRapidApiKey = async function() {
     let data = null;
     try { data = await res.json(); } catch(e) {}
 
-    // Si devuelve 404, intentamos con el endpoint secundario de respaldo (spotify23)
-    if (res.status === 404) {
-      try {
-        const res2 = await fetch('https://spotify23.p.rapidapi.com/track_credits/?id=4cOdK2wGLETKBW3PvgPWqT', {
-          headers: {
-            'x-rapidapi-key': key,
-            'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-          }
-        });
-        if (res2.ok) {
-          const d2 = await res2.json();
-          res = res2;
-          data = d2;
-        }
-      } catch(e) {}
-    }
-
     if (res.ok) {
       const p = data?.playCount ?? data?.play_count ?? data?.streams ?? data?.track?.playcount;
       if (statusEl) {
@@ -13588,32 +13568,31 @@ window.testRapidApiKey = async function() {
       setAdminSecret('rapidApiKey', key);
     } else if (res.status === 403) {
       const m = data?.message || '';
-      if (/quota/i.test(m)) {
+      if (/quota|limit|exceeded/i.test(m)) {
         if (statusEl) {
           statusEl.style.color = '#f5a623';
-          statusEl.innerHTML = `⚠️ <strong>Cuota mensual agotada</strong> en tu cuenta de RapidAPI.<br><span style="opacity:0.85">El plan gratuito mensual ha alcanzado su límite de peticiones. Renueva tu plan en <a href="https://rapidapi.com/beat-analytics-beat-analytics-default/api/spotify-statistics-and-stream-count/pricing" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">RapidAPI</a> o usa Apify.</span>`;
+          statusEl.innerHTML = `⚠️ <strong>Clave válida y conectada</strong>, pero has alcanzado tu límite diario gratuito de RapidAPI (50 peticiones/día).<br><span style="opacity:0.85">La clave ha quedado guardada y volverá a responder automáticamente cuando la cuota se reinicie a medianoche UTC.</span>`;
         }
-        aToast('⚠️ Cuota mensual de RapidAPI agotada en tu cuenta', 'warning', 6000);
+        setAdminSecret('rapidApiKey', key);
+        aToast('⚠️ Clave guardada (límite diario de 50 peticiones alcanzado por hoy)', 'warning', 7000);
       } else if (/subscribed/i.test(m)) {
         if (statusEl) {
           statusEl.style.color = '#f5a623';
-          statusEl.innerHTML = `⚠️ <strong>No suscrito</strong> a esta API.<br><span style="opacity:0.85">Tu clave es válida pero debes hacer clic en "Subscribe" (Plan Free $0) en <a href="https://rapidapi.com/beat-analytics-beat-analytics-default/api/spotify-statistics-and-stream-count/pricing" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">RapidAPI</a>.</span>`;
+          statusEl.innerHTML = `⚠️ <strong>No suscrito</strong> a esta API.<br><span style="opacity:0.85">Tu clave es válida pero debes asegurarte de haber hecho clic en "Subscribe to Test" (Plan Free $0) en <a href="https://rapidapi.com/beat-analytics-beat-analytics-default/api/spotify-statistics-and-stream-count/pricing" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">Spotify Statistics and Stream Count</a> con esta misma cuenta.</span>`;
         }
-        aToast('⚠️ Clave no suscrita a la API de Spotify en RapidAPI', 'warning', 6000);
+        aToast('⚠️ Clave no suscrita a la API en RapidAPI', 'warning', 6000);
       } else {
         if (statusEl) {
           statusEl.style.color = '#e5484d';
           statusEl.innerHTML = `❌ Error 403: ${m || 'Acceso denegado / Clave no autorizada'}`;
         }
-        aToast('❌ Clave de RapidAPI rechazada (403)', 'error', 5000);
+        aToast('❌ Clave rechazada por RapidAPI (403)', 'error', 5000);
       }
     } else if (res.status === 404) {
-      // 404 significa que la clave SÍ fue autorizada por RapidAPI (de lo contrario daría 403)
-      // pero el servidor de destino no encontró esa pista específica en su índice
       const msg = data?.message || data?.error || 'Canción de prueba no encontrada en el índice del proveedor';
       if (statusEl) {
         statusEl.style.color = '#30a46c';
-        statusEl.innerHTML = `✓ <strong>Clave autorizada y conectada.</strong><br><span style="opacity:0.85">RapidAPI validó tu clave correctamente. (El proveedor reportó 404 en la pista de prueba: ${msg}). La clave ha quedado guardada; prueba ahora en un cover real.</span>`;
+        statusEl.innerHTML = `✓ <strong>Clave autorizada y conectada.</strong><br><span style="opacity:0.85">RapidAPI validó tu clave correctamente. (El proveedor reportó 404 en la pista de prueba: ${msg}). La clave ha quedado guardada.</span>`;
       }
       aToast('✓ Clave conectada con RapidAPI', 'success', 5000);
       setAdminSecret('rapidApiKey', key);
@@ -13641,21 +13620,33 @@ window.testRapidApiKey = async function() {
     if (btn) { btn.textContent = orig; btn.disabled = false; }
   }
 };
+
 window.syncAllSpotifyPlays = async function() {
   const covers = (DATA.covers || []).filter(c => c.spotifyUrl && /spotify\.com/.test(c.spotifyUrl));
   if (!covers.length) return aToast('No hay covers con enlace de Spotify', 'error');
-
-  aToast(`Sincronizando ${covers.length} canciones con Spotify...`, 'info');
-  let updatedCount = 0;
 
   const apifyTok = getAdminSecret('apifyToken');
   const rapidKey = getAdminSecret('rapidApiKey');
 
   if (apifyTok) {
+    aToast(`Sincronizando ${covers.length} canciones con Apify...`, 'info');
     await fetchSpotifyStats();
-    updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
-  } else if (rapidKey) {
-    for (const c of covers) {
+    const updatedCount = covers.filter(c => (c.plays?.spotify || 0) > 0).length;
+    const totalStreams = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
+    updateAdminBadges();
+    renderAdmin();
+    setupPlaysBanner();
+    await saveAdminData();
+    return aToast(`✓ Sincronización completa: ${updatedCount} actualizadas (${totalStreams.toLocaleString()} plays totales)`, 'success');
+  }
+
+  if (rapidKey) {
+    aToast(`Sincronizando canciones con RapidAPI (límite diario: 50)...`, 'info');
+    let updatedCount = 0;
+    let stopReason = null;
+
+    for (let i = 0; i < covers.length; i++) {
+      const c = covers[i];
       try {
         const playsRes = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
         const p = playsRes.plays || 0;
@@ -13664,28 +13655,47 @@ window.syncAllSpotifyPlays = async function() {
           c.plays.spotify = p;
           updatedCount++;
         } else if (playsRes.code === 'QUOTA_EXCEEDED') {
-          aToast('⚠️ Cuota mensual de RapidAPI agotada. Proceso detenido para evitar bloqueos.', 'warning', 6000);
+          stopReason = 'QUOTA_EXCEEDED';
+          break;
+        } else if (playsRes.code === 'NOT_SUBSCRIBED') {
+          stopReason = 'NOT_SUBSCRIBED';
+          break;
+        } else if (playsRes.code === 'AUTH_ERROR') {
+          stopReason = 'AUTH_ERROR';
           break;
         } else if (playsRes.code === 'RATE_LIMIT') {
-          aToast('⚠️ Límite de solicitudes de RapidAPI alcanzado (429). Espera 1 minuto.', 'warning');
+          stopReason = 'RATE_LIMIT';
           break;
         }
-        await new Promise(r => setTimeout(r, 250));
+        await new Promise(r => setTimeout(r, 200));
       } catch (e) {
         break;
       }
     }
-  } else {
-    return aToast('Ingresa tu RapidAPI Key o Apify Token en Ajustes para sincronizar.', 'error');
+
+    const totalStreams = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
+    updateAdminBadges();
+    renderAdmin();
+    setupPlaysBanner();
+    if (updatedCount > 0) await saveAdminData();
+
+    if (stopReason === 'QUOTA_EXCEEDED') {
+      aToast(`⚠️ Límite diario de RapidAPI alcanzado (50 peticiones/día). Se actualizaron ${updatedCount} covers. Se reinicia a medianoche UTC.`, 'warning', 7000);
+    } else if (stopReason === 'NOT_SUBSCRIBED') {
+      aToast('⚠️ Clave no suscrita a la API en RapidAPI. Verifica tu plan en rapidapi.com', 'warning', 7000);
+    } else if (stopReason === 'AUTH_ERROR') {
+      aToast('⚠️ Clave rechazada por RapidAPI (403). Verifica tu clave en Ajustes.', 'error', 7000);
+    } else if (stopReason === 'RATE_LIMIT') {
+      aToast('⚠️ Límite por minuto alcanzado (429). Espera 1 minuto para continuar.', 'warning', 6000);
+    } else {
+      aToast(`✓ Sincronización completa: ${updatedCount} actualizadas (${totalStreams.toLocaleString()} plays totales)`, 'success');
+    }
+    return;
   }
 
-  const totalStreams = (DATA.covers || []).reduce((sum, c) => sum + (c.plays?.spotify || 0), 0);
-  updateAdminBadges();
-  renderAdmin();
-  setupPlaysBanner();
-  await saveAdminData();
-  aToast(`✓ Sincronización completa: ${updatedCount} actualizadas (${totalStreams.toLocaleString()} plays totales)`, 'success');
+  return aToast('Ingresa tu RapidAPI Key o Apify Token en Ajustes para sincronizar.', 'error');
 };
+
 
 async function loadPublicData() {
   try {
