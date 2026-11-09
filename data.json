@@ -4713,6 +4713,15 @@
       "lng": -95.3698,
       "projects": 5,
       "isHQ": false
+    },
+    {
+      "id": "loc_mw8rnqzr",
+      "city": "Santiago",
+      "country": "Chile",
+      "lat": -33.4489,
+      "lng": -70.6693,
+      "projects": 1,
+      "isHQ": false
     }
   ]
 }
