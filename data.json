@@ -2370,7 +2370,7 @@
       "id": "nixjsupemvrj5eeo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793156600508_nnvz.webp",
       "category": "sencillo",
-      "name": "en realidad",
+      "name": "En Realidad",
       "artist": "victor & gabo ft jambene",
       "year": "2022",
       "review": "",
@@ -2380,12 +2380,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793226839701_i4cr.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793226841400_jfhn.png"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/1fSNeZGbpmBtOo6KBS3ZiC?si=0I7jfk10S2SOXDjhFLOGXw",
+      "spotifyUrl": "https://open.spotify.com/album/1fSNeZGbpmBtOo6KBS3ZiC",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 237414,
         "youtube": 0,
         "apple": 0
       }
