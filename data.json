@@ -1813,7 +1813,7 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": true,
+      "featured": false,
       "plays": {
         "spotify": 0,
         "youtube": 0,
