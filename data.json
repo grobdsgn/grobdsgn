@@ -2100,12 +2100,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225855509_0kvi.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225857059_9m39.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/6MCsxhSAOaBnPFJHhmzDLQ?si=bcf184d270d446b2",
+      "spotifyUrl": "https://open.spotify.com/album/6MCsxhSAOaBnPFJHhmzDLQ",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 248099,
         "youtube": 0,
         "apple": 0
       }
