@@ -1805,7 +1805,7 @@
       "id": "c03fj1xkmvrj5eeo",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793156566558_75k0.jpg",
       "category": "ediciones",
-      "name": "ahora que te vas",
+      "name": "Ahora Que Te Vas",
       "artist": "christian daniel ft cosculluela",
       "year": "2016",
       "review": "",
@@ -1813,7 +1813,7 @@
       "spotifyUrl": "",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false,
+      "featured": true,
       "plays": {
         "spotify": 0,
         "youtube": 0,
