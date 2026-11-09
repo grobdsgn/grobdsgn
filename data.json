@@ -1851,12 +1851,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793223917406_xglq.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793223918787_pufx.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/6o3mAsFNPZCi3HakXcEfsa?si=vINbhnGBSW-A6K_nOEa8Zw",
+      "spotifyUrl": "https://open.spotify.com/album/6o3mAsFNPZCi3HakXcEfsa",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 2480454,
         "youtube": 0,
         "apple": 0
       }
