@@ -1366,11 +1366,13 @@
         },
         {
           "id": "qhobo2ifmw9eza9p",
-          "name": "Nuevo Proyecto",
+          "name": "Guadalupe - Jowell & Randy",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://www.youtube.com/watch?v=i1yBBM8x-hM"
+          ]
         }
       ]
     }
