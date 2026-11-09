@@ -4412,17 +4412,27 @@
       "id": "wxdor36wmw8ryl3u",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199335053_o81d.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Una Vez Mas",
+      "artist": "Malu Trevejo",
+      "year": "2019",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199346436_vxn7.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199374040_yowt.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199375976_7oud.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199378023_mkkg.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199379849_zo2x.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199381480_t07s.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199383043_9e45.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199384741_ynd4.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794199386250_3hc2.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/album/3zIIHUg9e8LO7DlxcDTwqS",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 4725836,
         "youtube": 0,
         "apple": 0
       }
