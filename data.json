@@ -1411,6 +1411,14 @@
             "https://www.youtube.com/watch?v=ezC3Gl-vvP0&list=RDezC3Gl-vvP0&start_radio=1"
           ],
           "parallaxPosition": "center 15%"
+        },
+        {
+          "id": "f4qa7e7lmw9fbbln",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     }
