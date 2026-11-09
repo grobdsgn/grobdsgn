@@ -3840,12 +3840,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794159945243_o2vw.jpeg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794159952359_f1d4.jpeg"
       ],
-      "spotifyUrl": "https://open.spotify.com/album/3kBrlGUD5HAX1U31NMXfVq?si=pArYAKJGQbmXGxV5saQfJg",
+      "spotifyUrl": "https://open.spotify.com/album/3kBrlGUD5HAX1U31NMXfVq",
       "appleMusicUrl": "",
       "youtubeUrl": "https://youtu.be/X-Sweb5xSek?si=cd_9_L3M7BwO6AIk",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 426906,
         "youtube": 0,
         "apple": 0
       }
