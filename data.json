@@ -3401,12 +3401,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212942758_navb.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793212944607_nbwk.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/6jxxhDARq4KBxPXEqApuQy?si=c0944cb8912c434b",
+      "spotifyUrl": "https://open.spotify.com/album/6jxxhDARq4KBxPXEqApuQy",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 3237,
         "youtube": 0,
         "apple": 0
       }
