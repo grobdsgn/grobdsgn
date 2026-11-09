@@ -1399,6 +1399,14 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238314414_tgsj.jpg"
           ],
           "parallaxPosition": "center 20%"
+        },
+        {
+          "id": "4mhy87t6mw9f7iph",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     }
