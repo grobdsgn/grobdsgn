@@ -4000,12 +4000,12 @@
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794160200135_h75x.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/track/2FKZTu97TI3lD7lFJ7VReW?si=6129d73e75724b48",
+      "spotifyUrl": "https://open.spotify.com/track/2FKZTu97TI3lD7lFJ7VReW",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 29465,
         "youtube": 0,
         "apple": 0
       }
