@@ -1435,6 +1435,14 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238850445_u60z.jpg"
           ],
           "parallaxPosition": "center 20%"
+        },
+        {
+          "id": "tuf2oj6smw9flcar",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     }
