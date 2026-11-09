@@ -4206,17 +4206,19 @@
       "id": "dz799j5fmw8qzh5n",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197697316_ludd.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "No Aguanto Más",
+      "artist": "isra",
+      "year": "2023",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197725684_c9l7.png"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/7MmP1CdUAKE5KYajB4rFVf",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/CicuCBDhyLk?si=sTM7WtFHHTmiF_RQ",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 165927,
         "youtube": 0,
         "apple": 0
       }
