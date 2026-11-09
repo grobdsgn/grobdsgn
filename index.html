@@ -2405,6 +2405,14 @@ input:checked + .a-slider:before {
   border-color: rgba(229, 72, 77, 0.4);
   color: #fff;
 }
+.a-toast.warning {
+  border-color: rgba(245, 166, 35, 0.6);
+  color: #fed7aa;
+}
+.a-toast.info {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #e0f2fe;
+}
 .cover-preview-row {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -8768,8 +8776,12 @@ section {
             <div class="a-card-body">
               <div class="a-form-group">
                 <label class="a-form-label">RapidAPI Key (Spotify Statistics & Streams)</label>
-                <input type="password" id="aRapidApiKey" class="a-form-input" placeholder="Ingresa tu clave de RapidAPI...">
-                <span class="a-form-hint">Opción recomendada. Se guarda de forma segura en tu navegador local (no se sube a GitHub para evitar violaciones de reglas).</span>
+                <div style="display:flex;gap:8px">
+                  <input type="password" id="aRapidApiKey" class="a-form-input" style="flex:1" placeholder="Ingresa tu clave de RapidAPI...">
+                  <button type="button" class="a-btn a-btn-outline a-btn-xs" id="aBtnTestRapidApi" onclick="testRapidApiKey()">Probar Clave</button>
+                </div>
+                <div id="aRapidApiStatus" style="margin-top:6px;font-size:0.8rem;line-height:1.4;display:none;"></div>
+                <span class="a-form-hint">Opción recomendada. Se guarda de forma segura en tu navegador local. Obtén o renueva tu cuota mensual gratuita en <a href="https://rapidapi.com/felixf/api/spotify-statistics-and-stream-count" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">rapidapi.com</a>.</span>
               </div>
               <div class="a-form-group">
                 <label class="a-form-label">Apify API Token (Alternativa)</label>
@@ -10826,7 +10838,7 @@ const GH = {
       return null;
     }
   },
-  async putFile(path, base64Content, message) {
+  async putFile(path, base64Content, message, retries = 2) {
     let sha = null;
     try {
       const existing = await this.getFile(path);
@@ -10839,6 +10851,11 @@ const GH = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
+    if (res.status === 409 && retries > 0) {
+      console.warn(`[GitHub] 409 Conflict en ${path}. Reintentando con SHA actualizado...`);
+      await new Promise(r => setTimeout(r, 700));
+      return this.putFile(path, base64Content, message, retries - 1);
+    }
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
       throw new Error(errData.message || `Error ${res.status} al subir ${path}`);
@@ -13140,59 +13157,88 @@ function extractSpotifyTrackId(url) {
   return m ? m[1] : null;
 }
 
-const CORS_PROXIES = [
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`
-];
-
-async function fetchSpotifyHtml(url) {
-  for (const proxy of CORS_PROXIES) {
-    try {
-      const res = await fetch(proxy(url), { cache: 'no-store' });
-      if (res.ok) {
-        const text = await res.text();
-        if (text && text.length > 2000) return text;
-      }
-    } catch (e) {}
-  }
-  return null;
+function makeSpotifyResult(num, code = null, error = null) {
+  const n = parseInt(num, 10) || 0;
+  return {
+    plays: n,
+    code: code,
+    error: error,
+    success: n > 0,
+    valueOf() { return n; },
+    toString() { return String(n); },
+    toLocaleString(...args) { return n.toLocaleString(...args); }
+  };
 }
 
 async function fetchSpotifyMetadata(url) {
   const result = { name: '', artists: '', year: '' };
+  if (!url) return result;
+  const normUrl = normalizeSpotifyUrl(url);
+
+  // 1. Official Spotify oEmbed (CORS enabled, no API key needed, zero console errors)
   try {
-    const normUrl = normalizeSpotifyUrl(url);
     const oe = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(normUrl)}`);
     if (oe.ok) {
       const d = await oe.json();
-      if (d.title) result.name = d.title;
-    }
-  } catch (e) {}
-  try {
-    const html = await fetchSpotifyHtml(url);
-    if (html) {
-      const ld = html.match(new RegExp('<' + 'script type="application/ld\\+json">([\\s\\S]*?)<\/' + 'script>'));
-      if (ld) {
-        try {
-          const d = JSON.parse(ld[1]);
-          if (d.name) result.name = d.name;
-          if (d.byArtist) result.artists = Array.isArray(d.byArtist) ? d.byArtist.map(a => a.name).join(', ') : d.byArtist.name;
-          if (d.datePublished) result.year = String(d.datePublished).match(/^(\d{4})/)[1];
-        } catch (e) {}
+      if (d.title) {
+        const rawTitle = d.title.trim();
+        if (rawTitle.includes(' - ')) {
+          const parts = rawTitle.split(' - ');
+          result.artists = parts[0].trim();
+          result.name = parts.slice(1).join(' - ').trim();
+        } else if (rawTitle.includes(' by ')) {
+          const parts = rawTitle.split(' by ');
+          result.name = parts[0].trim();
+          result.artists = parts.slice(1).join(' by ').trim();
+        } else {
+          result.name = rawTitle;
+        }
+      }
+      if (d.thumbnail_url) {
+        result.thumbnail = d.thumbnail_url;
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    console.warn('[Spotify oEmbed]', e.message);
+  }
+
+  // 2. RapidAPI rich metadata fallback if key is active
+  const rapidKey = getAdminSecret('rapidApiKey');
+  if (rapidKey && (!result.name || !result.artists || !result.year)) {
+    try {
+      const r = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(normUrl)}`, {
+        headers: {
+          'x-rapidapi-key': rapidKey,
+          'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
+        }
+      });
+      if (r.ok) {
+        const d = await r.json();
+        if (d.name) result.name = d.name;
+        if (d.artist || d.artists) {
+          result.artists = Array.isArray(d.artists) ? d.artists.map(a => typeof a === 'string' ? a : a.name).join(', ') : (d.artist || '');
+        }
+        if (d.releaseDate || d.year) {
+          const m = String(d.releaseDate || d.year).match(/(\d{4})/);
+          if (m) result.year = m[1];
+        }
+      }
+    } catch (e) {}
+  }
+
   return result;
 }
 
 async function fetchSpotifyPlaysForUrl(url, token, actor) {
-  if (!url) return 0;
+  if (!url) return makeSpotifyResult(0, 'NO_URL', 'URL requerida');
   const apifyTok = token || getAdminSecret('apifyToken');
   const apifyAct = actor || DATA.settings?.apifyActor || DEFAULT_APIFY_ACTOR;
   const rapidKey = getAdminSecret('rapidApiKey');
   const isAlbum = /\/album\//i.test(url);
   const trackId = extractSpotifyTrackId(url);
+
+  let lastCode = null;
+  let lastError = null;
 
   // 1. RAPIDAPI ALBUM OR TRACK EXTRACTION
   if (rapidKey) {
@@ -13204,14 +13250,29 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
             'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
           }
         });
-        if (rAlbum.status === 429) throw new Error('RAPIDAPI_429');
-        if (rAlbum.ok) {
+        if (rAlbum.status === 429) {
+          lastCode = 'RATE_LIMIT';
+          lastError = 'RapidAPI: Límite de consultas por minuto alcanzado';
+        } else if (rAlbum.status === 403) {
+          const errData = await rAlbum.json().catch(() => ({}));
+          const m = errData.message || '';
+          if (/quota/i.test(m)) {
+            lastCode = 'QUOTA_EXCEEDED';
+            lastError = 'Cuota mensual de RapidAPI agotada en tu cuenta';
+          } else if (/subscribed/i.test(m)) {
+            lastCode = 'NOT_SUBSCRIBED';
+            lastError = 'Tu clave no está suscrita a esta API en RapidAPI';
+          } else {
+            lastCode = 'INVALID_KEY';
+            lastError = m || 'Acceso denegado en RapidAPI (403)';
+          }
+        } else if (rAlbum.ok) {
           const d = await rAlbum.json();
           const total = d.totalPlayCount ?? d.totalStreams ?? d.playCount ?? (Array.isArray(d.tracks) ? d.tracks.reduce((sum, t) => sum + (parseInt(t.playCount || t.streams, 10) || 0), 0) : 0);
-          if (total && parseInt(total, 10) > 0) return parseInt(total, 10);
+          if (total && parseInt(total, 10) > 0) return makeSpotifyResult(total);
         }
       } catch (e) {
-        if (e.message === 'RAPIDAPI_429') throw e;
+        lastError = e.message;
       }
     } else {
       try {
@@ -13221,17 +13282,32 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
             'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
           }
         });
-        if (r1.status === 429) throw new Error('RAPIDAPI_429');
-        if (r1.ok) {
+        if (r1.status === 429) {
+          lastCode = 'RATE_LIMIT';
+          lastError = 'RapidAPI: Límite por minuto alcanzado';
+        } else if (r1.status === 403) {
+          const errData = await r1.json().catch(() => ({}));
+          const m = errData.message || '';
+          if (/quota/i.test(m)) {
+            lastCode = 'QUOTA_EXCEEDED';
+            lastError = 'Cuota mensual de RapidAPI agotada en tu cuenta';
+          } else if (/subscribed/i.test(m)) {
+            lastCode = 'NOT_SUBSCRIBED';
+            lastError = 'Clave no suscrita a spotify-statistics-and-stream-count en RapidAPI';
+          } else {
+            lastCode = 'INVALID_KEY';
+            lastError = m || 'Acceso denegado en RapidAPI (403)';
+          }
+        } else if (r1.ok) {
           const d = await r1.json();
           const p = d.playCount ?? d.play_count ?? d.streams ?? d.count ?? (d.result && (d.result.playCount || d.result.streams));
-          if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
         }
       } catch (e) {
-        if (e.message === 'RAPIDAPI_429') throw e;
+        lastError = e.message;
       }
 
-      if (trackId) {
+      if (trackId && lastCode !== 'QUOTA_EXCEEDED') {
         try {
           const r2 = await fetch(`https://spotify23.p.rapidapi.com/track_credits/?id=${trackId}`, {
             headers: {
@@ -13239,20 +13315,20 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
               'x-rapidapi-host': 'spotify23.p.rapidapi.com'
             }
           });
-          if (r2.status === 429) throw new Error('RAPIDAPI_429');
           if (r2.ok) {
             const d = await r2.json();
             const p = d.playCount ?? d.play_count ?? d.streams ?? (d.track && d.track.playcount);
-            if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+            if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
           }
-        } catch (e) {
-          if (e.message === 'RAPIDAPI_429') throw e;
-        }
+        } catch (e) {}
       }
     }
+  } else if (!apifyTok) {
+    lastCode = 'NO_KEY';
+    lastError = 'No has configurado RapidAPI Key ni Apify Token en Ajustes';
   }
 
-  // 2. APIFY ACTOR EXTRACTION (SUMS ALL TRACKS OF ALBUM)
+  // 2. APIFY ACTOR FALLBACK (SUMS ALL TRACKS OF ALBUM)
   if (apifyTok) {
     try {
       const res = await fetch(`https://api.apify.com/v2/acts/${apifyAct.replace('/', '~')}/run-sync-get-dataset-items?token=${encodeURIComponent(apifyTok)}`, {
@@ -13264,21 +13340,26 @@ async function fetchSpotifyPlaysForUrl(url, token, actor) {
         const items = await res.json();
         if (Array.isArray(items) && items.length) {
           if (isAlbum || items.length > 1) {
-            // Requerimiento 2: Extraer y sumar las reproducciones completas del álbum
             const totalSum = items.reduce((sum, item) => {
               const p = item.playCount ?? item.play_count ?? item.plays ?? item.streams ?? item.count ?? 0;
               return sum + (parseInt(p, 10) || 0);
             }, 0);
-            if (totalSum > 0) return totalSum;
+            if (totalSum > 0) return makeSpotifyResult(totalSum);
           }
           const p = items[0].playCount ?? items[0].play_count ?? items[0].plays ?? items[0].streams ?? items[0].count;
-          if (p && parseInt(p, 10) > 0) return parseInt(p, 10);
+          if (p && parseInt(p, 10) > 0) return makeSpotifyResult(p);
         }
+      } else {
+        lastCode = 'APIFY_ERROR';
+        lastError = `Apify error: HTTP ${res.status}`;
       }
-    } catch (e) {}
+    } catch (e) {
+      lastCode = 'APIFY_ERROR';
+      lastError = e.message;
+    }
   }
 
-  return 0;
+  return makeSpotifyResult(0, lastCode || 'NOT_FOUND', lastError || 'No se detectaron reproducciones automáticas');
 }
 
 async function fetchSpotifyStats() {
@@ -13292,7 +13373,8 @@ async function fetchSpotifyStats() {
   if (rapidKey) {
     for (const c of coversWithSpotify) {
       try {
-        const plays = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
+        const playsRes = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
+        const plays = playsRes.plays || 0;
         if (plays > 0) {
           if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
           c.plays.spotify = plays;
@@ -13349,18 +13431,29 @@ window.autofillFromSpotify = async function() {
   btn.textContent = '⏳ Cargando...';
   btn.disabled = true;
   try {
-    const [meta, plays] = await Promise.all([
+    const [meta, playsRes] = await Promise.all([
       fetchSpotifyMetadata(url),
       fetchSpotifyPlaysForUrl(url)
     ]);
     if (meta.name) $('#aEditCoverName').value = meta.name;
     if (meta.artists) $('#aEditCoverArtist').value = meta.artists;
     if (meta.year) $('#aEditCoverYear').value = meta.year;
+    if (meta.thumbnail && !$('#aEditCoverImg').value.trim()) {
+      $('#aEditCoverImg').value = meta.thumbnail;
+      const preview = $('#aEditCoverPreview');
+      if (preview) preview.src = meta.thumbnail;
+    }
+    
+    const plays = playsRes.plays || 0;
     if (plays > 0) {
       $('#aEditCoverPlaysSpotify').value = plays;
       aToast(`✓ Metadatos y ${plays.toLocaleString()} reproducciones cargadas`, 'success');
     } else {
-      aToast('✓ Datos de Spotify cargados (Título, Artista, Año)', 'success');
+      let toastMsg = '✓ Metadatos cargados desde Spotify';
+      if (playsRes.code === 'QUOTA_EXCEEDED') {
+        toastMsg += ' (Cuota de RapidAPI agotada para streams)';
+      }
+      aToast(toastMsg, playsRes.code === 'QUOTA_EXCEEDED' ? 'warning' : 'success', 4000);
     }
   } catch (e) {
     console.error(e);
@@ -13381,18 +13474,114 @@ window.fetchCoverTrackPlays = async function() {
   btn.textContent = '⏳...';
   btn.disabled = true;
   try {
-    const plays = await fetchSpotifyPlaysForUrl(url);
+    const res = await fetchSpotifyPlaysForUrl(url);
+    const plays = res.plays || 0;
     if (plays > 0) {
       $('#aEditCoverPlaysSpotify').value = plays;
       aToast(`✓ ${plays.toLocaleString()} reproducciones encontradas`, 'success');
+    } else if (res.code === 'QUOTA_EXCEEDED') {
+      aToast('⚠️ Tu cuota mensual de RapidAPI se agotó. Renueva tu plan en RapidAPI o ingresa el número manualmente.', 'warning', 6000);
+    } else if (res.code === 'NOT_SUBSCRIBED') {
+      aToast('⚠️ Tu clave de RapidAPI no está suscrita a esta API. Suscríbete gratis en RapidAPI o usa Apify.', 'warning', 6000);
+    } else if (res.code === 'RATE_LIMIT') {
+      aToast('⚠️ Límite por minuto alcanzado en RapidAPI. Espera un momento.', 'warning');
+    } else if (res.code === 'NO_KEY') {
+      aToast('ℹ️ No hay API Key configurada. Ingresa tu RapidAPI Key en Ajustes o escribe las reproducciones manualmente.', 'info', 5000);
     } else {
-      aToast('No se detectaron reproducciones automáticas. Ingresa tu API Key en Ajustes o introduce el número manualmente.', 'error');
+      aToast(res.error || 'No se detectaron reproducciones automáticas. Introduce el número manualmente.', 'error', 5000);
     }
   } catch (e) {
-    aToast('Error al consultar reproducciones', 'error');
+    aToast('Error al consultar reproducciones: ' + (e.message || ''), 'error');
   } finally {
     btn.textContent = orig;
     btn.disabled = false;
+  }
+};
+
+window.testRapidApiKey = async function() {
+  const input = $('#aRapidApiKey');
+  const statusEl = $('#aRapidApiStatus');
+  const btn = $('#aBtnTestRapidApi');
+  const key = (input ? input.value : '').trim() || getAdminSecret('rapidApiKey');
+
+  if (!key) {
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#e5484d';
+      statusEl.innerHTML = '⚠️ Por favor escribe una RapidAPI Key antes de probar.';
+    }
+    return aToast('Ingresa una clave de RapidAPI primero', 'error');
+  }
+
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Probando...'; btn.disabled = true; }
+  if (statusEl) {
+    statusEl.style.display = 'block';
+    statusEl.style.color = 'var(--a-sub,#888)';
+    statusEl.innerHTML = '⏳ Conectando con RapidAPI...';
+  }
+
+  try {
+    const testUrl = 'https://open.spotify.com/track/55oQpXCwZdx7rFOtFDaZU9';
+    const res = await fetch(`https://spotify-statistics-and-stream-count.p.rapidapi.com/track?url=${encodeURIComponent(testUrl)}`, {
+      headers: {
+        'x-rapidapi-key': key,
+        'x-rapidapi-host': 'spotify-statistics-and-stream-count.p.rapidapi.com'
+      }
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const p = data.playCount ?? data.play_count ?? data.streams;
+      if (statusEl) {
+        statusEl.style.color = '#30a46c';
+        statusEl.innerHTML = `✓ Clave válida y activa. API respondiendo correctamente (${p ? parseInt(p, 10).toLocaleString() : ''} streams detectados).`;
+      }
+      aToast('✓ RapidAPI Key verificada y funcionando', 'success');
+      setAdminSecret('rapidApiKey', key);
+    } else if (res.status === 403) {
+      const errData = await res.json().catch(() => ({}));
+      const m = errData.message || '';
+      if (/quota/i.test(m)) {
+        if (statusEl) {
+          statusEl.style.color = '#f5a623';
+          statusEl.innerHTML = `⚠️ <strong>Cuota mensual agotada</strong> en tu cuenta de RapidAPI.<br><span style="opacity:0.85">El plan gratuito mensual ha alcanzado su límite de peticiones. Para continuar, suscríbete o renueva en <a href="https://rapidapi.com/felixf/api/spotify-statistics-and-stream-count" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">RapidAPI</a>, o usa un token de Apify.</span>`;
+        }
+        aToast('⚠️ Cuota mensual de RapidAPI agotada en tu cuenta', 'warning', 6000);
+      } else if (/subscribed/i.test(m)) {
+        if (statusEl) {
+          statusEl.style.color = '#f5a623';
+          statusEl.innerHTML = `⚠️ <strong>No suscrito</strong> a esta API.<br><span style="opacity:0.85">Tu clave es válida pero debes hacer clic en "Subscribe to Test" (Plan Free) en <a href="https://rapidapi.com/felixf/api/spotify-statistics-and-stream-count" target="_blank" style="color:var(--gold,#d4af37);text-decoration:underline;">RapidAPI</a>.</span>`;
+        }
+        aToast('⚠️ Clave no suscrita a la API de Spotify en RapidAPI', 'warning', 6000);
+      } else {
+        if (statusEl) {
+          statusEl.style.color = '#e5484d';
+          statusEl.innerHTML = `❌ Error 403: ${m || 'Acceso denegado / Clave inválida'}`;
+        }
+        aToast('❌ Clave de RapidAPI rechazada (403)', 'error', 5000);
+      }
+    } else if (res.status === 429) {
+      if (statusEl) {
+        statusEl.style.color = '#f5a623';
+        statusEl.innerHTML = '⚠️ Límite por minuto alcanzado (Rate Limit 429). Espera unos segundos.';
+      }
+      aToast('Límite temporal alcanzado en RapidAPI', 'warning');
+    } else {
+      if (statusEl) {
+        statusEl.style.color = '#e5484d';
+        statusEl.innerHTML = `❌ Error HTTP ${res.status}`;
+      }
+      aToast(`Error HTTP ${res.status} al validar clave`, 'error');
+    }
+  } catch (e) {
+    if (statusEl) {
+      statusEl.style.color = '#e5484d';
+      statusEl.innerHTML = `❌ Error de red: ${e.message}`;
+    }
+    aToast('Error de red al conectar con RapidAPI', 'error');
+  } finally {
+    if (btn) { btn.textContent = orig; btn.disabled = false; }
   }
 };
 
@@ -13412,18 +13601,22 @@ window.syncAllSpotifyPlays = async function() {
   } else if (rapidKey) {
     for (const c of covers) {
       try {
-        const plays = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
-        if (plays > 0) {
+        const playsRes = await fetchSpotifyPlaysForUrl(c.spotifyUrl);
+        const p = playsRes.plays || 0;
+        if (p > 0) {
           if (!c.plays) c.plays = { spotify: 0, youtube: 0, apple: 0 };
-          c.plays.spotify = plays;
+          c.plays.spotify = p;
           updatedCount++;
-        }
-        await new Promise(r => setTimeout(r, 300));
-      } catch (e) {
-        if (e.message === 'RAPIDAPI_429') {
-          aToast('⚠️ Límite de solicitudes de RapidAPI alcanzado (429). Espera 1 minuto antes de volver a sincronizar.', 'error');
+        } else if (playsRes.code === 'QUOTA_EXCEEDED') {
+          aToast('⚠️ Cuota mensual de RapidAPI agotada. Proceso detenido para evitar bloqueos.', 'warning', 6000);
+          break;
+        } else if (playsRes.code === 'RATE_LIMIT') {
+          aToast('⚠️ Límite de solicitudes de RapidAPI alcanzado (429). Espera 1 minuto.', 'warning');
           break;
         }
+        await new Promise(r => setTimeout(r, 250));
+      } catch (e) {
+        break;
       }
     }
   } else {
@@ -14058,7 +14251,7 @@ $('#contactForm').onsubmit = e => {
   if (el) el.addEventListener('input', () => el.classList.remove('field-error'));
 });
 
-function aToast(msg, type = 'success') { const c = $('#aToastContainer'); if (!c) return; const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg; c.appendChild(el); setTimeout(() => el.classList.add('show'), 10); setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000); }
+function aToast(msg, type = 'success', duration = 3500) { const c = $('#aToastContainer'); if (!c) return; const el = document.createElement('div'); el.className = `a-toast ${type}`; el.textContent = msg; c.appendChild(el); setTimeout(() => el.classList.add('show'), 10); setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, duration); }
 function setASync(status, text) { const el = $('#aSyncStatus'), txt = $('#aSyncStatusText'); if (!el) return; el.className = `a-sync ${status}`; if (txt) txt.textContent = text; }
 async function loadAdminData() {
   setASync('saving', 'Cargando...');
