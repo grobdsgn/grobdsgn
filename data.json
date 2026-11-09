@@ -4159,19 +4159,24 @@
     },
     {
       "id": "j9lom9u2mw8qqtiw",
-      "url": "https://open.spotify.com/intl-es/track/5Z07OlIrcand1tflLFHkOV?si=b32f934fec74452c",
+      "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197314291_bh5d.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Ella Baila Sola",
+      "artist": "Afro Criollo, Sixto Rein",
+      "year": "2024",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197324991_8eaq.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197326956_4swu.png",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197329194_i9qq.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794197330855_txvq.jpg"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/5Z07OlIrcand1tflLFHkOV",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 22163,
         "youtube": 0,
         "apple": 0
       }
