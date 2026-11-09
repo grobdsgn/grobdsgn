@@ -4531,6 +4531,25 @@
         "youtube": 0,
         "apple": 0
       }
+    },
+    {
+      "id": "25hdevlumw8s9x5b",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsG_ClNNXrXMZQIQ0InKrn7kXqKTtZOZfY-3wbt2Pa_mmk-CjT3QRZn4g&s=10",
+      "category": "sencillo",
+      "name": "",
+      "artist": "",
+      "year": "",
+      "review": "",
+      "extraImages": [],
+      "spotifyUrl": "",
+      "appleMusicUrl": "",
+      "youtubeUrl": "",
+      "featured": false,
+      "plays": {
+        "spotify": 0,
+        "youtube": 0,
+        "apple": 0
+      }
     }
   ],
   "contact": {
