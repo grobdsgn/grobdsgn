@@ -2820,12 +2820,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167495434_d3yj.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793167497253_ufl6.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/1euCvB9YCT2PkCEe0wZSpR?si=2a094b6810274521",
+      "spotifyUrl": "https://open.spotify.com/album/1euCvB9YCT2PkCEe0wZSpR",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 919193,
         "youtube": 0,
         "apple": 0
       }
