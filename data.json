@@ -1360,7 +1360,8 @@
           "parallaxImage": "",
           "images": [
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237906583_f8du.jpg"
-          ]
+          ],
+          "parallaxPosition": "center 28%"
         }
       ]
     }
