@@ -4583,17 +4583,17 @@
       "id": "sob4lfrzmw9ecoye",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794236944875_vnfb.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Ibizaaa Remix",
+      "artist": "Ibizaaa",
+      "year": "2022",
       "review": "",
       "extraImages": [],
-      "spotifyUrl": "",
+      "spotifyUrl": "https://open.spotify.com/track/6fJFQwRda3uMgQZ5fHJVxL",
       "appleMusicUrl": "",
       "youtubeUrl": "",
-      "featured": false,
+      "featured": true,
       "plays": {
-        "spotify": 0,
+        "spotify": 44780,
         "youtube": 0,
         "apple": 0
       }
