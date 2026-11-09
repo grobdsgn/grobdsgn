@@ -1330,11 +1330,13 @@
         },
         {
           "id": "7cjd25lqmw9eo6en",
-          "name": "Nuevo Proyecto",
+          "name": "Tronky - Jowell & Randy ft De La Guetto",
           "review": "",
           "logo": "",
           "parallaxImage": "",
-          "images": []
+          "images": [
+            "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794237555972_ulbg.jpg"
+          ]
         }
       ]
     }
