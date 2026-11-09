@@ -1423,6 +1423,14 @@
             "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794238589058_fd2l.jpg"
           ],
           "parallaxPosition": "center 32%"
+        },
+        {
+          "id": "4dsby34wmw9ff7gi",
+          "name": "Nuevo Proyecto",
+          "review": "",
+          "logo": "",
+          "parallaxImage": "",
+          "images": []
         }
       ]
     }
