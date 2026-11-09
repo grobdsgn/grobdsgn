@@ -2052,12 +2052,12 @@
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225879153_f0cg.jpg",
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793225880588_ef8l.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/intl-es/album/5AJTZdKxe3DzLYbpowIaH4?si=fbd5731d02ad4787",
+      "spotifyUrl": "https://open.spotify.com/album/5AJTZdKxe3DzLYbpowIaH4",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 34191968,
         "youtube": 0,
         "apple": 0
       }
