@@ -4344,14 +4344,17 @@
       "id": "q33b3v6umw8rg5yy",
       "url": "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198475872_rle6.jpg",
       "category": "sencillo",
-      "name": "",
-      "artist": "",
-      "year": "",
+      "name": "Tu & Yo",
+      "artist": "Joriel",
+      "year": "2021",
       "review": "",
-      "extraImages": [],
-      "spotifyUrl": "",
+      "extraImages": [
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198487725_nxtm.jpg",
+        "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1794198492254_vksg.png"
+      ],
+      "spotifyUrl": "https://open.spotify.com/track/0QTumoWT6pN28AVGozf0YP",
       "appleMusicUrl": "",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/wj_E_6n7ODk?si=KeVMxzEP0OvI4PPO",
       "featured": false,
       "plays": {
         "spotify": 0,
