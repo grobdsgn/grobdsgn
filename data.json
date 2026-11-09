@@ -2007,12 +2007,12 @@
       "extraImages": [
         "https://raw.githubusercontent.com/grobdsgn/grobdsgn/main/media/img_1793223711538_rrvx.jpg"
       ],
-      "spotifyUrl": "https://open.spotify.com/album/382rMfJUDCCqLlAqmoVeHk?si=ODr5GB4MQnavYz-tiE4vJg",
+      "spotifyUrl": "https://open.spotify.com/album/382rMfJUDCCqLlAqmoVeHk",
       "appleMusicUrl": "",
       "youtubeUrl": "",
       "featured": false,
       "plays": {
-        "spotify": 0,
+        "spotify": 140944,
         "youtube": 0,
         "apple": 0
       }
